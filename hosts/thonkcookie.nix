@@ -30,6 +30,8 @@
     firefox
     rnix-lsp
     nixfmt
+    zoom-us
+    obs-studio
   ];
 
   # Open ports in the firewall.

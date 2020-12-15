@@ -27,6 +27,7 @@
     pinentry_qt
     killall
     htop
+    file
   ];
 
   programs.gnupg.agent.enable = true;
