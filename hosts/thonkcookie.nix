@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ /etc/nixos/hardware-configuration.nix ../base.nix ../graphical.nix ../intel-graphics.nix ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    ../base.nix
+    ../graphical.nix
+    ../intel-graphics.nix
+  ];
 
   networking.hostName = "thonkcookie"; # Define your hostname.
 
