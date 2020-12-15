@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./slock.nix ];
+  imports = [ ./slock.nix ./scrolling.nix ];
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -34,18 +34,9 @@
   services.xserver.layout = "us,il";
   services.xserver.xkbOptions = "grp:win_space_toggle";
   services.xserver.libinput.enable = true;
-  services.xserver.libinput.naturalScrolling = true;
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.sessionCommands =
     "sh -c '${pkgs.xorg.xmodmap}/bin/xmodmap /home/ron/dots/xorg/.local/share/layouts/caps*'";
-  services.xserver.config = ''
-    Section "InputClass"
-      Identifier     "Enable NatrualScrolling for TrackPoint"
-      Driver "libinput"
-      MatchIsPointer "on"
-      Option "NaturalScrolling" "true"
-    EndSection
-  '';
   # services.xserver.displayManager.lightdm.greeters.gtk.iconTheme = {
   #   package = pkgs.paper-icon-theme;
   #   name = "Paper";
