@@ -41,7 +41,8 @@
     "sh -c '${pkgs.xorg.xmodmap}/bin/xmodmap /home/ron/dots/xorg/.local/share/layouts/caps*'";
   services.xserver.config = ''
     Section "InputClass"
-      Identifier     "Enable libinput for TrackPoint"
+      Identifier     "Enable NatrualScrolling for TrackPoint"
+      Driver "libinput"
       MatchIsPointer "on"
       Option "NaturalScrolling" "true"
     EndSection
@@ -63,8 +64,8 @@
       nerdfonts
       hack-font
       ubuntu_font_family
-      noto-fonts
     ];
+    fontconfig.defaultFonts.monospace = [ "Hack" ];
   };
 
 }
