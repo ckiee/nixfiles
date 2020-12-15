@@ -3,9 +3,10 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    ../base.nix
-    ../graphical.nix
-    ../intel-graphics.nix
+    ../modules/base.nix
+    ../modules/graphical.nix
+    ../modules/intel-graphics.nix
+    ../modules/home.nix
   ];
 
   networking.hostName = "thonkcookie"; # Define your hostname.

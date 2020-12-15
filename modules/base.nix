@@ -7,29 +7,29 @@
         inherit pkgs;
       };
   };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.networkmanager.enable = true;
   time.timeZone = "Israel";
   nixpkgs.config.allowUnfree = true;
+
   services.syncthing = {
     enable = true;
     user = "ron";
     dataDir = "/home/ron";
   };
+
   environment.systemPackages = with pkgs; [
     wget
     nano
     neofetch
     git
-    gnupg
-    pinentry
-    pinentry_qt
     killall
     htop
     file
   ];
-
+  
   programs.gnupg.agent.enable = true;
 
   users.users.ron = {
