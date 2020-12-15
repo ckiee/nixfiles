@@ -10,7 +10,7 @@ in {
 
   home-manager.users.ron = { pkgs, ... }: {
     imports =
-      [ ./home/xcursor.nix ./home/bash.nix ./home/git.nix ./home/dunst.nix ];
+      [ ./home/xcursor.nix ./home/bash.nix ./home/git.nix ./home/dunst.nix ./home/picom.nix ];
 
     home.packages = with pkgs; [
       wget
