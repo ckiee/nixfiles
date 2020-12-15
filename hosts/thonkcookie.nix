@@ -5,7 +5,7 @@
     /etc/nixos/hardware-configuration.nix
     ../modules/base.nix
     ../modules/graphical.nix
-    ../modules/intel-graphics.nix
+    ../modules/graphical/intel-graphics.nix
     ../modules/home.nix
   ];
 
