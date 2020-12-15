@@ -5,7 +5,6 @@
     ./graphical/slock.nix
     ./graphical/scrolling.nix
     ./graphical/layout.nix
-    ./graphical/intel-graphics.nix
   ];
 
   services.xserver.enable = true;
