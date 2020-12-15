@@ -9,9 +9,12 @@
     ../modules/home.nix
   ];
 
-  networking.hostName = "thonkcookie"; # Define your hostname.
+  networking.hostName = "thonkcookie";
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplipWithPlugin ];
+  };
 
   services.openssh.enable = true;
   services.avahi = {
