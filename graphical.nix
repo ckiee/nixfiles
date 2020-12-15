@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ./slock.nix ];
+  imports = [ ./slock.nix ];
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -52,7 +51,6 @@
   #   name = "Paper";
   # };
 
-
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -64,8 +62,19 @@
       nerdfonts
       hack-font
       ubuntu_font_family
+      corefonts
+      roboto
+      roboto-mono
+      google-fonts
+      proggyfonts
+      roboto-slab
+      cantarell-fonts
     ];
-    fontconfig.defaultFonts.monospace = [ "Hack" ];
+    fontconfig.defaultFonts = {
+      monospace = [ "Hack" ];
+      sansSerif = [ "Cantarell" ];
+      # serif is ew
+    };
   };
 
 }
