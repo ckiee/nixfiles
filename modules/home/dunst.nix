@@ -20,6 +20,7 @@ in {
         shrink = false;
         alignment = "center";
         padding = 8;
+        word_wrap = true;
       };
       shortcuts = {
         close = "ctrl+space";
