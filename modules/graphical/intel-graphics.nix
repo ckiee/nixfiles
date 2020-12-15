@@ -7,7 +7,7 @@
     #   Option      "TearFree"  "true"
     # '';
     # videoDrivers = [ "intel" ];
-    videoDrivers = [ "modsetting" ];
+    videoDrivers = [ "modesetting" ];
     useGlamor = true;
   };
 }
