@@ -4,6 +4,6 @@ i3blocks -- maybe just switch to polybar?  or make my own
 ✔ gpg @done(20-12-15 20:18)
 ✔ git @done(20-12-15 23:19)
 ✔ dunst @done(20-12-16 00:01)
-gtk3
-i3
+✘ gtk3 @cancelled(20-12-16 00:04) everything feels ok without it
 picom
+i3
