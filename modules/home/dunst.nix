@@ -21,6 +21,7 @@ in {
         alignment = "center";
         padding = 8;
         word_wrap = true;
+        seperator_height = 0;
       };
       shortcuts = {
         close = "ctrl+space";
