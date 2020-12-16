@@ -7,7 +7,10 @@
     fade = true;
     fadeDelta = 5;
     inactiveOpacity = "0.8";
-    opacityRule = [ "90:class_g *?= 'Rofi'" ];
+    opacityRule = [
+      "90:class_g *?= 'Rofi'"
+      "id = 0x1800001" # this id is for slock "https://wiki.archlinux.org/index.php/Picom#slock"
+    ];
     shadow = true;
     shadowExclude = [
       "name = 'Notification'"

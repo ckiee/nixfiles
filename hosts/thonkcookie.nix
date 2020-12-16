@@ -4,9 +4,9 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     ../modules/base.nix
+    ../modules/home.nix
     ../modules/graphical.nix
     ../modules/graphical/intel-graphics.nix
-    ../modules/home.nix
   ];
 
   networking.hostName = "thonkcookie";

@@ -38,4 +38,6 @@
 
   # services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
+
+  home-manager.users.ron = (import ./home/i3.nix);
 }
