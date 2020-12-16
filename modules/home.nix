@@ -9,8 +9,13 @@ in {
   imports = [ (import "${home-manager}/nixos") ];
 
   home-manager.users.ron = { pkgs, ... }: {
-    imports =
-      [ ./home/xcursor.nix ./home/bash.nix ./home/git.nix ./home/dunst.nix ./home/picom.nix ];
+    imports = [
+      ./home/xcursor.nix
+      ./home/bash.nix
+      ./home/git.nix
+      ./home/dunst.nix
+      ./home/picom.nix
+    ];
 
     home.packages = with pkgs; [
       wget
