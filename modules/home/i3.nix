@@ -11,6 +11,10 @@
         border = 0;
         titlebar = false;
       };
+      bars = [{
+        statusCommand = "i3blocks";
+        fonts = config.xsession.windowManager.i3.config.fonts; # set to the root fonts
+      }];
       keybindings = with {
         modifier = config.xsession.windowManager.i3.config.modifier;
         spotifyWorkspace = "Spf";

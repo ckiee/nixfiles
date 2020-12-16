@@ -1,12 +1,12 @@
 ✔ bash @done(20-12-15 20:02)
-i3blocks -- maybe just switch to polybar?  or make my own
 ✘ ssh @cancelled(20-12-15 19:08) syncthing prefered for now
 ✔ gpg @done(20-12-15 20:18)
 ✔ git @done(20-12-15 23:19)
 ✔ dunst @done(20-12-16 00:01)
 ✘ gtk3 @cancelled(20-12-16 00:04) everything feels ok without it
 ✔ picom @done(20-12-16 01:31)
-i3
+✔ i3 @done(20-12-16 06:15)
+i3blocks -> polybar
 
 organize all the graphical home manager things into their own file (graphical-home.nix?)
 use https://github.com/NixOS/nixos-hardware t480s profile
