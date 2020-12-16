@@ -7,3 +7,7 @@ i3blocks -- maybe just switch to polybar?  or make my own
 ✘ gtk3 @cancelled(20-12-16 00:04) everything feels ok without it
 ✔ picom @done(20-12-16 01:31)
 i3
+
+organize all the graphical home manager things into their own file (graphical-home.nix?)
+use https://github.com/NixOS/nixos-hardware t480s profile
+use default.nix instead of having home.nix outside of the home folder same with graphical(.nix)
