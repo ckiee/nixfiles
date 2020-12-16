@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ./graphical/slock.nix ./graphical/layout.nix ./graphical/fonts.nix ./graphical/scrolling.nix ];
+  imports = [
+    ./graphical/slock.nix
+    ./graphical/layout.nix
+    ./graphical/fonts.nix
+    ./graphical/scrolling.nix
+  ];
 
   services.xserver.enable = true;
   sound.enable = true;
@@ -31,7 +35,7 @@
       gnome3.nautilus
     ];
   };
-  
+
   # services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
 }
