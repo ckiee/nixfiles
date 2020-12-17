@@ -33,11 +33,12 @@
             exec "${pkgs.alsaUtils}/bin/amixer -D pulse sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
           "XF86AudioLowerVolume" = ''
             exec "${pkgs.alsaUtils}/bin/amixer -D pulse sset Master 5%- && pkill -RTMIN+2 i3blocks"'';
-          # meta
+          # old i3 defaults
           "${modifier}+Shift+f" = "floating toggle";
+          # lock/suspend
           "--release ${modifier}+l" = "exec ${locker}";
-          "--release ${modifier}+Shift+l" = "exec ${locker} systemctl suspend";
-
+          "--release ${modifier}+Shift+s" = ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+          # screenshot
           "--release ${modifier}+End" = "exec ${./i3-scripts/screenshot}";
           "--release ${modifier}+Shift+Pause" =
             "exec ${./i3-scripts/screenshot}";
