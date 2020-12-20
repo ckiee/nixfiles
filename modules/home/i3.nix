@@ -11,10 +11,14 @@
         border = 0;
         titlebar = false;
       };
-      startup = [{
-        command = "${pkgs.kdeconnect}/libexec/kdeconnectd"; # when dbus automatically launches kdeconnectd things get weird
-        notification = false;
-      }];
+      startup = [
+        {
+          command =
+            "${pkgs.kdeconnect}/libexec/kdeconnectd"; # when dbus automatically launches kdeconnectd things get weird
+          notification = false;
+        }
+        { command = "${pkgs.kdeconnect}/bin/kdeconnect-indicator"; }
+      ];
       bars = [{
         statusCommand = "i3blocks";
         fonts =
