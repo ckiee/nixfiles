@@ -17,6 +17,7 @@
     package = pkgs.i3-gaps;
     extraPackages = with pkgs; [
       i3blocks
+      acpi # util for i3blocks battery info
       brightnessctl
       rofi
       dunst
