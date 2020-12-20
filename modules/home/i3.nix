@@ -11,9 +11,14 @@
         border = 0;
         titlebar = false;
       };
+      startup = [{
+        command = "${pkgs.kdeconnect}/libexec/kdeconnectd"; # when dbus automatically launches kdeconnectd things get weird
+        notification = false;
+      }];
       bars = [{
         statusCommand = "i3blocks";
-        fonts = config.xsession.windowManager.i3.config.fonts; # set to the root fonts
+        fonts =
+          config.xsession.windowManager.i3.config.fonts; # set to the root fonts
       }];
       keybindings = with {
         modifier = config.xsession.windowManager.i3.config.modifier;
@@ -37,7 +42,8 @@
           "${modifier}+Shift+f" = "floating toggle";
           # lock/suspend
           "--release ${modifier}+l" = "exec ${locker}";
-          "--release ${modifier}+Shift+s" = ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+          "--release ${modifier}+Shift+s" =
+            ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
           # screenshot
           "--release ${modifier}+End" = "exec ${./i3-scripts/screenshot}";
           "--release ${modifier}+Shift+Pause" =
