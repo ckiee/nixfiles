@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./cachix.nix ];
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball
       "https://github.com/nix-community/NUR/archive/master.tar.gz") {
@@ -28,8 +29,9 @@
     killall
     htop
     file
+    cachix
   ];
-  
+
   programs.gnupg.agent.enable = true;
 
   users.users.ron = {

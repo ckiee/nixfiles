@@ -6,7 +6,7 @@
     backend = "xrender";
     fade = true;
     fadeDelta = 5;
-    inactiveOpacity = "0.8";
+    inactiveOpacity = "1.0";
     opacityRule = [
       "90:class_g *?= 'Rofi'"
       "90:class_g *?= 'Dunst'"

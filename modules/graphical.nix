@@ -31,6 +31,7 @@
       networkmanagerapplet
       sysstat
       feh
+      xorg.xkill # if shit gets stuck
       # apps
       pavucontrol
       gnome3.nautilus
