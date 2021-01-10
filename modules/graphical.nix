@@ -22,6 +22,7 @@
       rofi
       dunst
       gnome3.gnome-screenshot
+      gnome3.gnome-calculator
       picom
       redshift
       kdeconnect
@@ -32,7 +33,6 @@
       feh
       # apps
       pavucontrol
-      kitty
       gnome3.nautilus
     ];
   };

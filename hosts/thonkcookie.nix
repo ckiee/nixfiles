@@ -36,6 +36,8 @@
     nixfmt
     zoom-us
     obs-studio
+    weechat
+    geogebra
   ];
 
   # Open ports in the firewall.
