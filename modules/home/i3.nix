@@ -61,7 +61,7 @@
       fonts = [ "monospace 9" ];
       modifier = "Mod4"; # super key
       terminal = "${pkgs.kitty}/bin/kitty";
-      menu = "${pkgs.rofi}/bin/rofi -show drun";
+      menu = "${pkgs.rofi}/bin/rofi -show drun -terminal ${pkgs.kitty}/bin/kitty";
     };
   };
 }

@@ -15,6 +15,7 @@ in {
       ./home/git.nix
       ./home/dunst.nix
       ./home/picom.nix
+      ./home/kitty.nix
       # ./home/i3.nix gets imported in graphical.nix
     ];
 
