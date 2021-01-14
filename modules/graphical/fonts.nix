@@ -14,7 +14,7 @@
       corefonts
       roboto
       roboto-mono
-      google-fonts
+      # google-fonts # this kills doom emacs performance for some reason
       proggyfonts
       roboto-slab
       cantarell-fonts
