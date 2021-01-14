@@ -2,7 +2,7 @@
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    rev = "63f299b3347aea183fc5088e4d6c4a193b334a41";
+    rev = "22f6736e628958f05222ddaadd7df7818fe8f59d";
     ref = "release-20.09";
   };
 in {
@@ -10,14 +10,12 @@ in {
 
   home-manager.users.ron = { pkgs, ... }: {
     imports = [
-      ./home/xcursor.nix
       ./home/bash.nix
       ./home/git.nix
       ./home/dunst.nix
       ./home/picom.nix
       ./home/kitty.nix
-      # ./home/doom.nix
-      # ./home/i3.nix gets imported in graphical.nix
+      ./home/doom.nix
     ];
 
     home.packages = with pkgs; [
