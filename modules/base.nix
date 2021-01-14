@@ -30,6 +30,7 @@
     htop
     file
     cachix
+    nix-prefetch-github # i just use this so much
   ];
 
   programs.gnupg.agent.enable = true;
