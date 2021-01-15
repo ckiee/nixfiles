@@ -29,6 +29,8 @@ in {
       tree
       rsync
       ffmpeg
+      yarn
+      nodejs
     ];
 
   };
