@@ -12,6 +12,7 @@ in {
     enable = true;
     settings = {
       global = {
+        monitor = 0;
         geometry = "300x100-30+20";
         frame_color = "#212121";
         font = "Monospace 10";

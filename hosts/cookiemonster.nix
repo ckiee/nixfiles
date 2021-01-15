@@ -16,6 +16,13 @@
   };
 
   services.openssh.enable = true;
+  services.xserver.xrandrHeads = [
+    {
+      output = "DP-1";
+      primary = true;
+    }
+    "HDMI-1"
+  ];
   services.avahi = {
     enable = true;
     nssmdns = true;
