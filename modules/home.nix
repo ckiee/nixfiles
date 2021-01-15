@@ -28,6 +28,7 @@ in {
       file
       tree
       rsync
+      ffmpeg
     ];
 
   };
