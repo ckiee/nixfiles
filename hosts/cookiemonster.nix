@@ -23,6 +23,7 @@
     }
     "HDMI-1"
   ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.avahi = {
     enable = true;
     nssmdns = true;
@@ -44,7 +45,11 @@
     obs-studio
     weechat
     geogebra
+    minecraft
+    vlc
   ];
+
+  programs.steam.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

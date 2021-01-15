@@ -52,35 +52,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(define-minor-mode vimkeys-mode
-  "Overrides all major and minor mode keys" t)
-
-(defvar vimkeys-override (make-sparse-keymap "vimkeys-override")
-  "Override all major and minor mode keys")
-
-(add-to-list 'emulation-mode-map-alists
-  `((vimkeys-mode . ,vimkeys-override)))
-
-(define-key vimkeys-override (kbd "<left>")
-  (lambda ()
-    (interactive)
-    (message "Use Vim keys: h for Left")))
-
-(define-key vimkeys-override (kbd "<right>")
-  (lambda ()
-    (interactive)
-    (message "Use Vim keys: l for Right")))
-
-(define-key vimkeys-override (kbd "<up>")
-  (lambda ()
-    (interactive)
-    (message "Use Vim keys: k for Up")))
-
-(define-key vimkeys-override (kbd "<down>")
-  (lambda ()
-    (interactive)
-    (message "Use Vim keys: j for Down")))
-(evil-make-intercept-map vimkeys-override)
 
 ;; (elcord-mode)
 (which-key-mode)
