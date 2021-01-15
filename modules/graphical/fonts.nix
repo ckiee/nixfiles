@@ -3,30 +3,30 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      cantarell-fonts
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      nerdfonts
+      # noto-fonts
+      # noto-fonts-cjk
+      # noto-fonts-emoji
+      # liberation_ttf
+      # nerdfonts
       hack-font
       ubuntu_font_family
-      corefonts
-      roboto
-      roboto-mono
+      # corefonts
       # google-fonts # this kills doom emacs performance for some reason
       proggyfonts
-      roboto-slab
       cantarell-fonts
       material-design-icons
       weather-icons
       font-awesome
       emacs-all-the-icons-fonts
     ];
-    fontconfig.defaultFonts = {
-      monospace = [ "Hack" ];
-      sansSerif = [ "Cantarell" ];
-      # serif is ew
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Hack" ];
+        sansSerif = [ "Cantarell" ];
+        # serif is ew
+      };
+      # hinting.autohint = true;
+      # subpixel.lcdfilter = "none";
     };
   };
 }

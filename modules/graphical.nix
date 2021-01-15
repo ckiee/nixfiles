@@ -9,6 +9,7 @@
       ./home/graphical/xsession.nix
       ./home/graphical/xcursor.nix
       ./home/graphical/layout.nix
+      ./home/graphical/gtk.nix
     ];
   };
   sound.enable = true;
@@ -20,4 +21,5 @@
       true; # this somehow makes home-manager's stuff run
   };
 
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
 }

@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   xsession.windowManager.i3.config.startup = [{
-    command =
-      "${pkgs.xorg.xmodmap}/bin/xmodmap /home/ron/dots/xorg/.local/share/layouts/caps*";
+    command = "${pkgs.xorg.xmodmap}/bin/xmodmap ${./xmodmap-layout}";
     notification = false;
   }];
 

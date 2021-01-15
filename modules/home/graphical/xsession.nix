@@ -42,6 +42,7 @@
             notification = false;
           }
           { command = "${pkgs.kdeconnect}/bin/kdeconnect-indicator"; }
+          { command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg"; }
         ];
         bars = [{
           statusCommand = "i3blocks";
@@ -74,8 +75,7 @@
               ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
             # screenshot
             "--release ${modifier}+End" = "exec ${../i3-scripts/screenshot}";
-            "--release ${modifier}+Shift+Pause" =
-              "exec ${../i3-scripts/screenshot}";
+            "--release ${modifier}+Pause" = "exec ${../i3-scripts/screenshot}";
 
             # spotify's house
             "${modifier}+Shift+w" =
@@ -83,6 +83,7 @@
             "${modifier}+w" = "workspace ${spotifyWorkspace}";
             # force i3 to make 1 the starting workspace
             "F13" = "workspace 1";
+            "F14" = "workspace 2";
           };
         fonts = [ "monospace 9" ];
         modifier = "Mod4"; # super key

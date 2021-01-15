@@ -82,5 +82,5 @@
     (message "Use Vim keys: j for Down")))
 (evil-make-intercept-map vimkeys-override)
 
-(elcord-mode)
+;; (elcord-mode)
 (which-key-mode)
