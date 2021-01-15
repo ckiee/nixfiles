@@ -18,6 +18,10 @@
       proggyfonts
       roboto-slab
       cantarell-fonts
+      material-design-icons
+      weather-icons
+      font-awesome
+      emacs-all-the-icons-fonts
     ];
     fontconfig.defaultFonts = {
       monospace = [ "Hack" ];
