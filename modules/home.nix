@@ -13,7 +13,7 @@ in {
       ./home/bash.nix
       ./home/git.nix
       ./home/dunst.nix
-      ./home/picom.nix
+      # ./home/graphical/picom.nix
       ./home/kitty.nix
       ./home/doom.nix
     ];

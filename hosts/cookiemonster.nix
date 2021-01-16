@@ -24,6 +24,10 @@
     "HDMI-1"
   ];
   services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.screenSection = ''
+    Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
+    Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+  '';
   services.avahi = {
     enable = true;
     nssmdns = true;
