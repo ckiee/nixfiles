@@ -38,7 +38,7 @@
     vscode-with-extensions
     discord
     stow
-    firefox
+    firefox-esr
     rnix-lsp
     nixfmt
     zoom-us
