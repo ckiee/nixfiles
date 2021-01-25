@@ -14,6 +14,9 @@
   networking.networkmanager.enable = true;
   time.timeZone = "Israel";
   nixpkgs.config.allowUnfree = true;
+  boot.tmpOnTmpfs = true; # i have no idea why this isnt the default
+  nix.gc.automatic = true;
+  nix.gc.options = "--delete-older-than 8d";
 
   services.syncthing = {
     enable = true;
