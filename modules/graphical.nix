@@ -10,6 +10,7 @@
       ./home/graphical/xcursor.nix
       ./home/graphical/layout.nix
       ./home/graphical/gtk.nix
+      ./home/graphical/redshift.nix
     ];
   };
   sound.enable = true;
