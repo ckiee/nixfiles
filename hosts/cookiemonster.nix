@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   imports = [
     /etc/nixos/hardware-configuration.nix
     ../modules/base.nix
@@ -39,7 +37,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vscode-with-extensions
     discord
     stow
     firefox-esr
@@ -51,8 +48,16 @@
     geogebra
     minecraft
     vlc
+    arandr
+    spotify
+    lutris
+    sidequest
+    steam-run-native
+    maven
   ];
-
+  programs.adb.enable = true;
+  users.users.ron.extraGroups = [ "adbusers" ];
+  hardware.opentabletdriver = { enable = true; };
   programs.steam.enable = true;
 
   # Open ports in the firewall.

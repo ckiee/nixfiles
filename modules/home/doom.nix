@@ -1,10 +1,11 @@
 { pkgs, ... }:
 
 let
-  emacs-overlay = builtins.fetchTarball {
-    url =
-      "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-  };
+  emacs-overlay = (builtins.fetchGit {
+    url = "https://github.com/nix-community/emacs-overlay.git";
+    rev = "5369c0a1397839602ee0f99f76e3f29dd32ba6d8";
+    ref = "master";
+  });
 in {
   nixpkgs.overlays = [ (import emacs-overlay) ];
 
@@ -29,6 +30,6 @@ in {
   home.sessionPath = [ "~/.emacs.d/bin" ];
 
   # doom emacs wants these
-  home.packages = with pkgs; [ shellcheck ripgrep jq fd ];
+  home.packages = with pkgs; [ shellcheck ripgrep jq fd jdk11 ];
 
 }
