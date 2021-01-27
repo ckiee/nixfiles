@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  services.xserver.libinput.naturalScrolling = true;
+  services.xserver.libinput.touchpad.naturalScrolling = true;
   # this is inverted for some reason, go figure
   # need to do this after libinput xorg config stuff
   services.xserver.config = (lib.mkAfter ''

@@ -2,8 +2,8 @@
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    rev = "22f6736e628958f05222ddaadd7df7818fe8f59d";
-    ref = "release-20.09";
+    rev = "e44faef21c38e3885cf2ed874ea700d3f0260448";
+    ref = "master";
   };
 in {
   imports = [ (import "${home-manager}/nixos") ];
@@ -16,6 +16,7 @@ in {
       # ./home/graphical/picom.nix
       ./home/kitty.nix
       ./home/doom.nix
+      ./home/resume-fix-pulseaudio.nix
     ];
 
     home.packages = with pkgs; [
