@@ -19,6 +19,7 @@
     # apps
     pavucontrol
     gnome3.nautilus
+    gnome3.file-roller
   ];
 
   xsession = {
@@ -76,6 +77,8 @@
             # screenshot
             "--release ${modifier}+End" = "exec ${../i3-scripts/screenshot}";
             "--release ${modifier}+Pause" = "exec ${../i3-scripts/screenshot}";
+
+            "--release ${modifier}+Shift+t" = "exec ${../i3-scripts/tntwars}";
 
             # spotify's house
             "${modifier}+Shift+w" =

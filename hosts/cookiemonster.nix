@@ -54,6 +54,7 @@
     sidequest
     steam-run-native
     maven
+    rustup
   ];
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" ];
