@@ -34,7 +34,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vscode-with-extensions
     discord
     stow
     firefox
