@@ -55,11 +55,14 @@
     steam-run-native
     maven
     rustup
+    prusa-slicer
   ];
+
   programs.adb.enable = true;
-  users.users.ron.extraGroups = [ "adbusers" ];
+  users.users.ron.extraGroups = [ "adbusers" "dialout" ];
   hardware.opentabletdriver = { enable = true; };
   programs.steam.enable = true;
+  # services.octoprint.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
