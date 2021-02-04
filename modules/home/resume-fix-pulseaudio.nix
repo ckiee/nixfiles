@@ -10,11 +10,9 @@
     Service = {
       Type = "oneshot";
       # Environment = "XDG_RUNTIME_DIR=/run/user/%U";
-      ExecStart = "${pkgs.pulseaudio}/bin/pasuspender ${pkgs.coreutils}/bin/true";
+      ExecStart = "systemctl --user restart pulseaudio";
     };
 
-    Install = {
-      WantedBy = [ "suspend.target" ];
-    };
+    Install = { WantedBy = [ "suspend.target" ]; };
   };
 }

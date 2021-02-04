@@ -20,6 +20,7 @@
     pavucontrol
     gnome3.nautilus
     gnome3.file-roller
+    wakatime # i only code on graphical machines so here it is
   ];
 
   xsession = {

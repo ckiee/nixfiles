@@ -11,7 +11,6 @@
     sessionVariables = {
       VISUAL = "nano";
       EDITOR = "nano";
-      TERM = "xterm-256color"; # kitty isn't a big boi terminal
     };
     # interactive shell only: 
     initExtra = ''
@@ -23,6 +22,8 @@
       if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         PS1="(ssh) $PS1"
       fi
+
+      export TERM=xterm-256color
     '';
   };
 }
