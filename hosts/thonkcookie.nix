@@ -17,6 +17,11 @@
 
   networking.hostName = "thonkcookie";
 
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+  };
+
   services.printing = {
     enable = true;
     drivers = [ pkgs.hplipWithPlugin ];

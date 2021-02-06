@@ -9,8 +9,12 @@
       };
   };
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   networking.networkmanager.enable = true;
   time.timeZone = "Israel";
   nixpkgs.config.allowUnfree = true;

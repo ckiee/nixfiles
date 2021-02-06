@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+let
+  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+in { config, pkgs, ... }: {
   imports = [
     /etc/nixos/hardware-configuration.nix
     ../modules/base.nix
@@ -56,13 +58,19 @@
     maven
     rustup
     prusa-slicer
+    platformio
   ];
 
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" ];
   hardware.opentabletdriver = { enable = true; };
   programs.steam.enable = true;
-  # services.octoprint.enable = true;
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    octoprint = nixpkgs-local.octoprint;
+  };
+  services.octoprint.enable = true;
+  users.users.octoprint.extraGroups = [ "dialout" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
