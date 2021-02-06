@@ -22,7 +22,9 @@
     enable = true;
     port = 5000;
   };
-  networking.firewall.extraCommands = "iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 5000\n";
+  networking.firewall.extraCommands = ''
+    iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 5000
+  '';
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
