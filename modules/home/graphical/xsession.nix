@@ -80,6 +80,10 @@
             "--release ${modifier}+Pause" = "exec ${../i3-scripts/screenshot}";
 
             "--release ${modifier}+Shift+t" = "exec ${../i3-scripts/tntwars}";
+            "--release ${modifier}+Shift+d" =
+              "exec ${config.xsession.windowManager.i3.config.terminal} ${
+                ../i3-scripts/shall
+              }";
 
             # spotify's house
             "${modifier}+Shift+w" =
