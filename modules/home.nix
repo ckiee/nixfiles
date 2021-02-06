@@ -9,15 +9,7 @@ in {
   imports = [ (import "${home-manager}/nixos") ];
 
   home-manager.users.ron = { pkgs, ... }: {
-    imports = [
-      ./home/bash.nix
-      ./home/git.nix
-      ./home/dunst.nix
-      # ./home/graphical/picom.nix
-      ./home/kitty.nix
-      ./home/doom.nix
-      ./home/resume-fix-pulseaudio.nix
-    ];
+    imports = [ ./home/bash.nix ./home/git.nix ];
 
     home.packages = with pkgs; [
       wget

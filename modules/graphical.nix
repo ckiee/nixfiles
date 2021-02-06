@@ -11,6 +11,11 @@
       ./home/graphical/layout.nix
       ./home/graphical/gtk.nix
       ./home/graphical/redshift.nix
+      ./home/dunst.nix
+      # ./home/graphical/picom.nix
+      ./home/kitty.nix
+      ./home/doom.nix
+      ./home/resume-fix-pulseaudio.nix
     ];
   };
   sound.enable = true;
