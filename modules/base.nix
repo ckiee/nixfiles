@@ -17,6 +17,16 @@
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 8d";
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
+  };
+
   services.syncthing = {
     enable = true;
     user = "ron";
@@ -36,6 +46,8 @@
   ];
 
   programs.gnupg.agent.enable = true;
+
+  services.openssh.enable = true;
 
   users.users.ron = {
     isNormalUser = true;

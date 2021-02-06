@@ -7,17 +7,6 @@
 
   networking.hostName = "pookieix";
 
-  services.openssh.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-    };
-  };
-
   services.octoprint = {
     enable = true;
     port = 5000;

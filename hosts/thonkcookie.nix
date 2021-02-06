@@ -27,17 +27,6 @@
     drivers = [ pkgs.hplipWithPlugin ];
   };
 
-  services.openssh.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     discord
     stow
