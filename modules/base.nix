@@ -43,5 +43,6 @@
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUV0RXaIzC4jtsdTPSlYoNbhtV+lyf334Hk74s3628N0k4GIuN6NJXpZDyWCV0v08/yRIVR8c7xSoUWqvREAsWdmSm7i8Dn3hjeM3SYZKn8XpKLYMJMBdCaPx4cmpuqgHmXZ+JMzNSAz1YjmPOKlYsXzOgKB1lHtMNH8PlMlVWBF+JP5xsHeyrj1J4BYyOdkQgxLOuRManwYHOIMTCcDs6+uYeBEDowpmYIm/+5jP7/bG3Mg6mTsNTAHQg9O3DI65BO/ub+P1G4z72CPF0nR3b9sem7bQcAP6FxxuNRIM1/vhVOAdTz2duW+QQOfCzSyO0Hvee6Mcs9o9xHHp4/lnj ronthecookie"
     ];
+    initialPassword = config.networking.hostName;
   };
 }
