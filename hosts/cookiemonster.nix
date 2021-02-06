@@ -8,6 +8,13 @@ in { config, pkgs, ... }: {
     ../modules/graphical.nix
   ];
 
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+  };
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking.hostName = "cookiemonster";
 
   services.printing = {
