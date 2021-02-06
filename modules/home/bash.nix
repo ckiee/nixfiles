@@ -15,7 +15,7 @@
     # interactive shell only: 
     initExtra = ''
       if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
-      	DISPLAY=:0 notify-send ssh "$SSH_CLIENT connected"
+        DISPLAY=:0 which notify-send > /dev/null 2>&1 && notify-send ssh "$SSH_CLIENT connected"
       fi 
 
       PS1="\[\e[36m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\] \w -> "
