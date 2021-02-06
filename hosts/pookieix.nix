@@ -11,6 +11,7 @@
     enable = true;
     port = 5000;
   };
+  users.users.octoprint.extraGroups = [ "dialout" ];
   networking.firewall.extraCommands = ''
     iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 5000
   '';
