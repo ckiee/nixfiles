@@ -1,0 +1,30 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p tmux -p openssh
+#
+# thanks https://www.arp242.net/tmux.html
+
+set -euC
+
+att() {
+    [ -n "${TMUX:-}" ] &&
+        tmux switch-client -t '=shall' ||
+        tmux attach-session -t '=shall'
+}
+
+if tmux has-session -t '=shall' 2> /dev/null; then
+    att
+    exit 0
+fi
+
+tmux new-session -d -s shall
+
+for host in $(ls ~/git/nixfiles/hosts | xargs basename -as .nix); do
+    tmux new-window -dt '=shall' -n $host ssh $host.local
+done
+
+sleep 1
+tmux kill-window -t '=shall:=bash' # not interested in the default window
+tmux select-window -t "=shall:=$(hostname)"
+
+att
+
