@@ -1,11 +1,9 @@
-let
-  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
-in { config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
-    /etc/nixos/hardware-configuration.nix
-    ../modules/base.nix
-    ../modules/home.nix
-    ../modules/graphical.nix
+    ./hardware.nix
+    ../../modules/base.nix
+    ../../modules/home.nix
+    ../../modules/graphical.nix
   ];
 
   boot.loader.systemd-boot = {
@@ -62,12 +60,6 @@ in { config, pkgs, ... }: {
   users.users.ron.extraGroups = [ "adbusers" "dialout" ];
   hardware.opentabletdriver = { enable = true; };
   programs.steam.enable = true;
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    octoprint = nixpkgs-local.octoprint;
-  };
-  services.octoprint.enable = true;
-  users.users.octoprint.extraGroups = [ "dialout" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
