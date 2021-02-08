@@ -9,6 +9,8 @@
       };
   };
 
+  nix.trustedUsers = [ "root" "@wheel" ];
+
   boot.loader.efi.canTouchEfiVariables = true;
   networking.networkmanager.enable = true;
   time.timeZone = "Israel";
