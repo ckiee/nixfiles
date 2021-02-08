@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+let
+  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+in { config, pkgs, ... }: {
   imports = [
     ./hardware.nix
     ../../modules/base.nix
@@ -33,6 +35,10 @@
     Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
   '';
 
+  home-manager.users.ron = { pkgs, ... }: {
+    imports = [ ../../modules/home/sleep.nix ];
+  };
+
   environment.systemPackages = with pkgs; [
     discord
     stow
@@ -56,6 +62,7 @@
     platformio
   ];
 
+  nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" ];
   hardware.opentabletdriver = { enable = true; };
