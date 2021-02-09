@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+in {
   imports = [
     "${
       builtins.fetchGit {
@@ -38,6 +40,8 @@
     weechat
     geogebra
   ];
+
+  nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
