@@ -30,6 +30,13 @@ in {
   home.sessionPath = [ "~/.emacs.d/bin" ];
 
   # doom emacs wants these
-  home.packages = with pkgs; [ shellcheck ripgrep jq fd jdk11 ];
+  home.packages = with pkgs; [
+    shellcheck
+    ripgrep
+    jq
+    fd
+    jdk11
+    rust-analyzer-unwrapped
+  ];
 
 }
