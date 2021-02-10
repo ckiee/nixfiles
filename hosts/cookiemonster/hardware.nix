@@ -25,10 +25,10 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/bc0e9e4b-176f-45ef-12081e48b49f-9713";
-    fsType = "ext4";
-  };
+ fileSystems."/mnt/games" = {
+   device = "/dev/md127";
+   fsType = "ext4";
+ };
 
   fileSystems."/mnt/backup" = {
     device = "/dev/disk/by-uuid/08f2ac6c-3564-4110-a436-fed882a9f4e8";
