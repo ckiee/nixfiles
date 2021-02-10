@@ -43,8 +43,6 @@ in { config, pkgs, ... }: {
     discord
     stow
     firefox-esr
-    rnix-lsp
-    nixfmt
     zoom-us
     obs-studio
     weechat

@@ -33,8 +33,6 @@ in {
     discord
     stow
     firefox
-    rnix-lsp
-    nixfmt
     zoom-us
     obs-studio
     weechat

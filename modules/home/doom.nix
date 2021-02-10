@@ -37,6 +37,8 @@ in {
     fd
     jdk11
     rust-analyzer-unwrapped
+    rnix-lsp
+    # nix-fmt
   ];
 
 }
