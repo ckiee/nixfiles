@@ -5,7 +5,7 @@
     services.make-ron-sleep = {
       Unit = { Description = "Suspend the system so Ron sleeps"; };
       Service = { ExecStart = "${pkgs.systemd}/bin/systemctl suspend"; };
-      Install = { WantedBy = [ "default.target" ]; };
+      # Install = { WantedBy = [ "default.target" ]; };
     };
 
     timers.make-ron-sleep = {
