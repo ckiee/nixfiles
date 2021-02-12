@@ -11,6 +11,7 @@
       ./home/graphical/layout.nix
       ./home/graphical/gtk.nix
       ./home/graphical/redshift.nix
+      ./home/graphical/nautilus.nix
       ./home/dunst.nix
       # ./home/graphical/picom.nix
       ./home/kitty.nix
@@ -27,6 +28,8 @@
       true; # this somehow makes home-manager's stuff run
   };
 
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  # gnome apps are weird
   programs.dconf.enable = true;
+  environment.systemPackages = with pkgs; [ gnome3.adwaita-icon-theme gnomeExtensions.appindicator ];
+  services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
 }
