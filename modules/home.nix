@@ -25,6 +25,7 @@ in {
       yarn
       nodejs
     ];
-
+    # for nodejs
+    home.sessionPath = ["~/.yarn/bin"];
   };
 }
