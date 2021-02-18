@@ -1,11 +1,15 @@
 let
   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+  nur-local = import (/home/ron/git/nur-a-repo) { };
+  nixpkgs-steam =
+    import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
 in { config, pkgs, ... }: {
   imports = [
     ./hardware.nix
     ../../modules/base.nix
     ../../modules/home.nix
     ../../modules/graphical.nix
+    ../../modules/smartd.nix
   ];
 
   boot.loader.systemd-boot = {
@@ -58,13 +62,19 @@ in { config, pkgs, ... }: {
     rustup
     prusa-slicer
     platformio
+    transmission-gtk
+    nur-local.pmbootstrap
+    virt-manager
   ];
 
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
+  # nixpkgs.overlays = [ (self: super: { steam = nixpkgs-steam.steam; }) ];
+
   programs.adb.enable = true;
-  users.users.ron.extraGroups = [ "adbusers" "dialout" ];
+  users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
   hardware.opentabletdriver = { enable = true; };
   programs.steam.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
