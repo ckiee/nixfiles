@@ -39,6 +39,7 @@ in {
     geogebra
   ];
 
+  programs.adb.enable = true;
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
 
   # Open ports in the firewall.
