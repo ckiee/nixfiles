@@ -7,6 +7,7 @@
       rsync = "rsync --progress";
       ls =
         "ls --color=auto --human-readable --group-directories-first --classify";
+      nsp = "nix-shell -p ";
     };
     sessionVariables = {
       VISUAL = "nano";
