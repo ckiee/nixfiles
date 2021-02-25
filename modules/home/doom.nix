@@ -6,6 +6,24 @@ let
     rev = "d963d900925cbda9c679e8d3c0c2d225d2b0ae82";
     ref = "master";
   });
+  ron-emacsclient = pkgs.writeTextFile {
+    name = "emacsclient.desktop";
+    destination = "/share/applications/emacsclient.desktop";
+    text = ''
+      [Desktop Entry]
+      Name=Emacs Client
+      GenericName=Text Editor
+      Comment=Edit text
+      MimeType=inode/directory;text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+      Exec=emacsclient -n %F
+      Icon=emacs
+      Type=Application
+      Terminal=false
+      Categories=Development;TextEditor;
+      StartupWMClass=Emacs
+      Keywords=Text;Editor;
+    '';
+  };
 in {
   nixpkgs.overlays = [ (import emacs-overlay) ];
 
@@ -39,6 +57,7 @@ in {
     rust-analyzer-unwrapped
     rnix-lsp
     nixfmt
+    ron-emacsclient
   ];
 
 }
