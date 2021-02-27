@@ -47,7 +47,6 @@ in { config, pkgs, ... }: {
     discord
     stow
     firefox-esr
-    zoom-us
     obs-studio
     weechat
     geogebra
@@ -65,6 +64,9 @@ in { config, pkgs, ... }: {
     transmission-gtk
     nur-local.pmbootstrap
     virt-manager
+    gnome3.totem
+    gcc
+    picocom
   ];
 
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
