@@ -46,6 +46,10 @@
           }
           { command = "${pkgs.kdeconnect}/bin/kdeconnect-indicator"; }
           { command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg"; }
+          {
+            command = "${../i3-scripts/oszwatch}";
+            notification = false;
+          }
         ];
         bars = [{
           statusCommand = "i3blocks";
