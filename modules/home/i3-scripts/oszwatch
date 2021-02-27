@@ -1,0 +1,13 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p inotify-tools
+
+set -e
+cd ~/Downloads
+
+while true; do
+	if FN=$(inotifywait -qe moved_to --format %f .); then
+		if [[ "$FN" == *.osz ]]; then
+			mv "$FN" /mnt/games/ron/Lutris/osu/drive_c/osu/Songs/
+		fi
+	fi
+done
