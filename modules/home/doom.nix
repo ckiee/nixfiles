@@ -58,6 +58,7 @@ in {
     rnix-lsp
     nixfmt
     ron-emacsclient
+    shfmt
   ];
 
 }
