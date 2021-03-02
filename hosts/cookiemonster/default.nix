@@ -42,7 +42,6 @@ in { config, pkgs, ... }: {
 
   home-manager.users.ron = { pkgs, ... }: {
     imports = [ ../../modules/home/sleep.nix ];
-    home.sessionPath = [ "~/git/depot_tools" ];
   };
   environment.systemPackages = with pkgs; [
     discord
