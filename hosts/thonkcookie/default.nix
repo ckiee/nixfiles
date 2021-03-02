@@ -10,11 +10,11 @@ in {
         rev = "874830945a65ad1134aff3a5aea0cdd2e1d914ab";
       }
     }/lenovo/thinkpad/t480s"
-    /etc/nixos/hardware-configuration.nix
-    ../modules/base.nix
-    ../modules/home.nix
-    ../modules/graphical.nix
-    ../modules/graphical/intel-graphics.nix
+    ./hardware.nix
+    ../../modules/base.nix
+    ../../modules/home.nix
+    ../../modules/graphical.nix
+    ../../modules/graphical/intel-graphics.nix
   ];
 
   networking.hostName = "thonkcookie";
