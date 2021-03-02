@@ -1,3 +1,4 @@
+# { pkgs, fetchurl, ... }:
 let
   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
   nur-local = import (/home/ron/git/nur-a-repo) { };
@@ -41,8 +42,8 @@ in { config, pkgs, ... }: {
 
   home-manager.users.ron = { pkgs, ... }: {
     imports = [ ../../modules/home/sleep.nix ];
+    home.sessionPath = [ "~/git/depot_tools" ];
   };
-
   environment.systemPackages = with pkgs; [
     discord
     stow
@@ -50,7 +51,6 @@ in { config, pkgs, ... }: {
     obs-studio
     weechat
     geogebra
-    minecraft
     vlc
     arandr
     spotify
@@ -67,10 +67,18 @@ in { config, pkgs, ... }: {
     gnome3.totem
     gcc
     picocom
+    (pkgs.minecraft.overrideAttrs (oldAttrs: rec {
+      src = fetchurl {
+        url =
+          "https://launcher.mojang.com/download/linux/x86_64/minecraft-launcher_2.2.1441.tar.gz";
+        sha256 = "03q579hvxnsh7d00j6lmfh53rixdpf33xb5zlz7659pvb9j5w0cm";
+      };
+    }))
   ];
 
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
   # nixpkgs.overlays = [ (self: super: { steam = nixpkgs-steam.steam; }) ];
+  boot.extraModulePackages = [ nixpkgs-local.linuxPackages.evdi ];
 
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
