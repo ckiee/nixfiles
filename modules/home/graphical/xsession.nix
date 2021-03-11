@@ -6,7 +6,6 @@
     rofi
     dunst
     gnome3.gnome-screenshot
-    gnome3.gnome-calculator
     picom
     redshift
     kdeconnect
@@ -21,6 +20,8 @@
     gnome3.nautilus
     gnome3.gvfs # nautilus likes this!
     gnome3.file-roller
+    gnome3.gnome-system-monitor
+    gnome3.gnome-calculator
     wakatime # i only code on graphical machines so here it is
   ];
 
@@ -89,6 +90,7 @@
               "exec ${config.xsession.windowManager.i3.config.terminal} ${
                 ../i3-scripts/shall
               }";
+            "--release ${modifier}+Shift+g" = "exec ${../i3-scripts/nixmenu}";
 
             # spotify's house
             "${modifier}+Shift+w" =

@@ -1,0 +1,18 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p jq rofi kitty
+set -e
+CACHE=/tmp/nixmenu.$USER.cache
+if [ "$1" == "nsp" ]; then
+	# try the package name as the binary to run and if that doesnt work, ask the user
+	kill "$3"
+	$2 || rofi -show run -mesg "i don't know what the binary is called"
+else
+	if [ ! -f $CACHE ]; then
+		touch $CACHE
+		chmod 644 $CACHE
+		nix search --json | jq 'keys | join("\n")' -r | grep -v Packages | sed -e 's/nixpkgs\.//' >$CACHE
+	fi
+	pkg=$(rofi -dmenu <$CACHE)
+	rofi -e "downloading $pkg..." &
+	nix-shell -p "$pkg" --run "$0 nsp $pkg $!"
+fi
