@@ -8,6 +8,8 @@
       ls =
         "ls --color=auto --human-readable --group-directories-first --classify";
       nsp = "nix-shell -p ";
+      ns = "nix search ";
+      e = "emacsclient -n";
     };
     sessionVariables = {
       VISUAL = "nano";

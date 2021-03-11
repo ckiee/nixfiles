@@ -11,7 +11,12 @@ in { config, pkgs, ... }: {
     ../../modules/home.nix
     ../../modules/graphical.nix
     ../../modules/smartd.nix
+    ../../modules/pulse-lowlatency.nix
+    ../../modules/printer.nix
   ];
+  home-manager.users.ron = { pkgs, ... }: {
+    imports = [ ../../modules/home/sleep.nix ];
+  };
 
   boot.loader.systemd-boot = {
     enable = true;
@@ -22,31 +27,25 @@ in { config, pkgs, ... }: {
 
   networking.hostName = "cookiemonster";
 
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplipWithPlugin ];
+  services.xserver = {
+    xrandrHeads = [
+      {
+        output = "DP-1";
+        primary = true;
+      }
+      "HDMI-1"
+    ];
+    videoDrivers = [ "nvidia" ];
+    screenSection = ''
+      Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
+      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+    '';
   };
 
-  services.xserver.xrandrHeads = [
-    {
-      output = "DP-1";
-      primary = true;
-    }
-    "HDMI-1"
-  ];
-  services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.screenSection = ''
-    Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
-    Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
-  '';
-
-  home-manager.users.ron = { pkgs, ... }: {
-    imports = [ ../../modules/home/sleep.nix ];
-  };
   environment.systemPackages = with pkgs; [
     discord
     stow
-    firefox-esr
+    firefox
     obs-studio
     weechat
     geogebra
@@ -66,22 +65,17 @@ in { config, pkgs, ... }: {
     gnome3.totem
     gcc
     picocom
-    (pkgs.minecraft.overrideAttrs (oldAttrs: rec {
-      src = fetchurl {
-        url =
-          "https://launcher.mojang.com/download/linux/x86_64/minecraft-launcher_2.2.1441.tar.gz";
-        sha256 = "03q579hvxnsh7d00j6lmfh53rixdpf33xb5zlz7659pvb9j5w0cm";
-      };
-    }))
+    minecraft
+    kicad-with-packages3d
+    python3Packages.youtube-dl
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
-  # nixpkgs.overlays = [ (self: super: { steam = nixpkgs-steam.steam; }) ];
-  boot.extraModulePackages = [ nixpkgs-local.linuxPackages.evdi ];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.extraModulePackages = [ nixpkgs-local.linuxPackages_zen.evdi ];
 
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
-  hardware.opentabletdriver = { enable = true; };
+  hardware.opentabletdriver.enable = true;
   programs.steam.enable = true;
   virtualisation.libvirtd.enable = true;
 

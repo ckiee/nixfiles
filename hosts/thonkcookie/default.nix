@@ -15,6 +15,7 @@ in {
     ../../modules/home.nix
     ../../modules/graphical.nix
     ../../modules/graphical/intel-graphics.nix
+    ../../modules/printer.nix
   ];
 
   networking.hostName = "thonkcookie";
@@ -22,11 +23,6 @@ in {
   boot.loader.systemd-boot = {
     enable = true;
     editor = false;
-  };
-
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplipWithPlugin ];
   };
 
   environment.systemPackages = with pkgs; [
