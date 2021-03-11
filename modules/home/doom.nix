@@ -59,6 +59,7 @@ in {
     nixfmt
     ron-emacsclient
     shfmt
+    ccls
   ];
 
 }
