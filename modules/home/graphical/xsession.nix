@@ -91,6 +91,7 @@
                 ../i3-scripts/shall
               }";
             "--release ${modifier}+Shift+g" = "exec ${../i3-scripts/nixmenu}";
+            "${modifier}+Shift+h" = "exec ${../i3-scripts/sinkswap}";
 
             # spotify's house
             "${modifier}+Shift+w" =
