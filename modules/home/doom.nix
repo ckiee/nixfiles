@@ -60,6 +60,7 @@ in {
     ron-emacsclient
     shfmt
     ccls
+    python3Packages.black
   ];
 
 }
