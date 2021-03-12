@@ -1,0 +1,4 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p pulseaudio
+
+pactl set-default-sink "$(pacmd list-sinks | grep "  index: " | cut -d' ' -f 6)"
