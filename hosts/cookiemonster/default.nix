@@ -68,6 +68,7 @@ in { config, pkgs, ... }: {
     minecraft
     kicad-with-packages3d
     python3Packages.youtube-dl
+    (pkgs.callPackage ./immersed.nix { })
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -78,6 +79,9 @@ in { config, pkgs, ... }: {
   hardware.opentabletdriver.enable = true;
   programs.steam.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.podman.enable = true;
+  virtualisation.podman.enableNvidia = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
