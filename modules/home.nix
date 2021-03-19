@@ -21,11 +21,11 @@ in {
       file
       tree
       rsync
-      ffmpeg
+      ffmpeg-full
       yarn
       nodejs
     ];
     # for nodejs
-    home.sessionPath = ["~/.yarn/bin"];
+    home.sessionPath = [ "~/.yarn/bin" ];
   };
 }
