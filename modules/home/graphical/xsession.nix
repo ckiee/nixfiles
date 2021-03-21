@@ -69,12 +69,14 @@
               exec "${pkgs.brightnessctl}/bin/brightnessctl set +5% && pkill -RTMIN+12 i3blocks"'';
             "XF86MonBrightnessDown" = ''
               exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%- && pkill -RTMIN+12 i3blocks"'';
-            "XF86AudioMute" = ''
+            "${modifier}+F1" = ''
               exec "${pkgs.alsaUtils}/bin/amixer set Master 1+ toggle && pkill -RTMIN+2 i3blocks"'';
-            "XF86AudioRaiseVolume" = ''
-              exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
-            "XF86AudioLowerVolume" = ''
+            "${modifier}+F2" = ''
               exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%- && pkill -RTMIN+2 i3blocks"'';
+            "${modifier}+F3" = ''
+              exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
+            "${modifier}+F4" = ''
+              exec "${pkgs.playerctl}/bin/playerctl --player=spotify,%any next"'';
             # old i3 defaults
             "${modifier}+Shift+f" = "floating toggle";
             # lock/suspend
