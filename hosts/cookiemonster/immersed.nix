@@ -12,11 +12,11 @@ let
   };
 in stdenv.mkDerivation {
   pname = "Immersed";
-  version = "6.0"; # The version number is hidden in the logs.
+  version = "6"; # The version number is hidden in the logs.
 
   src = fetchurl {
     url = "https://immersedvr.com/dl/Immersed-x86_64.AppImage";
-    sha256 = "118nq3fhihy8mdk87fn5i71pnzqzc7dnrrfmx92zcqgxmfwl3r6w";
+    sha256 = "0yfslpjfxc5iqk5sb52l8jv6fgam8z2bik7brj3hki0q4wfyrzlb";
   };
 
   nativeBuildInputs = [ autoPatchelfHook wrapGAppsHook p7zip ];
@@ -57,7 +57,7 @@ in stdenv.mkDerivation {
 
     install -Dm755 usr/bin/Immersed $out/bin/Immersed
 
-    ln -s ${desktopItem}/share/applications/* $out/share/applications
+    # ln -s ${desktopItem}/share/applications/* $out/share/applications
 
     ln -s ${ffmpeg-full}/lib/libavcodec.so $out/lib/va2
     ln -s ${ffmpeg-full}/lib/libavdevice.so $out/lib/va2
