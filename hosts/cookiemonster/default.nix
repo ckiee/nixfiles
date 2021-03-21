@@ -1,4 +1,3 @@
-# { pkgs, fetchurl, ... }:
 let
   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
   nur-local = import (/home/ron/git/nur-a-repo) { };
@@ -78,10 +77,11 @@ in { config, pkgs, ... }: {
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
   hardware.opentabletdriver.enable = true;
   programs.steam.enable = true;
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman.enable = true;
-  virtualisation.podman.enableNvidia = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
