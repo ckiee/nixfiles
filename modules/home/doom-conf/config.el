@@ -39,8 +39,7 @@
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
 ;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
+;; - `add-load-path!' for adding directories to the `load-path', relative to this file. Emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
 ;;
@@ -60,4 +59,6 @@
   (interactive)
   (let ((buf-count (length (buffer-list))))
     (if (or (interactive-p) display-anyway)
-    (message "%d buffers in this Emacs" buf-count)) buf-count))
+        (message "%d buffers in this Emacs" buf-count)) buf-count))
+;; aspell stuff
+(doom-load-envvars-file (concat doom-local-dir "aspell-env"))

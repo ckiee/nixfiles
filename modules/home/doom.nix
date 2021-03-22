@@ -35,6 +35,8 @@ in {
   };
 
   home.file.".doom.d".source = ./doom-conf;
+  home.file.".emacs.d/.local/aspell-env".text =
+    "ASPELL_CONF=dict-dir ${pkgs.aspellDicts.en}/lib/aspell";
   # we cant just symlink bc stupid doom binary wants to mutate ~/.emacs.d
   # this seems to break, just git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d && doom sync
   home.activation = {
@@ -62,6 +64,9 @@ in {
     shfmt
     ccls
     python3Packages.black
+    ispell
+    aspell
+    editorconfig-core-c
   ];
 
 }
