@@ -61,4 +61,4 @@
     (if (or (interactive-p) display-anyway)
         (message "%d buffers in this Emacs" buf-count)) buf-count))
 ;; aspell stuff
-(doom-load-envvars-file (concat doom-local-dir "aspell-env"))
+;; (doom-load-envvars-file (concat doom-local-dir "aspell-env"))
