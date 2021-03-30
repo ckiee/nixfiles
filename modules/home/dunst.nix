@@ -37,6 +37,7 @@ in {
         stack_duplicates = true;
         hide_duplicate_count = false;
         show_indicators = false;
+        icon_position = "off";
       };
       shortcuts = {
         close = "ctrl+space";
