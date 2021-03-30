@@ -3,13 +3,13 @@
 let
   emacs-overlay = (builtins.fetchGit {
     url = "https://github.com/nix-community/emacs-overlay.git";
-    rev = "d963d900925cbda9c679e8d3c0c2d225d2b0ae82";
+    rev = "dcb4f8e97b3a6f215e8a30bc01028fc67a4015e7";
     ref = "master";
   });
   ron-emacsclient =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
-      name = "emacsclient.desktop";
-      destination = "/share/applications/emacsclient.desktop";
+      name = "emacsclientron.desktop";
+      destination = "/share/applications/emacsclientron.desktop";
       text = ''
         [Desktop Entry]
         Name=Emacs Client
@@ -30,13 +30,11 @@ in {
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs;
-    extraPackages = epkgs: [ epkgs.vterm ];
+    package = pkgs.emacsGcc;
+    # extraPackages = epkgs: [ epkgs.vterm ];
   };
 
   home.file.".doom.d".source = ./doom-conf;
-  home.file.".emacs.d/.local/aspell-env".text =
-    "ASPELL_CONF=dict-dir ${pkgs.aspellDicts.en}/lib/aspell";
   # we cant just symlink bc stupid doom binary wants to mutate ~/.emacs.d
   # this seems to break, just git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d && doom sync
   home.activation = {
@@ -65,7 +63,7 @@ in {
     ccls
     python3Packages.black
     ispell
-    aspell
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     editorconfig-core-c
   ];
 
