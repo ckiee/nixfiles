@@ -76,7 +76,7 @@
             "${modifier}+F3" = ''
               exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
             "${modifier}+F4" = ''
-              exec "${pkgs.playerctl}/bin/playerctl --player=spotify,%any next"'';
+              exec "${pkgs.playerctl}/bin/playerctl --player=vlc,spotify,%any next"'';
             # old i3 defaults
             "${modifier}+Shift+f" = "floating toggle";
             # lock/suspend
@@ -88,10 +88,10 @@
             "--release ${modifier}+Pause" = "exec ${../i3-scripts/screenshot}";
 
             "--release ${modifier}+Shift+t" = "exec ${../i3-scripts/tntwars}";
-            "--release ${modifier}+Shift+d" =
-              "exec ${config.xsession.windowManager.i3.config.terminal} ${
-                ../i3-scripts/shall
-              }";
+            # "--release ${modifier}+Shift+d" =
+            #   "exec ${config.xsession.windowManager.i3.config.terminal} ${
+            #     ../i3-scripts/shall
+            #   }";
             "--release ${modifier}+Shift+g" = "exec ${../i3-scripts/nixmenu}";
             "${modifier}+Shift+h" = "exec ${../i3-scripts/sinkswap}";
 
