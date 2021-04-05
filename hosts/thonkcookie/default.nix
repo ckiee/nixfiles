@@ -33,6 +33,7 @@ in {
     obs-studio
     weechat
     geogebra
+    lutris
   ];
 
   programs.adb.enable = true;
