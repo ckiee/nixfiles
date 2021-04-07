@@ -1,8 +1,8 @@
 let
-  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
-  nur-local = import (/home/ron/git/nur-a-repo) { };
-  nixpkgs-steam =
-    import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
+#  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+#  nur-local = import (/home/ron/git/nur-a-repo) { };
+#  nixpkgs-steam =
+ #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
 in { config, pkgs, ... }: {
   imports = [
     ./hardware.nix
@@ -59,7 +59,7 @@ in { config, pkgs, ... }: {
     prusa-slicer
     platformio
     transmission-gtk
-    nur-local.pmbootstrap
+    #nur-local.pmbootstrap
     virt-manager
     gnome3.totem
     gcc
@@ -67,7 +67,10 @@ in { config, pkgs, ... }: {
     minecraft
     kicad-with-packages3d
     python3Packages.youtube-dl
-    (pkgs.callPackage ./immersed.nix { })
+    # (pkgs.callPackage ./immersed.nix { })
+    blockbench-electron
+    gdb
+    manpages # linux dev manpages
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -77,10 +80,14 @@ in { config, pkgs, ... }: {
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
   hardware.opentabletdriver.enable = true;
   programs.steam.enable = true;
-
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      dockerCompat = true;
+    };
   };
 
   # Open ports in the firewall.

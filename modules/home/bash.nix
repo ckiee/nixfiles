@@ -27,6 +27,10 @@
       fi
 
       export TERM=xterm-256color
+
+      ggi() {
+            wget --no-verbose -O .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
+      }
     '';
   };
 }

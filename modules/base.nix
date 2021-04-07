@@ -2,12 +2,12 @@
 
 {
   imports = [ ./cachix.nix ];
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball
-      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-  };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   nur = import (builtins.fetchTarball
+  #     "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #       inherit pkgs;
+  #     };
+  # };
 
   nix.trustedUsers = [ "root" "@wheel" ];
 
@@ -45,6 +45,10 @@
     file
     cachix
     nix-prefetch-github # i just use this so much
+    inetutils
+    binutils-unwrapped
+    pciutils
+    usbutils
   ];
 
   programs.gnupg.agent.enable = true;

@@ -74,15 +74,11 @@
             "${modifier}+F3" = ''
               exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
             "${modifier}+F4" = ''
-<<<<<<< Updated upstream
-              exec "${pkgs.playerctl}/bin/playerctl --player=vlc,spotify,%any next"'';
-=======
-              exec "${pkgs.playerctl}/bin/playerctl --player=spotify,%any next"'';
+              exec "${pkgs.playerctl}/bin/playerctl --player=firefox,vlc,spotify,%any next"'';
             "${modifier}+F5" = ''
               exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%- && pkill -RTMIN+12 i3blocks"'';
             "${modifier}+F6" = ''
               exec "${pkgs.brightnessctl}/bin/brightnessctl set +5% && pkill -RTMIN+12 i3blocks"'';
->>>>>>> Stashed changes
             # old i3 defaults
             "${modifier}+Shift+f" = "floating toggle";
             # lock/suspend
