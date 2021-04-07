@@ -6,13 +6,13 @@ let
     rev = "dcb4f8e97b3a6f215e8a30bc01028fc67a4015e7";
     ref = "master";
   });
-  ron-emacsclient =
+  exs-emacsclient =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
-      name = "emacsclientron.desktop";
-      destination = "/share/applications/emacsclientron.desktop";
+      name = "emacsclientexs.desktop";
+      destination = "/share/applications/emacsclientexs.desktop";
       text = ''
         [Desktop Entry]
-        Name=Emacs Client
+        Name=Emacs (Open in existing window)
         GenericName=Text Editor
         Comment=Edit text
         MimeType=inode/directory;text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
@@ -21,7 +21,7 @@ let
         Type=Application
         Terminal=false
         Categories=Development;TextEditor;
-        StartupWMClass=Emacs
+        StartupWMClass=Emacsd
         Keywords=Text;Editor;
       '';
     };
@@ -58,7 +58,7 @@ in {
     rust-analyzer-unwrapped
     rnix-lsp
     nixfmt
-    ron-emacsclient
+    exs-emacsclient
     shfmt
     ccls
     python3Packages.black
