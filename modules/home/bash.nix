@@ -12,8 +12,8 @@
       e = "emacsclient -n";
     };
     sessionVariables = {
-      VISUAL = "nano";
-      EDITOR = "nano";
+      VISUAL = "vim";
+      EDITOR = "vim";
     };
     # interactive shell only: 
     initExtra = ''

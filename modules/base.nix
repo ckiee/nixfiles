@@ -37,7 +37,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    nano
+    vim
     neofetch
     git
     killall
