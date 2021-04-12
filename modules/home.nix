@@ -13,7 +13,6 @@ in {
 
     home.packages = with pkgs; [
       wget
-      nano
       neofetch
       git
       killall
