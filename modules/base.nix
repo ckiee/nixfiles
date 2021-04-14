@@ -12,6 +12,7 @@
   nix.trustedUsers = [ "root" "@wheel" ];
 
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.supportedFilesystems = [ "ntfs" ];
   networking.networkmanager.enable = true;
   time.timeZone = "Israel";
   nixpkgs.config.allowUnfree = true;
