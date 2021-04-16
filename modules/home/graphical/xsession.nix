@@ -54,11 +54,7 @@
             notification = false;
           }
         ];
-        bars = [{
-          statusCommand = "i3blocks";
-          fonts =
-            config.xsession.windowManager.i3.config.fonts; # set to the root fonts
-        }];
+        bars = [];
         keybindings = with {
           modifier = config.xsession.windowManager.i3.config.modifier;
           spotifyWorkspace = "Spf";
