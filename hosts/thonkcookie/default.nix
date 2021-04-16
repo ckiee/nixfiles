@@ -11,6 +11,7 @@ in {
       }
     }/lenovo/thinkpad/t480s"
     ./hardware.nix
+    ./powersave.nix
     ../../modules/base.nix
     ../../modules/home.nix
     ../../modules/graphical.nix
