@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) optionals mkIf mkEnableOption mkOption types concatStrings;
+  inherit (lib)
+    optionals mkIf mkEnableOption mkOption types concatStrings optional;
 
   colors = {
     primary = "#ed60ba";
@@ -43,6 +44,7 @@ let
     battery-full = "";
   };
   cfg = config.ron.polybar;
+  pkg = config.services.polybar.package;
 in {
 
   options.ron.polybar = {
@@ -62,6 +64,14 @@ in {
   };
 
   config = mkIf cfg.enable {
+    xsession.windowManager.i3.config.startup = [{
+      command = "${pkg}/bin/polybar main";
+      notification = false;
+    }] ++ optional (cfg.secondaryMonitor != null) {
+      command = "${pkg}/bin/polybar side";
+      notification = false;
+    };
+
     services.polybar = {
       enable = true;
       package = pkgs.polybar.override {
@@ -69,14 +79,8 @@ in {
         pulseSupport = true;
       };
 
-      script = ''
-        while ! test -f "$XDG_RUNTIME_DIR/i3/ipc-socket.$(pidof i3)"; do
-          sleep 0.1
-        done
-
-        polybar main &
-        ${if (cfg.secondaryMonitor != null) then "polybar side &" else ""}
-      '';
+      script =
+        ""; # we aren't really using the service as it runs before i3 and we need i3 ipc
 
       config = {
         "bar/main" = base // {
