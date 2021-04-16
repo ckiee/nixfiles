@@ -40,6 +40,7 @@ let
     volume-up = "";
     volume-mute = "";
     sun = "";
+    battery-full = "";
   };
   cfg = config.ron.polybar;
 in {
@@ -167,7 +168,7 @@ in {
 
           format-charging = "<animation-charging> <label-charging>";
           format-discharging = "<animation-discharging> <label-discharging>";
-          format-full = "<label-full>";
+          format-full = "${icons.battery-full} <label-full>";
 
           # in ms
           animation-charging-framerate = 750;
