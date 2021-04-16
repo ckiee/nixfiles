@@ -70,6 +70,10 @@ in {
       };
 
       script = ''
+        while ! test -f "$XDG_RUNTIME_DIR/i3/ipc-socket.$(pidof i3)"; do
+          sleep 0.1
+        done
+
         polybar main &
         ${if (cfg.secondaryMonitor != null) then "polybar side &" else ""}
       '';
