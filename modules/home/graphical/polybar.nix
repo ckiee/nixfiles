@@ -145,7 +145,8 @@ in {
 
         "module/memory" = {
           type = "internal/memory";
-          format-prefix = "${icons.memory} ";
+          format = "${icons.memory} <label>";
+          label = "%gb_used%/%gb_total%";
         };
 
         "module/backlight" = {
