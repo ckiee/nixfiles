@@ -39,6 +39,8 @@ in {
   programs.adb.enable = true;
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
 
+  home-manager.users.ron = { pkgs, ... }: { ron.polybar.laptop = true; };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
