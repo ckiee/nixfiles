@@ -40,7 +40,12 @@ in {
   programs.adb.enable = true;
   nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
 
-  home-manager.users.ron = { pkgs, ... }: { ron.polybar.laptop = true; };
+  home-manager.users.ron = { pkgs, ... }: {
+    ron.polybar = {
+      laptop = true;
+      primaryMonitor = "eDP-1";
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

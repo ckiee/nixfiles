@@ -15,6 +15,10 @@ in { config, pkgs, ... }: {
   ];
   home-manager.users.ron = { pkgs, ... }: {
     imports = [ ../../modules/home/sleep.nix ];
+    ron.polybar = {
+      primaryMonitor = "DP-0";
+      secondaryMonitor = "HDMI-0";
+    };
   };
 
   boot.loader.systemd-boot = {
