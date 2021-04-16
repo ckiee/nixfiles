@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) optionals mkIf mkEnableOption;
+  inherit (lib) optionals mkIf mkEnableOption mkOption types concatStrings;
 
   colors = {
     primary = "#ed60ba";
@@ -46,6 +46,17 @@ in {
   options.ron.polybar = {
     enable = mkEnableOption "Enables Polybar";
     laptop = mkEnableOption "Enables laptop-specific reporting";
+    primaryMonitor = mkOption {
+      type = types.str;
+      example = "eDP-1";
+      description = "primary output";
+    };
+    secondaryMonitor = mkOption {
+      type = types.nullOr types.str;
+      example = "eDP-1";
+      description = "secondary output";
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -55,30 +66,34 @@ in {
         i3GapsSupport = true;
         pulseSupport = true;
       };
+
       script = ''
         polybar main &
-        polybar side &
+        ${if (cfg.secondaryMonitor != null) then "polybar side &" else ""}
       '';
+
       config = {
         "bar/main" = base // {
-          monitor = "DP-0"; # this is the primary one on cookiemonster
-          monitor-fallback = "eDP1"; # this is the primary one on thonkcookie
+          monitor = cfg.primaryMonitor;
 
           modules-left = "ws";
           modules-right = [ "memory" "small-spacer" "cpu" "separator" "volume" ]
-            ++ optionals cfg.laptop [ "separator" "backlight" "separator" "battery" ]
-            ++ [ "separator" "date" "small-spacer" "time" "separator" ];
+            ++ optionals cfg.laptop [
+              "separator"
+              "backlight"
+              "separator"
+              "battery"
+            ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
 
           tray-position = "right";
           tray-padding = 0;
         };
 
-        "bar/side" = base // {
-          monitor = "HDMI-0"; # this is the side one on cookiemonster
+        "bar/side" = mkIf (cfg.secondaryMonitor != null) (base // {
+          monitor = cfg.secondaryMonitor;
 
-          modules-left =
-            [ "ws" "separator" "time" "small-spacer" "date" "separator" ];
-        };
+          modules-left = [ "ws" "separator" "time" "small-spacer" "date" ];
+        });
 
         ### SPACING
         "module/separator" = {
