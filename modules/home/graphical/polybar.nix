@@ -39,6 +39,7 @@ let
     volume-down = "";
     volume-up = "";
     volume-mute = "";
+    sun = "";
   };
   cfg = config.ron.polybar;
 in {
@@ -150,12 +151,41 @@ in {
           type = "internal/backlight";
           card = "intel_backlight";
           enable-scroll = true;
+          format = "${icons.sun} <label>";
         };
 
         "module/battery" = {
           type = "internal/battery";
           battery = "BAT0";
           adapter = "AC";
+
+          time-format = "%H:%M";
+
+          label-charging = "%percentage%% (%time%)";
+          label-discharging = "%percentage%% (%time%)";
+          label-full = "%percentage%%";
+
+          format-charging = "<animation-charging> <label-charging>";
+          format-discharging = "<animation-discharging> <label-discharging>";
+          format-full = "<label-full>";
+
+          # in ms
+          animation-charging-framerate = 750;
+          animation-discharging-framerate = 500;
+
+          # this isn't in `icons` as I am lazy and I'm not going to use this anywhere else.
+
+          animation-charging-0 = "";
+          animation-charging-1 = "";
+          animation-charging-2 = "";
+          animation-charging-3 = "";
+          animation-charging-4 = "";
+
+          animation-discharging-0 = "";
+          animation-discharging-1 = "";
+          animation-discharging-2 = "";
+          animation-discharging-3 = "";
+          animation-discharging-4 = "";
         };
 
         "module/ws" = {
