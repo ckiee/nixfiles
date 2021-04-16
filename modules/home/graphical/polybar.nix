@@ -56,7 +56,7 @@ in {
         pulseSupport = true;
       };
       script = ''
-        polybar bottom &
+        polybar main &
         polybar side &
       '';
       config = {
