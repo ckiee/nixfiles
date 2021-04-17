@@ -1,6 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./hw.nix ./home ];
-
+  imports = [ ./home ./smartd.nix ./sound.nix ./hw.nix ./printer.nix ];
 }
