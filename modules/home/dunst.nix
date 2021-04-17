@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, pkgs, ... }:
 
 let
   normal_urgencies = {
@@ -6,9 +6,14 @@ let
     foregrund = "#ffffff";
     timeout = 10;
   };
+  cfg = config.cookie.dunst;
 
-in {
-  services.dunst = {
+in with lib; {
+  options.cookie.dunst = {
+    enable = mkEnableOption "Enables the dunst notification daemon";
+  };
+
+  config.services.dunst = mkIf cfg.enable {
     enable = true;
     settings = {
       global = {

@@ -5,13 +5,13 @@ in with lib; {
   options.cookie.gtk = {
     enable = mkEnableOption "Enables some sexy GTK theming";
     darkTheme = mkOption {
-      types = types.bool;
+      type = types.bool;
       description = "Enables the dark theme to save your eyes";
       default = true;
     };
   };
 
-  gtk = mkIf cfg.enable {
+  config.gtk = mkIf cfg.enable {
     enable = true;
     iconTheme = {
       name = "Paper";
