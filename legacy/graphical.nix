@@ -12,14 +12,12 @@
       ./home/graphical/gtk.nix
       ./home/graphical/redshift.nix
       ./home/graphical/nautilus.nix
-      ./home/graphical/polybar.nix
       ./home/dunst.nix
       # ./home/graphical/picom.nix
       ./home/kitty.nix
       ./home/doom.nix
       ./home/resume-fix-pulseaudio.nix
     ];
-    ron.polybar.enable = true;
   };
   sound.enable = true;
   hardware.pulseaudio.enable = true;
