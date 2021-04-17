@@ -23,6 +23,7 @@ in { pkgs, ... }: {
       emacs.enable = true;
       keyboard.enable = true;
       redshift.enable = true;
+      st.enable = true;
     };
   };
   cookie = {
