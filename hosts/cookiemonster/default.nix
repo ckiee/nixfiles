@@ -20,6 +20,7 @@ in { pkgs, ... }: {
       git.enable = true;
       gtk.enable = true;
       dunst.enable = true;
+      emacs.enable = true;
     };
   };
   cookie = {
