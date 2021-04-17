@@ -16,11 +16,8 @@
       # ./home/graphical/picom.nix
       ./home/kitty.nix
       ./home/doom.nix
-      ./home/resume-fix-pulseaudio.nix
     ];
   };
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
   services.xserver = {
     enable = true;
     libinput.enable = true;

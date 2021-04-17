@@ -3,23 +3,28 @@ let
   #  nur-local = import (/home/ron/git/nur-a-repo) { };
   #  nixpkgs-steam =
   #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
-in { pkgs ? <nixpkgs>, ... }: {
+in { pkgs, ... }: {
   imports = [
     ./hardware.nix
     ../../legacy/base.nix
-    ../../legacy/home.nix
     ../../legacy/graphical.nix
-    ../../legacy/smartd.nix
-    ../../legacy/pulse-lowlatency.nix
-    ../../legacy/printer.nix
     ../../modules
   ];
   home-manager.users.ron = { pkgs, ... }: {
     imports = [ ../../legacy/home/sleep.nix ];
-    cookie.polybar = {
-      enable = true;
-      secondaryMonitor = "HDMI-0";
+    cookie = {
+      polybar = {
+        enable = true;
+        secondaryMonitor = "HDMI-0";
+      };
+      bash.enable = true;
+      git.enable = true;
     };
+  };
+  cookie = {
+    sound.enable = true;
+    smartd.enable = true;
+    printing.enable = true;
   };
 
   boot.loader.systemd-boot = {

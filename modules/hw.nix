@@ -1,16 +1,16 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
-  cfg = config.cookie.hw;
+  cfg = config.cookie.hardware;
   nixos-hardware = builtins.fetchGit {
     url = "https://github.com/NixOS/nixos-hardware.git";
-    rev = "874830945a65ad1134aff3a5aea0cdd2e1d914ab";
+    rev = "267d8b2d7f049d2cb9b7f4a7f981c123db19a868";
   };
-in {
-  options.cookie.hw = {
-    t480s = mkEnableOption "Enables Thinkpad T480s specific quirks";
+in with lib; {
+  options.cookie.hardware = {
+    t480s = mkEnableOption "Enables Thinkpad T480s specific hardware quirks";
   };
 
-  # imports = mkIf cfg.t480s [ "${nixos-hardware}/lenovo/thinkpad/t480s" ];
+  imports = [ "${nixos-hardware}/lenovo/thinkpad/t480s"];
+    # ++ optional cfg.t480s ("${nixos-hardware}/lenovo/thinkpad/t480s");
 }

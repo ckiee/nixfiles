@@ -39,9 +39,9 @@ in {
   # this seems to break, just git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d && doom sync
   home.activation = {
     doomEmacs = ''
-            if [[ ! -d ~/.emacs.d ]]; then
-              git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d
-            fi
+            # if [[ ! -d ~/.emacs.d ]]; then
+              # git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d
+            # fi
       #      ~/.emacs.d/bin/doom sync
           '';
   };

@@ -7,7 +7,6 @@ in {
     ./hardware.nix
     ./powersave.nix
     ../../legacy/base.nix
-    ../../legacy/home.nix
     ../../legacy/graphical.nix
     ../../legacy/graphical/intel-graphics.nix
     ../../legacy/printer.nix
