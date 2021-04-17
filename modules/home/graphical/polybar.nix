@@ -10,6 +10,7 @@ let
     bg-lighter = "#5f5f5f";
     bg-light = "#27212e";
     bg-dark = "#1b1720";
+    black = "#000000";
   };
   base = {
     width = "100%";
@@ -208,6 +209,7 @@ in {
           label-visible-background = colors.bg-light;
           label-focused-background = colors.primary;
           label-urgent-background = colors.alert;
+          label-urgent-foreground = colors.black;
 
           label-focused = "%name%";
           label-unfocused = "%name%";
