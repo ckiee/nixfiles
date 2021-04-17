@@ -19,6 +19,7 @@ in {
       ./emacs.nix
       ./keyboard.nix
       ./redshift.nix
+      ./st.nix
     ];
   };
 }
