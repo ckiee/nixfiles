@@ -21,6 +21,8 @@ in { pkgs, ... }: {
       gtk.enable = true;
       dunst.enable = true;
       emacs.enable = true;
+      keyboard.enable = true;
+      redshift.enable = true;
     };
   };
   cookie = {

@@ -8,8 +8,6 @@
     imports = [
       ./home/graphical/xsession.nix
       ./home/graphical/xcursor.nix
-      ./home/graphical/layout.nix
-      ./home/graphical/redshift.nix
       ./home/graphical/nautilus.nix
       # ./home/graphical/picom.nix
     ];
