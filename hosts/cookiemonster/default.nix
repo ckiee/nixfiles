@@ -19,12 +19,14 @@ in { pkgs, ... }: {
       };
       bash.enable = true;
       git.enable = true;
+      gtk.enable = true;
     };
   };
   cookie = {
     sound.enable = true;
     smartd.enable = true;
     printing.enable = true;
+    sleep.enable = true;
   };
 
   boot.loader.systemd-boot = {
