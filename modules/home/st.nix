@@ -2,7 +2,7 @@
 
 let
   cfg = config.cookie.st;
-  st = pkgs.st.override { conf = builtins.readFile ../../ext-cfg/st.h; };
+  st = pkgs.st.override { conf = builtins.readFile ../../ext/st.h; };
 in with lib; {
   options.cookie.st = {
     enable = mkEnableOption "Enables the suckless terminal";

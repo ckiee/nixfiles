@@ -38,7 +38,7 @@ in with lib; {
       package = pkgs.emacsGcc;
     };
 
-    home.file.".doom.d".source = ../../ext-cfg/doom-conf;
+    home.file.".doom.d".source = ../../ext/doom-conf;
     # we cant just symlink bc doom binary wants to mutate ~/.emacs.d
     # this seems to break, just git clone "https://github.com/hlissner/doom-emacs.git" ~/.emacs.d && doom sync
     home.activation = {

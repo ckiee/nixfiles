@@ -1,16 +1,19 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.cookie.hardware;
-  nixos-hardware = builtins.fetchGit {
-    url = "https://github.com/NixOS/nixos-hardware.git";
-    rev = "267d8b2d7f049d2cb9b7f4a7f981c123db19a868";
-  };
 in with lib; {
   options.cookie.hardware = {
     t480s = mkEnableOption "Enables Thinkpad T480s specific hardware quirks";
   };
 
-  imports = [ "${nixos-hardware}/lenovo/thinkpad/t480s"];
-    # ++ optional cfg.t480s ("${nixos-hardware}/lenovo/thinkpad/t480s");
+  # We need to do this after the libinput Xorg config
+  config.services.xserver.config = mkIf cfg.t480s (mkAfter ''
+    Section "InputClass"
+      Identifier "Set NatrualScrolling for TrackPoint"
+      Driver "libinput"
+      MatchIsPointer "on"
+      Option "NaturalScrolling" "off"
+    EndSection
+  '');
 }
