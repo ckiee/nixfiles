@@ -4,19 +4,14 @@ let
   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
 in {
   imports = [
-    "${
-      builtins.fetchGit {
-        url = "https://github.com/NixOS/nixos-hardware.git";
-        rev = "874830945a65ad1134aff3a5aea0cdd2e1d914ab";
-      }
-    }/lenovo/thinkpad/t480s"
     ./hardware.nix
     ./powersave.nix
-    ../../modules/base.nix
-    ../../modules/home.nix
-    ../../modules/graphical.nix
-    ../../modules/graphical/intel-graphics.nix
-    ../../modules/printer.nix
+    ../../legacy/base.nix
+    ../../legacy/home.nix
+    ../../legacy/graphical.nix
+    ../../legacy/graphical/intel-graphics.nix
+    ../../legacy/printer.nix
+    ../../modules
   ];
 
   networking.hostName = "thonkcookie";
@@ -28,24 +23,20 @@ in {
 
   environment.systemPackages = with pkgs; [
     discord
-    stow
     firefox
     zoom-us
-    obs-studio
     weechat
-    geogebra
     lutris
   ];
 
   programs.adb.enable = true;
-  nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
+  # nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
 
-  home-manager.users.ron = { pkgs, ... }: {
-    ron.polybar = {
-      laptop = true;
-      primaryMonitor = "eDP-1";
-    };
+  cookie.polybar = {
+    laptop = true;
+    primaryMonitor = "eDP-1";
   };
+  cookie.hw.t480s = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
