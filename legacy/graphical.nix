@@ -9,10 +9,8 @@
       ./home/graphical/xsession.nix
       ./home/graphical/xcursor.nix
       ./home/graphical/layout.nix
-      ./home/graphical/gtk.nix
       ./home/graphical/redshift.nix
       ./home/graphical/nautilus.nix
-      ./home/dunst.nix
       # ./home/graphical/picom.nix
       ./home/kitty.nix
       ./home/doom.nix

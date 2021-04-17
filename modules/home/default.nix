@@ -10,6 +10,6 @@ in {
   imports = [ (import "${home-manager}/nixos") ];
 
   home-manager.users.ron = { ... }: {
-    imports = [ ./polybar.nix ./bash.nix ./git.nix ./gtk.nix ];
+    imports = [ ./polybar.nix ./bash.nix ./git.nix ./gtk.nix ./dunst.nix ];
   };
 }

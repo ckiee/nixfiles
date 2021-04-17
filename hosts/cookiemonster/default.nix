@@ -11,7 +11,6 @@ in { pkgs, ... }: {
     ../../modules
   ];
   home-manager.users.ron = { pkgs, ... }: {
-    imports = [ ../../legacy/home/sleep.nix ];
     cookie = {
       polybar = {
         enable = true;
@@ -20,6 +19,7 @@ in { pkgs, ... }: {
       bash.enable = true;
       git.enable = true;
       gtk.enable = true;
+      dunst.enable = true;
     };
   };
   cookie = {

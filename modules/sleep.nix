@@ -12,22 +12,11 @@ in with lib; {
     };
   };
 
-  systemd.user = mkIf cfg.enable {
-    services.make-cookie-sleep = {
-      Unit = { Description = "Suspend the system so Ron sleeps"; };
-      Service = { ExecStart = "${pkgs.systemd}/bin/systemctl suspend"; };
-    };
-
-    timers.make-cookie-sleep = {
-      Unit = {
-        Description =
-          "Trigger make-cookie-sleep.service so The Cookie sleeps at a reasonable time";
-      };
-      Timer = {
-        Persistent = false;
-        OnCalendar = "*-*-* ${cfg.sleepTime}";
-      };
-      Install = { WantedBy = [ "default.target" ]; };
+  config = mkIf cfg.enable {
+    systemd.services.make-cookie-sleep = {
+      description = "Suspend the system so Ron sleeps";
+      script = "${pkgs.systemd}/bin/systemctl suspend";
+      startAt = "*-*-* ${cfg.sleepTime}";
     };
   };
 }
