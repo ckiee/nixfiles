@@ -30,6 +30,7 @@ in { pkgs, ... }: {
     smartd.enable = true;
     printing.enable = true;
     sleep.enable = true;
+    opentabletdriver.enable = true;
   };
 
   boot.loader.systemd-boot = {
@@ -94,7 +95,6 @@ in { pkgs, ... }: {
 
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
-  hardware.opentabletdriver.enable = true;
   programs.steam.enable = true;
   virtualisation = {
     libvirtd.enable = true;
