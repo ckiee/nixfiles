@@ -13,13 +13,15 @@ in {
     imports = [
       ./polybar.nix
       ./bash.nix
-      ./git.nix
       ./gtk.nix
       ./dunst.nix
       ./emacs.nix
       ./keyboard.nix
       ./redshift.nix
       ./st.nix
+      ./nautilus.nix
+      ./i3.nix
+      ./xcursor.nix
     ];
   };
 }

@@ -1,17 +1,23 @@
-{ config, pkgs, ... }: {
+{ lib, config, pkgs, ... }:
 
-  fonts = {
+let cfg = config.cookie.fonts;
+in with lib; {
+  options.cookie.fonts = {
+    enable = mkEnableOption "Enables a collection of fonts";
+  };
+
+  config.fonts = mkIf cfg.enable {
+
     enableDefaultFonts = true;
     fonts = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       liberation_ttf
-      # nerdfonts
       hack-font
       ubuntu_font_family
       corefonts
-      # google-fonts # this kills doom emacs performance for some reason
+      # google-fonts # this kills doom emacs performance for some reason. Do not use.
       proggyfonts
       cantarell-fonts
       material-design-icons
@@ -25,8 +31,6 @@
         sansSerif = [ "Cantarell" ];
         # serif is ew
       };
-      # hinting.autohint = true;
-      # subpixel.lcdfilter = "none";
     };
   };
 }

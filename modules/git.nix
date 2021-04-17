@@ -25,21 +25,24 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      signing = {
-        signByDefault = true;
-        key = cfg.signingKey;
-      };
-      userEmail = cfg.email;
-      userName = cfg.name;
-      extraConfig = {
-        pull = {
-          rebase = true;
-          ff = "only";
+    home-manager.users.ron = { ... }: {
+      programs.git = {
+        enable = true;
+        signing = {
+          signByDefault = true;
+          key = cfg.signingKey;
         };
-        rebase = { autoStash = true; };
+        userEmail = cfg.email;
+        userName = cfg.name;
+        extraConfig = {
+          pull = {
+            rebase = true;
+            ff = "only";
+          };
+          rebase = { autoStash = true; };
+        };
       };
     };
+    programs.gnupg.agent.enable = true;
   };
 }

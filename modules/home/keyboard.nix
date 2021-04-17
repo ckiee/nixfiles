@@ -7,7 +7,7 @@ in with lib; {
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
       command =
-        "${pkgs.xorg.xmodmap}/bin/xmodmap ${../../ext-cfg/xmodmap-layout}";
+        "${pkgs.xorg.xmodmap}/bin/xmodmap ${../../ext/xmodmap-layout}";
       notification = false;
     }];
 

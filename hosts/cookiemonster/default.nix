@@ -4,59 +4,35 @@ let
   #  nixpkgs-steam =
   #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
 in { pkgs, ... }: {
-  imports = [
-    ./hardware.nix
-    ../../legacy/base.nix
-    ../../legacy/graphical.nix
-    ../../modules
-  ];
+  imports = [ ./hardware.nix ../.. ];
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
-      polybar = {
-        enable = true;
-        secondaryMonitor = "HDMI-0";
-      };
-      bash.enable = true;
-      git.enable = true;
-      gtk.enable = true;
-      dunst.enable = true;
-      emacs.enable = true;
-      keyboard.enable = true;
-      redshift.enable = true;
-      st.enable = true;
+      polybar = { secondaryMonitor = "HDMI-0"; };
     };
   };
   cookie = {
-    sound.enable = true;
-    smartd.enable = true;
+    desktop.enable = true;
     printing.enable = true;
-    sleep.enable = true;
     opentabletdriver.enable = true;
+    systemd-boot.enable = true;
   };
 
-  boot.loader.systemd-boot = {
-    enable = true;
-    editor = false;
+  networking.hostName = "cookiemonster";
+
+  services.xserver = {
+    xrandrHeads = [
+      {
+        output = "DP-1";
+        primary = true;
+      }
+      "HDMI-1"
+    ];
+    videoDrivers = [ "nvidia" ];
+    screenSection = ''
+      Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
+      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+    '';
   };
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  networking.hostName = "fakemonster";
-
-  # services.xserver = {
-  #   xrandrHeads = [
-  #     {
-  #       output = "DP-1";
-  #       primary = true;
-  #     }
-  #     "HDMI-1"
-  #   ];
-  #   videoDrivers = [ "nvidia" ];
-  #   screenSection = ''
-  #     Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
-  #     Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
-  #   '';
-  # };
 
   environment.systemPackages = with pkgs; [
     discord
@@ -77,7 +53,6 @@ in { pkgs, ... }: {
     prusa-slicer
     platformio
     transmission-gtk
-    #nur-local.pmbootstrap
     virt-manager
     gnome3.totem
     gcc
@@ -85,14 +60,12 @@ in { pkgs, ... }: {
     minecraft
     kicad-with-packages3d
     python3Packages.youtube-dl
-    # (pkgs.callPackage ./immersed.nix { })
     blockbench-electron
     gdb
     manpages # linux dev manpages
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  # boot.extraModulePackages = [ nixpkgs-local.linuxPackages_zen.evdi ];
 
   programs.adb.enable = true;
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
@@ -107,10 +80,6 @@ in { pkgs, ... }: {
     };
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default

@@ -11,7 +11,7 @@ in with lib; {
 
     home-manager.users.ron = { ... }: {
       xdg.configFile."OpenTabletDriver/settings.json".source =
-        ../ext-cfg/otd.json;
+        ../ext/otd.json;
     };
   };
 }
