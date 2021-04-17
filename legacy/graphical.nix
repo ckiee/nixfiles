@@ -12,8 +12,6 @@
       ./home/graphical/redshift.nix
       ./home/graphical/nautilus.nix
       # ./home/graphical/picom.nix
-      ./home/kitty.nix
-      ./home/doom.nix
     ];
   };
   services.xserver = {
