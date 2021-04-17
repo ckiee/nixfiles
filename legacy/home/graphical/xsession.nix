@@ -49,12 +49,13 @@
           }
           { command = "${pkgs.kdeconnect}/bin/kdeconnect-indicator"; }
           { command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg"; }
+          # { command = "${pkgs.obs-studio}/bin/obs --minimize-to-tray"; }
           {
             command = "${../i3-scripts/oszwatch}";
             notification = false;
           }
         ];
-        bars = [];
+        bars = [ ];
         keybindings = with {
           modifier = config.xsession.windowManager.i3.config.modifier;
           spotifyWorkspace = "Spf";
