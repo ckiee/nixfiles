@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  imports = [ ./hw.nix ./polybar.nix ];
+  imports = [ ./hw.nix ./home ];
 
-  # home-manager.users.ron = { pkgs, ... }: { imports = [ ./home ]; };
 }

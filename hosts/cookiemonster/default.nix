@@ -1,22 +1,23 @@
 let
-#  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
-#  nur-local = import (/home/ron/git/nur-a-repo) { };
-#  nixpkgs-steam =
- #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
-in { config, pkgs, ... }: {
+  #  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+  #  nur-local = import (/home/ron/git/nur-a-repo) { };
+  #  nixpkgs-steam =
+  #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
+in { pkgs ? <nixpkgs>, ... }: {
   imports = [
     ./hardware.nix
-    ../../modules/base.nix
-    ../../modules/home.nix
-    ../../modules/graphical.nix
-    ../../modules/smartd.nix
-    ../../modules/pulse-lowlatency.nix
-    ../../modules/printer.nix
+    ../../legacy/base.nix
+    ../../legacy/home.nix
+    ../../legacy/graphical.nix
+    ../../legacy/smartd.nix
+    ../../legacy/pulse-lowlatency.nix
+    ../../legacy/printer.nix
+    ../../modules
   ];
   home-manager.users.ron = { pkgs, ... }: {
-    imports = [ ../../modules/home/sleep.nix ];
-    ron.polybar = {
-      primaryMonitor = "DP-0";
+    imports = [ ../../legacy/home/sleep.nix ];
+    cookie.polybar = {
+      enable = true;
       secondaryMonitor = "HDMI-0";
     };
   };
@@ -28,22 +29,22 @@ in { config, pkgs, ... }: {
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  networking.hostName = "cookiemonster";
+  networking.hostName = "fakemonster";
 
-  services.xserver = {
-    xrandrHeads = [
-      {
-        output = "DP-1";
-        primary = true;
-      }
-      "HDMI-1"
-    ];
-    videoDrivers = [ "nvidia" ];
-    screenSection = ''
-      Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
-      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
-    '';
-  };
+  # services.xserver = {
+  #   xrandrHeads = [
+  #     {
+  #       output = "DP-1";
+  #       primary = true;
+  #     }
+  #     "HDMI-1"
+  #   ];
+  #   videoDrivers = [ "nvidia" ];
+  #   screenSection = ''
+  #     Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
+  #     Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+  #   '';
+  # };
 
   environment.systemPackages = with pkgs; [
     discord
