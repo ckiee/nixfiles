@@ -65,10 +65,10 @@ in {
 
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
-      command = "${pkg}/bin/polybar main";
+      command = "${pkg}/bin/polybar -r main";
       notification = false;
     }] ++ optional (cfg.secondaryMonitor != null) {
-      command = "${pkg}/bin/polybar side";
+      command = "${pkg}/bin/polybar -r side";
       notification = false;
     };
 
@@ -87,7 +87,7 @@ in {
           monitor = cfg.primaryMonitor;
 
           modules-left = "ws";
-          modules-right = [ "memory" "small-spacer" "cpu" "separator" "volume" ]
+          modules-right = [ "volume" "separator" "memory" "small-spacer" "cpu" ]
             ++ optionals cfg.laptop [
               "separator"
               "backlight"
