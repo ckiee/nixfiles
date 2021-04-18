@@ -22,6 +22,7 @@ in {
       ./nautilus.nix
       ./i3.nix
       ./xcursor.nix
+      ./school-schedule.nix
     ];
   };
 }
