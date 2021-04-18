@@ -49,5 +49,6 @@
     smartd.enable = true;
     avahi.enable = true;
     git.enable = true;
+    syncthing.enable = true;
   };
 }
