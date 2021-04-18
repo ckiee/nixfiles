@@ -51,5 +51,6 @@
     avahi.enable = true;
     git.enable = true;
     syncthing.enable = true;
+    binaryCaches.enable = true;
   };
 }

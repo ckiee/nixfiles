@@ -6,7 +6,7 @@ in with lib; {
     enable = mkEnableOption "Enables additional binary caches";
   };
 
-  nix = mkIf cfg.enable {
+  config.nix = mkIf cfg.enable {
     binaryCaches =
       [ "https://nix-community.cachix.org" "https://cache.nixos.org/" ];
     binaryCachePublicKeys = [
