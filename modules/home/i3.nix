@@ -43,10 +43,13 @@ in with lib; {
               notification = false;
             }
             {
+              command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+              notification = false;
+            }
+            {
               command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg";
               notification = false;
             }
-            # { command = "${pkgs.obs-studio}/bin/obs --minimize-to-tray"; }
             {
               command = "${../../ext/i3-scripts/oszwatch}";
               notification = false;
@@ -80,16 +83,19 @@ in with lib; {
               "--release ${modifier}+Shift+s" =
                 ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
               # screenshot
-              "--release ${modifier}+End" = "exec ${../../ext/i3-scripts/screenshot}";
+              "--release ${modifier}+End" =
+                "exec ${../../ext/i3-scripts/screenshot}";
               "--release ${modifier}+Pause" =
                 "exec ${../../ext/i3-scripts/screenshot}";
 
-              "--release ${modifier}+Shift+t" = "exec ${../../ext/i3-scripts/tntwars}";
+              "--release ${modifier}+Shift+t" =
+                "exec ${../../ext/i3-scripts/tntwars}";
               # "--release ${modifier}+Shift+d" =
               #   "exec ${config.xsession.windowManager.i3.config.terminal} ${
               #     ../i3-scripts/shall
               #   }";
-              "--release ${modifier}+Shift+g" = "exec ${../../ext/i3-scripts/nixmenu}";
+              "--release ${modifier}+Shift+g" =
+                "exec ${../../ext/i3-scripts/nixmenu}";
               "${modifier}+Shift+h" = "exec ${../../ext/i3-scripts/sinkswap}";
 
               # spotify's house
