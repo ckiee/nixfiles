@@ -17,8 +17,8 @@ in with lib; {
           static const char *group = "nogroup";
 
           static const char *colorname[NUMCOLS] = {
-          	[INIT] =   "#27212e",   /* after initialization */
-          	[INPUT] =  "#1b1720",   /* during input */
+          	[INIT] =   "#1b1720",   /* after initialization */
+          	[INPUT] =  "#27212e",   /* during input */
           	[FAILED] = "#ffe261",   /* wrong password */
           };
 
