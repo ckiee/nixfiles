@@ -42,6 +42,7 @@
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
       bash.enable = true;
+      nixpkgs-config.enable = true;
     };
   };
 
