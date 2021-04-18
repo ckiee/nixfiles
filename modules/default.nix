@@ -18,5 +18,6 @@
     ./xserver.nix
     ./desktop.nix
     ./systemd-boot.nix
+    ./caches.nix
   ];
 }
