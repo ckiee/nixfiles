@@ -109,7 +109,7 @@ in with lib; {
           fonts = [ "monospace 9" ];
           modifier = "Mod4"; # super key
           menu =
-            "${pkgs.rofi}/bin/rofi -show drun -terminal ${pkgs.kitty}/bin/kitty";
+            "${pkgs.rofi}/bin/rofi -show drun";
         };
       };
     };
