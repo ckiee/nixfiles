@@ -3,7 +3,7 @@
 let
   emacs-overlay = (builtins.fetchGit {
     url = "https://github.com/nix-community/emacs-overlay.git";
-    rev = "65c012a5e031c94c7c42c626451eaed9c4215fe8";
+    rev = "5e588134a4e5158a69b40d8d5048e37fc018fbd6";
     ref = "master";
   });
   exs-emacsclient =
