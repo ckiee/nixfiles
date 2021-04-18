@@ -15,7 +15,7 @@
     desktop.enable = true;
     printing.enable = true;
     systemd-boot.enable = true;
-    hw.t480s = true;
+    hardware.t480s = true;
   };
 
   environment.systemPackages = with pkgs; [
