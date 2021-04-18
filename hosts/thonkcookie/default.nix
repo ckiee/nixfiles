@@ -1,23 +1,21 @@
 { config, pkgs, ... }:
 
-let
-  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
-in {
-  imports = [
-    ./hardware.nix
-    ./powersave.nix
-    ../../legacy/base.nix
-    ../../legacy/graphical.nix
-    ../../legacy/graphical/intel-graphics.nix
-    ../../legacy/printer.nix
-    ../../modules
-  ];
+# let
+#   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+# in
+{
+  imports = [ ./hardware.nix ./powersave.nix ../.. ];
 
   networking.hostName = "thonkcookie";
 
-  boot.loader.systemd-boot = {
-    enable = true;
-    editor = false;
+  home-manager.users.ron = { pkgs, ... }: {
+    cookie = { polybar.laptop = true; };
+  };
+  cookie = {
+    desktop.enable = true;
+    printing.enable = true;
+    systemd-boot.enable = true;
+    hw.t480s = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -28,19 +26,6 @@ in {
     lutris
   ];
 
-  programs.adb.enable = true;
-  # nixpkgs.config.packageOverrides = pkgs: { zoom-us = nixpkgs-local.zoom-us; };
-
-  cookie.polybar = {
-    laptop = true;
-    primaryMonitor = "eDP-1";
-  };
-  cookie.hw.t480s = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
