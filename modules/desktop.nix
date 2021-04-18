@@ -19,6 +19,7 @@ in with lib; {
         nautilus.enable = true;
         i3.enable = true;
         xcursor.enable = true;
+        school-schedule.enable = true;
       };
     };
     cookie = {
