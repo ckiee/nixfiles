@@ -141,7 +141,7 @@ in {
 
           format-volume = "<ramp-volume> <label-volume>";
 
-          label-muted = "${icons.volume-mute} ";
+          label-muted = "${icons.volume-mute} Muted";
 
           ramp-volume-0 = icons.volume-off;
           ramp-volume-1 = icons.volume-down;
