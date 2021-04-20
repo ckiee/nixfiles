@@ -15,6 +15,7 @@ in { pkgs, ... }: {
     printing.enable = true;
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
+    sound.lowLatency = true; # for osu!
   };
 
   networking.hostName = "cookiemonster";
