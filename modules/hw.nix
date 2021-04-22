@@ -14,6 +14,7 @@ in with lib; {
       Driver "libinput"
       MatchIsPointer "on"
       Option "NaturalScrolling" "off"
+      Option "Tapping" "off"
     EndSection
   '');
 }
