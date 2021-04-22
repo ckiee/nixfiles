@@ -20,10 +20,13 @@
 
   environment.systemPackages = with pkgs; [
     discord
+    discord-ptb
     firefox
     zoom-us
     weechat
     lutris
+    rustup
+    gcc
   ];
 
   networking.firewall.enable = false;
