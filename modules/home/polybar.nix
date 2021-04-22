@@ -43,6 +43,7 @@ let
     volume-mute = "";
     sun = "";
     battery-full = "";
+    globe = "";
   };
   cfg = config.cookie.polybar;
   pkg = config.services.polybar.package;
@@ -89,13 +90,20 @@ in {
           monitor = mkIf (cfg.primaryMonitor != null) cfg.primaryMonitor;
 
           modules-left = "ws";
-          modules-right = [ "volume" "separator" "memory" "small-spacer" "cpu" ]
-            ++ optionals cfg.laptop [
-              "separator"
-              "backlight"
-              "separator"
-              "battery"
-            ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
+          modules-right = [
+            "volume"
+            "separator"
+            "memory"
+            "small-spacer"
+            "cpu"
+            "separator"
+            "keyboard"
+          ] ++ optionals cfg.laptop [
+            "separator"
+            "backlight"
+            "separator"
+            "battery"
+          ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
 
           tray-position = "right";
           tray-padding = 0;
@@ -222,6 +230,11 @@ in {
           label-unfocused-padding = 1;
           label-urgent-padding = 1;
           label-visible-padding = 1;
+
+        };
+        "module/keyboard" = {
+          type = "internal/xkeyboard";
+          format = "${icons.globe} <label-layout>";
 
         };
       };
