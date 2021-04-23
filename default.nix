@@ -2,11 +2,16 @@
 
 {
   imports = [ ./modules ];
-  # Users with sudo perms are cool
-  nix.trustedUsers = [ "root" "@wheel" ];
   nixpkgs.config.allowUnfree = true;
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 8d";
+  # Users with sudo perms are cool
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 8d";
+    };
+    autoOptimiseStore = true;
+    trustedUsers = [ "root" "@wheel" ];
+  };
 
   time.timeZone = "Israel";
 
