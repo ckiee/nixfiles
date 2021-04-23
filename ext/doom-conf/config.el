@@ -60,5 +60,6 @@
   (let ((buf-count (length (buffer-list))))
     (if (or (interactive-p) display-anyway)
         (message "%d buffers in this Emacs" buf-count)) buf-count))
-;; aspell stuff
-;; (doom-load-envvars-file (concat doom-local-dir "aspell-env"))
+
+;; see packages.el
+(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
