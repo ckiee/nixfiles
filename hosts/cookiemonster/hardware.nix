@@ -18,7 +18,7 @@
   };
 
   boot.initrd.luks.devices."rootfs".device =
-    "/dev/disk/by-uuid/6c1f2ed3-cec7-4ffd-bed2-58292996ad6f";
+    "/dev/disk/by-uuid/eb0b37e3-50cd-4815-ab7d-73977f392b26";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/9556-DD8F";
