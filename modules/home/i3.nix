@@ -31,6 +31,10 @@ in with lib; {
           window = {
             border = 0;
             titlebar = false;
+            commands = [{
+              command = "floating enable";
+              criteria = { instance = "origin.exe"; };
+            }];
           };
           startup = [
             {
@@ -108,8 +112,7 @@ in with lib; {
             };
           fonts = [ "monospace 9" ];
           modifier = "Mod4"; # super key
-          menu =
-            "${pkgs.rofi}/bin/rofi -show drun";
+          menu = "${pkgs.rofi}/bin/rofi -show drun";
         };
       };
     };
