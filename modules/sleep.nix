@@ -6,7 +6,7 @@ in with lib; {
     enable = mkEnableOption "Enables the sleep-inducing service";
     sleepTime = mkOption rec {
       type = types.str;
-      default = "00:30:00";
+      default = "00:15:00";
       description = "Time to make The Cookie sleep";
       example = default;
     };
