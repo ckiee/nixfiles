@@ -8,6 +8,7 @@ in { pkgs, ... }: {
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
       polybar = { secondaryMonitor = "HDMI-0"; };
+      dev-packages.enable = true;
     };
   };
   cookie = {
@@ -50,7 +51,6 @@ in { pkgs, ... }: {
     sidequest
     steam-run-native
     maven
-    rustup
     prusa-slicer
     platformio
     transmission-gtk

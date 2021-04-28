@@ -24,6 +24,7 @@ in {
       ./xcursor.nix
       ./school-schedule.nix
       ./nixpkgs-config.nix
+      ./dev-packages.nix
     ];
   };
 }
