@@ -94,6 +94,7 @@ in with lib; {
 
               "--release ${modifier}+Shift+t" =
                 "exec ${../../ext/i3-scripts/tntwars}";
+              "${modifier}+Shift+d" = "exec emacsclient -nc ~/Sync/org/scratchpad.org";
               # "--release ${modifier}+Shift+d" =
               #   "exec ${config.xsession.windowManager.i3.config.terminal} ${
               #     ../i3-scripts/shall
