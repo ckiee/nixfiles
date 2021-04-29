@@ -21,6 +21,7 @@ in with lib; {
         xcursor.enable = true;
         school-schedule.enable = true;
       };
+      services.rsibreak.enable = true;
     };
     cookie = {
       xserver.enable = true;
