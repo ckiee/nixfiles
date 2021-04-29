@@ -9,14 +9,13 @@
   networking.hostName = "thonkcookie";
 
   home-manager.users.ron = { pkgs, ... }: {
-    cookie = { polybar.laptop = true; };
+    cookie = { dev-packages.enable = true; };
   };
   cookie = {
     desktop.enable = true;
     printing.enable = true;
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
-    hardware.t480s.undervolt = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -26,8 +25,6 @@
     zoom-us
     weechat
     lutris
-    rustup
-    gcc
   ];
 
   networking.firewall.enable = false;
