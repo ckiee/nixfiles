@@ -65,8 +65,6 @@ in { pkgs ? import <nixpkgs>, ... }: {
     manpages # linux dev manpages
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
   users.users.ron.extraGroups = [ "dialout" "libvirtd" ];
   programs.steam.enable = true;
   virtualisation = {
