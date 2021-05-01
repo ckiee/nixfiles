@@ -145,7 +145,7 @@ in {
 
         "module/volume" = {
           type = "internal/pulseaudio";
-          use-ui-max = true;
+          use-ui-max = false;
 
           format-volume = "<ramp-volume> <label-volume>";
 
