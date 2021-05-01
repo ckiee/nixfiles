@@ -42,20 +42,16 @@ in { pkgs ? import <nixpkgs>, ... }: {
     firefox
     obs-studio
     weechat
-    geogebra
     vlc
     arandr
     spotify
     lutris
     sidequest
     steam-run-native
-    maven
     prusa-slicer
-    platformio
     transmission-gtk
     virt-manager
     gnome3.totem
-    gcc
     picocom
     minecraft
     kicad-with-packages3d
