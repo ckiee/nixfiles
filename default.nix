@@ -8,6 +8,7 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 8d";
+      dates = "weekly";
     };
     autoOptimiseStore = true;
     trustedUsers = [ "root" "@wheel" ];
