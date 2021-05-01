@@ -8,7 +8,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ nodejs yarn rustup ];
+    home.packages = with pkgs; [ nodejs yarn rustup maven platformio gcc ];
     home.sessionPath = [ "~/.yarn/bin" ];
 
     programs.adb.enable = true;
