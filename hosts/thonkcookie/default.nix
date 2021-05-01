@@ -9,7 +9,7 @@
   networking.hostName = "thonkcookie";
 
   home-manager.users.ron = { pkgs, ... }: {
-    cookie = { dev-packages.enable = true; };
+    cookie = { devel.enable = true; };
   };
   cookie = {
     desktop = {

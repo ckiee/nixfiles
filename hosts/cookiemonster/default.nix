@@ -1,8 +1,4 @@
 let
-  #  nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
-  #  nur-local = import (/home/ron/git/nur-a-repo) { };
-  #  nixpkgs-steam =
-  #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
 in { pkgs ? import <nixpkgs>, ... }: {
   imports = [ ./hardware.nix ../.. ];
   cookie = {

@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.dev-packages;
+let cfg = config.cookie.devel;
 in with lib; {
 
-  options.cookie.dev-packages = {
-    enable = mkEnableOption "Enables some development packages";
+  options.cookie.devel = {
+    enable = mkEnableOption "Enables some development tools";
   };
 
   config = mkIf cfg.enable {
