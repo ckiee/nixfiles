@@ -67,8 +67,7 @@ in { pkgs ? import <nixpkgs>, ... }: {
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
-  programs.adb.enable = true;
-  users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
+  users.users.ron.extraGroups = [ "dialout" "libvirtd" ];
   programs.steam.enable = true;
   virtualisation = {
     libvirtd.enable = true;
