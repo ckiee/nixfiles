@@ -12,7 +12,10 @@
     cookie = { dev-packages.enable = true; };
   };
   cookie = {
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      primaryMonitor = "eDP-1";
+    };
     printing.enable = true;
     systemd-boot.enable = true;
     hardware.t480s.enable = true;

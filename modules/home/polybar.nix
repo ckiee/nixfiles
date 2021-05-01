@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixosConfig, ... }:
 
 let
   inherit (lib)
@@ -46,31 +46,20 @@ let
     globe = "";
   };
   cfg = config.cookie.polybar;
+  desktopCfg = nixosConfig.cookie.desktop;
   pkg = config.services.polybar.package;
 in {
 
   options.cookie.polybar = {
     enable = mkEnableOption "Enables Polybar";
     laptop = mkEnableOption "Enables laptop-specific reporting";
-    primaryMonitor = mkOption {
-      type = types.nullOr types.str;
-      example = "eDP-1";
-      description = "primary output, will auto-detect if not specified";
-      default = null;
-    };
-    secondaryMonitor = mkOption {
-      type = types.nullOr types.str;
-      example = "eDP-1";
-      description = "secondary output";
-      default = null;
-    };
   };
 
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
       command = "${pkg}/bin/polybar -r main";
       notification = false;
-    }] ++ optional (cfg.secondaryMonitor != null) {
+    }] ++ optional (desktopCfg.secondaryMonitor != null) {
       command = "${pkg}/bin/polybar -r side";
       notification = false;
     };
@@ -87,7 +76,7 @@ in {
 
       config = {
         "bar/main" = base // {
-          monitor = mkIf (cfg.primaryMonitor != null) cfg.primaryMonitor;
+          monitor = mkIf (desktopCfg.primaryMonitor != null) desktopCfg.primaryMonitor;
 
           modules-left = "ws";
           modules-right = [
@@ -109,8 +98,8 @@ in {
           tray-padding = 0;
         };
 
-        "bar/side" = mkIf (cfg.secondaryMonitor != null) (base // {
-          monitor = cfg.secondaryMonitor;
+        "bar/side" = mkIf (desktopCfg.secondaryMonitor != null) (base // {
+          monitor = desktopCfg.secondaryMonitor;
 
           modules-left = [ "ws" "separator" "time" "small-spacer" "date" ];
         });
