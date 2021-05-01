@@ -1,6 +1,9 @@
-{ lib, config, pkgs, ... }:
+{ builtins, lib, config, nixosConfig, pkgs, ... }:
 
-let cfg = config.cookie.i3;
+let
+  cfg = config.cookie.i3;
+  desktopCfg = nixosConfig.cookie.desktop;
+  spotifyWorkspace = "Spf";
 in with lib; {
   options.cookie.i3 = {
     enable = mkEnableOption "Enables the i3 window manager";
@@ -62,7 +65,6 @@ in with lib; {
           bars = [ ];
           keybindings = with {
             modifier = config.xsession.windowManager.i3.config.modifier;
-            spotifyWorkspace = "Spf";
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
           };
@@ -94,11 +96,8 @@ in with lib; {
 
               "--release ${modifier}+Shift+t" =
                 "exec ${../../ext/i3-scripts/tntwars}";
-              "${modifier}+Shift+d" = "exec emacsclient -nc ~/Sync/org/scratchpad.org";
-              # "--release ${modifier}+Shift+d" =
-              #   "exec ${config.xsession.windowManager.i3.config.terminal} ${
-              #     ../i3-scripts/shall
-              #   }";
+              "${modifier}+Shift+d" =
+                "exec emacsclient -nc ~/Sync/org/scratchpad.org";
               "--release ${modifier}+Shift+g" =
                 "exec ${../../ext/i3-scripts/nixmenu}";
               "${modifier}+Shift+h" = "exec ${../../ext/i3-scripts/sinkswap}";
@@ -115,6 +114,19 @@ in with lib; {
           modifier = "Mod4"; # super key
           menu = "${pkgs.rofi}/bin/rofi -show drun";
         };
+        extraConfig = mkIf (desktopCfg.secondaryMonitor != null) ''
+          workspace 1 output ${desktopCfg.primaryMonitor}
+          workspace 2 output ${desktopCfg.secondaryMonitor}
+          workspace 3 output ${desktopCfg.primaryMonitor}
+          workspace 4 output ${desktopCfg.primaryMonitor}
+          workspace 5 output ${desktopCfg.primaryMonitor}
+          workspace 6 output ${desktopCfg.primaryMonitor}
+          workspace 7 output ${desktopCfg.primaryMonitor}
+          workspace 8 output ${desktopCfg.primaryMonitor}
+          workspace 9 output ${desktopCfg.primaryMonitor}
+          workspace 10 output ${desktopCfg.primaryMonitor}
+          workspace ${spotifyWorkspace} output ${desktopCfg.secondaryMonitor}
+        '';
       };
     };
   };

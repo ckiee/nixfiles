@@ -3,20 +3,23 @@ let
   #  nur-local = import (/home/ron/git/nur-a-repo) { };
   #  nixpkgs-steam =
   #   import (/home/ron/git/luigi-nixpkgs) { config.allowUnfree = true; };
-in { pkgs, ... }: {
+in { pkgs ? import <nixpkgs>, ... }: {
   imports = [ ./hardware.nix ../.. ];
-  home-manager.users.ron = { pkgs, ... }: {
-    cookie = {
-      polybar = { secondaryMonitor = "HDMI-0"; };
-      dev-packages.enable = true;
-    };
-  };
   cookie = {
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      primaryMonitor = "DP-0";
+      secondaryMonitor = "HDMI-0";
+    };
     printing.enable = true;
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     sound.lowLatency = true; # for osu!
+  };
+  home-manager.users.ron = { pkgs, ... }: {
+    cookie = {
+      dev-packages.enable = true;
+    };
   };
 
   networking.hostName = "cookiemonster";
