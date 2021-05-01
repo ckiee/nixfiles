@@ -10,5 +10,8 @@ in with lib; {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ nodejs yarn rustup ];
     home.sessionPath = [ "~/.yarn/bin" ];
+
+    programs.adb.enable = true;
+    users.users.ron.extraGroups = [ "adbusers" ];
   };
 }
