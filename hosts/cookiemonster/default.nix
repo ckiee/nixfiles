@@ -14,7 +14,7 @@ in { pkgs ? import <nixpkgs>, ... }: {
   };
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
-      dev-packages.enable = true;
+      devel.enable = true;
     };
   };
 
