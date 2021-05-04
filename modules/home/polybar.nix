@@ -44,6 +44,7 @@ let
     sun = "";
     battery-full = "";
     globe = "";
+    music = "";
   };
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -69,6 +70,7 @@ in {
       package = pkgs.polybar.override {
         i3GapsSupport = true;
         pulseSupport = true;
+        mpdSupport = true;
       };
 
       script =
@@ -76,10 +78,13 @@ in {
 
       config = {
         "bar/main" = base // {
-          monitor = mkIf (desktopCfg.primaryMonitor != null) desktopCfg.primaryMonitor;
+          monitor =
+            mkIf (desktopCfg.primaryMonitor != null) desktopCfg.primaryMonitor;
 
           modules-left = "ws";
           modules-right = [
+            "mpd"
+            "separator"
             "volume"
             "separator"
             "memory"
@@ -143,6 +148,18 @@ in {
           ramp-volume-0 = icons.volume-off;
           ramp-volume-1 = icons.volume-down;
           ramp-volume-2 = icons.volume-up;
+        };
+
+        "module/mpd" = {
+          type = "internal/mpd";
+          host = config.services.mpd.network.listenAddress;
+          port = config.services.mpd.network.port;
+
+          format-online = "${icons.music} <label-song> <label-time>";
+          format-offline = "${icons.music} mpd is offline";
+
+          label-song = "%artist% - %title%";
+          label-time = "[%elapsed%/%total%]";
         };
 
         "module/cpu" = {
