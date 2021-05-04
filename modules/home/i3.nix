@@ -99,7 +99,7 @@ in with lib; {
                 "exec ${../../ext/i3-scripts/nixmenu}";
               "${modifier}+Shift+h" = "exec ${../../ext/i3-scripts/sinkswap}";
 
-              # spotify's house
+              # music house
               "${modifier}+Shift+w" =
                 "move container to workspace ${musicWorkspace}";
               "${modifier}+w" = "workspace ${musicWorkspace}";
@@ -111,6 +111,7 @@ in with lib; {
             "1" = [{ class = "^Firefox$"; }];
             "2" = [ { class = "^discord"; } { title = "^weechat$"; } ];
             "4" = [{ class = "^Emacs$"; }];
+            "${musicWorkspace}" = [{ class = "^cantata"; }];
           };
           fonts = [ "monospace 9" ];
           modifier = "Mod4"; # super key
