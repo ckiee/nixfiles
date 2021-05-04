@@ -15,8 +15,9 @@ in with lib; {
       dbFile = "${home}/Sync/.mpd-db";
       musicDirectory = "${home}/Music/flat";
     };
-    services.mpdris2 = {
-      enable = true;
-    };
+    services.mpdris2 = { enable = true; };
+
+    # A GUI frontend
+    home.packages = with pkgs; [ cantata ];
   };
 }
