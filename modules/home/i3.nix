@@ -4,6 +4,22 @@ let
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
   spotifyWorkspace = "Spf";
+  playerctl =
+    "${pkgs.playerctl}/bin/playerctl --player=firefox,mpd,vlc,spotify,%any";
+  startup = pkgs.writeScript "i3-startup" ''
+    #!${pkgs.stdenv.shell}
+    ${pkgs.kdeconnect}/libexec/kdeconnectd &
+    ${pkgs.kdeconnect}/bin/kdeconnect-indicator &
+    ${pkgs.networkmanagerapplet}/bin/nm-applet &
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg &
+    ${../../ext/i3-scripts/oszwatch} &
+    Discord &
+    DiscordPTB &
+    st -T weechat -e sh -c weechat &
+    firefox &
+    emacs &
+    cantata &
+  '';
 in with lib; {
   options.cookie.i3 = {
     enable = mkEnableOption "Enables the i3 window manager";
@@ -39,29 +55,10 @@ in with lib; {
               criteria = { instance = "origin.exe"; };
             }];
           };
-          startup = [
-            {
-              command =
-                "${pkgs.kdeconnect}/libexec/kdeconnectd"; # when dbus automatically launches kdeconnectd things get weird
-              notification = false;
-            }
-            {
-              command = "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
-              notification = false;
-            }
-            {
-              command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
-              notification = false;
-            }
-            {
-              command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg";
-              notification = false;
-            }
-            {
-              command = "${../../ext/i3-scripts/oszwatch}";
-              notification = false;
-            }
-          ];
+          startup = [{
+            command = "${startup}";
+            notification = false;
+          }];
           bars = [ ];
           keybindings = with {
             modifier = config.xsession.windowManager.i3.config.modifier;
@@ -76,8 +73,8 @@ in with lib; {
                 exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%- && pkill -RTMIN+2 i3blocks"'';
               "${modifier}+F3" = ''
                 exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
-              "${modifier}+F4" = ''
-                exec "${pkgs.playerctl}/bin/playerctl --player=firefox,vlc,spotify,%any next"'';
+              "${modifier}+F4" = ''exec "${playerctl} next"'';
+              "${modifier}+t" = ''exec "${playerctl} play-pause"'';
               "${modifier}+F5" = ''
                 exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%- && pkill -RTMIN+12 i3blocks"'';
               "${modifier}+F6" = ''
@@ -110,6 +107,11 @@ in with lib; {
               "F13" = "workspace 1";
               "F14" = "workspace 2";
             };
+          assigns = {
+            "1" = [{ class = "^Firefox$"; }];
+            "2" = [ { class = "^discord"; } { title = "^weechat$"; } ];
+            "4" = [{ class = "^Emacs$"; }];
+          };
           fonts = [ "monospace 9" ];
           modifier = "Mod4"; # super key
           menu = "${pkgs.rofi}/bin/rofi -show drun";
