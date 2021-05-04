@@ -35,6 +35,7 @@ in with lib; {
         i3.enable = true;
         xcursor.enable = true;
         school-schedule.enable = true;
+        mpd.enable = true;
       };
       services.rsibreak.enable = true;
     };
