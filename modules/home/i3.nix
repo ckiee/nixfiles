@@ -3,7 +3,7 @@
 let
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
-  spotifyWorkspace = "Spf";
+  musicWorkspace = "mpd";
   playerctl =
     "${pkgs.playerctl}/bin/playerctl --player=firefox,mpd,vlc,spotify,%any";
   startup = pkgs.writeScript "i3-startup" ''
@@ -101,8 +101,8 @@ in with lib; {
 
               # spotify's house
               "${modifier}+Shift+w" =
-                "move container to workspace ${spotifyWorkspace}";
-              "${modifier}+w" = "workspace ${spotifyWorkspace}";
+                "move container to workspace ${musicWorkspace}";
+              "${modifier}+w" = "workspace ${musicWorkspace}";
               # force i3 to make 1 the starting workspace
               "F13" = "workspace 1";
               "F14" = "workspace 2";
@@ -127,7 +127,7 @@ in with lib; {
           workspace 8 output ${desktopCfg.primaryMonitor}
           workspace 9 output ${desktopCfg.primaryMonitor}
           workspace 10 output ${desktopCfg.primaryMonitor}
-          workspace ${spotifyWorkspace} output ${desktopCfg.secondaryMonitor}
+          workspace ${musicWorkspace} output ${desktopCfg.secondaryMonitor}
         '';
       };
     };
