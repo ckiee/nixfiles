@@ -13,7 +13,10 @@ in with lib; {
       enable = true;
       dataDir = "${home}/Sync/mpd";
       dbFile = "${home}/Sync/.mpd-db";
-      musicDirectory = "${home}/Music";
+      musicDirectory = "${home}/Music/flat";
+    };
+    services.mpdris2 = {
+      enable = true;
     };
   };
 }
