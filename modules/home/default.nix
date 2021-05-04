@@ -25,6 +25,7 @@ in {
       ./school-schedule.nix
       ./nixpkgs-config.nix
       ./devel.nix
+      ./mpd.nix
     ];
   };
 }
