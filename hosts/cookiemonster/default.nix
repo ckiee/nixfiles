@@ -61,7 +61,9 @@ in { pkgs ? import <nixpkgs>, ... }: {
     manpages # linux dev manpages
   ];
 
-  users.users.ron.extraGroups = [ "dialout" "libvirtd" ];
+  programs.adb.enable = true;
+  users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
+
   programs.steam.enable = true;
   virtualisation = {
     libvirtd.enable = true;
