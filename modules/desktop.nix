@@ -46,6 +46,7 @@ in with lib; {
       slock.enable = true;
       fonts.enable = true;
       gnome.enable = true;
+      qt5.enable = true;
     };
   };
 }
