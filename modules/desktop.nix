@@ -16,6 +16,7 @@ in with lib; {
       description = "secondary output";
       default = null;
     };
+    laptop = mkEnableOption "Enables laptop-specific customizations";
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +25,10 @@ in with lib; {
 
     home-manager.users.ron = { pkgs, ... }: {
       cookie = {
-        polybar = { enable = true; };
+        polybar = {
+          enable = true;
+          laptop = cfg.laptop;
+        };
         gtk.enable = true;
         dunst.enable = true;
         emacs.enable = true;
