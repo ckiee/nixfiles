@@ -15,6 +15,7 @@
     desktop = {
       enable = true;
       primaryMonitor = "eDP-1";
+      laptop = true;
     };
     printing.enable = true;
     systemd-boot.enable = true;
