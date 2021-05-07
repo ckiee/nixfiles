@@ -56,6 +56,7 @@ in { pkgs ? import <nixpkgs>, ... }: {
     minecraft
     kicad-with-packages3d
     python3Packages.youtube-dl
+    spotdl
     blockbench-electron
     gdb
     manpages # linux dev manpages
