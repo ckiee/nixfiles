@@ -14,9 +14,6 @@ in with lib; {
       dataDir = "${home}/Sync/mpd";
       dbFile = "${home}/Sync/.mpd-db";
       musicDirectory = "${home}/Music/flat";
-      extraConfig = ''
-        volume_normalization yes"
-      '';
     };
     services.mpdris2 = { enable = true; };
 
