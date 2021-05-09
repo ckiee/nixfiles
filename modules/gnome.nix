@@ -11,11 +11,15 @@ in with lib; {
       gnome3.adwaita-icon-theme
       gnomeExtensions.appindicator
       # apps
-      gnome3.file-roller
-      gnome3.gnome-system-monitor
-      gnome3.gnome-calculator
-      gnome3.totem
     ];
+    home-manager.users.ron = { pkgs, ... }: {
+      home.packages = with pkgs; [
+        gnome3.file-roller
+        gnome3.gnome-system-monitor
+        gnome3.gnome-calculator
+        gnome3.totem
+      ];
+    };
     services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
   };
 }
