@@ -12,6 +12,7 @@ in { pkgs ? import <nixpkgs>, ... }: {
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     sound.lowLatency = true; # for osu!
+    wine.enable = true;
   };
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
