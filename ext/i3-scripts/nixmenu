@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p jq rofi kitty
+#!nix-shell -i bash -p jq rofi
 
 set -e
 CACHE=/tmp/nixmenu.$USER.cache
