@@ -10,8 +10,7 @@ in with lib; {
       enable = true;
       shellAliases = {
         rsync = "rsync --progress";
-        ls =
-          "ls --color=auto --human-readable --group-directories-first --classify";
+        ls = "${pkgs.exa}/bin/exa";
         nsp = "nix-shell -p";
         ns = "nix search";
         e = "emacsclient -n";
