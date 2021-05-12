@@ -20,5 +20,6 @@
     ./systemd-boot.nix
     ./caches.nix
     ./qt5.nix
+    ./wine.nix
   ];
 }
