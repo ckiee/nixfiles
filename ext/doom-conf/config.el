@@ -53,7 +53,7 @@
 ;; (elcord-mode)
 (which-key-mode)
 ;; (global-wakatime-mode)
-(map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/modules/home/doom-conf/")))
+(map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/ext/doom-conf/")))
 (defun count-buffers (&optional display-anyway)
   "Display or return the number of buffers."
   (interactive)
