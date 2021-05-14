@@ -19,8 +19,11 @@ let
     radius = 0;
 
     font-0 = "Hack:size=9";
-    font-1 = "Font Awesome 5 Free:style=Solid:size=9";
-    font-2 = "Noto Color Emoji:size=9";
+    font-1 = "Noto Sans Mono CJK HK:size=9";
+    font-2 = "Noto Sans Mono CJK JP:size=9";
+    font-3 = "Noto Sans Mono CJK KR:size=9";
+    font-4 = "Font Awesome 5 Free:style=Solid:size=9";
+    font-5 = "Noto Color Emoji:size=9";
 
     scroll-up = "#ws.prev";
     scroll-down = "#ws.next";
