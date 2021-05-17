@@ -1,5 +1,4 @@
-let
-  local = import (/home/ron/git/nixpkgs) { };
+let local = import (/home/ron/git/nixpkgs) { };
 in { pkgs ? import <nixpkgs>, ... }: {
   imports = [ ./hardware.nix ../.. ];
   cookie = {
@@ -11,13 +10,14 @@ in { pkgs ? import <nixpkgs>, ... }: {
     printing.enable = true;
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
-    sound.lowLatency = true; # for osu!
+    sound = {
+      pulse.enable = false;
+      pipewire.enable = true;
+    };
     wine.enable = true;
   };
   home-manager.users.ron = { pkgs, ... }: {
-    cookie = {
-      devel.enable = true;
-    };
+    cookie = { devel.enable = true; };
   };
 
   networking.hostName = "cookiemonster";
