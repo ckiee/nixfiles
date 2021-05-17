@@ -72,10 +72,10 @@ in with lib; {
               "${modifier}+F3" = "${pam} --increase 5";
               "${modifier}+F4" = ''exec "${playerctl} next"'';
               "${modifier}+t" = ''exec "${playerctl} play-pause"'';
-              "${modifier}+F5" = ''
-                exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%- && pkill -RTMIN+12 i3blocks"'';
-              "${modifier}+F6" = ''
-                exec "${pkgs.brightnessctl}/bin/brightnessctl set +5% && pkill -RTMIN+12 i3blocks"'';
+              "${modifier}+F5" =
+                ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
+              "${modifier}+F6" =
+                ''exec "${pkgs.brightnessctl}/bin/brightnessctl set +5%"'';
               # old i3 defaults
               "${modifier}+Shift+f" = "floating toggle";
               # lock/suspend
