@@ -4,8 +4,7 @@ let
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
   musicWorkspace = "mpd";
-  playerctl =
-    "${pkgs.playerctl}/bin/playerctl --player=vlc,mpd,spotify,%any";
+  playerctl = "${pkgs.playerctl}/bin/playerctl --player=vlc,mpd,spotify,%any";
   startup = pkgs.writeScript "i3-startup" ''
     #!${pkgs.stdenv.shell}
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
@@ -64,15 +63,13 @@ in with lib; {
             modifier = config.xsession.windowManager.i3.config.modifier;
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
+            pam = "exec ${pkgs.pamixer}/bin/pamixer";
           };
             lib.mkOptionDefault {
               # brightness & audio Fn keys
-              "${modifier}+F1" = ''
-                exec "${pkgs.alsaUtils}/bin/amixer set Master 1+ toggle && pkill -RTMIN+2 i3blocks"'';
-              "${modifier}+F2" = ''
-                exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%- && pkill -RTMIN+2 i3blocks"'';
-              "${modifier}+F3" = ''
-                exec "${pkgs.alsaUtils}/bin/amixer sset Master 5%+ && pkill -RTMIN+2 i3blocks"'';
+              "${modifier}+F1" = "${pam} --toggle-mute";
+              "${modifier}+F2" = "${pam} --decrease 5";
+              "${modifier}+F3" = "${pam} --increase 5";
               "${modifier}+F4" = ''exec "${playerctl} next"'';
               "${modifier}+t" = ''exec "${playerctl} play-pause"'';
               "${modifier}+F5" = ''
