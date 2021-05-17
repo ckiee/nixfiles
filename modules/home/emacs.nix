@@ -69,6 +69,7 @@ in with lib; {
       ispell
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       editorconfig-core-c
+      omnisharp-roslyn # C#
     ];
   };
 }
