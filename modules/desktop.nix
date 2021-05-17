@@ -45,7 +45,10 @@ in with lib; {
     };
     cookie = {
       xserver.enable = true;
-      sound.enable = true;
+      sound = {
+        enable = true;
+        pulse = { enable = mkDefault true; };
+      };
       sleep.enable = true;
       slock.enable = true;
       fonts.enable = true;
