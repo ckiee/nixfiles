@@ -34,6 +34,7 @@ in with lib; {
       feh
       xorg.xkill # if shit gets stuck
       pavucontrol
+      audacity
     ];
 
     xsession = {
