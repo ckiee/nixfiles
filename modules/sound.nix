@@ -13,7 +13,7 @@ in with lib; {
       enable = mkEnableOption "Enable the PipeWire sound system";
       quantum = mkOption rec {
         type = types.int;
-        default = 128;
+        default = 256;
         description =
           "Magical PipeWire value to magically perform things faster";
         example = default;
