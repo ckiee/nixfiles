@@ -1,5 +1,4 @@
-let local = import (/home/ron/git/nixpkgs) { };
-in { pkgs ? import <nixpkgs>, ... }: {
+{ pkgs ? import <nixpkgs>, ... }: {
   imports = [ ./hardware.nix ../.. ];
   cookie = {
     desktop = {
@@ -62,7 +61,6 @@ in { pkgs ? import <nixpkgs>, ... }: {
     blockbench-electron
     gdb
     manpages # linux dev manpages
-    local.alvr
   ];
 
   programs.adb.enable = true;
