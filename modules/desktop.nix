@@ -47,7 +47,10 @@ in with lib; {
       xserver.enable = true;
       sound = {
         enable = true;
-        pulse = { enable = mkDefault true; };
+        pulse = {
+          enable = mkDefault true;
+          lowLatency = mkDefault false;
+        };
       };
       sleep.enable = true;
       slock.enable = true;
