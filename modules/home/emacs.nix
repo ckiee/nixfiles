@@ -2,7 +2,7 @@
 
 let
   sources = import ../../nix/sources.nix;
-  emacs-overlay = sources.emacs-overlay;
+  emacs-overlay = import sources.emacs-overlay;
   exs-emacsclient =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
       name = "emacsclientexs.desktop";
@@ -28,11 +28,10 @@ in with lib; {
   options.cookie.emacs = { enable = mkEnableOption "Enables DOOM Emacs"; };
   config = mkIf cfg.enable {
 
-    nixpkgs.overlays = [ (import emacs-overlay) ];
+    nixpkgs.overlays = [ emacs-overlay ];
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacsGcc;
     };
 
     home.file.".doom.d".source = ../../ext/doom-conf;
