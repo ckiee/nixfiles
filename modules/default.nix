@@ -21,5 +21,6 @@
     ./caches.nix
     ./qt5.nix
     ./wine.nix
+    ./nix-path.nix
   ];
 }

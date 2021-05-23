@@ -10,11 +10,8 @@
     };
     autoOptimiseStore = true;
     trustedUsers = [ "root" "@wheel" ];
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
   };
-  nixpkgs = {
-    config = { allowUnfree = true; };
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   time.timeZone = "Israel";
 
@@ -64,5 +61,6 @@
     git.enable = true;
     syncthing.enable = true;
     binaryCaches.enable = true;
+    nix-path.enable = true;
   };
 }
