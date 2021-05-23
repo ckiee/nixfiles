@@ -1,11 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs,  ... }:
 
 let
-  emacs-overlay = (builtins.fetchGit {
-    url = "https://github.com/nix-community/emacs-overlay.git";
-    rev = "65c012a5e031c94c7c42c626451eaed9c4215fe8";
-    ref = "master";
-  });
+  sources = import ../../nix/sources.nix;
+  emacs-overlay = sources.emacs-overlay;
   exs-emacsclient =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
       name = "emacsclientexs.desktop";
