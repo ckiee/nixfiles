@@ -2,8 +2,6 @@
 
 {
   imports = [ ./modules ];
-  nixpkgs.config.allowUnfree = true;
-  # Users with sudo perms are cool
   nix = {
     gc = {
       automatic = true;
@@ -12,6 +10,10 @@
     };
     autoOptimiseStore = true;
     trustedUsers = [ "root" "@wheel" ];
+    nixPath = [ "nixpkgs=${pkgs.path}" ];
+  };
+  nixpkgs = {
+    config = { allowUnfree = true; };
   };
 
   time.timeZone = "Israel";
