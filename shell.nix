@@ -8,4 +8,6 @@ mkShell {
     morph
     nix-prefetch-scripts
   ];
+
+  shellHook = "export COOKIE_HOSTNAME=$(hostname)";
 }
