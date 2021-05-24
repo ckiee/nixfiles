@@ -22,5 +22,6 @@
     ./qt5.nix
     ./wine.nix
     ./nix-path.nix
+    ./ssh.nix
   ];
 }
