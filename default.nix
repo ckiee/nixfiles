@@ -20,10 +20,6 @@
   boot.tmpOnTmpfs = true; # Duh.
 
   networking.networkmanager.enable = true;
-  services.openssh = {
-    enable = true;
-    forwardX11 = true;
-  };
 
   users.users.ron = {
     isNormalUser = true;
@@ -46,21 +42,25 @@
     binutils-unwrapped
     pciutils
     usbutils
+    dig
   ];
+
+  cookie = {
+    # Daemons
+    smartd.enable = true;
+    avahi.enable = true;
+    ssh.enable = true;
+    syncthing.enable = true;
+    # Etc
+    git.enable = true;
+    binaryCaches.enable = true;
+    nix-path.enable = true;
+  };
 
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
       bash.enable = true;
       nixpkgs-config.enable = true;
     };
-  };
-
-  cookie = {
-    smartd.enable = true;
-    avahi.enable = true;
-    git.enable = true;
-    syncthing.enable = true;
-    binaryCaches.enable = true;
-    nix-path.enable = true;
   };
 }
