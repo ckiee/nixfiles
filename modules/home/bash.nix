@@ -14,6 +14,7 @@ in with lib; {
         nsp = "nix-shell -p";
         ns = "nix search";
         e = "emacsclient -n";
+        ytm = "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
       };
       sessionVariables = rec {
         EDITOR = "vim";
