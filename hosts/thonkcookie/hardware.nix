@@ -33,5 +33,4 @@ in { config, lib, pkgs, modulesPath, ... }:
   swapDevices =
     [{ device = "/dev/disk/by-uuid/5fb66e38-bc85-4170-a7f2-8e7ffefc6aae"; }];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
