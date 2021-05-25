@@ -16,6 +16,10 @@ in with lib; {
           src = builtins.fetchTarball
             "https://dl.discordapp.net/apps/linux/0.0.15/discord-0.0.15.tar.gz";
         });
+        discord-ptb = super.discord-ptb.overrideAttrs (_: {
+          src = builtins.fetchTarball
+            "https://dl-ptb.discordapp.net/apps/linux/0.0.25/discord-ptb-0.0.25.tar.gz";
+        });
       })
     ];
   };
