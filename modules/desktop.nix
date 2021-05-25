@@ -57,6 +57,7 @@ in with lib; {
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;
+      chat-apps.enable = true;
     };
   };
 }

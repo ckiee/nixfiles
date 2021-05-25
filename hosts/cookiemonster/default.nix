@@ -37,12 +37,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    discord
-    discord-ptb
     stow
     firefox
     obs-studio
-    weechat
     vlc
     arandr
     spotify

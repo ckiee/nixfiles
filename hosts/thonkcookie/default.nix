@@ -23,11 +23,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    discord
-    discord-ptb
     firefox
     zoom-us
-    weechat
     lutris
   ];
 
