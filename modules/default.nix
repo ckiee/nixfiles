@@ -23,5 +23,6 @@
     ./wine.nix
     ./nix-path.nix
     ./ssh.nix
+    ./chat-apps.nix
   ];
 }
