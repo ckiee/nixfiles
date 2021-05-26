@@ -3,7 +3,9 @@
 let cfg = config.cookie.bash;
 in with lib; {
 
-  options.cookie.bash = { enable = mkEnableOption "Enables the Bash shell"; };
+  options.cookie.bash = {
+    enable = mkEnableOption "Enables the Bash shell and Direnv";
+  };
 
   config = mkIf cfg.enable {
     programs.bash = {
@@ -14,7 +16,8 @@ in with lib; {
         nsp = "nix-shell -p";
         ns = "nix search";
         e = "emacsclient -n";
-        ytm = "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
+        ytm =
+          "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
       };
       sessionVariables = rec {
         EDITOR = "vim";
@@ -32,11 +35,16 @@ in with lib; {
         fi
 
         export TERM=xterm-256color
+        eval "$(direnv hook bash)"
 
         ggi() {
               wget --no-verbose -O .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
         }
       '';
+    };
+    programs.direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true;
     };
   };
 }
