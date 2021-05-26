@@ -35,7 +35,6 @@ in with lib; {
         fi
 
         export TERM=xterm-256color
-        eval "$(direnv hook bash)"
 
         ggi() {
               wget --no-verbose -O .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
@@ -45,6 +44,7 @@ in with lib; {
     programs.direnv = {
       enable = true;
       enableNixDirenvIntegration = true;
+      enableBashIntegration = true;
     };
   };
 }
