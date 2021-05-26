@@ -2,7 +2,10 @@
 
 {
   imports = [
+    # Subfolders
     ./home
+    ./services
+    # Other
     ./smartd.nix
     ./sound.nix
     ./hw.nix
@@ -11,7 +14,6 @@
     ./opentabletdriver.nix
     ./slock.nix
     ./fonts.nix
-    ./avahi.nix
     ./syncthing.nix
     ./git.nix
     ./gnome.nix
@@ -22,7 +24,6 @@
     ./qt5.nix
     ./wine.nix
     ./nix-path.nix
-    ./ssh.nix
     ./chat-apps.nix
   ];
 }
