@@ -18,9 +18,9 @@ in with lib; {
             static const char *group = "nogroup";
 
             static const char *colorname[NUMCOLS] = {
-            	[INIT] =   "#1b1720",   /* after initialization */
-            	[INPUT] =  "#27212e",   /* during input */
-            	[FAILED] = "#ffe261",   /* wrong password */
+            	[INIT] =   "#eb64b9",   /* after initialization */
+            	[INPUT] =  "#ffe261",   /* during input */
+            	[FAILED] = "#ff665b",   /* wrong password */
             };
 
             /* treat a cleared input like a wrong password (color) */
