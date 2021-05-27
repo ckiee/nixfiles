@@ -15,5 +15,5 @@ mkShell {
     # }))
   ];
 
-  shellHook = "export COOKIE_HOSTNAME=$(hostname)";
+  shellHook = "export COOKIE_HOSTNAME=$(${pkgs.hostname}/bin/hostname)";
 }
