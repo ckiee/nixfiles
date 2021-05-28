@@ -16,7 +16,7 @@
     wine.enable = true;
   };
   home-manager.users.ron = { pkgs, ... }: {
-    cookie = { devel.enable = true; };
+    cookie.collections.devel.enable = true;
   };
 
   networking.hostName = "cookiemonster";

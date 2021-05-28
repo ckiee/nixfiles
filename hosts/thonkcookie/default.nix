@@ -9,7 +9,7 @@
   networking.hostName = "thonkcookie";
 
   home-manager.users.ron = { pkgs, ... }: {
-    cookie = { devel.enable = true; };
+    cookie.collections.devel.enable = true;
   };
   cookie = {
     desktop = {
@@ -22,11 +22,7 @@
     hardware.t480s.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    firefox
-    zoom-us
-    lutris
-  ];
+  environment.systemPackages = with pkgs; [ firefox zoom-us lutris ];
 
   networking.firewall.enable = false;
 
