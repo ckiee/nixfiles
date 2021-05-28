@@ -3,7 +3,7 @@
 {
   imports = [
     # Subfolders
-    # ./home
+    ./home
     #
     ./chat.nix
     ./media.nix

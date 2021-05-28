@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.devel;
+let cfg = config.cookie.collections.devel;
 in with lib; {
 
-  options.cookie.devel = {
+  options.cookie.collections.devel = {
     enable = mkEnableOption "Enables some development tools";
   };
 

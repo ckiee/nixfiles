@@ -1,11 +1,8 @@
 { ... }:
 
 let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    rev = "e44faef21c38e3885cf2ed874ea700d3f0260448";
-    ref = "master";
-  };
+  sources = import ../../nix/sources.nix;
+  inherit (sources) home-manager;
 in {
   imports = [ (import "${home-manager}/nixos") ];
 
@@ -24,7 +21,6 @@ in {
       ./xcursor.nix
       ./school-schedule.nix
       ./nixpkgs-config.nix
-      ./devel.nix
       ./mpd.nix
       ./polyprog.nix
     ];
