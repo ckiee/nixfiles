@@ -11,8 +11,9 @@ in with lib; {
     programs.bash = {
       enable = true;
       shellAliases = {
-        rsync = "rsync --progress";
         ls = "${pkgs.exa}/bin/exa";
+        cd = "z"
+        rsync = "rsync --progress";
         nsp = "nix-shell -p";
         ns = "nix search";
         e = "emacsclient -n";
@@ -44,6 +45,10 @@ in with lib; {
     programs.direnv = {
       enable = true;
       enableNixDirenvIntegration = true;
+      enableBashIntegration = true;
+    };
+    programs.zoxide = {
+      enable = true;
       enableBashIntegration = true;
     };
   };
