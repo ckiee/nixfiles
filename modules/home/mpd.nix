@@ -17,7 +17,7 @@ in with lib; {
     };
     services.mpdris2 = { enable = true; };
 
-    # A GUI frontend
-    home.packages = with pkgs; [ cantata ];
+    # Frontends
+    home.packages = with pkgs; [ cantata mpc_cli ];
   };
 }
