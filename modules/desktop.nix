@@ -40,6 +40,7 @@ in with lib; {
         xcursor.enable = true;
         school-schedule.enable = true;
         mpd.enable = true;
+        collections = { chat.enable = true; };
       };
       services.rsibreak.enable = true;
     };
@@ -57,10 +58,7 @@ in with lib; {
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;
-      collections = {
-        media.enable = true;
-        chat.enable = true;
-      };
+      collections = { media.enable = true; };
     };
   };
 }
