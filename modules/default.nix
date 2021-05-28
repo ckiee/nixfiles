@@ -5,6 +5,7 @@
     # Subfolders
     ./home
     ./services
+    ./collections
     # Other
     ./smartd.nix
     ./sound.nix
@@ -24,6 +25,5 @@
     ./qt5.nix
     ./wine.nix
     ./nix-path.nix
-    ./chat-apps.nix
   ];
 }
