@@ -23,6 +23,7 @@ in {
       ./nixpkgs-config.nix
       ./mpd.nix
       ./polyprog.nix
+      ./weechat.nix
     ];
   };
 }

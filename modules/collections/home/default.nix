@@ -7,6 +7,7 @@ in {
   home-manager.users.ron = { ... }: {
     imports = [
       ./devel.nix
+      ./chat.nix
     ];
   };
 }
