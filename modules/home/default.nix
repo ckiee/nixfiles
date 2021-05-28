@@ -26,6 +26,7 @@ in {
       ./nixpkgs-config.nix
       ./devel.nix
       ./mpd.nix
+      ./polyprog.nix
     ];
   };
 }
