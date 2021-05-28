@@ -33,6 +33,7 @@ in with lib; {
       xclip
       feh
       xorg.xkill # if shit gets stuck
+      arandr
       pavucontrol
       audacity
     ];
