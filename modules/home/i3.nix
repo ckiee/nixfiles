@@ -36,6 +36,7 @@ in with lib; {
       pavucontrol
       audacity
     ];
+    cookie.polyprog.enable = true; # Required for the ytm bind
 
     xsession = {
       enable = true;

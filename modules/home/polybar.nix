@@ -86,6 +86,7 @@ in {
 
           modules-left = "ws";
           modules-right = [
+            "polyprog"
             "mpd"
             "separator"
             "volume"
@@ -104,6 +105,9 @@ in {
 
           tray-position = "right";
           tray-padding = 0;
+
+          # For module/polyprog
+          enable-ipc = true;
         };
 
         "bar/side" = mkIf (desktopCfg.secondaryMonitor != null) (base // {
@@ -241,10 +245,16 @@ in {
           label-visible-padding = 1;
 
         };
+
         "module/keyboard" = {
           type = "internal/xkeyboard";
           format = "${icons.globe} <label-layout>";
+        };
 
+        # A progress indicato for the polyprog script
+        "module/polyprog" = {
+          type = "custom/ipc";
+          hook-0 = "cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
         };
       };
     };

@@ -1,0 +1,9 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p mpc_cli
+
+while true; do
+	if mpc | grep playing >/dev/null; then
+		(date && hostname && mpc) | ssh vps "tee ~/compose/data/cdn/mpd_nocache_status" >/dev/null
+	fi
+	sleep 2
+done
