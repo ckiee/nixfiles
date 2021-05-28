@@ -40,9 +40,6 @@
     stow
     firefox
     obs-studio
-    vlc
-    arandr
-    spotify
     lutris
     sidequest
     steam-run-native
@@ -54,10 +51,7 @@
     minecraft
     kicad-with-packages3d
     python3Packages.youtube-dl
-    spotdl
     blockbench-electron
-    gdb
-    manpages # linux dev manpages
   ];
 
   programs.adb.enable = true;

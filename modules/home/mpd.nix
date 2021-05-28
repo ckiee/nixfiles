@@ -17,7 +17,12 @@ in with lib; {
     };
     services.mpdris2 = { enable = true; };
 
-    # Frontends
-    home.packages = with pkgs; [ cantata mpc_cli ];
+    home.packages = with pkgs; [
+      # GUI Frontends
+      cantata
+      # Utilities
+      mpc_cli
+      spotdl
+    ];
   };
 }
