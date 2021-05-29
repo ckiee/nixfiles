@@ -7,6 +7,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ vlc mpv spotify ];
+    environment.systemPackages = with pkgs; [ vlc mpv spotify ffmpeg-full ];
   };
 }
