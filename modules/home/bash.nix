@@ -12,7 +12,7 @@ in with lib; {
       enable = true;
       shellAliases = {
         ls = "${pkgs.exa}/bin/exa";
-        cd = "z"
+        cd = "z";
         rsync = "rsync --progress";
         nsp = "nix-shell -p";
         ns = "nix search";
