@@ -15,5 +15,8 @@ mkShell {
     # }))
   ];
 
-  shellHook = "export COOKIE_HOSTNAME=$(${pkgs.hostname}/bin/hostname)";
+  shellHook = ''
+    export COOKIE_HOSTNAME=$(${pkgs.hostname}/bin/hostname)
+    export COOKIE_NIXFILES_PATH=$(pwd)
+  '';
 }
