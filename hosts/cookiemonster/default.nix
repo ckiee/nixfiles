@@ -14,6 +14,9 @@
       pipewire.enable = true;
     };
     wine.enable = true;
+    smartd.enable = true;
+    avahi.enable = true;
+    syncthing.enable = true;
   };
   home-manager.users.ron = { pkgs, ... }: {
     cookie.collections.devel.enable = true;

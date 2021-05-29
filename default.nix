@@ -47,10 +47,7 @@
 
   cookie = {
     # Daemons
-    smartd.enable = true;
-    avahi.enable = true;
     ssh.enable = true;
-    syncthing.enable = true;
     # Etc
     git.enable = true;
     binaryCaches.enable = true;
