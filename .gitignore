@@ -4,3 +4,5 @@
 tmp/
 .ccls-cache
 .direnv
+*.qcow2
+result
