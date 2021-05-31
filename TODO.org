@@ -1,0 +1,9 @@
+#+TITLE: TODO List
+- [ ] ronthecookie.me
+- [ ] personalcdn
+  + [ ] rename to something less cringe
+- [ ] znc
+- [ ] synapse
+- [ ] comicfury
+- [ ] owo_bot
+- [ ] ffg_bot
