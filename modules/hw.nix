@@ -18,6 +18,12 @@ in with lib; {
           Driver "libinput"
           MatchIsPointer "on"
           Option "NaturalScrolling" "off"
+        EndSection
+
+        Section "InputClass"
+          Identifier "Set Tapping for Touchpad"
+          Driver "libinput"
+          MatchIsTouchpad "on"
           Option "Tapping" "off"
         EndSection
       '');
