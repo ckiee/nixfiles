@@ -7,3 +7,8 @@
 - [ ] comicfury
 - [ ] owo_bot
 - [ ] ffg_bot
+- [ ] use ~systemd-analyze security~ on all of the above
+
+** Hostname Ideas
+- nifles
+- bokkusu
