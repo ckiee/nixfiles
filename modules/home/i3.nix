@@ -36,6 +36,7 @@ in with lib; {
       arandr
       pavucontrol
       audacity
+      firefox
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
