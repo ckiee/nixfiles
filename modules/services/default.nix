@@ -7,5 +7,6 @@
     ./minecraft.nix
     ./ronthecookieme.nix
     ./nginx.nix
+    ./rtc-files.nix
   ];
 }

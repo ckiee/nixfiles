@@ -19,6 +19,7 @@
     syncthing.enable = true;
     services = {
       ronthecookieme.enable = true;
+      rtc-files.enable = true;
       nginx.enable = true;
     };
   };

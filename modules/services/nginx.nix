@@ -11,6 +11,9 @@ in with lib; {
     services.nginx = {
       enable = true;
       enableReload = true;
+      recommendedTlsSettings = true;
+      recommendedOptimisation = true;
+      recommendedGzipSettings = true;
     };
   };
 }
