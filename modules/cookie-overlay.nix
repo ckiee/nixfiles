@@ -8,7 +8,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ (self: super: { cookie = import ../../pkgs; }) ];
+    nixpkgs.overlays = [ (self: super: { cookie = import ../pkgs { }; }) ];
     home-manager.users.ron = { ... }: {
       cookie.nixpkgs-config.expr =
         "packageOverrides = pkgs: { cookie = import ${
