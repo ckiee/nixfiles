@@ -25,7 +25,7 @@
     syncthing.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ firefox zoom-us lutris ];
+  environment.systemPackages = with pkgs; [ zoom-us lutris ];
 
   networking.firewall.enable = false;
 

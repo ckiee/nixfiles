@@ -41,7 +41,6 @@
 
   environment.systemPackages = with pkgs; [
     stow
-    firefox
     obs-studio
     lutris
     sidequest
