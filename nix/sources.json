@@ -1,4 +1,16 @@
 {
+    "comicfury-discord-webhook": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "ronthecookie",
+        "repo": "comicfury-discord-webhook",
+        "rev": "1da033d6b67384d0d4438f7a28ccda8fe29afc7a",
+        "sha256": "0rj2564rc4r6qqfi153j5rmbj14j5bjq9bqkdpx5zm66c9lrgwk5",
+        "type": "tarball",
+        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/1da033d6b67384d0d4438f7a28ccda8fe29afc7a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",

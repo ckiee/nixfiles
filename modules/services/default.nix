@@ -8,5 +8,6 @@
     ./ronthecookieme.nix
     ./nginx.nix
     ./rtc-files.nix
+    ./comicfury.nix
   ];
 }
