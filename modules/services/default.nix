@@ -5,5 +5,7 @@
     ./avahi.nix
     ./ssh.nix
     ./minecraft.nix
+    ./ronthecookieme.nix
+    ./nginx.nix
   ];
 }

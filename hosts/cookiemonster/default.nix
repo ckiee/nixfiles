@@ -17,6 +17,10 @@
     smartd.enable = true;
     avahi.enable = true;
     syncthing.enable = true;
+    services = {
+      ronthecookieme.enable = true;
+      nginx.enable = true;
+    };
   };
   home-manager.users.ron = { pkgs, ... }: {
     cookie.collections.devel.enable = true;
