@@ -1,6 +1,9 @@
 { builtins, lib, config, nixosConfig, pkgs, ... }:
 
 let
+  sources = import ../../nix/sources.nix;
+  pkgs-master = import sources.nixpkgs-master { };
+
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
   musicWorkspace = "mpd";
@@ -36,7 +39,7 @@ in with lib; {
       arandr
       pavucontrol
       audacity
-      firefox
+      pkgs-master.firefox
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
