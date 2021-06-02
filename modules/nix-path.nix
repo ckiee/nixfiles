@@ -2,7 +2,7 @@
 
 let
   cfg = config.cookie.nix-path;
-  nixfiles = ./..;
+  nixfiles = ./..; # TODO: remove when adding secrets
 in with lib; {
   options.cookie.nix-path = {
     enable = mkEnableOption "Enables usage of the pinned nixpkgs in $NIX_PATH";

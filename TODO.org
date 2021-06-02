@@ -2,6 +2,7 @@
 - [ ] ronthecookie.me
 - [ ] personalcdn
   + [ ] rename to something less cringe
+  + [ ] this will require secrets, means we need to revise ~nix-path.nix~
 - [ ] znc
 - [ ] synapse
 - [ ] comicfury
