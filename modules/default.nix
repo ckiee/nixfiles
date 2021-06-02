@@ -25,5 +25,6 @@
     ./qt5.nix
     ./wine.nix
     ./nix-path.nix
+    ./cookie-overlay.nix
   ];
 }
