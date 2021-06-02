@@ -13,8 +13,8 @@ stdenv.mkDerivation rec {
 
   phases = "installPhase";
   installPhase = ''
-    mkdir -p $out/share/doc
-    cp -r $src/static $out/share/doc/ronthecookieme
+    mkdir $out
+    cp -r $src/static/* $out/
   '';
 
   meta = with lib; {
