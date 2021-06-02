@@ -12,11 +12,14 @@ stdenv.mkDerivation rec {
   };
 
   phases = "installPhase";
-  installPhase = "install target $out/share/doc/ronthecookieme";
+  installPhase = ''
+    mkdir -p $out/share/doc
+    cp -r $src/static $out/share/doc/ronthecookieme
+  '';
 
   meta = with lib; {
     description = "Cookie's porch";
-    homepage = "https://help.gnome.org/users/gnome-help/";
+    homepage = "https://ronthecookie.me";
     license = licenses.mit;
     maintainers = [ maintainers.ronthecookie ];
     platforms = platforms.all;
