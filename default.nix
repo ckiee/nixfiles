@@ -43,6 +43,7 @@
     pciutils
     usbutils
     dig
+    asciinema
   ];
 
   cookie = {
