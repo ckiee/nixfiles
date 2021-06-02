@@ -52,6 +52,7 @@
     git.enable = true;
     binaryCaches.enable = true;
     nix-path.enable = true;
+    cookie-overlay.enable = true;
   };
 
   home-manager.users.ron = { pkgs, ... }: {
