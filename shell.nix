@@ -7,6 +7,7 @@ mkShell {
     niv
     morph
     nix-prefetch-scripts
+    nix-prefetch-github
     # (coredns.overrideAttrs (oldAttrs: {
     #   runVend = true;
     #   patches = [ ./ext/coredns-ads-plugin.patch ];
