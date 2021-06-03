@@ -24,6 +24,7 @@ in {
       ./mpd.nix
       ./polyprog.nix
       ./weechat.nix
+      ./qsynth.nix
     ];
   };
 }
