@@ -1,0 +1,2 @@
+[hosts.cookiemonster]
+ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf"
