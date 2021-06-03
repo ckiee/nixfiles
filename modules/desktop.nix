@@ -48,9 +48,8 @@ in with lib; {
       xserver.enable = true;
       sound = {
         enable = true;
-        pulse = {
+        pipewire = {
           enable = mkDefault true;
-          lowLatency = mkDefault false;
         };
       };
       sleep.enable = true;
