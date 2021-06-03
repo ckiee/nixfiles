@@ -9,10 +9,6 @@
     printing.enable = true;
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
-    sound = {
-      pulse.enable = false;
-      pipewire.enable = true;
-    };
     wine.enable = true;
     smartd.enable = true;
     avahi.enable = true;
@@ -21,10 +17,14 @@
       ronthecookieme.enable = true;
       rtc-files.enable = true;
       nginx.enable = true;
+      # comicfury.enable = true;
     };
   };
   home-manager.users.ron = { pkgs, ... }: {
-    cookie.collections.devel.enable = true;
+    cookie = {
+      collections.devel.enable = true;
+      qsynth.enable = true;
+    };
   };
 
   networking.hostName = "cookiemonster";
