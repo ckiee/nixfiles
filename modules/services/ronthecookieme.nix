@@ -19,7 +19,11 @@ in with lib; {
     services.nginx = {
       virtualHosts."${cfg.host}" = {
         locations."/" = { root = "${pkgs.cookie.ronthecookieme}"; };
+        extraConfig = ''
+          access_log /var/log/nginx/ronthecookieme.access.log;
+        '';
       };
     };
+    cookie.services.prometheus.nginx-vhosts = [ "ronthecookieme" ];
   };
 }
