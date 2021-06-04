@@ -10,9 +10,8 @@ with lib; {
   #      "exec ${pkgs.cookie.comicfury-discord-webhook}/bin/comicfury-discord-webhook";
   #  }
   mkService = name:
-    { home, extraGroups ? [ ], description ? name, script, secrets ? { }, ... }:
-    (let userScript = script;
-    in {
+    { home, extraGroups ? [ ], description ? name, script, secrets ? { }
+    , wants ? [ ], ... }: ({
       users = {
         users."${name}" = {
           inherit home extraGroups description;
@@ -31,10 +30,12 @@ with lib; {
           group = mkDefault name;
         })) secrets;
 
-      systemd.services."${name}" = rec {
+      systemd.services."${name}" = let serviceWants = wants;
+      in rec {
         inherit script description;
         wantedBy = [ "multi-user.target" ];
-        wants = mapAttrsToList (name: _: "${name}-key.service") secrets;
+        wants = mapAttrsToList (name: _: "${name}-key.service") secrets
+          ++ serviceWants;
         after = wants;
 
         serviceConfig = {
