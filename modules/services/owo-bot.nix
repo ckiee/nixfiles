@@ -13,9 +13,7 @@ let
     };
     script = let owo = pkgs.cookie.owo-bot;
     in ''
-pwd 1>&2
-      rm .env.example || true
-      ln -s ${owo}/libexec/owo-bot/deps/owo-bot/.env.example .env.example || true
+      ln -sf ${owo}/libexec/owo-bot/deps/owo-bot/.env.example .env.example
       exec ${owo}/bin/owo-bot
     '';
   };

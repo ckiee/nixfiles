@@ -13,8 +13,7 @@ let
     };
     script = let cf = pkgs.cookie.comicfury-discord-webhook;
     in ''
-      rm .env.example || true
-      ln -s ${cf}/libexec/comicfury-discord-webhook/deps/comicfury-discord-webhook/.env.example || true
+      ln -sf ${cf}/libexec/comicfury-discord-webhook/deps/comicfury-discord-webhook/.env.example
       exec ${cf}/bin/comicfury-discord-webhook
     '';
   };
