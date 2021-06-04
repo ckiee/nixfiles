@@ -44,7 +44,7 @@ with lib; {
           WorkingDirectory = "~";
           RestartSec = "10s";
 
-          # security (stolen from @Xe)
+          # security (stolen from @Xe, modified)
           CapabilityBoundingSet = "";
           DeviceAllow = [ ];
           NoNewPrivileges = "true";
@@ -52,18 +52,21 @@ with lib; {
           ProtectClock = "true";
           PrivateDevices = "true";
           PrivateUsers = "true";
+          PrivateTmp = "true";
           ProtectHome = "true";
           ProtectHostname = "true";
           ProtectKernelLogs = "true";
           ProtectKernelModules = "true";
           ProtectKernelTunables = "true";
-          ProtectSystem = "true";
-          ProtectProc = "invisible";
           RemoveIPC = "true";
+          ProtectSystem = "strict";
+          ProtectProc = "invisible";
           RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
           RestrictSUIDSGID = "true";
           RestrictRealtime = "true";
+          LockPersonality = "true";
           SystemCallArchitectures = "native";
+          ProcSubset = "pid";
           SystemCallFilter = [
             "~@reboot"
             "~@module"
@@ -74,6 +77,15 @@ with lib; {
             "~@obsolete"
             "~@debug"
             "~@privileged"
+          ];
+          RestrictNamespaces = [
+            "~CLONE_NEWCGROUP"
+            "~CLONE_NEWIPC"
+            "~CLONE_NEWNET"
+            "~CLONE_NEWNS"
+            "~CLONE_NEWPID"
+            "~CLONE_NEWUTS"
+            "~CLONE_NEWUSER"
           ];
           UMask = "077";
         };
