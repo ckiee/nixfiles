@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "ronthecookie",
         "repo": "comicfury-discord-webhook",
-        "rev": "1da033d6b67384d0d4438f7a28ccda8fe29afc7a",
-        "sha256": "0rj2564rc4r6qqfi153j5rmbj14j5bjq9bqkdpx5zm66c9lrgwk5",
+        "rev": "5b1530c282d8d02c71310a65d4b4773f73cbdfc9",
+        "sha256": "09a4n57bn73ap6nqga2lqz9b1yhsagjwl56rj3fq9106g30vrfkz",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/1da033d6b67384d0d4438f7a28ccda8fe29afc7a.tar.gz",
+        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/5b1530c282d8d02c71310a65d4b4773f73cbdfc9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
