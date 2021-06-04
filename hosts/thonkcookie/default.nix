@@ -21,7 +21,6 @@
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
     smartd.enable = true;
-    avahi.enable = true;
     syncthing.enable = true;
   };
 

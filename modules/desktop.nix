@@ -45,19 +45,18 @@ in with lib; {
       services.rsibreak.enable = true;
     };
     cookie = {
+      collections = { media.enable = true; };
+      services = { avahi.enable = true; };
       xserver.enable = true;
       sound = {
         enable = true;
-        pipewire = {
-          enable = mkDefault true;
-        };
+        pipewire = { enable = mkDefault true; };
       };
       sleep.enable = true;
       slock.enable = true;
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;
-      collections = { media.enable = true; };
     };
   };
 }

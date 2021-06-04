@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.ssh;
+let cfg = config.cookie.services.ssh;
 
 in with lib; {
-  options.cookie.ssh = {
+  options.cookie.services.ssh = {
     enable = mkEnableOption "Enables the OpenSSH daemon and Mosh";
   };
 

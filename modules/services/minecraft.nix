@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.cookie.minecraft;
+  cfg = config.cookie.services.minecraft;
   paper = pkgs.minecraft-server.override {
     src = pkgs.fetchurl {
       url =
@@ -11,7 +11,7 @@ let
   };
 
 in with lib; {
-  options.cookie.minecraft = {
+  options.cookie.services.minecraft = {
     enable = mkEnableOption "Enables the Minecraft server service";
   };
 
