@@ -23,6 +23,12 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/5df3462dda05d8e44669cf374776274e1bc47d0a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "ffg-bot": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/ronthecookie/ffg-bot.git",
+        "rev": "d4b18cfab7e3546204c2c407c2ad08470cc21e14",
+        "type": "git"
+    },
     "home-manager": {
         "branch": "master",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
