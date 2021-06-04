@@ -10,33 +10,38 @@ with lib; {
   #      "exec ${pkgs.cookie.comicfury-discord-webhook}/bin/comicfury-discord-webhook";
   #  }
   mkService = name:
-    { home, extraGroups ? [ ], description ? name, script, secrets ? { }, ...
-    }: ({
-      users.users."${name}" = {
-        inherit home extraGroups description;
-        createHome = true;
-        isSystemUser = true;
-        group = name;
+    { home, extraGroups ? [ ], description ? name, script, secrets ? { }, ... }:
+    (let userScript = script;
+    in {
+      users = {
+        users."${name}" = {
+          inherit home extraGroups description;
+          createHome = true;
+          isSystemUser = true;
+          group = name;
+        };
+        groups."${name}" = { };
       };
 
       # We need to mkDefault secrets.*.{user,group} before adding to config.cookie.secrets
-      # cookie.secrets = mapAttrs (key: value: (rec {
-      #   user = mkDefault name;
-      #   group = user;
-      # })) secrets;
+      cookie.secrets = mapAttrs' (key: value:
+        nameValuePair ("${name}-${key}") (rec {
+          inherit (value) source dest permissions;
+          owner = mkDefault name;
+          group = mkDefault name;
+        })) secrets;
 
       systemd.services."${name}" = rec {
-        inherit script;
+        inherit script description;
         wantedBy = [ "multi-user.target" ];
         wants = mapAttrsToList (name: _: "${name}-key.service") secrets;
         after = wants;
 
-        serviceConfig = mkDefault {
-          Description = description;
+        serviceConfig = {
           User = "${name}";
           Group = "${name}";
           Restart = "on-failure";
-          WorkingDirectory = home;
+          WorkingDirectory = "~";
           RestartSec = "10s";
 
           # security (stolen from @Xe)
@@ -56,15 +61,6 @@ with lib; {
           ProtectProc = "invisible";
           RemoveIPC = "true";
           RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
-          RestrictNamespaces = [
-            "CLONE_NEWCGROUP"
-            "CLONE_NEWIPC"
-            "CLONE_NEWNET"
-            "CLONE_NEWNS"
-            "CLONE_NEWPID"
-            "CLONE_NEWUTS"
-            "CLONE_NEWUSER"
-          ];
           RestrictSUIDSGID = "true";
           RestrictRealtime = "true";
           SystemCallArchitectures = "native";
