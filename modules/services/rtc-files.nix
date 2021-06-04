@@ -34,8 +34,12 @@ in with lib; {
     services.nginx = {
       virtualHosts."${cfg.host}" = {
         locations."/" = { root = "/cookie/rtc-files"; };
-        extraConfig = "rewrite ^/$ $scheme://${cfg.redirect} permanent;";
+        extraConfig = ''
+          rewrite ^/$ $scheme://${cfg.redirect} permanent;
+          access_log /var/log/nginx/rtc-files.access.log;
+        '';
       };
     };
+    cookie.services.prometheus.nginx-vhosts = [ "rtc-files" ];
   };
 }

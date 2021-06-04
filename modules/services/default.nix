@@ -8,6 +8,7 @@
     # System
     ./avahi.nix
     ./ssh.nix
+    ./prometheus.nix
     # Cookie
     ./minecraft.nix
     ./ronthecookieme.nix
