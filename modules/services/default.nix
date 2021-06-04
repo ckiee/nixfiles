@@ -9,5 +9,6 @@
     ./nginx.nix
     ./rtc-files.nix
     ./comicfury.nix
+    ./owo-bot.nix
   ];
 }

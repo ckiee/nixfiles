@@ -70,5 +70,17 @@
         "type": "tarball",
         "url": "https://github.com/nixos/nixpkgs/archive/7484c90d57525d1b4363604ce4f29cace1aa4488.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "owo-bot": {
+        "branch": "master",
+        "description": "owoify aww youw Discowd messages using a webhook.",
+        "homepage": null,
+        "owner": "ronthecookie",
+        "repo": "owo-bot",
+        "rev": "be36109dcb7c980e9f42d07321773a4bd2fab2c4",
+        "sha256": "0g0llhw3ha4vxjl71wgxh4ln6l3iczx5wnwp7am90fdw4l2r0myd",
+        "type": "tarball",
+        "url": "https://github.com/ronthecookie/owo-bot/archive/be36109dcb7c980e9f42d07321773a4bd2fab2c4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

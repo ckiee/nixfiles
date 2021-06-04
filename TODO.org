@@ -4,11 +4,20 @@
   + [X] rename to something less cringe
   + [X] this will require secrets, means we need to revise ~nix-path.nix~
 - [X] comicfury
+- [X] owo_bot
 - [ ] znc
 - [ ] synapse
-- [ ] owo_bot
 - [ ] ffg_bot
-- [ ] use ~systemd-analyze security~ on all of the above
+- [ ] backup
+
+- [-] use ~systemd-analyze security~ on all of the above
+  + [X] rtcme
+  + [X] files
+  + [X] comicfury
+  + [X] owo_bot
+  + [ ] znc
+  + [ ] synapse
+  + [ ] ffg_bot
 
 ** Hostname Ideas
 - nifles
