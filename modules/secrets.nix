@@ -49,7 +49,7 @@ let
       };
 
       permissions = mkOption {
-        default = "0400";
+        example = "0400";
         type = types.str;
         description = "Permissions expressed as octal.";
       };
@@ -95,12 +95,12 @@ in {
     default = { };
   };
 
-  options.cookie.lib.secrets = {
-    secretType =
-      mkOption { description = "the type used for secret declarations"; };
-  };
+  # options.cookie.lib.secrets = {
+  #   secretType =
+  #     mkOption { description = "the type used for secret declarations"; };
+  # };
 
-  config.cookie.lib.secrets = { secretType = secret; };
+  # config.cookie.lib.secrets = { secretType = secret; };
 
   config.systemd.services = let
     units = mapAttrs' (name: info: {

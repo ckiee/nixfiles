@@ -6,3 +6,4 @@ tmp/
 .direnv
 *.qcow2
 result
+secrets

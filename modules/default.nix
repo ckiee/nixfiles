@@ -26,6 +26,6 @@
     ./wine.nix
     ./nix-path.nix
     ./cookie-overlay.nix
-    # ./secrets.nix
+    ./secrets.nix
   ];
 }
