@@ -14,10 +14,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    assertions = [{
-      assertion = config.cookie.services.nginx.enable;
-      message = "nginx required";
-    }];
+    cookie.services.nginx.enable = true;
 
     services.nginx = {
       virtualHosts."${cfg.host}" = {
