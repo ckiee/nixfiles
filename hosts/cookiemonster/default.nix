@@ -15,7 +15,8 @@
     syncthing.enable = true;
     services = {
       ronthecookieme.enable = true;
-      nginx.enable = true;
+      rtc-files.enable = true;
+      ffg-bot.enable = true;
     };
   };
   home-manager.users.ron = { pkgs, ... }: {
