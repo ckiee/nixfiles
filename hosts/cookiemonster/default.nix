@@ -15,9 +15,7 @@
     syncthing.enable = true;
     services = {
       ronthecookieme.enable = true;
-      rtc-files.enable = true;
       nginx.enable = true;
-      # comicfury.enable = true;
     };
   };
   home-manager.users.ron = { pkgs, ... }: {
