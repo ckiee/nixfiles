@@ -7,7 +7,7 @@ let
     home = "/cookie/comicfury";
     description = "ComicFury discord webhook";
     secrets.env = {
-      source = ../../secrets/comicfury-env;
+      source = ../../secrets/comicfury.env;
       dest = "/cookie/comicfury/.env";
       permissions = "0400";
     };
