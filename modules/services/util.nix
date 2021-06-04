@@ -44,7 +44,10 @@ with lib; {
           WorkingDirectory = "~";
           RestartSec = "10s";
 
-          # security (stolen from @Xe, modified)
+          # This makes all non-kernel (e.g. devfs) filesystems read-only so we need to whitelist our ${home} path
+          ProtectSystem = "strict";
+          ReadWritePaths = [ home ];
+          # More security: Copyright (c) 2020 Christine Dodrill
           CapabilityBoundingSet = "";
           DeviceAllow = [ ];
           NoNewPrivileges = "true";
@@ -59,7 +62,6 @@ with lib; {
           ProtectKernelModules = "true";
           ProtectKernelTunables = "true";
           RemoveIPC = "true";
-          ProtectSystem = "strict";
           ProtectProc = "invisible";
           RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
           RestrictSUIDSGID = "true";
