@@ -11,7 +11,6 @@
     systemd-boot.enable = true;
     wine.enable = true;
     smartd.enable = true;
-    avahi.enable = true;
     syncthing.enable = true;
     services = {
       ronthecookieme.enable = true;

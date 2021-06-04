@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.avahi;
+let cfg = config.cookie.services.avahi;
 
 in with lib; {
-  options.cookie.avahi = {
+  options.cookie.services.avahi = {
     enable = mkEnableOption "Enables Avahi service discovery";
   };
 
