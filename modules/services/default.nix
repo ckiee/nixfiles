@@ -9,8 +9,10 @@
     ./avahi.nix
     ./ssh.nix
     ./prometheus.nix
-    # Cookie
+    # User
     ./minecraft.nix
+    ./grafana.nix
+    # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
     ./comicfury.nix
