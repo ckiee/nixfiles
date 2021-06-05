@@ -16,7 +16,9 @@
       ronthecookieme.enable = true;
       rtc-files.enable = true;
       ffg-bot.enable = true;
-      prometheus.enable = true;
+    };
+    collections = {
+      monitoring.enable = true;
     };
   };
   home-manager.users.ron = { pkgs, ... }: {
