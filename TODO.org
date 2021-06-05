@@ -6,13 +6,16 @@
 - [X] comicfury
 - [X] owo_bot
 - [X] ffg_bot
+- [X] Prometheus
 - [ ] znc
 - [ ] synapse
 - [ ] backup
   + [ ] postgres (use ~services.postgresqlBackup~)
-- [ ] Prometheus
+  + [ ] ~/cookie~
+  + [ ] znc
+  + [ ] synapse
 - secure postgres better
-- ~users.mutableUsers~
+- ~users.mutableUsers~ (change pw too)
 
 - [-] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
