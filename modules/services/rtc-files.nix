@@ -16,6 +16,11 @@ in with lib; {
       default = "ronthecookie.me";
       description = "host to redirect / to";
     };
+    folder = mkOption {
+      type = types.str;
+      default = "/var/lib/rtc-files";
+      description = "path to service home directory";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -23,17 +28,17 @@ in with lib; {
 
     system.activationScripts = {
       rtc-files-mkdir.text = ''
-        mkdir -p /cookie/rtc-files || true
+        mkdir -p ${cfg.folder} || true
 
         # nginx writes, ron reads
-        chmod 740 /cookie/rtc-files
-        chown ron:nginx /cookie/rtc-files
+        chmod 740 ${cfg.folder}
+        chown ron:nginx ${cfg.folder}
       '';
     };
 
     services.nginx = {
       virtualHosts."${cfg.host}" = {
-        locations."/" = { root = "/cookie/rtc-files"; };
+        locations."/" = { root = cfg.folder; };
         extraConfig = ''
           rewrite ^/$ $scheme://${cfg.redirect} permanent;
           access_log /var/log/nginx/rtc-files.access.log;
