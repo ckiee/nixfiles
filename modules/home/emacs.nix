@@ -1,4 +1,4 @@
-{ lib, config, pkgs,  ... }:
+{ lib, config, pkgs, ... }:
 
 let
   sources = import ../../nix/sources.nix;
@@ -30,9 +30,7 @@ in with lib; {
 
     nixpkgs.overlays = [ emacs-overlay ];
 
-    programs.emacs = {
-      enable = true;
-    };
+    programs.emacs = { enable = true; };
 
     home.file.".doom.d".source = ../../ext/doom-conf;
     # we cant just symlink bc doom binary wants to mutate ~/.emacs.d
@@ -66,6 +64,7 @@ in with lib; {
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       editorconfig-core-c
       omnisharp-roslyn # C#
+      texlive.combined.scheme-medium # org-mode latex preview
     ];
   };
 }
