@@ -1,8 +1,19 @@
 { lib, config, pkgs, ... }:
 
 # From https://github.com/Xe/nixos-configs/
-let cfg = config.cookie.services.prometheus;
-
+let
+  cfg = config.cookie.services.prometheus;
+  node-exporter-system-version = ''
+    mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
+    (
+      cd /var/lib/prometheus-node-exporter-text-files
+      (
+        echo -n "system_version ";
+        readlink /nix/var/nix/profiles/system | cut -d- -f2
+      ) > system-version.prom.next
+      mv system-version.prom.next system-version.prom
+    )
+  '';
 in with lib; {
   options.cookie.services.prometheus = {
     enable = mkEnableOption "Enables the Prometheus monitoring service";
@@ -13,23 +24,8 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    services.nginx.statusPage = true; # needed for nginxlog
-    services.grafana = {
-      enable = true;
-      port = 8571;
-      domain = "devel.grafana.ronthecookie.me";
-    };
-    services.nginx = {
-      virtualHosts."devel.grafana.ronthecookie.me" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
-        };
-        extraConfig = ''
-          access_log /var/log/nginx/grafana.access.log;
-        '';
-      };
-    };
-    cookie.services.prometheus.nginx-vhosts = [ "grafana" ];
+    # https://grahamc.com/blog/nixos-system-version-prometheus
+    system.activationScripts = { inherit node-exporter-system-version; };
 
     services.prometheus = {
       enable = true;
@@ -44,7 +40,6 @@ in with lib; {
         }
         {
           job_name = config.networking.hostName;
-
           static_configs = [{ targets = listenMap "127.0.0.1" [ 9100 ]; }];
         }
       ];
@@ -52,11 +47,10 @@ in with lib; {
       in {
         node = {
           enable = true;
-          enabledCollectors = [ "systemd" ];
-          inherit listenAddress;
-        };
-        nginx = {
-          enable = true;
+          enabledCollectors = [ "systemd" "textfile" ];
+          extraFlags = [
+            "--collector.textfile.directory=/var/lib/prometheus-node-exporter-text-files"
+          ];
           inherit listenAddress;
         };
         nginxlog = {
