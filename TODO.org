@@ -1,4 +1,5 @@
 #+TITLE: TODO List
+
 - [X] ronthecookie.me
 - [X] personalcdn
   + [X] rename to something less cringe
@@ -11,7 +12,7 @@
 - [ ] synapse
 - [ ] backup
   + [ ] postgres (use ~services.postgresqlBackup~)
-  + [ ] ~/cookie~
+  + [ ] ~/var/lib~
   + [ ] znc
   + [ ] synapse
 - secure postgres better
@@ -22,9 +23,9 @@
   + [X] files
   + [X] comicfury
   + [X] owo_bot
+  + [X] ffg_bot
   + [ ] znc
   + [ ] synapse
-  + [ ] ffg_bot
 
 ** Hostname Ideas
 - nifles
