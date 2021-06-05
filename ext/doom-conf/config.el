@@ -20,7 +20,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "Hack" :size 13 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 14))
+      doom-variable-pitch-font (font-spec :family "Source Sans Pro" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -50,9 +50,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; (elcord-mode)
 (which-key-mode)
-;; (global-wakatime-mode)
 (map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/ext/doom-conf/")))
 (defun count-buffers (&optional display-anyway)
   "Display or return the number of buffers."

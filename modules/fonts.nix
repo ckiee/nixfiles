@@ -24,6 +24,7 @@ in with lib; {
       weather-icons
       font-awesome
       emacs-all-the-icons-fonts
+      source-sans-pro
     ];
     fontconfig = {
       defaultFonts = {
