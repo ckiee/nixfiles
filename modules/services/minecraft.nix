@@ -13,6 +13,11 @@ let
 in with lib; {
   options.cookie.services.minecraft = {
     enable = mkEnableOption "Enables the Minecraft server service";
+    folder = mkOption {
+      type = types.str;
+      default = "/var/lib/minecraft";
+      description = "path to service home directory";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -20,7 +25,7 @@ in with lib; {
       enable = true;
       eula = true;
       openFirewall = true;
-      dataDir = "/cookie/minecraft";
+      dataDir = cfg.folder;
       package = paper;
     };
   };

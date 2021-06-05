@@ -4,7 +4,7 @@ with lib; {
   # Make a service with it's own user account and secure systemd settings
   #
   #  mkService "comicfury" {
-  #    home = "/cookie/comicfury";
+  #    home = "/var/lib/comicfury";
   #    description = "ComicFury discord webhook";
   #    script =
   #      "exec ${pkgs.cookie.comicfury-discord-webhook}/bin/comicfury-discord-webhook";
