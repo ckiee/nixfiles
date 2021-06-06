@@ -13,18 +13,25 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable (util.mkService "owo-bot" {
-    home = cfg.folder;
-    description = "OwOifying discord bot";
-    secrets.env = {
-      source = ../../secrets/owo-bot.env;
-      dest = "${cfg.folder}/.env";
-      permissions = "0400";
-    };
-    script = let owo = pkgs.cookie.owo-bot;
-    in ''
-      ln -sf ${owo}/libexec/owo-bot/deps/owo-bot/.env.example .env.example
-      exec ${owo}/bin/owo-bot
-    '';
-  });
+  config = mkIf cfg.enable (mkMerge [
+    (util.mkService "owo-bot" {
+      home = cfg.folder;
+      description = "OwOifying discord bot";
+      secrets.env = {
+        source = ../../secrets/owo-bot.env;
+        dest = "${cfg.folder}/.env";
+        permissions = "0400";
+      };
+      script = let owo = pkgs.cookie.owo-bot;
+      in ''
+        export MONGO_URL=mongodb://localhost:27017/
+        export MONGO_DB=owo-bot
+        ln -sf ${owo}/libexec/owo-bot/deps/owo-bot/.env.example .env.example
+        exec ${owo}/bin/owo-bot
+      '';
+    })
+    {
+      services.mongodb.enable = true;
+    }
+  ]);
 }
