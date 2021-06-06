@@ -4,6 +4,9 @@
   cookie = {
     services = {
       owo-bot.enable = true;
+      ffg-bot.enable = true;
+      comicfury.enable = true;
+      rtc-files.enable = true;
     };
   };
 
