@@ -18,7 +18,7 @@ in with lib; {
     description = "ComicFury discord webhook";
     secrets.env = {
       source = ../../secrets/comicfury.env;
-      dest = "${folder}/.env";
+      dest = "${cfg.folder}/.env";
       permissions = "0400";
     };
     script = let cf = pkgs.cookie.comicfury-discord-webhook;
