@@ -4,6 +4,10 @@ gnome-screenshot -apf /tmp/lscr.png $@
 
 test -e /tmp/lscr.png || exit 1 # exit if they escaped instead of capturing scrot
 
-echo -n https://i.ronthecookie.me/$(curl -F file=@/tmp/lscr.png -X POST "https://i.ronthecookie.me/upload/$(cat ~/Sync/.screenshot-token)" | cut -d \" -f 8) | xclip -selection c
+# echo -n https://i.ronthecookie.me/$(curl -F file=@/tmp/lscr.png -X POST "https://i.ronthecookie.me/upload/$(cat ~/Sync/.screenshot-token)" | cut -d \" -f 8) | xclip -selection c
+fn=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1).png
+rsync /tmp/lscr.png "bokkusu:/var/lib/rtc-files/$fn"
+echo "https://i.ronthecookie.me/$fn" | xclip -selection c
+
 notify-send "screenshot taken" ""
 rm /tmp/lscr.png
