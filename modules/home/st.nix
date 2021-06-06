@@ -9,6 +9,7 @@ let
       ../../ext/st-patches/st-scrollback-mouse-20191024-a2c479c.diff
       ../../ext/st-patches/st-scrollback-mouse-altscreen-20200416-5703aa0.diff
       ../../ext/st-patches/st-blinking_cursor-20200531-a2a7044.diff
+      ../../ext/st-patches/st-alpha-0.8.2.diff
     ];
   };
 in with lib; {
