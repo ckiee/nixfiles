@@ -61,7 +61,7 @@ in {
 
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
-      command = pkgs.writeScript "polybar-starter" ''
+      command = pkgs.writeShellScript "polybar-starter" ''
         while true; do polybar main; sleep 0.1; done
         ${mkIf (desktopCfg.secondaryMonitor != null)
         "(while true; do polybar main; sleep 0.1; done) &"}
