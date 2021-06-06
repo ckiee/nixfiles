@@ -25,6 +25,7 @@ in {
       ./polyprog.nix
       ./weechat.nix
       ./qsynth.nix
+      ./picom.nix
     ];
   };
 }
