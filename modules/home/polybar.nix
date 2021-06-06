@@ -9,7 +9,7 @@ let
     alert = "#ffe261";
     bg-lighter = "#5f5f5f";
     bg-light = "#27212e";
-    bg-dark = "#1b1720";
+    bg-dark = "#e61b1720";
     black = "#000000";
   };
   base = {
