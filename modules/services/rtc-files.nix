@@ -30,8 +30,8 @@ in with lib; {
       rtc-files-mkdir.text = ''
         mkdir -p ${cfg.folder} || true
 
-        chmod 644 ${cfg.folder}
-        chown nginx:nginx ${cfg.folder}
+        chmod -R 0550 ${cfg.folder}
+        chown -R nginx:nginx ${cfg.folder}
       '';
     };
 
@@ -44,6 +44,7 @@ in with lib; {
         '';
       };
     };
+
     cookie.services.prometheus.nginx-vhosts = [ "rtc-files" ];
   };
 }
