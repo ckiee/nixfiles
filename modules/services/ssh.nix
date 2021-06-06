@@ -11,6 +11,8 @@ in with lib; {
     services.openssh = {
       enable = true;
       forwardX11 = true;
+      permitRootLogin = "no";
+      passwordAuthentication = false;
     };
 
     environment.systemPackages = with pkgs; [ mosh ];
