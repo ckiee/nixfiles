@@ -40,6 +40,7 @@ in with lib; {
         xcursor.enable = true;
         school-schedule.enable = true;
         mpd.enable = true;
+        picom.enable = true;
         collections = { chat.enable = true; };
       };
       services.rsibreak.enable = true;
