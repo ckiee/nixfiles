@@ -58,6 +58,7 @@
   (let ((buf-count (length (buffer-list))))
     (if (or (interactive-p) display-anyway)
         (message "%d buffers in this Emacs" buf-count)) buf-count))
+(doom/set-frame-opacity 90)
 
 ;; see packages.el
 (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
