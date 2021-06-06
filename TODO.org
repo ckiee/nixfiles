@@ -8,7 +8,7 @@
 - [X] owo_bot
 - [X] ffg_bot
 - [X] Prometheus
-- [ ] weechat
+- [X] znc
 - [ ] synapse
 - [ ] setup minecraft on bokkusu
 - [ ] backup
@@ -16,8 +16,8 @@
   + [ ] ~/var/lib~
   + [ ] znc
   + [ ] synapse
-- secure postgres better
-- ~users.mutableUsers~ (change pw too)
+- [ ] secure postgres better
+- [ ] ~users.mutableUsers~ (change pw too)
 
 - [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme

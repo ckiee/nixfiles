@@ -18,14 +18,20 @@
         enable = true;
         host = "u.ronthecookie.me";
       };
+      znc = {
+        enable = true;
+        host = "znc.ronthecookie.me";
+      };
     };
     acme = {
       enable = true;
-      hosts = [ "i.ronthecookie.me" "ronthecookie.me" "u.ronthecookie.me" ];
+      hosts = [
+        "i.ronthecookie.me"
+        "ronthecookie.me"
+        "u.ronthecookie.me"
+        "znc.ronthecookie.me"
+      ];
     };
-  };
-  services = {
-    weechat.enable = true;
   };
 
   networking.hostName = "bokkusu";

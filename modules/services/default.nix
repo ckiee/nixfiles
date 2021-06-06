@@ -19,5 +19,6 @@
     ./owo-bot.nix
     ./ffg-bot.nix
     ./redirect-farm.nix
+    ./znc.nix
   ];
 }
