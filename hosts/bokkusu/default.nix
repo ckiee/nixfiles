@@ -25,6 +25,10 @@
     };
   };
 
+  services = {
+    znc.enable = true;
+  };
+
   networking.hostName = "bokkusu";
 
   # This value determines the NixOS release from which the default
