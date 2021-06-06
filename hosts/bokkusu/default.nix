@@ -14,10 +14,14 @@
         enable = true;
         host = "ronthecookie.me";
       };
+      redirect-farm = {
+        enable = true;
+        host = "u.ronthecookie.me";
+      };
     };
     acme = {
       enable = true;
-      hosts = [ "i.ronthecookie.me" "ronthecookie.me" ];
+      hosts = [ "i.ronthecookie.me" "ronthecookie.me" "u.ronthecookie.me" ];
     };
   };
 
