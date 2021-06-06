@@ -14,5 +14,10 @@ in with lib; {
     };
 
     environment.systemPackages = with pkgs; [ mosh ];
+    # Mosh ports
+    networking.firewall.allowedUDPPortRanges = [{
+      from = 60000;
+      to = 61000;
+    }];
   };
 }
