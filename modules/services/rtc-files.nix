@@ -30,9 +30,8 @@ in with lib; {
       rtc-files-mkdir.text = ''
         mkdir -p ${cfg.folder} || true
 
-        # nginx writes, ron reads
-        chmod 740 ${cfg.folder}
-        chown ron:nginx ${cfg.folder}
+        chmod 644 ${cfg.folder}
+        chown nginx:nginx ${cfg.folder}
       '';
     };
 
