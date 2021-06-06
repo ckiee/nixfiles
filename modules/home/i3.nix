@@ -13,7 +13,7 @@ let
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
     ${pkgs.kdeconnect}/bin/kdeconnect-indicator &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ~/Sync/bg &
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${../../ext/backgrounds/trans} &
     ${../../ext/i3-scripts/oszwatch} &
     Discord &
     DiscordPTB &
