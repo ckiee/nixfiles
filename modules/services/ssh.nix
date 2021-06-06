@@ -14,6 +14,9 @@ in with lib; {
       permitRootLogin = "no";
       passwordAuthentication = false;
     };
+    services.fail2ban = {
+      enable = true;
+    };
 
     environment.systemPackages = with pkgs; [ mosh ];
     # Mosh ports
