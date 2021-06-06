@@ -18,14 +18,12 @@
 - secure postgres better
 - ~users.mutableUsers~ (change pw too)
 
-- [-] use ~systemd-analyze security~ on all of the above
+- [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
   + [X] files
   + [X] comicfury
   + [X] owo_bot
   + [X] ffg_bot
-  + [ ] znc
-  + [ ] synapse
 
 ** Hostname Ideas
 - nifles
