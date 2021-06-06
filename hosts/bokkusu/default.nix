@@ -24,6 +24,9 @@
       hosts = [ "i.ronthecookie.me" "ronthecookie.me" "u.ronthecookie.me" ];
     };
   };
+  services = {
+    weechat.enable = true;
+  };
 
   networking.hostName = "bokkusu";
 

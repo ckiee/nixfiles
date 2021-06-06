@@ -8,8 +8,9 @@
 - [X] owo_bot
 - [X] ffg_bot
 - [X] Prometheus
-- [ ] znc
+- [ ] weechat
 - [ ] synapse
+- [ ] setup minecraft on bokkusu
 - [ ] backup
   + [ ] postgres (use ~services.postgresqlBackup~)
   + [ ] ~/var/lib~
@@ -26,5 +27,5 @@
   + [X] ffg_bot
 
 ** Hostname Ideas
-- nifles
-- bokkusu
+- [ ] nifles
+- [X] bokkusu
