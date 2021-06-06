@@ -27,7 +27,7 @@ in with lib; {
       cookie = {
         polybar = {
           enable = true;
-          laptop = cfg.laptop;
+          inherit (cfg) laptop;
         };
         gtk.enable = true;
         dunst.enable = true;
