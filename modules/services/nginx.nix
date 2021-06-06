@@ -15,5 +15,6 @@ in with lib; {
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
     };
+    networking.firewall.allowedTCPPorts = [ 443 80 ];
   };
 }
