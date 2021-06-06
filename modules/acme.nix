@@ -35,7 +35,7 @@ in with lib; {
         "${v}" = {
           group = "nginx";
           dnsProvider = "cloudflare";
-          credentialsFile = "/var/run/acme-cloudflare.env";
+          credentialsFile = config.cookie.secrets.acme-cloudflare.dest;
           inherit email;
         };
       })) cfg.hosts);
