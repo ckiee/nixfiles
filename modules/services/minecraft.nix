@@ -9,7 +9,9 @@ let
       sha256 = "19pcz9cdwnnb4g645pkjfcskxmr8wcrkzyvq6a30af7yd4gjw102";
     };
   });
-
+  console = pkgs.writeShellScriptBin "mc" ''
+    ${pkgs.mcrcon}/bin/mcrcon localhost -p minecraft "$@"
+  '';
 in with lib; {
   options.cookie.services.minecraft = {
     enable = mkEnableOption "Enables the Minecraft server service";
@@ -22,5 +24,6 @@ in with lib; {
       openFirewall = true;
       package = paper;
     };
+    environment.systemPackages = [ console ];
   };
 }
