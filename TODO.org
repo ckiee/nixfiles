@@ -9,16 +9,16 @@
 - [X] ffg_bot
 - [X] Prometheus
 - [X] znc
-- [ ] synapse
-- [ ] setup minecraft on bokkusu
+- [X] setup minecraft on bokkusu
+- [X] secure ssh (root login, etc)
 - [ ] backup
   + [ ] postgres (use ~services.postgresqlBackup~)
   + [ ] ~/var/lib~
   + [ ] znc
   + [ ] synapse
-- [ ] secure postgres better
 - [ ] ~users.mutableUsers~ (change pw too)
-- [ ] secure ssh (root login, etc)
+- [ ] synapse (depends on ~ckie.dev~)
+- [ ] secure postgres better
 
 - [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
@@ -28,5 +28,5 @@
   + [X] ffg_bot
 
 ** Hostname Ideas
-- [ ] nifles
 - [X] bokkusu
+- [ ] nifles
