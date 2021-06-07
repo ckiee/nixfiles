@@ -18,6 +18,7 @@
   + [ ] synapse
 - [ ] secure postgres better
 - [ ] ~users.mutableUsers~ (change pw too)
+- [ ] secure ssh (root login, etc)
 
 - [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
