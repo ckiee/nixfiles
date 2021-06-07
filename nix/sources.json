@@ -26,7 +26,7 @@
     "ffg-bot": {
         "branch": "master",
         "repo": "ssh://git@github.com/ronthecookie/ffg-bot.git",
-        "rev": "d4b18cfab7e3546204c2c407c2ad08470cc21e14",
+        "rev": "03ba70cf9bba2b39180aca98da0008c93d517bbf",
         "type": "git"
     },
     "home-manager": {
