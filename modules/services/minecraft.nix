@@ -2,22 +2,17 @@
 
 let
   cfg = config.cookie.services.minecraft;
-  paper = pkgs.minecraft-server.override {
+  paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
       url =
         "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/753/downloads/paper-1.16.5-753.jar";
       sha256 = "19pcz9cdwnnb4g645pkjfcskxmr8wcrkzyvq6a30af7yd4gjw102";
     };
-  };
+  });
 
 in with lib; {
   options.cookie.services.minecraft = {
     enable = mkEnableOption "Enables the Minecraft server service";
-    folder = mkOption {
-      type = types.str;
-      default = "/var/lib/minecraft";
-      description = "path to service home directory";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +20,6 @@ in with lib; {
       enable = true;
       eula = true;
       openFirewall = true;
-      dataDir = cfg.folder;
       package = paper;
     };
   };
