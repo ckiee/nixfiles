@@ -12,14 +12,6 @@
     wine.enable = true;
     smartd.enable = true;
     syncthing.enable = true;
-    services = {
-      ronthecookieme.enable = true;
-      rtc-files.enable = true;
-      ffg-bot.enable = true;
-    };
-    collections = {
-      monitoring.enable = true;
-    };
   };
   home-manager.users.ron = { pkgs, ... }: {
     cookie = {
