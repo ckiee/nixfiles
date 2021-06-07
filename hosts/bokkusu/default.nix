@@ -6,6 +6,7 @@
       owo-bot.enable = true;
       ffg-bot.enable = true;
       comicfury.enable = true;
+      minecraft.enable = true;
       rtc-files = {
         enable = true;
         host = "i.ronthecookie.me";
