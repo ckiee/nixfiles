@@ -27,10 +27,13 @@ in with lib; {
       group = "acme";
       permissions = "0400";
     };
-    systemd.services.acme-fixperms = rec {
-      wants = [ "acme-cloudflare-key.service" ];
-      after = wants;
-    };
+
+    systemd.services = mkMerge (imap0 (i: v: ({
+      ${v} = rec {
+        wants = [ "acme-cloudflare-key.service" ];
+        after = wants;
+      };
+    })) cfg.hosts);
 
     security.acme = {
       inherit email;
