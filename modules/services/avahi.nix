@@ -10,6 +10,7 @@ in with lib; {
   config.services.avahi = mkIf cfg.enable {
     enable = true;
     nssmdns = true;
+    ipv6 = false; # Things break.
     publish = {
       enable = true;
       addresses = true;
