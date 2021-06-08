@@ -83,10 +83,10 @@
         "homepage": null,
         "owner": "ronthecookie",
         "repo": "owo-bot",
-        "rev": "be36109dcb7c980e9f42d07321773a4bd2fab2c4",
-        "sha256": "0g0llhw3ha4vxjl71wgxh4ln6l3iczx5wnwp7am90fdw4l2r0myd",
+        "rev": "802ac5d14f6ce834c50c54d987eb71530eacbb2c",
+        "sha256": "1kph0bbzrl0jj0k9h91f92c9a9qjqlvknqs8kcc62z56bf10n24f",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/owo-bot/archive/be36109dcb7c980e9f42d07321773a4bd2fab2c4.tar.gz",
+        "url": "https://github.com/ronthecookie/owo-bot/archive/802ac5d14f6ce834c50c54d987eb71530eacbb2c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
