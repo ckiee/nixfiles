@@ -11,6 +11,7 @@ in with lib; {
     services.picom = {
       enable = true;
       blur = true;
+      extraOptions = "unredir-if-possible = false;";
     };
   };
 }
