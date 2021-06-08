@@ -28,5 +28,6 @@
   + [X] ffg_bot
 
 ** Hostname Ideas
+Just use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][names.json]].
 - [X] bokkusu
-- [ ] nifles
+- [X] nifles
