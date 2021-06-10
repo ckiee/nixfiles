@@ -43,12 +43,13 @@ in with lib; {
           cache
         }
 
-        # akua {
-        #   bind ${cfg.addr}
-        #   ${prom}
-        #   file $ {./akua.zone}
-        # }
+        atori {
+           bind ${cfg.addr}
+           ${prom}
+           file ${../../ext/atori.zone}
+        }
 
+        # Resolve everything under the root localhost TLD to 127.0.0.1
         localhost {
           bind ${cfg.addr}
           ${prom}

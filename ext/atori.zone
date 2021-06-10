@@ -1,0 +1,15 @@
+$TTL 60
+
+$ORIGIN atori.
+@       IN      SOA     dns.atori. me@ronthecookie.me. (
+                        2021061007 ; serial number YYMMDDNN
+                        28800           ; Refresh
+                        7200            ; Retry
+                        864000          ; Expire
+                        86400           ; Min TTL
+                        )
+
+; hosts
+
+; services
+dns IN A 127.0.0.1
