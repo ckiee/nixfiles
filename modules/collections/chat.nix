@@ -8,7 +8,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ discord discord-ptb ];
+    home.packages = with pkgs; [ discord discord-ptb fractal ];
     cookie.weechat.enable = true;
 
     # Bump discord without bumping nixpkgs
