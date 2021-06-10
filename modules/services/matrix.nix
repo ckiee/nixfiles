@@ -48,7 +48,7 @@ in with lib; {
       server_name = cfg.host;
       public_baseurl = "https://${cfg.serviceHost}/";
       database_type = "sqlite3";
-      registration_shared_secret = readFile ../../secrets/matrix-synapse-registration;
+      registration_shared_secret = fileContents ../../secrets/matrix-synapse-registration;
       listeners = [{
         port = 8008;
         bind_address = "::1";
