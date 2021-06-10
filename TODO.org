@@ -19,6 +19,11 @@
 - [ ] ~users.mutableUsers~ (change pw too)
 - [ ] synapse (depends on ~ckie.dev~)
 - [ ] secure postgres better
+- [ ] setup prom
+  + [ ] improve module a bit
+  + [ ] deploy on bokkusu
+  + [ ] coredns
+- [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
 
 - [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
