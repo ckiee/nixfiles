@@ -31,6 +31,7 @@ in with lib; {
         mkdir -p ${cfg.folder} || true
 
         chmod 750 ${cfg.folder}
+        chmod g+s ${cfg.folder}
         chown ron:nginx ${cfg.folder}
       '';
     };
