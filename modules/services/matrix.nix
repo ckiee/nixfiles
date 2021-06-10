@@ -20,14 +20,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    cookie.services.postgres.enable = true;
-    services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
-      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-        TEMPLATE template0
-        LC_COLLATE = "C"
-        LC_CTYPE = "C";
-    '';
     services.nginx.virtualHosts = {
       ${cfg.host} = {
 
@@ -55,6 +47,7 @@ in with lib; {
       enable = true;
       server_name = cfg.host;
       public_baseurl = "https://${cfg.serviceHost}/";
+      database_type = "sqlite3";
       listeners = [{
         port = 8008;
         bind_address = "::1";
