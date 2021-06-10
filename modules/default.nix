@@ -28,5 +28,6 @@
     ./cookie-overlay.nix
     ./secrets.nix
     ./acme.nix
+    ./ipban.nix
   ];
 }
