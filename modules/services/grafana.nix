@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables grafana service";
     host = mkOption {
       type = types.str;
-      default = "devel.grafana.ronthecookie.me";
+      default = "grafana.localhost";
       description = "the host. wow.";
       example = "grafana.ronthecookie.me";
     };
@@ -19,11 +19,11 @@ in with lib; {
     services.grafana = {
       enable = true;
       port = 8571;
-      domain = "devel.grafana.ronthecookie.me";
+      domain = cfg.host;
     };
 
     services.nginx = {
-      virtualHosts."devel.grafana.ronthecookie.me" = {
+      virtualHosts.${cfg.host} = {
         locations."/" = {
           proxyPass =
             "http://127.0.0.1:${toString config.services.grafana.port}";

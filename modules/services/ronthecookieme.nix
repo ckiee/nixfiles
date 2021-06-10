@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables ronthecookie.me service";
     host = mkOption {
       type = types.str;
-      default = "devel.ronthecookie.me";
+      default = "rtcme.localhost";
       description = "the host. wow.";
       example = "ronthecookie.me";
     };
