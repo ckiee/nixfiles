@@ -14,6 +14,7 @@
     ./grafana.nix
     ./coredns.nix
     ./znc.nix
+    ./matrix.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
