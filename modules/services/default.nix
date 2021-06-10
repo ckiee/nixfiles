@@ -12,6 +12,8 @@
     # User
     ./minecraft.nix
     ./grafana.nix
+    ./coredns.nix
+    ./znc.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
@@ -19,6 +21,5 @@
     ./owo-bot.nix
     ./ffg-bot.nix
     ./redirect-farm.nix
-    ./znc.nix
   ];
 }

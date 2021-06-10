@@ -1,9 +1,6 @@
 # CoreDNS configuration file
 
 . {
-    ads {
-        target 1.3.3.7
-    }
     forward . 1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4
     log
     errors
