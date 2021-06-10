@@ -54,7 +54,7 @@ in with lib; {
     services.matrix-synapse = {
       enable = true;
       server_name = cfg.host;
-      public_baseurl = "https://${cfg.serviceHost}/"
+      public_baseurl = "https://${cfg.serviceHost}/";
       listeners = [{
         port = 8008;
         bind_address = "::1";
