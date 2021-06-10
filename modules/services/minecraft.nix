@@ -33,12 +33,14 @@ in with lib; {
         minecraft.group = "minecraft";
       };
     };
-    systemd.services.minecraft-server.serviceConfig = {
-      Group = "minecraft";
-      ExecStartPre = [
-        "${pkgs.coreutils}/bin/chmod -R g+s /var/lib/minecraft"
-        "${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft"
-      ];
+    # We need a separate unit so we can use root privileges for this
+    systemd.services.minecraft-server-perms = {
+      description = "Setup permissions for /var/lib/minecraft";
+      script = ''
+        ${pkgs.coreutils}/bin/chmod -R g+s /var/lib/minecraft
+        ${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft
+      '';
+      wantedBy = [ "minecraft-server.service" ];
     };
 
     environment.systemPackages = [ console ];
