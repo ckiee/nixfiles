@@ -26,12 +26,16 @@
     };
     acme = {
       enable = true;
-      hosts = [
-        "i.ronthecookie.me"
-        "ronthecookie.me"
-        "u.ronthecookie.me"
-        "znc.ronthecookie.me"
-      ];
+      hosts = {
+        "ronthecookie.me" = { };
+        "znc.ronthecookie.me" = { };
+        "i.ronthecookie.me" = { };
+        "u.ronthecookie.me" = { };
+        "ckie.dev" = {
+          provider = "porkbun";
+          extras = [ ];
+        };
+      };
     };
   };
 
