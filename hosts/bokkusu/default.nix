@@ -23,6 +23,11 @@
         enable = true;
         host = "znc.ronthecookie.me";
       };
+      matrix = {
+        enable = true;
+        host = "ckie.dev";
+        serviceHost = "matrix.ckie.dev";
+      };
     };
     acme = {
       enable = true;
@@ -33,7 +38,7 @@
         "u.ronthecookie.me" = { };
         "ckie.dev" = {
           provider = "porkbun";
-          extras = [ ];
+          extras = [ "matrix.ckie.dev" ];
         };
       };
     };
