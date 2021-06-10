@@ -6,7 +6,9 @@ let
   weechat = with pkgs.weechatScripts;
     pkgs.weechat.override {
       configure = { availablePlugins, ... }: {
-        scripts = [ weechat-autosort ];
+        scripts = [ weechat-autosort weechat-matrix ];
+        extraBuildInputs =
+          [ availablePlugins.python.withPackages (_: [ weechat-matrix ]) ];
       };
     };
 in with lib; {
@@ -16,8 +18,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ weechat ];
-    home.file.".weechat".source =
-      (config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Sync/.weechat");
-
+    home.file.".weechat".source = (config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/Sync/.weechat");
   };
 }
