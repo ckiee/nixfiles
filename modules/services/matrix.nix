@@ -22,14 +22,24 @@ in with lib; {
   config = mkIf cfg.enable {
     services.nginx.virtualHosts = {
       ${cfg.host} = {
-
-        locations."= /.well-known/matrix/server".extraConfig = let
+        locations."/.well-known/matrix/server".extraConfig = let
           # use 443 instead of the default 8448 port to unite
           # the client-server and server-server port for simplicity
           server = { "m.server" = "${cfg.serviceHost}:443"; };
         in ''
           add_header Content-Type application/json;
           return 200 '${builtins.toJSON server}';
+        '';
+        locations."/.well-known/matrix/client".extraConfig = let
+          client = {
+            "m.homeserver" = { "base_url" = "https://${cfg.serviceHost}"; };
+            "m.identity_server" = { "base_url" = "https://vector.im"; };
+          };
+          # ACAO required to allow element-web on any URL to request this json file
+        in ''
+          add_header Content-Type application/json;
+          add_header Access-Control-Allow-Origin *;
+          return 200 '${builtins.toJSON client}';
         '';
       };
       ${cfg.serviceHost} = {
@@ -41,17 +51,6 @@ in with lib; {
         locations."/_matrix" = {
           proxyPass = "http://[::1]:8008"; # without a trailing /
         };
-        locations."= /.well-known/matrix/client".extraConfig = let
-          client = {
-            "m.homeserver" = { "base_url" = "https://${cfg.serviceHost}"; };
-            "m.identity_server" = { "base_url" = "https://vector.im"; };
-          };
-          # ACAO required to allow element-web on any URL to request this json file
-        in ''
-          add_header Content-Type application/json;
-          add_header Access-Control-Allow-Origin *;
-          return 200 '${builtins.toJSON client}';
-        '';
       };
     };
     services.matrix-synapse = {
