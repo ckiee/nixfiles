@@ -37,6 +37,7 @@ in with lib; {
     systemd.services.minecraft-server-perms = {
       description = "Setup permissions for /var/lib/minecraft";
       script = ''
+        ${pkgs.coreutils}/bin/chmod -R 770 /var/lib/minecraft
         ${pkgs.coreutils}/bin/chmod -R g+s /var/lib/minecraft
         ${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft
       '';
