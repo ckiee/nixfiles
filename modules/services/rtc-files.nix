@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables rtc-files service";
     host = mkOption {
       type = types.str;
-      default = "devel.i.ronthecookie.me";
+      default = "rtc-files.localhost";
       description = "the host. wow.";
       example = "i.ronthecookie.me";
     };

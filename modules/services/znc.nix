@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables ZNC service";
     host = mkOption {
       type = types.str;
-      default = "devel.znc.ronthecookie.me";
+      default = "znc.localhost";
       description = "the host";
       example = "znc.ronthecookie.me";
     };

@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables the redirect-farm service";
     host = mkOption {
       type = types.str;
-      default = "devel.u.ronthecookie.me";
+      default = "redirect-farm.localhost";
       description = "the host";
       example = "u.ronthecookie.me";
     };
