@@ -24,6 +24,23 @@ in with lib; {
       openFirewall = true;
       package = paper;
     };
+
+    users = {
+      groups.minecraft = { };
+      users = {
+        ron.extraGroups =
+          [ "minecraft" ]; # I need to have read-write for /var/lib/minecraft
+        minecraft.group = "minecraft";
+      };
+    };
+    systemd.services.minecraft-server.serviceConfig = {
+      Group = "minecraft";
+      ExecStartPre = [
+        "${pkgs.coreutils}/bin/chmod -R g+s /var/lib/minecraft"
+        "${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft"
+      ];
+    };
+
     environment.systemPackages = [ console ];
   };
 }
