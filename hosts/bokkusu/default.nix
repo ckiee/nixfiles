@@ -7,6 +7,7 @@
       ffg-bot.enable = true;
       comicfury.enable = true;
       minecraft.enable = true;
+      matterbridge.enable = true;
       rtc-files = {
         enable = true;
         host = "i.ronthecookie.me";
