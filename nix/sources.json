@@ -53,6 +53,18 @@
         "url": "https://github.com/rycee/home-manager/archive/0e6c61a44092e98ba1d75b41f4f947843dc7814d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "matterbridge": {
+        "branch": "groupchat",
+        "description": "bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram, rocketchat, twitch, ssh-chat, zulip, whatsapp, keybase, matrix, microsoft teams, nextcloud, mumble, vk and more with REST API (mattermost not required!)",
+        "homepage": "",
+        "owner": "ronthecookie",
+        "repo": "matterbridge",
+        "rev": "a50e7fe1e5991be9171f3704587355e9de72bcf9",
+        "sha256": "04lkc2aq5vipa6r8iygrwlydw9ax7ss2ldm8v8xggnc2kvszh0bp",
+        "type": "tarball",
+        "url": "https://github.com/ronthecookie/matterbridge/archive/a50e7fe1e5991be9171f3704587355e9de72bcf9.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

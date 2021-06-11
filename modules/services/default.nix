@@ -15,6 +15,7 @@
     ./coredns.nix
     ./znc.nix
     ./matrix.nix
+    ./matterbridge.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
