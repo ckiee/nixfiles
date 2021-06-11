@@ -1,4 +1,9 @@
-{ pkgs ? import <nixpkgs>, ... }: {
+{ pkgs ? import <nixpkgs>, ... }:
+
+let
+  sources = import ../../nix/sources.nix;
+  pkgs-master = import sources.nixpkgs-master { };
+in {
   imports = [ ./hardware.nix ../.. ];
   cookie = {
     desktop = {
@@ -59,6 +64,8 @@
   users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
 
   programs.steam.enable = true;
+  nixpkgs.overlays = [ (self: super: { inherit (pkgs-master) steam; }) ];
+
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
