@@ -65,6 +65,7 @@ in with lib; {
       editorconfig-core-c
       omnisharp-roslyn # C#
       texlive.combined.scheme-medium # org-mode latex preview
+      gopls # Go LSP
     ];
   };
 }
