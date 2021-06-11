@@ -34,6 +34,11 @@ let
         type = types.str;
         description = "Permissions expressed as octal.";
       };
+
+      wantedBy = mkOption {
+        type = types.nullOr (types.str);
+        description = "a systemd object that depends on this secret";
+      };
     };
   };
 
@@ -53,9 +58,10 @@ let
     };
 
   mkService = name:
-    { source, dest, owner, group, permissions, ... }: {
+    { source, dest, owner, group, permissions, wantedBy, ... }: {
       description = "decrypt secret for ${name}";
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ]
+        ++ optional (wantedBy != null) wantedBy;
 
       serviceConfig.Type = "oneshot";
 
@@ -75,13 +81,6 @@ in {
     description = "secret configuration";
     default = { };
   };
-
-  # options.cookie.lib.secrets = {
-  #   secretType =
-  #     mkOption { description = "the type used for secret declarations"; };
-  # };
-
-  # config.cookie.lib.secrets = { secretType = secret; };
 
   config.systemd.services = let
     units = mapAttrs' (name: info: {
