@@ -38,6 +38,7 @@ let
       wantedBy = mkOption {
         type = types.nullOr (types.str);
         description = "a systemd object that depends on this secret";
+        default = null;
       };
     };
   };
