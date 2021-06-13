@@ -11,8 +11,9 @@
 - [X] znc
 - [X] setup minecraft on bokkusu
 - [X] secure ssh (root login, etc)
+- [X] synapse (depends on ~ckie.dev~)
 - [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
-- [ ] synapse (depends on ~ckie.dev~)
+- [ ] setup wg
 - [ ] setup prom
   + [ ] improve module a bit
   + [ ] deploy on bokkusu
