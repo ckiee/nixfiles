@@ -12,7 +12,6 @@ in {
       ./bash.nix
       ./gtk.nix
       ./dunst.nix
-      ./emacs.nix
       ./keyboard.nix
       ./redshift.nix
       ./st.nix

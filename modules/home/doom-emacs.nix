@@ -25,6 +25,25 @@ let
     ispell
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
   ];
+  extra-desktop =
+    pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
+      name = "emacsclientexs.desktop";
+      destination = "/share/applications/emacsclientexs.desktop";
+      text = ''
+        [Desktop Entry]
+        Name=Emacs (Open in existing window)
+        GenericName=Text Editor
+        Comment=Edit text
+        MimeType=inode/directory;text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+        Exec=emacsclient -n %F
+        Icon=emacs
+        Type=Application
+        Terminal=false
+        Categories=Development;TextEditor;
+        StartupWMClass=Emacsd
+        Keywords=Text;Editor;
+      '';
+    };
   sources = import ../../nix/sources.nix;
   doom-emacs = pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
@@ -40,7 +59,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ doom-emacs ];
+    home.packages = [ doom-emacs extra-desktop ];
     home.file.".emacs.d/init.el".text = ''
       (load "default.el")
     '';
