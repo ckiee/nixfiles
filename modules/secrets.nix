@@ -43,7 +43,7 @@ let
     };
   };
 
-  metadata = lib.importTOML ../ext/metadata.toml;
+  metadata = config.cookie.metadata.raw;
 
   mkSecretOnDisk = name:
     { source, ... }:
