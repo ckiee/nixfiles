@@ -51,6 +51,9 @@ let
       (setq exec-path (append exec-path '( ${
         concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
       } )))
+      (setenv "PATH" (concat (getenv "PATH") ":${
+        concatMapStringsSep ":" (x: "${x}/bin") extraBins
+      }"))
     '';
   };
 in {
