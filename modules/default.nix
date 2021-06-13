@@ -29,5 +29,6 @@
     ./secrets.nix
     ./acme.nix
     ./ipban.nix
+    ./metadata.nix
   ];
 }
