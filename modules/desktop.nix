@@ -31,7 +31,7 @@ in with lib; {
         };
         gtk.enable = true;
         dunst.enable = true;
-        emacs.enable = true;
+        doom-emacs.enable = true;
         keyboard.enable = true;
         redshift.enable = true;
         st.enable = true;

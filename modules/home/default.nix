@@ -26,6 +26,7 @@ in {
       ./weechat.nix
       ./qsynth.nix
       ./picom.nix
+      ./doom-emacs.nix
     ];
   };
 }
