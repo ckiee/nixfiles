@@ -23,6 +23,18 @@
         "url": "https://github.com/stevenblack/hosts/archive/c74ad7c5887fbfb67f0df939f76fff0aab5dba52.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "doom-emacs": {
+        "branch": "master",
+        "description": "doom-emacs packaged for Nix",
+        "homepage": "",
+        "owner": "vlaci",
+        "repo": "nix-doom-emacs",
+        "rev": "f2849e51a557b78214ab19bb504fb936d8d513d4",
+        "sha256": "0izfjssamvibgg16df2lg2144mm1vsvgf513srhzlylfbs05ds6c",
+        "type": "tarball",
+        "url": "https://github.com/vlaci/nix-doom-emacs/archive/f2849e51a557b78214ab19bb504fb936d8d513d4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
