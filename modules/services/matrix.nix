@@ -71,6 +71,33 @@ in with lib; {
           compress = false;
         }];
       }];
+      logConfig = ''
+        version: 1
+
+        # In systemd's journal, loglevel is implicitly stored, so let's omit it
+        # from the message text.
+        formatters:
+            journal_fmt:
+                format: '%(name)s: [%(request)s] %(message)s'
+
+        filters:
+            context:
+                (): synapse.util.logcontext.LoggingContextFilter
+                request: ""
+
+        handlers:
+            journal:
+                class: systemd.journal.JournalHandler
+                formatter: journal_fmt
+                filters: [context]
+                SYSLOG_IDENTIFIER: synapse
+
+        root:
+            level: WARNING
+            handlers: [journal]
+
+        disable_existing_loggers: False
+      '';
     };
   };
 }
