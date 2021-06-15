@@ -24,15 +24,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "doom-emacs": {
-        "branch": "master",
+        "branch": "restartmacs",
         "description": "doom-emacs packaged for Nix",
         "homepage": "",
-        "owner": "vlaci",
+        "owner": "ronthecookie",
         "repo": "nix-doom-emacs",
-        "rev": "f2849e51a557b78214ab19bb504fb936d8d513d4",
-        "sha256": "0izfjssamvibgg16df2lg2144mm1vsvgf513srhzlylfbs05ds6c",
+        "rev": "0b23fe92e0b9460902d64e132444c02cf0942c9d",
+        "sha256": "1lgfhsrkv8y1icniryl0gww4g5v6ps700s3jdm6jfdfw7mmcii2x",
         "type": "tarball",
-        "url": "https://github.com/vlaci/nix-doom-emacs/archive/f2849e51a557b78214ab19bb504fb936d8d513d4.tar.gz",
+        "url": "https://github.com/ronthecookie/nix-doom-emacs/archive/0b23fe92e0b9460902d64e132444c02cf0942c9d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ffg-bot": {
