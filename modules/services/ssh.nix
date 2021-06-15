@@ -16,6 +16,7 @@ in with lib; {
     };
     services.fail2ban = {
       enable = true;
+      maxretry = 1;
     };
 
     environment.systemPackages = with pkgs; [ mosh ];
