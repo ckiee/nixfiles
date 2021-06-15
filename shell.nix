@@ -11,13 +11,7 @@ in pkgs.mkShell {
     morph
     nix-prefetch-scripts
     nix-prefetch-github
-    (bpkg)
-    # (coredns.overrideAttrs (oldAttrs: {
-    #   runVend = true;
-    #   patches = [ ./ext/coredns-ads-plugin.patch ];
-    #   # preConfigurePhases = "scaryPhase";
-    #   # scaryPhase = "go get github.com/c-mueller/ads";
-    # }))
+    bpkg
   ];
 
   shellHook = ''
