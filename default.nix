@@ -44,6 +44,7 @@
     usbutils
     dig
     asciinema
+    ripgrep
   ];
 
   cookie = {
