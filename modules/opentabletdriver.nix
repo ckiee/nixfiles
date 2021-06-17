@@ -9,7 +9,7 @@ in with lib; {
   config = mkIf cfg.enable {
     hardware.opentabletdriver.enable = true;
 
-    home-manager.users.ron = { ... }: {
+    home-manager.users.ckie = { ... }: {
       xdg.configFile."OpenTabletDriver/settings.json".source = ../ext/otd.json;
     };
   };

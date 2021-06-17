@@ -21,7 +21,7 @@
 
   networking.networkmanager.enable = true;
 
-  users.users.ron = {
+  users.users.ckie = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     openssh.authorizedKeys.keys = [ (builtins.readFile ./ext/id_rsa.pub) ];
@@ -58,7 +58,7 @@
     ipban.enable = true;
   };
 
-  home-manager.users.ron = { pkgs, ... }: {
+  home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
       bash.enable = true;
       nixpkgs-config.enable = true;

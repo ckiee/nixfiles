@@ -6,7 +6,7 @@ let
 in {
   imports = [ (import "${home-manager}/nixos") ];
 
-  home-manager.users.ron = { ... }: {
+  home-manager.users.ckie = { ... }: {
     imports = [
       ./polybar.nix
       ./bash.nix

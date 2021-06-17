@@ -6,7 +6,7 @@ in with lib; {
     enable = mkEnableOption "Enables and configures git";
     name = mkOption rec {
       type = types.str;
-      default = "Ron B";
+      default = "ckie";
       description = "Username to use with git";
       example = default;
     };
@@ -25,7 +25,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.ron = { ... }: {
+    home-manager.users.ckie = { ... }: {
       programs.git = {
         enable = true;
         signing = {

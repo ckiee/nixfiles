@@ -23,7 +23,7 @@ in with lib; {
     # Supposedly this build is better for desktop users
     boot.kernelPackages = pkgs.linuxPackages_zen;
 
-    home-manager.users.ron = { pkgs, ... }: {
+    home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
           enable = true;

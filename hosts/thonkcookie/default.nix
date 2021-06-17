@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 # let
-#   nixpkgs-local = import (/home/ron/git/nixpkgs) { config.allowUnfree = true; };
+#   nixpkgs-local = import (/home/ckie/git/nixpkgs) { config.allowUnfree = true; };
 # in
 {
   imports = [ ./hardware.nix ./powersave.nix ../.. ];
 
   networking.hostName = "thonkcookie";
 
-  home-manager.users.ron = { pkgs, ... }: {
+  home-manager.users.ckie = { pkgs, ... }: {
     cookie.collections.devel.enable = true;
   };
   cookie = {

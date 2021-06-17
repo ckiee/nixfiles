@@ -9,7 +9,7 @@ let
       text = ''
         [Desktop Entry]
         Name=School Schedule
-        Exec=${pkgs.feh}/bin/feh /home/ron/Sync/school/sched.jpeg
+        Exec=${pkgs.feh}/bin/feh /home/ckie/Sync/school/sched.jpeg
         Type=Application
         Terminal=false
       '';

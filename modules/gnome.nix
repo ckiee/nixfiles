@@ -12,7 +12,7 @@ in with lib; {
       gnomeExtensions.appindicator
       # apps
     ];
-    home-manager.users.ron = { pkgs, ... }: {
+    home-manager.users.ckie = { pkgs, ... }: {
       home.packages = with pkgs; [
         gnome3.file-roller
         gnome3.gnome-system-monitor

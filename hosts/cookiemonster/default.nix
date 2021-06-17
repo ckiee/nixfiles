@@ -19,7 +19,7 @@ in {
     syncthing.enable = true;
     services.coredns.enable = true;
   };
-  home-manager.users.ron = { pkgs, ... }: {
+  home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
       collections.devel.enable = true;
       qsynth.enable = true;
@@ -61,7 +61,7 @@ in {
   ];
 
   programs.adb.enable = true;
-  users.users.ron.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
+  users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
 
   programs.steam.enable = true;
   nixpkgs.overlays = [ (self: super: { inherit (pkgs-master) steam; }) ];
