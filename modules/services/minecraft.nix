@@ -40,7 +40,7 @@ in with lib; {
         ${pkgs.coreutils}/bin/chmod -R 2777 /var/lib/minecraft
         ${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft
       '';
-      wantedBy = [ "minecraft-server.service" ];
+      after = [ "minecraft-server.service" ];
     };
 
     environment.systemPackages = [ console ];
