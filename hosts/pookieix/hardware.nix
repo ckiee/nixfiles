@@ -29,6 +29,6 @@
     SUBSYSTEM=="vc-sm",GROUP="video",MODE="0660"
     SUBSYSTEM=="bcm2708_vcio",GROUP="video",MODE="0660"
   '';
-  users.users.ron.extraGroups = [ "video" ];
+  users.users.ckie.extraGroups = [ "video" ];
   users.users.octoprint.extraGroups = [ "video" ];
 }

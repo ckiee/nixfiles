@@ -14,7 +14,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     systemd.services.make-cookie-sleep = {
-      description = "Suspend the system so Ron sleeps";
+      description = "Suspend the system so we sleep";
       script = "${pkgs.systemd}/bin/systemctl suspend";
       startAt = "*-*-* ${cfg.sleepTime}";
     };

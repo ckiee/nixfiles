@@ -28,7 +28,7 @@ in with lib; {
     users = {
       groups.minecraft = { };
       users = {
-        ron.extraGroups =
+        ckie.extraGroups =
           [ "minecraft" ]; # I need to have read-write for /var/lib/minecraft
         minecraft.group = "minecraft";
       };

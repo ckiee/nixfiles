@@ -7,9 +7,9 @@ in with lib; {
     enable = mkEnableOption "Enables Syncthing file syncing";
   };
 
-  config.services.syncthing = mkIf cfg.enable {
+  config.services.syncthing = mkIf cfg.enable rec {
     enable = true;
-    user = "ron";
-    dataDir = "/home/ron";
+    user = "ckie";
+    dataDir = "/home/${user}";
   };
 }
