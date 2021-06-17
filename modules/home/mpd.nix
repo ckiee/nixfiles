@@ -3,7 +3,7 @@
 let
   cfg = config.cookie.mpd;
   sound = nixosConfig.cookie.sound;
-  home = config.home.homeDirectory;
+  home = "/home/ckie";
 in with lib; {
   options.cookie.mpd = {
     enable = mkEnableOption "Enables the music player daemon";
