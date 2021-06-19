@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "ckie"
-      user-mail-address "me@ronthecookie.me")
+      user-mail-address "us@ckie.dev")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -33,6 +33,9 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 (setq scroll-margin 8)
+
+;; Email should be sent using the stuff home-manager does
+(setq send-mail-function 'sendmail-send-it)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -61,4 +64,4 @@
 (doom/set-frame-opacity 90)
 
 ;; see packages.el
-(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)

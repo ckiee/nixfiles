@@ -26,6 +26,7 @@ in {
       ./qsynth.nix
       ./picom.nix
       ./doom-emacs.nix
+      ./mail-client.nix
     ];
   };
 }

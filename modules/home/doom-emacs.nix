@@ -24,6 +24,10 @@ let
     # spellcheck
     ispell
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    #
+    # e-mail
+    mu
+    isync
   ];
   extra-desktop =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
@@ -47,6 +51,7 @@ let
   sources = import ../../nix/sources.nix;
   doom-emacs = pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
+    extraPackages = epkgs: [ pkgs.mu ]; # for mu4e, the email machine
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
         concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
@@ -66,5 +71,6 @@ in {
     home.file.".emacs.d/init.el".text = ''
       (load "default.el")
     '';
+    cookie.mail-client.enable = true; # Emacs needs this for mu4e, the e-mail frontend
   };
 }
