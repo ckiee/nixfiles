@@ -9,6 +9,7 @@
       minecraft.enable = true;
       matterbridge.enable = true;
       rtc-files.enable = true;
+      mailserver.enable = true;
       ronthecookieme = {
         enable = true;
         host = "ronthecookie.me";
@@ -36,7 +37,7 @@
         "u.ronthecookie.me" = { };
         "ckie.dev" = {
           provider = "porkbun";
-          extras = [ "matrix.ckie.dev" "i.ckie.dev" ];
+          extras = [ "matrix.ckie.dev" "i.ckie.dev" "bokkusu.ckie.dev" ];
         };
       };
     };
