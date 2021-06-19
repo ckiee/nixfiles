@@ -40,6 +40,7 @@ in with lib; {
             ff = "only";
           };
           rebase = { autoStash = true; };
+          init = { defaultBranch = "main"; };
         };
       };
     };
