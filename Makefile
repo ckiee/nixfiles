@@ -10,3 +10,6 @@ virt:
 	NIXOS_CONFIG=$(COOKIE_NIXFILES_PATH)/hosts/virt/default.nix nixos-rebuild build-vm
 	QEMU_NET_OPTS='hostfwd=tcp::5555-:22' $(COOKIE_NIXFILES_PATH)/result/bin/run-virt-vm &
 	while true; do ssh localhost -o ConnectTimeout=1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 5555; sleep 0.2; done
+
+pushsecrets: secrets/*
+	rsync --delete --recursive secrets/* bokkusu:~/git/nixfiles/secrets/
