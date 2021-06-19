@@ -1,5 +1,6 @@
 #+TITLE: TODO List
 
+* List
 - [X] ronthecookie.me
 - [X] personalcdn
   + [X] rename to something less cringe
@@ -12,26 +13,35 @@
 - [X] setup minecraft on bokkusu
 - [X] secure ssh (root login, etc)
 - [X] synapse (depends on ~ckie.dev~)
-- [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
-- [ ] setup wg
-- [ ] setup prom
-  + [ ] improve module a bit
-  + [ ] deploy on bokkusu
-  + [ ] coredns
-- [ ] backup
-  + [ ] postgres (use ~services.postgresqlBackup~)
-  + [ ] ~/var/lib~
-  + [ ] znc
-  + [ ] synapse
-- [ ] ~users.mutableUsers~ (change pw too)
-- [ ] secure postgres better
-
 - [X] use ~systemd-analyze security~ on all of the above
   + [X] rtcme
   + [X] files
   + [X] comicfury
   + [X] owo_bot
   + [X] ffg_bot
+- [ ] backup
+  + [ ] postgres (use ~services.postgresqlBackup~)
+  + [ ] ~/var/lib~
+  + [ ] znc
+  + [ ] synapse
+  + [ ] mail
+  + [ ] whatever else I missed
+- [ ] mail: replace mbsync with the ~emacsclient --eval '(mu4e-update-mail-and-index 1)'~-on-a-timer solution
+- [ ] setup wg
+- [ ] setup prom
+  + [ ] improve module a bit
+  + [ ] deploy on bokkusu
+  + [ ] add coredns exporter
+- [ ] set ~users.mutableUsers~ to false
+
+** Backburner
+- [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
+- [ ] individual mail addresses:
+  #+BEGIN_SRC irc
+    2021-06-19 16:57:13 ckie    also that is another reason for setting this up! I get to have randomized addresses for stuff like github
+    2021-06-19 16:57:36 ckie    so I'm going to completely overengineer it and make all the addresses for services salted hashes
+  #+END_SRC
+- [ ] secure postgres better
 
 ** Hostname Ideas
 Just use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][names.json]].
