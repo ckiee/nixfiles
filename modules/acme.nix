@@ -41,7 +41,7 @@ in {
 
     cookie.secrets.acme = {
       source = ../secrets/acme.env;
-      dest = "/var/run/acme.env";
+      dest = "/run/keys/acme.env";
       owner = "acme";
       group = "acme";
       permissions = "0400";
