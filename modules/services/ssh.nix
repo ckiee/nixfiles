@@ -14,7 +14,7 @@ in with lib; {
       permitRootLogin = "no";
       passwordAuthentication = false;
     };
-    services.fail2ban = {
+    services.fail2ban = mkIf config.networking.firewall.enable {
       enable = true;
       maxretry = 1;
     };
