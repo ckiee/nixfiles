@@ -63,5 +63,11 @@
         (message "%d buffers in this Emacs" buf-count)) buf-count))
 (doom/set-frame-opacity 90)
 
-;; see packages.el
-;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+(after! doom-modeline (setq doom-modeline-mu4e t))
+(use-package! mu4e-alert
+  :after mu4e
+  :hook ((after-init . mu4e-alert-enable-mode-line-display)
+         (after-init . mu4e-alert-enable-notifications))
+  :config (mu4e-alert-set-default-style 'libnotify))
+
+;;; config.el ends here
