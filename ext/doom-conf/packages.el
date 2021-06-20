@@ -1,17 +1,11 @@
 ;;; $DOOMDIR/packages.el
-(package! elcord)
-(package! esup)
-(package! svelte-mode)
-(package! wakatime-mode)
-;; (package! mcf-mode)
-(package! platformio-mode)
-(package! matrix-client
+(package! elcord) ; discord intergration, manually enabled
+(package! esup) ; analyze startup
+(package! svelte-mode) ; svelte development
+(package! platformio-mode) ; pio dev intergration
+(package! matrix-client ; a matrix client
  :recipe (:host github :repo "alphapapa/matrix-client.el"))
-; a change
-
-;; (package! visual-fill-column)
-
-
+(package! mu4e-alert) ; add notifications to modeline
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
