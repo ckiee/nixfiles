@@ -118,7 +118,10 @@ in with lib; {
             "4" = [{ class = "^Emacs$"; }];
             "${musicWorkspace}" = [{ class = "^cantata"; }];
           };
-          fonts = [ "monospace 9" ];
+          fonts = {
+            names = [ "monospace" ];
+            size = 9.0;
+          };
           modifier = "Mod4"; # super key
           menu = "${pkgs.rofi}/bin/rofi -show drun";
         };
