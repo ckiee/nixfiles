@@ -17,7 +17,9 @@ in {
     wine.enable = true;
     smartd.enable = true;
     syncthing.enable = true;
-    services.coredns.enable = true;
+    services = {
+      coredns.enable = true;
+    };
   };
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
