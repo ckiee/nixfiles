@@ -1,6 +1,6 @@
 let
   sources = import ./nix/sources.nix;
-  pkgs = import sources.nixpkgs { };
+  pkgs = import /home/ckie/git/nixpkgs { };
 in {
   network = {
     inherit pkgs sources;

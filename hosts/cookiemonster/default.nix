@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs>, ... }:
+{ config, pkgs, ... }:
 
 let
   sources = import ../../nix/sources.nix;
@@ -79,6 +79,8 @@ in {
   };
 
   networking.firewall.enable = false;
+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
