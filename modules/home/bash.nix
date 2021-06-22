@@ -40,6 +40,13 @@ in with lib; {
         ggi() {
               wget --no-verbose -O .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
         }
+        # Upload a file to i.ckie.dev (bokkusu)
+        bokup() {
+          tfn=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 7).''${1##*.}
+          rsync $1 bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+          echo https://i.ckie.dev/"$tfn"
+          echo https://i.ckie.dev/"$tfn" | xclip -selection c
+        }
       '';
     };
     programs.direnv = {
