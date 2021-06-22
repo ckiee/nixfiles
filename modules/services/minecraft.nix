@@ -4,9 +4,11 @@ let
   cfg = config.cookie.services.minecraft;
   paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
-      url =
-        "https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/753/downloads/paper-1.16.5-753.jar";
-      sha256 = "19pcz9cdwnnb4g645pkjfcskxmr8wcrkzyvq6a30af7yd4gjw102";
+      url = let build = 30;
+      in "https://papermc.io/api/v2/projects/paper/versions/1.17/builds/${
+        toString build
+      }/downloads/paper-1.17-${toString build}.jar";
+      sha256 = "sha256:00myh0zyfq4632h00gajin3f7md3avddplkvrrkd6pi64rr8yz5g";
     };
   });
   console = pkgs.writeShellScriptBin "mc" ''
@@ -40,7 +42,7 @@ in with lib; {
         ${pkgs.coreutils}/bin/chmod -R 2777 /var/lib/minecraft
         ${pkgs.coreutils}/bin/chown -R minecraft:minecraft /var/lib/minecraft
       '';
-      after = [ "minecraft-server.service" ];
+      wantedBy = [ "minecraft-server.service" ];
     };
 
     environment.systemPackages = [ console ];
