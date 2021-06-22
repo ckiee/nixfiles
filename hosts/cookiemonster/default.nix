@@ -1,8 +1,9 @@
-{ pkgs ? import <nixpkgs>, ... }:
+{ config, pkgs, ... }:
 
 let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
+  pkgs-470 = import sources.nixpkgs-470 { };
 in {
   imports = [ ./hardware.nix ../.. ];
   cookie = {
@@ -44,6 +45,8 @@ in {
       Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
     '';
   };
+  boot.kernelPackages = pkgs-470.linuxPackages_zen;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   environment.systemPackages = with pkgs; [
     stow
