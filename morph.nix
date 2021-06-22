@@ -10,6 +10,6 @@ in {
 
   "thonkcookie.local" = import ./hosts/thonkcookie;
   "cookiemonster.local" = import ./hosts/cookiemonster;
-  "bokkusu.ronthecookie.me" = import ./hosts/bokkusu;
+  "bokkusu.ckie.dev" = import ./hosts/bokkusu;
   # "pookieix.local" = import ./hosts/pookieix;
 }
