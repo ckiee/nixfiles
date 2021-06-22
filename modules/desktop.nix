@@ -20,9 +20,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    # Supposedly this build is better for desktop users
-    boot.kernelPackages = pkgs.linuxPackages_zen;
-
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
