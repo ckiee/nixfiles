@@ -101,10 +101,10 @@
         "homepage": "",
         "owner": "ronthecookie",
         "repo": "nixpkgs",
-        "rev": "71b448a2f6938d64c7037dc510a6f545a637253b",
-        "sha256": "09kmdnr4xvx29pyvvgak8xaavjlmxs9b5v703n1i7w7insp49d2l",
+        "rev": "424fbd70e53f5ccfaf9eba702a662014b3330668",
+        "sha256": "19lbgsx7f7mcycrr8ljgf0f9xsb9h72n2c41g9mpv515ihbvy3b7",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/nixpkgs/archive/71b448a2f6938d64c7037dc510a6f545a637253b.tar.gz",
+        "url": "https://github.com/ronthecookie/nixpkgs/archive/424fbd70e53f5ccfaf9eba702a662014b3330668.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
