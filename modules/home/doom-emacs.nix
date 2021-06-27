@@ -10,6 +10,7 @@ let
     jdk11 # Java
     rust-analyzer-unwrapped # Rust
     nixfmt # Nix
+    nixpkgs-fmt # Nixpkgs
     editorconfig-core-c # editorconfig
     omnisharp-roslyn # C#
     texlive.combined.scheme-medium # org-mode latex preview
