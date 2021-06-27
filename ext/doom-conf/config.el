@@ -70,4 +70,7 @@
          (after-init . mu4e-alert-enable-notifications))
   :config (mu4e-alert-set-default-style 'libnotify))
 
+;(use-package! mu4e
+; :config (mu4e-update-interval 300))
+
 ;;; config.el ends here
