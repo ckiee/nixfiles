@@ -18,6 +18,7 @@ in with lib; {
         gnome3.gnome-system-monitor
         gnome3.gnome-calculator
         gnome3.totem
+        gnome3.eog
       ];
     };
     services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
