@@ -28,6 +28,14 @@
     initialPassword = "cookie";
   };
 
+  # Nasty obscure EBUSY errors will come without this
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile"; # max FD count
+    value = "unlimited";
+  }];
+
   # Some bare basics
   environment.systemPackages = with pkgs; [
     wget
