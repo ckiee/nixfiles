@@ -17,6 +17,7 @@ let
     gopls # Go LSP
     ccls # C/C++
     python3Packages.black # Python formatter
+    html-tidy # HTML/SVG/Web formatter
     #
     # shell scripts
     shfmt
