@@ -4,11 +4,11 @@ let
   cfg = config.cookie.services.minecraft;
   paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
-      url = let build = 30;
+      url = let build = 67;
       in "https://papermc.io/api/v2/projects/paper/versions/1.17/builds/${
         toString build
       }/downloads/paper-1.17-${toString build}.jar";
-      sha256 = "sha256:00myh0zyfq4632h00gajin3f7md3avddplkvrrkd6pi64rr8yz5g";
+      sha256 = "sha256:0y33r6clg4m0ik6ps595r2naha49qkg6bgi44m56gkw3gqmmi3sb";
     };
   });
   console = pkgs.writeShellScriptBin "mc" ''
