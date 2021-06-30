@@ -25,16 +25,16 @@
     fsType = "vfat";
   };
 
- fileSystems."/mnt/games" = {
-   device = "/dev/md127";
-   fsType = "ext4";
- };
+  fileSystems."/mnt/games" = {
+    device = "/dev/md127";
+    fsType = "ext4";
+  };
 
   fileSystems."/mnt/backup" = {
     device = "/dev/disk/by-uuid/08f2ac6c-3564-4110-a436-fed882a9f4e8";
     fsType = "ext4";
   };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/var/swapfile"; }];
 
 }
