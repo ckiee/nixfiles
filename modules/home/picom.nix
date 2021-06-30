@@ -12,6 +12,8 @@ in with lib; {
       enable = true;
       blur = true;
       experimentalBackends = true;
+      refreshRate = 144;
+      vSync = false;
     };
   };
 }
