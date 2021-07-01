@@ -49,14 +49,16 @@ in with lib; {
         }
       '';
     };
-    programs.direnv = {
-      enable = true;
-      enableNixDirenvIntegration = true;
-      enableBashIntegration = true;
-    };
-    programs.zoxide = {
-      enable = true;
-      enableBashIntegration = true;
+    programs = {
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        nix-direnv.enable = true;
+      };
+      zoxide = {
+        enable = true;
+        enableBashIntegration = true;
+      };
     };
   };
 }
