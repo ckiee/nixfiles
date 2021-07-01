@@ -95,18 +95,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/3a8d7958a610cd3fec3a6f424480f91a1b259185.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-470": {
-        "branch": "nvidia-470",
-        "description": "Nix Packages collection",
-        "homepage": "",
-        "owner": "ronthecookie",
-        "repo": "nixpkgs",
-        "rev": "3b5153599756c9b6c7d8f1f380a5409f94b295e9",
-        "sha256": "08i27rg32r8k40fafz7jszsmfl77nhi08dmbmkvkdq5d9ihkiil1",
-        "type": "tarball",
-        "url": "https://github.com/ronthecookie/nixpkgs/archive/3b5153599756c9b6c7d8f1f380a5409f94b295e9.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs-master": {
         "branch": "master",
         "description": "Nix Packages collection",
