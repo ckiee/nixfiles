@@ -27,6 +27,14 @@
     value = "unlimited";
   }];
 
+  # Prune the journal to avoid this:
+  # $ du -sh /var/log/journal/
+  # 4.1G    /var/log/journal/
+  services.journald.extraConfig = ''
+    SystemMaxUse=200M
+    MaxFileSec=7day
+  '';
+
   # Some bare basics
   environment.systemPackages = with pkgs; [
     wget
