@@ -15,6 +15,7 @@ let
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${../../ext/backgrounds/trans} &
     ${../../ext/i3-scripts/oszwatch} &
+    ${../../ext/i3-scripts/musicwatch} &
     fractal &
     Discord &
     DiscordPTB &
