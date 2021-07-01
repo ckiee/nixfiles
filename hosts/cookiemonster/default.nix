@@ -66,7 +66,6 @@ in {
   users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
 
   programs.steam.enable = true;
-  nixpkgs.overlays = [ (self: super: { inherit (pkgs-master) steam; }) ];
 
   virtualisation = {
     libvirtd.enable = true;
