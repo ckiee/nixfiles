@@ -59,10 +59,10 @@
         "homepage": "",
         "owner": "ronthecookie",
         "repo": "matterbridge",
-        "rev": "a50e7fe1e5991be9171f3704587355e9de72bcf9",
-        "sha256": "04lkc2aq5vipa6r8iygrwlydw9ax7ss2ldm8v8xggnc2kvszh0bp",
+        "rev": "d88487575d5c6a5df78a71c7a8058d1bef7ee7e6",
+        "sha256": "064jmh9wfzrs2a4czfza0r55k7g2id4yk1560kjlp2b85h4iaqdv",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/matterbridge/archive/a50e7fe1e5991be9171f3704587355e9de72bcf9.tar.gz",
+        "url": "https://github.com/ronthecookie/matterbridge/archive/d88487575d5c6a5df78a71c7a8058d1bef7ee7e6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
