@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "ronthecookie",
         "repo": "comicfury-discord-webhook",
-        "rev": "5b1530c282d8d02c71310a65d4b4773f73cbdfc9",
+        "rev": "17cc669656e8605005048404bb58a70c3ab57eff",
         "sha256": "09a4n57bn73ap6nqga2lqz9b1yhsagjwl56rj3fq9106g30vrfkz",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/5b1530c282d8d02c71310a65d4b4773f73cbdfc9.tar.gz",
+        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/17cc669656e8605005048404bb58a70c3ab57eff.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "stevenblack",
         "repo": "hosts",
-        "rev": "c74ad7c5887fbfb67f0df939f76fff0aab5dba52",
-        "sha256": "054bryxr17f99s2yfq1r2pkicbk4nbrin04jkq980gxad66j9q6g",
+        "rev": "71d4fc0d25e32095f4e3c32fab2f77ba011e372c",
+        "sha256": "0ha37j6pcs4f021diy8nmn2879y6ky696y5jl3xbdc70a4ha4rl4",
         "type": "tarball",
-        "url": "https://github.com/stevenblack/hosts/archive/c74ad7c5887fbfb67f0df939f76fff0aab5dba52.tar.gz",
+        "url": "https://github.com/stevenblack/hosts/archive/71d4fc0d25e32095f4e3c32fab2f77ba011e372c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "doom-emacs": {
@@ -47,10 +47,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "0e6c61a44092e98ba1d75b41f4f947843dc7814d",
-        "sha256": "0i6qjkyvxbnnvk984781wgkycdrgwf6cpbln7w35gfab18h7mnzy",
+        "rev": "7df6656b113ce0d39c8b7d30915cafe046e1d64e",
+        "sha256": "0dxiicyiw53k3gqbv2k9ajnsghq1a8ln741hx5msa45zdg1r6ci3",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/0e6c61a44092e98ba1d75b41f4f947843dc7814d.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/7df6656b113ce0d39c8b7d30915cafe046e1d64e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "matterbridge": {
@@ -71,16 +71,16 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "94080ae8286024820c570a2a24ed7c36d7ad04a9",
-        "sha256": "0wlk52zwlrq727x3z1vg9d9qq4zw62ab5jzg4068iqb6hyb0cr0w",
+        "rev": "e0ca65c81a2d7a4d82a189f1e23a48d59ad42070",
+        "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/94080ae8286024820c570a2a24ed7c36d7ad04a9.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-mailserver": {
         "branch": "master",
         "repo": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git",
-        "rev": "5675b122a947b40e551438df6a623efad19fd2e7",
+        "rev": "a9f87ca461a1f0e23e85a1ba8c696672ed9e11e2",
         "type": "git"
     },
     "nixpkgs": {
@@ -89,10 +89,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5658fadedb748cb0bdbcb569a53bd6065a5704a9",
-        "sha256": "1kpmhd9v5a3fbwq86spd1p5s4npfd1jrjl14kl6h1n1l1qd6cbp6",
+        "rev": "3a8d7958a610cd3fec3a6f424480f91a1b259185",
+        "sha256": "0bmxrdn9sn6mxvkyyxdlxlzczfh59iy66c55ql144ilc1cjk28is",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5658fadedb748cb0bdbcb569a53bd6065a5704a9.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/3a8d7958a610cd3fec3a6f424480f91a1b259185.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-470": {
@@ -101,10 +101,10 @@
         "homepage": "",
         "owner": "ronthecookie",
         "repo": "nixpkgs",
-        "rev": "424fbd70e53f5ccfaf9eba702a662014b3330668",
-        "sha256": "19lbgsx7f7mcycrr8ljgf0f9xsb9h72n2c41g9mpv515ihbvy3b7",
+        "rev": "3b5153599756c9b6c7d8f1f380a5409f94b295e9",
+        "sha256": "08i27rg32r8k40fafz7jszsmfl77nhi08dmbmkvkdq5d9ihkiil1",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/nixpkgs/archive/424fbd70e53f5ccfaf9eba702a662014b3330668.tar.gz",
+        "url": "https://github.com/ronthecookie/nixpkgs/archive/3b5153599756c9b6c7d8f1f380a5409f94b295e9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
@@ -113,10 +113,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "27d282828d1b21625f271d2cc8e853a0de69fc43",
-        "sha256": "1f8xhcf9mmifn3854kpckhwrjvmn0zdk66zld1qi9za5ym3m0afq",
+        "rev": "5a46be366ee953d6bc9687cce10c3d42b4adbee4",
+        "sha256": "1smsyx3gnyblrpvni2g02lc9cqcvq6gamhf4qvbr1nrzma6dalra",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/27d282828d1b21625f271d2cc8e853a0de69fc43.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/5a46be366ee953d6bc9687cce10c3d42b4adbee4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "owo-bot": {
