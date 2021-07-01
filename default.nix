@@ -2,15 +2,6 @@
 
 {
   imports = [ ./modules ];
-  nix = {
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 8d";
-      dates = "weekly";
-    };
-    autoOptimiseStore = true;
-    trustedUsers = [ "root" "@wheel" ];
-  };
   nixpkgs = { config = { allowUnfree = true; }; };
 
   time.timeZone = "Israel";

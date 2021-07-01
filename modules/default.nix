@@ -24,7 +24,7 @@
     ./caches.nix
     ./qt5.nix
     ./wine.nix
-    ./nix-path.nix
+    ./nix.nix
     ./cookie-overlay.nix
     ./secrets.nix
     ./acme.nix
