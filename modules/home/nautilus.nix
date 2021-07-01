@@ -7,6 +7,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+    programs.dconf.enable = true;
     dconf.settings."org/gnome/nautilus/preferences" = {
       default-sort-in-reverse-order = true;
       default-sort-order = "mtime";
