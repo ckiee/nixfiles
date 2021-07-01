@@ -24,7 +24,6 @@
     syncthing.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
   environment.systemPackages = with pkgs; [ zoom-us lutris ];
 
   networking.firewall.enable = false;
