@@ -1,0 +1,11 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p inotify-tools mpc_cli
+
+set -e
+cd ~/Music/flat
+
+while true; do
+	if FN=$(inotifywait -qe CREATE -e DELETE .); then
+		mpc update
+	fi
+done
