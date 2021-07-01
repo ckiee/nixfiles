@@ -11,14 +11,20 @@ in with lib; {
     '';
 
     nix = {
+      trustedUsers = [ "root" "@wheel" ];
+      nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ]; # Pin the <nixpkgs> channel to our nixpkgs
+      # Garbage collect and optimize
       gc = {
         automatic = true;
         options = "--delete-older-than 8d";
         dates = "weekly";
       };
       autoOptimiseStore = true;
-      trustedUsers = [ "root" "@wheel" ];
-      nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ];
+      # Get flakes
+      package = pkgs.nixUnstable;
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
     };
   };
 }
