@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nixosConfig, ... }:
 
 let cfg = config.cookie.nautilus;
 in with lib; {
@@ -7,7 +7,10 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    programs.dconf.enable = true;
+    assertions = [{
+      assertion = nixosConfig.programs.dconf.enable;
+      message = "dconf must be enabled in the system configuration";
+    }];
     dconf.settings."org/gnome/nautilus/preferences" = {
       default-sort-in-reverse-order = true;
       default-sort-order = "mtime";
