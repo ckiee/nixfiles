@@ -53,10 +53,6 @@ in {
         after = wants;
       })) cfg.hosts;
 
-    # Porkbun is only in lego 4.4.0 which is in master ATM.
-    # TODO: remove this
-    nixpkgs.overlays = [ (self: super: { inherit (pkgs-master) lego; }) ];
-
     security.acme = {
       inherit email;
       acceptTerms = true;

@@ -41,7 +41,7 @@ in with lib; {
       arandr
       pavucontrol
       audacity
-      pkgs-master.firefox
+      firefox
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
