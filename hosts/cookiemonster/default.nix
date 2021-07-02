@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs>, ... }:
+{ pkgs, config, ... }:
 
 let
   sources = import ../../nix/sources.nix;
@@ -44,6 +44,7 @@ in {
       Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
     '';
   };
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   environment.systemPackages = with pkgs; [
     stow
