@@ -3,7 +3,7 @@ let
   pkgs = import sources.nixpkgs { };
 in {
   network = {
-    inherit pkgs sources;
+    inherit pkgs;
     description = "Cookie hosts :^)";
     ordering = { tags = [ "desktops" "servers" ]; };
   };
