@@ -15,7 +15,7 @@ in with lib; {
         cd = "z";
         rsync = "rsync --progress";
         nsp = "nix-shell -p";
-        ns = "nix search";
+        ns = "nix search nixpkgs";
         e = "emacsclient -n";
         ytm =
           "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
