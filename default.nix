@@ -52,6 +52,8 @@
     dig
     asciinema
     ripgrep
+    unzip
+    ncdu
   ];
 
   cookie = {
