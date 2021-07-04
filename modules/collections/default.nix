@@ -6,6 +6,5 @@
     ./home
     #
     ./media.nix
-    ./monitoring.nix
   ];
 }
