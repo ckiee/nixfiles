@@ -30,6 +30,7 @@ in with lib; {
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "5s";
+      rules = [ (builtins.readFile ../../ext/node_rules.yaml) ];
       scrapeConfigs = let
         listenMap = host: ports:
           (imap0 (i: v: ("${host}:${toString v}")) ports);
