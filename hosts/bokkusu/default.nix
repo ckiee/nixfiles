@@ -10,6 +10,13 @@
       matterbridge.enable = true;
       rtc-files.enable = true;
       mailserver.enable = true;
+
+      prometheus.enable = true;
+      grafana = {
+        enable = true;
+        host = "grafana.ckie.dev";
+      };
+
       ronthecookieme = {
         enable = true;
         host = "ronthecookie.me";
