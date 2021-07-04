@@ -11,6 +11,11 @@ in with lib; {
       description = "the host";
       example = "znc.ronthecookie.me";
     };
+    acmeHost = mkOption {
+      type = types.str;
+      default = cfg.host;
+      description = "the host the certificate is under";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +29,7 @@ in with lib; {
     networking.firewall.allowedTCPPorts = [ 6697 ];
 
     # We confide it with our precious certificate
-    security.acme.certs.${cfg.host}.postRun =
+    security.acme.certs.${cfg.acmeHost}.postRun =
       "cat {key,fullchain}.pem > /var/lib/znc/znc.pem";
 
     # We give it a medium which through to talk with it's users.
