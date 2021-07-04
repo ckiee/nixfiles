@@ -20,7 +20,8 @@
       };
       znc = {
         enable = true;
-        host = "znc.ronthecookie.me";
+        host = "znc.ckie.dev";
+        acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
       };
       matrix = {
         enable = true;
