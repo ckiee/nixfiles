@@ -37,6 +37,7 @@ in with lib; {
           };
           # ACAO required to allow element-web on any URL to request this json file
         in ''
+          access_log /var/log/nginx/matrix.access.log;
           add_header Content-Type application/json;
           add_header Access-Control-Allow-Origin *;
           return 200 '${builtins.toJSON client}';
@@ -46,6 +47,10 @@ in with lib; {
         locations."/".extraConfig = ''
           return 302 $scheme://${cfg.host}$request_uri;
         '';
+        # log for prom
+        extraConfig = ''
+          access_log /var/log/nginx/matrix.access.log;
+        '';
 
         # forward all Matrix API calls to synapse
         locations."/_matrix" = {
@@ -53,6 +58,8 @@ in with lib; {
         };
       };
     };
+    cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
+
     services.matrix-synapse = {
       enable = true;
       server_name = cfg.host;
