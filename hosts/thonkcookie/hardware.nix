@@ -1,8 +1,6 @@
 let
-  nixos-hardware = builtins.fetchGit {
-    url = "https://github.com/NixOS/nixos-hardware.git";
-    rev = "267d8b2d7f049d2cb9b7f4a7f981c123db19a868";
-  };
+  sources = import ../../nix/sources.nix;
+  inherit (sources) nixos-hardware;
 in { config, lib, pkgs, modulesPath, ... }:
 
 {
