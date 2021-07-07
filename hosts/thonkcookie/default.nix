@@ -17,6 +17,10 @@
       primaryMonitor = "eDP-1";
       laptop = true;
     };
+    sound = {
+      pulse.enable = true;
+      pipewire.enable = false;
+    };
     printing.enable = true;
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
