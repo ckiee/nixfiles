@@ -13,7 +13,7 @@ with builtins; {
     aliases = mkOption rec {
       type = types.listOf types.str;
       description = "Base e-mail aliases to be processed";
-      default = [ "nixpkgs" "github" ];
+      default = util.default-aliases;
     };
   };
 
@@ -38,10 +38,9 @@ with builtins; {
       loginAccounts = {
         "us@ckie.dev" = {
           hashedPasswordFile = config.cookie.secrets.mailserver-pw-hash.dest;
-          aliases = let
-            extras = (util.process (fileContents ../../../secrets/email-salt)
+          aliases = [ "postmaster@ckie.dev" ]
+            ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
-          in [ "postmaster@ckie.dev" ] ++ (trace (toString extras) extras);
         };
       };
     };

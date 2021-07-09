@@ -13,3 +13,6 @@ virt:
 
 pushsecrets: secrets/*
 	rsync --delete --recursive secrets/* bokkusu:~/git/nixfiles/secrets/
+
+emails:
+	nix eval --impure --expr 'let pkgs = import <nixpkgs> {}; util = (pkgs.callPackage ./modules/services/mailserver/util.nix {}); in (builtins.trace ("e-mails: \n" + (builtins.concatStringsSep "\n" (util.process (pkgs.lib.fileContents ./secrets/email-salt) util.default-aliases))) "")' 1>/dev/null
