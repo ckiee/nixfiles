@@ -13,11 +13,13 @@ in with lib; {
       maildirBasePath = "${maildir}";
       accounts = {
         ckiedev = rec {
-          flavor = "plain"; # A better name for this option would be "quirks", it is set to plain because we are not doing anything odd.
+          flavor =
+            "plain"; # A better name for this option would be "quirks", it is set to plain because we are not doing anything odd.
           address = "us@ckie.dev";
           userName = address;
           aliases = [ address ];
-          passwordCommand = "${pkgs.coreutils}/bin/cat ~/Sync/.email-pw-ckiedev";
+          passwordCommand =
+            "${pkgs.coreutils}/bin/cat ~/Sync/.email-pw-ckiedev";
           realName = "${name}";
           primary = true;
           mbsync = {
@@ -46,13 +48,24 @@ in with lib; {
       mbsync.enable = true;
     };
 
-    services = {
-      mbsync = {
-        enable = true;
-        frequency = "*:0/15";
-        preExec = "${pkgs.isync}/bin/mbsync -Ha";
-        postExec = "${pkgs.mu}/bin/mu index -m ${maildir}";
+    systemd.user.services.mu4e-sync = {
+      Unit = { Description = "mu4e-sync mailbox synchronization"; };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${config.cookie.doom-emacs.package}/bin/emacsclient --eval \"(mu4e-update-mail-and-index 'true)\"";
       };
+    };
+
+    systemd.user.timers.mu4e-sync = {
+      Unit = { Description = "mu4e-sync mailbox synchronization"; };
+
+      Timer = {
+        OnCalendar = "*:0/15";
+        Unit = "mu4e-sync.service";
+      };
+
+      Install = { WantedBy = [ "timers.target" ]; };
     };
   };
 }

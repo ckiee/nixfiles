@@ -66,13 +66,28 @@ let
 in {
   options.cookie.doom-emacs = {
     enable = mkEnableOption "Enables the Nixified Doom Emacs";
+    package = mkOption {
+      type = types.package;
+      default = doom-emacs;
+      description = "The emacs package that is being used.";
+      readOnly = true;
+    };
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ doom-emacs extra-desktop ];
+    # Prepare the service.
     home.file.".emacs.d/init.el".text = ''
       (load "default.el")
     '';
-    cookie.mail-client.enable = true; # Emacs needs this for mu4e, the e-mail frontend
+    services.emacs = {
+      enable = true;
+      package = doom-emacs;
+      client.enable = true;
+    };
+
+    # Add another .desktop entry
+    home.packages = [ extra-desktop ];
+    # Give mu4e what it needs
+    cookie.mail-client.enable = true;
   };
 }
