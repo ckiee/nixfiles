@@ -2,17 +2,24 @@
 
 let
   cfg = config.cookie.services.mailserver;
-  sources = import ../../nix/sources.nix;
-in with lib; {
+  sources = import ../../../nix/sources.nix;
+  util = pkgs.callPackage ./util.nix { };
+in with lib;
+with builtins; {
   imports = [ (import sources.nixos-mailserver) ];
 
   options.cookie.services.mailserver = {
     enable = mkEnableOption "Enables the mailserver module";
+    aliases = mkOption rec {
+      type = types.listOf types.str;
+      description = "Base e-mail aliases to be processed";
+      default = [ "nixpkgs" "github" ];
+    };
   };
 
   config = mkIf cfg.enable {
     cookie.secrets.mailserver-pw-hash = {
-      source = ../../secrets/mailserver-pw-hash;
+      source = ../../../secrets/mailserver-pw-hash;
       dest = "/run/keys/mailserver-pw-hash";
       owner = "root";
       group = "root";
@@ -31,7 +38,10 @@ in with lib; {
       loginAccounts = {
         "us@ckie.dev" = {
           hashedPasswordFile = config.cookie.secrets.mailserver-pw-hash.dest;
-          aliases = [ "postmaster@ckie.dev" ];
+          aliases = let
+            extras = (util.process (fileContents ../../../secrets/email-salt)
+              cfg.aliases);
+          in [ "postmaster@ckie.dev" ] ++ (trace (toString extras) extras);
         };
       };
     };
