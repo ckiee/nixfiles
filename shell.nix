@@ -13,9 +13,4 @@ in pkgs.mkShell {
     nix-prefetch-github
     bpkg
   ];
-
-  shellHook = ''
-    export COOKIE_HOSTNAME=$(${pkgs.hostname}/bin/hostname)
-    export COOKIE_NIXFILES_PATH=$(pwd)
-  '';
 }
