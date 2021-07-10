@@ -86,7 +86,7 @@ in {
     };
 
     # Add another .desktop entry
-    home.packages = [ extra-desktop ];
+    home.packages = [ doom-emacs extra-desktop ];
     # Give mu4e what it needs
     cookie.mail-client.enable = true;
   };
