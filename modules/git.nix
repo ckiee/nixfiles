@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.git;
+let
+  cfg = config.cookie.git;
+  mail-util = pkgs.callPackage ./services/mailserver/util.nix { };
 in with lib; {
   options.cookie.git = {
     enable = mkEnableOption "Enables and configures git";
@@ -12,7 +14,8 @@ in with lib; {
     };
     email = mkOption rec {
       type = types.str;
-      default = "me@ronthecookie.me";
+      default = (builtins.head
+        (mail-util.process (fileContents ../secrets/email-salt) [ "git" ]));
       description = "Email to use with git";
       example = default;
     };
