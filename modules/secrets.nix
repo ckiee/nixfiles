@@ -66,7 +66,7 @@ let
 
       serviceConfig.Type = "oneshot";
 
-      script = with pkgs; ''
+      preStart = with pkgs; ''
         rm -rf ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
           mkSecretOnDisk name { inherit source; }
@@ -75,6 +75,7 @@ let
         chown '${owner}':'${group}' '${dest}'
         chmod '${permissions}' '${dest}'
       '';
+      script = "true";
     };
 in {
   options.cookie.secrets = mkOption {
