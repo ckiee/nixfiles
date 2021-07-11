@@ -21,6 +21,10 @@
         enable = true;
         host = "ronthecookie.me";
       };
+      ckiesite = {
+        enable = true;
+        host = "ckie.dev";
+      };
       redirect-farm = {
         enable = true;
         host = "u.ronthecookie.me";
