@@ -24,5 +24,6 @@
     ./owo-bot.nix
     ./ffg-bot.nix
     ./redirect-farm.nix
+    ./ckiesite.nix
   ];
 }
