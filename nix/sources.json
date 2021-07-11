@@ -3,12 +3,12 @@
         "branch": "main",
         "description": null,
         "homepage": null,
-        "owner": "ronthecookie",
+        "owner": "ckiee",
         "repo": "comicfury-discord-webhook",
         "rev": "17cc669656e8605005048404bb58a70c3ab57eff",
         "sha256": "09a4n57bn73ap6nqga2lqz9b1yhsagjwl56rj3fq9106g30vrfkz",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/comicfury-discord-webhook/archive/17cc669656e8605005048404bb58a70c3ab57eff.tar.gz",
+        "url": "https://github.com/ckiee/comicfury-discord-webhook/archive/17cc669656e8605005048404bb58a70c3ab57eff.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
@@ -27,17 +27,17 @@
         "branch": "restartmacs",
         "description": "doom-emacs packaged for Nix",
         "homepage": "",
-        "owner": "ronthecookie",
+        "owner": "ckiee",
         "repo": "nix-doom-emacs",
         "rev": "0b23fe92e0b9460902d64e132444c02cf0942c9d",
         "sha256": "1lgfhsrkv8y1icniryl0gww4g5v6ps700s3jdm6jfdfw7mmcii2x",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/nix-doom-emacs/archive/0b23fe92e0b9460902d64e132444c02cf0942c9d.tar.gz",
+        "url": "https://github.com/ckiee/nix-doom-emacs/archive/0b23fe92e0b9460902d64e132444c02cf0942c9d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ffg-bot": {
         "branch": "master",
-        "repo": "ssh://git@github.com/ronthecookie/ffg-bot.git",
+        "repo": "ssh://git@github.com/ckiee/ffg-bot.git",
         "rev": "03ba70cf9bba2b39180aca98da0008c93d517bbf",
         "type": "git"
     },
@@ -57,12 +57,12 @@
         "branch": "groupchat",
         "description": "bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram, rocketchat, twitch, ssh-chat, zulip, whatsapp, keybase, matrix, microsoft teams, nextcloud, mumble, vk and more with REST API (mattermost not required!)",
         "homepage": "",
-        "owner": "ronthecookie",
+        "owner": "ckiee",
         "repo": "matterbridge",
         "rev": "d88487575d5c6a5df78a71c7a8058d1bef7ee7e6",
         "sha256": "064jmh9wfzrs2a4czfza0r55k7g2id4yk1560kjlp2b85h4iaqdv",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/matterbridge/archive/d88487575d5c6a5df78a71c7a8058d1bef7ee7e6.tar.gz",
+        "url": "https://github.com/ckiee/matterbridge/archive/d88487575d5c6a5df78a71c7a8058d1bef7ee7e6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -123,12 +123,12 @@
         "branch": "master",
         "description": "owoify aww youw Discowd messages using a webhook.",
         "homepage": null,
-        "owner": "ronthecookie",
+        "owner": "ckiee",
         "repo": "owo-bot",
         "rev": "802ac5d14f6ce834c50c54d987eb71530eacbb2c",
         "sha256": "1kph0bbzrl0jj0k9h91f92c9a9qjqlvknqs8kcc62z56bf10n24f",
         "type": "tarball",
-        "url": "https://github.com/ronthecookie/owo-bot/archive/802ac5d14f6ce834c50c54d987eb71530eacbb2c.tar.gz",
+        "url": "https://github.com/ckiee/owo-bot/archive/802ac5d14f6ce834c50c54d987eb71530eacbb2c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
