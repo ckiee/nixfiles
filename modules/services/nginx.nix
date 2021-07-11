@@ -14,6 +14,9 @@ in with lib; {
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
+      appendHttpConfig = ''
+        add_header Permissions-Policy "interest-cohort=()";
+      '';
     };
     networking.firewall.allowedTCPPorts = [ 443 80 ];
   };
