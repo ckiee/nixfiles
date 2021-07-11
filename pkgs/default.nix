@@ -5,4 +5,5 @@ in {
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
   ronthecookieme = pkgs.callPackage ./ronthecookieme { };
+  ckiesite = pkgs.callPackage ./ckiesite { };
 }
