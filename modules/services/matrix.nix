@@ -106,5 +106,10 @@ in with lib; {
         disable_existing_loggers: False
       '';
     };
+    # HACK: pr for nixpkgs
+    systemd.services.matrix-synapse.serviceConfig = {
+      LimitNPROC = 64;
+      LimitNOFILE = 1048576;
+    };
   };
 }
