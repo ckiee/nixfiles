@@ -10,7 +10,7 @@ let
       in "https://papermc.io/api/v2/projects/paper/versions/${mc}/builds/${
         toString build
       }/downloads/paper-${mc}-${toString build}.jar";
-      sha256 = "sha256:0000000000000000000000000000000000000000000000000000";
+      sha256 = "sha256-pucvSPELrff+2moxJgrqI2ks9mw9gd0KOAMq65N2DvM=";
     };
   });
   console = pkgs.writeShellScriptBin "mc" ''
