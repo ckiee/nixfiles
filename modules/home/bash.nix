@@ -48,6 +48,16 @@ in with lib; {
           echo https://i.ckie.dev/"$tfn"
           echo https://i.ckie.dev/"$tfn" | xclip -selection c
         }
+        # Turn bokup into a 'lil pipey pastebin
+        bokpa() {
+          tmp=$(mktemp)
+          tee $tmp
+          tfn=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 7).txt
+          rsync --chmod 0644 $tmp bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+          echo https://i.ckie.dev/"$tfn"
+          echo https://i.ckie.dev/"$tfn" | xclip -selection c
+          rm $tmp
+        }
       '';
     };
     services.lorri.enable = true;
