@@ -21,7 +21,7 @@ in with lib; {
     };
     signingKey = mkOption rec {
       type = types.str;
-      default = "6F5B32DE5E5FA80C";
+      default = "13E79449C0525215";
       description = "GPG signing key to use with git";
       example = default;
     };
