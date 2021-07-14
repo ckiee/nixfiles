@@ -61,6 +61,7 @@ in {
     kicad-with-packages3d
     python3Packages.youtube-dl
     blockbench-electron
+    krita
   ];
 
   programs.adb.enable = true;
