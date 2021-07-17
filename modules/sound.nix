@@ -155,7 +155,7 @@ in with lib; {
                 "pulse.min.frag" = "${toString quantum}/96000";
                 "pulse.default.frag" = "96000/96000";
                 "pulse.default.tlength" = "96000/96000";
-                "server.address" = [ "unix:native" ];
+                "server.address" = [ "unix:native" "unix:/tmp/pulse-socket" ];
               };
             }
           ];
