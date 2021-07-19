@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let cfg = config.cookie.collections.devel;
+
+  sources = import ../../../nix/sources.nix;
+  ms = import sources.nixpkgs-master { };
 in with lib; {
 
   options.cookie.collections.devel = {
@@ -17,7 +20,7 @@ in with lib; {
       gh
       gdb
       manpages
-      platformio
+      ms.platformio
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
