@@ -8,8 +8,18 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ nodejs yarn rustup maven gcc gh gdb manpages ];
-    # TODO Make a programs.yarn in nixpkgs to replace this:
+    home.packages = with pkgs; [
+      nodejs
+      yarn
+      rustup
+      maven
+      gcc
+      gh
+      gdb
+      manpages
+      platformio
+    ];
+    # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
   };
 }
