@@ -16,6 +16,7 @@ let
     texlive.combined.scheme-medium # org-mode latex preview
     gopls # Go LSP
     ccls # C/C++
+    clang # for clang-format. C(++) Formatting without the LSP
     python3Packages.black # Python formatter
     html-tidy # HTML/SVG/Web formatter
     #
