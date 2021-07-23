@@ -1,7 +1,9 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.services.matrix;
-
+let
+  cfg = config.cookie.services.matrix;
+  sources = import ../../nix/sources.nix;
+  pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
   options.cookie.services.matrix = {
     enable = mkEnableOption "Enables the Matrix service using Synapse";
@@ -62,6 +64,7 @@ in with lib; {
 
     services.matrix-synapse = {
       enable = true;
+      package = pkgs-master.matrix-synapse;
       server_name = cfg.host;
       public_baseurl = "https://${cfg.serviceHost}/";
       database_type = "sqlite3";
