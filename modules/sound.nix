@@ -71,7 +71,7 @@ in with lib; {
           "context.properties" = {
             "link.max-buffers" = 16;
             "log.level" = 2;
-            "default.clock.rate" = 96000;
+            "default.clock.rate" = 48000;
             "default.clock.quantum" = quantum;
             "default.clock.min-quantum" = quantum;
             "default.clock.max-quantum" = quantum;
