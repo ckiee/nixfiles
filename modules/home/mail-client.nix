@@ -11,35 +11,44 @@ in with lib; {
   config = mkIf cfg.enable {
     accounts.email = {
       maildirBasePath = "${maildir}";
-      accounts = {
-        ckiedev = rec {
-          flavor =
-            "plain"; # A better name for this option would be "quirks", it is set to plain because we are not doing anything odd.
-          address = "us@ckie.dev";
-          userName = address;
-          aliases = [ address ];
-          passwordCommand =
-            "${pkgs.coreutils}/bin/cat ~/Sync/.email-pw-ckiedev";
-          realName = "${name}";
-          primary = true;
+      accounts = let
+        base = {
           mbsync = {
             enable = true;
             create = "both";
             expunge = "both";
             patterns = [ "*" ];
           };
-          imap = {
-            host = "ckie.dev";
-            port = 993;
-            tls.enable = true;
-          };
           msmtp.enable = true;
-          smtp = {
-            host = "ckie.dev";
-            port = 587;
-            tls.useStartTls = true;
-          };
         };
+      in {
+        # Self hosted, online
+        ckiedev = mkMerge [
+          base
+          (rec {
+            flavor =
+              "plain"; # A better name for this option would be "quirks", it is set to plain because we are not doing anything odd.
+            address = "us@ckie.dev";
+            userName = address;
+            aliases = [ address ];
+            passwordCommand =
+              "${pkgs.coreutils}/bin/cat ~/Sync/.email-pw-ckiedev";
+            realName = "${name}";
+            primary = true;
+            smtp = {
+              host = "ckie.dev";
+              port = 587;
+              tls.useStartTls = true;
+            };
+            imap = {
+              host = "ckie.dev";
+              port = 993;
+              tls.enable = true;
+            };
+          })
+        ];
+        # IRL gmail
+        irlgmail = mkMerge [ base ((import ../../secrets/irlgmail.nix) pkgs) ];
       };
     };
 
@@ -53,7 +62,8 @@ in with lib; {
 
       Service = {
         Type = "oneshot";
-        ExecStart = "${config.cookie.doom-emacs.package}/bin/emacsclient --eval \"(mu4e-update-mail-and-index 'true)\"";
+        ExecStart = ''
+          ${config.cookie.doom-emacs.package}/bin/emacsclient --eval "(mu4e-update-mail-and-index 'true)"'';
       };
     };
 
