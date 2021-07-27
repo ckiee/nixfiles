@@ -1,5 +1,10 @@
-{ config, pkgs, ... }: {
-  imports = [ ./hardware.nix ../../modules/base.nix ../../modules/home.nix ];
+{ config, pkgs, lib, ... }:
+
+let
+  sources = import ../../nix/sources.nix;
+  octopkgs = import sources.nixpkgs-octoprint { };
+in {
+  imports = [ ./hardware.nix ../.. ];
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
@@ -7,10 +12,15 @@
 
   networking.hostName = "pookieix";
 
+  # OctoPrint is in python
+  # nixpkgs.overlays =
+  #   [ (self: super: { inherit (octopkgs) python python3 octoprint python3Packages pythonPackages; }) ];
+  nixpkgs.pkgs = lib.mkAfter octopkgs;
   services.octoprint = {
     enable = true;
     port = 5000;
   };
+
   networking.firewall.allowedTCPPorts =
     [ 5000 ]; # this is just weird iptables stuff
   users.users.octoprint.extraGroups = [ "dialout" ];
