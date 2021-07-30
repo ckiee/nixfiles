@@ -52,9 +52,15 @@ let
       '';
     };
   sources = import ../../nix/sources.nix;
-  doom-emacs = pkgs.callPackage sources.doom-emacs {
+  doom-emacs = let
+    overridenEmacs = pkgs.enableDebugging (pkgs.emacs.override {
+      withXwidgets = true;
+      withGTK3 = true;
+    });
+  in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
     extraPackages = epkgs: [ pkgs.mu ]; # for mu4e, the email machine
+    emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
         concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
@@ -70,7 +76,7 @@ in {
     package = mkOption {
       type = types.package;
       default = doom-emacs;
-      description = "The emacs package that is being used.";
+      description = "The emacs package that is being used";
       readOnly = true;
     };
   };
