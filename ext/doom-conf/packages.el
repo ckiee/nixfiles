@@ -7,6 +7,7 @@
  :recipe (:host github :repo "alphapapa/matrix-client.el"))
 (package! mu4e-alert) ; add notifications to modeline
 (package! mu4e-views)
+(package! visual-fill-column)
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
