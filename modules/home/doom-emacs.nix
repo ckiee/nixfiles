@@ -53,10 +53,10 @@ let
     };
   sources = import ../../nix/sources.nix;
   doom-emacs = let
-    overridenEmacs = pkgs.enableDebugging (pkgs.emacs.override {
+    overridenEmacs = pkgs.emacs.override {
       withXwidgets = true;
       withGTK3 = true;
-    });
+    };
   in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
     extraPackages = epkgs: [ pkgs.mu ]; # for mu4e, the email machine
