@@ -41,7 +41,7 @@ in {
     videoDrivers = [ "nvidia" ];
     screenSection = ''
       Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
-      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off, AllowGSYNCCompatible=On}"
     '';
   };
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
