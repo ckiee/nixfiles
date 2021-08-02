@@ -70,7 +70,6 @@
          (after-init . mu4e-alert-enable-notifications))
   :config (mu4e-alert-set-default-style 'libnotify))
 
-;(use-package! mu4e
-; :config (mu4e-update-interval 300))
-
+(setq-default fill-column 100) ; This strikes a nice balance between taking up a nice amount of the screen
+                               ; and still being readable
 ;;; config.el ends here
