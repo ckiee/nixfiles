@@ -18,6 +18,12 @@ in with lib; {
           "Magical PipeWire value to magically perform things faster";
         example = default;
       };
+      rate = mkOption rec {
+        type = types.int;
+        default = 48000;
+        description = "The sample rate";
+        example = default;
+      };
 
     };
   };
@@ -47,8 +53,8 @@ in with lib; {
             "default-fragment-size-msec" = "4";
 
             "default-sample-format" = "s32le";
-            "default-sample-rate" = "48000";
-            "alternate-sample-rate" = "48000";
+            "default-sample-rate" = toString rate;
+            "alternate-sample-rate" = toString rate;
             "default-sample-channels" = "2";
           };
         })
@@ -56,7 +62,7 @@ in with lib; {
       ];
     })
     ### PipeWire
-    (mkIf cfg.pipewire.enable (let quantum = cfg.pipewire.quantum;
+    (mkIf cfg.pipewire.enable (let inherit (cfg.pipewire) quantum rate;
     in {
       security.rtkit.enable = true;
       services.pipewire = {
@@ -71,12 +77,13 @@ in with lib; {
           "context.properties" = {
             "link.max-buffers" = 16;
             "log.level" = 2;
-            "default.clock.rate" = 48000;
+            "default.clock.rate" = rate;
             "default.clock.quantum" = quantum;
             "default.clock.min-quantum" = quantum;
             "default.clock.max-quantum" = quantum;
             "core.daemon" = true;
             "core.name" = "pipewire-0";
+            "mem.warn-mlock" = true;
           };
           "context.modules" = [
             {
@@ -147,44 +154,44 @@ in with lib; {
             {
               name = "libpipewire-module-protocol-pulse";
               args = {
-                "pulse.min.req" = "${toString quantum}/96000";
-                "pulse.default.req" = "${toString quantum}/96000";
-                "pulse.max.req" = "${toString quantum}/96000";
-                "pulse.min.quantum" = "${toString quantum}/96000";
-                "pulse.max.quantum" = "${toString quantum}/96000";
-                "pulse.min.frag" = "${toString quantum}/96000";
-                "pulse.default.frag" = "96000/96000";
-                "pulse.default.tlength" = "96000/96000";
+                "pulse.min.req" = "${toString quantum}/${toString rate}";
+                "pulse.default.req" = "${toString quantum}/${toString rate}";
+                "pulse.max.req" = "${toString quantum}/${toString rate}";
+                "pulse.min.quantum" = "${toString quantum}/${toString rate}";
+                "pulse.max.quantum" = "${toString quantum}/${toString rate}";
+                "pulse.min.frag" = "${toString quantum}/${toString rate}";
+                "pulse.default.frag" = "${toString rate}/${toString rate}";
+                "pulse.default.tlength" = "${toString rate}/${toString rate}";
                 "server.address" = [ "unix:native" "unix:/tmp/pulse-socket" ];
               };
             }
           ];
 
           "stream.properties" = {
-            node.latency = "${toString quantum}/96000";
+            node.latency = "${toString quantum}/${toString rate}";
             resample.quality = 1;
           };
         };
 
         config.client = {
           "filter.properties" = {
-            "node.latency" = "${toString quantum}/96000";
+            "node.latency" = "${toString quantum}/${toString rate}";
           };
 
           "stream.properties" = {
-            "node.latency" = "${toString quantum}/96000";
+            "node.latency" = "${toString quantum}/${toString rate}";
             "resample.quality" = 1;
           };
         };
 
         config.client-rt = {
           "filter.properties" = {
-            "node.latency" = "${toString quantum}/96000";
+            "node.latency" = "${toString quantum}/${toString rate}";
             "resample.quality" = 1;
           };
 
           "stream.properties" = {
-            "node.latency" = "${toString quantum}/96000";
+            "node.latency" = "${toString quantum}/${toString rate}";
           };
         };
 
@@ -202,25 +209,6 @@ in with lib; {
                 };
               };
             }
-            # {
-            #   matches = [{
-            #     node.name =
-            #       "alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K5_Pro-00.*";
-            #   }];
-            #   actions = {
-            #     update-props = {
-            #       node.nick = "FiiO K5 Pro";
-            #       node.pause-on-idle = false;
-            #       resample.quality = 1;
-            #       channelmix.normalize = false;
-            #       audio.channels = 2;
-            #       audio.format = "S32LE";
-            #       audio.rate = 96000;
-            #       audio.position = "FL,FR";
-            #       api.alsa.period-size = ${toString quantum};
-            #     };
-            #   };
-            # }
               ];
           };
           config.media-session = {
