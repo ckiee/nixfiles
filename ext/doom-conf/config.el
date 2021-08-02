@@ -61,7 +61,9 @@
   (let ((buf-count (length (buffer-list))))
     (if (or (interactive-p) display-anyway)
         (message "%d buffers in this Emacs" buf-count)) buf-count))
-(doom/set-frame-opacity 90)
+
+; We're run Emacs as a daemon so this will make sure all the frames' opacities will be set correctly.
+(add-to-list 'default-frame-alist '(alpha . 90))
 
 (after! doom-modeline (setq doom-modeline-mu4e t))
 (use-package! mu4e-alert
