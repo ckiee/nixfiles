@@ -7,8 +7,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "ckiee";
     repo = "ckiesite";
-    rev = "bea8d0f979730a4fcb502d8031b40594c84cfcaf";
-    sha256 = "sha256-RTDGb8FY34zxsYDfGwJF0MCmNCnUnlFeslShmcLrmko=";
+    rev = "bb695a2b197d81a6d9045e114181ba535e00e2fb";
+    sha256 = "sha256-S/SV5d/M5PyJ/zsWT5BjlypFF1aulPqnG6+cyqj7F2U=";
   };
 
   phases = "installPhase";
