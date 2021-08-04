@@ -14,7 +14,7 @@
     ./grafana.nix
     ./coredns.nix
     ./znc.nix
-    ./matrix.nix
+    ./matrix
     ./matterbridge.nix
     ./mailserver
     # Home baked
