@@ -1,10 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.cookie.services.matrix;
-  sources = import ../../nix/sources.nix;
+  sources = import ../../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
+  imports = [ ./discord.nix ];
+
   options.cookie.services.matrix = {
     enable = mkEnableOption "Enables the Matrix service using Synapse";
     host = mkOption {
@@ -61,15 +63,21 @@ in with lib; {
       };
     };
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
+    cookie.services.postgres = {
+      enable = true;
+      combs = [ "synapse" ];
+    };
 
     services.matrix-synapse = {
       enable = true;
       package = pkgs-master.matrix-synapse;
       server_name = cfg.host;
       public_baseurl = "https://${cfg.serviceHost}/";
-      database_type = "sqlite3";
+      database_type = "psycopg2";
+      database_name = "synapse";
+      database_user = "synapse";
       registration_shared_secret =
-        fileContents ../../secrets/matrix-synapse-registration;
+        fileContents ../../../secrets/matrix-synapse-registration;
       listeners = [{
         port = 8008;
         bind_address = "::1";
