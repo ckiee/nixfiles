@@ -3,35 +3,47 @@
 with lib;
 let
   cfg = config.cookie.doom-emacs;
-  extraBins = with pkgs; [
-    ripgrep # for +default/search-project
-    jq # JSON
-    fd # ...like find!
-    jdk11 # Java
-    rust-analyzer-unwrapped # Rust
-    nixfmt # Nix
-    nixpkgs-fmt # Nixpkgs
-    editorconfig-core-c # editorconfig
-    omnisharp-roslyn # C#
-    texlive.combined.scheme-medium # org-mode latex preview
-    gopls # Go LSP
-    ccls # C/C++
-    clang # for clang-format. C(++) Formatting without the LSP
-    python3Packages.black # Python formatter
-    html-tidy # HTML/SVG/Web formatter
-    #
-    # shell scripts
-    shfmt
-    shellcheck
-    #
-    # spellcheck
-    ispell
-    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-    #
-    # e-mail
-    mu
-    isync
-  ];
+  # TODO: Make a nixpkgs PR when 1.6.2 hits, currently nixpkgs has 1.6.0
+  # and I feel bad about making a PR just to bump for a minor semver
+  # increment.
+  mu = (pkgs.mu.overrideAttrs (_: rec {
+    version = "1.6.1";
+    src = pkgs.fetchFromGitHub {
+      owner = "djcb";
+      repo = "mu";
+      rev = version;
+      sha256 = "sha256-7mSP1F2RxW0CEDRWbMzDRfoehrr24b11sCLM2gQFjuI=";
+    };
+  }));
+  extraBins = with pkgs;
+    [
+      ripgrep # for +default/search-project
+      jq # JSON
+      fd # ...like find!
+      jdk11 # Java
+      rust-analyzer-unwrapped # Rust
+      nixfmt # Nix
+      nixpkgs-fmt # Nixpkgs
+      editorconfig-core-c # editorconfig
+      omnisharp-roslyn # C#
+      texlive.combined.scheme-medium # org-mode latex preview
+      gopls # Go LSP
+      ccls # C/C++
+      clang # for clang-format. C(++) Formatting without the LSP
+      python3Packages.black # Python formatter
+      html-tidy # HTML/SVG/Web formatter
+      #
+      # shell scripts
+      shfmt
+      shellcheck
+      #
+      # spellcheck
+      ispell
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      #
+      # e-mail
+      isync
+    ] ++ singleton mu; # ensure we get the overriden version
   extra-desktop =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
       name = "emacsclientexs.desktop";
@@ -59,7 +71,7 @@ let
     };
   in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
-    extraPackages = epkgs: [ pkgs.mu ]; # for mu4e, the email machine
+    extraPackages = epkgs: [ mu ]; # for mu4e, the email machine
     emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
