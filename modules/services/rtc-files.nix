@@ -25,14 +25,10 @@ in with lib; {
   config = mkIf cfg.enable {
     cookie.services.nginx.enable = true;
 
-    system.activationScripts = {
-      rtc-files-mkdir.text = ''
-        mkdir -p ${cfg.folder}/ckiedev || true
-
-        chmod -R 750 ${cfg.folder}
-        chmod -R g+s ${cfg.folder}
-        chown -R ckie:nginx ${cfg.folder}
-      '';
+    cookie.bindfs.rtc-files = {
+      source = cfg.folder;
+      overlay = true;
+      args = "-M ckie,nginx --chmod-ignore -p u=rwD";
     };
 
     services.nginx = {
