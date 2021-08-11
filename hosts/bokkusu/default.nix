@@ -1,5 +1,7 @@
 { config, pkgs, ... }: {
   imports = [ ./hardware.nix ../.. ];
+  # We have fast network:
+  deployment.substituteOnDestination = true;
 
   cookie = {
     services = {
