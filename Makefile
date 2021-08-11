@@ -8,7 +8,7 @@ clean: result *.qcow2
 deploy:
 	morph deploy morph.nix switch --passwd
 debug:
-	morph deploy morph.nix switch --passwd --show-trace --on=$(HOST)*
+	morph deploy morph.nix switch --passwd --on=$(HOST)*
 virt:
 	NIXOS_CONFIG=$(NIXFILES_PATH)/hosts/virt/default.nix nixos-rebuild build-vm
 	QEMU_NET_OPTS='hostfwd=tcp::5555-:22' $(NIXFILES_PATH)/result/bin/run-virt-vm &
