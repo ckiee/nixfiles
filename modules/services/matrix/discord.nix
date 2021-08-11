@@ -31,7 +31,7 @@ in {
       source = "/var/lib/matrix-appservice-discord";
       dest = "/var/lib/matrix-synapse/discord";
       overlay = false;
-      args = "-u matrix-synapse -g matrix-synapse -p 0400,u+X";
+      args = "-u matrix-synapse -g matrix-synapse -p 0400,u+D";
       wantedBy = [ "matrix-synapse.service" ];
     };
   };
