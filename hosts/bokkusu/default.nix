@@ -12,6 +12,7 @@
       matterbridge.enable = true;
       rtc-files.enable = true;
       mailserver.enable = true;
+      among-sus.enable = true;
 
       prometheus.enable = true;
       grafana = {
