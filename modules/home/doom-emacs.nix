@@ -75,13 +75,13 @@ let
       mu
       (epkgs.trivialBuild {
         pname = "mcf-mode";
-        version = "0.2.4";
+        version = "git";
 
         src = pkgs.fetchFromGitHub {
           owner = "rasensuihei";
           repo = "mcf";
-          rev = "0.2.4";
-          sha256 = "sha256-qc3nCk7qauOBfoghkSy+zD/YpC8I+dg/x6PZ7mMUZ24=";
+          rev = "4e44b6e24d9fe7a4ce7249df79f4473c0b473232";
+          sha256 = "sha256-2pwP3/rnADDfkJYOal2bp9vVYoXdvC5V0ZCeHYDsExk=";
         };
 
         meta = {
