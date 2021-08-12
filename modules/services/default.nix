@@ -17,6 +17,7 @@
     ./matrix
     ./matterbridge.nix
     ./mailserver
+    ./among-sus.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
