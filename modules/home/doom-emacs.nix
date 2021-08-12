@@ -71,7 +71,26 @@ let
     };
   in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../../ext/doom-conf;
-    extraPackages = epkgs: [ mu ]; # for mu4e, the email machine
+    extraPackages = epkgs: [
+      mu
+      (epkgs.trivialBuild {
+        pname = "mcf-mode";
+        version = "0.2.4";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "rasensuihei";
+          repo = "mcf";
+          rev = "0.2.4";
+          sha256 = "sha256-qc3nCk7qauOBfoghkSy+zD/YpC8I+dg/x6PZ7mMUZ24=";
+        };
+
+        meta = {
+          description = "Emacs major mode for editing Minecraft mcfunction";
+          license = licenses.gpl3Plus;
+          homepage = "https://github.com/rasensuihei/mcf";
+        };
+      })
+    ]; # for mu4e, the email machine
     emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
