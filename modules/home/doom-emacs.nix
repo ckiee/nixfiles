@@ -90,7 +90,7 @@ let
           homepage = "https://github.com/rasensuihei/mcf";
         };
       })
-    ]; # for mu4e, the email machine
+    ];
     emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
