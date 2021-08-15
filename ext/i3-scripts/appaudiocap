@@ -1,0 +1,6 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p pulseaudio
+pactl load-module module-null-sink sink_name=cookie_cap
+pactl load-module module-loopback latency_msec=60 adjust_time=6 source=alsa_input.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.pro-input-0 sink=cookie_cap
+pactl load-module module-loopback latency_msec=60 adjust_time=6 source=alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.pro-output-0.monitor sink=cookie_cap
+pactl load-module module-combine-sink slaves=cookie_cap,alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.pro-output-0
