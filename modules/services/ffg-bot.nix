@@ -18,7 +18,7 @@ in with lib; {
       home = cfg.folder;
       description = "Falling From Grace discord bot";
       secrets.env = {
-        source = ../../secrets/ffg-bot.env;
+        source = "./secrets/ffg-bot.env";
         dest = "${cfg.folder}/.env";
         permissions = "0400";
       };

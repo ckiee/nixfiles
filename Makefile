@@ -6,9 +6,9 @@ NIXFILES_PATH=$(shell pwd)
 clean: result *.qcow2
 	rm result *.qcow2
 deploy:
-	morph deploy morph.nix switch --passwd
+	COOKIE_TOPLEVEL=$(NIXFILES_PATH) morph deploy morph.nix switch --passwd
 debug:
-	morph deploy morph.nix switch --passwd --on=$(HOST)*
+	COOKIE_TOPLEVEL=$(NIXFILES_PATH) morph deploy morph.nix switch --passwd --on=$(HOST)*
 virt:
 	NIXOS_CONFIG=$(NIXFILES_PATH)/hosts/virt/default.nix nixos-rebuild build-vm
 	QEMU_NET_OPTS='hostfwd=tcp::5555-:22' $(NIXFILES_PATH)/result/bin/run-virt-vm &
@@ -18,4 +18,4 @@ pushsecrets: secrets/*
 	rsync --delete --recursive secrets/* bokkusu:$(NIXFILES_PATH)
 
 emails:
-	nix eval --impure --expr 'let pkgs = import <nixpkgs> {}; util = (pkgs.callPackage ./modules/services/mailserver/util.nix {}); in (builtins.trace ("e-mails: \n" + (builtins.concatStringsSep "\n" (util.process (pkgs.lib.fileContents ./secrets/email-salt) util.default-aliases))) "")' 1>/dev/null
+	nix eval --impure --expr 'let pkgs = (import (import ./nix/sources.nix).nixpkgs) { }; util = (pkgs.callPackage ./modules/services/mailserver/util.nix {}); in (builtins.trace ("e-mails: \n" + (builtins.concatStringsSep "\n" (util.process (pkgs.lib.fileContents ./secrets/email-salt) util.default-aliases))) "")' 1>/dev/null

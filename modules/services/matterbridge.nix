@@ -10,7 +10,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     cookie.secrets.matterbridge = {
-      source = ../../secrets/matterbridge.toml;
+      source = "./secrets/matterbridge.toml";
       dest = "/var/run/matterbridge.toml";
       owner = "matterbridge";
       group = "matterbridge";

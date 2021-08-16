@@ -40,7 +40,7 @@ in {
       }) ((v.extras or [ ]) ++ (singleton i)))) cfg.hosts));
 
     cookie.secrets.acme = {
-      source = ../secrets/acme.env;
+      source = "./secrets/acme.env";
       dest = "/var/run/acme.env";
       owner = "acme";
       group = "acme";

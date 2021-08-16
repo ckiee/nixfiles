@@ -19,7 +19,7 @@ with builtins; {
 
   config = mkIf cfg.enable {
     cookie.secrets.mailserver-pw-hash = {
-      source = ../../../secrets/mailserver-pw-hash;
+      source = "./secrets/mailserver-pw-hash";
       dest = "/run/keys/mailserver-pw-hash";
       owner = "root";
       group = "root";

@@ -6,7 +6,7 @@ let cfg = config.cookie.services.matrix;
 in {
   config = mkIf cfg.enable {
     cookie.secrets.matrix-appservice-discord = {
-      source = ../../../secrets/matrix-appservice-discord.env;
+      source = "./secrets/matrix-appservice-discord.env";
       dest = "/var/run/matrix-appservice-discord.env";
       owner = "root";
       group = "root";
