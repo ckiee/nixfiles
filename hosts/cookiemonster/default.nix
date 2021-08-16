@@ -17,9 +17,7 @@ in {
     wine.enable = true;
     smartd.enable = true;
     syncthing.enable = true;
-    services = {
-      coredns.enable = true;
-    };
+    steam.enable = true;
   };
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
@@ -51,7 +49,6 @@ in {
     obs-studio
     lutris
     sidequest
-    steam-run-native
     prusa-slicer
     transmission-gtk
     virt-manager
@@ -66,8 +63,6 @@ in {
 
   programs.adb.enable = true;
   users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
-
-  programs.steam.enable = true;
 
   virtualisation = {
     libvirtd.enable = true;
