@@ -18,7 +18,7 @@ in with lib; {
       home = cfg.folder;
       description = "OwOifying discord bot";
       secrets.env = {
-        source = ../../secrets/owo-bot.env;
+        source = "./secrets/owo-bot.env";
         dest = "${cfg.folder}/.env";
         permissions = "0400";
       };

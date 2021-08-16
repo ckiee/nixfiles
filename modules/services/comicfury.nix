@@ -17,7 +17,7 @@ in with lib; {
     home = cfg.folder;
     description = "ComicFury discord webhook";
     secrets.env = {
-      source = ../../secrets/comicfury.env;
+      source = "./secrets/comicfury.env";
       dest = "${cfg.folder}/.env";
       permissions = "0400";
     };

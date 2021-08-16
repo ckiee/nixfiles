@@ -3,13 +3,20 @@
 with lib;
 
 let
+  isRagerBuild = (builtins.getEnv "COOKIE_RAGER_BUILD" != "");
   cfg = config.cookie.secrets;
+  filenameFromPath = path: last (splitString "/" path);
+  # This is defined in the Makefile, so it's not perfect:
+  nixfilesPath =
+    warnIf ((builtins.getEnv "COOKIE_TOPLEVEL" == "") && !isRagerBuild)
+    "COOKIE_TOPLEVEL is empty. You have to be inside the shell."
+    (builtins.getEnv "COOKIE_TOPLEVEL");
 
   secret = types.submodule {
     options = {
       source = mkOption {
-        type = types.path;
-        description = "local secret path";
+        type = types.str;
+        description = "local secret path relative to the repo";
       };
 
       dest = mkOption {
@@ -45,19 +52,6 @@ let
 
   metadata = config.cookie.metadata.raw;
 
-  mkSecretOnDisk = name:
-    { source, ... }:
-    pkgs.stdenv.mkDerivation {
-      name = "${name}-secret";
-      phases = "installPhase";
-      buildInputs = [ pkgs.rage ];
-      installPhase =
-        let key = metadata.hosts."${config.networking.hostName}".ssh_pubkey;
-        in ''
-          rage -a -r '${key}' -o "$out" '${source}'
-        '';
-    };
-
   mkService = name:
     { source, dest, owner, group, permissions, wantedBy, ... }: {
       description = "decrypt secret for ${name}";
@@ -69,7 +63,9 @@ let
       preStart = with pkgs; ''
         rm -rf ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
-          mkSecretOnDisk name { inherit source; }
+          /. + "${nixfilesPath}/encrypted/${config.networking.hostName}/${
+            filenameFromPath source
+          }"
         }'
 
         chown '${owner}':'${group}' '${dest}'
@@ -84,10 +80,29 @@ in {
     default = { };
   };
 
-  config.systemd.services = let
-    units = mapAttrs' (name: info: {
-      name = "${name}-key";
-      value = (mkService name info);
-    }) cfg;
-  in units;
+  config = {
+    systemd.services = let
+      units = mapAttrs' (name: info: {
+        name = "${name}-key";
+        value = (mkService name info);
+      }) cfg;
+    in mkIf (!isRagerBuild) units;
+
+    environment.extraSetup = let
+      host = config.networking.hostName;
+      pubkey = metadata.hosts.${host}.ssh_pubkey;
+      cookie-rager-encrypt = pkgs.writeScript "cookie-rager-encrypt" ''
+        set -e
+        COOKIE_TOPLEVEL="$(${pkgs.git}/bin/git rev-parse --show-toplevel)"
+        cd "$COOKIE_TOPLEVEL"
+        rm -rf encrypted/'${host}' || true
+        mkdir -p encrypted/'${host}'
+        ${concatStringsSep "\n" (mapAttrsToList (_: secret:
+          "${pkgs.rage}/bin/rage -a -r '${pubkey}' -o 'encrypted/${host}/${
+            filenameFromPath secret.source
+          }' '${secret.source}'") cfg)}
+      '';
+    in mkIf isRagerBuild
+    "ln -s ${cookie-rager-encrypt} $out/cookie-rager-encrypt";
+  };
 }

@@ -68,13 +68,11 @@ let
     in
       if builtins.hasAttr "nixpkgs" sources
       then sourcesNixpkgs
-      else if hasNixpkgsPath && ! hasThisAsNixpkgsPath then
-        import <nixpkgs> {}
       else
         abort
           ''
-            Please specify either <nixpkgs> (through -I or NIX_PATH=nixpkgs=...) or
-            add a package called "nixpkgs" to your sources.json.
+            Please add a package called "nixpkgs" to your sources.json.
+            This modified version of niv does not support using NIX_PATH.
           '';
 
   # The actual fetching function.

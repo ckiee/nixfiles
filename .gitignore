@@ -7,3 +7,4 @@ tmp/
 *.qcow2
 result
 secrets
+encrypted
