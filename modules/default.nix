@@ -31,5 +31,6 @@
     ./ipban.nix
     ./metadata.nix
     ./bindfs.nix
+    ./steam.nix
   ];
 }
