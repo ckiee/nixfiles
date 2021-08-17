@@ -1,0 +1,9 @@
+secrets
+result
+*.qcow2
+.DS_Store
+.idea
+*.log
+tmp/
+.ccls-cache
+.direnv
