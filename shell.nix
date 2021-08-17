@@ -55,7 +55,7 @@ let
               do_encrypt=1
             fi
             shift
-            $@
+            $@ || true
             if [ "$do_encrypt" != "0" ]; then
               $self encrypt
             fi
