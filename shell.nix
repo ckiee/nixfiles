@@ -25,15 +25,18 @@ let
             ;;
           decrypt)
             tmp=$(mktemp -d)
-            find "$(pwd)/encrypted" -type f -exec cp -st "$tmp" {} +
+            find "$(pwd)/encrypted" -type f -exec cp -nst "$tmp" {} + || true
             if [ -d secrets ]
             then
               >&2 echo "not continuing with existing secrets directory"
+              rm -rf "$tmp"
               exit 1
             fi
             mkdir secrets
             for f in "$tmp"/*
-              do rage -di ~/.ssh/id_rsa -o secrets/"$(basename "$f")" "$f"
+                do out=secrets/"$(basename "$f")"
+                rage -di ~/.ssh/id_rsa -o "$out" "$f"
+                chmod 600 "$out"
             done
             rm -rf "$tmp"
             ;;
