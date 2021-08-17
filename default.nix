@@ -17,6 +17,7 @@
     extraGroups = [ "wheel" "networkmanager" ];
     openssh.authorizedKeys.keys = [ (builtins.readFile ./ext/id_rsa.pub) ];
     initialPassword = "cookie";
+    home = "/home/ckie"; # The alias makes it think my username is "user" here.
   };
 
   # Nasty obscure EBUSY errors will come without this
