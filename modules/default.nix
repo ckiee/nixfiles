@@ -32,5 +32,6 @@
     ./metadata.nix
     ./bindfs.nix
     ./steam.nix
+    ./user-alias.nix
   ];
 }

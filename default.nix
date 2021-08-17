@@ -12,7 +12,7 @@
 
   networking.networkmanager.enable = true;
 
-  users.users.ckie = {
+  cookie.user = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     openssh.authorizedKeys.keys = [ (builtins.readFile ./ext/id_rsa.pub) ];
