@@ -1,4 +1,6 @@
-{ ... }:
+{ lib, ... }:
+
+with lib;
 
 let
   sources = import ../../nix/sources.nix;
@@ -25,8 +27,6 @@ in {
       ./weechat.nix
       ./qsynth.nix
       ./picom.nix
-      ./doom-emacs.nix
-      ./mail-client.nix
     ];
   };
 }

@@ -63,14 +63,14 @@ let
         Keywords=Text;Editor;
       '';
     };
-  sources = import ../../nix/sources.nix;
+  sources = import ../nix/sources.nix;
   doom-emacs = let
     overridenEmacs = pkgs.emacs.override {
       withXwidgets = true;
       withGTK3 = true;
     };
   in pkgs.callPackage sources.doom-emacs {
-    doomPrivateDir = ../../ext/doom-conf;
+    doomPrivateDir = ../ext/doom-conf;
     extraPackages = epkgs: [
       mu
       (epkgs.trivialBuild {
@@ -113,18 +113,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Prepare the service.
-    home.file.".emacs.d/init.el".text = ''
-      (load "default.el")
-    '';
-    services.emacs = {
-      enable = true;
-      package = doom-emacs;
-      client.enable = true;
-    };
+    home-manager.users.ckie = { pkgs, ... }: {
+      # Prepare the service.
+      home.file.".emacs.d/init.el".text = ''
+        (load "default.el")
+      '';
+      services.emacs = {
+        enable = true;
+        package = doom-emacs;
+        client.enable = true;
+      };
 
-    # Add another .desktop entry
-    home.packages = [ doom-emacs extra-desktop ];
+      # Add another .desktop entry
+      home.packages = [ doom-emacs extra-desktop ];
+    };
     # Give mu4e what it needs
     cookie.mail-client.enable = true;
   };

@@ -31,7 +31,6 @@ in with lib; {
         };
         gtk.enable = true;
         dunst.enable = true;
-        doom-emacs.enable = true;
         keyboard.enable = true;
         redshift.enable = true;
         st.enable = true;
@@ -58,6 +57,7 @@ in with lib; {
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;
+      doom-emacs.enable = true;
     };
   };
 }
