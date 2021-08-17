@@ -25,6 +25,10 @@ with builtins; {
       group = "root";
       permissions = "0400";
     };
+    cookie.secrets.email-salt = {
+      source = "./secrets/email-salt";
+      runtime = false;
+    };
 
     mailserver = {
       enable = true;

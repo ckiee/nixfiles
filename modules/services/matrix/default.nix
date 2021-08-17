@@ -68,6 +68,11 @@ in with lib; {
       combs = [ "synapse" ];
     };
 
+    cookie.secrets.matrix-synapse-registration = {
+      source = "./secrets/matrix-synapse-registration";
+      runtime = false;
+    };
+
     services.matrix-synapse = {
       enable = true;
       package = pkgs-master.matrix-synapse;

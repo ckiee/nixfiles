@@ -4,6 +4,7 @@ with lib;
 
 let
   isRagerBuild = (builtins.getEnv "COOKIE_RAGER_BUILD" != "");
+  userPubkey = fileContents ../ext/id_rsa.pub;
   cfg = config.cookie.secrets;
   filenameFromPath = path: last (splitString "/" path);
   # This is defined in the Makefile, so it's not perfect:
@@ -12,7 +13,7 @@ let
     "COOKIE_TOPLEVEL is empty. You have to be inside the shell."
     (builtins.getEnv "COOKIE_TOPLEVEL");
 
-  secret = types.submodule {
+  secret = types.submodule ({config,...}: {
     options = {
       source = mkOption {
         type = types.str;
@@ -22,33 +23,43 @@ let
       dest = mkOption {
         type = types.str;
         description = "where to write the decrypted secret to";
+        default = "/run/keys/${config._module.args.name}";
       };
 
       owner = mkOption {
-        default = "root";
         type = types.str;
         description = "who should own the secret";
+        default = "root";
       };
 
       group = mkOption {
-        default = "root";
         type = types.str;
         description = "what group should own the secret";
+        default = "root";
       };
 
       permissions = mkOption {
-        example = "0400";
         type = types.str;
-        description = "Permissions expressed as octal.";
+        description = "permissions expressed as octal";
+        default = "0000"; # lock it down if the user is being silly
+        example = "0400";
       };
 
       wantedBy = mkOption {
-        type = types.nullOr (types.str);
+        type = types.nullOr types.str;
         description = "a systemd object that depends on this secret";
         default = null;
       };
+
+      runtime = mkOption {
+        # The encryption mechanism will not work on some unregistered files
+        # that can't be encrypted so we register them anyway
+        type = types.bool;
+        description = "whether this secret should be available at runtime";
+        default = true;
+      };
     };
-  };
+  });
 
   metadata = config.cookie.metadata.raw;
 
@@ -60,6 +71,8 @@ let
 
       serviceConfig.Type = "oneshot";
 
+      # This needs to be in preStart so if anyone depends on us
+      # we'll actually be done by the time systemd thinks we're "active".
       preStart = with pkgs; ''
         rm -rf ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
@@ -85,20 +98,19 @@ in {
       units = mapAttrs' (name: info: {
         name = "${name}-key";
         value = (mkService name info);
-      }) cfg;
+      }) (filterAttrs (_: secret: secret.runtime) cfg);
     in mkIf (!isRagerBuild) units;
 
     environment.extraSetup = let
       host = config.networking.hostName;
       pubkey = metadata.hosts.${host}.ssh_pubkey;
       cookie-rager-encrypt = pkgs.writeScript "cookie-rager-encrypt" ''
+        # Some environment (PATH, pwd) for this is set in our wrapper script, rager
         set -e
-        COOKIE_TOPLEVEL="$(${pkgs.git}/bin/git rev-parse --show-toplevel)"
-        cd "$COOKIE_TOPLEVEL"
         rm -rf encrypted/'${host}' || true
         mkdir -p encrypted/'${host}'
         ${concatStringsSep "\n" (mapAttrsToList (_: secret:
-          "${pkgs.rage}/bin/rage -a -r '${pubkey}' -o 'encrypted/${host}/${
+          "rage -a -r '${pubkey}' -r '${userPubkey}' -o 'encrypted/${host}/${
             filenameFromPath secret.source
           }' '${secret.source}'") cfg)}
       '';
