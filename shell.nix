@@ -9,19 +9,26 @@ let
     nix-build "$COOKIE_TOPLEVEL/pkgs" -A "$@"
   '';
   rager = pkgs.writeScriptBin "rager" ''
-    export PATH=$PATH:${lib.makeBinPath (with pkgs; [ rage mo ])}
+        export PATH=$PATH:${lib.makeBinPath (with pkgs; [ rage mo ])}
         set -e
         export COOKIE_RAGER_BUILD=1
         export COOKIE_TOPLEVEL="$(${pkgs.git}/bin/git rev-parse --show-toplevel)"
         cd "$COOKIE_TOPLEVEL"
         function show_help {
-          >&2 echo "Usage: rager {encrypt,decrypt}"
+          >&2 echo "Usage: rager {encrypt,decrypt,wrap}"
         }
         case "$1" in
           encrypt)
+            if [ ! -d secrets ]
+            then
+              >&2 echo "no unencrypted secrets to encrypt"
+              exit 1
+            fi
+
             for machine in "$(mo build morph.nix)/"*
               do "$machine"/sw/cookie-rager-encrypt
             done
+            rm -rf secrets
             ;;
           decrypt)
             tmp=$(mktemp -d)
@@ -39,6 +46,19 @@ let
                 chmod 600 "$out"
             done
             rm -rf "$tmp"
+            ;;
+          wrap)
+            self="$0"
+            do_encrypt=0
+            if [ ! -d secrets ]; then
+              $self decrypt
+              do_encrypt=1
+            fi
+            shift
+            $@
+            if [ "$do_encrypt" != "0" ]; then
+              $self encrypt
+            fi
             ;;
           *)
             show_help
