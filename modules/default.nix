@@ -32,6 +32,8 @@
     ./metadata.nix
     ./bindfs.nix
     ./steam.nix
+    ./mail-client.nix
+    ./doom-emacs.nix
     ./user-alias.nix
   ];
 }
