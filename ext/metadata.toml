@@ -2,3 +2,5 @@
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf"
 [hosts.bokkusu]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A"
+[hosts.thonkcookie]
+ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAC83UXW5rtEPlEqDT5c/W0DTFFwsVah6ZlCg1FO9kr"
