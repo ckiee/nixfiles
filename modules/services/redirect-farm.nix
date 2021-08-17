@@ -16,6 +16,11 @@ in with lib; {
   config = mkIf cfg.enable {
     cookie.services.nginx.enable = true;
 
+    cookie.secrets.redirect-farm = {
+      source = "./secrets/redirect-farm";
+      runtime = false;
+    };
+
     services.nginx = {
       virtualHosts."${cfg.host}" = {
         extraConfig = ''
