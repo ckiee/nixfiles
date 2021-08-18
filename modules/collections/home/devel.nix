@@ -13,8 +13,8 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nodejs_latest
-      (yarn.override { nodejs = nodejs_latest; })
+      ms.nodejs_latest
+      (yarn.override { nodejs = ms.nodejs_latest; })
       rustup
       maven
       gcc
