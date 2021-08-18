@@ -7,6 +7,7 @@
     services = {
       owo-bot.enable = true;
       ffg-bot.enable = true;
+      sysyelper.enable = true;
       comicfury.enable = true;
       minecraft.enable = true;
       matterbridge.enable = true;
