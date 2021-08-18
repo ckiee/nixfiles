@@ -5,6 +5,7 @@ in {
   comicfury-discord-webhook = import sources.comicfury-discord-webhook;
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
+  sysyelper = import sources.sysyelper;
   ronthecookieme = pkgs.callPackage ./ronthecookieme { };
   ckiesite = pkgs.callPackage ./ckiesite { };
 }

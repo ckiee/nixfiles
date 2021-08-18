@@ -113,10 +113,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2d18ed2ec5f8cafcbaad12fbaf2acf791afdb9a0",
-        "sha256": "0c9zhg0rri1z9m771nam3whv2cqlhgvmpd220wkak3j8hzx7gmir",
+        "rev": "3788c68def67ca7949e0864c27638d484389363d",
+        "sha256": "1i65q4rxrr63sy5mnkbyq3li185j3fl456lwxv3c9cw1c61b8g82",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/2d18ed2ec5f8cafcbaad12fbaf2acf791afdb9a0.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/3788c68def67ca7949e0864c27638d484389363d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "owo-bot": {
@@ -129,6 +129,18 @@
         "sha256": "1kph0bbzrl0jj0k9h91f92c9a9qjqlvknqs8kcc62z56bf10n24f",
         "type": "tarball",
         "url": "https://github.com/ckiee/owo-bot/archive/802ac5d14f6ce834c50c54d987eb71530eacbb2c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sysyelper": {
+        "branch": "main",
+        "description": "A discord bot to automatically suggest PluralKit switches",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "sysyelper",
+        "rev": "b7e71b2fa0aedcc56b9291b239f16305f8e02a9c",
+        "sha256": "1f6dbynlapmxv06wbv3rvw0rlzxyy4qmcc08zx5cqcgjgbzfv3x2",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/sysyelper/archive/b7e71b2fa0aedcc56b9291b239f16305f8e02a9c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
