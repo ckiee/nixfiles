@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.collections.devel;
+let
+  cfg = config.cookie.collections.devel;
 
   sources = import ../../../nix/sources.nix;
   ms = import sources.nixpkgs-master { };
@@ -12,8 +13,8 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nodejs
-      yarn
+      nodejs_latest
+      (yarn.override { nodejs = nodejs_latest; })
       rustup
       maven
       gcc
