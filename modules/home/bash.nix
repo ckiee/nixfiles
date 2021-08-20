@@ -17,7 +17,6 @@ in with lib; {
         nsp = "nix-shell -p";
         ns = "nix search nixpkgs";
         e = "emacsclient -n";
-        cl = "clear"; # I am too used to WeeChat
         ytm =
           "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
         rgbc = "printf '\xff\xfb%c%c%c' $(${pkgs.gnome.zenity}/bin/zenity --color-selection | cut -d'(' -f2 | cut -d')' -f1 | tr ',' ' ') | ${pkgs.picocom}/bin/picocom -qrb 9600 /dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0";
