@@ -8,11 +8,7 @@ in with lib; {
   options.cookie.services.coredns = {
     enable = mkEnableOption "Enables CoreDNS service";
     addServer = mkEnableOption "Add this server to the nameserver list";
-    addr = mkOption {
-      type = types.str;
-      default = "127.0.0.1";
-      example = "10.77.2.8";
-    };
+    openFirewall = mkEnableOption "Open the listening port in the firewall";
     prometheus = {
       enable = mkEnableOption "Add prometheus monitoring";
       port = mkOption {
@@ -28,30 +24,27 @@ in with lib; {
 
       config = let
         prom = if cfg.prometheus.enable then
-          "prometheus ${cfg.addr}:${toString cfg.prometheus.port}"
+          "prometheus FIXME:${toString cfg.prometheus.port}"
         else
           "";
       in ''
         . {
-          bind ${cfg.addr}
           ${prom}
           hosts ${hosts} {
             fallthrough
           }
           # Cloudflare and Google
           forward . 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
-          cache
+          cache 120 # two minutes
         }
 
         atori {
-           bind ${cfg.addr}
            ${prom}
            file ${../../ext/atori.zone}
         }
 
         # Resolve everything under the root localhost TLD to 127.0.0.1
         localhost {
-          bind ${cfg.addr}
           ${prom}
           template IN A  {
               answer "{{ .Name }} 0 IN A 127.0.0.1"
@@ -60,6 +53,9 @@ in with lib; {
       '';
     };
 
-    networking = mkIf cfg.addServer { nameservers = [ cfg.addr ]; };
+    networking = {
+      nameservers = mkIf cfg.addServer [ cfg.addr ];
+      firewall.allowedUDPPorts = mkIf cfg.openFirewall [ 53 ];
+    };
   };
 }
