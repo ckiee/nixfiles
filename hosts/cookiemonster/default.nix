@@ -5,6 +5,10 @@ let
   pkgs-master = import sources.nixpkgs-master { };
 in {
   imports = [ ./hardware.nix ../.. ];
+
+  # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   cookie = {
     desktop = {
       enable = true;
