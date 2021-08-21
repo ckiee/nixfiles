@@ -21,7 +21,7 @@
       pulse.enable = true;
       pipewire.enable = false;
     };
-    printing.enable = true;
+    services = { printing.enable = true; };
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
     smartd.enable = true;

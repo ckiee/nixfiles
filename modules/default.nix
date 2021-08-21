@@ -10,7 +10,6 @@
     ./smartd.nix
     ./sound.nix
     ./hw.nix
-    ./printer.nix
     ./sleep.nix
     ./opentabletdriver.nix
     ./slock.nix

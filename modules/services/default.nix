@@ -18,6 +18,7 @@
     ./matterbridge.nix
     ./mailserver
     ./among-sus.nix
+    ./printer.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
