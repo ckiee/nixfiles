@@ -11,6 +11,7 @@ with lib;
   cookie = {
     services = {
       avahi.enable = true;
+      isp-troll.enable = true;
       coredns = {
         enable = true;
         openFirewall = true;
