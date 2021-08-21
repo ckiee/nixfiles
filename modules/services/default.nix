@@ -28,5 +28,6 @@
     ./redirect-farm.nix
     ./ckiesite.nix
     ./sysyelper.nix
+    ./isp-troll.nix
   ];
 }
