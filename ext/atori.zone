@@ -2,12 +2,16 @@ $TTL 60
 
 $ORIGIN atori.
 @       IN      SOA     dns.atori. us@ckie.dev. (
-                        2021082001 ; serial number YYMMDDNN
+                        2021082104 ; serial number YYMMDDNN
                         28800           ; Refresh
                         7200            ; Retry
                         864000          ; Expire
                         86400           ; Min TTL
                         )
 
+; hosts
+drapion IN A 192.168.0.3
+
 ; services
-dns IN A 127.0.0.1
+dns IN CNAME drapion.atori.
+print IN CNAME drapion.atori.

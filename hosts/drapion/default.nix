@@ -3,7 +3,7 @@
 with lib;
 
 # nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux
-# nix copy --to ssh://drapion.local $(nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux)
+# build=$(nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux) && echo $build && nix copy --to ssh://drapion.local $build
 {
   imports =
     [ ../.. <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix> ];
@@ -14,6 +14,11 @@ with lib;
       coredns = {
         enable = true;
         openFirewall = true;
+      };
+      printing = {
+        enable = true;
+        server = true;
+        host = "print.atori";
       };
     };
   };
