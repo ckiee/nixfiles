@@ -4,6 +4,9 @@ let
   cfg = config.cookie.mpd;
   sound = nixosConfig.cookie.sound;
   home = "/home/ckie";
+
+  sources = import ../../nix/sources.nix;
+  pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
   options.cookie.mpd = {
     enable = mkEnableOption "Enables the music player daemon";
@@ -31,7 +34,7 @@ in with lib; {
       cantata
       # Utilities
       mpc_cli
-      spotdl
+      pkgs-master.spotdl
     ];
   };
 }
