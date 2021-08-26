@@ -7,12 +7,12 @@ let
   # and I feel bad about making a PR just to bump for a minor semver
   # increment.
   mu = (pkgs.mu.overrideAttrs (_: rec {
-    version = "1.6.1";
+    version = "1.6.4";
     src = pkgs.fetchFromGitHub {
       owner = "djcb";
       repo = "mu";
       rev = version;
-      sha256 = "sha256-7mSP1F2RxW0CEDRWbMzDRfoehrr24b11sCLM2gQFjuI=";
+      sha256 = "sha256-rRBi6bgxkVQ94wLBqVQikIE0jVkvm1fjtEzFMsQTJz8=";
     };
   }));
   extraBins = with pkgs;
