@@ -33,7 +33,7 @@ in with lib; {
 
     cookie.bindfs.minecraft = {
       source = "/var/lib/minecraft";
-      dest = "/home/ckie/minecraft";
+      dest = "${config.cookie.user.home}/minecraft";
       overlay = false;
       args = "--create-for-user=minecraft --create-with-perms=0700 -u ckie -g users -p 0600,u+X";
       wantedBy = [ "minecraft-server.service" ];
