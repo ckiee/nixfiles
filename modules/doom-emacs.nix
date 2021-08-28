@@ -73,7 +73,11 @@ let
     doomPrivateDir = ../ext/doom-conf;
     extraPackages = epkgs: [
       mu
-      (epkgs.trivialBuild {
+
+    ];
+    emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
+    emacsPackagesOverlay = prev: final: {
+      mcf-mode = (prev.trivialBuild {
         pname = "mcf-mode";
         version = "git";
 
@@ -89,9 +93,8 @@ let
           license = licenses.gpl3Plus;
           homepage = "https://github.com/rasensuihei/mcf";
         };
-      })
-    ];
-    emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
+      });
+    };
     extraConfig = ''
       (setq exec-path (append exec-path '( ${
         concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
