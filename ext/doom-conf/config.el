@@ -66,6 +66,8 @@
 (add-to-list 'default-frame-alist '(alpha . 90))
 
 (after! doom-modeline (setq doom-modeline-mu4e t))
+
+(after! mu4e (setq mu4e-index-lazy-check '()))
 (use-package! mu4e-alert
   :after mu4e
   :hook ((after-init . mu4e-alert-enable-mode-line-display)
