@@ -7,7 +7,7 @@ let
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
   musicWorkspace = "mpd";
-  playerctl = "${pkgs.playerctl}/bin/playerctl --player=vlc,mpd,spotify,%any";
+  playerctl = "${pkgs.playerctl}/bin/playerctl --player=mpd,spotify,%any";
   startup = pkgs.writeScript "i3-startup" ''
     #!${pkgs.stdenv.shell}
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
