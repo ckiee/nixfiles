@@ -8,7 +8,7 @@
 (package! mu4e-alert) ; add notifications to modeline
 (package! mu4e-views)
 (package! visual-fill-column)
-(require 'mcf-mode) ; minecraft syntax highlighting, defined in the Nix build
+(package! mcf-mode) ; minecraft syntax highlighting, defined in the Nix build
 (package! adoc-mode)
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
