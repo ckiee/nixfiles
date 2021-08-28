@@ -55,6 +55,7 @@
     ripgrep
     unzip
     ncdu
+    fd
   ];
 
   cookie = {
