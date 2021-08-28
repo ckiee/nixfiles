@@ -3,8 +3,7 @@
 let
   cfg = config.cookie.mpd;
   sound = nixosConfig.cookie.sound;
-  home = "/home/ckie";
-
+  home = nixosConfig.cookie.user.home;
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in with lib; {

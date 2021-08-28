@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
-# let
-#   nixpkgs-local = import (/home/ckie/git/nixpkgs) { config.allowUnfree = true; };
-# in
 {
   imports = [ ./hardware.nix ./powersave.nix ../.. ];
 

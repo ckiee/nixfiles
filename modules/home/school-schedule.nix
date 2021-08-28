@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, nixosConfig, pkgs, ... }:
 
 let
   cfg = config.cookie.school-schedule;
@@ -9,7 +9,7 @@ let
       text = ''
         [Desktop Entry]
         Name=School Schedule
-        Exec=${pkgs.feh}/bin/feh /home/ckie/Sync/school/sched.jpeg
+        Exec=${pkgs.feh}/bin/feh ${nixosConfig.cookie.user.home}/Sync/school/sched.jpeg
         Type=Application
         Terminal=false
       '';
