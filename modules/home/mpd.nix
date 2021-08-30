@@ -34,6 +34,7 @@ in with lib; {
       # Utilities
       mpc_cli
       pkgs-master.spotdl
+      puddletag # ...for when the metadata gets messed up
     ];
   };
 }
