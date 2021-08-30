@@ -10,7 +10,6 @@
 (package! visual-fill-column)
 (package! mcf-mode) ; minecraft syntax highlighting, defined in the Nix build
 (package! adoc-mode)
-(require 'mc-debug-func) ; in mc-debug-func.el
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
