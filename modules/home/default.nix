@@ -24,7 +24,6 @@ in {
         ./nautilus.nix
         ./i3.nix
         ./xcursor.nix
-        ./school-schedule.nix
         ./nixpkgs-config.nix
         ./mpd.nix
         ./polyprog.nix
