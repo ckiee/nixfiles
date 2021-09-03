@@ -10,6 +10,7 @@ with lib;
     [ ../.. <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix> ];
 
   cookie = {
+    wol.enable = true;
     services = {
       avahi.enable = true;
       isp-troll.enable = true;

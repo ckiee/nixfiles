@@ -1,5 +1,6 @@
 [hosts.cookiemonster]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf"
+mac_address = "50:3e:aa:05:2a:90"
 [hosts.bokkusu]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A"
 [hosts.thonkcookie]
