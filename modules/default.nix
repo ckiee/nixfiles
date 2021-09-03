@@ -34,5 +34,6 @@
     ./mail-client.nix
     ./doom-emacs.nix
     ./user-alias.nix
+    ./wol.nix
   ];
 }
