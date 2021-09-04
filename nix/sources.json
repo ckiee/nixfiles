@@ -38,7 +38,7 @@
     "ffg-bot": {
         "branch": "master",
         "repo": "ssh://git@github.com/ckiee/ffg-bot.git",
-        "rev": "03ba70cf9bba2b39180aca98da0008c93d517bbf",
+        "rev": "63e2161c04375d7eb2bd88b22bd408bb8a42d526",
         "type": "git"
     },
     "home-manager": {
