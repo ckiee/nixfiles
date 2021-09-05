@@ -2,7 +2,7 @@
 
 let
   inherit (lib)
-    optionals mkIf mkEnableOption mkOption types concatStrings optional;
+    optionals mkIf mkEnableOption mkOption types concatStrings optional optionalString;
 
   colors = {
     primary = "#ed60ba";
@@ -62,7 +62,7 @@ in {
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
       command = "${pkgs.writeShellScript "polybar-starter" ''
-        (while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &
+        ${optionalString (desktopCfg.secondaryMonitor != null) "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
         while true; do ${pkg}/bin/polybar main; sleep 0.1; done
       ''}";
       notification = false;
