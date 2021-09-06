@@ -7,13 +7,14 @@ let
 
     cleanup() {
     	echo "" >"$XDG_RUNTIME_DIR/polybar_polyprog_msg"
-    	echo "hook:module/polyprog1" >>/tmp/polybar_mqueue.*
+    	for mqueue in /tmp/polybar_mqueue.*; do (echo "hook:module/polyprog1" >> $mqueue &); done
     }
 
     trap cleanup EXIT
     while read -r line; do
     	echo "$line" >"$XDG_RUNTIME_DIR/polybar_polyprog_msg"
-    	echo "hook:module/polyprog1" >>/tmp/polybar_mqueue.*
+      # some of these subshells will never return
+    	for mqueue in /tmp/polybar_mqueue.*; do (echo "hook:module/polyprog1" >> $mqueue &); done
     done </dev/stdin
 
     cleanup
