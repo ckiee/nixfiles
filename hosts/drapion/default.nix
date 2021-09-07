@@ -14,6 +14,7 @@ with lib;
     services = {
       avahi.enable = true;
       isp-troll.enable = true;
+      scanner.enableServer = true;
       coredns = {
         enable = true;
         openFirewall = true;
