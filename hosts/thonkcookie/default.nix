@@ -27,6 +27,8 @@
 
   environment.systemPackages = with pkgs; [ zoom-us lutris ];
 
+  programs.adb.enable = true;
+
   networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
