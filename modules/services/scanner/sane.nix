@@ -3,7 +3,6 @@
 with lib;
 
 let
-
   sanedConf = pkgs.writeTextFile {
     name = "saned.conf";
     destination = "/etc/sane.d/saned.conf";
@@ -32,7 +31,19 @@ let
     LD_LIBRARY_PATH = "${saneConfig}/lib/sane";
   };
 
-  overridenPkg = pkgs.sane-backends; # TODO merge w/ master
+  overridenPkg = pkgs.sane-backends;
+
+  # We no longer expose `env` in the system sessionVariables, so
+  # we'll need a way for users to run SANE-depending programs (xsane, etc)
+  # with the correct environment.
+  wrapHelper = pkgs.writeScriptBin "sane-wrap" ''
+    ${
+      concatStringsSep "\n"
+        (mapAttrsToList (name: value: ''export ${name}="${value}"'') env)
+    }
+
+    exec $@
+  '';
 
   wrappedPkg = pkgs.runCommand "sane-backends-wrapper"
     {
@@ -53,10 +64,13 @@ let
       ''
     );
 
+  # We seperate this into two because saneConfig is created using
+  # baseDerivs and used in wrappedPkg (which is in derivsToInstall)
+  # ...and recursion is illegal!
   baseDerivs = [ netConf ]
     ++ optional config.services.saned.enable sanedConf
     ++ config.hardware.sane.extraBackends;
-  derivsToInstall = baseDerivs ++ (singleton wrappedPkg);
+  derivsToInstall = baseDerivs ++ [ wrappedPkg wrapHelper ];
 
   enabled = config.hardware.sane.enable || config.services.saned.enable;
 
@@ -87,7 +101,7 @@ in
 
     hardware.sane.extraBackends = mkOption {
       type = types.listOf types.path;
-      default = [];
+      default = [ ];
       description = ''
         Packages providing extra SANE backends to enable.
 
@@ -100,7 +114,7 @@ in
 
     hardware.sane.disabledDefaultBackends = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       example = [ "v4l" ];
       description = ''
         Names of backends which are enabled by default but should be disabled.
@@ -120,6 +134,28 @@ in
       example = "192.168.0.16";
       description = ''
         Network hosts that should be probed for remote scanners.
+      '';
+    };
+
+    hardware.sane.drivers.scanSnap.enable = mkOption {
+      type = types.bool;
+      default = false;
+      example = true;
+      description = ''
+        Whether to enable drivers for the Fujitsu ScanSnap scanners.
+
+        The driver files are unfree and extracted from the Windows driver image.
+      '';
+    };
+
+    hardware.sane.drivers.scanSnap.package = mkOption {
+      type = types.package;
+      default = pkgs.sane-drivers.epjitsu;
+      description = ''
+        Epjitsu driver package to use. Useful if you want to extract the driver files yourself.
+
+        The process is described in the <literal>/etc/sane.d/epjitsu.conf</literal> file in
+        the <literal>sane-backends</literal> package.
       '';
     };
 
