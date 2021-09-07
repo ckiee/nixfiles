@@ -15,7 +15,10 @@ in {
       primaryMonitor = "DP-0";
       secondaryMonitor = "HDMI-0";
     };
-    services = { printing.enable = true; };
+    services = {
+      printing.enable = true;
+      scanner.enableClient = true;
+    };
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;

@@ -19,6 +19,7 @@
     ./mailserver
     ./among-sus.nix
     ./printer.nix
+    ./scanner.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
