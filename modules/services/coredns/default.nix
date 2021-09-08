@@ -52,9 +52,7 @@ with lib; {
             hosts ${hosts} {
               fallthrough
             }
-            # Cloudflare and Google
             forward . 127.0.0.1:1483
-            log
             errors
             cache 120 # two minutes
           }
