@@ -63,10 +63,11 @@
     usbutils
     dig
     asciinema
-    ripgrep
+    ripgrep # better grep
     unzip
     ncdu
-    fd
+    fd # a better find
+    hyperfine # a better time
   ];
 
   cookie = {
