@@ -69,7 +69,11 @@ in {
   ];
 
   programs.adb.enable = true;
-  users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" ];
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark-qt;
+  };
+  users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" "wireshark" ];
 
   virtualisation = {
     libvirtd.enable = true;
