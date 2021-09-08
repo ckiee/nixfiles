@@ -79,11 +79,41 @@ in
           ExecStart = cmdline;
           Restart = "always";
           DynamicUser = true;
+
           PrivateTmp = true;
           ProtectHome = true;
           ProtectSystem = "full";
           DevicePolicy = "closed";
           NoNewPrivileges = true;
+          CapabilityBoundingSet = "";
+          DeviceAllow = [ ];
+          ProtectControlGroups = true;
+          ProtectClock = true;
+          PrivateDevices = true;
+          PrivateUsers = true;
+          ProtectHostname = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
+          RemoveIPC = true;
+          ProtectProc = "invisible";
+          RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
+          RestrictSUIDSGID = true;
+          RestrictRealtime = true;
+          LockPersonality = true;
+          SystemCallArchitectures = "native";
+          ProcSubset = "pid";
+          SystemCallFilter = [
+            "~@reboot"
+            "~@module"
+            "~@mount"
+            "~@swap"
+            "~@resources"
+            "~@cpu-emulation"
+            "~@obsolete"
+            "~@debug"
+            "~@privileged"
+          ];
         };
     };
   };
