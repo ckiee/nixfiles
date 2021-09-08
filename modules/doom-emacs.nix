@@ -32,6 +32,7 @@ let
       clang # for clang-format. C(++) Formatting without the LSP
       python3Packages.black # Python formatter
       html-tidy # HTML/SVG/Web formatter
+      pandoc # markdown previewing (SPC m p in markdown-mode)
       #
       # shell scripts
       shfmt
