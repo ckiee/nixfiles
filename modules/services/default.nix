@@ -12,7 +12,7 @@
     # User
     ./minecraft.nix
     ./grafana.nix
-    ./coredns.nix
+    ./coredns
     ./znc.nix
     ./matrix
     ./matterbridge.nix

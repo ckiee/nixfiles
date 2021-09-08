@@ -2,7 +2,7 @@
 
 let
   cfg = config.cookie.services.coredns;
-  sources = import ../../nix/sources.nix;
+  sources = import ../../../nix/sources.nix;
   hosts = "${sources.dns-hosts}/hosts";
 in
 with lib; {
@@ -20,7 +20,7 @@ with lib; {
   };
 
   imports = [
-    /home/ckie/git/nixpkgs/nixos/modules/services/networking/cloudflared-dns.nix
+    ./cloudflared-dns.nix # TODO wait for nixpkgs PR merge
   ];
 
   config = mkIf cfg.enable {
@@ -29,7 +29,8 @@ with lib; {
       listenAddress = "localhost:1483"; # very arbitrary port
     };
 
-    systemd.services.coredns = { # depend on cloudflared-dns
+    systemd.services.coredns = {
+      # depend on cloudflared-dns
       wants = [ "cloudflared-dns.service" ]; # soft requirement
       after = [ "cloudflared-dns.service" ]; # we want to run AFTER cloudflared has started
     };
@@ -60,7 +61,7 @@ with lib; {
 
           atori {
              ${prom}
-             file ${../../ext/atori.zone}
+             file ${../../../ext/atori.zone}
           }
 
           # Resolve everything under the root localhost TLD to 127.0.0.1
