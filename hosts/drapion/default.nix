@@ -18,6 +18,7 @@ with lib;
       coredns = {
         enable = true;
         openFirewall = true;
+        addServer = true;
       };
       printing = {
         enable = true;
@@ -31,7 +32,6 @@ with lib;
 
   networking = {
     hostName = "drapion";
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
     defaultGateway = "192.168.0.1";
     interfaces.eth0.ipv4.addresses = [{
       address = "192.168.0.3";
