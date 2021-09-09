@@ -22,6 +22,8 @@ in with lib; {
       gdb
       manpages
       ms.platformio
+      elmPackages.elm
+      elmPackages.elm-format
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
