@@ -1,11 +1,23 @@
 { lib, config, pkgs, ... }:
 
+with lib;
+
 let
   cfg = config.cookie.services.coredns;
   sources = import ../../../nix/sources.nix;
-  hosts = "${sources.dns-hosts}/hosts";
-in
-with lib; {
+  ext-hosts = builtins.readFile "${sources.dns-hosts}/hosts";
+  hosts = pkgs.writeTextFile {
+    name = "coredns-hosts-ckie";
+    text = ''
+      # StevenBlack hosts
+      ${ext-hosts}
+
+      # ckie hosts
+      0.0.0.0 reddit.com
+      0.0.0.0 www.reddit.com
+    '';
+  };
+in {
   options.cookie.services.coredns = {
     enable = mkEnableOption "Enables CoreDNS service";
     addServer = mkEnableOption "Add this server to the nameserver list";
@@ -32,44 +44,43 @@ with lib; {
     systemd.services.coredns = {
       # depend on cloudflared-dns
       wants = [ "cloudflared-dns.service" ]; # soft requirement
-      after = [ "cloudflared-dns.service" ]; # we want to run AFTER cloudflared has started
+      after = [
+        "cloudflared-dns.service"
+      ]; # we want to run AFTER cloudflared has started
     };
 
     services.coredns = {
       enable = true;
 
-      config =
-        let
-          prom =
-            if cfg.prometheus.enable then
-              "prometheus FIXME:${toString cfg.prometheus.port}"
-            else
-              "";
-        in
-        ''
-          . {
-            ${prom}
-            hosts ${hosts} {
-              fallthrough
-            }
-            forward . 127.0.0.1:1483
-            errors
-            cache 120 # two minutes
+      config = let
+        prom = if cfg.prometheus.enable then
+          "prometheus FIXME:${toString cfg.prometheus.port}"
+        else
+          "";
+      in ''
+        . {
+          ${prom}
+          hosts ${hosts} {
+            fallthrough
           }
+          forward . 127.0.0.1:1483
+          errors
+          cache 120 # two minutes
+        }
 
-          atori {
-             ${prom}
-             file ${../../../ext/atori.zone}
-          }
+        atori {
+           ${prom}
+           file ${../../../ext/atori.zone}
+        }
 
-          # Resolve everything under the root localhost TLD to 127.0.0.1
-          localhost {
-            ${prom}
-            template IN A  {
-                answer "{{ .Name }} 0 IN A 127.0.0.1"
-            }
+        # Resolve everything under the root localhost TLD to 127.0.0.1
+        localhost {
+          ${prom}
+          template IN A  {
+              answer "{{ .Name }} 0 IN A 127.0.0.1"
           }
-        '';
+        }
+      '';
     };
 
     networking = {
