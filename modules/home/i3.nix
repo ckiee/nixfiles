@@ -16,9 +16,9 @@ let
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${../../ext/backgrounds/trans} &
     ${../../ext/i3-scripts/oszwatch} &
     ${../../ext/i3-scripts/musicwatch} &
-    fractal &
+    # fractal &
     Discord &
-    DiscordPTB &
+    # DiscordPTB &
     st -T weechat -e sh -c weechat &
     firefox &
     emacs &
