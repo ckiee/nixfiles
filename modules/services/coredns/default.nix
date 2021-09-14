@@ -11,10 +11,6 @@ let
     text = ''
       # StevenBlack hosts
       ${ext-hosts}
-
-      # ckie hosts
-      0.0.0.0 reddit.com
-      0.0.0.0 www.reddit.com
     '';
   };
 in {
