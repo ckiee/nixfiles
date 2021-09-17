@@ -15,6 +15,11 @@ with builtins; {
       description = "Base e-mail aliases to be processed";
       default = util.default-aliases;
     };
+    certFqdn = mkOption {
+      type = types.str;
+      description = "The FQDN of the certificate we should piggyback off of";
+      default = "ckie.dev";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -30,14 +35,18 @@ with builtins; {
       runtime = false;
     };
 
+    # Restart dovecot2 when we get new certificates: before doing this my cert
+    # actually expired and broke stuff because dovecot had been running for so long.
+    security.acme.certs.${cfg.certFqdn}.postRun = "systemctl restart dovecot2";
+
     mailserver = {
       enable = true;
       fqdn = "bokkusu.ckie.dev";
       domains = [ "ckie.dev" ];
       certificateScheme = 1; # Manually specify certificate paths
 
-      certificateFile = "/var/lib/acme/ckie.dev/cert.pem";
-      keyFile = "/var/lib/acme/ckie.dev/key.pem";
+      certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
+      keyFile = "/var/lib/acme/${cfg.certFqdn}/key.pem";
 
       loginAccounts = {
         "us@ckie.dev" = {
