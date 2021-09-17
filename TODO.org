@@ -25,25 +25,28 @@
     2021-06-19 16:57:13 ckie    also that is another reason for setting this up! I get to have randomized addresses for stuff like github
     2021-06-19 16:57:36 ckie    so I'm going to completely overengineer it and make all the addresses for services salted hashes
   #+END_SRC
+- [X] secure postgres better
+- [-] setup prom
+  + [X] deploy on bokkusu
+  + [ ] collect data from other hosts
+  + [ ] add coredns exporter
 - [ ] backup
   + [ ] postgres (use ~services.postgresqlBackup~)
-  + [ ] ~/var/lib~
-  + [ ] znc
+  + [ ] znc logs
   + [ ] synapse
-  + [ ] mail
+  + [ ] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
+    + ~/var/vmail~
+    + +~/var/dkim~+
   + [ ] whatever else I missed
-- [ ] setup wg
-- [ ] setup prom
-  + [ ] improve module a bit
-  + [ ] deploy on bokkusu
-  + [ ] add coredns exporter
+  + [ ] ~/var/lib/rtc-files~
+  + [ ] minecraft
 - [ ] set ~users.mutableUsers~ to false
 
 ** Backburner
 - [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
-- [ ] secure postgres better
+- [ ] setup wg
 
-** Hostname Ideas
-Just use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][names.json]].
+* Hostname Ideas
+Deprecated, use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][names.json]].
 - [X] bokkusu
 - [X] nifles
