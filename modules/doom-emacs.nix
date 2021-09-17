@@ -74,10 +74,11 @@ let
     };
   in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../ext/doom-conf;
-    extraPackages = epkgs: [
-      mu
+    extraPackages = epkgs:
+      [
+        mu
 
-    ];
+      ];
     emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     emacsPackagesOverlay = prev: final: {
       mcf-mode = (prev.trivialBuild {
@@ -131,7 +132,11 @@ in {
       };
 
       # Add another .desktop entry
-      home.packages = [ doom-emacs extra-desktop ];
+      home.packages = [
+        doom-emacs
+        extra-desktop
+        mu # for CLI usage
+      ];
     };
     # Give mu4e what it needs
     cookie.mail-client.enable = true;
