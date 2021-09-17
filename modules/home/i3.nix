@@ -42,6 +42,7 @@ in with lib; {
       pavucontrol
       audacity
       firefox
+      calibre
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
