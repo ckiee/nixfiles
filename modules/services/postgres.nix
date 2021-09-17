@@ -1,30 +1,47 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.services.postgres;
+with lib;
 
-in with lib; {
+let
+  cfg = config.cookie.services.postgres;
+
+  combType = types.attrsOf (types.submodule {
+    options = {
+      networkTrusted = mkOption {
+        type = types.bool;
+        description =
+          "Whether this combination needs to be able to connect over the network";
+        default = false;
+      };
+    };
+  });
+in {
   options.cookie.services.postgres = {
     enable = mkEnableOption "Enables the Postgres database";
-    combs = mkOption rec {
-      type = types.listOf types.str;
-      description = "Database and user combinations";
+
+    comb = mkOption {
+      type = combType;
+      description = "postgres user-database combination configuration";
+      default = { };
     };
   };
 
   config = mkIf cfg.enable {
     services.postgresql = {
       enable = true;
-      ensureDatabases = cfg.combs;
-      ensureUsers = imap0 (index: value: ({
-        name = value;
-        ensurePermissions = { "DATABASE ${value}" = "ALL PRIVILEGES"; };
-      })) cfg.combs;
+
+      ensureDatabases = mapAttrsToList (name: value: name) cfg.comb;
+      ensureUsers = mapAttrsToList (name: value: ({
+        inherit name;
+        ensurePermissions = { "DATABASE ${name}" = "ALL PRIVILEGES"; };
+      })) cfg.comb;
 
       # https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
-      # TODO: make this securer
       authentication = mkForce ''
         local all all trust
-        host all all localhost trust
+        ${concatStringsSep "\n" (mapAttrsToList (name: value:
+          (optionalString value.networkTrusted
+            "host ${name} ${name} localhost trust")) cfg.comb)}
       '';
     };
   };

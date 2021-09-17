@@ -65,7 +65,7 @@ in with lib; {
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
     cookie.services.postgres = {
       enable = true;
-      combs = [ "synapse" ];
+      comb.synapse = { };
     };
 
     cookie.secrets.matrix-synapse-registration = {
