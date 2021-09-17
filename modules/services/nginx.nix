@@ -18,6 +18,18 @@ in with lib; {
         add_header Permissions-Policy "interest-cohort=()";
       '';
     };
+
+    services.logrotate = {
+      enable = true;
+      paths.nginx = {
+        path = "/var/log/nginx/*.log";
+        user = config.services.nginx.user;
+        group = config.services.nginx.group;
+        frequency = "monthly";
+        keep = 0;
+      };
+    };
+
     networking.firewall.allowedTCPPorts = [ 443 80 ];
   };
 }
