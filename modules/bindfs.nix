@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.cookie.bindfs;
 
-  secret = types.submodule {
+  bindfs = types.submodule {
     options = {
       source = mkOption {
         type = types.str;
@@ -62,7 +62,7 @@ let
     };
 in {
   options.cookie.bindfs = mkOption {
-    type = types.attrsOf secret;
+    type = types.attrsOf bindfs;
     description = "bindfs configuration";
     default = { };
   };
