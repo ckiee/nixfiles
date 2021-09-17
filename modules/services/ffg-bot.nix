@@ -25,6 +25,7 @@ in with lib; {
       wants = [ "postgresql.service" ];
       script = let ffg = pkgs.cookie.ffg-bot;
       in ''
+        # Does not support UNIX sockets apparently..
         export DB_URL="postgres://ffgbot@localhost:5432/ffgbot"
         ln -sf ${ffg}/libexec/ffg-bot/deps/ffg-bot/.env.example .env.example
         exec ${ffg}/bin/ffg-bot
@@ -33,7 +34,7 @@ in with lib; {
     {
       cookie.services.postgres = {
         enable = true;
-        combs = [ "ffgbot" ];
+        comb.ffgbot = { networkTrusted = true; };
       };
     }
   ]);
