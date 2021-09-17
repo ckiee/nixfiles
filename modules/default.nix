@@ -14,7 +14,6 @@
     ./opentabletdriver.nix
     ./slock.nix
     ./fonts.nix
-    ./syncthing.nix
     ./git.nix
     ./gnome.nix
     ./xserver.nix

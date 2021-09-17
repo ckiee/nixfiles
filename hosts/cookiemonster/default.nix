@@ -18,12 +18,12 @@ in {
     services = {
       printing.enable = true;
       scanner.enableClient = true;
+      syncthing.enable = true;
     };
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;
     smartd.enable = true;
-    syncthing.enable = true;
     steam.enable = true;
   };
   home-manager.users.ckie = { pkgs, ... }: {
@@ -73,7 +73,8 @@ in {
     enable = true;
     package = pkgs.wireshark-qt;
   };
-  users.users.ckie.extraGroups = [ "adbusers" "dialout" "libvirtd" "wireshark" ];
+  users.users.ckie.extraGroups =
+    [ "adbusers" "dialout" "libvirtd" "wireshark" ];
 
   virtualisation = {
     libvirtd.enable = true;

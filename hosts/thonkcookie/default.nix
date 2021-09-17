@@ -18,11 +18,11 @@
       pulse.enable = true;
       pipewire.enable = false;
     };
+    services = { syncthing.enable = true; };
     services = { printing.enable = true; };
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
     smartd.enable = true;
-    syncthing.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ zoom-us lutris ];
