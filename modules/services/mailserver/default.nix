@@ -55,6 +55,8 @@ with builtins; {
     # actually expired and broke stuff because dovecot had been running for so long.
     security.acme.certs.${cfg.certFqdn}.postRun = "systemctl restart dovecot2";
 
+    cookie.restic.paths = [ config.mailserver.mailDirectory ];
+
     mailserver = {
       enable = true;
       fqdn = "bokkusu.ckie.dev";
