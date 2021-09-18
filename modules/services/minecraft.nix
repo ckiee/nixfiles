@@ -14,7 +14,7 @@ let
     };
   });
   console = pkgs.writeShellScriptBin "mc" ''
-    ${pkgs.mcrcon}/bin/mcrcon localhost -p minecraft "$@"
+    ${pkgs.mcrcon}/bin/mcrcon -p minecraft "$@"
   '';
 in with lib; {
   options.cookie.services.minecraft = {
