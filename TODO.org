@@ -38,7 +38,7 @@
   + [X] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
     + ~/var/vmail~
     + +~/var/dkim~+
-  + [ ] minecraft
+  + [X] minecraft
   + [ ] get drive(s): https://ksp.co.il/web/item/19543
 - [ ] set ~users.mutableUsers~ to false
 
