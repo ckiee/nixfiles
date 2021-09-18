@@ -13,7 +13,12 @@ in {
     enablePostgres = mkEnableOption "Enables Postgres dump backup";
     paths = mkOption {
       type = types.listOf types.str;
-      description = "The paths to back up";
+      description = "The paths to backup";
+      default = [ ];
+    };
+    excludePaths = mkOption {
+      type = types.listOf types.str;
+      description = "The paths to exclude from the backup";
       default = [ ];
     };
   };
@@ -44,6 +49,12 @@ in {
           "--keep-weekly 5"
           "--keep-monthly 12"
           "--keep-yearly 75"
+        ];
+        extraBackupArgs = [
+          "--exclude-file ${
+            pkgs.writeText "restic-exclude-file"
+            (concatStringsSep "\n" cfg.excludePaths)
+          }"
         ];
 
         rcloneConfigFile = sec.rclone-config.dest;
