@@ -35,10 +35,10 @@
   + [X] postgres (use ~services.postgresqlBackup~)
   + [X] znc logs
   + [X] synapse media
-  + [ ] minecraft
-  + [ ] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
+  + [X] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
     + ~/var/vmail~
     + +~/var/dkim~+
+  + [ ] minecraft
   + [ ] get drive(s): https://ksp.co.il/web/item/19543
 - [ ] set ~users.mutableUsers~ to false
 
