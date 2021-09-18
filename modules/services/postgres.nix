@@ -27,6 +27,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    cookie.restic.enablePostgres = true; # enable postgres backup support
+
     services.postgresql = {
       enable = true;
 
