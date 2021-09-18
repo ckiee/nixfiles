@@ -4,6 +4,7 @@
   deployment.substituteOnDestination = true;
 
   cookie = {
+    restic.enable = true; # Backups
     services = {
       owo-bot.enable = true;
       ffg-bot.enable = true;

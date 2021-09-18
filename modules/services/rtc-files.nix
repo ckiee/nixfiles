@@ -24,6 +24,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     cookie.services.nginx.enable = true;
+    cookie.restic.paths = singleton cfg.folder;
 
     cookie.bindfs.rtc-files = {
       source = cfg.folder;
