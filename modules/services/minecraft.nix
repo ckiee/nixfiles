@@ -31,11 +31,27 @@ in with lib; {
         "-Xms3G -Xmx3G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
     };
 
+    cookie.restic = let mcExec = c: "${console}/bin/mc ${escapeShellArg c}";
+    in {
+      paths = [ "/var/lib/minecraft" ];
+      preJob = ''
+        ${mcExec "bossbar set minecraft:backup visible true"}
+        ${mcExec "save-off"}
+        ${mcExec "save-all"}
+      '';
+      postJob = ''
+        ${mcExec "bossbar set minecraft:backup visible false"}
+        ${mcExec "save-all"}
+        ${mcExec "save-on"}
+      '';
+    };
+
     cookie.bindfs.minecraft = {
       source = "/var/lib/minecraft";
       dest = "${config.cookie.user.home}/minecraft";
       overlay = false;
-      args = "--create-for-user=minecraft --create-with-perms=0700 -u ckie -g users -p 0600,u+X";
+      args =
+        "--create-for-user=minecraft --create-with-perms=0700 -u ckie -g users -p 0600,u+X";
       wantedBy = [ "minecraft-server.service" ];
     };
 
