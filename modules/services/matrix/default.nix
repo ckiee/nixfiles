@@ -97,6 +97,13 @@ in with lib; {
       after = wants;
     };
 
+    # Setup backups for the media; the rest is in Postgres which is backed up by it's
+    # corresponding module.
+
+    cookie.restic.paths = [ "${config.services.matrix-synapse.dataDir}/media" ];
+
+    # The *actual* homeserver configuration
+
     services.matrix-synapse = {
       enable = true;
       package = pkgs-master.matrix-synapse;

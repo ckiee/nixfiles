@@ -34,8 +34,8 @@
   + [X] ~/var/lib/rtc-files~
   + [X] postgres (use ~services.postgresqlBackup~)
   + [X] znc logs
+  + [X] synapse media
   + [ ] minecraft
-  + [ ] synapse media
   + [ ] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
     + ~/var/vmail~
     + +~/var/dkim~+
