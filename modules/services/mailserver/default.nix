@@ -23,16 +23,32 @@ with builtins; {
   };
 
   config = mkIf cfg.enable {
-    cookie.secrets.mailserver-pw-hash = {
-      source = "./secrets/mailserver-pw-hash";
-      dest = "/run/keys/mailserver-pw-hash";
-      owner = "root";
-      group = "root";
-      permissions = "0400";
-    };
-    cookie.secrets.email-salt = {
-      source = "./secrets/email-salt";
-      runtime = false;
+    cookie.secrets = rec {
+      mailserver-pw-hash = {
+        source = "./secrets/mailserver-pw-hash";
+        dest = "/run/keys/mailserver-pw-hash";
+        owner = "root";
+        group = "root";
+        permissions = "0400";
+      };
+
+      email-salt = {
+        source = "./secrets/email-salt";
+        runtime = false;
+      };
+
+      mailserver-dkim-priv = {
+        source = "./secrets/dkim.mail.key";
+        dest = "/var/dkim/ckie.dev.mail.key";
+        owner = "opendkim";
+        group = "opendkim";
+        permissions = "0400";
+      };
+      mailserver-dkim-pub = {
+        source = "./secrets/dkim.mail.txt";
+        dest = "/var/dkim/ckie.dev.mail.txt";
+        inherit (mailserver-dkim-priv) owner group permissions;
+      };
     };
 
     # Restart dovecot2 when we get new certificates: before doing this my cert
