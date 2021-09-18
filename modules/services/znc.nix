@@ -36,16 +36,14 @@ in with lib; {
     cookie.services.nginx.enable = true;
     services.nginx = {
       virtualHosts."${cfg.host}" = {
-        locations."/" = {
-          proxyPass =
-            "http://127.0.0.1:8572";
-        };
+        locations."/" = { proxyPass = "http://127.0.0.1:8572"; };
         extraConfig = ''
           access_log /var/log/nginx/znc.access.log;
         '';
       };
     };
-    # Lastly, we add a window to see how it is doing.
+    #
     cookie.services.prometheus.nginx-vhosts = [ "znc" ];
+    cookie.restic.paths = [ "/var/lib/znc/moddata/log" ];
   };
 }

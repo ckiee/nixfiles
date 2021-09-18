@@ -30,15 +30,15 @@
   + [X] deploy on bokkusu
   + [ ] collect data from other hosts
   + [ ] add coredns exporter
-- [ ] backup
-  + [ ] ~/var/lib/rtc-files~
-  + [ ] znc logs
+- [-] backup
+  + [X] ~/var/lib/rtc-files~
+  + [X] postgres (use ~services.postgresqlBackup~)
+  + [X] znc logs
   + [ ] minecraft
   + [ ] synapse media
   + [ ] [[https://nixos-mailserver.readthedocs.io/en/latest/backup-guide.html][mail]]
     + ~/var/vmail~
     + +~/var/dkim~+
-  + [ ] postgres (use ~services.postgresqlBackup~)
   + [ ] get drive(s): https://ksp.co.il/web/item/19543
 - [ ] set ~users.mutableUsers~ to false
 
