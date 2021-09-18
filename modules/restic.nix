@@ -21,6 +21,22 @@ in {
       description = "The paths to exclude from the backup";
       default = [ ];
     };
+
+    preJob = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        Shell commands executed before the backup has started.
+      '';
+    };
+
+    postJob = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        Shell commands executed after the backup has ended.
+      '';
+    };
   };
 
   config = mkIf (cfg.enable && ((length cfg.paths) > 0)) {
@@ -68,6 +84,11 @@ in {
         paths = [ "/this/should/not/exist" ];
         repository = "rclone:gdrive:${host}-postgres";
       });
+    };
+
+    systemd.services.restic-backups-gdrive = {
+      preStart = cfg.preJob;
+      postStart = cfg.postJob;
     };
 
     # Override the backup command this service runs to instead dump Postgres
