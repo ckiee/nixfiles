@@ -34,5 +34,6 @@
     ./doom-emacs.nix
     ./user-alias.nix
     ./wol.nix
+    ./restic.nix
   ];
 }
