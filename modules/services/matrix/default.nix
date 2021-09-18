@@ -75,9 +75,26 @@ in with lib; {
       comb.synapse = { };
     };
 
+    # A token needed to create new user accounts
     cookie.secrets.matrix-synapse-registration = {
       source = "./secrets/matrix-synapse-registration";
       runtime = false;
+    };
+
+    # The homeserver's signing key
+    cookie.secrets.matrix-signing-key = {
+      source = "./secrets/matrix-signing-key";
+      dest = "${config.services.matrix-synapse.dataDir}/homeserver.signing.key";
+      owner = "matrix-synapse";
+      group = "matrix-synapse";
+      permissions = "0400";
+    };
+
+    # ...also, only start the homeserver up AFTER that key
+    # has been decrypted.
+    systemd.services.matrix-synapse = rec {
+      wants = [ "matrix-signing-key-key.service" ];
+      after = wants;
     };
 
     services.matrix-synapse = {
