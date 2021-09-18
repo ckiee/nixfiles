@@ -24,6 +24,9 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+    ##
+    ## REVERSE PROXY
+    ##
     services.nginx.virtualHosts = {
       ${cfg.host} = {
         locations."/.well-known/matrix/server".extraConfig = let
@@ -63,6 +66,10 @@ in with lib; {
       };
     };
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
+    ##
+    ## DAEMON
+    ##
+
     cookie.services.postgres = {
       enable = true;
       comb.synapse = { };
