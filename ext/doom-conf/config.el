@@ -35,7 +35,12 @@
 (setq scroll-margin 8)
 
 ;; Email should be sent using the stuff home-manager does
-(setq send-mail-function 'sendmail-send-it)
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
