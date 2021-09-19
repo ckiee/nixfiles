@@ -44,7 +44,7 @@ in with lib; {
         # Upload a file to i.ckie.dev (bokkusu)
         bokup() {
           tfn="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 7).''${1##*.}"
-          rsync $1 bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+          rsync "$1" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
           echo https://i.ckie.dev/"$tfn"
           echo https://i.ckie.dev/"$tfn" | xclip -selection c
         }
