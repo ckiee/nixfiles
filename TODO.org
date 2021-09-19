@@ -58,5 +58,5 @@ Deprecated, use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][n
 - I want to have a private Nix binary cache. (Store contents are slightly sensitive due to e.g. the matrix-synapse service not providing a secure way to set the registration token)
   + Cas already wrote a module, but untested: ~modules/services/nix-serve.nix~
 - Remove the yucky state from the ~.ssh/config~ file. ~ProxyJump~ blah bla bla.
- - Central CoreDNS daemon? Probably a bad idea because of latency.
+- Central CoreDNS daemon? Probably a bad idea because of latency.
 - KDE Connect working across networks!!
