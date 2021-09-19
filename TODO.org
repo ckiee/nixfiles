@@ -31,6 +31,8 @@
   + [X] deploy on bokkusu
   + [ ] collect data from other hosts
   + [ ] add coredns exporter
+- [ ] set home-manager ~xdg.mimeApps~
+- [ ] investigate ~fish~ more
 - [-] backup
   + [X] ~/var/lib/rtc-files~
   + [X] postgres (use ~services.postgresqlBackup~)
@@ -50,3 +52,11 @@
 Deprecated, use Xe's [[https://github.com/Xe/waifud/blob/main/data/names.json][names.json]].
 - [X] bokkusu
 - [X] nifles
+
+* Tailscale/Nix+WireGuard comparison
+** Usecase
+- I want to have a private Nix binary cache. (Store contents are slightly sensitive due to e.g. the matrix-synapse service not providing a secure way to set the registration token)
+  + Cas already wrote a module, but untested: ~modules/services/nix-serve.nix~
+- Remove the yucky state from the ~.ssh/config~ file. ~ProxyJump~ blah bla bla.
+ - Central CoreDNS daemon? Probably a bad idea because of latency.
+- KDE Connect working across networks!!
