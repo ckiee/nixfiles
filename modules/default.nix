@@ -35,5 +35,6 @@
     ./user-alias.nix
     ./wol.nix
     ./restic.nix
+    ./command-not-found.nix
   ];
 }
