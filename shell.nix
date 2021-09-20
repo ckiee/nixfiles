@@ -8,6 +8,10 @@ let
     COOKIE_TOPLEVEL=$(${pkgs.git}/bin/git rev-parse --show-toplevel)
     nix-build "$COOKIE_TOPLEVEL/pkgs" -A "$@"
   '';
+  # throw is a keyword
+  throwDeriv = pkgs.writeScriptBin "throw" ''
+    mo deploy morph.nix switch --passwd --on $@
+  '';
   rager = pkgs.writeScriptBin "rager" ''
         export PATH=$PATH:${lib.makeBinPath (with pkgs; [ rage mo ])}
         set -e
@@ -77,5 +81,6 @@ in pkgs.mkShell {
     nix-prefetch-github
     bpkg
     rager
+    throwDeriv
   ];
 }
