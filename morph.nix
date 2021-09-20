@@ -14,4 +14,5 @@ in {
   # "pookieix.local" = import ./hosts/pookieix;
   "aquamarine.local" = import ./hosts/aquamarine;
   "drapion.local" = import ./hosts/drapion;
+  "berryshine.ckie.dev" = import ./hosts/berryshine;
 }

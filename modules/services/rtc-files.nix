@@ -34,7 +34,7 @@ in with lib; {
 
     services.nginx = {
       virtualHosts = {
-        "i.${cfg.old-fqdn}" = {
+        "${cfg.old-fqdn}" = {
           locations."/" = { root = cfg.folder; };
           extraConfig = ''
             rewrite ^/$ $scheme://${cfg.old-fqdn} permanent;
@@ -44,7 +44,7 @@ in with lib; {
             access_log /var/log/nginx/rtc-files.access.log;
           '';
         };
-        "i.${cfg.new-fqdn}" = {
+        "${cfg.new-fqdn}" = {
           locations."/" = { root = cfg.folder + "/ckiedev"; };
           extraConfig = ''
             # Redirect ckie.dev root url (/) to new FQDN
