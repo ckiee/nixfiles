@@ -32,7 +32,8 @@
   + [ ] collect data from other hosts
   + [ ] add coredns exporter
 - [ ] set home-manager ~xdg.mimeApps~
-- [ ] investigate ~fish~ more
+- [X] investigate ~fish~ more
+  https://fishshell.com/docs/current/fish_for_bash_users.html
 - [-] backup
   + [X] ~/var/lib/rtc-files~
   + [X] postgres (use ~services.postgresqlBackup~)
