@@ -77,6 +77,18 @@
         "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nixos-channel-scripts": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "nixos",
+        "repo": "nixos-channel-scripts",
+        "rev": "4587d77d926117c6bf3d2931b7ec36bf85dd304f",
+        "sha256": "0wh3aaaqjpfl02bxkllpmgvfmbwhj66ks0n5wbh1vnf46750pchd",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixos-channel-scripts/archive/4587d77d926117c6bf3d2931b7ec36bf85dd304f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixos-hardware": {
         "branch": "master",
         "description": "A collection of NixOS modules covering hardware quirks.",
