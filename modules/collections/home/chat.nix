@@ -8,20 +8,24 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ discord discord-ptb fractal ];
+    home.packages = with pkgs; [
+      discord
+      (discord-ptb.overrideAttrs (_: {
+        src = builtins.fetchTarball
+          "https://dl-ptb.discordapp.net/apps/linux/0.0.26/discord-ptb-0.0.26.tar.gz";
+      }))
+      fractal
+    ];
     cookie.weechat.enable = true;
 
     # Bump discord without bumping nixpkgs
     # nixpkgs.overlays = [
     #   (self: super: {
-    #     discord = super.discord.overrideAttrs (_: {
-    #       src = builtins.fetchTarball
-    #         "https://dl.discordapp.net/apps/linux/0.0.15/discord-0.0.15.tar.gz";
-    #     });
-    #     discord-ptb = super.discord-ptb.overrideAttrs (_: {
-    #       src = builtins.fetchTarball
-    #         "https://dl-ptb.discordapp.net/apps/linux/0.0.25/discord-ptb-0.0.25.tar.gz";
-    #     });
+    #     # discord = super.discord.overrideAttrs (_: {
+    #     #   src = builtins.fetchTarball
+    #     #     "https://dl.discordapp.net/apps/linux/0.0.15/discord-0.0.15.tar.gz";
+    #     # });
+    #     #discord-ptb = super.;
     #   })
     # ];
   };
