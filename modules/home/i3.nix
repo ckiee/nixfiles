@@ -43,6 +43,7 @@ in with lib; {
       audacity
       firefox
       calibre
+      friture # voice shenanigans (:
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
