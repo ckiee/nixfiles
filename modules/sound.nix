@@ -64,6 +64,7 @@ in with lib; {
     ### PipeWire
     (mkIf cfg.pipewire.enable (let inherit (cfg.pipewire) quantum rate;
     in {
+      environment.systemPackages = with pkgs; [ helvum ]; # A cute patchbay
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
