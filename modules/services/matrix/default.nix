@@ -93,8 +93,8 @@ in with lib; {
     # ...also, only start the homeserver up AFTER that key
     # has been decrypted.
     systemd.services.matrix-synapse = rec {
-      wants = [ "matrix-signing-key-key.service" ];
-      after = wants;
+      requires = [ "matrix-signing-key-key.service" ];
+      after = requires;
     };
 
     # Setup backups for the media; the rest is in Postgres which is backed up by it's

@@ -49,8 +49,8 @@ in {
 
     systemd.services = mapAttrs' (i: v:
       nameValuePair "acme-${i}" (rec {
-        wants = [ "acme-key.service" ];
-        after = wants;
+        requires = [ "acme-key.service" ];
+        after = requires;
       })) cfg.hosts;
 
     security.acme = {

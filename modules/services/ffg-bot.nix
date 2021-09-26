@@ -22,7 +22,7 @@ in with lib; {
         dest = "${cfg.folder}/.env";
         permissions = "0400";
       };
-      wants = [ "postgresql.service" ];
+      requires = [ "postgresql.service" ];
       script = let ffg = pkgs.cookie.ffg-bot;
       in ''
         # Does not support UNIX sockets apparently..
