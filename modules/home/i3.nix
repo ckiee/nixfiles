@@ -7,7 +7,7 @@ let
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
   musicWorkspace = "mpd";
-  playerctl = "${pkgs.playerctl}/bin/playerctl --player=mpd,spotify,%any";
+  mpc = "${pkgs.mpc_cli}/bin/mpc";
   startup = pkgs.writeScript "i3-startup" ''
     #!${pkgs.stdenv.shell}
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
@@ -81,8 +81,8 @@ in with lib; {
               "${modifier}+F1" = "${pam} --toggle-mute";
               "${modifier}+F2" = "${pam} --decrease 5";
               "${modifier}+F3" = "${pam} --increase 5";
-              "${modifier}+F4" = ''exec "${playerctl} next"'';
-              "${modifier}+t" = ''exec "${playerctl} play-pause"'';
+              "${modifier}+F4" = ''exec "${mpc} next"'';
+              "${modifier}+t" = ''exec "${mpc} toggle"'';
               "${modifier}+F5" =
                 ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
               "${modifier}+F6" =
