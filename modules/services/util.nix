@@ -34,7 +34,7 @@ with lib; {
       in rec {
         inherit script description;
         wantedBy = [ "multi-user.target" ];
-        requires = mapAttrsToList (name: _: "${name}-key.service") secrets
+        requires = mapAttrsToList (secretName: _: "${name}-${secretName}-key.service") secrets
           ++ serviceWants;
         after = requires;
 
