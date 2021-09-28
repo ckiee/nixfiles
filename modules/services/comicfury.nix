@@ -4,6 +4,7 @@ let
   cfg = config.cookie.services.comicfury;
   util = import ./util.nix { inherit lib config; };
 in with lib; {
+  # XXX This service is no longer operational. XXX
   options.cookie.services.comicfury = {
     enable = mkEnableOption "Enables the ComicFury webhook for Rain";
     folder = mkOption {
