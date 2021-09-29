@@ -44,6 +44,8 @@
     + +~/var/dkim~+
   + [X] minecraft
   + [ ] get drive(s): https://ksp.co.il/web/item/19543
+- [ ] support ipv6 in https://github.com/NixOS/nixpkgs/pull/137123
+  see https://discord.com/channels/@me/783249135335112715/892871143810302005
 
 ** Backburner
 - [ ] move each service/module into its own folder like nixpkgs' pkgs so we can eliminate ~ext~
