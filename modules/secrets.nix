@@ -69,12 +69,12 @@ let
       wantedBy = [ "multi-user.target" ]
         ++ optional (wantedBy != null) wantedBy;
 
-      serviceConfig.Type = "oneshot";
+      serviceConfig.Type = "simple";
 
       # This needs to be in preStart so if anyone depends on us
       # we'll actually be done by the time systemd thinks we're "active".
       preStart = with pkgs; ''
-        rm -rf ${dest}
+        rm -f ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
           /. + "${nixfilesPath}/encrypted/${config.networking.hostName}/${
             filenameFromPath source
@@ -84,7 +84,7 @@ let
         chown '${owner}':'${group}' '${dest}'
         chmod '${permissions}' '${dest}'
       '';
-      script = "true";
+      script = "sleep infinity";
     };
 in {
   options.cookie.secrets = mkOption {
