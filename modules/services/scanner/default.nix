@@ -8,10 +8,6 @@ in with lib; {
     enableClient = mkEnableOption "Enables and configures SANE as the client";
   };
 
-  # TODO remove after nixpkgs update & PR merge https://github.com/NixOS/nixpkgs/pull/137028
-  disabledModules = [ "services/hardware/sane.nix" ];
-  imports = [ ./sane.nix ];
-
   config = mkMerge [
     {
       assertions = [{
