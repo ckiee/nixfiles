@@ -27,10 +27,6 @@ in {
     };
   };
 
-  imports = [
-    ./cloudflared-dns.nix # TODO wait for nixpkgs PR merge
-  ];
-
   config = mkIf cfg.enable {
     services.cloudflared-dns = {
       enable = true;
