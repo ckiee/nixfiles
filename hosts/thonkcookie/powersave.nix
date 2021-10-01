@@ -33,6 +33,9 @@
   systemd.services."t480s-sdcard" = {
     wantedBy = [ "multi-user.target" ];
     description = "Disable Thinkpad T480s SD-card";
-    script = "echo 2-3 >> /sys/bus/usb/drivers/usb/unbind";
+    script = ''
+      echo 2-3 >> /sys/bus/usb/drivers/usb/bind || true
+      echo 2-3 >> /sys/bus/usb/drivers/usb/unbind
+    '';
   };
 }
