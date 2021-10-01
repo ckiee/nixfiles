@@ -10,7 +10,7 @@ in with lib; {
     boot.loader.systemd-boot = {
       enable = true;
       editor = false;
-      configurationLimit = 120;
+      configurationLimit = 16;
     };
   };
 }
