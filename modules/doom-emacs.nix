@@ -3,50 +3,38 @@
 with lib;
 let
   cfg = config.cookie.doom-emacs;
-  # TODO: Make a nixpkgs PR when 1.6.2 hits, currently nixpkgs has 1.6.0
-  # and I feel bad about making a PR just to bump for a minor semver
-  # increment.
-  mu = (pkgs.mu.overrideAttrs (_: rec {
-    version = "1.6.4";
-    src = pkgs.fetchFromGitHub {
-      owner = "djcb";
-      repo = "mu";
-      rev = version;
-      sha256 = "sha256-rRBi6bgxkVQ94wLBqVQikIE0jVkvm1fjtEzFMsQTJz8=";
-    };
-  }));
-  extraBins = with pkgs;
-    [
-      ripgrep # for +default/search-project
-      jq # JSON
-      fd # ...like find!
-      jdk11 # Java
-      rust-analyzer-unwrapped # Rust
-      nixfmt # Nix
-      nixpkgs-fmt # Nixpkgs
-      editorconfig-core-c # editorconfig
-      omnisharp-roslyn # C#
-      texlive.combined.scheme-medium # org-mode latex preview
-      gopls # Go LSP
-      ccls # C/C++
-      clang # for clang-format. C(++) Formatting without the LSP
-      python3Packages.black # Python formatter
-      html-tidy # HTML/SVG/Web formatter
-      pandoc # markdown previewing (SPC m p in markdown-mode)
-      elmPackages.elm # Elm
-      elmPackages.elm-format # Elm
-      #
-      # shell scripts
-      shfmt
-      shellcheck
-      #
-      # spellcheck
-      ispell
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      #
-      # e-mail
-      isync
-    ] ++ singleton mu; # ensure we get the overriden version
+  extraBins = with pkgs; [
+    ripgrep # for +default/search-project
+    jq # JSON
+    fd # ...like find!
+    jdk11 # Java
+    rust-analyzer-unwrapped # Rust
+    nixfmt # Nix
+    nixpkgs-fmt # Nixpkgs
+    editorconfig-core-c # editorconfig
+    omnisharp-roslyn # C#
+    texlive.combined.scheme-medium # org-mode latex preview
+    gopls # Go LSP
+    ccls # C/C++
+    clang # for clang-format. C(++) Formatting without the LSP
+    python3Packages.black # Python formatter
+    html-tidy # HTML/SVG/Web formatter
+    pandoc # markdown previewing (SPC m p in markdown-mode)
+    elmPackages.elm # Elm
+    elmPackages.elm-format # Elm
+    #
+    # shell scripts
+    shfmt
+    shellcheck
+    #
+    # spellcheck
+    ispell
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    #
+    # e-mail
+    isync
+    mu
+  ];
   extra-desktop =
     pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
       name = "emacsclientexs.desktop";
@@ -74,11 +62,7 @@ let
     };
   in pkgs.callPackage sources.doom-emacs {
     doomPrivateDir = ../ext/doom-conf;
-    extraPackages = epkgs:
-      [
-        mu
-
-      ];
+    extraPackages = epkgs: [ pkgs.mu ];
     emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
     emacsPackagesOverlay = prev: final: {
       mcf-mode = (prev.trivialBuild {
@@ -135,7 +119,7 @@ in {
       home.packages = [
         doom-emacs
         extra-desktop
-        mu # for CLI usage
+        pkgs.mu # for CLI usage
       ];
     };
     # Give mu4e what it needs
