@@ -33,7 +33,7 @@ in with lib; {
       cantata
       # Utilities
       mpc_cli
-      pkgs-master.spotdl
+      spotdl
       puddletag # ...for when the metadata gets messed up
     ];
   };
