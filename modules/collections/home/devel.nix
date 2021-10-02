@@ -13,15 +13,15 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      ms.nodejs_latest
-      (yarn.override { nodejs = ms.nodejs_latest; })
+      nodejs_latest
+      (yarn.override { nodejs = nodejs_latest; })
       rustup
       maven
       gcc
       gh
       gdb
       manpages
-      ms.platformio
+      platformio
       elmPackages.elm
       elmPackages.elm-format
     ];
