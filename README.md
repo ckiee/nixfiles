@@ -58,7 +58,7 @@ Another Pi, too boring to boot up to get specs. It's used for the 3D printer.
 
 A QEMU VM for testing that's been used a total of... one time!
 
-### aquamarin e
+### aquamarine
 
 A laptop motherboard in a dollar-store box. Very unreliable, slow, and only has a somewhat-functioning WiFi card for networking.
 
