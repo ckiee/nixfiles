@@ -21,6 +21,7 @@
     ./printer.nix
     ./scanner
     ./syncthing.nix
+    ./headscale.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix

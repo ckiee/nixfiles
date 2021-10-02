@@ -20,7 +20,11 @@
         enable = true;
         host = "grafana.ckie.dev";
       };
-
+      headscale = {
+        enable = true;
+        host = "tailnet.ckie.dev";
+        acmeHost = "ckie.dev";
+      };
       ronthecookieme = {
         enable = true;
         host = "ronthecookie.me";
@@ -59,6 +63,7 @@
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
+            "tailnet.ckie.dev"
           ];
         };
       };
