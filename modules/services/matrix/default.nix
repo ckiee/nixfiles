@@ -106,7 +106,7 @@ in with lib; {
 
     services.matrix-synapse = {
       enable = true;
-      package = matrix-synapse;
+      package = pkgs.matrix-synapse;
       server_name = cfg.host;
       public_baseurl = "https://${cfg.serviceHost}/";
       database_type = "psycopg2";
