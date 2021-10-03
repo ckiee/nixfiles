@@ -65,10 +65,7 @@
     };
   };
 
-  networking = {
-    hostName = "bokkusu";
-    networkmanager.insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
-  };
+  networking.hostName = "bokkusu";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
