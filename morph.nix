@@ -8,10 +8,12 @@ in {
     ordering = { tags = [ "desktops" "servers" ]; };
   };
 
-  "thonkcookie.local" = import ./hosts/thonkcookie;
-  "cookiemonster.local" = import ./hosts/cookiemonster;
-  "bokkusu.ckie.dev" = import ./hosts/bokkusu;
-  # "pookieix.local" = import ./hosts/pookieix;
+  # Tailscale hosts
+  "bokkusu" = import ./hosts/bokkusu;
+  "cookiemonster" = import ./hosts/cookiemonster;
+  "drapion" = import ./hosts/drapion;
+  "thonkcookie" = import ./hosts/thonkcookie;
+  # Legacy hosts
   "aquamarine.local" = import ./hosts/aquamarine;
-  "drapion.local" = import ./hosts/drapion;
+  # "pookieix.local" = import ./hosts/pookieix;
 }
