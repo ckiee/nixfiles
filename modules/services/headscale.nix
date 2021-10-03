@@ -21,9 +21,7 @@ in with lib; {
       enable = true;
       publicURL = "https://${cfg.host}";
       listenAddress = "127.0.0.1:4329";
-
-      tlsCertificatePath = "/var/lib/headscale/acme/cert.pem";
-      tlsKeyPath = "/var/lib/headscale/acme/key.pem";
+      logLevel = "debug";
     };
 
     cookie.bindfs.headscale = {
@@ -35,8 +33,14 @@ in with lib; {
     };
 
     cookie.services.nginx.enable = true; # firewall & recommended defaults
+    cookie.services.prometheus.nginx-vhosts = [ "headscale" ];
     services.nginx.virtualHosts.${cfg.host} = {
-      locations."/" = { proxyPass = "http://127.0.0.1:4329"; };
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:4329";
+        extraConfig = ''
+          access_log /var/log/nginx/headscale.access.log;
+        '';
+      };
     };
   };
 }
