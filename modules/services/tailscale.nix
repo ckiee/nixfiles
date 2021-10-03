@@ -29,7 +29,7 @@ in with lib; {
       serviceConfig.Type = "oneshot";
 
       script =
-        "${tailscale}/bin/tailscale up --login-server https://tailnet.ckie.dev --authkey $(cat ${
+        "${tailscale}/bin/tailscale up --reset --force-reauth --authkey $(cat ${
           escapeShellArg config.cookie.secrets.tailscale-authkey.dest
         })";
     };
