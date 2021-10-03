@@ -67,6 +67,7 @@ in {
     krita
   ];
 
+  programs.cnping.enable = true;
   programs.adb.enable = true;
   programs.wireshark = {
     enable = true;
