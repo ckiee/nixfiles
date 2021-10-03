@@ -72,8 +72,14 @@
 
   cookie = {
     # Daemons
-    services.ssh.enable = true;
-    services.tailscale.enable = true;
+    services = {
+      ssh.enable = true;
+      tailscale.enable = true;
+      coredns = {
+        enable = true;
+        useLocally = true;
+      };
+    };
     # Etc
     git.enable = true;
     binaryCaches.enable = true;
