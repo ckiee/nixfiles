@@ -73,6 +73,7 @@
   cookie = {
     # Daemons
     services.ssh.enable = true;
+    services.tailscale.enable = true;
     # Etc
     git.enable = true;
     binaryCaches.enable = true;

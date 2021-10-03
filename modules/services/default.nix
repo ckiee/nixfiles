@@ -22,6 +22,7 @@
     ./scanner
     ./syncthing.nix
     ./headscale.nix
+    ./tailscale.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
