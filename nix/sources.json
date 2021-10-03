@@ -108,15 +108,15 @@
         "type": "git"
     },
     "nixpkgs": {
-        "branch": "nixos-unstable",
+        "branch": "private",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "private",
-        "sha256": "1xz0qldyzzq8czx7ic0567b9njk6bb9f1r403crdslrvip328jkc",
+        "rev": "5bee888cfad475c90668a17ee152ac4262e39172",
+        "sha256": "1ri26j0wrr65gnyl6wjslv8msw1yd0bx8kgqv6k7avn615y5l0yp",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/private.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/5bee888cfad475c90668a17ee152ac4262e39172.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
