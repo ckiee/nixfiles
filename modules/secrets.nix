@@ -7,11 +7,6 @@ let
   userPubkey = fileContents ../ext/id_rsa.pub;
   cfg = config.cookie.secrets;
   filenameFromPath = path: last (splitString "/" path);
-  # This is defined in the Makefile, so it's not perfect:
-  nixfilesPath =
-    warnIf ((builtins.getEnv "COOKIE_TOPLEVEL" == "") && !isRagerBuild)
-    "COOKIE_TOPLEVEL is empty. You have to be inside the shell."
-    (builtins.getEnv "COOKIE_TOPLEVEL");
 
   secret = types.submodule ({config,...}: {
     options = {
@@ -76,7 +71,7 @@ let
       preStart = with pkgs; ''
         rm -f ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
-          /. + "${nixfilesPath}/encrypted/${config.networking.hostName}/${
+          ./.. + "/encrypted/${config.networking.hostName}/${
             filenameFromPath source
           }"
         }'
