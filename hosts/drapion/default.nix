@@ -18,7 +18,7 @@ with lib;
       coredns = {
         enable = true;
         openFirewall = true;
-        addServer = true;
+        useLocally = true;
       };
       printing = {
         enable = true;
