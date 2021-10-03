@@ -59,10 +59,11 @@ with builtins; {
 
     mailserver = {
       enable = true;
+      localDnsResolver = false; # :53 needs to be open for services/coredns
       fqdn = "bokkusu.ckie.dev";
       domains = [ "ckie.dev" ];
-      certificateScheme = 1; # Manually specify certificate paths
 
+      certificateScheme = 1; # Manually specify certificate paths
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
       keyFile = "/var/lib/acme/${cfg.certFqdn}/key.pem";
 
