@@ -91,7 +91,11 @@
 
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
-      bash.enable = true;
+      shell = {
+        enable = true;
+        bash = true;
+        fish = true;
+      };
       nixpkgs-config.enable = true;
     };
   };
