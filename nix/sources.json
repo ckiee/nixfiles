@@ -149,10 +149,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "sysyelper",
-        "rev": "39d76655d3928f7335cde718ee169c242db9900f",
-        "sha256": "113j8mn0vpvfyi11bl01i4gj88r46qa7kfz49ia2jy78jf1yhs20",
+        "rev": "55b89e3597d6b3a88eec35ffbd24ed4aab3dd2bc",
+        "sha256": "0vsy4hi8li777pfj0jvdfzm2r07y1vb38l3n7679yy498p7bs9v3",
         "type": "tarball",
-        "url": "https://github.com/ckiee/sysyelper/archive/39d76655d3928f7335cde718ee169c242db9900f.tar.gz",
+        "url": "https://github.com/ckiee/sysyelper/archive/55b89e3597d6b3a88eec35ffbd24ed4aab3dd2bc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
