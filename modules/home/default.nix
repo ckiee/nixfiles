@@ -15,7 +15,7 @@ in {
     users.ckie = { ... }: {
       imports = [
         ./polybar.nix
-        ./bash.nix
+        ./shell.nix
         ./gtk.nix
         ./dunst.nix
         ./keyboard.nix
