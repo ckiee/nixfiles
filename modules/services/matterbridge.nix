@@ -29,5 +29,7 @@ in with lib; {
       enable = true;
       configPath = config.cookie.secrets.matterbridge.dest;
     };
+
+    systemd.services.matterbridge.environment.DEBUG = "1";
   };
 }
