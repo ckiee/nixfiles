@@ -86,6 +86,7 @@
     nix.enable = true;
     cookie-overlay.enable = true;
     ipban.enable = true;
+    shell-utils.enable = true;
   };
 
   home-manager.users.ckie = { pkgs, ... }: {

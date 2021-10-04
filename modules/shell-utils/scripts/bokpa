@@ -1,0 +1,12 @@
+#!@bash@/bin/bash
+export PATH="@ckiePath@"
+set -euo pipefail
+
+# Pipe stdin into i.ckie.dev
+tmp=$(mktemp)
+cat - > "$tmp"
+tfn=$(tr -dc 'a-zA-Z0-9' </dev/urandom | head -c 7).txt
+rsync --chmod 0644 "$tmp" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+echo https://i.ckie.dev/"$tfn"
+echo https://i.ckie.dev/"$tfn" | xclip -selection c
+rm "$tmp"

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # Subfolders
+    # Subfolders (but like, not for single modules)
     ./home
     ./services
     ./collections
@@ -36,5 +36,6 @@
     ./wol.nix
     ./restic.nix
     ./command-not-found.nix
+    ./shell-utils
   ];
 }

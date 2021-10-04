@@ -1,0 +1,5 @@
+#!@bash@/bin/bash
+export PATH="@ckiePath@"
+set -euo pipefail
+
+wget --no-verbose -O .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
