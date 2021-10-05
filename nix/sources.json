@@ -59,10 +59,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "matterbridge",
-        "rev": "d88487575d5c6a5df78a71c7a8058d1bef7ee7e6",
-        "sha256": "064jmh9wfzrs2a4czfza0r55k7g2id4yk1560kjlp2b85h4iaqdv",
+        "rev": "919b738124a11dae986fb65a46b8c517d36028c0",
+        "sha256": "0zjb6hhp5qdrwkq4if9bgi9fg6mzx58wn6bfl68jjvsm8gkj3l7b",
         "type": "tarball",
-        "url": "https://github.com/ckiee/matterbridge/archive/d88487575d5c6a5df78a71c7a8058d1bef7ee7e6.tar.gz",
+        "url": "https://github.com/ckiee/matterbridge/archive/919b738124a11dae986fb65a46b8c517d36028c0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
