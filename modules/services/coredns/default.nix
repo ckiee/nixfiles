@@ -9,7 +9,7 @@ let
   baseHosts = pkgs.writeTextFile {
     name = "coredns-hosts-ckie";
     text = ''
-      # StevenBlack hosts
+      # StevenBlack ad-blocking hosts
       ${extHosts}
       # Runtime hosts
     '';
