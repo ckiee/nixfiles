@@ -1,9 +1,8 @@
-#!@bash@/bin/bash
-export PATH="@ckiePath@"
-set -euo pipefail
+#!@bash@/bin/sh
+export PATH="$PATH:@ckiePath@" # need system ssh
 
 # Upload a file to i.ckie.dev (bokkusu)
-tfn="$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 7).''${1##*.}"
-rsync "$1" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+tfn="$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 7).${1##*.}"
+rsync --progress "$1" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
 echo https://i.ckie.dev/"$tfn"
 echo https://i.ckie.dev/"$tfn" | xclip -selection c

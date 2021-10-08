@@ -1,6 +1,5 @@
 #!@bash@/bin/bash
-export PATH="@ckiePath@"
-set -euo pipefail
+export PATH="$PATH:@ckiePath@" # need system ssh
 
 # Pipe stdin into i.ckie.dev
 tmp=$(mktemp)
