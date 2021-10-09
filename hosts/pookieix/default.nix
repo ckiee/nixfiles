@@ -1,34 +1,32 @@
 { config, pkgs, lib, ... }:
 
-let
-  sources = import ../../nix/sources.nix;
-  octopkgs = import sources.nixpkgs-octoprint { };
-in {
-  imports = [ ./hardware.nix ../.. ];
-
-  boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_rpi4;
+# nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/pookieix/default.nix --argstr system aarch64-linux
+# build=$(nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=hosts/pookieix/default.nix --argstr system aarch64-linux) && echo $build && nix copy --to ssh://pookieix.local $build
+{
+  imports = [
+    ./hardware.nix
+    ../..
+    <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix>
+  ];
 
   networking.hostName = "pookieix";
 
-  # OctoPrint is in python
-  # nixpkgs.overlays =
-  #   [ (self: super: { inherit (octopkgs) python python3 octoprint python3Packages pythonPackages; }) ];
-  nixpkgs.pkgs = lib.mkAfter octopkgs;
+  boot.loader.raspberryPi = {
+    enable = true;
+    version = 4;
+  };
+
   services.octoprint = {
     enable = true;
     port = 5000;
   };
 
-  networking.firewall.allowedTCPPorts =
-    [ 5000 ]; # this is just weird iptables stuff
-  users.users.octoprint.extraGroups = [ "dialout" ];
+  # following rule is prerouting, so we still need to expose this
+  networking.firewall.allowedTCPPorts = [ 5000 ];
   networking.firewall.extraCommands = ''
     iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 5000
   '';
 
-  hardware.enableRedistributableFirmware = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
@@ -38,6 +36,6 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.03"; # Did you read the comment?
+  system.stateVersion = "21.05"; # Did you read the comment?
 
 }
