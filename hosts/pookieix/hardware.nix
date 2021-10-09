@@ -1,14 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
-let
-  sources = import ../../nix/sources.nix;
-  inherit (sources) nixos-hardware;
-in {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    "${nixos-hardware}/raspberry-pi/4"
-  ];
-
+{
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   # ttyAMA0 is the serial console broken out to the GPIO
