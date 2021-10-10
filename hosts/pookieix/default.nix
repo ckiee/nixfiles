@@ -9,6 +9,7 @@
     hostName = "pookieix";
     wireless.enable = false;
     networkmanager.enable = true;
+    firewall.enable = false;
   };
 
   cookie = {
@@ -16,7 +17,10 @@
       enable = true;
       version = 4;
     };
-    services.avahi.enable = true;
+    services = {
+      avahi.enable = true;
+      octoprint.enable = true;
+    };
   };
 
   # This value determines the NixOS release from which the default
