@@ -23,6 +23,7 @@
     ./syncthing.nix
     ./headscale.nix
     ./tailscale.nix
+    ./octoprint.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
