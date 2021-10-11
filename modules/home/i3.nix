@@ -44,6 +44,7 @@ in with lib; {
       firefox
       calibre
       friture # voice shenanigans (:
+      nottetris2
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
