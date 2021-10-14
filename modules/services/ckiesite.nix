@@ -1,7 +1,13 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.services.ckiesite;
-
+let
+  cfg = config.cookie.services.ckiesite;
+  sources = import ../../nix/sources.nix;
+  inherit (sources) spectrogram-web;
+  spectrogramRoot = pkgs.linkFarm "nginx-spectrogram-root" [{
+    name = "spectrogram";
+    path = spectrogram-web;
+  }];
 in with lib; {
   options.cookie.services.ckiesite = {
     enable = mkEnableOption "Enables ckie.dev service";
@@ -18,7 +24,10 @@ in with lib; {
 
     services.nginx = {
       virtualHosts."${cfg.host}" = {
-        locations."/" = { root = "${pkgs.cookie.ckiesite}"; };
+        locations = {
+          "/".root = "${pkgs.cookie.ckiesite}";
+          "/spectrogram".root = "${spectrogramRoot}";
+        };
         extraConfig = ''
           access_log /var/log/nginx/ckiesite.access.log;
         '';
