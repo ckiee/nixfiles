@@ -2,16 +2,14 @@
 
 let cfg = config.cookie.keyboard;
 in with lib; {
-  options.cookie.keyboard = { enable = mkEnableOption "Enables the keyboard layouts"; };
+  options.cookie.keyboard = {
+    enable = mkEnableOption "Enables the keyboard layouts";
+  };
 
   config = mkIf cfg.enable {
-    xsession.windowManager.i3.config.startup = [{
-      command =
-        "${pkgs.xorg.xmodmap}/bin/xmodmap ${../../ext/xmodmap-layout}";
-      notification = false;
-    }];
-
     home.keyboard.layout = "us,il";
-    home.keyboard.options = [ "grp:win_space_toggle" ];
+    # manpage xkeyboard-config(7)
+    home.keyboard.options =
+      [ "grp:win_space_toggle" "compose:ralt" "caps:super" ];
   };
 }
