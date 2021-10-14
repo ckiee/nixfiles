@@ -68,6 +68,7 @@
     ncdu
     fd # a better find
     hyperfine # a better time
+    mtr # a better traceroute
   ];
 
   cookie = {
