@@ -52,7 +52,6 @@ in with lib; {
         sessionVariables = rec {
           EDITOR = "vim";
           VISUAL = EDITOR;
-          TERM = "xterm-256color";
         };
         # interactive shell only:
         initExtra = ''

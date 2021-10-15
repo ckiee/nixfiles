@@ -38,5 +38,6 @@
     ./command-not-found.nix
     ./shell-utils
     ./raspberry
+    ./st.nix
   ];
 }

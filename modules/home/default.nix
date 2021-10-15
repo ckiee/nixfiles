@@ -20,7 +20,6 @@ in {
         ./dunst.nix
         ./keyboard.nix
         ./redshift.nix
-        ./st.nix
         ./nautilus.nix
         ./i3.nix
         ./xcursor.nix

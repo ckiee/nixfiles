@@ -33,7 +33,6 @@ in with lib; {
         dunst.enable = true;
         keyboard.enable = true;
         redshift.enable = true;
-        st.enable = true;
         nautilus.enable = true;
         i3.enable = true;
         xcursor.enable = true;
@@ -53,6 +52,7 @@ in with lib; {
       };
       sleep.enable = true;
       slock.enable = true;
+      st.enable = true;
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;

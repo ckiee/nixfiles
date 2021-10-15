@@ -53,6 +53,7 @@ in with lib; {
       windowManager.i3 = {
         enable = true;
         config = {
+          terminal = "st";
           gaps = {
             inner = 10;
             outer = 0;
