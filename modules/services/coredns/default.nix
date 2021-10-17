@@ -34,7 +34,7 @@ in {
   # dial up unencrypted DNS servers.
   #
   # So instead, we run:
-  # - cloudflared:      proxying raw DNS to Dns-over-HTTPS
+  # - dnscrypt=proxy2:      proxying raw DNS to DNS-over-HTTPS
   # - dns-hosts-poller: creating /run/coredns-hosts with ad-servers to block AND tailscale hosts.
   # - coredns:          tying it all together and caching a bit
   #
@@ -44,9 +44,13 @@ in {
   # p.s. we also configure magic so we can drop the `.tailnet.ckie.dev` part. Just `galaxy-a51`
   config = mkIf cfg.enable (mkMerge [
     {
-      services.cloudflared-dns = {
+      # dnscrypt is quite clever and will measure latency to many
+      # servers until it can find the one with the lowest latency.
+      services.dnscrypt-proxy2 = {
         enable = true;
-        listenAddress = "localhost:1483"; # very arbitrary port
+        settings = {
+          listen_addresses = ["127.0.0.1:1483"];
+        };
       };
 
       systemd.services.dns-hosts-poller = {
@@ -72,8 +76,8 @@ in {
       };
 
       systemd.services.coredns = {
-        requires = [ "cloudflared-dns.service" ];
-        after = [ "cloudflared-dns.service" ];
+        requires = [ "dnscrypt-proxy2.service" ];
+        after = [ "dnscrypt-proxy2.service" ];
       };
 
       services.coredns = {
