@@ -63,12 +63,13 @@
     usbutils
     dig
     asciinema
-    ripgrep # better grep
+    ripgrep   # a better grep
     unzip
     ncdu
-    fd # a better find
+    fd        # a better find
     hyperfine # a better time
-    mtr # a better traceroute
+    mtr       # a better traceroute
+    tmux      # when you can't afford i3
   ];
 
   cookie = {
