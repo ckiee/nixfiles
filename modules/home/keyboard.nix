@@ -10,6 +10,6 @@ in with lib; {
     home.keyboard.layout = "us,il";
     # manpage xkeyboard-config(7)
     home.keyboard.options =
-      [ "grp:win_space_toggle" "compose:menu" "caps:super" ];
+      [ "grp:win_space_toggle" "compose:rctrl" "caps:super" ];
   };
 }
