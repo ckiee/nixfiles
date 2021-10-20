@@ -75,7 +75,7 @@ in {
 
         rcloneConfigFile = sec.rclone-config.dest;
         repository = "rclone:gdrive:${host}-fs";
-        # timerConfig defualts to daily
+        # timerConfig defaults to daily
         # user        defaults to root
       };
 
