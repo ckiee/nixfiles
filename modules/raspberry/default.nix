@@ -5,7 +5,7 @@ let
   sources = import ../../nix/sources.nix;
   system = "aarch64-linux";
   pkgs = import sources.nixpkgs {
-    config = { };
+    config = { allowUnfree = true; };
     inherit system;
   };
   inherit (sources) nixos-hardware;
