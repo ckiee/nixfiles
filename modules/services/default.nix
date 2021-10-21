@@ -34,5 +34,6 @@
     ./ckiesite.nix
     ./sysyelper.nix
     ./isp-troll.nix
+    ./iscool.nix
   ];
 }

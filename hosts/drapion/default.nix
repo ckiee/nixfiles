@@ -19,6 +19,8 @@ with lib;
       avahi.enable = true;
       isp-troll.enable = true;
       scanner.enableServer = true;
+      iscool.enable = true;
+
       coredns = {
         enable = true;
         openFirewall = true;

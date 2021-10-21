@@ -65,6 +65,18 @@
         "url": "https://github.com/rycee/home-manager/archive/7df6656b113ce0d39c8b7d30915cafe046e1d64e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "iscool": {
+        "branch": "main",
+        "description": "Iscool scraping sandwich reminder",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "iscool",
+        "rev": "e578bc89d049fa3052e144794e677684a6f10d54",
+        "sha256": "19s51b1zciwlsnh0h18cd3i6n2gp5bj6hz4zqsv0x0s93lp346k0",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/iscool/archive/e578bc89d049fa3052e144794e677684a6f10d54.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "matterbridge": {
         "branch": "groupchat",
         "description": "bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram, rocketchat, twitch, ssh-chat, zulip, whatsapp, keybase, matrix, microsoft teams, nextcloud, mumble, vk and more with REST API (mattermost not required!)",
