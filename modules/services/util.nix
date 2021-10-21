@@ -11,7 +11,7 @@ with lib; {
   #  }
   mkService = name:
     { home, extraGroups ? [ ], description ? name, script, secrets ? { }
-    , wants ? [ ], ... }: ({
+    , wants ? [ ], noDefaultTarget ? false, ... }: ({
       users = {
         users."${name}" = {
           inherit home extraGroups description;
@@ -33,7 +33,7 @@ with lib; {
       systemd.services."${name}" = let serviceWants = wants;
       in rec {
         inherit script description;
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = if noDefaultTarget then [] else [ "multi-user.target" ];
         requires = mapAttrsToList (secretName: _: "${name}-${secretName}-key.service") secrets
           ++ serviceWants;
         after = requires;
