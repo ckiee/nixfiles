@@ -13,7 +13,10 @@ let
     nixpkgs-fmt # Nixpkgs
     editorconfig-core-c # editorconfig
     omnisharp-roslyn # C#
-    texlive.combined.scheme-medium # org-mode latex preview
+    (texlive.combine {
+      # LaTeX with org mode!
+      inherit (texlive) scheme-medium wrapfig capt-of collection-langother ucs collection-fontsextra collection-fontsrecommended;
+    })
     gopls # Go LSP
     ccls # C/C++
     clang-tools # for clang-format. C(++) Formatting without the LSP
