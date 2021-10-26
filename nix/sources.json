@@ -71,10 +71,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "iscool",
-        "rev": "e578bc89d049fa3052e144794e677684a6f10d54",
-        "sha256": "19s51b1zciwlsnh0h18cd3i6n2gp5bj6hz4zqsv0x0s93lp346k0",
+        "rev": "d5a67cebb98a96d586fdadddf29e894c04663948",
+        "sha256": "0rsiql5jqg64v6bjrfcl3k4jxjbjm8c80sf1f0lkvv9ncp7kjyf8",
         "type": "tarball",
-        "url": "https://github.com/ckiee/iscool/archive/e578bc89d049fa3052e144794e677684a6f10d54.tar.gz",
+        "url": "https://github.com/ckiee/iscool/archive/d5a67cebb98a96d586fdadddf29e894c04663948.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "matterbridge": {
