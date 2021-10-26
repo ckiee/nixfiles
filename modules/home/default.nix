@@ -14,7 +14,7 @@ in {
     #
     users.ckie = { ... }: {
       imports = [
-        ./polybar.nix
+        ./polybar
         ./shell.nix
         ./gtk.nix
         ./dunst.nix

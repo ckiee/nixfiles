@@ -263,7 +263,8 @@ in {
         "module/shower" = {
           type = "custom/script";
           format-prefix = "${icons.shower} ";
-          exec = "${pkgs.dateutils}/bin/ddiff ${''"$(cat ~/Sync/.last-shower)"''} now -f '%d:%H'";
+          exec = "${./shower-longpoll}";
+          tail = true; # we run forever instead of getting executed many times
         };
       };
     };
