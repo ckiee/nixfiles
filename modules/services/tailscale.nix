@@ -33,5 +33,11 @@ in with lib; {
           escapeShellArg config.cookie.secrets.tailscale-authkey.dest
         })";
     };
+
+    # https://tailscale.com/kb/1082/firewall-ports/#my-devices-are-using-a-relay-what-can-i-do-to-help-them-connect-peer-to-peer
+    networking.firewall = {
+      allowedTCPPorts = [ 41641 ];
+      allowedUDPPorts = [ 41641 ];
+    };
   };
 }
