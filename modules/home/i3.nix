@@ -21,7 +21,6 @@ let
     # DiscordPTB &
     st -T weechat -e sh -c weechat &
     firefox &
-    emacs &
     cantata &
   '';
 in with lib; {
