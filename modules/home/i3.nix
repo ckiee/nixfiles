@@ -108,6 +108,7 @@ in with lib; {
               "--release ${modifier}+Shift+g" =
                 "exec ${../../ext/i3-scripts/nixmenu}";
               "${modifier}+Shift+h" = "exec ${../../ext/i3-scripts/sinkswap}";
+              "${modifier}+Shift+b" = "exec ${../../ext/i3-scripts/showerset}";
 
               # music house
               "${modifier}+Shift+w" =

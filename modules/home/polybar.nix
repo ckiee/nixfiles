@@ -48,6 +48,7 @@ let
     battery-full = "";
     globe = "";
     music = "";
+    shower = "";
   };
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -88,6 +89,8 @@ in {
           modules-right = [
             "polyprog"
             "mpd"
+            "separator"
+            "shower"
             "separator"
             "volume"
             "separator"
@@ -251,10 +254,16 @@ in {
           format = "${icons.globe} <label-layout>";
         };
 
-        # A progress indicato for the polyprog script
+        # A progress indicator for the polyprog script
         "module/polyprog" = {
           type = "custom/ipc";
           hook-0 = "cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
+        };
+
+        "module/shower" = {
+          type = "custom/script";
+          format-prefix = "${icons.shower} ";
+          exec = "${pkgs.dateutils}/bin/ddiff ${''"$(cat ~/Sync/.last-shower)"''} now -f '%d:%H'";
         };
       };
     };
