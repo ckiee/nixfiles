@@ -1,0 +1,10 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p inotify-tools dateutils
+
+set -e
+
+while true; do
+	ddiff "$(cat ~/Sync/.last-shower)" now -f '%d:%H'
+	# wait for changes to the file, but timeout eventually so the relative clock ticks either way
+	inotifywait -q ~/Sync/.last-shower --timeout 10
+done
