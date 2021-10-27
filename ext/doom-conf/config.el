@@ -6,8 +6,6 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "ckie"
-      user-mail-address "us@ckie.dev")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,22 +23,13 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-laserwave) ;; If you use `org' and don't want your org files in the default location below,
+(setq doom-theme 'wombat) ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Sync/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
-(setq scroll-margin 8)
 
 ;; Email should be sent using the stuff home-manager does
-(after! mu4e
-  (setq sendmail-program (executable-find "msmtp")
-        send-mail-function #'smtpmail-send-it
-        message-sendmail-f-is-evil t
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -79,6 +68,13 @@
          (after-init . mu4e-alert-enable-notifications))
   :config (mu4e-alert-set-default-style 'libnotify))
 
-(setq-default fill-column 100) ; This strikes a nice balance between taking up a nice amount of the screen
-                               ; and still being readable
+(setq-default fill-column 100) ;
+                               ;
 ;;; config.el ends here
+
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
