@@ -16,8 +16,6 @@ in {
       secondaryMonitor = "HDMI-0";
     };
     services = {
-      printing.enable = true;
-      scanner.enableClient = true;
       syncthing.enable = true;
     };
     opentabletdriver.enable = true;
