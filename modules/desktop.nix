@@ -44,7 +44,11 @@ in with lib; {
     };
     cookie = {
       collections = { media.enable = true; };
-      services = { avahi.enable = true; };
+      services = {
+        avahi.enable = true;
+        printing.enable = true;
+        scanner.enableClient = true;
+      };
       xserver.enable = true;
       sound = {
         enable = true;
