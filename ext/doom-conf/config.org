@@ -1,0 +1,74 @@
+#+TITLE: Config
+#+PROPERTY: header-args :tangle yes :cache yes :results silent :padline no
+* Basics
+** whoami
+#+BEGIN_SRC elisp
+(setq user-full-name "ckie"
+      user-mail-address "us@ckie.dev")
+#+END_SRC
+** display
+*** theme
+Sometimes I also use =doom-laserwave=.
+#+BEGIN_SRC elisp
+(setq doom-theme 'wombat)
+#+END_SRC
+*** font
+The variable pitch font is a nice change from a screen full of monospace text (:
+#+BEGIN_SRC elisp
+(setq doom-font (font-spec :family "Hack" :size 13 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Source Sans Pro" :size 14))
+#+END_SRC
+*** lines / chars
+This makes line numbers count up/down from the current line instead of from the beginning of the buffer.
+#+BEGIN_SRC elisp
+(setq display-line-numbers-type 'relative)
+#+END_SRC
+This keeps 8 lines of extra content on the top and bottom when scrolling a buffer.
+#+BEGIN_SRC elisp
+(setq scroll-margin 8)
+#+END_SRC
+This strikes a nice balance between taking up a nice amount of the screen and still being readable.
+#+BEGIN_SRC elisp
+(setq-default fill-column 100)
+#+END_SRC
+*** client window transparency
+#+BEGIN_SRC elisp
+(add-to-list 'default-frame-alist '(alpha . 90))
+#+END_SRC
+* Doom/Extras
+** fix config edit keybind
+Doom Emacs assumes your config will be in =~/.doom=, but mine isn't!
+#+BEGIN_SRC elisp
+(map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/ext/doom-conf/")))
+#+END_SRC
+** count buffers
+I like counting buffers. This is probably from StackOverflow
+#+BEGIN_SRC elisp
+(defun count-buffers (&optional display-anyway)
+  "Display or return the number of buffers."
+  (interactive)
+  (let ((buf-count (length (buffer-list))))
+    (if (or (interactive-p) display-anyway)
+        (message "%d buffers in this Emacs" buf-count)) buf-count))
+#+END_SRC
+** mu4e/email
+mu4e occasionally messes up its database without this, see [[https://github.com/djcb/mu/issues/2055][djcb/mu#2055]].
+#+BEGIN_SRC elisp
+(after! mu4e (setq mu4e-index-lazy-check '()))
+#+END_SRC
+*** use home-manager email configuration
+see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths properly)
+#+BEGIN_SRC elisp
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
+#+END_SRC
+
+** org-mode
+=Sync= gets synced between devices, so it is a good place for this.
+#+BEGIN_SRC elisp
+(setq org-directory "~/Sync/org/")
+#+END_SRC
