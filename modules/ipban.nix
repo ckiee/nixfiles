@@ -8,7 +8,7 @@ in with lib; {
     ips = mkOption {
       type = types.listOf types.str;
       description = "a list of ips to ban";
-      default = [ "45.135.232.165" ];
+      default = [ "45.135.232.165" "61.177.172.158" ];
     };
   };
 
