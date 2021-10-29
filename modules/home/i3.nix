@@ -18,7 +18,7 @@ let
     ${../../ext/i3-scripts/musicwatch} &
     # fractal &
     Discord &
-    mirage-im &
+    mirage &
     # DiscordPTB &
     st -T weechat -e sh -c weechat &
     firefox &
