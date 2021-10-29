@@ -21,7 +21,7 @@ with lib;
 
 let
   rootfsImage =
-    pkgs.callPackage (/. + "${pkgs.path}/nixos/modules/profiles/all-hardware.nix") ({
+    pkgs.callPackage "${pkgs.path}/nixos/lib/make-ext4-fs.nix" ({
       inherit (config.sdImage) storePaths;
       compressImage = true;
       populateImageCommands = config.sdImage.populateRootCommands;
@@ -39,6 +39,7 @@ in {
 
   options.sdImage = {
     imageName = mkOption {
+      type = types.str;
       default =
         "${config.sdImage.imageBaseName}-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.img";
       description = ''
