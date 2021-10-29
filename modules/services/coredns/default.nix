@@ -48,9 +48,7 @@ in {
       # servers until it can find the one with the lowest latency.
       services.dnscrypt-proxy2 = {
         enable = true;
-        settings = {
-          listen_addresses = ["127.0.0.1:1483"];
-        };
+        settings = { listen_addresses = [ "127.0.0.1:1483" ]; };
       };
 
       systemd.services.dns-hosts-poller = {
@@ -116,7 +114,12 @@ in {
       };
 
     }
-    (mkIf (cfg.openFirewall) { networking.firewall.allowedUDPPorts = [ 53 ]; })
+    (mkIf (cfg.openFirewall) {
+      networking.firewall = {
+        allowedTCPPorts = [ 53 ];
+        allowedUDPPorts = [ 53 ];
+      };
+    })
     (mkIf (cfg.useLocally) {
       # NetworkManager commits terrible crimes (i.e. listening on :53)
       networking.networkmanager.dns = "none";
