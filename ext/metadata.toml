@@ -10,6 +10,6 @@ syncthing_id = "IE7OX5L-IH67GHS-5DDDGDY-TYHLYED-G44LTPX-YWQEQQK-6AX6OYJ-SRRWMA7"
 [hosts.aquamarine]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMVvufwH76hYDhvXGu071XExCQFv0uZjwNaBn/WBbk8"
 [hosts.drapion]
-ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9wJapzrAPG6hOL5UY9dJzWRt3V/y4YQFF4G21gqFSv"
+ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2azaroNAPS5GtjAqf6PdVAqEW7MgghYxlxKy+VgTH6"
 [hosts.pookieix]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK2sHsNGjwESJa+a+mkGxzhj1tLWF/Er3vdibz2zdbas"
