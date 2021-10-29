@@ -29,7 +29,9 @@ in {
         ./weechat.nix
         ./qsynth.nix
         ./picom.nix
+        ./mimeapps.nix
       ];
     };
   };
+
 }
