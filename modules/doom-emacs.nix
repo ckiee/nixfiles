@@ -108,7 +108,7 @@ let
       mkdir -p $out
       cp -rv ${../ext/doom-conf}/. $out/
       export PATH=$PATH:${bootstrapDoom.emacs}/bin
-      ${bootstrapDoom.doom}/bin/org-tangle .
+      ${bootstrapDoom.doom}/bin/org-tangle $out
     '';
   in (mkDoom tangledPrivateDir).emacs;
 in {
