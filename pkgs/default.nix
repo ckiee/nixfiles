@@ -8,6 +8,7 @@ in {
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
   sysyelper = import sources.sysyelper;
+  anonvote-bot = callPackage sources.anonvote-bot { };
   iscool = callPackage sources.iscool { };
   ronthecookieme = callPackage ./ronthecookieme { };
   ckiesite = callPackage ./ckiesite { };

@@ -1,4 +1,16 @@
 {
+    "anonvote-bot": {
+        "branch": "main",
+        "description": null,
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "anonvote-bot",
+        "rev": "07f7f0beddbf3002f532d21431bf00fd10e66a90",
+        "sha256": "11kwn483jqbcx75srvzmy5ri4sv50czfy1qsg8h05c659jqvd6rc",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/07f7f0beddbf3002f532d21431bf00fd10e66a90.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "ckiesite": {
         "branch": "main",
         "description": "The ckie.dev website",
