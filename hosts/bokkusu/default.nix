@@ -14,6 +14,7 @@
       rtc-files.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
+      anonvote-bot.enable = true;
 
       prometheus.enable = true;
       grafana = {
