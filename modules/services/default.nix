@@ -35,5 +35,6 @@
     ./sysyelper.nix
     ./isp-troll.nix
     ./iscool.nix
+    ./anonvote-bot.nix
   ];
 }
