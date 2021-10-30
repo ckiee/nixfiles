@@ -15,7 +15,9 @@ let
     omnisharp-roslyn # C#
     (texlive.combine {
       # LaTeX with org mode!
-      inherit (texlive) scheme-medium wrapfig capt-of collection-langother ucs collection-fontsextra collection-fontsrecommended;
+      inherit (texlive)
+        scheme-medium wrapfig capt-of collection-langother ucs
+        collection-fontsextra collection-fontsrecommended;
     })
     gopls # Go LSP
     ccls # C/C++
@@ -63,38 +65,52 @@ let
       withXwidgets = true;
       withGTK3 = true;
     };
-  in pkgs.callPackage sources.doom-emacs {
-    doomPrivateDir = ../ext/doom-conf;
-    extraPackages = epkgs: [ pkgs.mu ];
-    emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
-    emacsPackagesOverlay = prev: final: {
-      mcf-mode = (prev.trivialBuild {
-        pname = "mcf-mode";
-        version = "git";
 
-        src = pkgs.fetchFromGitHub {
-          owner = "rasensuihei";
-          repo = "mcf";
-          rev = "4e44b6e24d9fe7a4ce7249df79f4473c0b473232";
-          sha256 = "sha256-2pwP3/rnADDfkJYOal2bp9vVYoXdvC5V0ZCeHYDsExk=";
-        };
+    mkDoom = configPath:
+      pkgs.callPackage sources.nix-doom-emacs {
+        doomPrivateDir = configPath;
+        extraPackages = epkgs: [ pkgs.mu ];
+        emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
+        emacsPackagesOverlay = prev: final: {
+          mcf-mode = (prev.trivialBuild {
+            pname = "mcf-mode";
+            version = "git";
 
-        meta = {
-          description = "Emacs major mode for editing Minecraft mcfunction";
-          license = licenses.gpl3Plus;
-          homepage = "https://github.com/rasensuihei/mcf";
+            src = pkgs.fetchFromGitHub {
+              owner = "rasensuihei";
+              repo = "mcf";
+              rev = "4e44b6e24d9fe7a4ce7249df79f4473c0b473232";
+              sha256 = "sha256-2pwP3/rnADDfkJYOal2bp9vVYoXdvC5V0ZCeHYDsExk=";
+            };
+
+            meta = {
+              description = "Emacs major mode for editing Minecraft mcfunction";
+              license = licenses.gpl3Plus;
+              homepage = "https://github.com/rasensuihei/mcf";
+            };
+          });
         };
-      });
-    };
-    extraConfig = ''
-      (setq exec-path (append exec-path '( ${
-        concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
-      } )))
-      (setenv "PATH" (concat (getenv "PATH") ":${
-        concatMapStringsSep ":" (x: "${x}/bin") extraBins
-      }"))
+        extraConfig = ''
+          (setq exec-path (append exec-path '( ${
+            concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
+          } )))
+          (setenv "PATH" (concat (getenv "PATH") ":${
+            concatMapStringsSep ":" (x: "${x}/bin") extraBins
+          }"))
+        '';
+      };
+    # A slimmer Doom to use to tangle the configuration of the more interesting Doom:
+    #
+    # 1. bootstrapDoom is built with the mostly-empty configuration in order to get a working environment for org-tangle.
+    # 2. The final doomEmacs is built with the tangledPrivateDir from step #1.
+    bootstrapDoom = mkDoom ../ext/doom-conf;
+    tangledPrivateDir = pkgs.runCommand "tangled-doom-private" {} ''
+      mkdir -p $out
+      cp -rv ${../ext/doom-conf}/. $out/
+      export PATH=$PATH:${bootstrapDoom.emacs}/bin
+      ${bootstrapDoom.doom}/bin/org-tangle .
     '';
-  };
+  in (mkDoom tangledPrivateDir).emacs;
 in {
   options.cookie.doom-emacs = {
     enable = mkEnableOption "Enables the Nixified Doom Emacs";

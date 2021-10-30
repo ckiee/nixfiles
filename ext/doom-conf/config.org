@@ -16,7 +16,7 @@ Sometimes I also use =doom-laserwave=.
 The variable pitch font is a nice change from a screen full of monospace text (:
 #+BEGIN_SRC elisp
 (setq doom-font (font-spec :family "Hack" :size 13 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Source Sans Pro" :size 14))
+      doom-variable-pitch-font (font-spec :family "Source Sans 3" :size 20 :weight 'regular))
 #+END_SRC
 *** lines / chars
 This makes line numbers count up/down from the current line instead of from the beginning of the buffer.
@@ -71,4 +71,18 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
 (setq org-directory "~/Sync/org/")
+#+END_SRC
+** literate config
+this is a bit meta (:
+#+BEGIN_SRC elisp
+(setq +literate-config-file "~/git/nixfiles/ext/doom-conf/config.org")
+#+END_SRC
+** adoc-mode
+#+BEGIN_SRC elisp :tangle packages.el
+(package! adoc-mode)
+#+END_SRC
+** mcf-mode
+minecraft syntax highlighting, defined in =nixfiles/modules/doom-emacs.nix=
+#+BEGIN_SRC elisp :tangle packages.el
+(package! mcf-mode)
 #+END_SRC
