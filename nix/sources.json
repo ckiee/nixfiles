@@ -47,18 +47,6 @@
         "url": "https://github.com/stevenblack/hosts/archive/11fc36fbaf36b6a9bb83465eb08602fcbe8a7083.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "doom-emacs": {
-        "branch": "master",
-        "description": "doom-emacs packaged for Nix",
-        "homepage": "",
-        "owner": "vlaci",
-        "repo": "nix-doom-emacs",
-        "rev": "fee14d217b7a911aad507679dafbeaa8c1ebf5ff",
-        "sha256": "1g0izscjh5nv4n0n1m58jc6z27i9pkbxs17mnb05a83ffdbmmva6",
-        "type": "tarball",
-        "url": "https://github.com/vlaci/nix-doom-emacs/archive/fee14d217b7a911aad507679dafbeaa8c1ebf5ff.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "ffg-bot": {
         "branch": "master",
         "repo": "ssh://git@github.com/ckiee/ffg-bot.git",
@@ -111,6 +99,18 @@
         "sha256": "1pq9nh1d8nn3xvbdny8fafzw87mj7gsmp6pxkdl65w2g18rmcmzx",
         "type": "tarball",
         "url": "https://github.com/nmattia/niv/archive/e0ca65c81a2d7a4d82a189f1e23a48d59ad42070.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nix-doom-emacs": {
+        "branch": "expose-doom-src",
+        "description": "doom-emacs packaged for Nix",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "nix-doom-emacs",
+        "rev": "4ae17e5d4c5676600d5082b2e85f73a7c7f5c1de",
+        "sha256": "04ggv2hni9rkhg0i32ij6w5i9qrj56q42jvk81c6zm42jibnc2lk",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/nix-doom-emacs/archive/4ae17e5d4c5676600d5082b2e85f73a7c7f5c1de.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
