@@ -16,7 +16,7 @@ Sometimes I also use =doom-laserwave=.
 The variable pitch font is a nice change from a screen full of monospace text (:
 #+BEGIN_SRC elisp
 (setq doom-font (font-spec :family "Hack" :size 13 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Source Sans 3" :size 20 :weight 'regular))
+      doom-variable-pitch-font (font-spec :family "Source Sans 3" :size 16 :weight 'regular))
 #+END_SRC
 *** lines / chars
 This makes line numbers count up/down from the current line instead of from the beginning of the buffer.
