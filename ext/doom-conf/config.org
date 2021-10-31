@@ -10,7 +10,7 @@
 *** theme
 Sometimes I also use =doom-laserwave=.
 #+BEGIN_SRC elisp
-(setq doom-theme 'wombat)
+(setq doom-theme 'doom-sourcerer-cookie)
 #+END_SRC
 *** font
 The variable pitch font is a nice change from a screen full of monospace text (:
