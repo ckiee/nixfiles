@@ -31,6 +31,10 @@ This strikes a nice balance between taking up a nice amount of the screen and st
 #+BEGIN_SRC elisp
 (setq-default fill-column 100)
 #+END_SRC
+*** line wrapping before window end
+#+BEGIN_SRC elisp :tangle packages.el
+(package! visual-fill-column)
+#+END_SRC
 *** client window transparency
 #+BEGIN_SRC elisp
 (add-to-list 'default-frame-alist '(alpha . 90))
@@ -56,6 +60,9 @@ mu4e occasionally messes up its database without this, see [[https://github.com/
 #+BEGIN_SRC elisp
 (after! mu4e (setq mu4e-index-lazy-check '()))
 #+END_SRC
+#+BEGIN_SRC elisp :tangle packages.el
+(package! mu4e-views)
+#+END_SRC
 *** use home-manager email configuration
 see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths properly)
 #+BEGIN_SRC elisp
@@ -71,6 +78,7 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
 (setq org-directory "~/Sync/org/")
+(add-hook 'org-mode-hook #'visual-fill-column-mode)
 #+END_SRC
 ** literate config
 this is a bit meta (:
@@ -85,4 +93,18 @@ this is a bit meta (:
 minecraft syntax highlighting, defined in =nixfiles/modules/doom-emacs.nix=
 #+BEGIN_SRC elisp :tangle packages.el
 (package! mcf-mode)
+#+END_SRC
+** discord
+discord intergration, manually enabled when I feel like it
+#+BEGIN_SRC elisp :tangle packages.el
+(package! elcord)
+#+END_SRC
+** svelte
+For =.svelte= files
+#+BEGIN_SRC elisp :tangle packages.el
+(package! svelte-mode)
+#+END_SRC
+** platformio
+#+BEGIN_SRC elisp :tangle packages.el
+(package! platformio-mode)
 #+END_SRC

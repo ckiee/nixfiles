@@ -1,1 +1,1 @@
-;;; config.el -*- lexical-binding: t; -*-
+;;config.el is generated with Nix
