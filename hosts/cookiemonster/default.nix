@@ -15,9 +15,7 @@ in {
       primaryMonitor = "DP-0";
       secondaryMonitor = "HDMI-0";
     };
-    services = {
-      syncthing.enable = true;
-    };
+    services = { syncthing.enable = true; };
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;
@@ -47,7 +45,10 @@ in {
       Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off, AllowGSYNCCompatible=On}"
     '';
   };
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    powerManagement.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     stow
