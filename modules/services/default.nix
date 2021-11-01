@@ -9,10 +9,12 @@
     ./avahi.nix
     ./ssh.nix
     ./prometheus.nix
+    ./headscale.nix
+    ./tailscale.nix
+    ./coredns
     # User
     ./minecraft.nix
     ./grafana.nix
-    ./coredns
     ./znc.nix
     ./matrix
     ./matterbridge.nix
