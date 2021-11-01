@@ -9,7 +9,7 @@ in with lib; {
       type = types.str;
       default = "znc.localhost";
       description = "the host";
-      example = "znc.ronthecookie.me";
+      example = "znc.ckie.dev";
     };
     acmeHost = mkOption {
       type = types.str;
