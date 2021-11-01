@@ -3,8 +3,6 @@
 with lib;
 
 # nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux
-# build=$(nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux) && echo $build && nix copy --to ssh://drapion.local $build
-# ^ The above does not work with generations for some reason. TODO Add to morph ^
 
 {
   imports = [ ../.. ];
