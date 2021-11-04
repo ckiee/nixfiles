@@ -38,10 +38,11 @@
         host = "znc.ckie.dev";
         acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
       };
-      soju = {
-        enable = true;
-        acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
-      };
+      # currently unused
+      # soju = {
+      #   enable = true;
+      #   acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
+      # };
       matrix = {
         enable = true;
         host = "ckie.dev";
