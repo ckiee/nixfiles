@@ -24,6 +24,7 @@ in with lib; {
       platformio
       elmPackages.elm
       elmPackages.elm-format
+      tokei # LOC stats
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
