@@ -33,9 +33,8 @@
     ./ffg-bot.nix
     ./redirect-farm.nix
     ./ckiesite.nix
-    ./sysyelper.nix
+    ./daiko.nix
     ./isp-troll.nix
-    ./iscool.nix
     ./anonvote-bot.nix
   ];
 }

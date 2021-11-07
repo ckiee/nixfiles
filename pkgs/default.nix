@@ -7,9 +7,8 @@ in {
   comicfury-discord-webhook = import sources.comicfury-discord-webhook;
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
-  sysyelper = import sources.sysyelper;
+  daiko = callPackage sources.daiko { };
   anonvote-bot = callPackage sources.anonvote-bot { };
-  iscool = callPackage sources.iscool { };
   ronthecookieme = callPackage ./ronthecookieme { };
   ckiesite = callPackage ./ckiesite { };
 }
