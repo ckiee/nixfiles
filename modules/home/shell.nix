@@ -86,7 +86,7 @@ in with lib; {
           rsync = "rsync --progress";
           gl = "git log";
         };
-        promptInit = ''
+        interactiveShellInit = ''
           ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
         '';
 
