@@ -17,7 +17,7 @@ with lib;
       avahi.enable = true;
       isp-troll.enable = true;
       scanner.enableServer = true;
-      iscool.enable = true;
+      daiko.enable = true;
 
       coredns = {
         enable = true;

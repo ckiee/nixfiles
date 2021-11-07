@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "anonvote-bot",
-        "rev": "4006d19baba54feeb20b8887d757ec5703ee700b",
-        "sha256": "1ypccsh2khpcs12ijzjkdfr56ism8dkb434zc2rk3lap6w5k6z70",
+        "rev": "f6c6a775dc6e8fdf47b92d22132ca7cc5b3bc420",
+        "sha256": "1zchnyzh3sfg4qhyzyl69l9mjyszcvcwgs17cd1xpdnvs8yavpmd",
         "type": "tarball",
-        "url": "https://github.com/ckiee/anonvote-bot/archive/4006d19baba54feeb20b8887d757ec5703ee700b.tar.gz",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/f6c6a775dc6e8fdf47b92d22132ca7cc5b3bc420.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ckiesite": {
@@ -33,6 +33,18 @@
         "sha256": "09a4n57bn73ap6nqga2lqz9b1yhsagjwl56rj3fq9106g30vrfkz",
         "type": "tarball",
         "url": "https://github.com/ckiee/comicfury-discord-webhook/archive/17cc669656e8605005048404bb58a70c3ab57eff.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "daiko": {
+        "branch": "main",
+        "description": "the broken personal assistant",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "daiko",
+        "rev": "c011343cfc083a01bfca624eceac840fb12acd4a",
+        "sha256": "1w85nni6fdxnqjxiqwlygd0xx4n6bgf30bf130q10i6nf1rznsid",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/daiko/archive/c011343cfc083a01bfca624eceac840fb12acd4a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
