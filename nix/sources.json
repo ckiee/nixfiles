@@ -66,27 +66,15 @@
         "type": "git"
     },
     "home-manager": {
-        "branch": "master",
+        "branch": "kb-xplug",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
         "homepage": "https://nix-community.github.io/home-manager/",
-        "owner": "rycee",
-        "repo": "home-manager",
-        "rev": "7df6656b113ce0d39c8b7d30915cafe046e1d64e",
-        "sha256": "0dxiicyiw53k3gqbv2k9ajnsghq1a8ln741hx5msa45zdg1r6ci3",
-        "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/7df6656b113ce0d39c8b7d30915cafe046e1d64e.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "iscool": {
-        "branch": "main",
-        "description": "Iscool scraping sandwich reminder",
-        "homepage": null,
         "owner": "ckiee",
-        "repo": "iscool",
-        "rev": "e034d6756a770e2e02ec1695f9a654749a112a97",
-        "sha256": "0xll6wvh0m6lnwsn7rxn0x1i5l649axm4k144zacgi1migvdfin0",
+        "repo": "home-manager",
+        "rev": "7f2c4d96d383842abccb0589bf6b69e31db3d18a",
+        "sha256": "1xrcn8axxjrapkdvzn4da8zsl1r013inlxxj3dikp4b631qlcad4",
         "type": "tarball",
-        "url": "https://github.com/ckiee/iscool/archive/e034d6756a770e2e02ec1695f9a654749a112a97.tar.gz",
+        "url": "https://github.com/ckiee/home-manager/archive/7f2c4d96d383842abccb0589bf6b69e31db3d18a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "matterbridge": {
@@ -201,18 +189,6 @@
         "sha256": "15ndxpja1j920whdqr70sb27pwjxayfbvhji4c9cd5vsjw916w55",
         "type": "tarball",
         "url": "https://github.com/ckiee/spectrogram/archive/ad2a22e6a09c2168578c328e147c8e9027cd4b36.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "sysyelper": {
-        "branch": "main",
-        "description": "A discord bot to automatically suggest PluralKit switches",
-        "homepage": null,
-        "owner": "ckiee",
-        "repo": "sysyelper",
-        "rev": "55b89e3597d6b3a88eec35ffbd24ed4aab3dd2bc",
-        "sha256": "0vsy4hi8li777pfj0jvdfzm2r07y1vb38l3n7679yy498p7bs9v3",
-        "type": "tarball",
-        "url": "https://github.com/ckiee/sysyelper/archive/55b89e3597d6b3a88eec35ffbd24ed4aab3dd2bc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
