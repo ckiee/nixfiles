@@ -30,6 +30,7 @@ in {
         ./qsynth.nix
         ./picom.nix
         ./mimeapps.nix
+        ./remotemacs.nix
       ];
     };
   };
