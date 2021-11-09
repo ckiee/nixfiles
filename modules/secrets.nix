@@ -4,7 +4,7 @@ with lib;
 
 let
   isRagerBuild = (builtins.getEnv "COOKIE_RAGER_BUILD" != "");
-  userPubkey = fileContents ../ext/id_rsa.pub;
+  userPubkey = fileContents ../ext/id_ed25519.pub;
   cfg = config.cookie.secrets;
   filenameFromPath = path: last (splitString "/" path);
 
