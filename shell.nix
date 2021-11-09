@@ -46,7 +46,7 @@ let
             mkdir secrets
             for f in "$tmp"/*
                 do out=secrets/"$(basename "$f")"
-                rage -di ~/.ssh/id_rsa -o "$out" "$f"
+                rage -di ~/.ssh/id_ed25519 -o "$out" "$f"
                 chmod 600 "$out"
             done
             rm -rf "$tmp"
