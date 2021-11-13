@@ -12,4 +12,4 @@ ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMVvufwH76hYDhvXGu071XExCQFv0
 [hosts.drapion]
 ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2azaroNAPS5GtjAqf6PdVAqEW7MgghYxlxKy+VgTH6"
 [hosts.pookieix]
-ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK2sHsNGjwESJa+a+mkGxzhj1tLWF/Er3vdibz2zdbas"
+ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBacSyNUF7XfWbo4nUuG0DLha+cHReyCm2zeBZcRaYLy"
