@@ -27,5 +27,6 @@ in with lib; {
         exec ${bin}/bin/daiko
       '';
     })
+    { cookie.restic.paths = [ "/var/lib/daiko/store.json" ]; }
   ]);
 }
