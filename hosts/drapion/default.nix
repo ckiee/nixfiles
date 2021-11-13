@@ -9,6 +9,7 @@ with lib;
 
   cookie = {
     wol.enable = true;
+    restic.enable = true;
     raspberry = {
       enable = true;
       version = 3;
