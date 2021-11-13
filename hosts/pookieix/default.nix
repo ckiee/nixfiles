@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }:
 
+with lib;
 # nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/pookieix/default.nix --argstr system aarch64-linux
 
 {
@@ -20,6 +21,7 @@
     services = {
       avahi.enable = true;
       octoprint.enable = true;
+      coredns.enable = mkForce false; # this RPi does not have a hardware rtc AND doesn't run 24/7 which makes it a pain in the ass for TLS
     };
   };
 
