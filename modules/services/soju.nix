@@ -7,7 +7,7 @@ in with lib; {
     enable = mkEnableOption "Enables soju, the user-friendly IRC bouncer";
     acmeHost = mkOption {
       type = types.str;
-      default = cfg.host;
+      default = "soju.ckie.dev";
       description = "the host the certificate is under";
     };
   };

@@ -8,6 +8,7 @@ in with lib; {
     host = mkOption {
       type = types.str;
       description = "host for the web interface";
+      default = "tailnet.ckie.dev";
     };
     acmeHost = mkOption {
       type = types.str;
