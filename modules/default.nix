@@ -1,6 +1,10 @@
 { ... }:
 
 {
+  # Add the options defined below to configuration.nix
+  # documentation.nixos.includeAllModules = true;
+  # TODO fix nixos-mailserver so that option can work
+
   imports = [
     # Subfolders (but like, not for single modules)
     ./home
