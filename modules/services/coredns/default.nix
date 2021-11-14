@@ -24,6 +24,7 @@ in {
       enable = mkEnableOption "Add prometheus monitoring";
       port = mkOption {
         type = types.port;
+        description = "The port to listen for requests from Prometheus";
         default = 47824;
       };
     };
