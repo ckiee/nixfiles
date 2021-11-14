@@ -11,5 +11,7 @@ in with lib; {
     # manpage xkeyboard-config(7)
     home.keyboard.options =
       [ "grp:win_space_toggle" "compose:rctrl" "caps:super" ];
+
+    home.file.".XCompose".source = ../../XCompose;
   };
 }
