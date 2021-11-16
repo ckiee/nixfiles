@@ -12,7 +12,7 @@ let
       lines = 46;
     };
   });
-  wrapper = pkgs.writeScriptBin "remotemacs" ''
+  wrapper = pkgs.writeShellScriptBin "remotemacs" ''
     # the unset works around https://github.com/mobile-shell/mosh/issues/1134
     ${pkgs.alacritty}/bin/alacritty --config-file ${termConfig} -t 'Emacs-over-ssh' -e ssh ${targetHost} -t "unset SSH_TTY && emacsclient -nw"
   '';
