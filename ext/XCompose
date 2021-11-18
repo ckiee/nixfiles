@@ -136,6 +136,7 @@
 <Multi_key> <F> <U>                     : "🖕"  # REVERSED HAND WITH MIDDLE FINGER EXTENDED
 <Multi_key> <L> <L> <A> <P>             : "🖖"  # RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
 <Multi_key> <S> <O> <T>			: "😛" 	# FACE WITH STUCK-OUT TOUNGE
+<Multi_key> <S> <T>			: "😛" 	# FACE WITH STUCK-OUT TOUNGE
 <Multi_key> <F> <L>			: "😳"  # FLUSHED FACE
 <Multi_key> <R> <O> <F> <L> 		: "🤣"  # ROLLING ON THE GROUND LAUGHING
 <Multi_key> <L> <O> <L> 		: "😂"	# FACE WITH TEARS OF JOY
