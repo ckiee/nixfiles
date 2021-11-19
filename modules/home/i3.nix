@@ -56,7 +56,7 @@ in with lib; {
         config = {
           terminal = "st";
           gaps = {
-            inner = 10;
+            inner = 2;
             outer = 0;
             smartGaps = true;
           };
