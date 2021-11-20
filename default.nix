@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+
+with lib;
 
 {
   imports = [ ./modules ];
@@ -7,7 +9,10 @@
   time.timeZone = "Israel";
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.supportedFilesystems = [ "ntfs" ];
+  boot.initrd.supportedFilesystems = [ "ntfs" "zfs" ];
+  networking.hostId = pkgs.lib.concatStringsSep "" (pkgs.lib.take 8
+    (pkgs.lib.stringToCharacters
+      (builtins.hashString "sha256" config.networking.hostName)));
   boot.tmpOnTmpfs = true; # Duh.
 
   networking.networkmanager.enable = true;
@@ -63,20 +68,20 @@
     usbutils
     dig
     asciinema
-    ripgrep   # a better grep
+    ripgrep # a better grep
     unzip
     ncdu
-    fd        # a better find
+    fd # a better find
     hyperfine # a better time
-    mtr       # a better traceroute
-    tmux      # when you can't afford i3
+    mtr # a better traceroute
+    tmux # when you can't afford i3
   ];
 
   cookie = {
     # Daemons
     services = {
       ssh.enable = true;
-      tailscale.enable = true;
+      tailscale.enable = mkDefault true;
       coredns = {
         enable = true;
         useLocally = true;
