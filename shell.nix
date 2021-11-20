@@ -78,6 +78,8 @@ let
     COOKIE_TOPLEVEL=$(${pkgs.git}/bin/git rev-parse --show-toplevel) ${pkgs.morph}/bin/morph $@
   '';
 in pkgs.mkShell {
+  NIX_PATH = "nixpkgs=${pkgs.path}";
+
   buildInputs = with pkgs; [
     niv
     mo
@@ -86,5 +88,6 @@ in pkgs.mkShell {
     bpkg
     rager
     throwDeriv
+    nixos-generators
   ];
 }

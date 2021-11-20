@@ -11,7 +11,7 @@ in with lib; {
     services.openssh = {
       enable = true;
       forwardX11 = true;
-      permitRootLogin = "no";
+      permitRootLogin = mkForce "no"; # for the "install" host this is enabled, so we force it away
       passwordAuthentication = false;
     };
     services.fail2ban = mkIf config.networking.firewall.enable {

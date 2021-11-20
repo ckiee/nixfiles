@@ -19,3 +19,6 @@ pushsecrets: secrets/*
 
 emails:
 	nix eval --impure --expr 'let pkgs = (import (import ./nix/sources.nix).nixpkgs) { }; util = (pkgs.callPackage ./modules/services/mailserver/util.nix {}); in (builtins.trace ("e-mails: \n" + (builtins.concatStringsSep "\n" (util.process (pkgs.lib.fileContents ./secrets/email-salt) util.default-aliases))) "")' 1>/dev/null
+
+installer:
+	nixos-generate -c hosts/installer/default.nix -f install-iso
