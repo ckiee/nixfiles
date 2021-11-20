@@ -74,7 +74,7 @@ in {
     [ "adbusers" "dialout" "libvirtd" "wireshark" ];
 
   virtualisation = {
-    libvirtd.enable = false;
+    libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
     podman = {
       enable = true;
