@@ -27,6 +27,7 @@ let
     pandoc # markdown previewing (SPC m p in markdown-mode)
     elmPackages.elm # Elm
     elmPackages.elm-format # Elm
+    pyright # Python LSP
     #
     # shell scripts
     shfmt
