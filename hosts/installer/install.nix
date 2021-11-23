@@ -83,7 +83,7 @@ let
       nixos-generate-config --show-hardware-config --root /mnt >"hosts/"$NEW_HOST/hardware.nix
 
       fg || true
-      new_sys=$(nix-build -I nixos-config=./hosts/$NEW_HOST -E '(import (((import ((import ./nix/sources.nix).nixpkgs)) {}).path + "/nixos"))' --no-out-link)
+      new_sys=$(nix-build -I nixos-config=./hosts/$NEW_HOST -E '((import (((import ((import ./nix/sources.nix).nixpkgs)) {}).path + "/nixos")) {}).system' --no-out-link)
       ${config.system.build.nixos-install}/bin/nixos-install \
         --system $new_sys \
         --no-root-passwd \
