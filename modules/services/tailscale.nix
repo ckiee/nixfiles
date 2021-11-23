@@ -5,39 +5,46 @@ let
   tailscale = config.services.tailscale.package;
 in with lib; {
   options.cookie.services.tailscale = {
-    enable =
-      mkEnableOption "Enables and autoconfigures the Tailscale client daemon";
-  };
-
-  config = mkIf cfg.enable {
-    services.tailscale.enable = true;
-
-    cookie.secrets.tailscale-authkey = {
-      source = "./secrets/tailscale-authkey";
-      owner = "root";
-      group = "root";
-      permissions = "0400";
-      wantedBy = "tailscaled-autoconfig.service";
-    };
-
-    systemd.services.tailscaled-autoconfig = rec {
+    enable = mkEnableOption "Enables the Tailscale client daemon";
+    autoconfig = mkOption {
+      type = types.bool;
+      default = true;
       description = "Autoconfigure tailscaled";
-      wantedBy = [ "multi-user.target" ];
-      requires = [ "tailscaled.service" "tailscale-authkey-key.service" ];
-      after = requires;
-
-      serviceConfig.Type = "oneshot";
-
-      script =
-        "${tailscale}/bin/tailscale up --reset --force-reauth --authkey $(cat ${
-          escapeShellArg config.cookie.secrets.tailscale-authkey.dest
-        })";
-    };
-
-    # https://tailscale.com/kb/1082/firewall-ports/#my-devices-are-using-a-relay-what-can-i-do-to-help-them-connect-peer-to-peer
-    networking.firewall = {
-      allowedTCPPorts = [ 41641 ];
-      allowedUDPPorts = [ 41641 ];
     };
   };
+
+  config = mkMerge [
+    (mkIf cfg.enable {
+      services.tailscale.enable = true;
+      # https://tailscale.com/kb/1082/firewall-ports/#my-devices-are-using-a-relay-what-can-i-do-to-help-them-connect-peer-to-peer
+      networking.firewall = {
+        allowedTCPPorts = [ 41641 ];
+        allowedUDPPorts = [ 41641 ];
+      };
+    })
+
+    (mkIf (cfg.enable && cfg.autoconfig) {
+      cookie.secrets.tailscale-authkey = {
+        source = "./secrets/tailscale-authkey";
+        owner = "root";
+        group = "root";
+        permissions = "0400";
+        wantedBy = "tailscaled-autoconfig.service";
+      };
+
+      systemd.services.tailscaled-autoconfig = rec {
+        description = "Autoconfigure tailscaled";
+        wantedBy = [ "multi-user.target" ];
+        requires = [ "tailscaled.service" "tailscale-authkey-key.service" ];
+        after = requires;
+
+        serviceConfig.Type = "oneshot";
+
+        script =
+          "${tailscale}/bin/tailscale up --reset --force-reauth --authkey $(cat ${
+            escapeShellArg config.cookie.secrets.tailscale-authkey.dest
+          })";
+      };
+    })
+  ];
 }
