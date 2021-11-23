@@ -46,6 +46,13 @@ in with lib; {
       calibre
       friture # voice shenanigans (:
       nottetris2
+      virt-manager # connect to vms on the net
+      obs-studio
+      sidequest # mediocre vr
+      transmission-gtk # capitalism
+      blockbench-electron # placing blocks
+      krita # drawing
+      prusa-slicer # making things out of harmful plastic
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 

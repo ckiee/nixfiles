@@ -48,20 +48,10 @@ in {
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   environment.systemPackages = with pkgs; [
-    stow
-    obs-studio
     lutris
-    sidequest
-    prusa-slicer
-    transmission-gtk
-    virt-manager
-    gnome3.totem
     picocom
     minecraft
     kicad-with-packages3d
-    python3Packages.youtube-dl
-    blockbench-electron
-    krita
   ];
 
   programs.cnping.enable = true;

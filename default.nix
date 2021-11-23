@@ -75,6 +75,7 @@ with lib;
     hyperfine # a better time
     mtr # a better traceroute
     tmux # when you can't afford i3
+    youtube-dl
   ];
 
   cookie = {
