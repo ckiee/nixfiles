@@ -89,6 +89,10 @@ let
         --no-root-passwd \
         --cores 0
 
+      cd /
+      umount -R /mnt
+      zpool export zroot
+
       echo 'You can reboot now (:'
     '';
 
