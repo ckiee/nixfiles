@@ -43,5 +43,6 @@
     ./shell-utils
     ./raspberry
     ./st.nix
+    ./zfs.nix
   ];
 }
