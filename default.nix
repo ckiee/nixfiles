@@ -9,10 +9,7 @@ with lib;
   time.timeZone = "Israel";
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.supportedFilesystems = [ "ntfs" "zfs" ];
-  networking.hostId = pkgs.lib.concatStringsSep "" (pkgs.lib.take 8
-    (pkgs.lib.stringToCharacters
-      (builtins.hashString "sha256" config.networking.hostName)));
+  boot.initrd.supportedFilesystems = [ "ntfs" ];
   boot.tmpOnTmpfs = true; # Duh.
 
   networking.networkmanager.enable = true;
@@ -95,6 +92,7 @@ with lib;
     cookie-overlay.enable = true;
     ipban.enable = true;
     shell-utils.enable = true;
+    zfs.enable = true;
   };
 
   home-manager.users.ckie = { pkgs, ... }: {
