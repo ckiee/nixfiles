@@ -12,8 +12,10 @@ in {
   cookie = {
     desktop = {
       enable = true;
-      primaryMonitor = "DP-0";
-      secondaryMonitor = "HDMI-0";
+      monitors = {
+        primary = "DP-0";
+        secondary = "HDMI-0";
+      };
     };
     services = { syncthing.enable = true; };
     opentabletdriver.enable = true;
