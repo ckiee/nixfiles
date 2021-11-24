@@ -11,7 +11,7 @@
   cookie = {
     desktop = {
       enable = true;
-      primaryMonitor = "eDP-1";
+      monitors.primary = "eDP-1";
       laptop = true;
     };
     sound = {

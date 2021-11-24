@@ -63,7 +63,7 @@ in {
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
       command = "${pkgs.writeShellScript "polybar-starter" ''
-        ${optionalString (desktopCfg.secondaryMonitor != null) "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
+        ${optionalString (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
         while true; do ${pkg}/bin/polybar main; sleep 0.1; done
       ''}";
       notification = false;
@@ -83,7 +83,7 @@ in {
       config = {
         "bar/main" = base // {
           monitor =
-            mkIf (desktopCfg.primaryMonitor != null) desktopCfg.primaryMonitor;
+            mkIf (desktopCfg.monitors != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
           modules-right = [
@@ -113,8 +113,8 @@ in {
           enable-ipc = true;
         };
 
-        "bar/side" = mkIf (desktopCfg.secondaryMonitor != null) (base // {
-          monitor = desktopCfg.secondaryMonitor;
+        "bar/side" = mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) (base // {
+          monitor = desktopCfg.monitors.secondary;
 
           modules-left = [ "ws" "separator" "time" "small-spacer" "date" ];
         });
