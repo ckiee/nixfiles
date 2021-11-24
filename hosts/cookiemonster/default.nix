@@ -53,7 +53,7 @@ in {
     lutris
     picocom
     minecraft
-    kicad-with-packages3d
+    #kicad-with-packages3d
   ];
 
   programs.cnping.enable = true;
