@@ -87,7 +87,8 @@ let
       ${config.system.build.nixos-install}/bin/nixos-install \
         --system $new_sys \
         --no-root-passwd \
-        --cores 0
+        --cores 0 \
+        --no-channel-copy
 
       cd /
       umount -R /mnt
