@@ -2,7 +2,8 @@
 
 let
   inherit (lib)
-    optionals mkIf mkEnableOption mkOption types concatStrings optional optionalString;
+    optionals mkIf mkEnableOption mkOption types concatStrings optional
+    optionalString;
 
   colors = {
     primary = "#ed60ba";
@@ -64,7 +65,9 @@ in {
   config = mkIf cfg.enable {
     xsession.windowManager.i3.config.startup = [{
       command = "${pkgs.writeShellScript "polybar-starter" ''
-        ${optionalString (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
+        ${optionalString
+        (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null)
+        "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
         while true; do ${pkg}/bin/polybar main; sleep 0.1; done
       ''}";
       notification = false;
@@ -106,11 +109,13 @@ in {
           enable-ipc = true;
         };
 
-        "bar/side" = mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) (base // {
-          monitor = desktopCfg.monitors.secondary;
+        "bar/side" = mkIf
+          (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null)
+          (base // {
+            monitor = desktopCfg.monitors.secondary;
 
-          modules-left = [ "ws" "separator" "time" "small-spacer" "date" ];
-        });
+            modules-left = [ "ws" "separator" "time" "small-spacer" "date" ];
+          });
 
         ### SPACING
         "module/separator" = {
