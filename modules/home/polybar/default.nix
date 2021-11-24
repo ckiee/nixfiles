@@ -52,6 +52,7 @@ let
   };
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
+  soundCfg = nixosConfig.cookie.sound;
   pkg = config.services.polybar.package;
 in {
 
@@ -86,25 +87,17 @@ in {
             mkIf (desktopCfg.monitors != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
-          modules-right = [
-            "polyprog"
-            "mpd"
-            "separator"
-            "shower"
-            "separator"
-            "volume"
-            "separator"
-            "memory"
-            "small-spacer"
-            "cpu"
-            "separator"
-            "keyboard"
-          ] ++ optionals cfg.laptop [
-            "separator"
-            "backlight"
-            "separator"
-            "battery"
-          ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
+          modules-right = [ "polyprog" "mpd" "separator" "shower" ]
+            ++ optionals (soundCfg.pipewire.enable && soundCfg.pulse.enable) [
+              "separator"
+              "volume"
+            ] ++ [ "separator" "memory" "small-spacer" "cpu" "separator" "keyboard" ]
+            ++ optionals cfg.laptop [
+              "separator"
+              "backlight"
+              "separator"
+              "battery"
+            ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
 
           tray-position = "right";
           tray-padding = 0;
