@@ -7,16 +7,18 @@ in with lib; {
     # These are used by home/i3.nix, home/polybar.nix
     monitors = mkOption {
       type = types.nullOr (types.submodule {
-        primary = mkOption {
-          type = types.str;
-          example = "eDP-1";
-          description = "primary output";
-        };
-        secondary = mkOption {
-          type = types.nullOr types.str;
-          example = "eDP-1";
-          description = "secondary output";
-          default = null;
+        options = {
+          primary = mkOption {
+            type = types.str;
+            example = "eDP-1";
+            description = "primary output";
+          };
+          secondary = mkOption {
+            type = types.nullOr types.str;
+            example = "eDP-1";
+            description = "secondary output";
+            default = null;
+          };
         };
       });
       description = "monitor configuration";
