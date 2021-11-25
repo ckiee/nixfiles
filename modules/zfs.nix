@@ -12,7 +12,7 @@ in with lib; {
     };
     arcMax = mkOption {
       type = types.float;
-      default = 1;
+      default = 1.0;
       description = "Maixmum size of the in-memory ARC cache in gigs";
     };
   };
