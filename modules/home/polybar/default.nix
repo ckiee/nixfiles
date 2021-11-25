@@ -91,7 +91,7 @@ in {
 
           modules-left = "ws";
           modules-right = [ "polyprog" "mpd" "separator" "shower" ]
-            ++ optionals (soundCfg.pipewire.enable && soundCfg.pulse.enable) [
+            ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
             ] ++ [ "separator" "memory" "small-spacer" "cpu" "separator" "keyboard" ]
