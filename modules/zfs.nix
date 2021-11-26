@@ -11,8 +11,8 @@ in with lib; {
       description = "Whether this machine should manage zroot";
     };
     arcMax = mkOption {
-      type = types.float;
-      default = 1.0;
+      type = types.int;
+      default = 1;
       description = "Maixmum size of the in-memory ARC cache in gigs";
     };
   };
