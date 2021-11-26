@@ -20,8 +20,7 @@ let
         collection-fontsextra collection-fontsrecommended;
     })
     gopls # Go LSP
-    ccls # C/C++
-    clang-tools # for clang-format. C(++) Formatting without the LSP
+    clang-tools # for clang-format and clangd (LSP)
     python3Packages.black # Python formatter
     html-tidy # HTML/SVG/Web formatter
     pandoc # markdown previewing (SPC m p in markdown-mode)
