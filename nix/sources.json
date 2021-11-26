@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "anonvote-bot",
-        "rev": "f6c6a775dc6e8fdf47b92d22132ca7cc5b3bc420",
-        "sha256": "1zchnyzh3sfg4qhyzyl69l9mjyszcvcwgs17cd1xpdnvs8yavpmd",
+        "rev": "165c286f073f4014332b42b1be3dac523ea48313",
+        "sha256": "1xq4mlj3p0lhp03xm8hqvjwagyardd17z24bqxbw92nnpc1vk762",
         "type": "tarball",
-        "url": "https://github.com/ckiee/anonvote-bot/archive/f6c6a775dc6e8fdf47b92d22132ca7cc5b3bc420.tar.gz",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/165c286f073f4014332b42b1be3dac523ea48313.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ckiesite": {
