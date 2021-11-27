@@ -49,6 +49,8 @@ with lib;
     MaxFileSec=7day
   '';
 
+  services.fwupd.enable = true;
+
   # Some bare basics
   environment.systemPackages = with pkgs; [
     wget
