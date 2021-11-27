@@ -27,6 +27,7 @@ let
     elmPackages.elm # Elm
     elmPackages.elm-format # Elm
     pyright # Python LSP
+    sumneko-lua-language-server # Lua (see config.org)
     #
     # shell scripts
     shfmt
