@@ -103,3 +103,8 @@ For =.svelte= files
 #+BEGIN_SRC elisp :tangle packages.el
 (package! platformio-mode)
 #+END_SRC
+** lua LSP
+the lua LSP mode is annoying and searches for some specific path =~/.config= we don't have!
+#+BEGIN_SRC elisp
+(setq lsp-clients-lua-language-server-bin "lua-language-server")
+#+END_SRC
