@@ -17,9 +17,9 @@
    (base7      '("#9ca0a4"))
    (base8      '("#faf4c6"))
    (fg         '("#e9e9e0"))
-   (fg-alt     '("#5D656B"))
+   (fg-alt     '("#4a4a4a"))
 
-   (grey       '("#686858"))
+   (grey       '("#686868"))
    (red        '("#aa4450"))
    (orange     '("#ff9800"))
    (green      '("#87875f"))
