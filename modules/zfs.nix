@@ -32,7 +32,9 @@ in with lib; {
         (pkgs.lib.stringToCharacters
           (builtins.hashString "sha256" config.networking.hostName)));
 
-      boot.kernelParams = ["zfs.zfs_arc_max=${toString (cfg.arcMax * 1.074e+9)}"];
+      system.activationScripts.setZfsArcMax = "echo ${
+          toString (cfg.arcMax * 1.074e9)
+        } > /sys/module/zfs/parameters/zfs_arc_max";
     })
 
     (mkIf (cfg.manageZroot && cfg.enable) {
