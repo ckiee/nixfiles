@@ -45,7 +45,6 @@ in with lib; {
         i3.enable = true;
         xcursor.enable = true;
         mpd.enable = true;
-        picom.enable = true;
         remotemacs.enable = true;
         collections = { chat.enable = true; };
       };
