@@ -2,7 +2,8 @@
 
 let cfg = config.cookie.zfs;
 
-in with lib; {
+in with lib;
+with builtins; {
   options.cookie.zfs = {
     enable = mkEnableOption "Enables ZFS management";
     manageZroot = mkOption {
@@ -33,7 +34,7 @@ in with lib; {
           (builtins.hashString "sha256" config.networking.hostName)));
 
       system.activationScripts.setZfsArcMax = "echo ${
-          toString (cfg.arcMax * 1.074e9)
+          toString (floor (cfg.arcMax * 1.074e9))
         } > /sys/module/zfs/parameters/zfs_arc_max";
     })
 
