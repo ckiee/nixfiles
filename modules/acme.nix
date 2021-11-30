@@ -4,9 +4,11 @@ with lib;
 let
   sources = import ../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
+  mail-util = pkgs.callPackage ./services/mailserver/util.nix { };
 
   cfg = config.cookie.acme;
-  email = "me@ronthecookie.me";
+  email = (builtins.head
+    (mail-util.process (fileContents ../secrets/email-salt) [ "acme" ]));
   hosts = types.submodule {
     options = {
       provider = mkOption {
