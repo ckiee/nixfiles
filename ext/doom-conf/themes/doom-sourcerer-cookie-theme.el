@@ -1,4 +1,5 @@
-;; doom-sourcerer-cookie-theme.el --- a more Sourcerer version of doom-one, cookie edition  -*- lexical-binding: t; no-byte-compile: t; -*-
+;; doom-sourcerer-cookie-theme.el --- a more Sourcerer version of doom-one, cookie edition
+;; -*- lexical-binding: t; no-byte-compile: t; -*-
 
 (require 'doom-themes)
 
