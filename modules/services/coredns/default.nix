@@ -11,6 +11,7 @@ let
     text = ''
       # StevenBlack ad-blocking hosts
       ${extHosts}
+      ${optionalString (config.networking.hostName == "cookiemonster") "0.0.0.0 netflix.com"}
       # Runtime hosts
     '';
   };
