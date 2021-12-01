@@ -14,7 +14,4 @@ in {
   "drapion" = import ./hosts/drapion;
   "pookieix" = import ./hosts/pookieix;
   "thonkcookie" = import ./hosts/thonkcookie;
-  # Legacy hosts
-  "aquamarine.local" = import ./hosts/aquamarine;
-  # "pookieix.local" = import ./hosts/pookieix;
 }
