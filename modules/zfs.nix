@@ -8,7 +8,7 @@ with builtins; {
     enable = mkEnableOption "Enables ZFS management";
     manageZroot = mkOption {
       type = types.bool;
-      default = config.fileSystems."/".fsType == "zfs";
+      default = config.fileSystems?"/" && config.fileSystems."/".fsType == "zfs";
       description = "Whether this machine should manage zroot";
     };
     arcMax = mkOption {
