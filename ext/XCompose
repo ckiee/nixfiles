@@ -128,6 +128,7 @@
 <Multi_key> <exclam> <question>         : "‽"   U203D # INTERROBANG
 <Multi_key> <s> <v> <t>	             	: "☭"   U262D # HAMMER AND SICKLE
 <Multi_key> <a> <n>                     : "Ⓐ"   U24B6 # CIRCLED LATIN CAPITAL LETTER A
+<Multi_key> <l> <m>                     : "λ"    # lambda!
 
 # 'Mojis
 <Multi_key> <less> <3>                  : "♥"   # <3 
