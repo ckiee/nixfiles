@@ -47,7 +47,7 @@ in {
       Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off, AllowGSYNCCompatible=On}"
     '';
   };
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 
   environment.systemPackages = with pkgs; [
     lutris
