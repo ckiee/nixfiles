@@ -25,6 +25,7 @@ in with lib; {
       elmPackages.elm
       elmPackages.elm-format
       tokei # LOC stats
+      racket-minimal
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
