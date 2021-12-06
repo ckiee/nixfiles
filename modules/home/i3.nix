@@ -53,6 +53,7 @@ in with lib; {
       blockbench-electron # placing blocks
       krita # drawing
       prusa-slicer # making things out of harmful plastic
+      ardour # piano
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
