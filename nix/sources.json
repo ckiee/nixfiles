@@ -102,15 +102,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
-        "branch": "expose-doom-src",
+        "branch": "private",
         "description": "doom-emacs packaged for Nix",
         "homepage": "",
         "owner": "ckiee",
         "repo": "nix-doom-emacs",
-        "rev": "4ae17e5d4c5676600d5082b2e85f73a7c7f5c1de",
-        "sha256": "04ggv2hni9rkhg0i32ij6w5i9qrj56q42jvk81c6zm42jibnc2lk",
+        "rev": "9d0b7e176a5b8fc772034828fa1e8185e945ac62",
+        "sha256": "1azsrzm8sxwvmlvlbfc5xbbccvf5sd1pvb8cwijdzzzg6dfnl2i5",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nix-doom-emacs/archive/4ae17e5d4c5676600d5082b2e85f73a7c7f5c1de.tar.gz",
+        "url": "https://github.com/ckiee/nix-doom-emacs/archive/9d0b7e176a5b8fc772034828fa1e8185e945ac62.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
