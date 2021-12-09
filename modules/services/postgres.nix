@@ -43,7 +43,7 @@ in {
         local all all trust
         ${concatStringsSep "\n" (mapAttrsToList (name: value:
           (optionalString value.networkTrusted
-            "host ${name} ${name} localhost trust")) cfg.comb)}
+            "host ${name} ${name} 127.0.0.1/32 trust")) cfg.comb)}
       '';
     };
   };
