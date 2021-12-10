@@ -54,6 +54,7 @@ in with lib; {
       krita # drawing
       prusa-slicer # making things out of harmful plastic
       ardour # piano
+      subtitleeditor # making text from sine waves, manually
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
