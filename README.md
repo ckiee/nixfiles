@@ -1,6 +1,6 @@
 # nixfiles
 
-A collection of slightly-above-average `.nix` files managing a bunch of computers all over the Earth.
+A collection of ~~slightly-above-average~~ overkill `.nix` files managing a bunch of computers all over Earth.
 
 ## How can I run this on my machine?
 
