@@ -107,10 +107,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nix-doom-emacs",
-        "rev": "9d0b7e176a5b8fc772034828fa1e8185e945ac62",
-        "sha256": "1azsrzm8sxwvmlvlbfc5xbbccvf5sd1pvb8cwijdzzzg6dfnl2i5",
+        "rev": "1a2178c8f19e596ac45480f4b53c68f1189e7069",
+        "sha256": "16hsaxw4q9w1f1mhbgdkvxjd1n5frcj01c9ap2ksd7lf9jvc4q5w",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nix-doom-emacs/archive/9d0b7e176a5b8fc772034828fa1e8185e945ac62.tar.gz",
+        "url": "https://github.com/ckiee/nix-doom-emacs/archive/1a2178c8f19e596ac45480f4b53c68f1189e7069.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
