@@ -5,12 +5,12 @@ let
   paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
       url = let
-        build = 366;
+        build = 399;
         mc = "1.17.1";
       in "https://papermc.io/api/v2/projects/paper/versions/${mc}/builds/${
         toString build
       }/downloads/paper-${mc}-${toString build}.jar";
-      sha256 = "sha256-M5f4M/baMAZ1/wefsNfsHdOrErl1WL7CTNSeF2ZyQeI=";
+      sha256 = "sha256-7dY1dfziGEPlKmh/eRfqXP55ouQHeXiR6PnPFoAgZwQ=";
     };
   });
   console = pkgs.writeShellScriptBin "mc" ''
