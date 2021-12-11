@@ -130,7 +130,11 @@ in with lib; {
             };
           assigns = {
             "1" = [{ class = "^Firefox$"; }];
-            "2" = [ { class = "^discord"; } { title = "^weechat$"; } ];
+            "2" = [
+              { class = "^discord"; }
+              { title = "^weechat$"; }
+              { class = "^mirage$"; }
+            ];
             "4" = [{ class = "^Emacs$"; }];
             "${musicWorkspace}" = [{ class = "^cantata"; }];
           };
@@ -141,19 +145,20 @@ in with lib; {
           modifier = "Mod4"; # super key
           menu = "${pkgs.rofi}/bin/rofi -show drun";
         };
-        extraConfig = mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) ''
-          workspace 1 output ${desktopCfg.monitors.primary}
-          workspace 2 output ${desktopCfg.monitors.secondary}
-          workspace 3 output ${desktopCfg.monitors.primary}
-          workspace 4 output ${desktopCfg.monitors.primary}
-          workspace 5 output ${desktopCfg.monitors.primary}
-          workspace 6 output ${desktopCfg.monitors.primary}
-          workspace 7 output ${desktopCfg.monitors.primary}
-          workspace 8 output ${desktopCfg.monitors.primary}
-          workspace 9 output ${desktopCfg.monitors.primary}
-          workspace 10 output ${desktopCfg.monitors.primary}
-          workspace ${musicWorkspace} output ${desktopCfg.monitors.secondary}
-        '';
+        extraConfig = mkIf (desktopCfg.monitors != null
+          && desktopCfg.monitors.secondary != null) ''
+            workspace 1 output ${desktopCfg.monitors.primary}
+            workspace 2 output ${desktopCfg.monitors.secondary}
+            workspace 3 output ${desktopCfg.monitors.primary}
+            workspace 4 output ${desktopCfg.monitors.primary}
+            workspace 5 output ${desktopCfg.monitors.primary}
+            workspace 6 output ${desktopCfg.monitors.primary}
+            workspace 7 output ${desktopCfg.monitors.primary}
+            workspace 8 output ${desktopCfg.monitors.primary}
+            workspace 9 output ${desktopCfg.monitors.primary}
+            workspace 10 output ${desktopCfg.monitors.primary}
+            workspace ${musicWorkspace} output ${desktopCfg.monitors.secondary}
+          '';
       };
     };
   };
