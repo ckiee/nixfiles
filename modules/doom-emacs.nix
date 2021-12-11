@@ -42,37 +42,39 @@ let
     isync
     mu
   ];
-  extra-desktop =
-    pkgs.writeTextFile { # theres a special helper for .desktop entries but i'm lazy and this works!
-      name = "emacsclientexs.desktop";
-      destination = "/share/applications/emacsclientexs.desktop";
-      text = ''
-        [Desktop Entry]
-        Name=Emacs (Open in existing window)
-        GenericName=Text Editor
-        Comment=Edit text
-        MimeType=inode/directory;text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
-        Exec=emacsclient -n %F
-        Icon=emacs
-        Type=Application
-        Terminal=false
-        Categories=Development;TextEditor;
-        StartupWMClass=Emacsd
-        Keywords=Text;Editor;
-      '';
-    };
+  extra-desktop = pkgs.writeTextFile {
+    # theres a special helper for .desktop entries but i'm lazy and this works!
+    name = "emacsclientexs.desktop";
+    destination = "/share/applications/emacsclientexs.desktop";
+    text = ''
+      [Desktop Entry]
+      Name=Emacs (Open in existing window)
+      GenericName=Text Editor
+      Comment=Edit text
+      MimeType=inode/directory;text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+      Exec=emacsclient -n %F
+      Icon=emacs
+      Type=Application
+      Terminal=false
+      Categories=Development;TextEditor;
+      StartupWMClass=Emacsd
+      Keywords=Text;Editor;
+    '';
+  };
   sources = import ../nix/sources.nix;
+  emacsOverlay = (import sources.emacs-overlay) pkgs pkgs;
   doom-emacs = let
-    overridenEmacs = pkgs.emacs.override {
+    nativeCompEmacs = emacsOverlay.emacsUnstableGcc.override {
       withXwidgets = true;
       withGTK3 = true;
     };
 
-    mkDoom = configPath:
-      pkgs.callPackage sources.nix-doom-emacs {
+    mkDoom = configPath: emacs:
+      pkgs.callPackage /home/ckie/git/nix-doom-emacs {
         doomPrivateDir = configPath;
         extraPackages = epkgs: [ pkgs.mu ];
-        emacsPackages = pkgs.emacsPackagesFor overridenEmacs;
+        bundledPackages = false;
+        emacsPackages = emacsOverlay.emacsPackagesFor emacs;
         emacsPackagesOverlay = prev: final: {
           mcf-mode = (prev.trivialBuild {
             pname = "mcf-mode";
@@ -107,20 +109,19 @@ let
     # 2. The final doomEmacs is built with the tangledPrivateDir from step #1.
 
     # We don't use `../ext/doom-conf` directly to avoid bootstrap rebuilds for `config.org`-only changes.
-    bootstrapPrivateDir = pkgs.runCommand "bootstrap-doom-private" {} ''
+    bootstrapPrivateDir = pkgs.runCommand "bootstrap-doom-private" { } ''
       mkdir -p $out
       cd $out
       touch {packages,config}.el
       cp ${../ext/doom-conf/init.el} init.el
     '';
-    bootstrapDoom = mkDoom bootstrapPrivateDir;
-    tangledPrivateDir = pkgs.runCommand "tangled-doom-private" {} ''
+    bootstrapDoom = mkDoom bootstrapPrivateDir pkgs.emacs;
+    tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
       mkdir -p $out
       cp -rv ${../ext/doom-conf}/. $out/
-      export PATH=$PATH:${bootstrapDoom.emacs}/bin
-      ${bootstrapDoom.doom}/bin/org-tangle $out
+      ${bootstrapDoom}/bin/org-tangle $out
     '';
-  in (mkDoom tangledPrivateDir).emacs;
+  in mkDoom tangledPrivateDir nativeCompEmacs;
 in {
   options.cookie.doom-emacs = {
     enable = mkEnableOption "Enables the Nixified Doom Emacs";
@@ -135,9 +136,6 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.ckie = { pkgs, ... }: {
       # Prepare the service.
-      home.file.".emacs.d/init.el".text = ''
-        (load "default.el")
-      '';
       services.emacs = {
         enable = true;
         package = doom-emacs;

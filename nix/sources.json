@@ -59,6 +59,18 @@
         "url": "https://github.com/stevenblack/hosts/archive/11fc36fbaf36b6a9bb83465eb08602fcbe8a7083.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "emacs-overlay": {
+        "branch": "master",
+        "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "64265a8c8452ab7426370cac332d81793b3ba9d0",
+        "sha256": "04xrm8cv9qr8a86mdwfqfp8nycm8p89ivrinpq0bzpsj5z3afi5c",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/64265a8c8452ab7426370cac332d81793b3ba9d0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "ffg-bot": {
         "branch": "master",
         "repo": "ssh://git@github.com/ckiee/ffg-bot.git",
@@ -102,15 +114,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
-        "branch": "private",
-        "description": "doom-emacs packaged for Nix",
+        "branch": "master",
+        "description": "doom-emacs packaged for Nix [maintainer=@ckiee]",
         "homepage": "",
-        "owner": "ckiee",
+        "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "1a2178c8f19e596ac45480f4b53c68f1189e7069",
-        "sha256": "16hsaxw4q9w1f1mhbgdkvxjd1n5frcj01c9ap2ksd7lf9jvc4q5w",
+        "rev": "e3517b0e001f55ab6fc42f3f44f291661c2edc10",
+        "sha256": "12fy7zzplaaw1rw8ywfrj93fs1fkkr9xidsq61kbzb4fz9lb88r2",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nix-doom-emacs/archive/1a2178c8f19e596ac45480f4b53c68f1189e7069.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/e3517b0e001f55ab6fc42f3f44f291661c2edc10.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
