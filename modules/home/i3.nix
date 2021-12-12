@@ -127,6 +127,28 @@ in with lib; {
               # force i3 to make 1 the starting workspace
               "F13" = "workspace 1";
               "F14" = "workspace 2";
+              # another 10 workspaces for the 2nd monitor
+              "${modifier}+Control+1" = "workspace °1";
+              "${modifier}+Control+2" = "workspace °2";
+              "${modifier}+Control+3" = "workspace °3";
+              "${modifier}+Control+4" = "workspace °4";
+              "${modifier}+Control+5" = "workspace °5";
+              "${modifier}+Control+6" = "workspace °6";
+              "${modifier}+Control+7" = "workspace °7";
+              "${modifier}+Control+8" = "workspace °8";
+              "${modifier}+Control+9" = "workspace °9";
+              "${modifier}+Control+0" = "workspace °10";
+              ## the move container to $ws
+              "${modifier}+Control+Shift+1" = "move container to workspace °1";
+              "${modifier}+Control+Shift+2" = "move container to workspace °2";
+              "${modifier}+Control+Shift+3" = "move container to workspace °3";
+              "${modifier}+Control+Shift+4" = "move container to workspace °4";
+              "${modifier}+Control+Shift+5" = "move container to workspace °5";
+              "${modifier}+Control+Shift+6" = "move container to workspace °6";
+              "${modifier}+Control+Shift+7" = "move container to workspace °7";
+              "${modifier}+Control+Shift+8" = "move container to workspace °8";
+              "${modifier}+Control+Shift+9" = "move container to workspace °9";
+              "${modifier}+Control+Shift+0" = "move container to workspace °10";
             };
           assigns = {
             "1" = [{ class = "^Firefox$"; }];
@@ -158,6 +180,16 @@ in with lib; {
             workspace 9 output ${desktopCfg.monitors.primary}
             workspace 10 output ${desktopCfg.monitors.primary}
             workspace ${musicWorkspace} output ${desktopCfg.monitors.secondary}
+            workspace °1 output ${desktopCfg.monitors.secondary}
+            workspace °2 output ${desktopCfg.monitors.secondary}
+            workspace °3 output ${desktopCfg.monitors.secondary}
+            workspace °4 output ${desktopCfg.monitors.secondary}
+            workspace °5 output ${desktopCfg.monitors.secondary}
+            workspace °6 output ${desktopCfg.monitors.secondary}
+            workspace °7 output ${desktopCfg.monitors.secondary}
+            workspace °8 output ${desktopCfg.monitors.secondary}
+            workspace °9 output ${desktopCfg.monitors.secondary}
+            workspace °10 output ${desktopCfg.monitors.secondary}
           '';
       };
     };
