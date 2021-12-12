@@ -70,7 +70,7 @@ let
     };
 
     mkDoom = configPath: emacs:
-      pkgs.callPackage /home/ckie/git/nix-doom-emacs {
+      pkgs.callPackage sources.nix-doom-emacs {
         doomPrivateDir = configPath;
         extraPackages = epkgs: [ pkgs.mu ];
         bundledPackages = false;
