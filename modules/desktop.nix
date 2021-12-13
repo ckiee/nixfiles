@@ -46,6 +46,7 @@ in with lib; {
         xcursor.enable = true;
         mpd.enable = true;
         remotemacs.enable = true;
+        mimeapps.enable = true;
         collections = { chat.enable = true; };
       };
       services.rsibreak.enable = true;
