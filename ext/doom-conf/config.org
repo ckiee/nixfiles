@@ -52,12 +52,13 @@ Doom Emacs assumes your config will be in =~/.doom=, but mine isn't!
 ** count buffers
 I like counting buffers. This is probably from StackOverflow
 #+BEGIN_SRC elisp
-(defun count-buffers (&optional display-anyway)
+(defun ckie-count-buffers (&optional display-anyway)
   "Display or return the number of buffers."
   (interactive)
   (let ((buf-count (length (buffer-list))))
     (if (or (interactive-p) display-anyway)
         (message "%d buffers in this Emacs" buf-count)) buf-count))
+(map! :leader "b c" #'ckie-count-buffers)
 #+END_SRC
 ** mu4e/email
 mu4e occasionally messes up its database without this, see [[https://github.com/djcb/mu/issues/2055][djcb/mu#2055]].
