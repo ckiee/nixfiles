@@ -1,17 +1,24 @@
 { lib, config, pkgs, ... }:
 
 with lib;
+with builtins;
 
 let
   cfg = config.cookie.services.coredns;
   sources = import ../../../nix/sources.nix;
-  extHosts = builtins.readFile "${sources.dns-hosts}/hosts";
+  extHostsRaw = builtins.readFile "${sources.dns-hosts}/hosts";
+  extHosts = (concatStringsSep "\n" (filter (x:
+    !(elem x [
+      # exemptions from the block lists
+      "0.0.0.0 click.redditmail.com"
+    ])) (splitString "\n" extHostsRaw)));
   baseHosts = pkgs.writeTextFile {
     name = "coredns-hosts-ckie";
     text = ''
       # StevenBlack ad-blocking hosts
       ${extHosts}
-      ${optionalString (config.networking.hostName == "cookiemonster") "0.0.0.0 netflix.com"}
+      ${optionalString (config.networking.hostName == "cookiemonster")
+      "0.0.0.0 netflix.com"}
       # Runtime hosts
     '';
   };
