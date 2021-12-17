@@ -1,27 +1,29 @@
 { config, pkgs, modulesPath, ... }: {
-  imports = [ ../.. (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [ ../.. ./qemu.nix (modulesPath + "/profiles/qemu-guest.nix") ];
 
   networking.hostName = "virt";
   networking.firewall.enable = false;
 
-  fileSystems."/" = {
-    device = "/dev/vda1";
-    fsType = "ext4";
+  home-manager.users.ckie = { pkgs, ... }: {
+    cookie.collections.devel.enable = true;
   };
-
-  boot.initrd.availableKernelModules =
-    [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/vda";
-
-  services.qemuGuest.enable = true;
-
-  users.mutableUsers = false;
+  cookie = {
+    desktop = {
+      enable = true;
+    };
+    sound = {
+      pulse.enable = true;
+      pipewire.enable = false;
+    };
+    services = {
+      syncthing.enable = true;
+      printing.enable = true;
+      tailscale.autoconfig = false;
+    };
+    systemd-boot.enable = true;
+    hardware.t480s.enable = true;
+    smartd.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
