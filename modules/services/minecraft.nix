@@ -5,7 +5,7 @@ let
   paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
     src = pkgs.fetchurl {
       url = let
-        build = 399;
+        build = 401;
         mc = "1.17.1";
       in "https://papermc.io/api/v2/projects/paper/versions/${mc}/builds/${
         toString build
