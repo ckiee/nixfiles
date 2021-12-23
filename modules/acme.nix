@@ -16,6 +16,11 @@ let
         description = "the DNS provider for this host";
         default = "cloudflare";
       };
+      secretId = mkOption {
+        type = types.str;
+        description = "the secret containing the credentials for this provider";
+        default = "acme";
+      };
       extras = mkOption {
         type = types.listOf types.str;
         description = "a list of extra hosts to get in one cert";
@@ -41,12 +46,17 @@ in {
         };
       }) ((v.extras or [ ]) ++ (singleton i)))) cfg.hosts));
 
-    cookie.secrets.acme = {
-      source = "./secrets/acme.env";
-      dest = "/var/run/acme.env";
-      owner = "acme";
-      group = "acme";
-      permissions = "0400";
+    cookie.secrets = let
+      mkAcme = file: {
+        source = "./secrets/${file}";
+        dest = "/var/run/${file}";
+        owner = "acme";
+        group = "acme";
+        permissions = "0400";
+      };
+    in {
+      acme = mkAcme "acme.env";
+      acme-dan = mkAcme "acme-dan.env";
     };
 
     systemd.services = mapAttrs' (i: v:
@@ -62,7 +72,7 @@ in {
         group = "nginx";
         dnsProvider = v.provider;
         extraDomainNames = v.extras;
-        credentialsFile = config.cookie.secrets.acme.dest;
+        credentialsFile = config.cookie.secrets.${v.secretId}.dest;
         inherit email;
       })) cfg.hosts);
 
