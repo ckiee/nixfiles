@@ -8,6 +8,7 @@ in {
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
   daiko = callPackage sources.daiko { };
+  mcid = callPackage sources.mcid { };
   anonvote-bot = callPackage sources.anonvote-bot { };
   ronthecookieme = callPackage ./ronthecookieme { };
   ckiesite = callPackage ./ckiesite { };
