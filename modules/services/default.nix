@@ -25,6 +25,7 @@
     ./syncthing.nix
     ./octoprint.nix
     ./soju.nix
+    ./mcid.nix # daniel's
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix

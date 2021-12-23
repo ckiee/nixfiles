@@ -47,6 +47,10 @@
         host = "ckie.dev";
         serviceHost = "matrix.ckie.dev";
       };
+      mcid = {
+        enable = true;
+        host = "mcid.party";
+      };
     };
     acme = {
       enable = true;
@@ -65,6 +69,10 @@
             "znc.ckie.dev"
             "tailnet.ckie.dev"
           ];
+        };
+        "mcid.party" = {
+          provider = "cloudflare";
+          secretId = "acme-dan";
         };
       };
     };

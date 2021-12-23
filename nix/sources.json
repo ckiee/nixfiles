@@ -101,6 +101,18 @@
         "url": "https://github.com/ckiee/matterbridge/archive/919b738124a11dae986fb65a46b8c517d36028c0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "mcid": {
+        "branch": "master",
+        "description": "Minecraft authentication API",
+        "homepage": "https://mcid.party",
+        "owner": "ckiee",
+        "repo": "jellz-mcid",
+        "rev": "47591c17c68e91ab41d74b064a9b618be7939051",
+        "sha256": "15a0gn5l4ryka4mzawk4rrl2i2bxzn0nfk0xhk2cf8qky3c4mf62",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/jellz-mcid/archive/47591c17c68e91ab41d74b064a9b618be7939051.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
