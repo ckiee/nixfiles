@@ -1,10 +1,15 @@
-{ lib, config, pkgs, ... }:
+{ nodes, lib, config, pkgs, ... }:
 
 let cfg = config.cookie.services.syncthing;
 
 in with lib; {
   options.cookie.services.syncthing = {
     enable = mkEnableOption "Enables Syncthing file syncing";
+    runtimeId = mkOption {
+      type = types.nullOr types.str;
+      description = "the ID given to this machine at runtime";
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -17,14 +22,12 @@ in with lib; {
       overrideDevices = true;
       overrideFolders = true;
 
-      # see /ext/metadata.toml
       devices = let
-        trackedHosts = mapAttrs (name: host: {
-          id = host.syncthing_id;
-          inherit name;
-        }) (filterAttrs
-          (name: host: host ? syncthing_id) # host.syncthing_id = null | str
-          config.cookie.metadata.raw.hosts);
+        trackedHosts = mapAttrs (host: hostConfig: {
+          id = hostConfig.config.cookie.services.syncthing.runtimeId;
+          name = host;
+        }) (filterAttrs (host: hostConfig:
+          host != "_metadata" && hostConfig.config.cookie.services.syncthing.runtimeId != null) nodes);
         untrackedHosts = {
           phone = {
             id =

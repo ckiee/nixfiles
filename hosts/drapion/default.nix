@@ -31,6 +31,8 @@ with lib;
         host = "print.atori";
       };
     };
+    machine-info.sshPubkey =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2azaroNAPS5GtjAqf6PdVAqEW7MgghYxlxKy+VgTH6";
   };
 
   networking.networkmanager.enable = mkForce false;
