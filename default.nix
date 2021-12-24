@@ -6,6 +6,8 @@ with lib;
   imports = [ ./modules ];
   nixpkgs = { config = { allowUnfree = true; }; };
 
+  _module.args.sources = import ./nix/sources.nix;
+
   time.timeZone = "Israel";
 
   boot.loader.efi.canTouchEfiVariables = true;
