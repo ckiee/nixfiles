@@ -7,8 +7,8 @@
     ./nginx.nix
     # System
     ./avahi.nix
-    ./ssh.nix
-    ./prometheus.nix
+    ./ssh
+    ./prometheus
     ./headscale.nix
     ./tailscale.nix
     ./coredns

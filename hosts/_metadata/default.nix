@@ -2,7 +2,7 @@
 with lib;
 
 let
-  userPubkey = lib.fileContents ../../ext/id_ed25519.pub;
+  userPubkey = lib.fileContents ./id_ed25519.pub;
   filenameFromPath = path: last (splitString "/" path);
 in {
   options.system = {

@@ -18,7 +18,7 @@ in {
         ./shell.nix
         ./gtk.nix
         ./dunst.nix
-        ./keyboard.nix
+        ./keyboard
         ./redshift.nix
         ./nautilus.nix
         ./i3.nix
@@ -27,7 +27,7 @@ in {
         ./mpd.nix
         ./polyprog.nix
         ./weechat.nix
-        ./qsynth.nix
+        ./qsynth
         ./picom.nix
         ./mimeapps.nix
         ./remotemacs.nix

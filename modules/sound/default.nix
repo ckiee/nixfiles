@@ -42,7 +42,7 @@ in with lib; {
       security.rtkit.enable = true;
       hardware.pulseaudio = mkMerge [
         (mkIf cfg.pulse.lowLatency {
-          configFile = ../ext/default.pa;
+          configFile = ./default.pa;
           daemon.config = {
             "high-priority" = "yes";
             "nice-level" = "-15";

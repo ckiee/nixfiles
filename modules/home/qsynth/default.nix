@@ -10,7 +10,7 @@ in with lib; {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ qsynth ];
     xdg.configFile."rncbc.org/Qsynth.conf".text =
-      builtins.readFile ../../ext/Qsynth.conf + ''
+      builtins.readFile ./Qsynth.conf + ''
         [SoundFonts]
         BankOffset1=0
         SoundFont1=${pkgs.soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2

@@ -12,10 +12,10 @@
     ./collections
     # Other
     ./smartd.nix
-    ./sound.nix
+    ./sound
     ./hw.nix
     ./sleep.nix
-    ./opentabletdriver.nix
+    ./opentabletdriver
     ./slock.nix
     ./fonts.nix
     ./git.nix
@@ -41,7 +41,7 @@
     ./command-not-found.nix
     ./shell-utils
     ./raspberry
-    ./st.nix
+    ./st
     ./zfs.nix
     ./machine-info.nix
   ];
