@@ -3,8 +3,6 @@
 with lib;
 
 let
-  isRagerBuild = (builtins.getEnv "COOKIE_RAGER_BUILD" != "");
-  userPubkey = fileContents ../ext/id_ed25519.pub;
   cfg = config.cookie.secrets;
   filenameFromPath = path: last (splitString "/" path);
 
@@ -56,8 +54,6 @@ let
     };
   });
 
-  metadata = config.cookie.metadata.raw;
-
   mkService = name:
     { source, dest, owner, group, permissions, wantedBy, ... }: {
       description = "decrypt secret for ${name}";
@@ -94,22 +90,6 @@ in {
         name = "${name}-key";
         value = (mkService name info);
       }) (filterAttrs (_: secret: secret.runtime) cfg);
-    in mkIf (!isRagerBuild) units;
-
-    environment.extraSetup = let
-      host = config.networking.hostName;
-      pubkey = metadata.hosts.${host}.ssh_pubkey;
-      cookie-rager-encrypt = pkgs.writeScript "cookie-rager-encrypt" ''
-        # Some environment (PATH, pwd) for this is set in our wrapper script, rager
-        set -e
-        rm -rf encrypted/'${host}' || true
-        mkdir -p encrypted/'${host}'
-        ${concatStringsSep "\n" (mapAttrsToList (_: secret:
-          "rage -a -r '${pubkey}' -r '${userPubkey}' -o 'encrypted/${host}/${
-            filenameFromPath secret.source
-          }' '${secret.source}'") cfg)}
-      '';
-    in mkIf isRagerBuild
-    "ln -s ${cookie-rager-encrypt} $out/cookie-rager-encrypt";
+    in units;
   };
 }

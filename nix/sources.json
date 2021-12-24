@@ -113,6 +113,18 @@
         "url": "https://github.com/ckiee/jellz-mcid/archive/47591c17c68e91ab41d74b064a9b618be7939051.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "morph": {
+        "branch": "private",
+        "description": "NixOS deployment tool",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "morph",
+        "rev": "6bc67b5dc74675b01a2d3ad91356adb706095378",
+        "sha256": "1qlcrpz77c4a1p3sfpmv0kxj22qg3lalchpc1s3pnjb11rip8qgr",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/morph/archive/6bc67b5dc74675b01a2d3ad91356adb706095378.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
