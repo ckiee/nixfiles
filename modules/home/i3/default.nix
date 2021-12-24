@@ -1,25 +1,11 @@
-{ sources, lib, config, nixosConfig, pkgs, ... }:
+{ util, sources, lib, config, nixosConfig, pkgs, ... }:
 
 with lib;
 with builtins;
 
 let
   pkgs-master = import sources.nixpkgs-master { };
-  filenameFromPath = path: last (splitString "/" path);
-
-  mkScript = let prefix = "#Requires: ";
-  in path:
-  pkgs.writeScript "wrapped-${filenameFromPath (toString path)}" ''
-    #!${pkgs.bash}/bin/bash
-    ${(concatMapStringsSep "\n" (line:
-      if hasPrefix prefix line then
-        "export PATH=$PATH:${
-          makeBinPath (map (pkgAttrId: pkgs.${pkgAttrId})
-            (splitString " " (removePrefix prefix line)))
-        }"
-      else
-        line) (splitString "\n" (readFile path)))}
-  '';
+  inherit (util) mkRequiresScript;
 
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -32,8 +18,8 @@ let
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/solid} &
     ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-    ${mkScript ./scripts/oszwatch} &
-    ${mkScript ./scripts/musicwatch} &
+    ${mkRequiresScript ./scripts/oszwatch} &
+    ${mkRequiresScript ./scripts/musicwatch} &
     # fractal &
     Discord &
     mirage &
@@ -124,18 +110,18 @@ in {
                 ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
               # screenshot
               "--release ${modifier}+End" =
-                "exec ${mkScript ./scripts/screenshot}";
+                "exec ${mkRequiresScript ./scripts/screenshot}";
               "--release ${modifier}+Pause" =
-                "exec ${mkScript ./scripts/screenshot}";
+                "exec ${mkRequiresScript ./scripts/screenshot}";
 
               "--release ${modifier}+Shift+t" =
-                "exec ${mkScript ./scripts/tntwars}";
+                "exec ${mkRequiresScript ./scripts/tntwars}";
               "${modifier}+Shift+d" =
                 "exec emacsclient -nc ~/Sync/org/scratchpad.org";
               "--release ${modifier}+Shift+g" =
-                "exec ${mkScript ./scripts/nixmenu}";
-              "${modifier}+Shift+h" = "exec ${mkScript ./scripts/sinkswap}";
-              "${modifier}+Shift+b" = "exec ${mkScript ./scripts/showerset}";
+                "exec ${mkRequiresScript ./scripts/nixmenu}";
+              "${modifier}+Shift+h" = "exec ${mkRequiresScript ./scripts/sinkswap}";
+              "${modifier}+Shift+b" = "exec ${mkRequiresScript ./scripts/showerset}";
 
               # music house
               "${modifier}+Shift+w" =

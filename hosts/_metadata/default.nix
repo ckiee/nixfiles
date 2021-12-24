@@ -3,7 +3,8 @@ with lib;
 
 let
   userPubkey = lib.fileContents ./id_ed25519.pub;
-  filenameFromPath = path: last (splitString "/" path);
+  util = import ../../modules/util/util.nix { inherit pkgs lib; };
+  inherit (util) fileNameFromPath;
 in {
   options.system = {
     # Mock for morph
@@ -25,7 +26,7 @@ in {
             mkdir -p encrypted/'${host}' || true
             ${concatStringsSep "\n" (mapAttrsToList (_: secret:
               let
-                secretFn = filenameFromPath secret.source;
+                secretFn = fileNameFromPath secret.source;
               in ''
                 if [ "$(cat encrypted/'${host}'/'${secretFn}'.HASH)" != "$(sha512sum '${secret.source}')" ]; then
                   echo "[${secretFn}:${host}] sha512 changed, re-encrypting"

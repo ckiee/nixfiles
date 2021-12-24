@@ -1,10 +1,10 @@
-{ pkgs, config, lib, ... }:
+{ util, pkgs, config, lib, ... }:
 
 with lib;
+with util;
 
 let
   cfg = config.cookie.secrets;
-  filenameFromPath = path: last (splitString "/" path);
 
   secret = types.submodule ({config,...}: {
     options = {
@@ -68,7 +68,7 @@ let
         rm -f ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
           ./.. + "/encrypted/${config.networking.hostName}/${
-            filenameFromPath source
+            fileNameFromPath source
           }"
         }'
 

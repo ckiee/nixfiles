@@ -34,7 +34,7 @@
     ./bindfs.nix
     ./steam.nix
     ./mail-client.nix
-    ./doom-emacs.nix
+    ./doom-emacs
     ./user-alias.nix
     ./wol.nix
     ./restic.nix
@@ -44,5 +44,6 @@
     ./st
     ./zfs.nix
     ./machine-info.nix
+    ./util
   ];
 }
