@@ -8,21 +8,12 @@
     cookie.collections.devel.enable = true;
   };
   cookie = {
-    desktop = {
-      enable = true;
-    };
-    sound = {
-      pulse.enable = true;
-      pipewire.enable = false;
-    };
+    desktop.enable = true;
+    sound.enable = false;
     services = {
-      syncthing.enable = true;
-      printing.enable = true;
       tailscale.autoconfig = false;
     };
     systemd-boot.enable = true;
-    hardware.t480s.enable = true;
-    smartd.enable = true;
   };
 
   # This value determines the NixOS release from which the default
