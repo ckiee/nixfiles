@@ -7,7 +7,7 @@ let
   # throw is a keyword
   throwDeriv = pkgs.writeScriptBin "throw" ''
     "$(morph build morph.nix --on=_metadata 2>/dev/null)"/_metadata
-    morph deploy morph.nix switch --passwd --on $@
+    morph deploy morph.nix switch --passwd --on ${"\${@:-$(hostname)}"}
   '';
 
   morph = import sources.morph { inherit pkgs; };
