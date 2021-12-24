@@ -108,17 +108,17 @@ let
     # 1. bootstrapDoom is built with a mostly-empty configuration in order to get a working environment for org-tangle.
     # 2. The final doomEmacs is built with the tangledPrivateDir from step #1.
 
-    # We don't use `../ext/doom-conf` directly to avoid bootstrap rebuilds for `config.org`-only changes.
+    # We don't use `./config` directly to avoid bootstrap rebuilds for `config.org`-only changes.
     bootstrapPrivateDir = pkgs.runCommand "bootstrap-doom-private" { } ''
       mkdir -p $out
       cd $out
       touch {packages,config}.el
-      cp ${../ext/doom-conf/init.el} init.el
+      cp ${./config/init.el} init.el
     '';
     bootstrapDoom = mkDoom bootstrapPrivateDir pkgs.emacs;
     tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
       mkdir -p $out
-      cp -rv ${../ext/doom-conf}/. $out/
+      cp -rv ${./config}/. $out/
       ${bootstrapDoom}/bin/org-tangle $out
     '';
   in mkDoom tangledPrivateDir nativeCompEmacs;

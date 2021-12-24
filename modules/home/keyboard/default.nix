@@ -12,6 +12,6 @@ in with lib; {
     home.keyboard.options =
       [ "grp:win_space_toggle" "compose:rctrl" "caps:super" ];
 
-    home.file.".XCompose".source = ../../ext/XCompose;
+    home.file.".XCompose".source = ./XCompose;
   };
 }

@@ -11,7 +11,8 @@ in with lib; {
     services.openssh = {
       enable = true;
       forwardX11 = true;
-      permitRootLogin = mkForce "no"; # for the "install" host this is enabled, so we force it away
+      permitRootLogin = mkForce
+        "no"; # for the "install" host this is enabled, so we force it away
       passwordAuthentication = false;
     };
     services.fail2ban = mkIf config.networking.firewall.enable {
@@ -25,5 +26,7 @@ in with lib; {
       from = 60000;
       to = 61000;
     }];
+
+    cookie.user.openssh.authorizedKeys.keyFiles = [ ./authorized_keys ];
   };
 }

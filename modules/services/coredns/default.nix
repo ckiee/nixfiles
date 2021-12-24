@@ -109,7 +109,7 @@ in {
 
           atori {
              ${prom}
-             file ${../../../ext/atori.zone}
+             file ${./atori.zone}
           }
 
           # Resolve everything under the root localhost TLD to 127.0.0.1
