@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p xdotool 
+#Requires: xdotool
 sleep 0.5 # --release doesnt seem to properly do it
 xdotool key 9
 xdotool click 3

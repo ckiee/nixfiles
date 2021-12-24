@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p pulseaudioFull openssh
+#Requires: pulseaudioFull openssh
 
 echo "pactl load-module = $(pactl load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1)"
 ssh -XY "cookiemonster" -R "127.0.0.1:24713:127.0.0.1:4713" "PULSE_SERVER='tcp:localhost:24713' $@"

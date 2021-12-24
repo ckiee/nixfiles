@@ -1,8 +1,25 @@
-{ builtins, lib, config, nixosConfig, pkgs, ... }:
+{ sources, lib, config, nixosConfig, pkgs, ... }:
+
+with lib;
+with builtins;
 
 let
-  sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
+  filenameFromPath = path: last (splitString "/" path);
+
+  mkScript = let prefix = "#Requires: ";
+  in path:
+  pkgs.writeScript "wrapped-${filenameFromPath (toString path)}" ''
+    #!${pkgs.bash}/bin/bash
+    ${(concatMapStringsSep "\n" (line:
+      if hasPrefix prefix line then
+        "export PATH=$PATH:${
+          makeBinPath (map (pkgAttrId: pkgs.${pkgAttrId})
+            (splitString " " (removePrefix prefix line)))
+        }"
+      else
+        line) (splitString "\n" (readFile path)))}
+  '';
 
   cfg = config.cookie.i3;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -13,10 +30,10 @@ let
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
     ${pkgs.kdeconnect}/bin/kdeconnect-indicator &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${../../ext/backgrounds/solid} &
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/solid} &
     ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-    ${../../ext/i3-scripts/oszwatch} &
-    ${../../ext/i3-scripts/musicwatch} &
+    ${mkScript ./scripts/oszwatch} &
+    ${mkScript ./scripts/musicwatch} &
     # fractal &
     Discord &
     mirage &
@@ -25,7 +42,7 @@ let
     firefox &
     cantata &
   '';
-in with lib; {
+in {
   options.cookie.i3 = {
     enable = mkEnableOption "Enables the i3 window manager";
   };
@@ -107,18 +124,18 @@ in with lib; {
                 ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
               # screenshot
               "--release ${modifier}+End" =
-                "exec ${../../ext/i3-scripts/screenshot}";
+                "exec ${mkScript ./scripts/screenshot}";
               "--release ${modifier}+Pause" =
-                "exec ${../../ext/i3-scripts/screenshot}";
+                "exec ${mkScript ./scripts/screenshot}";
 
               "--release ${modifier}+Shift+t" =
-                "exec ${../../ext/i3-scripts/tntwars}";
+                "exec ${mkScript ./scripts/tntwars}";
               "${modifier}+Shift+d" =
                 "exec emacsclient -nc ~/Sync/org/scratchpad.org";
               "--release ${modifier}+Shift+g" =
-                "exec ${../../ext/i3-scripts/nixmenu}";
-              "${modifier}+Shift+h" = "exec ${../../ext/i3-scripts/sinkswap}";
-              "${modifier}+Shift+b" = "exec ${../../ext/i3-scripts/showerset}";
+                "exec ${mkScript ./scripts/nixmenu}";
+              "${modifier}+Shift+h" = "exec ${mkScript ./scripts/sinkswap}";
+              "${modifier}+Shift+b" = "exec ${mkScript ./scripts/showerset}";
 
               # music house
               "${modifier}+Shift+w" =

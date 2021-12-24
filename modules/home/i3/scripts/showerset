@@ -1,0 +1,2 @@
+#Requires: coreutils
+date -Idate > ~/Sync/.last-shower
