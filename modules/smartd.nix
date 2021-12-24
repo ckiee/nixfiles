@@ -11,6 +11,6 @@ in with lib; {
       enable = true;
       notifications.x11.enable = config.services.xserver.enable;
     };
-    environment.systemPackages = singleton smartmontools;
+    environment.systemPackages = singleton pkgs.smartmontools;
   };
 }
