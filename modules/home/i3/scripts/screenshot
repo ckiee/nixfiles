@@ -1,4 +1,3 @@
-#/bin/sh
 # yay cool script that works like sharenix
 gnome-screenshot -apf /tmp/lscr.png $@
 

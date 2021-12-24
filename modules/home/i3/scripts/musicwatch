@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p inotify-tools mpc_cli
+#Requires: inotify-tools mpc_cli
 
 set -e
 cd ~/Music/flat

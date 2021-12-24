@@ -21,7 +21,7 @@ in {
         ./keyboard
         ./redshift.nix
         ./nautilus.nix
-        ./i3.nix
+        ./i3
         ./xcursor.nix
         ./nixpkgs-config.nix
         ./mpd.nix
