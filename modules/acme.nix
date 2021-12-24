@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 with lib;
 let
-  sources = import ../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
   mail-util = pkgs.callPackage ./services/mailserver/util.nix { };
 

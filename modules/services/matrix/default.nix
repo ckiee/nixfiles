@@ -1,8 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ sources, config, lib, pkgs, ... }:
 
 let
   cfg = config.cookie.services.matrix;
-  sources = import ../../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
   imports = [ ./discord.nix ];

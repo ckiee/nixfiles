@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 let
   cfg = config.cookie.services.ckiesite;
-  sources = import ../../nix/sources.nix;
   inherit (sources) spectrogram-web;
   spectrogramRoot = pkgs.linkFarm "nginx-spectrogram-root" [{
     name = "spectrogram";

@@ -1,8 +1,6 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
-let
-  cfg = config.cookie.services.matterbridge;
-  sources = import ../../nix/sources.nix;
+let cfg = config.cookie.services.matterbridge;
 in with lib; {
   options.cookie.services.matterbridge = {
     enable = mkEnableOption "Enables the Matterbridge service";
