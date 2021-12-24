@@ -31,7 +31,6 @@
     ./secrets.nix
     ./acme.nix
     ./ipban.nix
-    ./metadata.nix
     ./bindfs.nix
     ./steam.nix
     ./mail-client.nix
