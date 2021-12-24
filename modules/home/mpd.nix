@@ -1,10 +1,9 @@
-{ lib, config, nixosConfig, pkgs, ... }:
+{ sources, lib, config, nixosConfig, pkgs, ... }:
 
 let
   cfg = config.cookie.mpd;
   sound = nixosConfig.cookie.sound;
   home = nixosConfig.cookie.user.home;
-  sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
   options.cookie.mpd = {

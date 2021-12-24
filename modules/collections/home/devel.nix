@@ -1,9 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ sources, config, lib, pkgs, ... }:
 
 let
   cfg = config.cookie.collections.devel;
 
-  sources = import ../../../nix/sources.nix;
   ms = import sources.nixpkgs-master { };
 in with lib; {
 

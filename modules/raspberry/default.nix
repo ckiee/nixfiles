@@ -1,8 +1,7 @@
-{ lib, config, ... }:
+{ sources, lib, config, ... }:
 
 let
   cfg = config.cookie.raspberry;
-  sources = import ../../nix/sources.nix;
   system = "aarch64-linux";
   pkgs = import sources.nixpkgs {
     config = { allowUnfree = true; };

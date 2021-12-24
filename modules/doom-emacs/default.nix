@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 with lib;
 let
@@ -61,7 +61,6 @@ let
       Keywords=Text;Editor;
     '';
   };
-  sources = import ../nix/sources.nix;
   emacsOverlay = (import sources.emacs-overlay) pkgs pkgs;
   doom-emacs = let
     nativeCompEmacs = emacsOverlay.emacsUnstableGcc.override {

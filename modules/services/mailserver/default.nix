@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 let
   cfg = config.cookie.services.mailserver;
-  sources = import ../../../nix/sources.nix;
   util = pkgs.callPackage ./util.nix { };
 in with lib;
 with builtins; {

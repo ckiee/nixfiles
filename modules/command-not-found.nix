@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 let
   cfg = config.cookie.command-not-found;
-  sources = import ../nix/sources.nix;
   ncs = (import (sources.nixos-channel-scripts + "/default.nix") { });
 in with lib; {
   options.cookie.command-not-found = {
