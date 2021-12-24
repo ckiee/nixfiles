@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nodes, ... }:
 
 let
   cfg = config.cookie.wol;
@@ -12,12 +12,22 @@ in with lib; {
       description = "the machine to be awakened";
       default = "cookiemonster";
     };
+    macAddress = mkOption {
+      type = types.nullOr types.str;
+      description = "this machine's MAC address";
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
+    assertions = [{
+      assertion = nodes ? cfg.target && nodes.${cfg.target}.config.cookie.wol ? macAddress;
+      message = "${cfg.target} does not have WoL mac address defined";
+    }];
+
     environment.systemPackages = singleton
       (pkgs.writeScriptBin "wol-${cfg.target}" ''
-        ${pkgs.wol}/bin/wol ${mac}
+        ${pkgs.wol}/bin/wol ${nodes.${cfg.target}.config.cookie.wol.macAddress}
       '');
   };
 }
