@@ -44,5 +44,6 @@
     ./raspberry
     ./st.nix
     ./zfs.nix
+    ./machine-info.nix
   ];
 }

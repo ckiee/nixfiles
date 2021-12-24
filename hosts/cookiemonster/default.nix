@@ -17,12 +17,21 @@ in {
         secondary = "HDMI-0";
       };
     };
-    services = { syncthing.enable = true; };
+    services = {
+      syncthing = {
+        enable = true;
+        runtimeId =
+          "MVCZQ2L-XCK3Y2Z-R7Q2UT6-TZK6CVH-WUN6TFH-I3ZOCRS-OLZAN7C-XZ4BHAF";
+      };
+    };
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;
     smartd.enable = true;
     steam.enable = true;
+    wol.macAddress = "50:3e:aa:05:2a:90";
+    machine-info.sshPubkey =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf";
   };
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
@@ -47,7 +56,8 @@ in {
       Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off, AllowGSYNCCompatible=On}"
     '';
   };
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+  hardware.nvidia.package =
+    config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 
   environment.systemPackages = with pkgs; [
     lutris

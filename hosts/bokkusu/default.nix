@@ -5,6 +5,7 @@
 
   cookie = {
     restic.enable = true; # Backups
+    machine-info.sshPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
     services = {
       owo-bot.enable = true;
       ffg-bot.enable = true;
