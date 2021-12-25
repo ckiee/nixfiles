@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+function get_hosts {
+    nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
+}
+action=${2:-deploy}
+if [ "$action" == "deploy" ]; then
+    deployExtra="switch --passwd"
+fi
+
+"$(morph build morph.nix --on=_metadata 2>/dev/null)"/_metadata
+
+if [ "$1" == "" ]; then
+    morph $action morph.nix $deployExtra --on "$(hostname)"
+elif [ "$1" == "all" ]; then
+    morph $action morph.nix $deployExtra --tagged=real
+elif get_hosts | grep "$1" >/dev/null; then
+    morph $action morph.nix $deployExtra --on "$1"
+fi

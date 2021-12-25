@@ -8,11 +8,8 @@ in {
     ordering = { tags = [ "desktops" "servers" ]; };
     evalConfig =
       # This is a wrapper around the NixOS evalConfig to add an edge-case for our _metadata host
-      evalConfigArgs@{ extraArgs ? { }
-      , # !!! See comment about args in lib/modules.nix
-      specialArgs ? { }, modules
-      , # !!! See comment about check in lib/modules.nix
-      check ? true, prefix ? [ ] }:
+      evalConfigArgs@{ extraArgs ? { }, specialArgs ? { }, modules, check ? true
+      , prefix ? [ ] }:
       let originalFn = import (networkPkgs.path + "/nixos/lib/eval-config.nix");
       in originalFn (if extraArgs.name == "_metadata" && check then
         evalConfigArgs // {
@@ -21,7 +18,9 @@ in {
           extraArgs = evalConfigArgs.extraArgs // { pkgs = networkPkgs; };
         }
       else
-        evalConfigArgs);
+        evalConfigArgs // {
+          modules = modules ++ [ ({ ... }: { deployment.tags = [ "real" ]; }) ];
+        });
 
   };
 
