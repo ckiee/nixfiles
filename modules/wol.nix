@@ -20,11 +20,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    assertions = [{
-      assertion = nodes ? cfg.target && nodes.${cfg.target}.config.cookie.wol ? macAddress;
-      message = "${cfg.target} does not have WoL mac address defined";
-    }];
-
     environment.systemPackages = singleton
       (pkgs.writeScriptBin "wol-${cfg.target}" ''
         ${pkgs.wol}/bin/wol ${nodes.${cfg.target}.config.cookie.wol.macAddress}
