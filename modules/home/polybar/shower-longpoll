@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p inotify-tools dateutils
+#Requires: inotify-tools dateutils
 
 set -e
 

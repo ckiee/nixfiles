@@ -1,9 +1,10 @@
-{ config, lib, pkgs, nixosConfig, ... }:
+{ util, config, lib, pkgs, nixosConfig, ... }:
 
 let
   inherit (lib)
     optionals mkIf mkEnableOption mkOption types concatStrings optional
     optionalString;
+  inherit (util) mkRequiresScript;
 
   colors = {
     primary = "#ed60ba";
@@ -94,8 +95,14 @@ in {
             ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
-            ] ++ [ "separator" "memory" "small-spacer" "cpu" "separator" "keyboard" ]
-            ++ optionals cfg.laptop [
+            ] ++ [
+              "separator"
+              "memory"
+              "small-spacer"
+              "cpu"
+              "separator"
+              "keyboard"
+            ] ++ optionals cfg.laptop [
               "separator"
               "backlight"
               "separator"
@@ -261,7 +268,7 @@ in {
         "module/shower" = {
           type = "custom/script";
           format-prefix = "${icons.shower} ";
-          exec = "${./shower-longpoll}";
+          exec = "${mkRequiresScript ./shower-longpoll}";
           tail = true; # we run forever instead of getting executed many times
         };
       };
