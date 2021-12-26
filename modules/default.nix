@@ -35,7 +35,7 @@
     ./steam.nix
     ./mail-client.nix
     ./doom-emacs
-    ./user-alias.nix
+    ./user.nix
     ./wol.nix
     ./restic.nix
     ./command-not-found.nix
