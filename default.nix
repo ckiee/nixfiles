@@ -4,7 +4,7 @@ with lib;
 
 {
   imports = [ ./modules ];
-  nixpkgs = { config = { allowUnfree = true; }; };
+  nixpkgs.config.allowUnfree = true;
 
   # I'd assume that usually the machines we're deploying to have more of
   # the store paths already downloaded since they can't GC their current
@@ -22,19 +22,6 @@ with lib;
   networking.networkmanager.enable = true;
 
   users.mutableUsers = false;
-
-  cookie.secrets.unix-password = {
-    source = "./secrets/unix-password.nix";
-    runtime = false;
-  };
-
-  cookie.user = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-    hashedPassword = (import ./secrets/unix-password.nix).ckie;
-    home = "/home/ckie"; # The alias makes it think my username is "user" here.
-  };
-
   users.users.root = {
     hashedPassword = (import ./secrets/unix-password.nix).root;
   };
