@@ -68,7 +68,7 @@ let
         rm -f ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
           ./.. + "/encrypted/${config.networking.hostName}/${
-            fileNameFromPath source
+            baseNameOf source
           }"
         }'
 

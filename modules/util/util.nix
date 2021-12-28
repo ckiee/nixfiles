@@ -4,16 +4,6 @@ with lib;
 with builtins;
 
 rec {
-
-  /* Extract the filename component of the given path
-
-     Example:
-       fileNameFromPath "/home/ckie/hello.txt"
-       => "hello.txt"
-  */
-  fileNameFromPath = path: last (splitString "/" path);
-
-
   /* Resolve a "#Requires: " line using `pkgs` attributes
 
      Example:
@@ -41,5 +31,5 @@ rec {
        mkRequiresScript ./some_script
        => <a script with an "export PATH" line>
   */
-  mkRequiresScript = path: mkRequiresScriptTextWithName "wrapped-${fileNameFromPath path}" (readFile path);
+  mkRequiresScript = path: mkRequiresScriptTextWithName "wrapped-${baseNameOf path}" (readFile path);
 }
