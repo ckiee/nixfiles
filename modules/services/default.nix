@@ -26,6 +26,7 @@
     ./octoprint.nix
     ./soju.nix
     ./mcid.nix # daniel's
+    ./alvr-bot.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix
