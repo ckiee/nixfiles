@@ -13,6 +13,7 @@
       mailserver.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
+      alvr-bot.enable = true;
 
       prometheus.enable = true;
       grafana = {

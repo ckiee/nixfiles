@@ -9,6 +9,7 @@ in {
   ffg-bot = import sources.ffg-bot;
   daiko = callPackage sources.daiko { };
   mcid = callPackage sources.mcid { };
+  alvr-bot = callPackage sources.alvr-bot { };
   anonvote-bot = callPackage sources.anonvote-bot { };
   ronthecookieme = callPackage ./ronthecookieme { };
   ckiesite = callPackage ./ckiesite { };
