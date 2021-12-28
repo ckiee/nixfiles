@@ -20,5 +20,9 @@ elif [ "$1" == "all" ]; then
 elif get_hosts | grep "$1" >/dev/null; then
     morp $action morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then
+    git stash push
     niv update $2
+    git add nix/sources.json 2>&1
+    git commit -m "niv: bump $2" 2>&1
+    git stash pop >/dev/null
 fi
