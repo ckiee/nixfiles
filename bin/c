@@ -4,7 +4,7 @@ function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
 function morp {
-    "$(morph build morph.nix --on=_metadata 2>/dev/null)"/_metadata
+    "$(morph build morph.nix --on=_metadata )"/_metadata
     morph $@
 }
 
