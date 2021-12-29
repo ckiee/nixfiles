@@ -17,7 +17,6 @@ in with lib; {
     };
     home.packages = with pkgs; [
       gnome3.nautilus
-      gnome3.gvfs # nautilus likes this!
     ];
   };
 }
