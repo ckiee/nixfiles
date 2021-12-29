@@ -17,7 +17,7 @@ in pkgs.mkShell {
     morph
     nix-prefetch-scripts
     nix-prefetch-github
-    nixos-generators
+    (nixos-generators.override { nix = nixUnstable; })
     cBin
   ];
 }
