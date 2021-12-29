@@ -7,6 +7,7 @@ in with lib; {
   };
   config = mkIf cfg.enable {
     programs.dconf.enable = true;
+    services.gvfs.enable = true;
     services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     environment.systemPackages = with pkgs; [
