@@ -13,9 +13,14 @@ in {
       let originalFn = import (networkPkgs.path + "/nixos/lib/eval-config.nix");
       in originalFn (if extraArgs.name == "_metadata" && check then
         evalConfigArgs // {
-          baseModules = [ ];
-          check = false;
-          extraArgs = evalConfigArgs.extraArgs // { pkgs = networkPkgs; };
+          baseModules = [
+            ({ ... }: {
+              _module.args.pkgs = networkPkgs;
+              _module.args.nodes = extraArgs.nodes;
+              _module.check = false;
+            })
+          ];
+          # extraArgs = evalConfigArgs.extraArgs // { pkgs = networkPkgs; };
         }
       else
         evalConfigArgs // {
