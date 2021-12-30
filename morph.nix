@@ -35,6 +35,7 @@ in {
   "drapion" = import ./hosts/drapion;
   "pookieix" = import ./hosts/pookieix;
   "thonkcookie" = import ./hosts/thonkcookie;
+  "pansear" = import ./hosts/pansear;
   # Special
   "_metadata" = import ./hosts/_metadata;
 }
