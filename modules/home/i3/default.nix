@@ -53,7 +53,7 @@ in {
       obs-studio
       sidequest # mediocre vr
       transmission-gtk # capitalism
-      blockbench-electron # placing blocks
+      # blockbench-electron # placing blocks
       krita # drawing
       prusa-slicer # making things out of harmful plastic
       ardour # piano
