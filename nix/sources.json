@@ -90,15 +90,15 @@
         "type": "git"
     },
     "home-manager": {
-        "branch": "kb-xplug",
+        "branch": "master",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
         "homepage": "https://nix-community.github.io/home-manager/",
-        "owner": "ckiee",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7f2c4d96d383842abccb0589bf6b69e31db3d18a",
-        "sha256": "1xrcn8axxjrapkdvzn4da8zsl1r013inlxxj3dikp4b631qlcad4",
+        "rev": "2f40cd05dc0ffe3ba69a94e9e76e0357c5b9a0b8",
+        "sha256": "0a5v0h9s5wyhi0w0vxi25wawns5y2ncmqmzln0xyi9mcrh7rqpa6",
         "type": "tarball",
-        "url": "https://github.com/ckiee/home-manager/archive/7f2c4d96d383842abccb0589bf6b69e31db3d18a.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/2f40cd05dc0ffe3ba69a94e9e76e0357c5b9a0b8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "matterbridge": {
