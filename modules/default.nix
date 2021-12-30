@@ -45,5 +45,6 @@
     ./zfs.nix
     ./machine-info.nix
     ./util
+    ./libvirtd.nix
   ];
 }
