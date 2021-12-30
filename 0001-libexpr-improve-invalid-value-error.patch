@@ -1,0 +1,25 @@
+From ea6b7c66af9788a20cf38c3249b2c8e3ce5ad95d Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Thu, 30 Dec 2021 20:43:47 +0200
+Subject: [PATCH 1/2] libexpr: improve invalid value error
+
+---
+ src/libexpr/eval.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/libexpr/eval.cc b/src/libexpr/eval.cc
+index a95726f5f..b0e4b3985 100644
+--- a/src/libexpr/eval.cc
++++ b/src/libexpr/eval.cc
+@@ -145,7 +145,7 @@ void printValue(std::ostream & str, std::set<const Value *> & active, const Valu
+         str << v.fpoint;
+         break;
+     default:
+-        throw Error("invalid value");
++        throw Error("invalid value %1%", showType(v));
+     }
+ 
+     active.erase(&v);
+-- 
+2.33.0
+
