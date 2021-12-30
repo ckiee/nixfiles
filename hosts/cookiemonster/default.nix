@@ -29,6 +29,7 @@ in {
     wine.enable = true;
     smartd.enable = true;
     steam.enable = true;
+    libvirtd.enable = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     machine-info.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf";
