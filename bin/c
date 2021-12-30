@@ -4,9 +4,17 @@ function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
 function morp {
-    "$(morph build morph.nix --on=_metadata )"/_metadata
-    morph $@
+    "$(morph build morph.nix --on=_metadata $morph_extra_args)"/_metadata
+    echo morph $@ $morph_extra_args
+    morph $@ $morph_extra_args
 }
+
+
+morph_extra_args=""
+if [ "$1" == "trace" ]; then
+    morph_extra_args="--show-trace"
+    shift
+fi
 
 action=${2:-deploy}
 if [ "$action" == "deploy" ]; then
