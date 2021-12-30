@@ -14,5 +14,6 @@ in with lib; {
       libvirtd = { enable = true; };
       spiceUSBRedirection.enable = true;
     };
+    boot.kernel.sysctl."net.ipv4.ip_forward" = true;
   };
 }

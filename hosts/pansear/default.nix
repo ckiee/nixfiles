@@ -3,7 +3,7 @@
 with lib;
 
 {
-  imports = [ ../.. ./hardware.nix ];
+  imports = [ ../.. ./hardware.nix ./windows-passthrough.nix ];
 
   networking.hostName = "pansear";
 
@@ -12,34 +12,12 @@ with lib;
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
     systemd-boot.enable = true;
     smartd.enable = true;
-    services = {
-      avahi.enable = true;
-      printing.enable = true;
-    };
+    libvirtd.enable = true;
+    services = { avahi.enable = true; };
     sound = {
       pulse.enable = true;
       pipewire.enable = false;
     };
-  };
-
-  users.users.mik = {
-    isNormalUser = true;
-    hashedPassword = (import ../../secrets/unix-password.nix).mik;
-    packages = with pkgs; [ google-chrome wineStaging ];
-  };
-
-  services.gnome.chrome-gnome-shell.enable = true;
-
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "mik";
-      };
-    };
-    desktopManager.gnome.enable = true;
   };
 
   # This value determines the NixOS release from which the default
