@@ -1,0 +1,26 @@
+From d40828224ae0d47acc70e5431dd2f42775085ebe Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Thu, 30 Dec 2021 21:08:17 +0200
+Subject: [PATCH 2/2] libexpr: add blackhole InternalType to printValue
+
+---
+ src/libexpr/eval.cc | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/libexpr/eval.cc b/src/libexpr/eval.cc
+index b0e4b3985..d14bf051f 100644
+--- a/src/libexpr/eval.cc
++++ b/src/libexpr/eval.cc
+@@ -144,6 +144,9 @@ void printValue(std::ostream & str, std::set<const Value *> & active, const Valu
+     case tFloat:
+         str << v.fpoint;
+         break;
++    case tBlackhole:
++        str << "<BLACKHOLE>";
++        break;
+     default:
+         throw Error("invalid value %1%", showType(v));
+     }
+-- 
+2.33.0
+

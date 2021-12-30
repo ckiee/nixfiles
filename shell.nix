@@ -9,6 +9,12 @@ let
   cBin = pkgs.writeScriptBin "c" (readFile ./bin/c);
 
   morph = import sources.morph { inherit pkgs; };
+  myNix = pkgs.nixUnstable.overrideAttrs (orig: {
+    patches = orig.patches ++ [
+      ./0001-libexpr-improve-invalid-value-error.patch
+      ./0002-libexpr-add-blackhole-InternalType-to-printValue.patch
+    ];
+  });
 in pkgs.mkShell {
   NIX_PATH = "nixpkgs=${pkgs.path}";
 
@@ -17,7 +23,8 @@ in pkgs.mkShell {
     morph
     nix-prefetch-scripts
     nix-prefetch-github
-    (nixos-generators.override { nix = nixUnstable; })
+    (nixos-generators.override { nix = myNix; })
     cBin
+    myNix
   ];
 }
