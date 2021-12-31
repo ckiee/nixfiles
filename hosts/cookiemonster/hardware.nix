@@ -19,21 +19,20 @@ in {
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/" = {
+    device = "zroot/local/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/" =
-    { device = "zroot/local/root";
-      fsType = "zfs";
-    };
+  fileSystems."/nix" = {
+    device = "zroot/local/nix";
+    fsType = "zfs";
+  };
 
-  fileSystems."/nix" =
-    { device = "zroot/local/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5B83-A791";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/5B83-A791";
+    fsType = "vfat";
+  };
 
   fileSystems."/mnt/games" = {
     device = "/dev/md127";
@@ -45,6 +44,9 @@ in {
     fsType = "ext4";
   };
 
-  swapDevices = [];
+  swapDevices = [{
+    device = "/dev/zroot/local/swap";
+    size = 1024 * 16;
+  }];
 
 }
