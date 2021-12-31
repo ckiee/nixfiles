@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ./hardware.nix ../.. ./builder.nix ];
+  imports = [ ./hardware.nix ../.. ];
 
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -30,6 +30,7 @@ in {
     smartd.enable = true;
     steam.enable = true;
     libvirtd.enable = true;
+    remote-builder.role = "user";
     wol.macAddress = "50:3e:aa:05:2a:90";
     machine-info.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0wKpIYHIg12GBvnwDaFGrsTNYgl6VPdJ/x2Z7FkMXf";

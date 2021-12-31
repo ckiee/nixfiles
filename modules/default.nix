@@ -46,5 +46,6 @@
     ./machine-info.nix
     ./util
     ./libvirtd.nix
+    ./remote-builder.nix
   ];
 }
