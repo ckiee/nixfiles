@@ -3,7 +3,9 @@
 
   cookie = {
     restic.enable = true; # Backups
-    machine-info.sshPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
+    machine-info.sshPubkey =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
+    remote-builder.role = "user";
     services = {
       owo-bot.enable = true;
       ffg-bot.enable = true;
@@ -14,6 +16,7 @@
       among-sus.enable = true;
       anonvote-bot.enable = true;
       alvr-bot.enable = true;
+      hydra.enable = true;
 
       prometheus.enable = true;
       grafana = {
@@ -68,6 +71,7 @@
             "grafana.ckie.dev"
             "znc.ckie.dev"
             "tailnet.ckie.dev"
+            "hydra.ckie.dev"
           ];
         };
         "mcid.party" = {
