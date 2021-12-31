@@ -38,6 +38,7 @@ in {
     };
     extraHosts = mkOption {
       type = types.lines;
+      default = '''';
       description = "Extra hosts separated by lines";
     };
   };
