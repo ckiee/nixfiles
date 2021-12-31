@@ -32,7 +32,7 @@ in {
                 fi
                 sha512sum '${secret.source}' > encrypted/'${host}'/'${secretFn}'.HASH
               '') cfg)} # TODO filter for !secret.runtime
-          '') ((filterAttrs (host: _: host != "_metadata")) nodes))}
+          '') nodes)}
       '';
     };
   };
