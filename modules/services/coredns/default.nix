@@ -17,8 +17,8 @@ let
     text = ''
       # StevenBlack ad-blocking hosts
       ${extHosts}
-      ${optionalString (config.networking.hostName == "cookiemonster")
-      "0.0.0.0 netflix.com"}
+      # Extra hosts
+      ${cfg.extraHosts}
       # Runtime hosts
     '';
   };
@@ -35,6 +35,10 @@ in {
         description = "The port to listen for requests from Prometheus";
         default = 47824;
       };
+    };
+    extraHosts = mkOption {
+      type = types.lines;
+      description = "Extra hosts separated by lines";
     };
   };
 
