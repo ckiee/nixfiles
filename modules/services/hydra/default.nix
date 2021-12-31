@@ -14,10 +14,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    cookie.services.postgres = {
-      enable = true;
-      comb.hydra = { };
-    };
+    cookie.services.postgres.enable = true;
 
     services.hydra = {
       enable = true;
