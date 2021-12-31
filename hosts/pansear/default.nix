@@ -14,6 +14,7 @@ with lib;
     smartd.enable = true;
     libvirtd.enable = true;
     services = { avahi.enable = true; };
+    remote-builder.role = "builder";
     sound = {
       pulse.enable = true;
       pipewire.enable = false;
