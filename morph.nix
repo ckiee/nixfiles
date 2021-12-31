@@ -21,7 +21,10 @@ in {
           ({ ... }: {
             _module = {
               check = if isMetadata then false else check;
-              args = extraArgs;
+              args = extraArgs // {
+                # No one wants the _metadata host so let's hide it
+                nodes = removeAttrs extraArgs.nodes [ "_metadata" ];
+              };
             };
             deployment.tags = networkPkgs.lib.optional (!isMetadata) "real";
           })

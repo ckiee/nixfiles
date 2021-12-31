@@ -27,7 +27,7 @@ in with lib; {
           id = hostConfig.config.cookie.services.syncthing.runtimeId;
           name = host;
         }) (filterAttrs (host: hostConfig:
-          host != "_metadata" && hostConfig.config.cookie.services.syncthing.runtimeId != null) nodes);
+          hostConfig.config.cookie.services.syncthing.runtimeId != null) nodes);
         untrackedHosts = {
           phone = {
             id =
