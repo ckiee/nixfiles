@@ -14,6 +14,7 @@ in with lib; {
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
+      recommendedProxySettings = true;
       appendHttpConfig = ''
         add_header Permissions-Policy "interest-cohort=()";
       '';
