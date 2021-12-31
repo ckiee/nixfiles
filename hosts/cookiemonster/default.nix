@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ./hardware.nix ../.. ];
+  imports = [ ./hardware.nix ../.. ./builder.nix ];
 
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
