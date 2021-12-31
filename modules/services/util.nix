@@ -48,7 +48,7 @@ with lib; {
           # This makes all non-kernel (e.g. devfs) filesystems read-only so we need to whitelist our ${home} path
           ProtectSystem = "strict";
           ReadWritePaths = [ home ];
-          # More security: Copyright (c) 2020 Christine Dodrill
+          # More security: Copyright (c) 2020 Xe
           CapabilityBoundingSet = "";
           DeviceAllow = [ ];
           NoNewPrivileges = "true";
