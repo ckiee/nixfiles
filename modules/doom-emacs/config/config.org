@@ -127,3 +127,15 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
   (insert "~/"))
 (after! vertico (map! :map vertico-map "~" #'ckie--vertico-go-to-home))
 #+END_SRC
+** projectile autoknown
+#+BEGIN_SRC elisp
+(defun ckie-refresh-projectile-known-list ()
+  (interactive)
+  "Adds all directories from ~/git to projectile-known-projects"
+  (setq projectile-known-projects
+        (-distinct (append
+                    projectile-known-projects
+                    (--filter (f-directory? it) (mapcar (lambda (x) (concat "~/git/" x))
+                                                        (nthcdr 2 (directory-files "~/git"))))))))
+(advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list)
+#+END_SRC
