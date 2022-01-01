@@ -40,7 +40,9 @@ in with lib; {
       '';
     })
     {
-      services.redis.enable = true;
+      services.redis.servers.mcid = {
+        enable = true;
+      };
 
       networking.firewall.allowedTCPPorts = singleton cfg.gamePort;
 
