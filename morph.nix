@@ -26,7 +26,13 @@ in {
                 nodes = removeAttrs extraArgs.nodes [ "_metadata" ];
               };
             };
-            deployment.tags = networkPkgs.lib.optional (!isMetadata) "real";
+            deployment = {
+              tags = networkPkgs.lib.optional (!isMetadata) "real";
+              # I'd assume that usually the machines we're deploying to have more of
+              # the store paths already downloaded since they can't GC their current
+              # generation.
+              substituteOnDestination = networkPkgs.lib.mkDefault true;
+            };
           })
         ];
       } // (if isMetadata then {

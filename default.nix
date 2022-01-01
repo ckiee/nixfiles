@@ -6,11 +6,6 @@ with lib;
   imports = [ ./modules ];
   nixpkgs.config.allowUnfree = true;
 
-  # I'd assume that usually the machines we're deploying to have more of
-  # the store paths already downloaded since they can't GC their current
-  # generation.
-  deployment.substituteOnDestination = mkDefault true;
-
   _module.args.sources = import ./nix/sources.nix;
 
   time.timeZone = "Israel";
