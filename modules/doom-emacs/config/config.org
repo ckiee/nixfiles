@@ -117,3 +117,13 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
 #+END_SRC
+** vertico ~ to home keybind
+#+BEGIN_SRC elisp
+(defun ckie--vertico-go-to-home ()
+  "Navigate vertico to the user's home directory"
+  (interactive)
+  (beginning-of-line)
+  (let ((pt (point))) (end-of-line) (delete-region pt (point)))
+  (insert "~/"))
+(after! vertico (map! :map vertico-map "~" #'ckie--vertico-go-to-home))
+#+END_SRC
