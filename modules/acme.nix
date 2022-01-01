@@ -65,14 +65,13 @@ in {
       })) cfg.hosts;
 
     security.acme = {
-      inherit email;
+      defaults.email = email;
       acceptTerms = true;
       certs = (mapAttrs (i: v: ({
         group = "nginx";
         dnsProvider = v.provider;
         extraDomainNames = v.extras;
         credentialsFile = config.cookie.secrets.${v.secretId}.dest;
-        inherit email;
       })) cfg.hosts);
 
     };
