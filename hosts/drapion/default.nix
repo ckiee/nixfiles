@@ -5,7 +5,7 @@ with lib;
 # nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux
 
 {
-  imports = [ ../.. ];
+  imports = [ ../.. ./net-offload.nix ];
 
   cookie = {
     wol.enable = true;
@@ -35,7 +35,7 @@ with lib;
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2azaroNAPS5GtjAqf6PdVAqEW7MgghYxlxKy+VgTH6";
   };
 
-  networking.networkmanager.enable = mkForce false;
+  networking.networkmanager.unmanaged = [ "eth0" ];
 
   networking = {
     hostName = "drapion";
