@@ -139,3 +139,11 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
                                                         (nthcdr 2 (directory-files "~/git"))))))))
 (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list)
 #+END_SRC
+** nixpkgs workspace uses nixpkgs-fmt
+#+BEGIN_SRC elisp
+(advice-add '+workspace-switch
+            :around (lambda
+                      (orig-fn &rest r)
+                      (setq nix-nixfmt-bin (if (string= (car r) "nixpkgs") "nixpkgs-fmt" "nixfmt"))
+                      (apply orig-fn r)))
+#+END_SRC
