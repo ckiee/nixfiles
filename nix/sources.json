@@ -161,6 +161,18 @@
         "url": "https://github.com/nix-community/nix-doom-emacs/archive/09050af1166aa0277c02f126005cc77e778e4fd2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nix-eval-jobs": {
+        "branch": "main",
+        "description": "Parallel nix evaluator with a streamable json output [maintainers @Mic92, @adisbladis]",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "nix-eval-jobs",
+        "rev": "77aa769aef5460ca8d24a0ab5a108cfe938c881b",
+        "sha256": "1an834bk2lmksrbx7zf88zi9p6aipdvdvfyx33v2cxnyipjj7niq",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/nix-eval-jobs/archive/77aa769aef5460ca8d24a0ab5a108cfe938c881b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixos-channel-scripts": {
         "branch": "master",
         "description": null,
