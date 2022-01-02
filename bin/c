@@ -43,9 +43,13 @@ elif [ "$1" == "eval" ]; then
     if [ "$1" == "fast" ]; then
         shift
         mkfile $@
-        # Each worker uses about 500M, so we divide by 1024*700 for KBs with a bit of room
-        workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / 700000 | round')
-        nix-eval-jobs --workers $workers $file
+        # Each worker uses about 3G max! Jeez..
+        workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / (3 * 1024 * 1024) | round')
+        nix-eval-jobs --workers "$workers" $file
+        # TODO wrap this and send .drvs off to build farm, maybe write a little hydra after all
+        # TODO fix these issues:
+        # - https://github.com/DBCDK/morph/issues/172
+        # - https://github.com/DBCDK/morph/issues/180
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
