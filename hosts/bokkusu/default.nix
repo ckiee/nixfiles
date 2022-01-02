@@ -16,7 +16,6 @@
       among-sus.enable = true;
       anonvote-bot.enable = true;
       alvr-bot.enable = true;
-      hydra.enable = true;
 
       prometheus.enable = true;
       grafana = {
