@@ -99,5 +99,14 @@ in {
           ${config.services.postgresql.package}/bin/pg_dumpall -U postgres | ${pkgs.restic}/bin/restic backup --cache-dir=%C/restic-backups-gdrivePostgres --stdin --stdin-filename postgres.sql
         '')}"
       ]);
+
+    environment.systemPackages = singleton
+      (pkgs.runCommandLocal "restic-wrapped" {} ''
+        . ${pkgs.makeWrapper}/nix-support/setup-hook
+        makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
+          --set RCLONE_CONFIG /run/keys/rclone-config \
+          --set RESTIC_PASSWORD_FILE /run/keys/gdrive-password \
+          --set RESTIC_REPOSITORY rclone:gdrive:drapion-fs
+      '');
   };
 }
