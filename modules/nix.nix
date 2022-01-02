@@ -12,7 +12,9 @@ in with lib; {
 
     nix = {
       trustedUsers = [ "root" "@wheel" ];
-      nixPath = [ "nixpkgs=/run/current-system/sw/nixpkgs" ]; # Pin the <nixpkgs> channel to our nixpkgs
+      nixPath = [
+        "nixpkgs=/run/current-system/sw/nixpkgs"
+      ]; # Pin the <nixpkgs> channel to our nixpkgs
       # Garbage collect and optimize
       gc = {
         automatic = true;
@@ -25,6 +27,16 @@ in with lib; {
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
+      registry.nixpkgs = {
+        from = {
+          type = "indirect";
+          id = "nixpkgs";
+        };
+        to = {
+          type = "path";
+          path = pkgs.path;
+        };
+      };
     };
   };
 }
