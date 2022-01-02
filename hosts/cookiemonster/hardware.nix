@@ -47,6 +47,7 @@ in {
   swapDevices = [{
     device = "/dev/zroot/local/swap";
     size = 1024 * 16;
+    options = [ "zfsutil" ];
   }];
 
 }
