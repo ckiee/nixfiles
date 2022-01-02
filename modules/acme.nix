@@ -32,6 +32,7 @@ in {
     enable = mkEnableOption "Enables NGINX+ACME configuration";
     hosts = mkOption {
       type = types.attrsOf hosts;
+      default = {};
       description = "hosts to provide certificates for";
     };
   };
