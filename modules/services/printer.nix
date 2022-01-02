@@ -47,7 +47,10 @@ in with lib; {
 
       cookie.services.nginx.enable = true; # firewall & recommended defaults
       services.nginx.virtualHosts.${cfg.host} = {
-        locations."/" = { proxyPass = "http://[::1]:631"; };
+        locations."/" = {
+          proxyPass = "http://[::1]:631";
+          recommendedProxySettings = false;
+        };
       };
     })
     # Client-only
