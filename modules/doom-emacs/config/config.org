@@ -147,3 +147,10 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
                       (setq nix-nixfmt-bin (if (string= (car r) "nixpkgs") "nixpkgs-fmt" "nixfmt"))
                       (apply orig-fn r)))
 #+END_SRC
+** force PageUp/PageDn to scroll in vertico
+#+BEGIN_SRC elisp
+(after! vertico (map!
+    :map vertico-map
+        :g "<prior>" 'vertico-scroll-down
+        :g "<next>" 'vertico-scroll-up))
+#+END_SRC
