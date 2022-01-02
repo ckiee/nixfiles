@@ -12,7 +12,8 @@ in with lib; {
   options.cookie.raspberry = {
     enable = mkEnableOption "Enables Raspberry Pi support";
     version = mkOption {
-      type = types.enum [ 3 4 ];
+      type = types.nullOr (types.enum [ 3 4 ]);
+      default = null;
       description = "Which RPi revision to use";
     };
   };

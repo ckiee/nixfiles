@@ -6,7 +6,8 @@ in with lib; {
     enable = mkEnableOption "Enables Printing Support";
     server = mkEnableOption "Configures this CUPS instance to be the server";
     host = mkOption {
-      type = types.str;
+      type = types.nullOr types.str;
+      default = null;
       description = "host for the web interface";
     };
   };
@@ -21,6 +22,11 @@ in with lib; {
     })
     # Server-only
     (mkIf (cfg.enable && cfg.server) {
+      assertions = [{
+        assertion = cfg.host != null;
+        message = "cookie.services.printing.host must be non-nil";
+      }];
+
       hardware.printers = let name = "Deskjet_2510";
       in {
         ensureDefaultPrinter = name;

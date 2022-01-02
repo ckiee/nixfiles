@@ -19,6 +19,7 @@ in with lib; {
     enable = mkEnableOption "Enables the Prometheus monitoring service";
     nginx-vhosts = mkOption rec {
       type = types.listOf types.str;
+      default = [];
       description = "List of nginx virtual host names";
     };
   };
