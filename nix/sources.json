@@ -131,10 +131,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "morph",
-        "rev": "6bc67b5dc74675b01a2d3ad91356adb706095378",
-        "sha256": "1qlcrpz77c4a1p3sfpmv0kxj22qg3lalchpc1s3pnjb11rip8qgr",
+        "rev": "02d4d704d5e6723d1a856f52d0aa1ac874bafed3",
+        "sha256": "1vy64kiscbzn36s9rvzk02y20kwl3bqg7wiw4xqq52f49qgx7qcc",
         "type": "tarball",
-        "url": "https://github.com/ckiee/morph/archive/6bc67b5dc74675b01a2d3ad91356adb706095378.tar.gz",
+        "url": "https://github.com/ckiee/morph/archive/02d4d704d5e6723d1a856f52d0aa1ac874bafed3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -209,10 +209,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "091c4e4bff445b2167f81f0a3841d42797064305",
-        "sha256": "03d65y3pq75k0ywl4xvxcc8irrlbm2g0bd9jl6f3dqr7jgi4d291",
+        "rev": "48a588d890e33f54c329a0bceaa2e0bb9043b1ed",
+        "sha256": "12q7ympam9mzqdkpw3bp6qvzsx3p30pfvq3dginmvvcri9y6ybv6",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/091c4e4bff445b2167f81f0a3841d42797064305.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/48a588d890e33f54c329a0bceaa2e0bb9043b1ed.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
