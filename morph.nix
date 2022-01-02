@@ -8,37 +8,6 @@ in {
     pkgs = networkPkgs;
     description = "Cookie hosts :^)";
     ordering = { tags = [ "desktops" "servers" ]; };
-    evalConfig =
-      # This is a wrapper around the NixOS evalConfig to add an edge-case for our _metadata host
-      evalConfigArgs@{ extraArgs ? { }, specialArgs ? { }, modules, check ? true
-      , prefix ? [ ] }:
-      let
-        originalFn = import (networkPkgs.path + "/nixos/lib/eval-config.nix");
-        isMetadata = extraArgs.name == "_metadata" && check;
-      in originalFn
-      ((removeAttrs evalConfigArgs [ "extraArgs" "specialArgs" "check" ]) // {
-        modules = modules ++ [
-          ({ ... }: {
-            _module = {
-              check = if isMetadata then false else check;
-              args = extraArgs // {
-                # No one wants the _metadata host so let's hide it
-                nodes = removeAttrs extraArgs.nodes [ "_metadata" ];
-              };
-            };
-            deployment = {
-              tags = networkPkgs.lib.optional (!isMetadata) "real";
-              # I'd assume that usually the machines we're deploying to have more of
-              # the store paths already downloaded since they can't GC their current
-              # generation.
-              substituteOnDestination = networkPkgs.lib.mkDefault true;
-            };
-          })
-        ];
-      } // (if isMetadata then {
-        baseModules = [ ({ ... }: { _module.args.pkgs = networkPkgs; }) ];
-      } else
-        { }));
   };
 
   # Tailscale hosts
@@ -48,6 +17,4 @@ in {
   "pookieix" = import ./hosts/pookieix;
   "thonkcookie" = import ./hosts/thonkcookie;
   "pansear" = import ./hosts/pansear;
-  # Special
-  "_metadata" = import ./hosts/_metadata;
 }

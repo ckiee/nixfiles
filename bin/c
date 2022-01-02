@@ -4,15 +4,15 @@ function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
 function morp {
-    "$(morph build morph.nix --on=_metadata $morph_extra_args)"/_metadata
-    echo morph $@ $morph_extra_args
-    morph $@ $morph_extra_args
+    $(nix-store --realize $($0 eval 'import ./secrets.nix { inherit uncheckedNodes; }' | tr -d '"'))
+    echo morph $@ $show_trace
+    morph $@ $show_trace
 }
 
 
-morph_extra_args=""
+show_trace=""
 if [ "$1" == "trace" ]; then
-    morph_extra_args="--show-trace"
+    show_trace="--show-trace"
     shift
 fi
 
@@ -24,9 +24,31 @@ fi
 if [ "$1" == "" ]; then
     morp $action morph.nix $deployExtra --on "$(hostname)"
 elif [ "$1" == "all" ]; then
-    morp $action morph.nix $deployExtra --tagged=real
+    morp $action morph.nix $deployExtra
 elif get_hosts | grep "$1" >/dev/null; then
     morp $action morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then
     niv update $2
+elif [ "$1" == "eval" ]; then
+    shift
+    file="eval-$RANDOM.nix"
+    deferred() {
+        rm $file
+    }
+    trap deferred EXIT
+    mkfile() {
+        echo 'let sources = import ./nix/sources.nix; eval = import "${sources.morph}/data/eval-machines.nix" { networkExpr = ./morph.nix; }; inherit (eval) uncheckedNodes nodes; in ' > "$file"
+        echo "$@" >> "$file"
+    }
+    if [ "$1" == "fast" ]; then
+        shift
+        mkfile $@
+        # Each worker uses about 500M, so we divide by 1024*700 for KBs with a bit of room
+        workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / 700000 | round')
+        nix-eval-jobs --workers $workers $file
+    else
+        mkfile $@
+        nix-instantiate $show_trace --json --strict --eval $file | jq .
+    fi
+    echo
 fi

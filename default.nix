@@ -63,6 +63,7 @@ with lib;
     mtr # a better traceroute
     tmux # when you can't afford i3
     youtube-dl
+    jq # like 'node -e' but nicer
   ];
 
   cookie = {

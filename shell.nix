@@ -9,6 +9,7 @@ let
   cBin = pkgs.writeScriptBin "c" (readFile ./bin/c);
 
   morph = import sources.morph { inherit pkgs; };
+  nix-eval-jobs = pkgs.callPackage sources.nix-eval-jobs { };
   myNix = pkgs.nixUnstable.overrideAttrs (orig: {
     patches = orig.patches ++ [
       ./0001-libexpr-improve-invalid-value-error.patch
@@ -26,5 +27,7 @@ in pkgs.mkShell {
     (nixos-generators.override { nix = myNix; })
     cBin
     myNix
+    jq
+    nix-eval-jobs
   ];
 }
