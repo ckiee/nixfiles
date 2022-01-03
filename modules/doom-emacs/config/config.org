@@ -154,3 +154,12 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
         :g "<prior>" 'vertico-scroll-down
         :g "<next>" 'vertico-scroll-up))
 #+END_SRC
+** advice: unadvice
+[[https://emacs.stackexchange.com/questions/24657/unadvise-a-function-remove-all-advice-from-it#24658][StackOverflow]]
+#+BEGIN_SRC elisp
+(defun ckie-advice-unadvice (sym)
+  "Remove all advices from symbol SYM."
+  (interactive "aFunction symbol: ")
+  (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
+(map! :leader :n "h d k" #'ckie-advice-unadvice)
+#+END_SRC
