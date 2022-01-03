@@ -1,7 +1,7 @@
 { uncheckedNodes, ... }:
 
 let
-  sources = import ./nix/sources.nix;
+  sources = import ../nix/sources.nix;
   pkgs = import sources.nixpkgs { };
   userPubkey = lib.fileContents ./id_ed25519.pub;
   inherit (pkgs) lib;
