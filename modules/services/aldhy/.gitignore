@@ -1,0 +1,5 @@
+build-logs
+new-jobs
+pending-jobs
+nixos-system-*
+current-job
