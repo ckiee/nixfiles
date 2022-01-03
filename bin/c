@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 function get_hosts {
-    nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
+    nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./deploy/morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
 function morp {
-    $(nix-store --realize $($0 eval 'import ./secrets.nix { inherit uncheckedNodes; }' | tr -d '"'))
+    $(nix-store --realize $($0 eval 'import ./deploy/secrets.nix { inherit uncheckedNodes; }' | tr -d '"'))
     echo morph $@ $show_trace
     morph $@ $show_trace
 }
@@ -22,11 +22,11 @@ if [ "$action" == "deploy" ]; then
 fi
 
 if [ "$1" == "" ]; then
-    morp $action morph.nix $deployExtra --on "$(hostname)"
+    morp $action deploy/morph.nix $deployExtra --on "$(hostname)"
 elif [ "$1" == "all" ]; then
-    morp $action morph.nix $deployExtra
+    morp $action deploy/morph.nix $deployExtra
 elif get_hosts | grep "$1" >/dev/null; then
-    morp $action morph.nix $deployExtra --on "$1"
+    morp $action deploy/morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then
     niv update $2
 elif [ "$1" == "eval" ]; then
@@ -37,7 +37,7 @@ elif [ "$1" == "eval" ]; then
     }
     trap deferred EXIT
     mkfile() {
-        echo 'let sources = import ./nix/sources.nix; eval = import "${sources.morph}/data/eval-machines.nix" { networkExpr = ./morph.nix; }; inherit (eval) uncheckedNodes nodes; in ' > "$file"
+        echo 'let sources = import ./nix/sources.nix; eval = import "${sources.morph}/data/eval-machines.nix" { networkExpr = ./deploy/morph.nix; }; inherit (eval) uncheckedNodes nodes; in ' > "$file"
         echo "$@" >> "$file"
     }
     if [ "$1" == "fast" ]; then
@@ -47,9 +47,6 @@ elif [ "$1" == "eval" ]; then
         workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / (3 * 1024 * 1024) | round')
         nix-eval-jobs --workers "$workers" $file
         # TODO wrap this and send .drvs off to build farm, maybe write a little hydra after all
-        # TODO fix these issues:
-        # - https://github.com/DBCDK/morph/issues/172
-        # - https://github.com/DBCDK/morph/issues/180
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
