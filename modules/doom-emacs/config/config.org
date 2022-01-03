@@ -163,3 +163,19 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
   (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
 (map! :leader :n "h d k" #'ckie-advice-unadvice)
 #+END_SRC
+** projectile init state
+#+BEGIN_SRC elisp
+(defun ckie-startup-init-state ()
+  "Initalize Emacs state to satisfy the Cookie"
+  (interactive)
+  (advice-remove 'projectile-switch-project #'ckie-refresh-projectile-known-list)
+  (setq +workspaces-switch-project-function #'find-file)
+  (dolist (name '("~/Sync" "~/git/nixfiles" "~/git/nixpkgs"))
+    (+workspace/new)
+    (projectile-switch-project-by-name name))
+  (+workspace/delete "main")
+  (setq +workspaces-switch-project-function #'doom-project-find-file)
+  (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list))
+
+(map! :leader :n "q k" #'ckie-startup-init-state)
+#+END_SRC
