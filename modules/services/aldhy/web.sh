@@ -5,6 +5,7 @@ resp_headers="server: aldhy
 date: $(date +"%a, %d %b %Y %H:%M:%S %Z")"
 resp_head_html="content-type: text/html; charset=UTF-8"
 resp_head_json="content-type: application/json; charset=UTF-8"
+resp_head_cache="cache-control: max-age=2628000" # a month
 cssjs="
 <style>
 * { font-size: 1.035em; }
@@ -12,7 +13,12 @@ p, pre { margin: 0px; }
 img { vertical-align: middle; }
 </style>
 <script>
-$(cat script.js)
+const currentJobLogsEle = document.getElementById('current-job-logs');
+if (currentJobLogsEle && currentJobLogsEle.innerText.trim().length > 0) {
+    setInterval(async () => {
+    currentJobLogsEle.innerText = await (await fetch('logs/current')).text();
+    }, 700);
+}
 </script>
 "
 [ -f current-job ] && current_job_name="$(cut -d'/' -f4- < current-job)"
@@ -82,25 +88,39 @@ no job currently running
 EOF
     fi
 elif host="$(echo "$request" | rg '^GET /hosts/([a-z]+) HTTP/1.+' --replace '$1')"; then
-    cat <<EOF
+    nixos_path=nixos-system-"$host"-*
+    if [ -f "$nixos_path" ]; then
+        cat <<EOF
 HTTP/1.1 200 OK
 $resp_headers
+$resp_head_json
 
 {"path":"$(realpath nixos-system-"$host"-*)","unix":$(stat -c'%Y' nixos-system-"$host"-*)}
 EOF
+    else
+        cat <<EOF
+HTTP/1.1 404 Not Found
+$resp_headers
+$resp_head_json
+
+{"error":"not_found"}
+EOF
+    fi
 elif echo "$request" | rg -q "^GET /favicon.ico HTTP/1.+"; then
     cat <<EOF
 HTTP/1.1 200 OK
 $resp_headers
+$resp_head_cache
 
 EOF
     # its binary data so no inlining into the rest of the response
-    cat favicon.ico
+    cat "$FAVICON"
 else
     cat <<EOF
 HTTP/1.1 404 Not Found
 $resp_headers
 $resp_head_html
+$resp_head_cache
 
 <pre style="color: red; font-weight: bold;">404</pre>
 $css

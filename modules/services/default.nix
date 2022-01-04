@@ -39,5 +39,6 @@
     ./daiko.nix
     ./isp-troll.nix
     ./anonvote-bot.nix
+    ./aldhy
   ];
 }
