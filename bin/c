@@ -53,7 +53,9 @@ elif [ "$1" == "eval" ]; then
     fi
     echo
 elif [ "$1" == "farm" ]; then
-    $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath >> ~/git/nixfiles/modules/services/aldhy/new-jobs
+    tmpfile="$(mktemp)"
+    $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath > "$tmpfile"
+    rsync "$tmpfile" bokkusu:~/aldhy/new-jobs
 else
     echo "usage: c [trace] <all|eval [fast]|bump <source>>"
 fi
