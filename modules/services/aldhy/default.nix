@@ -32,7 +32,7 @@ in with lib; {
         ${pkgs.socat}/bin/socat TCP4-LISTEN:${toString cfg.port},fork EXEC:${
           mkRequiresScript ./web.sh
         } &
-        ${mkRequiresScript ./queuerun.sh} &
+        PATH=$PATH:${config.nix.package}/bin ${mkRequiresScript ./queuerun.sh} &
         exit
       '';
     })
