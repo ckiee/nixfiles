@@ -16,6 +16,7 @@
       among-sus.enable = true;
       anonvote-bot.enable = true;
       alvr-bot.enable = true;
+      aldhy.enable = true;
 
       prometheus.enable = true;
       grafana = {
@@ -70,7 +71,7 @@
             "grafana.ckie.dev"
             "znc.ckie.dev"
             "tailnet.ckie.dev"
-            "hydra.ckie.dev"
+            "aldhy.ckie.dev"
           ];
         };
         "mcid.party" = {
