@@ -40,12 +40,15 @@ $(tail -n20 build-logs/$current_job_name)
         queued_jobs="$queued_jobs
 - $job"
     done
-    past_jobs="<u>completed (<b>$(ls build-logs | wc -l | cut -d' ' -f1)</b>)</u>"
-    for job in $(ls build-logs | tr '\n' ' '); do
+    past_jobs="<u>completed (<b>$(ls build-logs/*.drv | wc -l | cut -d' ' -f1)</b>)</u>"
+    for job in $(ls build-logs | rg -v '\.exitcode$' | tr '\n' ' '); do
         if ! [ "$job" == "$current_job_name" ]; then
-        build_unix="$(stat -c'%Y' build-logs/ppv*)"
+        build_unix="$(stat -c'%Y' build-logs/"$job")"
+        job_exitcode="$(cat build-logs/"$job".exitcode)"
+        job_status="finished"
+        [ "$job_exitcode" -ne 0 ] && job_status="failed with exit code $job_exitcode"
         past_jobs="$past_jobs
-- <a href=logs/$job>$job</a> <script>document.write('(build finished at '+new Date(1000*$build_unix).toLocaleString()+')')</script>"
+- <a href=logs/$job>$job</a> <script>document.write('(build $job_status at '+new Date(1000*$build_unix).toLocaleString()+')')</script>"
         fi
     done
     cat <<EOF

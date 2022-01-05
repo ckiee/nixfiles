@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Requires: inotify-tools gnused coreutils ripgrep
+#Requires: inotify-tools gnused coreutils ripgrep inetutils
 touch pending-jobs
 mkdir build-logs 2>/dev/null || true
 eval_job() {
@@ -27,6 +27,7 @@ while true; do
     echo "$job" >current-job
     sed -i 1d pending-jobs
     eval_job "$job"
+    echo $? > build-logs/"$(basename "$job")".exitcode
     rm current-job
     sleep 0.1
 done

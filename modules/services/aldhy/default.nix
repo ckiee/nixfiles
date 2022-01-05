@@ -39,7 +39,16 @@ in with lib; {
 
     {
       systemd.services.aldhy = {
-        serviceConfig.Type = "forking";
+        serviceConfig = {
+          Type = "forking";
+          RemoveIPC = mkForce "false";
+          ProtectHostname = mkForce "false";
+          ProtectProc = mkForce "false";
+          ReadWritePaths = [ "/nix/var/nix/daemon-socket" ];
+          # HACK sed uses some disallowed syscalls, figure out which
+          SystemCallFilter = mkForce [];
+          RestrictAddressFamilies = mkForce [];
+        };
         environment.FAVICON = ./favicon.ico;
       };
 
