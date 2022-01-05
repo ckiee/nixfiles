@@ -27,5 +27,5 @@ pkgs.writeScript "cookie-rager-encrypt" ''
             sha512sum '${secret.source}' > encrypted/'${host}'/'${secretFn}'.HASH
           '') cfg)
       } # TODO filter for !secret.runtime
-    '') uncheckedNodes)}
+    '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null) uncheckedNodes))}
 ''
