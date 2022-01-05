@@ -17,7 +17,12 @@ in {
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821au ];
+  boot.extraModprobeConfig = ''
+    # Enable VHT and USB3 support
+    # VHT is a part of 802.11ax
+    options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
+  '';
 
   fileSystems."/" = {
     device = "zroot/local/root";
@@ -43,11 +48,5 @@ in {
     device = "/dev/disk/by-uuid/08f2ac6c-3564-4110-a436-fed882a9f4e8";
     fsType = "ext4";
   };
-
-  swapDevices = [{
-    device = "/dev/zroot/local/swap";
-    size = 1024 * 16;
-    options = [ "zfsutil" ];
-  }];
 
 }
