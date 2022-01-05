@@ -60,7 +60,8 @@ A QEMU VM for testing that's been used a total of... one time!
 
 ### aquamarine
 
-A laptop motherboard in a dollar-store box. Very unreliable, slow, and only has a somewhat-functioning WiFi card for networking.
+A laptop motherboard in a dollar-store box. Very unreliable, slow, and only has a somewhat-functioning WiFi card for
+networking.
 
 ### Host Table Template
 
