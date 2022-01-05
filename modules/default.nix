@@ -47,5 +47,6 @@
     ./util
     ./libvirtd.nix
     ./remote-builder.nix
+    ./nvidia-autoswitch.nix
   ];
 }
