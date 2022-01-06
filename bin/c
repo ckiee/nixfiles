@@ -4,7 +4,7 @@ function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./deploy/morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
 function morp {
-    $(nix-store --realize $($0 eval 'import ./deploy/secrets.nix { inherit uncheckedNodes; }' | tr -d '"'))
+    $($0 eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
     echo morph $@ $show_trace
     morph $@ $show_trace
 }
@@ -68,6 +68,10 @@ elif [ "$1" == "eval" ]; then
         # Each worker uses a lot of RAM..
         workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / (6 * 1024 * 1024) | round')
         nix-eval-jobs --workers "$workers" $file
+    elif [ "$1" == "build" ]; then
+        shift
+        mkfile $@
+        nix-build $show_trace $file
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
