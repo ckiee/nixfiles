@@ -25,6 +25,11 @@ if [ "$1" == "" ]; then
     morp $action deploy/morph.nix $deployExtra --on "$(hostname)"
 elif [ "$1" == "all" ]; then
     morp $action deploy/morph.nix $deployExtra
+elif [ "$1" == "installer" ]; then
+    echo evaluating..
+    drv="$($0 eval fast nodes.installer.config.system.build.isoImage | jq -r .drvPath)"
+    echo realising "$drv"..
+    nix-store --realise "$drv"
 elif get_hosts | grep "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then

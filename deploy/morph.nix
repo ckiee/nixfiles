@@ -17,4 +17,5 @@ in {
   "pookieix" = import ../hosts/pookieix;
   "thonkcookie" = import ../hosts/thonkcookie;
   "pansear" = import ../hosts/pansear;
+  "installer" = import ../hosts/installer;
 }
