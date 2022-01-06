@@ -26,10 +26,26 @@ if [ "$1" == "" ]; then
 elif [ "$1" == "all" ]; then
     morp $action deploy/morph.nix $deployExtra
 elif [ "$1" == "installer" ]; then
+    shift
     echo evaluating..
     drv="$($0 eval fast nodes.installer.config.system.build.isoImage | jq -r .drvPath)"
     echo realising "$drv"..
-    nix-store --realise "$drv"
+    store_path="$(nix-store --realise "$drv")"
+    echo built "$store_path"
+    if [ "$1" == "flash" ]; then
+        shift
+        target="$1"
+        shift
+        file="$(ls "$store_path"/iso/*)"
+        cmd="sudo dd if=$file of=$target bs=4M status=progress $@"
+        echo "$cmd"
+        echo -n "I'll be running this command, please type YES if you agree to have $target OVERWRITTEN: "
+        read confirm
+        if [ "$confirm" == "YES" ]; then
+            echo "Okay!"
+            $cmd
+        fi
+    fi
 elif get_hosts | grep "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then
@@ -64,5 +80,5 @@ elif [ "$1" == "farm" ]; then
     cat "$tmpfile" | xargs nix copy --to ssh://bokkusu
     rsync "$tmpfile" bokkusu:~/aldhy/new-jobs
 else
-    echo "usage: c [trace] <all|eval [fast]|bump <source>>"
+    echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]>"
 fi
