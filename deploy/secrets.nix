@@ -25,6 +25,7 @@ pkgs.writeScript "cookie-rager-encrypt" ''
               ${pkgs.rage}/bin/rage -a -r '${machinePubkey}' -r '${userPubkey}' -o 'encrypted/${host}/${secretFn}' '${secret.source}'
             fi
             sha512sum '${secret.source}' > encrypted/'${host}'/'${secretFn}'.HASH
+            echo '${machinePubkey}' | sha512sum >> encrypted/'${host}'/'${secretFn}'.HASH
           '') cfg)
       } # TODO filter for !secret.runtime
     '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null) uncheckedNodes))}
