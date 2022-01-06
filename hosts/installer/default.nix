@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 
 with lib;
 
@@ -6,6 +6,7 @@ with lib;
   imports = [
     ../..
     ./install.nix
+    "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix"
   ];
 
   networking = {
@@ -15,16 +16,41 @@ with lib;
     firewall.enable = false;
   };
 
-  services.getty.autologinUser = mkForce "ckie";
-  users.users.ckie.hashedPassword = mkForce "";
-
   cookie = {
-    systemd-boot.enable = true;
+    collections.media.enable = true;
+    xserver.enable = true;
+    sound = {
+      enable = true;
+      pulse.enable = true;
+    };
+    slock.enable = true;
+    st.enable = true;
+    fonts.enable = true;
+    gnome.enable = true;
+    qt5.enable = true;
     services = {
       avahi.enable = true;
       tailscale.enable = false;
     };
   };
+
+  home-manager.users.ckie = { pkgs, ... }: {
+    cookie = {
+      polybar.enable = true;
+      gtk.enable = true;
+      dunst.enable = true;
+      keyboard.enable = true;
+      redshift.enable = true;
+      nautilus.enable = true;
+      i3.enable = true;
+      xcursor.enable = true;
+      collections.chat.enable = true;
+    };
+    services.rsibreak.enable = true;
+  };
+
+  services.getty.autologinUser = mkForce "ckie";
+  users.users.ckie.hashedPassword = mkForce "";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
