@@ -24,18 +24,16 @@ in {
     options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
   '';
 
-  fileSystems."/" = {
-    device = "zroot/local/root";
-    fsType = "zfs";
-  };
+  boot.initrd.luks.devices."btrfs".device =
+    "/dev/disk/by-uuid/4800352d-e038-404e-a122-df7e87419cf1";
 
-  fileSystems."/nix" = {
-    device = "zroot/local/nix";
-    fsType = "zfs";
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/91df680e-8038-435c-bf23-db8e9d0ade85";
+    fsType = "btrfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5B83-A791";
+    device = "/dev/disk/by-uuid/C81C-0938";
     fsType = "vfat";
   };
 
@@ -49,4 +47,8 @@ in {
     fsType = "ext4";
   };
 
+  swapDevices = [{ device = "/nix/swap"; }];
+
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
