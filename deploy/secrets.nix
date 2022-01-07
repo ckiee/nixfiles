@@ -20,13 +20,18 @@ pkgs.writeScript "cookie-rager-encrypt" ''
         concatStringsSep "\n" (mapAttrsToList (_: secret:
           let secretFn = baseNameOf secret.source;
           in ''
-            if [ "$(cat encrypted/'${host}'/'${secretFn}'.HASH)" != "$(sha512sum '${secret.source}')" ]; then
+            function get_enchash {
+              sha512sum '${secret.source}'
+              echo '${machinePubkey}' | sha512sum
+            }
+
+            if [ "$(cat encrypted/'${host}'/'${secretFn}'.HASH)" != "$(get_enchash)" ]; then
               echo "[${secretFn}:${host}] sha512 changed, re-encrypting"
               ${pkgs.rage}/bin/rage -a -r '${machinePubkey}' -r '${userPubkey}' -o 'encrypted/${host}/${secretFn}' '${secret.source}'
             fi
-            sha512sum '${secret.source}' > encrypted/'${host}'/'${secretFn}'.HASH
-            echo '${machinePubkey}' | sha512sum >> encrypted/'${host}'/'${secretFn}'.HASH
+            get_enchash > encrypted/'${host}'/'${secretFn}'.HASH
           '') cfg)
       } # TODO filter for !secret.runtime
-    '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null) uncheckedNodes))}
+    '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null)
+      uncheckedNodes))}
 ''
