@@ -38,7 +38,7 @@ in {
     };
     extraHosts = mkOption {
       type = types.lines;
-      default = '''';
+      default = "";
       description = "Extra hosts separated by lines";
     };
   };
@@ -58,13 +58,6 @@ in {
   # p.s. we also configure magic so we can drop the `.tailnet.ckie.dev` part. Just `galaxy-a51`
   config = mkIf cfg.enable (mkMerge [
     {
-      # dnscrypt is quite clever and will measure latency to many
-      # servers until it can find the one with the lowest latency.
-      services.dnscrypt-proxy2 = {
-        enable = true;
-        settings = { listen_addresses = [ "127.0.0.1:1483" ]; };
-      };
-
       systemd.services.dns-hosts-poller = {
         description =
           "Update the /run/coredns-hosts hosts file with new Tailscale hosts";
@@ -87,11 +80,6 @@ in {
         '';
       };
 
-      systemd.services.coredns = {
-        requires = [ "dnscrypt-proxy2.service" ];
-        after = [ "dnscrypt-proxy2.service" ];
-      };
-
       services.coredns = {
         enable = true;
 
@@ -107,7 +95,10 @@ in {
               reload 1500ms
               fallthrough
             }
-            forward . 127.0.0.1:1483
+            forward . tls://9.9.9.9 {
+              tls_servername dns.quad9.net
+              health_check 5s
+            }
             errors
             cache 120 # two minutes
           }
