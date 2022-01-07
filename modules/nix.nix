@@ -34,7 +34,7 @@ in with lib; {
         };
         to = {
           type = "path";
-          path = pkgs.path;
+          path = toString pkgs.path;
         };
       };
     };
