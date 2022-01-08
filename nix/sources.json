@@ -150,15 +150,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
-        "branch": "develop",
+        "branch": "master",
         "description": "doom-emacs packaged for Nix [maintainer=@ckiee]",
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "09050af1166aa0277c02f126005cc77e778e4fd2",
-        "sha256": "12mdyfgabwzh520gz04m2j2z0k1z22s82k55zbj80i3gckjgc5bl",
+        "rev": "6f3ac60c5719171f805740558e1705d0b46f91ba",
+        "sha256": "1631rjvg7d5iwikpjjzdr9i90ca2pd6z0lz462jvafyr79g8js15",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/09050af1166aa0277c02f126005cc77e778e4fd2.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/6f3ac60c5719171f805740558e1705d0b46f91ba.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval-jobs": {
