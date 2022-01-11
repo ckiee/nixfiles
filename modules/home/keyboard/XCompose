@@ -146,6 +146,8 @@
 <Multi_key> <C> <H> <K>			: "✔️" 	# CHECK MARK
 <Multi_key> <F> <I> <R> <E>		: "🔥"  # FIRE
 <Multi_key> <R> <K> <T>			: "🖌️"  # ROCKET
+<Multi_key> <F> <S> <H>         : "🤷‍♀️"  # PERSON SHRUGGING ZERO WIDTH JOINER FEMALE SIGN
+<Multi_key> <S> <H> <R>         : "¯\_(ツ)_/¯"
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
