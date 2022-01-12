@@ -46,20 +46,28 @@ in with lib; {
           ProtectProc = mkForce "false";
           ReadWritePaths = [ "/nix/var/nix/daemon-socket" ];
           # HACK sed uses some disallowed syscalls, figure out which
-          SystemCallFilter = mkForce [];
-          RestrictAddressFamilies = mkForce [];
+          SystemCallFilter = mkForce [ ];
+          RestrictAddressFamilies = mkForce [ ];
         };
         environment.FAVICON = ./favicon.ico;
       };
 
-      cookie.bindfs.aldhy = {
-        source = "/var/lib/aldhy";
-        dest = "${config.cookie.user.home}/aldhy";
-        overlay = false;
-        args =
-          "--create-for-user=aldhy --create-with-perms=0600 -u ckie -g users -p 0600,u+X";
-        wantedBy = [ "aldhy.service" ];
+      cookie.bindfs = {
+        aldhy = {
+          source = "/var/lib/aldhy";
+          dest = "${config.cookie.user.home}/aldhy";
+          overlay = false;
+          args =
+            "--create-for-user=aldhy --create-with-perms=0600 -u ckie -g users -p 0600,u+X";
+          wantedBy = [ "aldhy.service" ];
+        };
+        aldhy-build-logs = {
+          source = "/var/lib/aldhy/build-logs";
+          overlay = true;
+          args = "-p 0600,u+D -u aldhy -g aldhy";
+        };
       };
+
     }
 
     {
