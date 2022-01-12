@@ -81,7 +81,7 @@ elif [ "$1" == "farm" ]; then
     tmpfile="$(mktemp)"
     $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath > "$tmpfile"
     echo sending $(wc -l $tmpfile) derivations...
-    cat "$tmpfile" | xargs nix copy --to ssh://bokkusu
+    cat "$tmpfile" | xargs nix copy --derivation --substitute-on-destination --to ssh://bokkusu
     rsync "$tmpfile" bokkusu:~/aldhy/new-jobs
 else
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]>"
