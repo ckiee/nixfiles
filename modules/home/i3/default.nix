@@ -22,7 +22,7 @@ let
     ${mkRequiresScript ./scripts/musicwatch} &
     # fractal &
     Discord &
-    mirage &
+    element-desktop &
     # DiscordPTB &
     st -T weechat -e sh -c weechat &
     firefox &
@@ -158,7 +158,7 @@ in {
             "2" = [
               { class = "^discord"; }
               { title = "^weechat$"; }
-              { class = "^mirage$"; }
+              { class = "^Element"; }
             ];
             "4" = [{ class = "^Emacs$"; }];
             "${musicWorkspace}" = [{ class = "^cantata"; }];
