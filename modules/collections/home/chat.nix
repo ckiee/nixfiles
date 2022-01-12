@@ -18,7 +18,7 @@ in with lib; {
           "https://dl.discordapp.net/apps/linux/0.0.16/discord-0.0.16.tar.gz";
       }))
       fractal
-      mirage-im
+      element-desktop
     ];
     cookie.weechat.enable = true;
   };
