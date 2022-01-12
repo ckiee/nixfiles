@@ -123,6 +123,9 @@ in {
               "${modifier}+Shift+h" = "exec ${mkRequiresScript ./scripts/sinkswap}";
               "${modifier}+Shift+b" = "exec ${mkRequiresScript ./scripts/showerset}";
 
+              # fmouse
+              "${modifier}+a" = "exec ${pkgs.fmouse}/bin/fmouse";
+
               # music house
               "${modifier}+Shift+w" =
                 "move container to workspace ${musicWorkspace}";
