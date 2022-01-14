@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, sources, ... }:
 
 let cfg = config.cookie.nix;
 in with lib; {
@@ -34,7 +34,7 @@ in with lib; {
         };
         to = {
           type = "path";
-          path = toString pkgs.path;
+          path = "${sources.nixpkgs}";
         };
       };
     };
