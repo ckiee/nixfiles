@@ -14,7 +14,7 @@
       manage = "desktop";
       name = "windows";
       start =
-        "${pkgs.freerdp}/bin/xfreerdp /u:Mik /p:mik /v:192.168.122.2 /cert:ignore +auto-reconnect /auto-reconnect-max-retries:0 +clipboard /f /dynamic-resolution -toggle-fullscreen";
+        "${pkgs.freerdp}/bin/xfreerdp /u:Mik /p:mik /v:192.168.122.2 /cert:ignore +auto-reconnect /auto-reconnect-max-retries:0 +clipboard /f /dynamic-resolution -toggle-fullscreen /sec:tls";
     })];
     displayManager = {
       hiddenUsers = [ "ckie" ];
