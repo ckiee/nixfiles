@@ -11,7 +11,7 @@ in with lib; {
     home.packages = with pkgs; [
       (discord-ptb.overrideAttrs (_: {
         src = builtins.fetchTarball
-          "https://dl-ptb.discordapp.net/apps/linux/0.0.26/discord-ptb-0.0.26.tar.gz";
+          "https://dl-ptb.discordapp.net/apps/linux/0.0.28/discord-ptb-0.0.28.tar.gz";
       }))
       (discord.overrideAttrs (_: {
         src = builtins.fetchTarball
