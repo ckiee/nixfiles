@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "alvr-org",
         "repo": "alvr-bot",
-        "rev": "d9f260bb28807fd815f29e0c10da0eaa10e97a4a",
-        "sha256": "01hn95n44frxf58wh2l8l15yrl2jhb5gw8d6fj653m74f9phai0j",
+        "rev": "489be2537b6cc7aa3042e5d85c4d34fe02118ecc",
+        "sha256": "14vbwb6q55abqwk5kng2zpjrdn89g3n2lsfb0bp8igybqs3f7ylj",
         "type": "tarball",
-        "url": "https://github.com/alvr-org/alvr-bot/archive/d9f260bb28807fd815f29e0c10da0eaa10e97a4a.tar.gz",
+        "url": "https://github.com/alvr-org/alvr-bot/archive/489be2537b6cc7aa3042e5d85c4d34fe02118ecc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "anonvote-bot": {
