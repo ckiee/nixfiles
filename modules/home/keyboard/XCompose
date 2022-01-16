@@ -3,8 +3,6 @@
 
 # Part 1 - Manual definitions
 # Spacing versions of dead accents
-<dead_tilde> <space>             	: "~"   asciitilde # TILDE
-<dead_tilde> <dead_tilde>        	: "~"   asciitilde # TILDE
 <dead_acute> <space>             	: "'"   apostrophe # APOSTROPHE
 <dead_acute> <dead_acute>        	: "´"   acute # ACUTE ACCENT
 <Multi_key> <apostrophe> <apostrophe> 	: "´"   acute # ACUTE ACCENT
@@ -148,6 +146,7 @@
 <Multi_key> <R> <K> <T>			: "🖌️"  # ROCKET
 <Multi_key> <F> <S> <H>         : "🤷‍♀️"  # PERSON SHRUGGING ZERO WIDTH JOINER FEMALE SIGN
 <Multi_key> <S> <H> <R>         : "¯\_(ツ)_/¯"
+<Multi_key> <asciitilde>        : "〜"  # WAVE DASH
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
