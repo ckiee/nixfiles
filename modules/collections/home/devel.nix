@@ -15,6 +15,8 @@ in with lib; {
       nodejs_latest
       (yarn.override { nodejs = nodejs_latest; })
       rustup
+      cargo-edit
+      cargo-watch
       maven
       gcc
       gh
