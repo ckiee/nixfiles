@@ -25,6 +25,11 @@ let
         description = "a list of extra hosts to get in one cert";
         default = [ ];
       };
+      wildcard = mkOption {
+        type = types.bool;
+        description = "whether this should be a wildcard certficate";
+        default = false;
+      };
     };
   };
 in {
@@ -73,6 +78,7 @@ in {
         dnsProvider = v.provider;
         extraDomainNames = v.extras;
         credentialsFile = config.cookie.secrets.${v.secretId}.dest;
+        domain = if v.wildcard then "*.${i}" else i;
       })) cfg.hosts);
 
     };
