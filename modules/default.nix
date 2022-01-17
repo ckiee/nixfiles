@@ -48,5 +48,6 @@
     ./libvirtd.nix
     ./remote-builder.nix
     ./nvidia-autoswitch.nix
+    ./tailnet-certs.nix
   ];
 }

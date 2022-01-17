@@ -30,6 +30,7 @@ in {
     smartd.enable = true;
     steam.enable = true;
     libvirtd.enable = true;
+    tailnet-certs.enableClient = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     machine-info.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPh7g9RWVnsccj2cX/LG+T6FuLMfPlNZue1g7G9O8uK3";

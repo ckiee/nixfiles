@@ -3,6 +3,7 @@
 
   cookie = {
     restic.enable = true; # Backups
+    tailnet-certs.enableServer = false;
     machine-info.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
     remote-builder.role = "user";
@@ -70,9 +71,12 @@
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
-            "tailnet.ckie.dev"
             "aldhy.ckie.dev"
           ];
+        };
+        "tailnet.ckie.dev" = {
+          wildcard = true;
+          provider = "porkbun";
         };
         "mcid.party" = {
           provider = "cloudflare";
