@@ -71,6 +71,7 @@ in with lib; {
     }
 
     {
+      cookie.services.nginx.enable = true;
       cookie.services.prometheus.nginx-vhosts = [ "aldhy" ];
       services.nginx.virtualHosts.${cfg.host} = {
         locations."/" = {
