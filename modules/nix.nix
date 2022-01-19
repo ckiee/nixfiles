@@ -7,7 +7,7 @@ in with lib; {
   config = mkIf cfg.enable {
     # Setup the symlink for our global nixpkgs
     environment.extraSetup = ''
-      ln -s ${pkgs.path} $out/nixpkgs
+      ln -s ${sources.nixpkgs} $out/nixpkgs
     '';
 
     nix = {
