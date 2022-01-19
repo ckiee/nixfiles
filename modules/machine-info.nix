@@ -9,5 +9,10 @@ in with lib; {
       description = "this machine's ssh_host_ed25519_key.pub";
       default = null;
     };
+    tailscaleIp = mkOption {
+      type = types.nullOr types.str;
+      description = "this machine's Tailscale IPv4";
+      default = null;
+    };
   };
 }
