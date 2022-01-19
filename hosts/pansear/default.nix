@@ -8,12 +8,25 @@ with lib;
   networking.hostName = "pansear";
 
   cookie = {
-    machine-info.sshPubkey =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
+    machine-info = {
+      sshPubkey =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
+      tailscaleIp = "100.120.191.17";
+    };
     systemd-boot.enable = true;
     smartd.enable = true;
     libvirtd.enable = true;
-    services = { avahi.enable = true; };
+    services = {
+      avahi.enable = true;
+      aldhy = {
+        enable = true;
+        host = "aldhy.tailnet.ckie.dev";
+      };
+    };
+    tailnet-certs.client = {
+      enable = true;
+      hosts = [ "aldhy.tailnet.ckie.dev" ];
+    };
     remote-builder.role = "builder";
     sound = {
       pulse.enable = true;

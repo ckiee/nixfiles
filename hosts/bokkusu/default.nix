@@ -3,9 +3,12 @@
 
   cookie = {
     restic.enable = true; # Backups
-    tailnet-certs.enableServer = false;
-    machine-info.sshPubkey =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
+    tailnet-certs.enableServer = true;
+    machine-info = {
+      sshPubkey =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
+      tailscaleIp = "100.124.234.25";
+    };
     remote-builder.role = "user";
     services = {
       owo-bot.enable = true;
