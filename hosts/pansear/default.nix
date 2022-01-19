@@ -6,6 +6,7 @@ with lib;
   imports = [ ../.. ./hardware.nix ./windows-passthrough.nix ];
 
   networking.hostName = "pansear";
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   cookie = {
     machine-info = {
