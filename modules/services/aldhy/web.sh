@@ -65,8 +65,6 @@ $past_jobs
 $cssjs
 EOF
 elif [ "$current_job_name" != "" ] && echo "$request" | rg -q "^GET /logs/current HTTP/1.+"; then
-    echo hi its =$current_job_name=
-    echo
     cat <<EOF
 HTTP/1.1 200 OK
 $resp_headers

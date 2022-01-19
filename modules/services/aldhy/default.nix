@@ -29,7 +29,7 @@ in with lib; {
       home = cfg.folder;
       description = "aldhy distributed nix evaluator";
       script = ''
-        ${pkgs.socat}/bin/socat TCP4-LISTEN:${toString cfg.port},fork EXEC:${
+        ${pkgs.socat}/bin/socat TCP4-LISTEN:${toString cfg.port},reuseaddr,fork EXEC:${
           mkRequiresScript ./web.sh
         } &
         PATH=$PATH:${config.nix.package}/bin ${mkRequiresScript ./queuerun.sh} &
