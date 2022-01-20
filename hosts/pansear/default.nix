@@ -23,10 +23,14 @@ with lib;
         enable = true;
         host = "aldhy.tailnet.ckie.dev";
       };
+      nix-serve = {
+        enable = true;
+        host = "cache.tailnet.ckie.dev";
+      };
     };
     tailnet-certs.client = {
       enable = true;
-      hosts = [ "aldhy.tailnet.ckie.dev" ];
+      hosts = [ "aldhy.tailnet.ckie.dev" "cache.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
     sound = {

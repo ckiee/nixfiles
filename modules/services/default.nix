@@ -12,6 +12,7 @@
     ./headscale.nix
     ./tailscale.nix
     ./coredns
+    ./nix-serve.nix
     # User
     ./minecraft.nix
     ./grafana.nix
