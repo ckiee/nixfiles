@@ -89,14 +89,14 @@ no job currently running
 EOF
     fi
 elif host="$(echo "$request" | rg '^GET /hosts/([a-z]+) HTTP/1.+' --replace '$1')"; then
-    nixos_path=nixos-system-"$host"-*
-    if [ -f "$nixos_path" ]; then
+    nixos_path=$(realpath $PWD/nixos-system-$host-*)
+    if [ -d "$nixos_path" ]; then
         cat <<EOF
 HTTP/1.1 200 OK
 $resp_headers
 $resp_head_json
 
-{"path":"$(realpath nixos-system-"$host"-*)","unix":$(stat -c'%Y' nixos-system-"$host"-*)}
+{"path":"$nixos_path","unix":$(stat -c'%Y' nixos-system-$host-*)}
 EOF
     else
         cat <<EOF
