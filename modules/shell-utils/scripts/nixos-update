@@ -1,0 +1,14 @@
+#!@bash@/bin/bash
+export PATH="@ckiePath@"
+set -euo pipefail
+
+respJson="$(curl https://aldhy.tailnet.ckie.dev/hosts/"$(hostname)")"
+
+if [ "$(stat -c'%Y' /nix/var/nix/profiles/system)" -lt "$(echo "$respJson" | jq -r .unix)" ]; then
+    path="$(echo "$respJson" | jq -r .path)"
+    nix copy --from https://cache.tailnet.ckie.dev "$path"
+    "$path"/bin/switch-to-configuration switch
+    nix-env -p /nix/var/nix/profiles/system --set "$path"
+else
+    echo current local generation is newer than remote generation
+fi

@@ -6,7 +6,7 @@ let
   cfg = config.cookie.shell-utils;
 
   deriv = pkgs.runCommandLocal "ckie-shell-utils" {
-    ckiePath = makeBinPath (with pkgs; [ rsync wget coreutils xclip ]);
+    ckiePath = makeBinPath (with pkgs; [ rsync wget coreutils xclip ripgrep curl hostname jq config.nix.package ]);
     inherit (pkgs) bash;
   } ''
     mkdir -p $out/bin
