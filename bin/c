@@ -79,9 +79,9 @@ elif [ "$1" == "eval" ]; then
     echo
 elif [ "$1" == "farm" ]; then
     tmpfile="$(mktemp)"
-    $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath > "$tmpfile"
+    $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null > "$tmpfile"
     echo sending $(wc -l $tmpfile | cut -d' ' -f1) derivations...
-    cat "$tmpfile" | grep -v null | xargs nix copy --derivation --substitute-on-destination --to ssh://pansear
+    cat "$tmpfile" | xargs nix copy --derivation --substitute-on-destination --to ssh://pansear
     rsync "$tmpfile" pansear:~/aldhy/new-jobs
 else
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]>"
