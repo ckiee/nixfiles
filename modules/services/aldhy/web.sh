@@ -35,7 +35,7 @@ $(tail -n20 build-logs/$current_job_name)
 </details>"
 
     fi
-    queued_jobs="<u>queued (<b>$(wc -l pending-jobs | cut -d' ' -f1)</b>)</u>"
+    queued_jobs="<u>queued (<b>$(( "$(wc -l pending-jobs | cut -d' ' -f1)" - 1))</b>)</u>"
     for job in $(tr '\n' ' ' < pending-jobs); do
         queued_jobs="$queued_jobs
 - $job"
