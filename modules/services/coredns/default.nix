@@ -95,12 +95,21 @@ in {
               reload 1500ms
               fallthrough
             }
-            forward . tls://9.9.9.9 {
-              tls_servername dns.quad9.net
-              health_check 5s
-            }
+            forward . 127.0.0.1:5301 127.0.0.1:5302
             errors
             cache 120 # two minutes
+          }
+
+          .:5301 {
+            forward . tls://1.1.1.1 tls://1.0.0.1 {
+              tls_servername cloudflare-dns.com
+            }
+          }
+
+          .:5302 {
+            forward . tls://45.90.28.0 {
+              tls_servername dns.nextdns.io
+            }
           }
 
           atori {
