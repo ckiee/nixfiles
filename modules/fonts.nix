@@ -25,11 +25,14 @@ in with lib; {
       font-awesome
       emacs-all-the-icons-fonts
       source-sans-pro
+      jetbrains-mono
+      inter
     ];
+
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Hack" ];
-        sansSerif = [ "Cantarell" ];
+        monospace = [ "JetBrains Mono" ];
+        sansSerif = [ "Inter" ];
         # serif is ew
       };
     };
