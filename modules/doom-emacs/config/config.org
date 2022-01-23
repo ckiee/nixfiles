@@ -16,7 +16,7 @@ Sometimes I also use =doom-laserwave=.
 The variable pitch font is a nice change from a screen full of monospace text (:
 #+BEGIN_SRC elisp
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 1))
+      doom-variable-pitch-font (font-spec :family "Inter" :size 16))
 #+END_SRC
 =SPC t b= makes everything too big:
 #+BEGIN_SRC elisp
