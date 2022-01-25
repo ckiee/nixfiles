@@ -18,7 +18,7 @@ let
   '';
   desktopItem = pkgs.makeDesktopItem {
     name = "remotemacs";
-    exec = "${wrapper}";
+    exec = "${wrapper}/bin/remotemacs";
     desktopName = "Emacs-over-ssh";
   };
 in with lib; {
