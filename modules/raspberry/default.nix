@@ -27,11 +27,6 @@ in with lib; {
         inherit pkgs;
         localSystem.system = system;
       };
-      # Bootloader crap
-      boot.loader.raspberryPi = {
-        enable = true;
-        inherit (cfg) version;
-      };
 
       ##
       ## Pasted from /nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix
