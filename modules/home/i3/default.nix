@@ -48,7 +48,7 @@ in {
       firefox
       calibre
       friture # voice shenanigans (:
-      nottetris2
+      # nottetris2
       virt-manager # connect to vms on the net
       obs-studio
       sidequest # mediocre vr
