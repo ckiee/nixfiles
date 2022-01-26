@@ -146,6 +146,7 @@
 <Multi_key> <R> <K> <T>			: "🖌️"  # ROCKET
 <Multi_key> <F> <S> <H>         : "🤷‍♀️"  # PERSON SHRUGGING ZERO WIDTH JOINER FEMALE SIGN
 <Multi_key> <S> <H> <R>         : "¯\_(ツ)_/¯"
+<Multi_key> <E> <Y> <E>         : "👀" # EYES
 <Multi_key> <asciitilde>        : "〜"  # WAVE DASH
 
 # Part 3
