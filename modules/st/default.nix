@@ -2,7 +2,14 @@
 
 let
   cfg = config.cookie.st;
-  st = pkgs.st.override {
+  st = (pkgs.st.overrideAttrs (_: rec {
+    version = "0.8.4";
+
+    src = pkgs.fetchurl {
+      url = "https://dl.suckless.org/st/st-${version}.tar.gz";
+      hash = "sha256-1C087OtNamXjLpClM249RG22EsP72evBeAvGyaAzRqY=";
+    };
+  })).override {
     conf = builtins.readFile ./st.h;
     patches = [
       ./patches/st-scrollback-20201205-4ef0cbd.diff
@@ -18,7 +25,5 @@ in with lib; {
     enable = mkEnableOption "Enables the suckless terminal";
   };
 
-  config = {
-    environment.systemPackages = singleton st;
-  };
+  config = { environment.systemPackages = singleton st; };
 }
