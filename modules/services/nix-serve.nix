@@ -7,7 +7,6 @@ in with lib; {
   options.cookie.services.nix-serve = {
     enable =
       mkEnableOption "Enables the nix-serve binary-cache hosting service";
-    # TODO Figure out how to do clients. There's cookie.binaryCaches in cache.nix but I don't like it.
     host = mkOption {
       type = types.str;
       description = "Nginx vhost";
