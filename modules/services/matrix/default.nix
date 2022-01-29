@@ -50,18 +50,15 @@ in with lib; {
         '';
       };
       ${cfg.serviceHost} = {
-        locations."/".extraConfig = ''
-          return 302 $scheme://${cfg.host}$request_uri;
-        '';
+        locations."/".root = "${pkgs.synapse-admin}";
         # log for prom
         extraConfig = ''
           access_log /var/log/nginx/matrix.access.log;
         '';
 
         # forward all Matrix API calls to synapse
-        locations."/_matrix" = {
-          proxyPass = "http://[::1]:8008"; # without a trailing /
-        };
+        locations."/_matrix".proxyPass = "http://[::1]:8008"; # without a trailing /
+        locations."/_synapse".proxyPass = "http://[::1]:8008";
       };
     };
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
