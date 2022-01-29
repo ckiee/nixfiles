@@ -6,7 +6,11 @@ function get_hosts {
 function morp {
     $($0 eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
     echo morph $@ $show_trace
+    set +e
     morph $@ $show_trace
+    morphexit="$?"
+    [ $morphexit -eq 0 ] || (echo ; exit $morphexit)
+    set -e
 }
 
 
