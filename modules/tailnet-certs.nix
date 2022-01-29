@@ -71,13 +71,13 @@ with builtins; {
         };
       };
     })
-    (mkIf cfg.client.enable (mkMerge [{
+    (mkIf cfg.client.enable {
       assertions = [{
         assertion = config.services.nginx.enable;
         message = "tailnet-certs client depends on Nginx";
       }];
 
-      systemd.services.get-tailnet-certs = {
+      systemd.services.get-tailnet-certs = mkIf (!cfg.enableServer) {
         description = "Fetches new certificates for *.${cfg.host}";
         startAt = "*-*-* 04:30:00"; # every day at 4:30am
         wantedBy = [ "nginx.service" ];
@@ -95,7 +95,7 @@ with builtins; {
 
       # Something somewhere refuses to let the "nginx" user read anything
       # I refuse to debug that. Too fucking weird.
-      cookie.bindfs.tailnet-certs = {
+      cookie.bindfs.tailnet-certs = mkIf (!cfg.enableServer) {
         source = "/var/lib/tailnet-certs";
         overlay = true;
         args = "-u nginx -g nginx -p 0400,u+D";
@@ -113,6 +113,6 @@ with builtins; {
           sslTrustedCertificate = "/var/lib/tailnet-certs/chain.pem";
         };
       }) cfg.client.hosts);
-    }]))
+    })
   ];
 }
