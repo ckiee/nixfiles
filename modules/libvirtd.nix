@@ -21,8 +21,11 @@ in with lib; {
           #
           # Anyway, we only sleep forever if it's passing the first arg it does when it's trying to run it as a daemon
           dnsmasq = pkgs.writeShellScriptBin "dnsmasq" ''
-           [ "$1" == "--conf-file=/var/lib/libvirt/dnsmasq/default.conf" ] && sleep infinity
-           ${pkgs.dnsmasq}/bin/dnsmasq $@
+            if echo "$@" | ${pkgs.gnugrep}/bin/grep "leasefile"; then
+              true
+            else
+              exec ${pkgs.dnsmasq}/bin/dnsmasq $@
+            fi
           '';
         };
       };
