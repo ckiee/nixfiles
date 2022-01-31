@@ -106,7 +106,7 @@ in {
         makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
           --set RCLONE_CONFIG /run/keys/rclone-config \
           --set RESTIC_PASSWORD_FILE /run/keys/gdrive-password \
-          --set RESTIC_REPOSITORY rclone:gdrive:drapion-fs
+          --set RESTIC_REPOSITORY rclone:gdrive:${host}-fs
       '');
   };
 }
