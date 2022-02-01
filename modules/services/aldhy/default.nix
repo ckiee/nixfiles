@@ -29,12 +29,18 @@ in with lib; {
       home = cfg.folder;
       description = "aldhy distributed nix evaluator";
       script = ''
+        export PATH=$PATH:${config.nix.package}/bin
         ${pkgs.socat}/bin/socat TCP4-LISTEN:${toString cfg.port},reuseaddr,fork EXEC:${
           mkRequiresScript ./web.sh
         } &
-        PATH=$PATH:${config.nix.package}/bin ${mkRequiresScript ./queuerun.sh} &
+        ${mkRequiresScript ./queuerun.sh} &
         exit
       '';
+      secrets.env = {
+        source = "./secrets/aldhy.env";
+        dest = "/run/keys/aldhy.env";
+        permissions = "0400";
+      };
     })
 
     {
@@ -44,10 +50,12 @@ in with lib; {
           RemoveIPC = mkForce "false";
           ProtectHostname = mkForce "false";
           ProtectProc = mkForce "false";
+          ProcSubset = mkForce "all";
           ReadWritePaths = [ "/nix/var/nix/daemon-socket" ];
           # HACK sed uses some disallowed syscalls, figure out which
           SystemCallFilter = mkForce [ ];
           RestrictAddressFamilies = mkForce [ ];
+          EnvironmentFile = config.cookie.secrets.aldhy-env.dest;
         };
         environment.FAVICON = ./favicon.ico;
       };
@@ -65,6 +73,20 @@ in with lib; {
           source = "/var/lib/aldhy/build-logs";
           overlay = true;
           args = "-p 0600,u+D -u aldhy -g aldhy";
+        };
+        aldhy-nf-secrets = {
+          source = "${config.cookie.user.home}/git/nixfiles/secrets";
+          dest = "/var/lib/aldhy/nixfiles/secrets";
+          overlay = false;
+          wantedBy = [ "aldhy.service" ];
+          args = "-u aldhy -g aldhy -p 0660,u+D -o ro";
+        };
+        aldhy-nf-encrypted = {
+          source = "${config.cookie.user.home}/git/nixfiles/encrypted";
+          dest = "/var/lib/aldhy/nixfiles/encrypted";
+          overlay = false;
+          wantedBy = [ "aldhy.service" ];
+          args = "-u aldhy -g aldhy -p 0660,u+D -o ro";
         };
       };
 

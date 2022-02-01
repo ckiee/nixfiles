@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-#Requires: ripgrep
+#Requires: ripgrep jq git bash util-linux exa
+set -x
 [ -f pending-jobs ] || touch pending-jobs
 resp_headers="server: aldhy
 date: $(date +"%a, %d %b %Y %H:%M:%S %Z")"
@@ -22,7 +23,17 @@ if (currentJobLogsEle && currentJobLogsEle.innerText.trim().length > 0) {
 </script>
 "
 [ -f current-job ] && current_job_name="$(cut -d'/' -f4- < current-job)"
-read request
+
+read -rt 1 request
+headers="$(read -rt 1 && echo "$REPLY")"
+last_header=""
+while :; do
+    read -rt1 last_header
+    [ "${#last_header}" -lt 2 ] && break
+    headers="$headers
+$last_header"
+done
+
 if echo "$request" | rg -q "^GET / HTTP/1.+"; then
     current_job="<p style=color:red>no job running</p>"
     if [ -f current-job ]; then
@@ -35,13 +46,13 @@ $(tail -n20 build-logs/$current_job_name)
 </details>"
 
     fi
-    queued_jobs="<u>queued (<b>$(( "$(wc -l pending-jobs | cut -d' ' -f1)" - 1))</b>)</u>"
+    queued_jobs="<u>queued (<b>$(( "$(wc -l pending-jobs | cut -d' ' -f1)" - "$([ ! -f current-job ]; echo $?)"))</b>)</u>"
     for job in $(tr '\n' ' ' < pending-jobs); do
         queued_jobs="$queued_jobs
 - $job"
     done
     past_jobs="<u>completed (<b>$(ls build-logs/*.drv | wc -l | cut -d' ' -f1)</b>)</u>"
-    for job in $(ls build-logs | rg -v '\.exitcode$' | tr '\n' ' '); do
+    for job in $(exa -rs modified build-logs | rg -v '\.exitcode$' | tr '\n' ' '); do
         if ! [ "$job" == "$current_job_name" ]; then
         build_unix="$(stat -c'%Y' build-logs/"$job")"
         job_exitcode="$(cat build-logs/"$job".exitcode)"
@@ -115,7 +126,46 @@ $resp_head_cache
 
 EOF
     # its binary data so no inlining into the rest of the response
-    cat "$FAVICON"
+    cat "${FAVICON:-favicon.ico}"
+elif echo "$request" | rg -q "^POST /webhook HTTP/1.+"; then
+    read -rt 1 body
+    if ! echo "$headers" | rg -q "X-GitHub-Hook-ID: $HOOK_ID"; then
+        cat <<EOF
+HTTP/1.1 403 Forbidden
+$resp_headers
+$resp_head_json
+
+{"error":"bad_hook_id"}
+EOF
+    else
+    cat <<EOF
+HTTP/1.1 200 OK
+$resp_headers
+$resp_head_json
+
+{"ok":true}
+EOF
+    # close stdout, we're done talking to github
+    exec 1>&-
+    if [ -d nixfiles/.git ]; then
+        cd nixfiles
+        git fetch origin
+        git reset --hard origin/master
+    else
+        git clone "$(echo "$body" | jq -r .repository.clone_url)" nixfiles
+        cd nixfiles
+    fi
+
+    shebang="#!$(whereis bash | cut -d' ' -f2)"
+    cat >farm.sh <<EOF
+$shebang
+tmpfile="$(mktemp)"
+unset HOOK_ID
+c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
+EOF
+    chmod +x farm.sh
+    nix-shell --run './farm.sh'
+    fi
 else
     cat <<EOF
 HTTP/1.1 404 Not Found
