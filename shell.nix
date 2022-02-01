@@ -18,6 +18,7 @@ let
   });
 in pkgs.mkShell {
   NIX_PATH = "nixpkgs=${sources.nixpkgs}";
+  NIXPKGS_ALLOW_UNFREE = "1";
 
   buildInputs = with pkgs; [
     niv
