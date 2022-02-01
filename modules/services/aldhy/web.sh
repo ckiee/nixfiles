@@ -145,26 +145,32 @@ $resp_head_json
 
 {"ok":true}
 EOF
-    # close stdout, we're done talking to github
-    exec 1>&-
-    if [ -d nixfiles/.git ]; then
-        cd nixfiles
-        git fetch origin
-        git reset --hard origin/master
-    else
-        git clone "$(echo "$body" | jq -r .repository.clone_url)" nixfiles
-        cd nixfiles
-    fi
+    (
+        if [ -d nixfiles/.git ]; then
+            cd nixfiles
+            git fetch origin
+            git reset --hard origin/master
+        elif [ -d nixfiles ]; then
+            cd nixfiles
+            git init
+            git remote add origin https://github.com/ckiee/nixfiles.git
+            git fetch origin
+            git reset --hard origin/master
+        else
+            git clone https://github.com/ckiee/nixfiles.git nixfiles
+            cd nixfiles
+        fi
 
-    shebang="#!$(whereis bash | cut -d' ' -f2)"
-    cat >farm.sh <<EOF
-$shebang
-tmpfile="$(mktemp)"
-unset HOOK_ID
-c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
-EOF
-    chmod +x farm.sh
-    nix-shell --run './farm.sh'
+        shebang="#!$(whereis bash | cut -d' ' -f2)"
+        cat >farm.sh <<EOF
+    $shebang
+    tmpfile="$(mktemp)"
+    unset HOOK_ID
+    c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
+    EOF
+        chmod +x farm.sh
+        nix-shell --run './farm.sh'
+    ) &
     fi
 else
     cat <<EOF
