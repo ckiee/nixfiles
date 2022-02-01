@@ -17,6 +17,12 @@ with builtins; {
             default = [ ];
             description = "nginx vhosts to configure";
           };
+          forward = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description =
+              "nginx vhosts to publicly expose by forwarding through the enableServer host";
+          };
         };
       };
       default = { enable = false; };
@@ -51,26 +57,44 @@ with builtins; {
       '';
     })
 
-    (mkIf cfg.enableServer {
-      cookie.bindfs.tailnet-certs = {
-        source = "/var/lib/acme/${cfg.host}";
-        dest = "/var/lib/tailnet-certs";
-        overlay = false;
-        args = "-u nginx -g nginx -p 0400,u+D";
-      };
-
-      services.nginx.virtualHosts.${cfg.serveHost} = {
-        forceSSL = true;
-        useACMEHost = cfg.host;
-        locations."/" = {
-          root = "/var/lib/tailnet-certs";
-          extraConfig = ''
-            allow 100.64.0.0/10;
-            deny all;
-          '';
+    (mkIf cfg.enableServer (mkMerge [
+      {
+        cookie.bindfs.tailnet-certs = {
+          source = "/var/lib/acme/${cfg.host}";
+          dest = "/var/lib/tailnet-certs";
+          overlay = false;
+          args = "-u nginx -g nginx -p 0400,u+D";
         };
-      };
-    })
+
+        services.nginx.virtualHosts.${cfg.serveHost} = {
+          forceSSL = true;
+          useACMEHost = cfg.host;
+          locations."/" = {
+            root = "/var/lib/tailnet-certs";
+            extraConfig = ''
+              allow 100.64.0.0/10;
+              deny all;
+            '';
+          };
+        };
+      }
+      {
+        cookie.services.prometheus.nginx-vhosts = [ "tailnet-certs-proxy" ];
+        services.nginx.virtualHosts = mkMerge (map (vhost: ({
+          ${vhost} = {
+            forceSSL = true;
+            useACMEHost = cfg.host;
+            locations."/".proxyPass = "https://${vhost}";
+            extraConfig = ''
+              access_log /var/log/nginx/tailnet-certs-proxy.access.log;
+            '';
+          };
+        })) (flatten
+          (mapAttrsToList (_: h: h.config.cookie.tailnet-certs.client.forward)
+            nodes)));
+      }
+    ]))
+
     (mkIf cfg.client.enable {
       assertions = [{
         assertion = config.services.nginx.enable;

@@ -31,6 +31,7 @@ with lib;
     tailnet-certs.client = {
       enable = true;
       hosts = [ "aldhy.tailnet.ckie.dev" "cache.tailnet.ckie.dev" ];
+      forward = [ "aldhy.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
     sound = {
