@@ -20,7 +20,6 @@
       among-sus.enable = true;
       anonvote-bot.enable = true;
       alvr-bot.enable = true;
-      aldhy.enable = true;
 
       prometheus.enable = true;
       grafana = {
@@ -74,7 +73,6 @@
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
-            "aldhy.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
