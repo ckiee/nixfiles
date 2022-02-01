@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
 function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./deploy/morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
 }
@@ -7,7 +8,7 @@ function morp {
     $($0 eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
     echo morph $@ $show_trace
     set +e
-    CKIE_CONFIG_REV="$(git rev-parse HEAD)" morph $@ $show_trace
+    morph $@ $show_trace
     morphexit="$?"
     [ $morphexit -eq 0 ] || (echo ; exit $morphexit)
     set -e
