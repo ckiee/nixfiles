@@ -69,6 +69,7 @@ with builtins;
     tmux # when you can't afford i3
     youtube-dl
     jq # like 'node -e' but nicer
+    btop # htop on steroids
   ];
 
   cookie = {
