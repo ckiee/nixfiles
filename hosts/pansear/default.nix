@@ -27,6 +27,11 @@ with lib;
         enable = true;
         host = "cache.tailnet.ckie.dev";
       };
+      syncthing = {
+        enable = true;
+        runtimeId =
+          "DFTG4YU-IGSQEVL-DZAHODV-QRXCOFP-M7OEMRP-66KHW5B-DUVNMH5-JINSLAS";
+      };
     };
     tailnet-certs.client = {
       enable = true;
