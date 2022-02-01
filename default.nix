@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, sources, ... }:
 
 with lib;
+with builtins;
 
 {
   imports = [ ./modules ];
   nixpkgs.config.allowUnfree = true;
+  system = {
+    configurationRevision = getEnv "CKIE_CONFIG_REV";
+    nixos.revision = sources.nixpkgs.rev;
+  };
 
   _module.args.sources = import ./nix/sources.nix;
 
