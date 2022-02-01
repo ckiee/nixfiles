@@ -36,34 +36,37 @@ in with lib; {
         };
       in untrackedHosts // trackedHosts;
 
-      folders = let home = config.cookie.user.home;
-      in {
-        "nixfiles" = {
-          path = "${home}/git/nixfiles";
-          devices = [ "cookiemonster" "thonkcookie" ];
-        };
+      folders = let
+        home = config.cookie.user.home;
+        def = {
+          "nixfiles" = {
+            path = "${home}/git/nixfiles";
+            devices = [ "cookiemonster" "thonkcookie" "pansear" ];
+          };
 
-        "sync" = {
-          path = "${home}/Sync";
-          devices = [ "cookiemonster" "thonkcookie" ];
-        };
+          "sync" = {
+            path = "${home}/Sync";
+            devices = [ "cookiemonster" "thonkcookie" ];
+          };
 
-        "ssh" = {
-          path = "${home}/.ssh";
-          devices = [ "cookiemonster" "thonkcookie" ];
-          versioning = {
-            type = "simple";
-            params.keep =
-              "50"; # keep 50 old versions of files around. should be fine considering keys are quite small.
+          "ssh" = {
+            path = "${home}/.ssh";
+            devices = [ "cookiemonster" "thonkcookie" ];
+            versioning = {
+              type = "simple";
+              params.keep =
+                "50"; # keep 50 old versions of files around. should be fine considering keys are quite small.
+            };
+          };
+
+          "music" = {
+            id = "3ffxr-fpjwy"; # to keep compat with existing phone
+            path = "${home}/Music";
+            devices = [ "cookiemonster" "thonkcookie" "phone" ];
           };
         };
-
-        "music" = {
-          id = "3ffxr-fpjwy"; # to keep compat with existing phone
-          path = "${home}/Music";
-          devices = [ "cookiemonster" "thonkcookie" "phone" ];
-        };
-      };
+      in filterAttrs
+      (_: folder: any (d: config.networking.hostName == d) folder.devices) def;
     };
   };
 }
