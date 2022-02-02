@@ -118,14 +118,13 @@
 <Multi_key> <numbersign> <f>     	: "♮"   U266e # MUSIC NATURAL SIGN
 <Multi_key> <numbersign> <numbersign> 	: "♯"   U266f # MUSIC SHARP SIGN
 
-# "Other" symbols (;
+# Other
 <Multi_key> <s> <exclam> 		: "§"   section # SECTION SIGN
 <Multi_key> <P> <P>              	: "¶"   paragraph # PILCROW SIGN
 <Multi_key> <N> <o>			: "№" numerosign # NUMERO SIGN
 <Multi_key> <question> <exclam>         : "⸘"   U2E18 # INVERTED INTERROBANG
 <Multi_key> <exclam> <question>         : "‽"   U203D # INTERROBANG
 <Multi_key> <s> <v> <t>	             	: "☭"   U262D # HAMMER AND SICKLE
-<Multi_key> <a> <n>                     : "Ⓐ"   U24B6 # CIRCLED LATIN CAPITAL LETTER A
 <Multi_key> <l> <m>                     : "λ"    # lambda!
 
 # 'Mojis
@@ -148,6 +147,7 @@
 <Multi_key> <S> <H> <R>         : "¯\_(ツ)_/¯"
 <Multi_key> <E> <Y> <E>         : "👀" # EYES
 <Multi_key> <asciitilde>        : "〜"  # WAVE DASH
+<Multi_key> <K> <N> <D> <L>     : "knödel"
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
