@@ -28,5 +28,7 @@ in with lib; {
     }];
 
     cookie.user.openssh.authorizedKeys.keyFiles = [ ./authorized_keys ];
+    # Pin a few services' SSL keys
+    programs.ssh.knownHostsFiles = [ ./known_hosts ];
   };
 }
