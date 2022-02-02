@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #Requires: ripgrep jq git bash util-linux exa
-set -x
 [ -f pending-jobs ] || touch pending-jobs
 resp_headers="server: aldhy
 date: $(date +"%a, %d %b %Y %H:%M:%S %Z")"
@@ -163,14 +162,15 @@ EOF
 
         shebang="#!$(whereis bash | cut -d' ' -f2)"
         cat >farm.sh <<EOF
-    $shebang
-    tmpfile="$(mktemp)"
-    unset HOOK_ID
-    c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
-    EOF
+$shebang
+tmpfile="$(mktemp)"
+unset HOOK_ID
+c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
+EOF
         chmod +x farm.sh
         nix-shell --run './farm.sh'
     ) &
+    exit 0
     fi
 else
     cat <<EOF
