@@ -35,6 +35,25 @@ in with lib; {
         sansSerif = [ "Inter" ];
         # serif is ew
       };
+      localConf = ''
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+        <fontconfig>
+          <description>Disable ligatures for monospaced fonts</description>
+
+          <match target="font">
+            <test name="family" compare="eq" ignore-blanks="true">
+              <string>JetBrains Mono</string>
+            </test>
+            <edit name="fontfeatures" mode="append">
+              <string>liga off</string>
+              <string>dlig off</string>
+              <string>calt off</string>
+              <string>clig off</string>
+            </edit>
+          </match>
+        </fontconfig>
+      '';
     };
   };
 }
