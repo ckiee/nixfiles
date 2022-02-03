@@ -4,9 +4,9 @@ set -e
 
 while true; do
 	if [ -f ~/Sync/.last-shower ]; then
-		ddiff "$(cat ~/Sync/.last-shower)" now -f '%d:%H'
+		ddiff "$(cat ~/Sync/.last-shower)" now -f '%d'
 	else
-		echo '?:?'
+		echo '?'
 		continue
 	fi
 	# wait for changes to the file, but timeout eventually so the relative clock ticks either way
