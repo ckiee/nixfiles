@@ -155,10 +155,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "5c25f7d7bb1589db6471f088fbd2887043ead5d3",
-        "sha256": "156xj1bivrga4a9fja8qh0xqyddf20qy8mbnr0g42dyjhps94081",
+        "rev": "2757beb08853f7e0c15a25f2667f8afac0f317a1",
+        "sha256": "1cwcfrm5p5v0h5nivb5pg976jfw0h24134rlryy8334s1f784l7f",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/5c25f7d7bb1589db6471f088fbd2887043ead5d3.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/2757beb08853f7e0c15a25f2667f8afac0f317a1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval-jobs": {
