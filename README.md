@@ -11,6 +11,7 @@ You probably shouldn't be; this is open source to serve as just a reference, but
 ### bokkusu
 
 Our main server, rented from [OVH](https://ovh.com).
+(_Currently full, no more services for this one_)
 
 | Property | bokkusu                                   |
 | :------- | :---------------------------------------- |
@@ -44,11 +45,21 @@ A _Lenovo Thinkpad T480s_, serving as our desktop machine when someone dares to 
 
 It's mostly just for browsing and also occasionally, remote development with [cookiemonster](#cookiemonster).
 
-| Property | <hostname>                               |
+| Property | thonkcookie                              |
 | :------- | :--------------------------------------- |
 | CPU      | Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz |
 | Memory   | 7.5Gi                                    |
 | Disk     | 238.5G                                   |
+
+### pansear
+
+An old PC running random services and a Windows VM.
+
+| Property | pansear                                 |
+| :------- | :-------------------------------------- |
+| CPU      | Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz |
+| Memory   | 7.6Gi                                   |
+| Disk     | 111.8G                                  |
 
 ### pookieix
 
@@ -62,14 +73,6 @@ A QEMU VM for testing that's been used a total of... one time!
 
 A laptop motherboard in a dollar-store box. Very unreliable, slow, and only has a somewhat-functioning WiFi card for
 networking.
-
-### Host Table Template
-
-| Property | <hostname> |
-| :------- | :--------- |
-| CPU      |            |
-| Memory   |            |
-| Disk     |            |
 
 ## License
 
