@@ -11,15 +11,12 @@
     };
     remote-builder.role = "user";
     services = {
-      owo-bot.enable = true;
-      ffg-bot.enable = true;
       minecraft.enable = true;
       matterbridge.enable = true;
       rtc-files.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
-      alvr-bot.enable = true;
 
       prometheus.enable = true;
       grafana = {

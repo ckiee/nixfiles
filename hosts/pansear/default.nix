@@ -21,6 +21,9 @@ with lib;
     libvirtd.enable = true;
     services = {
       avahi.enable = true;
+      owo-bot.enable = true;
+      ffg-bot.enable = true;
+      alvr-bot.enable = true;
       aldhy = {
         enable = true;
         host = "aldhy.tailnet.ckie.dev";
