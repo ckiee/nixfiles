@@ -105,6 +105,7 @@ with builtins; {
         description = "Fetches new certificates for *.${cfg.host}";
         startAt = "*-*-* 04:30:00"; # every day at 4:30am
         wantedBy = [ "nginx.service" ];
+        before = [ "nginx.service" ];
         after = [ "tailscaled.service" ]; # We do kinda need the network..
 
         script = ''
