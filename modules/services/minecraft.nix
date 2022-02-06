@@ -21,7 +21,7 @@ in with lib; {
     enable = mkEnableOption "Enables the Minecraft server service";
     heapAllocation = mkOption {
       type = types.str;
-      default = "3G";
+      default = "2G";
       description = "JVM heap allocation with specifiable size unit";
     };
   };
