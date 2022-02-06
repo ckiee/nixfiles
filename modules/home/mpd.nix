@@ -18,11 +18,15 @@ in with lib; {
       musicDirectory = "${home}/Music/flat";
       extraConfig =
         # PipeWire can emulate PulseAudio and it might work better sometimes
-        mkIf (sound.pulse.enable || sound.pipewire.enable) ''
+        (optionalString (sound.pulse.enable || sound.pipewire.enable) ''
           audio_output {
             type "pulse"
             name "pulseaudio"
           }
+        '') +
+        # zeroconf is broken
+        ''
+          zeroconf_enabled "no"
         '';
     };
     services.mpdris2 = { enable = true; };
