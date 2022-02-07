@@ -25,6 +25,7 @@ with lib;
       owo-bot.enable = true;
       ffg-bot.enable = true;
       alvr-bot.enable = true;
+      daiko.enable = true;
       aldhy = {
         enable = true;
         host = "aldhy.tailnet.ckie.dev";
