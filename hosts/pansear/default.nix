@@ -19,6 +19,7 @@ with lib;
     systemd-boot.enable = true;
     smartd.enable = true;
     libvirtd.enable = true;
+    restic.enable = true;
     services = {
       avahi.enable = true;
       owo-bot.enable = true;
