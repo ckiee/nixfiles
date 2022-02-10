@@ -15,5 +15,10 @@ in with lib; {
     ];
     programs.steam.enable = true;
     environment.systemPackages = with pkgs; [ steam-run-native ];
+
+    programs.gamemode = {
+      enable = true;
+      enableRenice = true;
+    };
   };
 }
