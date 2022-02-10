@@ -44,5 +44,7 @@ in with lib; {
         "video/quicktime" = [ mpv ];
       };
     };
+
+    xdg.configFile."mimeapps.list".force = true;
   };
 }

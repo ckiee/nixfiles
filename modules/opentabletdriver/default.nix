@@ -10,7 +10,10 @@ in with lib; {
     hardware.opentabletdriver.enable = true;
 
     home-manager.users.ckie = { ... }: {
-      xdg.configFile."OpenTabletDriver/settings.json".source = ./config.json;
+      xdg.configFile."OpenTabletDriver/settings.json" = {
+        source = ./config.json;
+        force = true;
+      };
     };
   };
 }
