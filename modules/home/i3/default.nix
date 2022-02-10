@@ -59,6 +59,7 @@ in {
       ardour # piano
       subtitleeditor # making text from sine waves, manually
       freecad # behold our most precious polygons, just one step away from real life!
+      easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
