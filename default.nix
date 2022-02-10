@@ -68,6 +68,7 @@ with builtins;
     mtr # a better traceroute
     tmux # when you can't afford i3
     youtube-dl
+    yt-dlp # do some pretendin' and fetch videos
     jq # like 'node -e' but nicer
     btop # htop on steroids
   ];
