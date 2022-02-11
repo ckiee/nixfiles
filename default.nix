@@ -93,7 +93,9 @@ with builtins;
     zfs.enable = true;
   };
 
-  home-manager.users.ckie = { pkgs, ... }: {
+  home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
+    # for hmporter support
+    home.sessionVariables.TZ = nixosConfig.time.timeZone;
     cookie = {
       shell = {
         enable = true;
