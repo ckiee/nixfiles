@@ -88,6 +88,12 @@ elif [ "$1" == "farm" ]; then
     echo sending $(wc -l $tmpfile | cut -d' ' -f1) derivations...
     cat "$tmpfile" | xargs nix copy --derivation --substitute-on-destination --to ssh://pansear
     rsync "$tmpfile" pansear:~/aldhy/new-jobs
+elif [ "$1" == "hmport" ]; then
+    shift
+    path="$(nix-instantiate --eval deploy/hm-only.nix | jq -r .)"
+    nix copy --to "ssh://$@" --derivation "$path"
+    drv="$(nix path-info --derivation "$path")"
+    ssh "$@" "nix-store -r "$drv" && "$path"/bin/ckie-hm-port"
 else
-    echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]>"
+    echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
 fi
