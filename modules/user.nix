@@ -15,7 +15,7 @@ with lib; {
 
     cookie.user = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "dialout" ];
       hashedPassword = (import ../secrets/unix-password.nix).ckie;
       home =
         "/home/ckie"; # The alias makes it think my username is "user" here.

@@ -74,7 +74,7 @@ in {
     package = pkgs.wireshark-qt;
   };
   users.users.ckie.extraGroups =
-    [ "adbusers" "dialout" "libvirtd" "wireshark" ];
+    [ "adbusers" "libvirtd" "wireshark" ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
