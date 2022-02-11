@@ -25,5 +25,5 @@ in with lib; {
     enable = mkEnableOption "Enables the suckless terminal";
   };
 
-  config = { environment.systemPackages = singleton st; };
+  config = { home.packages = singleton st; };
 }

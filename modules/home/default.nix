@@ -31,6 +31,7 @@ in {
         ./picom.nix
         ./mimeapps.nix
         ./remotemacs.nix
+        ./st
       ];
     };
   };

@@ -47,6 +47,7 @@ in with lib; {
         mpd.enable = true;
         remotemacs.enable = true;
         mimeapps.enable = true;
+        st.enable = true;
         collections = { chat.enable = true; };
       };
       services.rsibreak.enable = true;
@@ -65,7 +66,6 @@ in with lib; {
       };
       sleep.enable = true;
       slock.enable = true;
-      st.enable = true;
       fonts.enable = true;
       gnome.enable = true;
       qt5.enable = true;

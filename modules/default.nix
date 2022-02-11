@@ -41,7 +41,6 @@
     ./command-not-found.nix
     ./shell-utils
     ./raspberry
-    ./st
     ./zfs.nix
     ./machine-info.nix
     ./util
