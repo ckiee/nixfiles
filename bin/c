@@ -51,7 +51,7 @@ elif [ "$1" == "installer" ]; then
             $cmd
         fi
     fi
-elif get_hosts | grep "$1" >/dev/null; then
+elif get_hosts | grep -E "^$1$" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif [ "$1" == "bump" ]; then
     niv update $2
@@ -90,10 +90,9 @@ elif [ "$1" == "farm" ]; then
     rsync "$tmpfile" pansear:~/aldhy/new-jobs
 elif [ "$1" == "hmport" ]; then
     shift
-    path="$(nix-instantiate --eval deploy/hm-only.nix | jq -r .)"
+    path="$(nix-instantiate deploy/hm-only.nix)"
     nix copy --to "ssh://$@" --derivation "$path"
-    drv="$(nix path-info --derivation "$path")"
-    ssh "$@" "nix-store -r "$drv" && "$path"/bin/ckie-hm-port"
+    ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 else
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
 fi

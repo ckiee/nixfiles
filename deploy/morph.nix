@@ -18,4 +18,5 @@ in {
   "thonkcookie" = import ../hosts/thonkcookie;
   "pansear" = import ../hosts/pansear;
   "installer" = import ../hosts/installer;
+  "hmporter" = import ../hosts/hmporter;
 }
