@@ -11,6 +11,11 @@ in with lib; {
       default = "/var/lib/daiko";
       description = "path to service home directory";
     };
+    host = mkOption {
+      type = types.str;
+      default = "daiko.tailnet.ckie.dev";
+      description = "nginx vhost";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -24,9 +29,25 @@ in with lib; {
       };
       script = let bin = pkgs.cookie.daiko;
       in ''
+        export WEB_PORT=3845
         exec ${bin}/bin/daiko
       '';
     })
-    { cookie.restic.paths = [ "/var/lib/daiko/store.json" ]; }
+    {
+      services.nginx = {
+        virtualHosts.${cfg.host} = {
+          locations."/" = {
+            proxyPass =
+              "http://127.0.0.1:3845";
+          };
+          extraConfig = ''
+            access_log /var/log/nginx/daiko.access.log;
+          '';
+        };
+      };
+      cookie.services.prometheus.nginx-vhosts = [ "daiko" ];
+
+      cookie.restic.paths = [ "/var/lib/daiko/store.json" ];
+    }
   ]);
 }
