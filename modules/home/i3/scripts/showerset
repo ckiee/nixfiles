@@ -3,6 +3,7 @@ set -e
 choice=$(cat <<EOF | rofi -dmenu
 shower
 wake
+sleep
 EOF
       )
 
