@@ -4,11 +4,17 @@ set -e
 
 while true; do
 	if [ -f ~/Sync/.last-shower ]; then
-		ddiff "$(cat ~/Sync/.last-shower)" now -f '%d'
+		echo -n "$(ddiff "$(cat ~/Sync/.last-shower)" now -f '%d')"
 	else
-		echo '?'
-		continue
+		echo -n '?'
 	fi
+	echo -n '/'
+	if [ -f ~/Sync/.last-wake ]; then
+		echo -n "$(ddiff "$(cat ~/Sync/.last-wake)" now -f '%H:%M')"
+	else
+		echo -n '?'
+	fi
+	echo
 	# wait for changes to the file, but timeout eventually so the relative clock ticks either way
-	inotifywait -q ~/Sync/.last-shower --timeout 10
+	sleep 2
 done

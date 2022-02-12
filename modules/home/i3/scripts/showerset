@@ -1,2 +1,15 @@
-#Requires: coreutils
-date -Idate > ~/Sync/.last-shower
+#Requires: coreutils rofi curl
+set -e
+choice=$(cat <<EOF | rofi -dmenu
+shower
+wake
+EOF
+      )
+
+if [ "$choice" == "shower" ]; then
+    date -Iseconds >~/Sync/.last-shower
+elif [ "$choice" == "wake" ]; then
+    date -Iseconds >~/Sync/.last-wake
+fi
+
+curl https://daiko.tailnet.ckie.dev/lastx -H "Authorization: Bearer $(cat ~/Sync/.daikokey)" -XPOST -H 'Content-Type: application/json' -d '{"target":"'"$choice"'"}'
