@@ -85,7 +85,7 @@ with builtins;
     };
     # Etc
     git.enable = true;
-    binaryCaches.enable = true;
+    binary-caches.enable = true;
     nix.enable = true;
     cookie-overlay.enable = true;
     ipban.enable = true;

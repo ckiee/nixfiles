@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.binaryCaches;
+let cfg = config.cookie.binary-caches;
 in with lib; {
-  options.cookie.binaryCaches = {
+  options.cookie.binary-caches = {
     enable = mkEnableOption "Enables additional binary caches";
   };
 
-  config.nix = mkIf cfg.enable {
-    binaryCaches = [
+  config.nix.settings = mkIf cfg.enable {
+    substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
     ];
-    binaryCachePublicKeys = [
+    trusted-public-keys = [
       "cache.tailnet.ckie.dev:Ng8W2u5lGtakekcMxEy7vaw99IwgDaK8ensVZQfZgUQ="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];

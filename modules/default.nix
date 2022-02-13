@@ -23,7 +23,7 @@
     ./xserver.nix
     ./desktop.nix
     ./systemd-boot.nix
-    ./caches.nix
+    ./binary-caches.nix
     ./qt5.nix
     ./wine.nix
     ./nix.nix
