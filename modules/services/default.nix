@@ -9,7 +9,6 @@
     ./avahi.nix
     ./ssh
     ./prometheus
-    ./headscale.nix
     ./tailscale.nix
     ./coredns
     ./nix-serve.nix
