@@ -7,8 +7,6 @@ with lib;
 
   networking.hostName = "pansear";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  # We don't have that much RAM..
-  boot.tmpOnTmpfs = mkForce false;
 
   cookie = {
     machine-info = {

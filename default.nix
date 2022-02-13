@@ -17,7 +17,6 @@ with builtins;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "ntfs" "btrfs" ];
-  boot.tmpOnTmpfs = true; # Duh.
 
   networking.networkmanager.enable = true;
 
