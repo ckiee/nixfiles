@@ -18,7 +18,6 @@ in with lib; {
           enable = true;
           nix-direnv.enable = true;
           enableBashIntegration = cfg.bash;
-          enableFishIntegration = cfg.fish;
         };
         zoxide = {
           enable = true;
