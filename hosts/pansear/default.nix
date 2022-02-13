@@ -20,6 +20,7 @@ with lib;
     smartd.enable = true;
     libvirtd.enable = true;
     restic.enable = true;
+    zfs.enable = true;
     services = {
       avahi.enable = true;
       owo-bot.enable = true;

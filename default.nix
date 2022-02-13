@@ -90,7 +90,6 @@ with builtins;
     cookie-overlay.enable = true;
     ipban.enable = true;
     shell-utils.enable = true;
-    zfs.enable = true;
   };
 
   home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
