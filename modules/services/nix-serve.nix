@@ -51,9 +51,9 @@ in with lib; {
     })
 
     (mkIf (!cfg.enable) {
-      nix = {
-        binaryCaches = [ "https://cache.tailnet.ckie.dev" ];
-        binaryCachePublicKeys = [
+      nix.settings = {
+        substituters = [ "https://cache.tailnet.ckie.dev" ];
+        trusted-public-keys = [
           "cache.tailnet.ckie.dev:Ng8W2u5lGtakekcMxEy7vaw99IwgDaK8ensVZQfZgUQ="
         ];
       };

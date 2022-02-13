@@ -11,7 +11,10 @@ in with lib; {
     '';
 
     nix = {
-      trustedUsers = [ "root" "@wheel" ];
+      settings = {
+        trusted-users = [ "root" "@wheel" ];
+        auto-optimise-store = true;
+      };
       nixPath = [
         "nixpkgs=/run/current-system/sw/nixpkgs"
       ]; # Pin the <nixpkgs> channel to our nixpkgs
@@ -21,7 +24,6 @@ in with lib; {
         options = "--delete-older-than 8d";
         dates = "weekly";
       };
-      autoOptimiseStore = true;
       # Get flakes
       package = pkgs.nixUnstable;
       extraOptions = ''
