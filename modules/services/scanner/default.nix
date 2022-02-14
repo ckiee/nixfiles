@@ -19,7 +19,7 @@ in with lib; {
     (mkIf cfg.enableServer {
       hardware.sane = {
         enable = true;
-        extraBackends = [ pkgs.hplipWithPlugin ]; # HP Deskjet 2510
+        extraBackends = [ config.cookie.services.printing.hplipPackage ]; # HP Deskjet 2510
       };
       services.saned = {
         enable = true;

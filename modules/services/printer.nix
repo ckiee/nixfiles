@@ -10,6 +10,11 @@ in with lib; {
       default = null;
       description = "host for the web interface";
     };
+    hplipPackage = mkOption {
+      default = pkgs.hplipWithPlugin.override { withQt5 = false; };
+      readOnly = true;
+      description = "the hplip driver package";
+    };
   };
 
   config = mkMerge [
@@ -17,7 +22,7 @@ in with lib; {
     (mkIf cfg.enable {
       services.printing = {
         enable = true;
-        drivers = [ pkgs.hplipWithPlugin ];
+        drivers = [ cfg.hplipPackage ];
       };
     })
     # Server-only
