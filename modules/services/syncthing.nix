@@ -42,6 +42,11 @@ in with lib; {
           "nixfiles" = {
             path = "${home}/git/nixfiles";
             devices = [ "cookiemonster" "thonkcookie" "pansear" ];
+            versioning = { # for the secrets
+              type = "simple";
+              params.keep =
+                "10";
+            };
           };
 
           "sync" = {
