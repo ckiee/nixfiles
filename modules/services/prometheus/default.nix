@@ -33,6 +33,8 @@ in with lib; {
       runtime = false;
     };
 
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 ];
+
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "5s";
@@ -46,7 +48,7 @@ in with lib; {
             group_wait = "30s";
             group_interval = "30s";
             repeat_interval = "30s";
-            receiver = "discord";
+            receiver = "null";
           };
 
           inhibit_rules = [{
@@ -60,13 +62,13 @@ in with lib; {
             equal = [ "alertname" "cluster" "service" ];
           }];
 
-          # receivers = [{
-          #   name = "discord";
-          #   webhook_configs = [{
-          #     url = "http://  "
-          #     send_resolved = true;
-          #   }];
-          # }];
+          receivers = [{
+            name = "null";
+            webhook_configs = [{
+              url = "http://192.0.2.1:32212"; # nonexistant, test-net
+              send_resolved = true;
+            }];
+          }];
         };
       };
       alertmanagers = [{

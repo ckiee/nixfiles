@@ -74,6 +74,7 @@ in {
       notification = false;
     }];
 
+    xdg.configFile."polybar/config".onChange = "${pkgs.procps}/bin/pkill polybar";
     services.polybar = {
       enable = true;
       package = pkgs.polybar.override {
@@ -91,7 +92,8 @@ in {
             mkIf (desktopCfg.monitors != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
-          modules-right = [ "polyprog" "mpd" "separator" "shower" ]
+          modules-right =
+            [ "prom" "separator" "polyprog" "mpd" "separator" "shower" ]
             ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
@@ -270,6 +272,11 @@ in {
           format-prefix = "${icons.shower} ";
           exec = "${mkRequiresScript ./shower-longpoll}";
           tail = true; # we run forever instead of getting executed many times
+        };
+
+        "module/prom" = {
+          type = "custom/script";
+          exec = "${mkRequiresScript ./prom}";
         };
       };
     };
