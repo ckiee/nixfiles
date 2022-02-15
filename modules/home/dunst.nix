@@ -15,7 +15,7 @@ in with lib; {
 
   config.services.dunst = mkIf cfg.enable {
     enable = true;
-    package = pkgs.dunst_1_6_1;
+    package = pkgs.dunst_ckie;
     settings = {
       global = {
         monitor = 0;
