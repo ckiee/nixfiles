@@ -28,6 +28,9 @@ in with lib; {
         localSystem.system = system;
       };
 
+      # unbork USB
+      boot.initrd.availableKernelModules = [ "reset_raspberrypi" ];
+
       ##
       ## Pasted from /nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix
       ##
