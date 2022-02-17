@@ -32,6 +32,9 @@ in with lib; {
     # TODO uncomment once zen is patched for btrfs breakage
     # boot.kernelPackages = pkgs.linuxPackages_zen;
 
+    # Hackity HACK for working D-Bus activation
+    systemd.user.services.dbus.environment.DISPLAY = ":0";
+
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
