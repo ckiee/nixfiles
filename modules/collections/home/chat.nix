@@ -13,10 +13,7 @@ in with lib; {
         src = builtins.fetchTarball
           "https://dl-ptb.discordapp.net/apps/linux/0.0.28/discord-ptb-0.0.28.tar.gz";
       }))
-      (discord.overrideAttrs (_: {
-        src = builtins.fetchTarball
-          "https://dl.discordapp.net/apps/linux/0.0.16/discord-0.0.16.tar.gz";
-      }))
+      discord
       fractal
       element-desktop
     ];
