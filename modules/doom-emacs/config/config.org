@@ -43,6 +43,21 @@ This strikes a nice balance between taking up a nice amount of the screen and st
 #+BEGIN_SRC elisp
 (add-to-list 'default-frame-alist '(alpha . 90))
 #+END_SRC
+*** suppress messages
+#+BEGIN_SRC elisp
+(defun ckie--suppress-messages (func &rest args)
+  "Suppress message output from FUNC."
+  ;; Some packages are too noisy.
+  ;; https://superuser.com/questions/669701/emacs-disable-some-minibuffer-messages
+  (cl-flet ((silence (&rest args1) (ignore)))
+    (advice-add 'message :around #'silence)
+    (unwind-protect
+        (apply func args)
+      (advice-remove 'message #'silence))))
+
+;; Suppress "Cleaning up the recentf...done (0 removed)"
+(advice-add 'recentf-cleanup :around #'ckie--suppress-messages)
+#+END_SRC
 * Doom/Extras
 ** fix config edit keybind
 Doom Emacs assumes your config will be in =~/.doom=, but mine isn't!
