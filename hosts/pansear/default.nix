@@ -5,7 +5,16 @@ with lib;
 {
   imports = [ ../.. ./hardware.nix ./windows-passthrough.nix ];
 
-  networking.hostName = "pansear";
+  networking.networkmanager.unmanaged = [ "enp2s0" ];
+  networking = {
+    hostName = "pansear";
+    defaultGateway = "192.168.0.1";
+    interfaces.eth0.ipv4.addresses = [{
+      address = "192.168.0.8";
+      prefixLength = 24;
+    }];
+  };
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   cookie = {
