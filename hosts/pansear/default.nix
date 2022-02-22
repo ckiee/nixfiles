@@ -34,6 +34,13 @@ with lib;
       ffg-bot.enable = true;
       alvr-bot.enable = true;
       daiko.enable = true;
+      scanner.enableServer = true;
+
+      printing = {
+        enable = true;
+        server = true;
+        host = "print.atori";
+      };
       aldhy = {
         enable = true;
         host = "aldhy.tailnet.ckie.dev";
