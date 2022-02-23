@@ -102,7 +102,7 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
 (setq org-directory "~/Sync/org/")
-(add-hook 'org-mode-hook #'visual-fill-column-mode)
+(add-hook 'org-mode-hook #'writeroom-mode)
 #+END_SRC
 ** adoc-mode
 #+BEGIN_SRC elisp :tangle packages.el
