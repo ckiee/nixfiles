@@ -13,7 +13,7 @@ in with lib; {
       builtins.readFile ./Qsynth.conf + ''
         [SoundFonts]
         BankOffset1=0
-        SoundFont1=${pkgs.soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2
+        SoundFont1=${pkgs.soundfont-ydp-grand}/share/soundfonts/YDP-GrandPiano.sf2
       '';
   };
 }
