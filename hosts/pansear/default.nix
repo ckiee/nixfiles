@@ -28,6 +28,7 @@ with lib;
     libvirtd.enable = true;
     restic.enable = true;
     zfs.enable = true;
+    doom-emacs.enable = true;
     services = {
       avahi.enable = true;
       owo-bot.enable = true;
