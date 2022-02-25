@@ -71,6 +71,7 @@ with builtins;
     yt-dlp # do some pretendin' and fetch videos
     jq # like 'node -e' but nicer
     btop # htop on steroids
+    expect # color capture, galore
   ];
 
   cookie = {
