@@ -127,6 +127,7 @@ in {
 
               # fmouse
               "${modifier}+a" = "exec ${pkgs.fmouse}/bin/fmouse";
+              "${modifier}+Shift+a" = "exec ${pkgs.fmouse}/bin/fmouse --right-click";
 
               # music house
               "${modifier}+Shift+w" =
