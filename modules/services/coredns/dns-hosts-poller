@@ -5,7 +5,6 @@ BASE_HOSTS="@baseHosts@"
 export PATH="$PATH:@tailscale@/bin:@jq@/bin"
 
 while true; do
-	sleep 10
 	tailscale status >/dev/null || continue
 	newhosts=$(mktemp)
 	cat "$BASE_HOSTS" >"$newhosts"
@@ -13,4 +12,5 @@ while true; do
 	chmod 444 "$newhosts"
 	rm /run/coredns-hosts
 	mv "$newhosts" /run/coredns-hosts
+	sleep 5
 done
