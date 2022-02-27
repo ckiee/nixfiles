@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ sources, lib, ... }:
 
 with lib;
 
@@ -13,6 +13,7 @@ in {
     useGlobalPkgs = true;
     #
     users.ckie = { ... }: {
+      _module.args.sources = sources;
       imports = [
         ./polybar
         ./shell.nix
