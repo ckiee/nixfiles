@@ -250,5 +250,17 @@
         "type": "tarball",
         "url": "https://github.com/ckiee/spectrogram/archive/ad2a22e6a09c2168578c328e147c8e9027cd4b36.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "st": {
+        "branch": "master",
+        "description": "ckie's st patchset",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "st",
+        "rev": "f13e82272c1a5ede288a87184a8da570d40f210b",
+        "sha256": "1mbbl774dz2dmkg1xhsc2km6g57sysrsarm9lc4slj7bnh7df125",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/st/archive/f13e82272c1a5ede288a87184a8da570d40f210b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
