@@ -257,10 +257,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "st",
-        "rev": "f13e82272c1a5ede288a87184a8da570d40f210b",
-        "sha256": "1mbbl774dz2dmkg1xhsc2km6g57sysrsarm9lc4slj7bnh7df125",
+        "rev": "1c732ea663374d929cc7734f1503f62c1ee67d3f",
+        "sha256": "0lnwzfswjyz2wv3kb2h3lf2x3rvr4xd8rlwc6p8qjw8xkrijl6b8",
         "type": "tarball",
-        "url": "https://github.com/ckiee/st/archive/f13e82272c1a5ede288a87184a8da570d40f210b.tar.gz",
+        "url": "https://github.com/ckiee/st/archive/1c732ea663374d929cc7734f1503f62c1ee67d3f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
