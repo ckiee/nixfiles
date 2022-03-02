@@ -194,3 +194,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 
 (map! :leader :n "q k" #'ckie-startup-init-state)
 #+END_SRC
+** verb (HTTP requests meet org mode)
+#+BEGIN_SRC elisp :tangle packages.el
+(package! verb)
+#+END_SRC
