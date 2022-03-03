@@ -72,6 +72,7 @@ with builtins;
     jq # like 'node -e' but nicer
     btop # htop on steroids
     expect # color capture, galore
+    caddy # convenient bloated web server
   ];
 
   cookie = {
