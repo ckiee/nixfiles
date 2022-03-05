@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "anonvote-bot",
-        "rev": "f4a27aeb6a3b99550b0f7731a942784b61c2144a",
-        "sha256": "00gfabkzji958pbvrvqxna9wvwqipq580ckbvbigwf59f54a7f32",
+        "rev": "571e7369fa588ff2da0e181c3406bcddaae02a8f",
+        "sha256": "03gcwkwh87q1l6d4lz089c9swk9l3hv3fy66p3g101hn32m37qxq",
         "type": "tarball",
-        "url": "https://github.com/ckiee/anonvote-bot/archive/f4a27aeb6a3b99550b0f7731a942784b61c2144a.tar.gz",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/571e7369fa588ff2da0e181c3406bcddaae02a8f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ckiesite": {
@@ -53,10 +53,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "daiko",
-        "rev": "8869f6c07038f38d8cecd2117fa07b80f7b1945c",
-        "sha256": "0x0qwmr0gy5ni4yz9lx02ph5wb2phd8bdm6dvwdfl1d7vviskz18",
+        "rev": "6e116a5da3dd782b843601e7575d0c0c0b48ea98",
+        "sha256": "1y4g3c67yccdzdfiivdr7kqkcb123h6w6pj67yyk68jxnl1143l0",
         "type": "tarball",
-        "url": "https://github.com/ckiee/daiko/archive/8869f6c07038f38d8cecd2117fa07b80f7b1945c.tar.gz",
+        "url": "https://github.com/ckiee/daiko/archive/6e116a5da3dd782b843601e7575d0c0c0b48ea98.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
