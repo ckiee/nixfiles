@@ -30,6 +30,7 @@ in {
     smartd.enable = true;
     steam.enable = true;
     libvirtd.enable = true;
+    hostapd.enable = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     machine-info.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPh7g9RWVnsccj2cX/LG+T6FuLMfPlNZue1g7G9O8uK3";
@@ -73,8 +74,7 @@ in {
     enable = true;
     package = pkgs.wireshark-qt;
   };
-  users.users.ckie.extraGroups =
-    [ "adbusers" "libvirtd" "wireshark" ];
+  users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "wireshark" ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;

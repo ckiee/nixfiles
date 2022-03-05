@@ -48,5 +48,6 @@
     ./remote-builder.nix
     ./nvidia-autoswitch.nix
     ./tailnet-certs.nix
+    ./hostapd.nix
   ];
 }
