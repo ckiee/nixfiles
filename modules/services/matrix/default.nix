@@ -153,6 +153,9 @@ in with lib; {
     systemd.services.matrix-synapse.serviceConfig = {
       LimitNPROC = 64;
       LimitNOFILE = 1048576;
+      # It eats a lot of memory.
+      Restart = mkForce "always";
+      RuntimeMaxSec = 86400;
     };
   };
 }
