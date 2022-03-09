@@ -200,3 +200,8 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp :tangle packages.el
 (package! verb)
 #+END_SRC
+** unfuck doom themes
+#+BEGIN_SRC elisp
+(advice-add 'consult-theme :after (lambda (&rest r)
+                                     (setq doom-theme nil)))
+#+END_SRC
