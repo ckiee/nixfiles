@@ -28,6 +28,8 @@ in with lib; {
       tokei # LOC stats
       racket-minimal
       jdk
+      git-cinnabar
+      mercurialFull
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
