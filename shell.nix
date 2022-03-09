@@ -26,7 +26,7 @@ in pkgs.mkShell {
     nix-prefetch-scripts
     nix-prefetch-github
     (nixos-generators.override { nix = myNix; })
-    cBin
+    # cBin
     myNix
     jq
     nix-eval-jobs
