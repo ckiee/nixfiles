@@ -57,7 +57,8 @@ in with lib; {
         '';
 
         # forward all Matrix API calls to synapse
-        locations."/_matrix".proxyPass = "http://[::1]:8008"; # without a trailing /
+        locations."/_matrix".proxyPass =
+          "http://[::1]:8008"; # without a trailing /
         locations."/_synapse".proxyPass = "http://[::1]:8008";
       };
     };
@@ -103,51 +104,54 @@ in with lib; {
     services.matrix-synapse = {
       enable = true;
       package = pkgs.matrix-synapse;
-      server_name = cfg.host;
-      public_baseurl = "https://${cfg.serviceHost}/";
-      database_type = "psycopg2";
-      database_name = "synapse";
-      database_user = "synapse";
-      registration_shared_secret =
-        fileContents ../../../secrets/matrix-synapse-registration;
-      listeners = [{
-        port = 8008;
-        bind_address = "::1";
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [{
-          names = [ "client" "federation" ];
-          compress = false;
+      settings = {
+        server_name = cfg.host;
+        public_baseurl = "https://${cfg.serviceHost}/";
+        database_type = "psycopg2";
+        database_name = "synapse";
+        database_user = "synapse";
+        registration_shared_secret =
+          fileContents ../../../secrets/matrix-synapse-registration;
+
+        listeners = [{
+          port = 8008;
+          bind_addresses = singleton "::1";
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [{
+            names = [ "client" "federation" ];
+            compress = false;
+          }];
         }];
-      }];
-      logConfig = ''
-        version: 1
+        logConfig = ''
+          version: 1
 
-        # In systemd's journal, loglevel is implicitly stored, so let's omit it
-        # from the message text.
-        formatters:
-            journal_fmt:
-                format: '%(name)s: [%(request)s] %(message)s'
+          # In systemd's journal, loglevel is implicitly stored, so let's omit it
+          # from the message text.
+          formatters:
+              journal_fmt:
+                  format: '%(name)s: [%(request)s] %(message)s'
 
-        filters:
-            context:
-                (): synapse.util.logcontext.LoggingContextFilter
-                request: ""
+          filters:
+              context:
+                  (): synapse.util.logcontext.LoggingContextFilter
+                  request: ""
 
-        handlers:
-            journal:
-                class: systemd.journal.JournalHandler
-                formatter: journal_fmt
-                filters: [context]
-                SYSLOG_IDENTIFIER: synapse
+          handlers:
+              journal:
+                  class: systemd.journal.JournalHandler
+                  formatter: journal_fmt
+                  filters: [context]
+                  SYSLOG_IDENTIFIER: synapse
 
-        root:
-            level: WARNING
-            handlers: [journal]
+          root:
+              level: WARNING
+              handlers: [journal]
 
-        disable_existing_loggers: False
-      '';
+          disable_existing_loggers: False
+        '';
+      };
     };
     # HACK: pr for nixpkgs
     systemd.services.matrix-synapse.serviceConfig = {

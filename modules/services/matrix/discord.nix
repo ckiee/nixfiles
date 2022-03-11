@@ -24,7 +24,7 @@ in {
       };
     };
 
-    services.matrix-synapse.app_service_config_files =
+    services.matrix-synapse.settings.app_service_config_files =
       [ "/var/lib/matrix-synapse/discord/discord-registration.yaml" ];
 
     cookie.bindfs.matrix-appservice-discord = {
