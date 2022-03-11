@@ -29,6 +29,7 @@
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
     smartd.enable = true;
+    steam.enable = true;
     machine-info.sshPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAC83UXW5rtEPlEqDT5c/W0DTFFwsVah6ZlCg1FO9kr";
   };
 
