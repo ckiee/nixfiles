@@ -155,10 +155,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "505182141d6176d765347f85b8fb0cc204d8c44e",
-        "sha256": "0w0avpj5gxyf8z9mhacfjpk4ba78jdh6742nvr99dch3ll0i5449",
+        "rev": "5b51499d0c776ad4a713a5ef0eb2c605443b5a01",
+        "sha256": "0jmnba624yfvm0b1niiqr6rcv01qvylf0sigap8c0c527s8y5pn6",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/505182141d6176d765347f85b8fb0cc204d8c44e.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/5b51499d0c776ad4a713a5ef0eb2c605443b5a01.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval-jobs": {
@@ -209,10 +209,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "6adc4f3b2aff7d3ae6a3fd3e139fcd586c696eb3",
-        "sha256": "0r6z0n70sy0a0d207srcp2ksdcz9kiz7zpr2rl9bini18gyd2fcf",
+        "rev": "1d3edd77efd72a36ce2508d3ba19de3c35452483",
+        "sha256": "1ggdgajz2pr379x9ci7py647cb0diwazxacx8faxj6l8ryvwzi68",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/6adc4f3b2aff7d3ae6a3fd3e139fcd586c696eb3.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/1d3edd77efd72a36ce2508d3ba19de3c35452483.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

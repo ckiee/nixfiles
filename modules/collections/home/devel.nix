@@ -21,7 +21,7 @@ in with lib; {
       gcc
       gh
       gdb
-      manpages
+      man-pages
       platformio
       elmPackages.elm
       elmPackages.elm-format
