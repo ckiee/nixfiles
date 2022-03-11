@@ -190,6 +190,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
   (dolist (name '("~/Sync" "~/git/nixfiles" "~/git/nixpkgs"))
     (+workspace/new)
     (projectile-switch-project-by-name name))
+  (=mu4e) ; *mu4e* workspace
   (+workspace/delete "main")
   (setq +workspaces-switch-project-function #'doom-project-find-file)
   (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list))
