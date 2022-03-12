@@ -107,9 +107,13 @@ in with lib; {
       settings = {
         server_name = cfg.host;
         public_baseurl = "https://${cfg.serviceHost}/";
-        database_type = "psycopg2";
-        database_name = "synapse";
-        database_user = "synapse";
+        database = {
+          name = "psycopg2";
+          args = {
+            database = "synapse";
+            user = "synapse";
+          };
+        };
         registration_shared_secret =
           fileContents ../../../secrets/matrix-synapse-registration;
 
