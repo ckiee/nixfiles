@@ -20,6 +20,7 @@ in with lib; {
         gnome.file-roller
         gnome.gnome-system-monitor
         gnome.gnome-calculator
+        gnome.gnome-disk-utility
         gnome.totem
         gnome.eog
       ];
