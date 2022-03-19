@@ -60,6 +60,7 @@ in {
       subtitleeditor # making text from sine waves, manually
       # freecad # behold our most precious polygons, just one step away from real life!
       easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?
+      screenkey # show the keyboard keys on the ~~keyboard~~screen
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
