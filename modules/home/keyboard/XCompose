@@ -149,6 +149,7 @@
 <Multi_key> <asciitilde>        : "〜" # WAVE DASH
 <Multi_key> <S> <U> <N>         : "😎" # SUNGLASSES
 <Multi_key> <K> <N> <D> <L>     : "knödel"
+<Multi_key> <P> <L> <D>         : "🥺" # BOTTOM
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
