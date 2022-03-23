@@ -41,6 +41,7 @@ in with lib; {
           enable = true;
           inherit (cfg) laptop;
         };
+        collections = { chat.enable = true; };
         gtk.enable = true;
         dunst.enable = true;
         keyboard.enable = true;
@@ -52,7 +53,7 @@ in with lib; {
         remotemacs.enable = true;
         mimeapps.enable = true;
         st.enable = true;
-        collections = { chat.enable = true; };
+        screen-locker.enable = true;
       };
       services.rsibreak.enable = true;
     };

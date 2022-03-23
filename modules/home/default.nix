@@ -33,6 +33,7 @@ in {
         ./mimeapps.nix
         ./remotemacs.nix
         ./st
+        ./screen-locker.nix
       ];
     };
   };
