@@ -11,7 +11,7 @@ else
 	if [ ! -f $CACHE ]; then
 		touch $CACHE
 		chmod 644 $CACHE
-		nix search --json | jq 'keys | join("\n")' -r | grep -v Packages | sed -e 's/nixpkgs\.//' >$CACHE
+		nix search --json | jq 'keys | join("\n")' -r | grep -v Packages | sed -e 's/nixpkgs\.//' >"$CACHE"
 	fi
 	pkg=$(rofi -dmenu <$CACHE)
 	rofi -e "downloading $pkg..." &
