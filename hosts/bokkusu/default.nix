@@ -12,7 +12,6 @@
     remote-builder.role = "user";
     services = {
       minecraft.enable = true;
-      matterbridge.enable = true;
       rtc-files.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
