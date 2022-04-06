@@ -233,10 +233,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "owo-bot",
-        "rev": "802ac5d14f6ce834c50c54d987eb71530eacbb2c",
-        "sha256": "1kph0bbzrl0jj0k9h91f92c9a9qjqlvknqs8kcc62z56bf10n24f",
+        "rev": "29e494248cc4e5ee9718a1c39d94e0b929868ef5",
+        "sha256": "17628qyc05j047kpxlx1zlrr897g8f14awzs2ac6k2z1k8zsg81h",
         "type": "tarball",
-        "url": "https://github.com/ckiee/owo-bot/archive/802ac5d14f6ce834c50c54d987eb71530eacbb2c.tar.gz",
+        "url": "https://github.com/ckiee/owo-bot/archive/29e494248cc4e5ee9718a1c39d94e0b929868ef5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "spectrogram-web": {
