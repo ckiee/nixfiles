@@ -49,5 +49,6 @@
     ./nvidia-autoswitch.nix
     ./tailnet-certs.nix
     ./hostapd.nix
+    ./logiops.nix
   ];
 }
