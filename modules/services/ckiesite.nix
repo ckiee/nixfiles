@@ -28,6 +28,7 @@ in with lib; {
           "/spectrogram".root = "${spectrogramRoot}";
         };
         extraConfig = ''
+          rewrite ^/owobot$ https://discord.com/oauth2/authorize?client_id=731874934543876158&permissions=536895488&scope=bot permanent;
           access_log /var/log/nginx/ckiesite.access.log;
         '';
       };
