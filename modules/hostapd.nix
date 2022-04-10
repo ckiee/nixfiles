@@ -63,7 +63,7 @@ in {
       serviceConfig.Restart = "always";
 
       script = ''
-        rm /run/hostapd.conf
+        rm /run/hostapd.conf || true
         touch /run/hostapd.conf
         chmod 600 /run/hostapd.conf
         sed -e 's/REPLACE/'"$(cat '${config.cookie.secrets.hostapd-passphrase.dest}')"'/' ${configFile} > /run/hostapd.conf
