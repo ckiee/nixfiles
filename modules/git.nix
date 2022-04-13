@@ -40,7 +40,7 @@ in with lib; {
         extraConfig = {
           pull = {
             rebase = true;
-            ff = "only";
+            # ff = "only";
           };
           rebase = { autoStash = true; };
           init = { defaultBranch = "main"; };
