@@ -20,6 +20,10 @@ in with lib; {
       enable = true;
       port = 8571;
       domain = cfg.host;
+      auth.anonymous = {
+        enable = true;
+        org_role = "Viewer";
+      };
     };
 
     services.nginx = {
