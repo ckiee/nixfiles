@@ -153,6 +153,7 @@
 <Multi_key> <B> <T> <M>         : "🥺" # BOTTOM
 <Multi_key> <T> <O> <P>         : "😈" # TOP
 <Multi_key> <F> <I> <N>         : "👉👈" # more BOTTOM
+<Multi_key> <P> <U> <K>         : "🤮" # EW EW EW PUKLE  PUKE
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
