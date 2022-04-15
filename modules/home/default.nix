@@ -34,6 +34,7 @@ in {
         ./remotemacs.nix
         ./st
         ./screen-locker.nix
+        ./toot
       ];
     };
   };

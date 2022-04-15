@@ -54,6 +54,7 @@ in with lib; {
         mimeapps.enable = true;
         st.enable = true;
         screen-locker.enable = true;
+        toot.enable = true;
       };
       services.rsibreak.enable = true;
     };
