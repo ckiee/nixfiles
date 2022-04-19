@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
 function get_hosts {
     nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./deploy/morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
@@ -72,7 +72,7 @@ elif [ "$1" == "eval" ]; then
         mkfile $@
         # Each worker uses a lot of RAM..
         workers=$(cat /proc/meminfo | rg 'MemAvailable:\s+(\d+) kB' --replace '$1' | jq '. / (6 * 1024 * 1024) | round')
-        nix-eval-jobs --workers "$workers" $file
+        nix-eval-jobs $show_trace --workers "$workers" $file
     elif [ "$1" == "build" ]; then
         shift
         mkfile $@
