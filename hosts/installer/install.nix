@@ -5,7 +5,7 @@ with lib;
 let
   installer = with pkgs;
     let
-      system = (import <nixpkgs/nixos/lib/eval-config.nix> {
+      system = (import "${pkgs.path}/nixos/lib/eval-config.nix" {
         system = "x86_64-linux";
         modules = [
           ./base.nix
