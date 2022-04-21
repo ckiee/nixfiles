@@ -28,6 +28,7 @@
     ./mcid.nix # daniel's
     ./alvr-bot.nix
     ./hydra
+    ./wikidict.nix
     # Home baked
     ./ronthecookieme.nix
     ./rtc-files.nix

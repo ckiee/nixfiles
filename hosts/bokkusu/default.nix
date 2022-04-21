@@ -18,6 +18,7 @@
       anonvote-bot.enable = true;
 
       prometheus.enable = true;
+      wikidict.enable = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
@@ -69,6 +70,7 @@
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
+            "dict.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
