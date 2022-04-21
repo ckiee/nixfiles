@@ -9,7 +9,8 @@ in with lib; {
     email = mkOption rec {
       type = types.str;
       default = (builtins.head
-        (mail-util.process (fileContents ../../secrets/email-salt) [ "git" ]));
+        (mail-util.process (fileContents ../../secrets/email-salt)
+          [ "wikidict" ]));
       description = "Admin email to use";
       example = default;
     };
@@ -34,7 +35,12 @@ in with lib; {
     cookie.services.nginx.enable = true;
     services.nginx = {
       virtualHosts."${cfg.host}" = {
-        locations."/" = { proxyPass = "http://wikidict.containers"; };
+        locations."/" = {
+          proxyPass = "http://wikidict.containers";
+          extraConfig = ''
+            rewrite ^/wiki/([^?]*)(?:\?(.*))? /index.php?title=$1&$2 last;
+          '';
+        };
         extraConfig = ''
           access_log /var/log/nginx/wikidict.access.log;
         '';
@@ -94,6 +100,10 @@ in with lib; {
             hostName = cfg.host;
             adminAddr = cfg.email;
           };
+          extraConfig = ''
+            $wgLogo = "https://i.ckie.dev/lWkTDoZ.png";
+            $wgArticlePath      = "/wiki/$1";
+          '';
         };
       };
     };
