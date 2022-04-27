@@ -38,7 +38,9 @@ in {
     };
     extraHosts = mkOption {
       type = types.lines;
-      default = "";
+      default = ''
+        0.0.0.0 social.pixie.town
+      '';
       description = "Extra hosts separated by lines";
     };
   };
