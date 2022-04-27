@@ -30,7 +30,7 @@
     ./hydra
     ./wikidict.nix
     # Home baked
-    ./ronthecookieme.nix
+    ./rtcme.nix
     ./rtc-files.nix
     ./comicfury.nix
     ./owo-bot.nix
