@@ -9,7 +9,6 @@ in with lib; {
       type = types.str;
       default = "redirect-farm.localhost";
       description = "the host";
-      example = "u.ronthecookie.me";
     };
   };
 
@@ -28,13 +27,6 @@ in with lib; {
           access_log /var/log/nginx/redirect-farm.access.log;
         '';
       };
-      virtualHosts."znc.ronthecookie.me" =
-        mkIf (config.networking.hostName == "bokkusu") {
-          extraConfig = ''
-            access_log /var/log/nginx/redirect-farm.access.log;
-            return 301 $scheme://znc.ckie.dev$request_uri;
-          '';
-        };
     };
 
     cookie.services.prometheus.nginx-vhosts = [ "redirect-farm" ];

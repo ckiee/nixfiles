@@ -7,7 +7,6 @@ in with lib; {
     enable = mkEnableOption "Enables rtc-files service";
     old-fqdn = mkOption {
       type = types.str;
-      default = "ronthecookie.me";
       description = "old fqdn";
     };
     new-fqdn = mkOption {
