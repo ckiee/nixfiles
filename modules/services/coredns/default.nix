@@ -38,9 +38,7 @@ in {
     };
     extraHosts = mkOption {
       type = types.lines;
-      default = ''
-        0.0.0.0 social.pixie.town
-      '';
+      default = "";
       description = "Extra hosts separated by lines";
     };
   };
@@ -60,6 +58,8 @@ in {
   # p.s. we also configure magic so we can drop the `.tailnet.ckie.dev` part. Just `galaxy-a51`
   config = mkIf cfg.enable (mkMerge [
     {
+      cookie.services.coredns.extraHosts = "0.0.0.0 social.pixie.town";
+
       systemd.services.dns-hosts-poller = {
         description =
           "Update the /run/coredns-hosts hosts file with new Tailscale hosts";
