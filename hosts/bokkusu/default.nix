@@ -14,7 +14,6 @@ in {
     remote-builder.role = "user";
     services = {
       minecraft.enable = true;
-      rtc-files.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
@@ -28,6 +27,10 @@ in {
       rtcme = {
         enable = true;
         host = rtcme;
+      };
+      rtc-files = {
+        enable = true;
+        host = "i.${rtcme}";
       };
       ckiesite = {
         enable = true;
