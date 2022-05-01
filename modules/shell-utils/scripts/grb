@@ -1,0 +1,21 @@
+#!@bash@/bin/bash
+
+# unused
+# export PATH="@ckiePath@"
+set -euo pipefail
+
+if ! [ -v 1 ]; then
+    echo "usage: grb <steps / commit hash> [git rebase options...]" 1>&2
+    exit 1
+fi
+
+numbers='^[0-9]+$'
+
+if [[ $1 =~ $numbers ]] && [ "$1" -lt 10000 ]; then
+    # probably an actual number and not a hash
+    head="HEAD~$1"
+    shift
+    exec git rebase -i "$head" $@
+else
+    exec git rebase -i $@
+fi

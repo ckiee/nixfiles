@@ -30,7 +30,8 @@ in {
       };
       rtc-files = {
         enable = true;
-        host = "i.${rtcme}";
+        old-fqdn = rtcme;
+        new-fqdn = "ckie.dev";
       };
       ckiesite = {
         enable = true;

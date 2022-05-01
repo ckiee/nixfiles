@@ -11,7 +11,6 @@ in with lib; {
     };
     new-fqdn = mkOption {
       type = types.str;
-      default = "ckie.dev";
       description = "new fqdn";
     };
     folder = mkOption {

@@ -47,6 +47,7 @@ in with lib; {
             "${pkgs.yt-dlp}/bin/yt-dlp -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
           rgbc =
             "printf 'xffxfb%c%c%c' $(${pkgs.gnome.zenity}/bin/zenity --color-selection | cut -d'(' -f2 | cut -d')' -f1 | tr ',' ' ') | ${pkgs.picocom}/bin/picocom -qrb 9600 /dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0";
+          # there are other helpers in `shell-utils`, elsewhere. TODO consolidate all of them into a busybox-style thing
         };
         sessionVariables = rec {
           EDITOR = "vim";
