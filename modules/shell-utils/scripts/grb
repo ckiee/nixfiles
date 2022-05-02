@@ -16,6 +16,9 @@ if [[ $1 =~ $numbers ]] && [ "$1" -lt 10000 ]; then
     head="HEAD~$1"
     shift
     exec git rebase -i "$head" $@
+elif [ -f "$1" ]; then
+    git add "$1"
+    exec git commit --amend --no-edit
 else
     exec git rebase -i $@
 fi
