@@ -5,7 +5,7 @@
 set -euo pipefail
 
 if ! [ -v 1 ]; then
-    echo "usage: grb <steps / commit hash> [git rebase options...]" 1>&2
+    echo "usage: grb <steps / commit hash / path> [git rebase options...]" 1>&2
     exit 1
 fi
 
@@ -16,7 +16,7 @@ if [[ $1 =~ $numbers ]] && [ "$1" -lt 10000 ]; then
     head="HEAD~$1"
     shift
     exec git rebase -i "$head" $@
-elif [ -f "$1" ]; then
+elif [ -e "$1" ]; then # file exists, regardless of whether it is a directory
     git add "$1"
     exec git commit --amend --no-edit
 else
