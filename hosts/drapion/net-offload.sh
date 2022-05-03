@@ -4,6 +4,10 @@ defroute=""
 upstream_defroute=""
 phone_iface=""
 adb wait-for-device
+if ! adb get-serialno | rg "$PHONE_SERIAL">/dev/null; then
+    exit 1
+fi
+
 while true; do
     if ! lsusb | rg 'network tethering' >/dev/null; then
         # disable wifi, enable data

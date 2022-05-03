@@ -1,5 +1,7 @@
 { util, config, lib, pkgs, ... }:
 
+with lib;
+
 {
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
   systemd.services.net-offload = {
@@ -9,6 +11,7 @@
     environment = {
       MAIN_IFACE = "eth0";
       SSH_OPTS = "-i ${config.cookie.secrets.darcher-ssh-rsa.dest} -oStrictHostKeyChecking=no";
+      PHONE_SERIAL = fileContents ../../secrets/net-offload-phone-serial;
     };
   };
 
