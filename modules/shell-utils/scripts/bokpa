@@ -3,7 +3,7 @@ export PATH="$PATH:@ckiePath@" # need system ssh
 
 # Pipe stdin into i.ckie.dev
 tmp=$(mktemp)
-cat - > "$tmp"
+cat ${@:--} > "$tmp"
 tfn=$(tr -dc 'a-zA-Z0-9' </dev/urandom | head -c 7).txt
 rsync --chmod 0644 "$tmp" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
 echo https://i.ckie.dev/"$tfn"
