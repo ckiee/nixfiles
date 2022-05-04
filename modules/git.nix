@@ -44,6 +44,8 @@ in with lib; {
           };
           rebase = { autoStash = true; };
           init = { defaultBranch = "main"; };
+          # Rewrite unencrypted git://github.com URLs to the encrypted version which isn't deprecated
+          ${''url "git@github.com:"''} = { insteadOf = "git://github.com/"; };
         };
       };
     };
