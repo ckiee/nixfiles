@@ -5,7 +5,7 @@ with lib;
 # nix-build '<nixpkgs/nixos>' -A config.system.build.sdImage -I nixos-config=hosts/drapion/default.nix --argstr system aarch64-linux
 
 {
-  imports = [ ../.. ./net-offload.nix ];
+  imports = [ ../.. ];
 
   cookie = {
     wol.enable = true;
@@ -17,6 +17,7 @@ with lib;
     services = {
       avahi.enable = true;
       isp-troll.enable = true;
+      net-offload.enable = true;
 
       coredns = {
         enable = true;
