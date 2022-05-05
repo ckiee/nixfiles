@@ -102,23 +102,11 @@ let
           }"))
         '';
       };
-    # A slimmer Doom to use to tangle the configuration of the more interesting Doom:
-    #
-    # 1. bootstrapDoom is built with a mostly-empty configuration in order to get a working environment for org-tangle.
-    # 2. The final doomEmacs is built with the tangledPrivateDir from step #1.
-
-    # We don't use `./config` directly to avoid bootstrap rebuilds for `config.org`-only changes.
-    bootstrapPrivateDir = pkgs.runCommand "bootstrap-doom-private" { } ''
-      mkdir -p $out
-      cd $out
-      touch {packages,config}.el
-      cp ${./config/init.el} init.el
-    '';
-    bootstrapDoom = mkDoom bootstrapPrivateDir pkgs.emacs;
+    # https://github.com/nix-community/nix-doom-emacs/issues/60#issuecomment-1083630633
     tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
       mkdir -p $out
       cp -rv ${./config}/. $out/
-      ${bootstrapDoom}/bin/org-tangle $out
+      ${nativeCompEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle$out
     '';
   in mkDoom tangledPrivateDir nativeCompEmacs;
 in {
