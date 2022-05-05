@@ -106,7 +106,7 @@ let
     tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
       mkdir -p $out
       cp -rv ${./config}/. $out/
-      ${nativeCompEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle$out
+      ${nativeCompEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle $out
     '';
   in mkDoom tangledPrivateDir nativeCompEmacs;
 in {
