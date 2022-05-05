@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
-function get_hosts {
-    nix eval --raw --impure --expr 'let lib = (import <nixpkgs> {}).lib; in lib.concatStringsSep "\n" (lib.attrNames (removeAttrs (import ./deploy/morph.nix) [ "network" "defaults" "resources" "require" "_file" "_metadata" ]))'
-}
+deployMeta="$(nix-instantiate --json --strict --eval deploy/binc-info.nix)"
 function morp {
     $($0 eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
     echo morph $@ $show_trace
@@ -51,8 +49,10 @@ elif [ "$1" == "installer" ]; then
             $cmd
         fi
     fi
-elif get_hosts | grep -E "^$1$" >/dev/null; then
+elif echo "$deployMeta" | jq .hosts | grep -E "^$1$" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
+elif echo "$deployMeta" | jq ".serviceHosts.$1" | grep -v null >/dev/null; then
+    morp $action deploy/morph.nix $deployExtra --on "{$(echo "$deployMeta" | jq ".serviceHosts.$1" | jq -r 'join(",")')}"
 elif [ "$1" == "bump" ]; then
     niv update $2
 elif [ "$1" == "eval" ]; then
