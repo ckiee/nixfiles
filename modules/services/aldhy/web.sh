@@ -168,6 +168,7 @@ unset HOOK_ID
 c eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null >> ../new-jobs
 EOF
         chmod +x farm.sh
+        rm ../pending-jobs # if theres a new commit lets not waste our time with old evals
         nix-shell --run './farm.sh'
     ) &
     exit 0
