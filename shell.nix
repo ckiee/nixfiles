@@ -32,4 +32,8 @@ in pkgs.mkShell {
     jq
     nix-eval-jobs
   ];
+
+  shellHook = ''
+    export PATH="$PATH:$(pwd)/bin"
+  '';
 }
