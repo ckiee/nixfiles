@@ -51,10 +51,14 @@ elif [ "$1" == "installer" ]; then
     fi
 elif echo "$deployMeta" | jq .hosts | grep -E "^$1$" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
-elif echo "$deployMeta" | jq ".serviceHosts.$1" | grep -v null >/dev/null; then
-    morp $action deploy/morph.nix $deployExtra --on "{$(echo "$deployMeta" | jq ".serviceHosts.$1" | jq -r 'join(",")')}"
-elif [ "$1" == "bump" ]; then
+elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
+    morp $action deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
+elif [ "$1" == "bump" ] || [ "$1" == "demp" ]; then
     niv update $2
+    if [ "$1" == "demp" ]; then
+        # try to build & deploy this demp (="buMP DEploy")
+        exec $0 $2
+    fi
 elif [ "$1" == "eval" ]; then
     shift
     file="eval-$RANDOM.nix"

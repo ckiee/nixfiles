@@ -5,8 +5,7 @@ let
   };
   pkgs = import sources.nixpkgs { };
   inherit (eval) uncheckedNodes nodes;
-  inherit (pkgs) lib;
-in with lib;
+in with pkgs.lib;
 let
   getEnabledModulesInNs = ns:
     mapAttrs (k: module: module ? enable && module.enable) ns;
