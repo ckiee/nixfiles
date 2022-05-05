@@ -155,10 +155,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "5b51499d0c776ad4a713a5ef0eb2c605443b5a01",
-        "sha256": "0jmnba624yfvm0b1niiqr6rcv01qvylf0sigap8c0c527s8y5pn6",
+        "rev": "d5f2c3964664d60cd6f5960480a0920b973ddebd",
+        "sha256": "0nbwd1f8408h9js1ccimjjrl7p3s8y1v5hkkyghc4190wr6zm21a",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/5b51499d0c776ad4a713a5ef0eb2c605443b5a01.tar.gz",
+        "url": "https://github.com/nix-community/nix-doom-emacs/archive/d5f2c3964664d60cd6f5960480a0920b973ddebd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval-jobs": {
@@ -167,10 +167,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-eval-jobs",
-        "rev": "77aa769aef5460ca8d24a0ab5a108cfe938c881b",
-        "sha256": "1an834bk2lmksrbx7zf88zi9p6aipdvdvfyx33v2cxnyipjj7niq",
+        "rev": "c58f394e4ab5b70d23d65e0f03ff110a8436a3b9",
+        "sha256": "0x6jjqkqv3nkhabbhifgy1k221fw6zmil2xccx00yxypd0iq2hl6",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-eval-jobs/archive/77aa769aef5460ca8d24a0ab5a108cfe938c881b.tar.gz",
+        "url": "https://github.com/nix-community/nix-eval-jobs/archive/c58f394e4ab5b70d23d65e0f03ff110a8436a3b9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
@@ -209,10 +209,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "866a9a0c5a4371d69c160e8cecbaeb0b44b0e645",
-        "sha256": "1a8srqnxdc5b7qwxln7ldnz4hqcp6h84dfngayas7qfaa6fxq3a1",
+        "rev": "094fd268916096cdcee44114ebea3a4c0fc1de25",
+        "sha256": "139abg7jzij337i3b3n48savyg720vz5awa4nad2c78dg5m2y9hy",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/866a9a0c5a4371d69c160e8cecbaeb0b44b0e645.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/094fd268916096cdcee44114ebea3a4c0fc1de25.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

@@ -10,12 +10,13 @@ let
 
   morph = import sources.morph { inherit pkgs; };
   nix-eval-jobs = pkgs.callPackage sources.nix-eval-jobs { };
-  myNix = pkgs.nixUnstable.overrideAttrs (orig: {
-    patches = orig.patches ++ [
-      ./0001-libexpr-improve-invalid-value-error.patch
-      ./0002-libexpr-add-blackhole-InternalType-to-printValue.patch
-    ];
-  });
+  myNix = pkgs.nixUnstable;
+  #   .overrideAttrs (orig: {
+  #   patches = orig.patches ++ [
+  #     ./0001-libexpr-improve-invalid-value-error.patch
+  #     ./0002-libexpr-add-blackhole-InternalType-to-printValue.patch
+  #   ];
+  # });
 in pkgs.mkShell {
   NIX_PATH = "nixpkgs=${sources.nixpkgs}";
   NIXPKGS_ALLOW_UNFREE = "1";
