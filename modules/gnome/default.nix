@@ -16,17 +16,13 @@ in with lib; {
     ];
 
     home-manager.users.ckie = { pkgs, ... }: {
-      home.packages = with pkgs; [
-        gnome.file-roller
-        gnome.gnome-system-monitor
-        (gnome.gnome-calculator.overrideAttrs (old: {
-          patches = (old.patches or []) ++ [ ./0001-remove-update_rates-call.patch ];
-          dontCheck = true; # patch breaks the tests
-          doCheck = false;
-        }))
-        gnome.gnome-disk-utility
-        gnome.totem
-        gnome.eog
+      home.packages = with pkgs.gnome3; [
+        file-roller
+        gnome-system-monitor
+        gnome-calculator
+        gnome-disk-utility
+        totem
+        eog
       ];
     };
   };
