@@ -19,7 +19,7 @@
     ./slock.nix
     ./fonts.nix
     ./git.nix
-    ./gnome.nix
+    ./gnome
     ./xserver.nix
     ./desktop.nix
     ./systemd-boot.nix
