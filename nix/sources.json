@@ -85,9 +85,15 @@
     },
     "ffg-bot": {
         "branch": "master",
-        "repo": "ssh://git@github.com/ckiee/ffg-bot.git",
+        "description": "Falling From Grace discord bot. Repo is public so I can have an easier time with Nix CI",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "ffg-bot",
         "rev": "63e2161c04375d7eb2bd88b22bd408bb8a42d526",
-        "type": "git"
+        "sha256": "11n7v93b0v9c3xqq6zwxs1123iigv5h3q8jbbj15l2pdz704zvg0",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/ffg-bot/archive/63e2161c04375d7eb2bd88b22bd408bb8a42d526.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
         "branch": "master",
