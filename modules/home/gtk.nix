@@ -1,6 +1,10 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.gtk;
+let
+  cfg = config.cookie.gtk;
+  gtkConfig = {
+    extraConfig = { gtk-application-prefer-dark-theme = cfg.darkTheme; };
+  };
 in with lib; {
   options.cookie.gtk = {
     enable = mkEnableOption "Enables some sexy GTK theming";
@@ -17,6 +21,7 @@ in with lib; {
       name = "Paper";
       package = pkgs.paper-gtk-theme;
     };
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = cfg.darkTheme; };
+    gtk3 = gtkConfig;
+    gtk4 = gtkConfig;
   };
 }
