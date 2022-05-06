@@ -29,6 +29,8 @@ in with lib; {
           zeroconf_enabled "no"
         '';
     };
+
+    systemd.user.services.mpd.Service.ExecStartPost = "${pkgs.mpc_cli}/bin/mpc crossfade 1"; # set crossfade to 1sec
     services.mpdris2 = { enable = true; };
 
     home.packages = with pkgs; [
