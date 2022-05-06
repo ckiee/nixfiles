@@ -101,10 +101,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "267462dfb36d447421c789a3adf9d460cd09c147",
-        "sha256": "0dprd5riydfhh2dmbsgxmdanfy3agrb4b0qk7gmrx9rmkwh2qmfw",
+        "rev": "538343be863cb0b9e9f1471e6dc09e0e140c7b3d",
+        "sha256": "10v2pz735rmmjmljkrq19s40n1ymj8fpn57gp8s31w3gy79x2ird",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/267462dfb36d447421c789a3adf9d460cd09c147.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/538343be863cb0b9e9f1471e6dc09e0e140c7b3d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "matterbridge": {
@@ -215,10 +215,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "82bb4633a9b3fd4042c305d508cdad8ef27292d6",
-        "sha256": "1dgaddsz18c7m3cyh4vf73i737axfyxvpaj67z92qlyr6znmnqih",
+        "rev": "efe458ecc411e42919a6d4248f616894f48bf134",
+        "sha256": "0v1q7bcifaf7n6zfwc89w37cgkh0qiacbx3dfrm3kd2x6pa45wfm",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/82bb4633a9b3fd4042c305d508cdad8ef27292d6.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/efe458ecc411e42919a6d4248f616894f48bf134.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
