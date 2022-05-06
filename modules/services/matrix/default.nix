@@ -163,7 +163,7 @@ in with lib; {
       LimitNOFILE = 1048576;
       # It eats a lot of memory.
       Restart = mkForce "always";
-      RuntimeMaxSec = 86400;
+      RuntimeMaxSec = "1d";
     };
   };
 }
