@@ -1,0 +1,30 @@
+From 50d50c5dcda0d5c2eedd22f87f1b4990c2849d64 Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Fri, 6 May 2022 22:59:10 +0300
+Subject: [PATCH] feat(xkeyboard): add %shortname% token
+
+This takes the string like "English (US)" or "Hebrew" that is produced
+by %name% and shortens it into a "en" or "he". This is the same behavior
+that used to occur before some upstream changes made "%layout%" useless
+on some systems.
+---
+ src/modules/xkeyboard.cpp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/modules/xkeyboard.cpp b/src/modules/xkeyboard.cpp
+index 53920640..8b8c4104 100644
+--- a/src/modules/xkeyboard.cpp
++++ b/src/modules/xkeyboard.cpp
+@@ -112,6 +112,9 @@ namespace modules {
+     if (m_layout) {
+       m_layout->reset_tokens();
+       m_layout->replace_token("%name%", m_keyboard->group_name(m_keyboard->current()));
++      auto short_group_name = m_keyboard->group_name(m_keyboard->current());
++      std::transform(short_group_name.begin(), short_group_name.end(), short_group_name.begin(), ::tolower);
++      m_layout->replace_token("%shortname%", short_group_name.substr(0, 2));
+       m_layout->replace_token("%variant%", m_keyboard->variant_name(m_keyboard->current()));
+ 
+       auto const current_layout = m_keyboard->layout_name(m_keyboard->current());
+-- 
+2.36.0
+

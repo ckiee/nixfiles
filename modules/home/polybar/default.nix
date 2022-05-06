@@ -74,14 +74,18 @@ in {
       notification = false;
     }];
 
-    xdg.configFile."polybar/config".onChange = "${pkgs.procps}/bin/pkill polybar";
+    xdg.configFile."polybar/config".onChange =
+      "${pkgs.procps}/bin/pkill polybar";
     services.polybar = {
       enable = true;
-      package = pkgs.polybar.override {
+      package = (pkgs.polybar.override {
         i3GapsSupport = true;
         pulseSupport = true;
         mpdSupport = true;
-      };
+      }).overrideAttrs (old: {
+        patches = old.patches
+          ++ [ ./0001-feat-xkeyboard-add-shortname-token.patch ];
+      });
 
       script =
         ""; # we aren't really using the service as it runs before i3 and we need i3 ipc
@@ -259,6 +263,7 @@ in {
         "module/keyboard" = {
           type = "internal/xkeyboard";
           format = "${icons.globe} <label-layout>";
+          label-layout = "%shortname%";
         };
 
         # A progress indicator for the polyprog script
