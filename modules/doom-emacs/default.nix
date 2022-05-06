@@ -105,8 +105,11 @@ let
     # https://github.com/nix-community/nix-doom-emacs/issues/60#issuecomment-1083630633
     tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
       mkdir -p $out
-      cp -rv ${./config}/. $out/
+      cd $out
+      cp -rv ${./config}/. .
+      rm {config,packages}.el
       ${nativeCompEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle $out
+      rm config.org
     '';
   in mkDoom tangledPrivateDir nativeCompEmacs;
 in {
