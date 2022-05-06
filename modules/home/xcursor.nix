@@ -7,10 +7,12 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    xsession.pointerCursor = {
+    home.pointerCursor = {
       package = pkgs.gnome3.adwaita-icon-theme;
       name = "Adwaita";
       size = 16;
+      x11.enable = true;
+      gtk.enable = true;
     };
   };
 }
