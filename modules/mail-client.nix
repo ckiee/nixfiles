@@ -16,7 +16,7 @@ in with lib; {
 
     home-manager.users.ckie = { pkgs, ... }: {
       accounts.email = {
-        maildirBasePath = "${maildir}";
+        maildirBasePath = maildir;
         accounts = let
           base = {
             mbsync = {
