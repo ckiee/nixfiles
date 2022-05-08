@@ -263,7 +263,6 @@ in {
         "module/keyboard" = {
           type = "internal/xkeyboard";
           format = "${icons.globe} <label-layout>";
-          label-layout = "%shortname%";
         };
 
         # A progress indicator for the polyprog script
