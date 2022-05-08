@@ -3,7 +3,7 @@
 with lib;
 
 let
-  iface = "wlp43s0f3u3";
+  iface = "wlp43s0f3u4";
   configFile = pkgs.writeText "hostapd.conf" ''
     interface=${iface}
     bridge=br0
