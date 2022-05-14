@@ -49,7 +49,7 @@ elif [ "$1" == "installer" ]; then
             $cmd
         fi
     fi
-elif echo "$deployMeta" | jq .hosts | grep -E "^$1$" >/dev/null; then
+elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
