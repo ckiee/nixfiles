@@ -14,6 +14,8 @@ in with lib; {
         [SoundFonts]
         BankOffset1=0
         SoundFont1=${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2
+        BankOffset2=0
+        SoundFont2=${pkgs.soundfont-ydp-grand}/share/soundfonts/YDP-GrandPiano.sf2
       '';
   };
 }
