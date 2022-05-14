@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }:
 
 with lib;
 with builtins;
@@ -10,6 +10,14 @@ let
   svcEmail = (builtins.head
     (mail-util.process (fileContents ../../../secrets/email-salt)
       [ "pleroma/admin" ]));
+
+  staticDir = pkgs.runCommandLocal "ck-pleroma-static" {} ''
+    mkdir -p $out
+    cd $out
+    cp -rv ${./static} .
+    mkdir -p emoji/blobs || true
+    ${pkgs.unzip}/bin/unzip ${sources.blob-emoji} -d emoji/blobs
+  '';
 in {
   options.cookie.services.pleroma = {
     enable = mkEnableOption "Enables pleroma service";
@@ -85,7 +93,7 @@ in {
           }
 
         config :pleroma, :database, rum_enabled: false
-        config :pleroma, :instance, static_dir: "${./static}"
+        config :pleroma, :instance, static_dir: "${staticDir}"
         config :pleroma, Pleroma.Uploaders.Local, uploads: "/var/lib/pleroma/uploads"
         config :pleroma, configurable_from_database: false
         config :pleroma, Pleroma.Upload, filters: [Pleroma.Upload.Filter.Exiftool]
