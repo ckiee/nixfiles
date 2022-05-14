@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 
 with lib;
+with builtins;
 
 let
   cfg = config.cookie.services.postgres;
@@ -12,6 +13,11 @@ let
         description =
           "Whether this combination needs to be able to connect over the network";
         default = false;
+      };
+      extraSql = mkOption {
+        type = types.lines;
+        description = "Extra SQL commands to run every db start";
+        default = "";
       };
     };
   });
@@ -46,5 +52,15 @@ in {
             "host ${name} ${name} 127.0.0.1/32 trust")) cfg.comb)}
       '';
     };
+
+    systemd.services.postgresql.postStart = mkAfter ''
+      ${concatStringsSep "\n" (mapAttrsToList (name: value:
+        "$PSQL -tAf ${
+          pkgs.writeText "${name}-ckpg-init.sql" (''
+            \c ${name};
+            ${value.extraSql}
+          '')
+        }") cfg.comb)}
+    '';
   };
 }
