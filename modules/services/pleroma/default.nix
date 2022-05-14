@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 
 with lib;
+with builtins;
 
 let
   cfg = config.cookie.services.pleroma;
@@ -57,7 +58,8 @@ in {
           email: "${svcEmail}",
           notify_email: "${svcEmail}",
           limit: 5000,
-          registrations_open: false
+          registrations_open: false,
+          quarantined_instances: ${readFile ./bad_instances.json}
 
         config :pleroma, :media_proxy,
           enabled: false,
@@ -76,8 +78,14 @@ in {
           database: "pleroma",
           hostname: "localhost"
 
+        config :pleroma, :frontend_configurations,
+          pleroma_fe: %{
+            background: "images/bg.webp",
+            redirectRootNoLogin: "/ckie"
+          }
+
         config :pleroma, :database, rum_enabled: false
-        config :pleroma, :instance, static_dir: "/var/lib/pleroma/static" # TODO
+        config :pleroma, :instance, static_dir: "${./static}"
         config :pleroma, Pleroma.Uploaders.Local, uploads: "/var/lib/pleroma/uploads"
         config :pleroma, configurable_from_database: false
         config :pleroma, Pleroma.Upload, filters: [Pleroma.Upload.Filter.Exiftool]
