@@ -23,6 +23,12 @@
         "url": "https://github.com/ckiee/anonvote-bot/archive/4c27f7614b861e05562ae05b8ee8fa8056618d23.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "blob-emoji": {
+        "sha256": "0yhha15lk1km5cnb2fr689d0xjvdwsc94s6dids7gkr8w7fc7nlm",
+        "type": "file",
+        "url": "https://files.lostluma.dev/blobs.zip",
+        "url_template": "https://files.lostluma.dev/blobs.zip"
+    },
     "ckiesite": {
         "branch": "main",
         "description": "The ckie.dev website",
