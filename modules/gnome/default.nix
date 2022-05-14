@@ -23,6 +23,7 @@ in with lib; {
         gnome-disk-utility
         totem
         eog
+        gnome-screenshot
       ];
     };
   };

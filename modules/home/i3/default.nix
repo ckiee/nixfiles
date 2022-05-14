@@ -36,7 +36,6 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       rofi
-      gnome3.gnome-screenshot
       kdeconnect
       libnotify # notify-send
       xclip
@@ -61,6 +60,7 @@ in {
       # freecad # behold our most precious polygons, just one step away from real life!
       easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?
       screenkey # show the keyboard keys on the ~~keyboard~~screen
+      linthesia # musicy music play piano
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
