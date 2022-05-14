@@ -71,6 +71,7 @@ in {
 
   programs.cnping.enable = true;
   programs.adb.enable = true;
+  programs.firejail.enable = true;
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark-qt;
