@@ -29,6 +29,7 @@
     ./alvr-bot.nix
     ./hydra
     ./wikidict.nix
+    ./pleroma
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

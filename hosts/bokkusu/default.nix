@@ -20,6 +20,7 @@ in {
 
       prometheus.enable = true;
       wikidict.enable = true;
+      pleroma.enable = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
@@ -77,6 +78,7 @@ in {
             "grafana.ckie.dev"
             "znc.ckie.dev"
             "dict.ckie.dev"
+            "fedi.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
