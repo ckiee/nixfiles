@@ -20,7 +20,6 @@ in {
 
       prometheus.enable = true;
       wikidict.enable = true;
-      pleroma.enable = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
