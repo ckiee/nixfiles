@@ -12,7 +12,6 @@ in with lib; {
       "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
-      "cache.tailnet.ckie.dev:Ng8W2u5lGtakekcMxEy7vaw99IwgDaK8ensVZQfZgUQ="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
