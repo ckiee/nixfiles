@@ -31,6 +31,7 @@ in pkgs.mkShell {
     myNix
     jq
     nix-eval-jobs
+    wireguard-tools
   ];
 
   shellHook = ''
