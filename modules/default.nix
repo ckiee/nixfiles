@@ -50,5 +50,6 @@
     ./tailnet-certs.nix
     ./hostapd.nix
     ./logiops.nix
+    ./wireguard.nix
   ];
 }
