@@ -24,6 +24,7 @@ in {
           "MVCZQ2L-XCK3Y2Z-R7Q2UT6-TZK6CVH-WUN6TFH-I3ZOCRS-OLZAN7C-XZ4BHAF";
       };
     };
+    wireguard.ip = "10.67.75.2";
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;

@@ -25,6 +25,7 @@ with lib;
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
       tailscaleIp = "100.120.191.17";
     };
+    wireguard.ip = "10.67.75.3";
     systemd-boot.enable = true;
     smartd.enable = true;
     libvirtd.enable = true;

@@ -12,6 +12,10 @@ in {
       tailscaleIp = "100.124.234.25";
     };
     remote-builder.role = "user";
+    wireguard = {
+      ip = "10.67.75.1";
+      endpoint = "bokkusu.ckie.dev";
+    };
     services = {
       minecraft.enable = true;
       mailserver.enable = true;
