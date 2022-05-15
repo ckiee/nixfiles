@@ -51,6 +51,12 @@ let
         description = "whether this secret should be available at runtime";
         default = true;
       };
+
+      generateCommand = mkOption {
+        type = types.nullOr types.str;
+        description = "a shell command to generate the secret if it does not already exist";
+        default = null;
+      };
     };
   });
 

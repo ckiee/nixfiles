@@ -19,19 +19,30 @@ pkgs.writeScript "cookie-rager-encrypt" ''
       ${
         concatStringsSep "\n" (mapAttrsToList (_: secret:
           let secretFn = baseNameOf secret.source;
+              niceEcho = msg:
+                ''echo "[${secretFn}:${host}] ${msg}"'';
           in ''
             function get_enchash {
               sha512sum '${secret.source}'
               echo '${machinePubkey}' | sha512sum
             }
 
+            ${
+              optionalString (secret.generateCommand != null) ''
+                if ! [ -e '${secret.source}' ]; then
+                  ${niceEcho "file missing, generating"}
+                  ${secret.generateCommand}
+                fi
+              ''
+            }
+
             if [ "$(cat encrypted/'${host}'/'${secretFn}'.HASH)" != "$(get_enchash)" ]; then
-              echo "[${secretFn}:${host}] sha512 changed, re-encrypting"
+              ${niceEcho "sha512 changed, re-encrypting"}
               ${pkgs.rage}/bin/rage -a -r '${machinePubkey}' -r '${userPubkey}' -o 'encrypted/${host}/${secretFn}' '${secret.source}'
             fi
             get_enchash > encrypted/'${host}'/'${secretFn}'.HASH
           '') cfg)
-      } # TODO filter for !secret.runtime
+      }
     '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null)
       uncheckedNodes))}
 ''
