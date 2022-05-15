@@ -6,7 +6,7 @@ with util;
 let
   cfg = config.cookie.secrets;
 
-  secret = types.submodule ({config,...}: {
+  secret = types.submodule ({ config, ... }: {
     options = {
       source = mkOption {
         type = types.str;
@@ -67,9 +67,7 @@ let
       preStart = with pkgs; ''
         rm -f ${dest}
         "${rage}"/bin/rage -d -i /etc/ssh/ssh_host_ed25519_key -o '${dest}' '${
-          ./.. + "/encrypted/${config.networking.hostName}/${
-            baseNameOf source
-          }"
+          ./.. + "/encrypted/${config.networking.hostName}/${baseNameOf source}"
         }'
 
         chown '${owner}':'${group}' '${dest}'
@@ -85,6 +83,10 @@ in {
   };
 
   config = {
+    warnings = mapAttrsToList
+      (name: sec: "cookie.secrets.${name}: runtime is deprecated")
+      (filterAttrs (_: secret: !secret.runtime) cfg);
+
     systemd.services = let
       units = mapAttrs' (name: info: {
         name = "${name}-key";
