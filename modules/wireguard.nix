@@ -48,15 +48,14 @@ in with lib; {
     };
 
     networking.wireguard.interfaces.cknet = {
-      peers = let
-        thing = (filter (x: x != null) (mapAttrsToList (_: h:
+      peers = (filter (x: x != null) (mapAttrsToList (_: h:
           if h.config.cookie.wireguard != null then
             let hcfg = h.config.cookie.wireguard;
             in {
               publicKey = fileContents
                 (../secrets + "/wg-pubkey-${h.config.networking.hostName}");
               allowedIPs = singleton "${hcfg.ip}/32";
-              persistentKeepalive = 25;
+              persistentKeepalive = 1;
               endpoint = if hcfg.endpoint != null then
                 "${hcfg.endpoint}:51820"
               else
@@ -65,7 +64,7 @@ in with lib; {
             }
           else
             null) nodes));
-      in builtins.trace (builtins.toJSON thing) thing;
+
     };
   };
 
