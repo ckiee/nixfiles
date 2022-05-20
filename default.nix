@@ -39,8 +39,8 @@ with builtins;
   # $ du -sh /var/log/journal/
   # 4.1G    /var/log/journal/
   services.journald.extraConfig = ''
-    SystemMaxUse=200M
-    MaxFileSec=7day
+    SystemMaxUse=2G
+    MaxFileSec=40day
   '';
 
   services.fwupd.enable = true;
