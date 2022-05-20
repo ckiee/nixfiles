@@ -5,9 +5,6 @@
 
   networking.hostName = "thonkcookie";
 
-  home-manager.users.ckie = { pkgs, ... }: {
-    cookie.collections.devel.enable = true;
-  };
   cookie = {
     desktop = {
       enable = true;
@@ -31,6 +28,12 @@
     smartd.enable = true;
     steam.enable = true;
     machine-info.sshPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAC83UXW5rtEPlEqDT5c/W0DTFFwsVah6ZlCg1FO9kr";
+  };
+  home-manager.users.ckie = { pkgs, ... }: {
+    cookie = {
+      collections.devel.enable = true;
+      qsynth.enable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [ zoom-us lutris ];
