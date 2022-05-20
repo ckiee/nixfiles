@@ -57,6 +57,10 @@ with builtins; {
 
     cookie.restic.paths = [ config.mailserver.mailDirectory ];
 
+    # there's a postfix-setup unit and for annoying reasons it misses it, grep our first
+    # tildechat #helpdesk convo for story.
+    systemd.services.postfix.serviceConfig."X-Stupid-Hack-${builtins.hashString "sha256" (concatStringsSep "\n" cfg.aliases)}" = true;
+
     mailserver = {
       enable = true;
       localDnsResolver = false; # :53 needs to be open for services/coredns
