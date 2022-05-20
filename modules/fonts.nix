@@ -39,7 +39,7 @@ in with lib; {
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
-          <description>Disable ligatures for monospaced fonts</description>
+          <description>Disable ligatures for all the damn fonts</description>
 
           <match target="font">
             <test name="family" compare="eq" ignore-blanks="true">
@@ -52,6 +52,20 @@ in with lib; {
               <string>clig off</string>
             </edit>
           </match>
+
+          <!-- I don't think this actually /does/ anything, but oh well, might aswell declare my annoyance with it --!>
+          <match target="font">
+            <test name="family" compare="eq" ignore-blanks="true">
+              <string>Inter</string>
+            </test>
+            <edit name="fontfeatures" mode="append">
+              <string>liga off</string>
+              <string>dlig off</string>
+              <string>calt off</string>
+              <string>clig off</string>
+            </edit>
+          </match>
+
         </fontconfig>
       '';
     };
