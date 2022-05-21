@@ -65,6 +65,7 @@ with lib;
         "aldhy.tailnet.ckie.dev"
         "cache.tailnet.ckie.dev"
         "daiko.tailnet.ckie.dev"
+        config.cookie.services.printing.tlsHost
       ];
       forward = [ "aldhy.tailnet.ckie.dev" "daiko.tailnet.ckie.dev" ];
     };
