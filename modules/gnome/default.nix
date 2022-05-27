@@ -25,6 +25,11 @@ in with lib; {
         eog
         gnome-screenshot
       ];
+
+      services.gnome-keyring = {
+        enable = true;
+        components = [ "secrets" ];
+      };
     };
   };
 }
