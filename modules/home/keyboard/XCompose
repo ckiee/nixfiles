@@ -126,8 +126,6 @@
 <Multi_key> <exclam> <question>         : "‽"   U203D # INTERROBANG
 <Multi_key> <s> <v> <t>	             	: "☭"   U262D # HAMMER AND SICKLE
 <Multi_key> <l> <m>                     : "λ"    # lambda!
-<Multi_key> <t>                         : "þ"    # thorn
-<Multi_key> <T>                         : "Þ"    # THORN
 
 # 'Mojis
 <Multi_key> <less> <3>                  : "❤️"   # <3
