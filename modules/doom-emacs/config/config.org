@@ -95,8 +95,8 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 #+END_SRC
 *** set date/time format
 #+BEGIN_SRC elisp
-(setq mu4e-headers-date-format "%d/%m/%Y")
-(setq mu4e-headers-time-format "%d/%m/%Y %l:%M:%S %p")
+(setq mu4e-headers-date-format "%d/%m/%y")
+(setq mu4e-headers-time-format "%d/%m/%y %l:%M:%S %p")
 #+END_SRC
 ** org-mode
 =Sync= gets synced between devices, so it is a good place for this.
