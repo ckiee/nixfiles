@@ -53,13 +53,13 @@ elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
-elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ]; then
+elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ] || [ "$1" == "cdemp" ]; then
     niv update $2
-    if [ "$1" == "demp" ]; then
+    if [ "$1" == "demp" ] || [ "$1" == "cdemp" ]; then
         # try to build & deploy this demp (="buMP DEploy")
-        exec $0 $2
+        $0 $2
     fi
-    if [ "$1" == "cemp" ]; then
+    if [ "$1" == "cemp" ] || [ "$1" == "cdemp" ]; then
         # naively commit
         git add nix/sources.json
         git commit -m "niv: bump $2"
