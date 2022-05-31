@@ -31,6 +31,7 @@ in with lib; {
       git-cinnabar
       mercurialFull
       jetbrains.idea-community # way too good to use emacs for java
+      nixpkgs-review
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
