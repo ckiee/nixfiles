@@ -19,4 +19,5 @@ in {
   "pansear" = import ../hosts/pansear;
   "installer" = import ../hosts/installer;
   "hmporter" = import ../hosts/hmporter;
+  "virt" = import ../hosts/virt;
 }

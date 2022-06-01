@@ -49,6 +49,14 @@ elif [ "$1" == "installer" ]; then
             $cmd
         fi
     fi
+elif [ "$1" == "virt" ]; then
+    # TODO: take $2 for host to run in virt
+    vmpath="$($0 eval build nodes.virt.config.system.build.vm)"
+    QEMU_NET_OPTS='hostfwd=tcp::5555-:22' "$vmpath/bin/"run-*-vm &
+    while true; do
+        ssh localhost -o ConnectTimeout=1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 5555 && kill %1 && break
+        sleep 0.2
+    done
 elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then

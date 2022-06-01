@@ -1,4 +1,8 @@
-{ config, pkgs, modulesPath, ... }: {
+{ config, pkgs, lib, modulesPath, ... }:
+
+with lib;
+
+{
   imports = [ ../.. ./qemu.nix (modulesPath + "/profiles/qemu-guest.nix") ];
 
   networking.hostName = "virt";
@@ -9,11 +13,10 @@
   };
   cookie = {
     desktop.enable = true;
-    sound.enable = false;
+    sound.enable = mkForce false;
     services = {
       tailscale.autoconfig = false;
     };
-    systemd-boot.enable = true;
   };
 
   # This value determines the NixOS release from which the default
