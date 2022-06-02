@@ -20,6 +20,9 @@ in with lib; {
       '';
     };
 
+    systemd.services.nginx-config-reload.after =
+      [ "coredns.service" "dns-hosts-poller.service" ];
+
     services.logrotate = {
       enable = true;
       paths.nginx = {
