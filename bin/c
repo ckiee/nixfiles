@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 set -eo pipefail
 export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
-deployMeta="$(nix-instantiate --json --strict --eval deploy/binc-info.nix)"
+
+show_trace=""
+c_trace=""
+if [ "$1" == "trace" ]; then
+    show_trace="--show-trace"
+    c_trace="trace"
+    shift
+fi
+
+deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
 function morp {
-    $($0 eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
+    $($0 $c_trace eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
     echo morph $@ $show_trace
     set +e
     morph $@ $show_trace
@@ -11,13 +20,6 @@ function morp {
     [ $morphexit -eq 0 ] || (echo ; exit $morphexit)
     set -e
 }
-
-
-show_trace=""
-if [ "$1" == "trace" ]; then
-    show_trace="--show-trace"
-    shift
-fi
 
 action=${2:-deploy}
 if [ "$action" == "deploy" ]; then
@@ -31,7 +33,7 @@ elif [ "$1" == "all" ]; then
 elif [ "$1" == "installer" ]; then
     shift
     echo evaluating..
-    drv="$($0 eval fast nodes.installer.config.system.build.isoImage | jq -r .drvPath)"
+    drv="$($0 $c_trace eval fast nodes.installer.config.system.build.isoImage | jq -r .drvPath)"
     echo realising "$drv"..
     store_path="$(nix-store --realise "$drv")"
     echo built "$store_path"
@@ -51,7 +53,7 @@ elif [ "$1" == "installer" ]; then
     fi
 elif [ "$1" == "virt" ]; then
     # TODO: take $2 for host to run in virt
-    vmpath="$($0 eval build nodes.virt.config.system.build.vm)"
+    vmpath="$($0 $c_trace eval build nodes.virt.config.system.build.vm)"
     QEMU_NET_OPTS='hostfwd=tcp::5555-:22' "$vmpath/bin/"run-*-vm &
     while true; do
         ssh localhost -o ConnectTimeout=1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 5555 && kill %1 && break
@@ -65,7 +67,7 @@ elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ] || [ "$1" ==
     niv update $2
     if [ "$1" == "demp" ] || [ "$1" == "cdemp" ]; then
         # try to build & deploy this demp (="buMP DEploy")
-        $0 $2
+        $0 $c_trace $2
     fi
     if [ "$1" == "cemp" ] || [ "$1" == "cdemp" ]; then
         # naively commit
@@ -101,7 +103,7 @@ elif [ "$1" == "eval" ]; then
     echo
 elif [ "$1" == "farm" ]; then
     tmpfile="$(mktemp)"
-    $0 eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null > "$tmpfile"
+    $0 $c_trace eval fast 'with lib; mapAttrs (_: n: n.config.system.build.toplevel) nodes' | jq -r .drvPath | grep -v null > "$tmpfile"
     echo sending $(wc -l $tmpfile | cut -d' ' -f1) derivations...
     cat "$tmpfile" | xargs nix copy --derivation --substitute-on-destination --to ssh://pansear
     rsync "$tmpfile" pansear:~/aldhy/new-jobs
