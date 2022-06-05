@@ -55,6 +55,7 @@ in with lib; {
         st.enable = true;
         screen-locker.enable = true;
         toot.enable = true;
+        mangohud.enable = true;
       };
       services.rsibreak.enable = true;
     };

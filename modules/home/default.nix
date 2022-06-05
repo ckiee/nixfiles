@@ -35,6 +35,7 @@ in {
         ./st
         ./screen-locker.nix
         ./toot
+        ./mangohud.nix
       ];
     };
   };
