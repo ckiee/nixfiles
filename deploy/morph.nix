@@ -10,7 +10,8 @@ in {
     ordering = { tags = [ "desktops" "servers" ]; };
   };
 
-  # Tailscale hosts
+  # Do not change the order of these entries! Always append at the
+  # bottom as the wireguard module depends on this order in order to choose IPs.
   "bokkusu" = import ../hosts/bokkusu;
   "cookiemonster" = import ../hosts/cookiemonster;
   "drapion" = import ../hosts/drapion;

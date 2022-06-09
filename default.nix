@@ -81,6 +81,7 @@ with builtins;
     services = {
       ssh.enable = true;
       tailscale.enable = mkDefault true;
+      wireguard.enable = true;
       coredns = {
         enable = true;
         useLocally = true;

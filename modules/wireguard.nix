@@ -1,29 +1,34 @@
 { lib, config, pkgs, nodes, ... }:
 
+with lib;
+
 let
   cfg = config.cookie.wireguard;
   hostname = config.networking.hostName;
-in with lib; {
-  options.cookie.wireguard = mkOption {
-    type = types.nullOr (types.submodule {
-      options = {
-        ip = mkOption {
-          type = types.str;
-          description = "the ip assigned to this peer";
-          example = "10.67.75.13";
-        };
-        endpoint = mkOption {
-          type = types.nullOr types.str;
-          description = "an optional endpoint for this peer";
-          example = "some-node.ckie.dev";
-          default = null;
-        };
-      };
-    });
-    default = null;
+in {
+  options.cookie.wireguard = {
+    enable = mkEnableOption "Enables wireguard cknet";
+    ip = mkOption {
+      type = types.str;
+      description = "the ip assigned to this peer";
+      example = "10.67.75.13";
+      default = let
+        withIndices =
+          imap1 (i: x: { inherit i x; }) (mapAttrsToList (_: id) nodes);
+        thisNode = findFirst
+          (cmp: cmp.x.config.networking.hostName == config.networking.hostName)
+          null withIndices;
+      in "10.67.75.${toString (1 + thisNode.i)}";
+    };
+    endpoint = mkOption {
+      type = types.nullOr types.str;
+      description = "an optional endpoint for this peer";
+      example = "some-node.ckie.dev";
+      default = null;
+    };
   };
 
-  config = mkIf (cfg != null) {
+  config = mkIf cfg.enable {
     cookie.secrets."wg-privkey-${hostname}" = {
       source = "./secrets/wg-privkey-${hostname}";
       permissions = "0400";
@@ -49,21 +54,19 @@ in with lib; {
 
     networking.wireguard.interfaces.cknet = {
       peers = (filter (x: x != null) (mapAttrsToList (_: h:
-          if h.config.cookie.wireguard != null then
-            let hcfg = h.config.cookie.wireguard;
-            in {
-              publicKey = fileContents
-                (../secrets + "/wg-pubkey-${h.config.networking.hostName}");
-              allowedIPs = singleton "${hcfg.ip}/32";
-              persistentKeepalive = 1;
-              endpoint = if hcfg.endpoint != null then
-                "${hcfg.endpoint}:51820"
-              else
-                null;
-              endpointsUpdater.enable = hcfg.endpoint != null;
-            }
-          else
-            null) nodes));
+        if h.config.cookie.wireguard != null then
+          let hcfg = h.config.cookie.wireguard;
+          in {
+            publicKey = fileContents
+              (../secrets + "/wg-pubkey-${h.config.networking.hostName}");
+            allowedIPs = singleton "${hcfg.ip}/32";
+            persistentKeepalive = 1;
+            endpoint =
+              if hcfg.endpoint != null then "${hcfg.endpoint}:51820" else null;
+            endpointsUpdater.enable = hcfg.endpoint != null;
+          }
+        else
+          null) nodes));
 
     };
   };
