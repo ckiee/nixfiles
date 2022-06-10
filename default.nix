@@ -81,7 +81,6 @@ with builtins;
     services = {
       ssh.enable = true;
       tailscale.enable = mkDefault true;
-      wireguard.enable = true;
       coredns = {
         enable = true;
         useLocally = true;
@@ -89,6 +88,7 @@ with builtins;
     };
     # Etc
     git.enable = true;
+    wireguard.enable = config.cookie.machine-info.bootable;
     binary-caches.enable = true;
     nix.enable = true;
     cookie-overlay.enable = true;

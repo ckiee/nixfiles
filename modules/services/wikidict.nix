@@ -84,6 +84,7 @@ in with lib; {
           git.enable = mkForce false;
           ipban.enable = mkForce false;
           shell-utils.enable = mkForce false;
+          wireguard.ip = "not.a.real.machine-lol";
 
           bindfs.pwfile = {
             source = "/aaa";
