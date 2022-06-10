@@ -4,11 +4,17 @@ with lib;
 
 let
   cfg = config.cookie.services.prometheus;
-  listenAddress = config.cookie.wireguard.ip;
+  # this little boilerplate is here because I used to rewrite bokkusu's address
+  # in order to keep the old prom data, which didn't work
+  listenAddressFor = hcfg: hcfg.cookie.wireguard.ip;
+  listenAddress = listenAddressFor config;
 in {
   options.cookie.services.prometheus = {
     enableServer = mkEnableOption "Enables the Prometheus monitoring service";
-    enableClient = mkEnableOption "Enables the relevant Prometheus exporters" // { default = true; };
+    enableClient = mkEnableOption "Enables the relevant Prometheus exporters"
+      // {
+        default = true;
+      };
 
     # TODO: make this be able to work with non-native-to-NixOS exporters
     exporters = mkOption {
@@ -96,10 +102,13 @@ in {
             job_name = k;
             static_configs = [{
               targets = map (host: "${host}:${toString port}")
-                (mapAttrsToList (_: hcfg: hcfg.config.cookie.wireguard.ip)
-                  (filterAttrs (_: hcfg:
-                    hcfg.config.cookie.services.prometheus.enableClient)
-                    nodes));
+                (mapAttrsToList (_: host: listenAddressFor host.config)
+                  (filterAttrs (_: host:
+                    let
+                      hcfg = host.config.cookie.services.prometheus;
+                      includesThisExporter =
+                        length (intersectLists [ k ] hcfg.exporters) == 1;
+                    in hcfg.enableClient && includesThisExporter) nodes));
             }];
           }) cfg.exporters;
 
@@ -107,7 +116,17 @@ in {
     })
 
     (mkIf (cfg.enableClient) (mkMerge [
-      # TODO: matrix-appservice-discord, matrix-synapse
+      # expose the exporters' ports to cknet (internal wireguard)
+      {
+        networking.firewall.interfaces.cknet.allowedTCPPorts =
+          map (exp: config.services.prometheus.exporters.${exp}.port)
+          cfg.exporters;
+      }
+
+      # TODO: matrix-appservice-discord, matrix-synapse, prom itself, probably bazillion other things.
+      # need to allow non-NixOS-services.prom.exporters.* exporters for those i think
+      # also should just iterate through services
+
       {
         cookie.services.prometheus.exporters = [ "node" ];
         # https://grahamc.com/blog/nixos-system-version-prometheus
