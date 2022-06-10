@@ -126,6 +126,8 @@ in {
       # TODO: matrix-appservice-discord, matrix-synapse, prom itself, probably bazillion other things.
       # need to allow non-NixOS-services.prom.exporters.* exporters for those i think
       # also should just iterate through services
+      #
+      # check TODO in grafana module too
 
       {
         cookie.services.prometheus.exporters = [ "node" ];

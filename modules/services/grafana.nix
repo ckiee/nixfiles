@@ -9,7 +9,7 @@ in with lib; {
       type = types.str;
       default = "grafana.localhost";
       description = "the host. wow.";
-      example = "grafana.ronthecookie.me";
+      example = "grafana.ckie.dev";
     };
   };
 
@@ -20,6 +20,7 @@ in with lib; {
       enable = true;
       port = 8571;
       domain = cfg.host;
+      # TODO: maybe don't do this? showing when the desktops are on or whatever is kinda scary
       auth.anonymous = {
         enable = true;
         org_role = "Viewer";
