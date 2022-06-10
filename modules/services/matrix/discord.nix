@@ -22,6 +22,7 @@ in {
         domain = cfg.host;
         homeserverUrl = "https://${cfg.serviceHost}";
         adminMxid = "@ckie:ckie.dev";
+        enableSelfServiceBridging = true;
       };
     };
 
