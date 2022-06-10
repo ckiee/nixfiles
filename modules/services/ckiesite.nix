@@ -1,13 +1,21 @@
 { sources, lib, config, pkgs, ... }:
 
+with builtins;
+with lib;
+
 let
   cfg = config.cookie.services.ckiesite;
   inherit (sources) spectrogram-web;
-  spectrogramRoot = pkgs.linkFarm "nginx-spectrogram-root" [{
+  inherit (pkgs.cookie) ckiesite;
+  topLevelLinks = map (name: {
+    name = name;
+    path = ckiesite + (/. + name);
+  }) (attrNames (readDir "${ckiesite}"));
+  webroot = pkgs.linkFarm "webroot" ([{
     name = "spectrogram";
     path = spectrogram-web;
-  }];
-in with lib; {
+  }] ++ (builtins.trace topLevelLinks topLevelLinks));
+in {
   options.cookie.services.ckiesite = {
     enable = mkEnableOption "Enables ckie.dev service";
     host = mkOption {
@@ -23,10 +31,7 @@ in with lib; {
 
     services.nginx = {
       virtualHosts."${cfg.host}" = {
-        locations = {
-          "/".root = "${pkgs.cookie.ckiesite}";
-          "/spectrogram".root = "${spectrogramRoot}";
-        };
+        locations = { "/".root = "${webroot}"; };
         extraConfig = ''
           rewrite ^/owobot$ https://discord.com/oauth2/authorize?client_id=731874934543876158&permissions=536895488&scope=bot permanent;
           access_log /var/log/nginx/ckiesite.access.log;
