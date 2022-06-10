@@ -22,7 +22,7 @@ in {
       among-sus.enable = true;
       anonvote-bot.enable = true;
 
-      prometheus.enable = true;
+      prometheus.enableServer = true;
       wikidict.enable = true;
       grafana = {
         enable = true;

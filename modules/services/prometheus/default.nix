@@ -1,22 +1,24 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nodes, ... }:
 
-# From https://github.com/Xe/nixos-configs/
+with lib;
+
 let
   cfg = config.cookie.services.prometheus;
-  node-exporter-system-version = ''
-    mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
-    (
-      cd /var/lib/prometheus-node-exporter-text-files
-      (
-        echo -n "system_version ";
-        readlink /nix/var/nix/profiles/system | cut -d- -f2
-      ) > system-version.prom.next
-      mv system-version.prom.next system-version.prom
-    )
-  '';
-in with lib; {
+  listenAddress = config.cookie.wireguard.ip;
+in {
   options.cookie.services.prometheus = {
-    enable = mkEnableOption "Enables the Prometheus monitoring service";
+    enableServer = mkEnableOption "Enables the Prometheus monitoring service";
+    enableClient = mkEnableOption "Enables the relevant Prometheus exporters" // { default = true; };
+
+    # TODO: make this be able to work with non-native-to-NixOS exporters
+    exporters = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      internal = true;
+      description = "Enabled exporters for this machine";
+    };
+
+    # TODO: get rid of this junk
     nginx-vhosts = mkOption rec {
       type = types.listOf types.str;
       default = [ ];
@@ -24,75 +26,103 @@ in with lib; {
     };
   };
 
-  config = mkIf cfg.enable {
-    # https://grahamc.com/blog/nixos-system-version-prometheus
-    system.activationScripts = { inherit node-exporter-system-version; };
+  config = mkMerge [
+    # {
+    #   cookie.services.prometheus.enableClient =
+    #     mkDefault ((length cfg.exporters) > 0);
+    # }
+    # infinite recursion ^^
 
-    cookie.secrets.prom-alert-webhook = {
-      source = "./secrets/prom-alert-webhook.nix";
-      runtime = false;
-    };
-
-    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 ];
-
-    services.prometheus = {
-      enable = true;
-      globalConfig.scrape_interval = "5s";
-      rules = [ (builtins.readFile ./node_rules.yaml) ];
-      alertmanager = {
-        enable = true;
-        configuration = {
-          global.slack_api_url = import ../../../secrets/prom-alert-webhook.nix;
-          route = {
-            group_by = [ "alertname" "cluster" "service" ];
-            group_wait = "30s";
-            group_interval = "30s";
-            repeat_interval = "30s";
-            receiver = "null";
-          };
-
-          inhibit_rules = [{
-            source_matchers = [ ''severity="critical"'' ];
-            target_matchers = [ ''severity="warning"'' ];
-            # Apply inhibition if the alertname is the same.
-            # CAUTION:
-            #   If all label names listed in `equal` are missing
-            #   from both the source and target alerts,
-            #   the inhibition rule will apply!
-            equal = [ "alertname" "cluster" "service" ];
-          }];
-
-          receivers = [{
-            name = "null";
-            webhook_configs = [{
-              url = "http://192.0.2.1:32212"; # nonexistant, test-net
-              send_resolved = true;
-            }];
-          }];
-        };
+    (mkIf cfg.enableServer {
+      cookie.secrets.prom-alert-webhook = {
+        source = "./secrets/prom-alert-webhook.nix";
+        runtime = false;
       };
-      alertmanagers = [{
-        scheme = "http";
-        path_prefix = "/";
-        static_configs = [{ targets = [ "127.0.0.1:9093" ]; }];
-      }];
 
-      scrapeConfigs = let
-        listenMap = host: ports:
-          (imap0 (i: v: ("${host}:${toString v}")) ports);
-      in [
-        {
-          job_name = "nginx";
-          static_configs = [{ targets = listenMap "127.0.0.1" [ 9117 ]; }];
-        }
-        {
-          job_name = config.networking.hostName;
-          static_configs = [{ targets = listenMap "127.0.0.1" [ 9100 ]; }];
-        }
-      ];
-      exporters = let listenAddress = "127.0.0.1";
-      in {
-        node = {
+      networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 ];
+
+      services.prometheus = {
+        enable = true;
+        globalConfig.scrape_interval = "5s";
+        rules = [ (builtins.readFile ./node_rules.yaml) ];
+
+        alertmanager = {
+          enable = true;
+          configuration = {
+            global.slack_api_url =
+              import ../../../secrets/prom-alert-webhook.nix;
+            route = {
+              group_by = [ "alertname" "cluster" "service" ];
+              group_wait = "30s";
+              group_interval = "30s";
+              repeat_interval = "30s";
+              receiver = "null";
+            };
+
+            inhibit_rules = [{
+              source_matchers = [ ''severity="critical"'' ];
+              target_matchers = [ ''severity="warning"'' ];
+              # Apply inhibition if the alertname is the same.
+              # CAUTION:
+              #   If all label names listed in `equal` are missing
+              #   from both the source and target alerts,
+              #   the inhibition rule will apply!
+              equal = [ "alertname" "cluster" "service" ];
+            }];
+
+            receivers = [{
+              name = "null";
+              webhook_configs = [{
+                url = "http://192.0.2.1:32212"; # nonexistant, ipv4 test-net
+                send_resolved = true;
+              }];
+            }];
+          };
+        };
+
+        alertmanagers = [{
+          scheme = "http";
+          path_prefix = "/";
+          static_configs = [{ targets = [ "127.0.0.1:9093" ]; }];
+        }];
+
+        scrapeConfigs = map (k:
+          # this assumes we're using the defaults, so it's the same across all hosts,
+          # which is probably wrong, but okay for now.
+          #
+          # see comment on cfg.exporters mkOpt def too
+          let port = config.services.prometheus.exporters.${k}.port;
+          in {
+            job_name = k;
+            static_configs = [{
+              targets = map (host: "${host}:${toString port}")
+                (mapAttrsToList (_: hcfg: hcfg.config.cookie.wireguard.ip)
+                  (filterAttrs (_: hcfg:
+                    hcfg.config.cookie.services.prometheus.enableClient)
+                    nodes));
+            }];
+          }) cfg.exporters;
+
+      };
+    })
+
+    (mkIf (cfg.enableClient) (mkMerge [
+      # TODO: matrix-appservice-discord, matrix-synapse
+      {
+        cookie.services.prometheus.exporters = [ "node" ];
+        # https://grahamc.com/blog/nixos-system-version-prometheus
+        system.activationScripts.node-exporter-system-version = ''
+          mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
+          (
+            cd /var/lib/prometheus-node-exporter-text-files
+            (
+              echo -n "system_version ";
+              readlink /nix/var/nix/profiles/system | cut -d- -f2
+            ) > system-version.prom.next
+            mv system-version.prom.next system-version.prom
+          )
+        '';
+        services.prometheus.exporters.node = {
           enable = true;
           enabledCollectors = [ "systemd" "textfile" ];
           extraFlags = [
@@ -100,7 +130,11 @@ in with lib; {
           ];
           inherit listenAddress;
         };
-        nginxlog = {
+      }
+
+      (mkIf config.services.nginx.enable {
+        cookie.services.prometheus.exporters = [ "nginxlog" ];
+        services.prometheus.exporters.nginxlog = {
           enable = true;
           inherit listenAddress;
           settings = {
@@ -117,12 +151,13 @@ in with lib; {
               name = "filelogger";
               inherit format;
               source.files = [ "/var/log/nginx/access.log" ];
-            }] ++ imap0 (i: value: mkApp value) cfg.nginx-vhosts;
+            }] ++ map mkApp cfg.nginx-vhosts; # XXX
           };
           group = "nginx";
           user = "nginx";
         };
-      };
-    };
-  };
+      })
+
+    ]))
+  ];
 }
