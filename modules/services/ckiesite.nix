@@ -5,16 +5,23 @@ with lib;
 
 let
   cfg = config.cookie.services.ckiesite;
-  inherit (sources) spectrogram-web;
+  inherit (sources) spectrogram-web abandoned-projects;
   inherit (pkgs.cookie) ckiesite;
   topLevelLinks = map (name: {
     name = name;
     path = ckiesite + (/. + name);
   }) (attrNames (readDir "${ckiesite}"));
-  webroot = pkgs.linkFarm "webroot" ([{
-    name = "spectrogram";
-    path = spectrogram-web;
-  }] ++ (builtins.trace topLevelLinks topLevelLinks));
+  webroot = pkgs.linkFarm "webroot" ([
+    {
+      name = "spectrogram";
+      path = spectrogram-web;
+    }
+    {
+      name = "abandoned-projects";
+      path = abandoned-projects + "/src";
+    }
+  ] ++ topLevelLinks);
+
 in {
   options.cookie.services.ckiesite = {
     enable = mkEnableOption "Enables ckie.dev service";

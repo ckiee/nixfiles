@@ -1,4 +1,16 @@
 {
+    "abandoned-projects": {
+        "branch": "master",
+        "description": "Find your old GitHub repos that you haven't touched in a while.",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "abandoned-projects",
+        "rev": "1d5227471e01a75aaeb3e2a973b59c9e7ea1a011",
+        "sha256": "0vy5aqyaw01rrcvs9my4m249880f3zwnadc1xiyf936warbpmz6m",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/abandoned-projects/archive/1d5227471e01a75aaeb3e2a973b59c9e7ea1a011.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "alvr-bot": {
         "branch": "main",
         "description": "A bot for the discord server",
