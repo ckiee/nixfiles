@@ -158,7 +158,8 @@
 <Multi_key> <B> <R> <L>         : "🙄" # ROLLINGE YES BUT KINDA BOTTOM TOO
 <Multi_key> <G> <U> <N>         : "🔫" # GUN GUNG UGN
 <Multi_key> <i> <d> <l> <e>     : "/me is gonna go do things since this conversation is starting to be idle"
-
+<Multi_key> <p> <i>             : "π"
+<Multi_key> <t> <a> <u>         : "τ"
 
 
 # Part 3
