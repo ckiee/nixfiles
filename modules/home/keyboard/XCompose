@@ -127,7 +127,7 @@
 <Multi_key> <s> <v> <t>	             	: "☭"   U262D # HAMMER AND SICKLE
 <Multi_key> <l> <m>                     : "λ"    # lambda!
 
-# 'Mojis
+# 'Mojis, custom additions.
 <Multi_key> <less> <3>                  : "❤️"   # <3
 <Multi_key> <Y> <A> <Y>			: "🙌"	# PERSON RAISING BOTH HANDS IN CELEBRATION
 <Multi_key> <P> <O> <O>                 : "💩"  # PILE OF POO
@@ -157,6 +157,9 @@
 <Multi_key> <S> <K> <L>         : "💀" # is that a scary skeleton i forgor 💀
 <Multi_key> <B> <R> <L>         : "🙄" # ROLLINGE YES BUT KINDA BOTTOM TOO
 <Multi_key> <G> <U> <N>         : "🔫" # GUN GUNG UGN
+<Multi_key> <i> <d> <l> <e>     : "/me is gonna go do things since this conversation is starting to be idle"
+
+
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
