@@ -82,6 +82,7 @@ in with lib; {
             "default.clock.quantum" = quantum;
             "default.clock.min-quantum" = quantum;
             "default.clock.max-quantum" = quantum;
+            "default.clock.allowed-rates" = [ 44100 48000 ]; # https://forum.manjaro.org/t/howto-troubleshoot-crackling-in-pipewire/82442
             "core.daemon" = true;
             "core.name" = "pipewire-0";
             "mem.warn-mlock" = true;
