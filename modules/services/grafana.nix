@@ -20,7 +20,8 @@ in with lib; {
       enable = true;
       port = 8571;
       domain = cfg.host;
-      # TODO: maybe don't do this? showing when the desktops are on or whatever is kinda scary
+      # actual permissions may or may not be denied by grafana's state
+      # (it's per dashboard, and hidden in the settings UI for each one.)
       auth.anonymous = {
         enable = true;
         org_role = "Viewer";
