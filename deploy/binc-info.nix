@@ -18,6 +18,6 @@ let
   serviceHosts = mapAttrs (_: flatten) (zipAttrs
     (map (hostList: foldr (a: b: a // b) { } hostList) unmergedSvcHosts));
 in {
-  inherit serviceHosts;
+  inherit serviceHosts hostServices;
   hosts = attrNames nodes;
 }
