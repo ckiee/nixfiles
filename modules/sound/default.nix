@@ -64,7 +64,8 @@ in with lib; {
     ### PipeWire
     (mkIf cfg.pipewire.enable (let inherit (cfg.pipewire) quantum rate;
     in {
-      environment.systemPackages = with pkgs; [ helvum ]; # A cute patchbay
+      environment.systemPackages = with pkgs; [ helvum easyeffects ];
+
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -82,7 +83,10 @@ in with lib; {
             "default.clock.quantum" = quantum;
             "default.clock.min-quantum" = quantum;
             "default.clock.max-quantum" = quantum;
-            "default.clock.allowed-rates" = [ 44100 48000 ]; # https://forum.manjaro.org/t/howto-troubleshoot-crackling-in-pipewire/82442
+            "default.clock.allowed-rates" = [
+              44100
+              48000
+            ]; # https://forum.manjaro.org/t/howto-troubleshoot-crackling-in-pipewire/82442
             "core.daemon" = true;
             "core.name" = "pipewire-0";
             "mem.warn-mlock" = true;
@@ -210,8 +214,7 @@ in with lib; {
                   api.alsa.disable-batch = true;
                 };
               };
-            }
-              ];
+            }];
           };
           config.media-session = {
             "context.modules" = [
