@@ -49,7 +49,6 @@ in with lib; {
         nautilus.enable = true;
         i3.enable = true;
         xcursor.enable = true;
-        mpd.enable = true;
         remotemacs.enable = true;
         mimeapps.enable = true;
         st.enable = true;
@@ -77,6 +76,7 @@ in with lib; {
       gnome.enable = true;
       qt5.enable = true;
       doom-emacs.enable = true;
+      mpd.enable = true;
     };
   };
 }

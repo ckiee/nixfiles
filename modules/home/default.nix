@@ -25,7 +25,6 @@ in {
         ./i3
         ./xcursor.nix
         ./nixpkgs-config.nix
-        ./mpd.nix
         ./polyprog.nix
         ./weechat.nix
         ./qsynth

@@ -51,5 +51,6 @@
     ./hostapd.nix
     ./logiops.nix
     ./wireguard.nix
+    ./mpd.nix
   ];
 }
