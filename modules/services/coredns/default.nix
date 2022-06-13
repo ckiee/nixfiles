@@ -130,12 +130,17 @@ in {
       };
 
     }
+
     (mkIf (cfg.openFirewall) {
       networking.firewall = {
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];
       };
+
+      # Annoying devices spam us on :853, shut that up
+      networking.firewall.logRefusedConnections = false;
     })
+
     (mkIf (cfg.useLocally) {
       # NetworkManager commits terrible crimes (i.e. listening on :53)
       networking.networkmanager.dns = "none";
