@@ -217,3 +217,12 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
     (setq tab-width 8)
     (setq c-basic-offset 4))))
 #+END_SRC
+** flycheck improvements
+*** add keybind for listing errors (in a minibuf)
+#+BEGIN_SRC elisp
+(map! :leader "c X" #'flycheck-list-errors)
+#+END_SRC
+*** enable popup tips for rust
+#+BEGIN_SRC elisp
+(add-hook 'rust-mode-hook 'flycheck-popup-tip-mode)
+#+END_SRC
