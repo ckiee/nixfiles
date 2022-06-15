@@ -31,6 +31,7 @@ in with lib; {
     home-manager.users.ckie = { ... }: {
       programs.git = {
         enable = true;
+        lfs.enable = true;
         signing = {
           signByDefault = true;
           key = cfg.signingKey;
