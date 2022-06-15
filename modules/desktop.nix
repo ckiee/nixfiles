@@ -35,6 +35,14 @@ in with lib; {
     # Hackity HACK for working D-Bus activation
     systemd.user.services.dbus.environment.DISPLAY = ":0";
 
+    # Users will do scary things and suddenly require more memory,
+    # so let's take a bunch of spares from the cache so we don't OOM
+    # as easily.
+    boot.kernel.sysctl = {
+      "vm.user_reserve_kbytes" = 196608; # 1(2^17)
+      "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
+    };
+
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
