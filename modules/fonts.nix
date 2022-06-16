@@ -22,7 +22,7 @@ in with lib; {
       cantarell-fonts
       material-design-icons
       weather-icons
-      font-awesome
+      font-awesome_5 # 6 breaks polybar
       emacs-all-the-icons-fonts
       source-sans-pro
       jetbrains-mono
