@@ -30,7 +30,7 @@ in with lib; {
       jdk
       git-cinnabar
       mercurialFull
-      jetbrains.idea-community # way too good to use emacs for java
+      # jetbrains.idea-community # way too good to use emacs for java. TODO unbreak
       nixpkgs-review
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
