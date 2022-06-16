@@ -117,6 +117,9 @@ in with lib; {
         registration_shared_secret =
           fileContents ../../../secrets/matrix-synapse-registration;
 
+        enable_registration = true;
+        registration_requires_token = true;
+
         listeners = [{
           port = 8008;
           bind_addresses = singleton "::1";
