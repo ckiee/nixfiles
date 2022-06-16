@@ -30,7 +30,8 @@ in pkgs.mkShell {
     # cBin
     myNix
     jq
-    nix-eval-jobs
+    # build is broken
+    # nix-eval-jobs
     wireguard-tools
   ];
 
