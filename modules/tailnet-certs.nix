@@ -116,7 +116,10 @@ with builtins; {
           chown -R root:root /var/lib/tailnet-certs
           chmod -R 700 /var/lib/tailnet-certs
           for file in cert.pem chain.pem fullchain.pem full.pem key.pem; do
-            ${pkgs.wget}/bin/wget -O /var/lib/tailnet-certs/"$file" 'https://${cfg.serveHost}/'"$file"
+            ${pkgs.wget}/bin/wget \
+                --retry-connrefused --tries 10 --waitretry 10 \
+                -O /var/lib/tailnet-certs/"$file" \
+                'https://${cfg.serveHost}/'"$file"
           done
         '';
       };
