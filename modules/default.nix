@@ -52,5 +52,6 @@
     ./logiops.nix
     ./wireguard.nix
     ./mpd.nix
+    ./networkmanager.nix
   ];
 }
