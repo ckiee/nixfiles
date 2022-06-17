@@ -24,7 +24,7 @@ with lib;
       coredns.enable = mkForce
         false; # this RPi does not have a hardware rtc AND doesn't run 24/7 which makes it a pain in the ass for TLS
     };
-    machine-info.sshPubkey =
+    state.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBacSyNUF7XfWbo4nUuG0DLha+cHReyCm2zeBZcRaYLy";
   };
 

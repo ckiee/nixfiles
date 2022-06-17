@@ -46,12 +46,12 @@ with builtins; {
         ${
           (head (attrValues (filterAttrs
             (_: host: host.config.cookie.tailnet-certs.enableServer)
-            nodes))).config.cookie.machine-info.tailscaleIp
+            nodes))).config.cookie.state.tailscaleIp
         } certs.tailnet.ckie.dev
         ${concatStringsSep "\n" (mapAttrsToList (name: h:
           concatMapStringsSep "\n" (vhost:
             "${
-              h.config.cookie.machine-info.tailscaleIp or (throw
+              h.config.cookie.state.tailscaleIp or (throw
                 "Missing tailscaleIp for ${name}")
             } ${vhost}") h.config.cookie.tailnet-certs.client.hosts) nodes)}
       '';

@@ -21,7 +21,7 @@ with builtins;
   boot.tmpOnTmpfs = mkForce false;
 
   cookie = {
-    machine-info = {
+    state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
       tailscaleIp = "100.120.191.17";

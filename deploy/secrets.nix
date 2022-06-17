@@ -13,7 +13,7 @@ pkgs.writeScript "cookie-rager-encrypt" ''
   ${concatStringsSep "\n" (mapAttrsToList (host: hostConfig:
     let
       cfg = hostConfig.config.cookie.secrets;
-      machinePubkey = hostConfig.config.cookie.machine-info.sshPubkey;
+      machinePubkey = hostConfig.config.cookie.state.sshPubkey;
     in ''
       mkdir -p encrypted/'${host}' || true
       ${
@@ -43,6 +43,6 @@ pkgs.writeScript "cookie-rager-encrypt" ''
             get_enchash > encrypted/'${host}'/'${secretFn}'.HASH
           '') cfg)
       }
-    '') (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null)
+    '') (filterAttrs (_: n: n.config.cookie.state.sshPubkey != null)
       uncheckedNodes))}
 ''

@@ -64,7 +64,7 @@ in {
       systemd.services.nix-daemon.environment.NIX_SSHOPTS = let
         knownHosts = pkgs.writeText "known-hosts" ''
           ${concatStringsSep "\n" (mapAttrsToList (name: node:
-            "${name} ${node.config.cookie.machine-info.sshPubkey}") (filterAttrs (_: n: n.config.cookie.machine-info.sshPubkey != null) nodes))}
+            "${name} ${node.config.cookie.state.sshPubkey}") (filterAttrs (_: n: n.config.cookie.state.sshPubkey != null) nodes))}
           # external hosts here:
         '';
       in "-oIdentityFile=${config.cookie.secrets.ssh-buildfarm-key.dest} -oUserKnownHostsFile=${knownHosts}";

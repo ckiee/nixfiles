@@ -42,7 +42,7 @@
     ./shell-utils
     ./raspberry
     ./zfs.nix
-    ./machine-info.nix
+    ./state.nix
     ./util
     ./libvirtd.nix
     ./remote-builder.nix

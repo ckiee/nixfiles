@@ -6,7 +6,7 @@ in {
   cookie = {
     restic.enable = true; # Backups
     tailnet-certs.enableServer = true;
-    machine-info = {
+    state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
       tailscaleIp = "100.124.234.25";

@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.machine-info;
+let cfg = config.cookie.state;
 
 in with lib; {
-  options.cookie.machine-info = {
+  options.cookie.state = {
     bootable = mkOption {
       type = types.bool;
       description =
@@ -25,7 +25,7 @@ in with lib; {
   config = {
     assertions = [{
       assertion = cfg.bootable -> cfg.sshPubkey != null;
-      message = "bootable machines must have a cookie.machine-info.sshPubkey set";
+      message = "bootable machines must have a cookie.state.sshPubkey set";
     }];
   };
 }

@@ -88,7 +88,7 @@ with builtins;
     };
     # Etc
     git.enable = true;
-    wireguard.enable = config.cookie.machine-info.bootable;
+    wireguard.enable = config.cookie.state.bootable;
     binary-caches.enable = true;
     nix.enable = true;
     cookie-overlay.enable = true;
