@@ -4,7 +4,6 @@ with lib;
 with builtins;
 
 let
-  pkgs-master = import sources.nixpkgs-master { };
   inherit (util) mkRequiresScript;
 
   cfg = config.cookie.i3;
