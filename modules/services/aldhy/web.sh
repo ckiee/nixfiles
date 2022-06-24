@@ -54,7 +54,7 @@ $(tail -n20 build-logs/$current_job_name)
     for job in $(exa -rs modified build-logs | rg -v '\.exitcode$' | tr '\n' ' '); do
         if ! [ "$job" == "$current_job_name" ]; then
         build_unix="$(stat -c'%Y' build-logs/"$job")"
-        job_exitcode="$(cat build-logs/"$job".exitcode)"
+        job_exitcode="$(cat build-logs/"$job".exitcode 2>/dev/null)"
         job_status="finished"
         [ "$job_exitcode" -ne 0 ] && job_status="failed with exit code $job_exitcode"
         past_jobs="$past_jobs
