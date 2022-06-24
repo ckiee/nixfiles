@@ -7,7 +7,6 @@ in with lib; {
 
   config = mkIf cfg.enable {
     programs.steam.enable = true;
-    environment.systemPackages = with pkgs; [ steam-run-native ];
 
     programs.gamemode = {
       enable = true;
