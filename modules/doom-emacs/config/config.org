@@ -226,3 +226,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (add-hook 'rust-mode-hook 'flycheck-popup-tip-mode)
 #+END_SRC
+** magit: add =SPC g o y= for copying the VCS url
+#+BEGIN_SRC elisp
+(map! :leader "g o y" #'bar-to-clipboard)
+#+END_SRC
