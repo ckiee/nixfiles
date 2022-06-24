@@ -6,8 +6,7 @@ let
   cfg = config.cookie.services.prometheus;
   # this little boilerplate is here because I used to rewrite bokkusu's address
   # in order to keep the old prom data, which didn't work
-  listenAddressFor = hcfg: hcfg.cookie.wireguard.ip;
-  listenAddress = listenAddressFor config;
+  listenAddress = config.cookie.wireguard.ip;
 in {
   options.cookie.services.prometheus = {
     enableServer = mkEnableOption "Enables the Prometheus monitoring service";
@@ -102,7 +101,7 @@ in {
             job_name = k;
             static_configs = [{
               targets = map (host: "${host}:${toString port}")
-                (mapAttrsToList (_: host: listenAddressFor host.config)
+                (mapAttrsToList (_: host: "${host.config.networking.hostName}.cknet")
                   (filterAttrs (_: host:
                     let
                       hcfg = host.config.cookie.services.prometheus;

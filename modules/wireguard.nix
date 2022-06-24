@@ -5,6 +5,10 @@ with lib;
 let
   cfg = config.cookie.wireguard;
   hostname = config.networking.hostName;
+  forWgNode = f:
+    (filter (x: x != null) (mapAttrsToList
+      (_: h: if h.config.cookie.wireguard.enable then f h.config else null)
+      nodes));
 in {
   options.cookie.wireguard = {
     enable = mkEnableOption "Enables wireguard cknet";
@@ -25,8 +29,10 @@ in {
   config = mkMerge [
     {
       cookie.wireguard.ip = let
-        withIndices =
-          imap1 (i: x: { i = i; x = nodes.${x}; }) (attrNames nodes);
+        withIndices = imap1 (i: x: {
+          i = i;
+          x = nodes.${x};
+        }) (attrNames nodes);
         thisNode = findFirst
           (cmp: cmp.x.config.networking.hostName == config.networking.hostName)
           null withIndices;
@@ -57,25 +63,20 @@ in {
         };
       };
 
-      networking.wireguard.interfaces.cknet = {
-        peers = (filter (x: x != null) (mapAttrsToList (_: h:
-          if h.config.cookie.wireguard.enable then
-            let hcfg = h.config.cookie.wireguard;
-            in {
-              publicKey = fileContents
-                (../secrets + "/wg-pubkey-${h.config.networking.hostName}");
-              allowedIPs = singleton "${hcfg.ip}/32";
-              persistentKeepalive = 1;
-              endpoint = if hcfg.endpoint != null then
-                "${hcfg.endpoint}:51820"
-              else
-                null;
-              endpointsUpdater.enable = hcfg.endpoint != null;
-            }
-          else
-            null) nodes));
+      networking.wireguard.interfaces.cknet.peers = forWgNode (hc:
+        let hcfg = hc.cookie.wireguard;
+        in {
+          publicKey =
+            fileContents (../secrets + "/wg-pubkey-${hc.networking.hostName}");
+          allowedIPs = singleton "${hcfg.ip}/32";
+          persistentKeepalive = 1;
+          endpoint =
+            if hcfg.endpoint != null then "${hcfg.endpoint}:51820" else null;
+          endpointsUpdater.enable = hcfg.endpoint != null;
+        });
 
-      };
+      networking.extraHosts = concatStringsSep "\n" (forWgNode
+        (hc: "${hc.cookie.wireguard.ip} ${hc.networking.hostName}.cknet"));
     })
   ];
 
