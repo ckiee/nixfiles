@@ -5,6 +5,9 @@ with lib;
 
 let
   cfg = config.cookie.services.ckiesite;
+  util = import ./util.nix { inherit lib config; };
+  port = "18592";
+
   inherit (sources) spectrogram-web abandoned-projects;
   inherit (pkgs.cookie) ckiesite;
   topLevelLinks = map (name: {
@@ -33,18 +36,28 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
-    cookie.services.nginx.enable = true;
+  config = mkIf cfg.enable (mkMerge [
+    (util.mkService "ckiesite" {
+      home = "/var/lib/ckiesite";
+      description = "site of cookie";
+      script = let bin = pkgs.cookie.ckiesite.defaultPackage.${pkgs.stdenv.hostPlatform.system};
+      in ''
+        exec ${bin}/bin/site -p ${port} ${sources.ckiesite}/data/org
+      '';
+    })
+    {
+      cookie.services.nginx.enable = true;
 
-    services.nginx = {
-      virtualHosts."${cfg.host}" = {
-        locations = { "/".root = "${webroot}"; };
-        extraConfig = ''
-          rewrite ^/owobot$ https://discord.com/oauth2/authorize?client_id=731874934543876158&permissions=536895488&scope=bot permanent;
-          access_log /var/log/nginx/ckiesite.access.log;
-        '';
+      services.nginx = {
+        virtualHosts."${cfg.host}" = {
+          locations."/".proxyPass = "http://127.0.0.1:${port}";
+          extraConfig = ''
+            rewrite ^/owobot$ https://discord.com/oauth2/authorize?client_id=731874934543876158&permissions=536895488&scope=bot permanent;
+            access_log /var/log/nginx/ckiesite.access.log;
+          '';
+        };
       };
-    };
-    cookie.services.prometheus.nginx-vhosts = [ "ckiesite" ];
-  };
+      cookie.services.prometheus.nginx-vhosts = [ "ckiesite" ];
+    }
+  ]);
 }

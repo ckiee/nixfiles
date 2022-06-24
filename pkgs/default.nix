@@ -11,5 +11,5 @@ in {
   mcid = callPackage sources.mcid { };
   alvr-bot = callPackage sources.alvr-bot { };
   anonvote-bot = callPackage sources.anonvote-bot { };
-  ckiesite = callPackage ./ckiesite { };
+  ckiesite = import sources.ckiesite;
 }
