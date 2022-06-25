@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nixosConfig, ... }:
 
 let cfg = config.cookie.collections.chat;
 
@@ -15,7 +15,7 @@ in with lib; {
       }))
       discord
       fractal
-      element-desktop
+      (element-desktop.override { element-web = nixosConfig.cookie.services.matrix.elementRoot; })
     ];
     cookie.weechat.enable = true;
   };

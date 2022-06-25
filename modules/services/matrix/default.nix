@@ -2,7 +2,6 @@
 
 let
   cfg = config.cookie.services.matrix;
-  pkgs-master = import sources.nixpkgs-master { };
 in with lib; {
   imports = [ ./discord.nix ];
 
@@ -19,6 +18,12 @@ in with lib; {
       default = "matrix.localhost";
       description = "The reverse-proxied host";
       example = "matrix.ckie.dev";
+    };
+    elementRoot = mkOption {
+      type = types.package;
+      default = pkgs.callPackage ./web.nix { };
+      readOnly = true;
+      description = "The element-web we're serving";
     };
   };
 
@@ -50,7 +55,10 @@ in with lib; {
         '';
       };
       ${cfg.serviceHost} = {
-        locations."/".root = "${pkgs.synapse-admin}";
+        locations = {
+          "/admin".root = "${pkgs.synapse-admin}";
+          "/".root = "${cfg.element-root}";
+        };
         # log for prom
         extraConfig = ''
           access_log /var/log/nginx/matrix.access.log;
@@ -131,6 +139,7 @@ in with lib; {
             compress = false;
           }];
         }];
+
         logConfig = ''
           version: 1
 
