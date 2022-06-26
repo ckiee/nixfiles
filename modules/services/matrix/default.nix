@@ -57,7 +57,7 @@ in with lib; {
       ${cfg.serviceHost} = {
         locations = {
           "/admin".root = "${pkgs.synapse-admin}";
-          "/".root = "${cfg.element-root}";
+          "/".root = "${cfg.elementRoot}";
         };
         # log for prom
         extraConfig = ''
