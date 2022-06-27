@@ -37,7 +37,7 @@
     ./owo-bot.nix
     ./ffg-bot.nix
     ./redirect-farm.nix
-    ./ckiesite.nix
+    ./ckiesite
     ./daiko.nix
     ./isp-troll.nix
     ./anonvote-bot.nix
