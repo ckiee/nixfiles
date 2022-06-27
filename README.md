@@ -11,7 +11,6 @@
 > *They're just golden russet groupings*
 >
 > *So they're not that good for eating.*
->
 > [〜](https://www.youtube.com/watch?v=nwXIpjQjEy8)
 
 A collection of relatively overkill `.nix` files managing my fleet of computers on this planet.
