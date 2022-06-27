@@ -36,7 +36,7 @@ even if you [suddenly decide to migrate it](https://github.com/ckiee/nixfiles/co
 
 Nix [has a lot of problems](https://xeiaso.net/talks/nixos-pain-2021-11-10)
 but if you have [a lot of time](https://github.com/hlissner/dotfiles#frequently-asked-questions)
-[and you're open to trying out new ways of doing things](https://illustris.tech/devops/why-you-should-NOT-never-ever-use-nixos/),
+and [you're open to trying out new ways of doing things](https://illustris.tech/devops/why-you-should-NOT-never-ever-use-nixos/),
 it becomes extremely enjoyable after a while.
 
 > *But even still..!*
