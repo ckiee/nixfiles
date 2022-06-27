@@ -2,7 +2,7 @@
 
 > *These are .Nix files*
 >
-> *The blue things on these silicon chips*
+> *The blue bits on these silicon chips*
 >
 > *Well, they're not edible*
 >
