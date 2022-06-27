@@ -1,6 +1,5 @@
 # nixfiles
 
-[//]: # a patched version of Keyes - Me Want Bite (orig. rel. date 2021-01-06)
 > *These are .Nix files*
 >
 > *The blue things on these silicon chips*
