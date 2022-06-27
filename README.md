@@ -34,10 +34,20 @@ and once you deploy a new service
 it usually just keeps on working,
 even if you [suddenly decide to migrate it](https://github.com/ckiee/nixfiles/commit/387b08e).
 
-There [is a heavy price to pay](https://xeiaso.net/talks/nixos-pain-2021-11-10)
-but if you have a few machines, [a lot of time](https://github.com/hlissner/dotfiles#frequently-asked-questions),
+Nix [has a lot of problems](https://xeiaso.net/talks/nixos-pain-2021-11-10)
+but if you have [a lot of time](https://github.com/hlissner/dotfiles#frequently-asked-questions)
 [and you're open to trying out new ways of doing things](https://illustris.tech/devops/why-you-should-NOT-never-ever-use-nixos/),
 it becomes extremely enjoyable after a while.
+
+> *But even still..!*
+>
+> *Me want eat!*
+>
+> *Me want tasty computer treat!*
+>
+> *Me want spoonful.*
+>
+> *Me want sweet Nix from the beach!*
 
 ## License
 
