@@ -85,9 +85,10 @@ in {
         };
       };
       ### get tls cert
-      cookie.tailnet-certs.client = {
+      cookie.tailnet-certs.client = rec {
         enable = true;
         hosts = singleton cfg.host;
+        forward = hosts;
       };
     })
 
