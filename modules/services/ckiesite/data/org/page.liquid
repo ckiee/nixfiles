@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/normalize.css">
+  <style>
+    main {
+        margin: auto auto;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 18px;
+        color: #444;
+    }
+    html {
+        background: #EEEEEE;
+    }
+    body {
+        margin: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        outline: none;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+    }
+    span.underline {
+        text-decoration: underline;
+    }
+    span.code {
+        font-family: monospace;
+    }
+    div.warning {
+        padding: 1em;
+        background: #fff5d6;
+        border-radius: 5px;
+    }
+
+    header {
+        display: flex;
+        gap: 1em;
+        flex-grow: 0;
+    }
+
+    #cookie-icon, #cookie-icon-cont {
+        height: 8vh;
+    }
+
+    #header-left-links {
+        display: flex;
+        align-items: flex-start;
+        gap: 1em;
+        flex-flow: wrap;
+    }
+
+    #header-left-links .separator {
+        user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" id="cookie-icon-cont">
+      <img id="cookie-icon" src="/static/cookienomblob.svg" alt="Cookie emoji eating another emoji">
+    </a>
+
+    <nav id="header-left-links">
+      <b>{{ html_title }}</b>
+      <span class=separator>&#8594;</span>
+      {{nav_htmls | join: "<span class=separator>|</span>"}}
+    </nav>
+
+  </header>
+
+  <main>
+    {{ html }}
+  </main>
+</body>
+</html>

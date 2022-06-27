@@ -1,0 +1,357 @@
+# This file contains the whole blog. Just one file. Easier to serve properly.
+* hi  :index:
+this is my /new new new new/ website. it is different from the other ones since it's no longer just some dumb static files.
+** :@nav:
+# TODO add links to other pages here, no conditional yet
+- [[meta][Orgish]]
+** who are you :#this:
+I is cookie. I am in [[https://github.com/ckiee/nixfiles/blob/master/modules/services/mailserver/util.nix][a lot of places]].
+- [[https://github.com/ckiee][=@ckiee= on Github]]
+- [[https://matrix.to/#/@ckie:ckie.dev][=@ckie:ckie.dev= on Matrix]]
+*** how'd you get the name "cookie" :#ckname:
+I have no idea, it's changed a bit over the years but I don't remember why I picked the nbsp&/c o o k i e/&nbsp specifically.
+*** talk to me! :#talk:
+i am online way too much. maybe send an email? =us@ckie.dev=
+** this site :#site:
+this site has no index listing. as you explore, +the content will change with you.+ not yet
+** what do you do :#ckdo:
+Sometimes I make things. This website is being served to you with a few thousand lines of Rust since I wrote a good-enough-for-me parser for [[https://orgmode.org/][nbsp&Org Mode&nbsp]].
+*** /things???/
+Yes. Things. Mostly Rust, TypeScript and Nix. [[https://github.com/ckiee/ckiesite-rs][Here's this site.]]
+
+* /Orgish/, or How This Site's Language Works :meta:
+This site is using /Orgish/, a custom variant of [[https://orgmode.org/][Org Mode]].
+** :@nav:
+- [[render-test][general rendering test]]
+** It Is Still A Work In Progress :#wip:
+Orgish actually still sucks at parsing because Org Mode's syntax is pretty weird and giant and ambigious and using [[https://lib.rs/crates/combine][=combine=]] to build the parser was a bad idea.
+** =nbsp&=
+You can disable line wrapping for a bit by wrapping your content in ~nbsp&~ nbsp& *hello world this won't be line wrapped! so cool! some more words! blah blah blah blah* &nbsp ~&nbsp~
+
+* n :nav-rendergroup-test:
+h
+** :@nav:
+- b
+
+* render test :render-test:
+toplevel
+# comment
+# commenting words
+** hello
+Some text here!
+*** world
+..and some more text here.
+*** this shouldn't be inside world
+** another *one*
+yeah this has some text
+maybe even a /few/ *lines*?
+
+now this has some spacing *yay*
+** markup
+To markup text in Org, simply surround it with one or more marker characters. *Bold*, /italic/ and _underline_ are fairly intuitive, and the ability to use +strikethrough+ is a plus.  You can _/*combine*/_ the basic markup in any order, however ~code~ and =verbatim= need to be the *_~inner-most~_* markers if they are present since their contents are interpreted =_literally_=.
+
+#+BEGIN_SRC rust
+fn main() {
+    println!("Hello world!")
+}
+#+END_SRC
+** lists
+What follows is a simple list:
+- Fooing
+- Baring
+- Bazing
+* Moved :tailscale-coredns.html:
+You're looking for [[/tailscale-coredns][this]].
+* An Adventure Through Tailscale and CoreDNS :tailscale-coredns:
+warning&This post was migrated from the old site and cannot [[/meta#wip][yet]] be parsed properly. [[https://github.com/ckiee/ckiesite-static/blob/main/public/tailscale-coredns.md][Here's the original]].&warning
+** prologue
+recently, i've been using my beefier [[https://github.com/ckiee/nixfiles/blob/ebc09474dd7b005c8e19e9188db2123e4a5d7081/README.md#cookiemonster][desktop machine]] remotely to conserve battery when coding on my laptop while i'm at school.
+
+this works pretty well most of the time (i have another host's sshd port-forwarded to [[https://en.wikipedia.org/wiki/Wake-on-LAN][WoL]] the machine) but trying to swoosh ssh into [reverse-]forwarding the right ports to test stuff gets painful rather quickly when using [[https://github.com/DBCDK/morph][tooling that]] [[https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-copy.html][runs ssh]] for you.
+
+** Tailscale
+[[https://tailscale.com][Tailscale]] is a nice overlay VPN backed by WireGuard; basically you login into tailscale on a bunch of machines and they get assigned private IPv4s. apparently it's [[https://tailscale.com/blog/how-nat-traversal-works/][supposed to break through NATs]] but i haven't had any luck with that.
+
+i have a friend who works at tailscale which has made me quite aware of it's existence. i've been carefully avoiding getting a VPN setup [[https://github.com/ckiee/nixfiles/commit/b33a40f][for 4 months]], but a few weeks of constantly rereading the =ssh(1)= manpage for the various port forwarding argument syntaxes did it for me.
+
+being a NixOS user, i dropped a quick ~services.tailscale.enable = true;~ in my local machine's configuration, rebuilt, ran ~tailscale up~ and logged in.
+
+=tailscaled= was happily churning along in the background, so i proceeded to think about running =tailscale up= 3 more times for my other hosts, got terrified at the proposition and wrote [[https://github.com/ckiee/nixfiles/blob/ebc09474dd7b005c8e19e9188db2123e4a5d7081/modules/services/tailscale.nix][this]] instead:
+
+#+BEGIN_SRC nix
+    cookie.secrets.tailscale-authkey = {
+      source = "./secrets/tailscale-authkey";
+      owner = "root";
+      group = "root";
+      permissions = "0400";
+      wantedBy = "tailscaled-autoconfig.service";
+    };
+
+    systemd.services.tailscaled-autoconfig = rec {
+      description = "Autoconfigure tailscaled";
+      wantedBy = [ "multi-user.target" ];
+      requires = [ "tailscaled.service" "tailscale-authkey-key.service" ];
+      after = requires;
+
+      serviceConfig.Type = "oneshot";
+
+      script =
+        "${tailscale}/bin/tailscale up --reset --force-reauth --authkey $(cat ${
+          escapeShellArg config.cookie.secrets.tailscale-authkey.dest
+        })";
+    };
+  };
+#+END_SRC
+
+after encrypting the new =tailscale-authkey= secret it happily deployed, which meant it was time for my next problem...
+
+#+BEGIN_SRC c
+ckie@cookiemonster ~ -> tailscale status
+100.77.146.21   cookiemonster        ckiee@       linux   -
+100.124.234.25  bokkusu              ckiee@       linux   -
+100.80.1.116    drapion              ckiee@       linux   -
+100.94.232.88   galaxy-a51           ckiee@       android active; direct 192.168.0.43:35862, tx 8463276 rx 642228
+100.89.163.81   thonkcookie          ckiee@       linux   -
+#+END_SRC
+
+(sidenote: i'm still not sure how i feel about depending on yet another company, but i can always fall back on other solutions.)
+
+** DNS troubles
+on my home network, i have a [[https://coredns.io/][CoreDNS]] server listening locally, filtering ads and forwarding other traffic to [[https://github.com/cloudflare/cloudflared][=cloudflared=]] which (among other things) sends queries using DNS-over-HTTPS.
+
+this has worked pretty well for a while but with the addition of non-local devices, keeping a single host serving two different continents seems like a latency disaster, so i refactored a tad and enabled the [[https://github.com/ckiee/nixfiles/blob/dd69f55613cd3e64687a99426dfac926f526a6c4/modules/services/coredns/default.nix][coredns module]] on all tailscale-connected hosts.
+
+*** MagicDNS
+=tailscaled= can also act as a DNS resolver to resolve requests like =<host>.example.com.beta.tailscale.net=; it's supposed to [[https://tailscale.com/blog/sisyphean-dns-client-linux/][autoconfigure this]] but that didn't work, feels a bit intrusive and doesn't really work with the rest of my setup as i want to keep ad-blocking consistently working.
+
+having too much free time, i sat down and whipped up a little script to occasionally regenerate my hosts file with the currently available tailscale hosts:
+
+# #+BEGIN_SRC
+#   baseHosts = pkgs.writeTextFile {
+#     name = "coredns-hosts-ckie";
+#     text = ''
+#       # StevenBlack ad-blocking hosts
+#       ${extHosts}
+#       # Runtime hosts
+#     '';
+#   };
+# #+END_SRC
+
+# #+BEGIN_SRC sh
+# #!@bash@/bin/sh
+# ## shellcheck & shfmt please
+
+# BASE_HOSTS="@baseHosts@"
+# export PATH="$PATH:@tailscale@/bin:@jq@/bin"
+
+# while true; do
+#     newhosts=$(mktemp)
+#     cat "$BASE_HOSTS" >"$newhosts"
+#     tailscale status --json | jq -r '([.Peer[]] + [.Self])[] | [.TailAddr, (.HostName | split(" ") | join("-") | ascii_downcase) + "@hostSuffix@"] | @tsv' >> "$newhosts"
+#     # we do this little dance to try to ensure coredns doesn't reload while
+#     # we're still writing to the file.
+#     rm /run/coredns-hosts
+#     mv "$newhosts" /run/coredns-hosts
+#     sleep 10
+# done
+# #+END_SRC
+
+# ..sprinkling in some glue:
+
+# #+BEGIN_SRC
+#       systemd.services.dns-hosts-poller = {
+#       # [cut]
+#         serviceConfig = {
+#           Type = "simple";
+#           ExecStart = pkgs.runCommandLocal "dns-hosts-poller" {
+#             inherit (pkgs) bash tailscale jq;
+#             inherit baseHosts hostSuffix;
+#           } ''
+#             substituteAll "${./dns-hosts-poller}" "$out"
+#             chmod +x "$out"
+#           '';
+#         };
+#       # [cut]
+#       };
+# #+END_SRC
+
+# making sure CoreDNS actually [re]loads =/run/coredns-hosts=:
+
+# #+BEGIN_SRC
+# . {
+#     hosts /run/coredns-hosts {
+#         reload 1500ms
+#         fallthrough
+#     }
+#     forward . 127.0.0.1:1483
+#     errors
+#     cache 120 # two minutes
+# }
+# #+END_SRC
+
+# ..and done! except not, no queries for ad servers get blocked, and
+# nothing is getting resolved:
+
+# #+BEGIN_SRC sh
+# ckie@cookiemonster ~/git/nixfiles -> host cookiemonster.tailnet.ckie.dev localhost
+# Using domain server:
+# Name: localhost
+# Address: ::1#53
+# Aliases:
+
+# Host cookiemonster.tailnet.ckie.dev not found: 3(NXDOMAIN)
+# #+END_SRC
+
+# Let's prod at what CoreDNS is reading: (those domains there are probably
+# bad, don't visit!)
+
+# #+BEGIN_SRC sh
+# ckie@cookiemonster ~/git/nixfiles -> tail -n20 /run/coredns-hosts
+# tail: cannot open '/run/coredns-hosts' for reading: Permission denied
+# ckie@cookiemonster ~/git/nixfiles -> sudo tail -n20 /run/coredns-hosts
+# 0.0.0.0 zukxd6fkxqn.com
+# 0.0.0.0 zy16eoat1w.com
+
+# # End yoyo.org
+
+# # blacklist
+# #
+# # The contents of this file (containing a listing of additional domains in
+# # 'hosts' file format) are appended to the unified hosts file during the
+# # update process. For example, uncomment the following line to block
+# # 'example.com':
+
+# # 0.0.0.0 example.com
+
+# # Runtime hosts
+# 100.94.232.88   galaxy-a51.tailnet.ckie.dev
+# 100.80.1.116    drapion.tailnet.ckie.dev
+# 100.89.163.81   thonkcookie.tailnet.ckie.dev
+# 100.124.234.25  bokkusu.tailnet.ckie.dev
+# 100.77.146.21   cookiemonster.tailnet.ckie.dev
+# #+END_SRC
+
+# ...
+
+# ...
+
+# /Ooooohhhh!/ CoreDNS might not be running as root, so it can't open that
+# file, like how I couldn't initially.
+
+# #+BEGIN_SRC
+# ckie@cookiemonster ~/git/nixfiles -> cat /etc/systemd/system/coredns.service | grep -i user
+# DynamicUser=true
+# #+END_SRC
+
+# yup!
+
+# #+BEGIN_SRC sh
+# # [cut]
+#     tailscale status --json | jq -r '([.Peer[]] + [.Self])[] | [.TailAddr, (.HostName | split(" ") | join("-") | ascii_downcase) + "@hostSuffix@"] | @tsv' >> "$newhosts"
+#     chmod 444 "$newhosts" # ..here we go!
+#     mv "$newhosts" /run/coredns-hosts
+# # [cut]
+# #+END_SRC
+
+# let's try it:
+
+# #+BEGIN_SRC
+# ckie@cookiemonster ~/git/nixfiles -> host cookiemonster.tailnet.ckie.dev localhost
+# Using domain server:
+# Name: localhost
+# Address: 127.0.0.1#53
+# Aliases:
+
+# Host cookiemonster.tailnet.ckie.dev not found: 3(NXDOMAIN)
+# ckie@cookiemonster ~/git/nixfiles -> make debug
+# mo deploy morph.nix switch --passwd --on=cookiemonster*
+# Selected 1/5 hosts (name filter:-4, limits:-0):
+#       0: cookiemonster (secrets: 0, health checks: 0, tags: )
+
+# these 6 derivations will be built:
+#   /nix/store/s9ra8a3mh13z44nxh3la2li0s9j5q1q2-dns-hosts-poller.drv
+#   /nix/store/05hpppgrh8rdrs2pxgvcvdxdy6qfr7vf-unit-dns-hosts-poller.service.drv
+#   /nix/store/f1j3s0pk8cgh1gfnl90ldzl2qsi0dayr-system-units.drv
+#   /nix/store/8bs3pdrv5j957mza8ng2cka8fndvgmwa-etc.drv
+#   /nix/store/ycirn33cr7hpa0xz90yz8asck9b87izb-nixos-system-cookiemonster-21.11pre-git.drv
+#   /nix/store/ylfkk8gnzg8v0qvbqqvvm71q0q2aymmd-morph.drv
+# building '/nix/store/s9ra8a3mh13z44nxh3la2li0s9j5q1q2-dns-hosts-poller.drv'...
+# building '/nix/store/05hpppgrh8rdrs2pxgvcvdxdy6qfr7vf-unit-dns-hosts-poller.service.drv'...
+# building '/nix/store/f1j3s0pk8cgh1gfnl90ldzl2qsi0dayr-system-units.drv'...
+# building '/nix/store/8bs3pdrv5j957mza8ng2cka8fndvgmwa-etc.drv'...
+# building '/nix/store/ycirn33cr7hpa0xz90yz8asck9b87izb-nixos-system-cookiemonster-21.11pre-git.drv'...
+# building '/nix/store/ylfkk8gnzg8v0qvbqqvvm71q0q2aymmd-morph.drv'...
+# /nix/store/0md4gfhcnhlr15azh2ymcmjdm4ldg2nw-morph
+# nix result path:
+# /nix/store/0md4gfhcnhlr15azh2ymcmjdm4ldg2nw-morph
+
+# Pushing paths to cookiemonster (@cookiemonster):
+#     * /nix/store/zc05zrcs3kfms3mgysv6f2sxhk1pk3pc-nixos-system-cookiemonster-21.11pre-git
+
+# Executing 'switch' on matched hosts:
+
+# -- cookiemonster
+# Please enter remote sudo password:
+# could not find any previously installed systemd-boot
+# stopping the following units: dns-hosts-poller.service
+# activating the configuration...
+# setting up /etc...
+# reloading user units for ckie...
+# setting up tmpfiles
+# starting the following units: dns-hosts-poller.service
+
+# Running healthchecks on cookiemonster (cookiemonster):
+# Health checks OK
+# Done: cookiemonster
+# ckie@cookiemonster ~/git/nixfiles -> host cookiemonster.tailnet.ckie.dev localhost
+# Using domain server:
+# Name: localhost
+# Address: ::1#53
+# Aliases:
+
+# cookiemonster.tailnet.ckie.dev has address 100.77.146.21
+# #+END_SRC
+
+# that's pretty cool! but i really don't want to type
+# =cookiemonster.tailnet.ckie.dev= every single time, and there's a easy
+# solution for that:
+
+# #+BEGIN_SRC
+# Manual page configuration.nix(5) line 8628
+#        networking.search
+#            The list of search paths used when resolving domain names.
+
+#            Type: list of strings
+
+#            Default: [ ]
+
+#            Example: [ "example.com" "home.arpa" ]
+
+#            Declared by:
+#                <nixpkgs/nixos/modules/tasks/network-interfaces.nix>
+# #+END_SRC
+
+# #+BEGIN_SRC
+#       networking.search = singleton ".tailnet.ckie.dev";
+#       # /nixpkgs/lib/lists.nix has this:
+#       #   singleton = x: [x];
+# #+END_SRC
+
+# #+BEGIN_SRC
+# # this is a bit weird
+# ckie@cookiemonster ~/git/nixfiles -> host cookiemonster
+# host: '.tailnet.ckie.dev' is not in legal name syntax (empty label)
+# # but ping seems to work, so it's alright..
+# ckie@cookiemonster ~/git/nixfiles -> ping cookiemonster -c1
+# PING cookiemonster(localhost (::1)) 56 data bytes
+# 64 bytes from localhost (::1): icmp_seq=1 ttl=64 time=0.035 ms
+
+# --- cookiemonster ping statistics ---
+# 1 packets transmitted, 1 received, 0% packet loss, time 0ms
+# rtt min/avg/max/mdev = 0.035/0.035/0.035/0.000 ms
+# #+END_SRC
+
+* Human Diagnostics :hdiag:
+For things I have said many times and would not like to repeat as much.
+** Not A Personal Attack :#napa:
+The statement you apologized for was not intended as a personal attack, but a hopefully-constructive critique of your actions, please take it as such.

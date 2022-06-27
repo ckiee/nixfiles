@@ -42,7 +42,7 @@ in {
       description = "site of cookie";
       script = let bin = pkgs.cookie.ckiesite.defaultPackage.${pkgs.stdenv.hostPlatform.system};
       in ''
-        exec ${bin}/bin/site -p ${port} ${sources.ckiesite}/data/org
+        exec ${bin}/bin/site -p ${port} ${./data}
       '';
     })
     {
