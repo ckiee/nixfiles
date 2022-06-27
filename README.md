@@ -1,79 +1,40 @@
 # nixfiles
 
-A collection of ~~slightly-above-average~~ overkill `.nix` files managing a bunch of computers all over Earth.
+[//]: # a patched version of Keyes - Me Want Bite (orig. rel. date 2021-01-06)
+> *These are .Nix files*
+> *The blue things on these silicon chips*
+> *Well, they're not edible*
+> *But don't you think they oughta be?*
+> *They're just golden russet groupings*
+> *So they're not that good for eating.*
+> [〜](https://www.youtube.com/watch?v=nwXIpjQjEy8)
 
-## How can I run this on my machine?
+A collection of relatively overkill `.nix` files managing my fleet of computers on this planet.
 
-You probably shouldn't be; this is open source to serve as just a reference, but I'll be impressed if you figure it out.
+![Dual monitor screenshot of `cookiemonster`.
+On screen are Doom Emacs, Element, and Cantata](screenshot.png)
 
-## Hosts
+You can see all the 120-ish [`./modules`](https://github.com/ckiee/nixfiles/tree/master/modules)
+by exploring that directory.
 
-### bokkusu
+I'm particularly proud of
+[`aldhy`](https://github.com/ckiee/nixfiles/tree/master/modules/services/aldhy/): 
+a CI/CD service to build the fleet's NixOS system derivations.
+It's written in bash and running at
+[aldhy.tailnet.ckie.dev](https://aldhy.tailnet.ckie.dev).
 
-Our main server, rented from [OVH](https://ovh.com).
-(_Currently full, no more services for this one_)
+## Abstraction
+NixOS lets you forget
+[what hosts are running what](https://github.com/ckiee/nixfiles/blob/0560c489fca45d40aebb2ed9251b34dd6d233b4d/bin/c#L64)
+and once you deploy a new service
+it usually just keeps on working,
+even if you [suddenly decide to migrate it](https://github.com/ckiee/nixfiles/commit/387b08e).
 
-| Property | bokkusu                                   |
-| :------- | :---------------------------------------- |
-| CPU      | 2x Intel Core Processor (Haswell, no TSX) |
-| Memory   | 7.6Gi                                     |
-| Disk     | 80G                                       |
-
-### cookiemonster
-
-The main desktop machine and the beefiest of them all.
-
-| Property | cookiemonster                     |
-| :------- | :-------------------------------- |
-| CPU      | AMD Ryzen 5 3600 6-Core Processor |
-| Memory   | 15Gi                              |
-| Disk     | 538G SATA, 465G NVME              |
-
-### drapion
-
-A _Raspberry Pi_, serving as the DNS server and occasional jumphost.
-
-| Property | drapion          |
-| :------- | :--------------- |
-| CPU      | Broadcom BCM2835 |
-| Memory   | 895Mi            |
-| Disk     | 30G              |
-
-### thonkcookie
-
-A _Lenovo Thinkpad T480s_, serving as our desktop machine when someone dares to make us move more than a meter.
-
-It's mostly just for browsing and also occasionally, remote development with [cookiemonster](#cookiemonster).
-
-| Property | thonkcookie                              |
-| :------- | :--------------------------------------- |
-| CPU      | Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz |
-| Memory   | 7.5Gi                                    |
-| Disk     | 238.5G                                   |
-
-### pansear
-
-An old PC running random services and a Windows VM.
-
-| Property | pansear                                 |
-| :------- | :-------------------------------------- |
-| CPU      | Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz |
-| Memory   | 7.6Gi                                   |
-| Disk     | 111.8G                                  |
-
-### pookieix
-
-Another Pi, too boring to boot up to get specs. It's used for the 3D printer.
-
-### virt
-
-A QEMU VM for testing that's been used a total of... one time!
-
-### aquamarine
-
-A laptop motherboard in a dollar-store box. Very unreliable, slow, and only has a somewhat-functioning WiFi card for
-networking.
+There [is a heavy price to pay](https://xeiaso.net/talks/nixos-pain-2021-11-10)
+but if you have a few machines, [a lot of time](https://github.com/hlissner/dotfiles#frequently-asked-questions),
+[and you're open to trying out new ways of doing things](https://illustris.tech/devops/why-you-should-NOT-never-ever-use-nixos/),
+it becomes extremely enjoyable after a while.
 
 ## License
 
-Read the `LICENSE` file, silly!
+Read the `LICENSE` file, silly! 😛
