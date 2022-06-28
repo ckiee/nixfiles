@@ -56,12 +56,11 @@ fn main() {
 - Baring
 - Bazing
 *** Nested
-- Hello
-  + Words
-- World (not nested)
-  - Hello
+- World (a new list)
+  - Hello (nested item of World)
     + More nesting
       - And some more
++ Top level =+=
 * Moved :tailscale-coredns.html:
 You're looking for [[/tailscale-coredns][this]].
 * An Adventure Through Tailscale and CoreDNS :tailscale-coredns:

@@ -47,10 +47,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "ckiesite",
-        "rev": "fb104a5233871aed1c0045af9745b2625187edca",
-        "sha256": "18pgkbrhl4sy2kabqimr914xvxcf91bv8dnfbawlx5islx9ifxbk",
+        "rev": "129d3f672f0305ce964cadec07b05140fc9f6d59",
+        "sha256": "0h9fa0vwbdpkq4yiycfzma665mzp3kgxwh1i4cjms7gnxr99vmn8",
         "type": "tarball",
-        "url": "https://github.com/ckiee/ckiesite/archive/fb104a5233871aed1c0045af9745b2625187edca.tar.gz",
+        "url": "https://github.com/ckiee/ckiesite/archive/129d3f672f0305ce964cadec07b05140fc9f6d59.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "comicfury-discord-webhook": {
