@@ -1,0 +1,69 @@
+From 8e697b1969adf6c1e17ccca8e1a5b6f2fb0f346b Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Tue, 28 Jun 2022 05:25:06 +0300
+Subject: [PATCH] screenshot-application.c#clipboard#cli: block on next
+ clipboard change
+
+When running `gnome-screenshot -cw` in my system it exited immediately
+after screenshotting, and so the clipboard content was lost.
+
+`gtk_clipboard_store` was a no-op on my system.
+---
+ src/screenshot-application.c | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/src/screenshot-application.c b/src/screenshot-application.c
+index f7f5022..555825c 100644
+--- a/src/screenshot-application.c
++++ b/src/screenshot-application.c
+@@ -377,6 +377,30 @@ screenshot_back (ScreenshotApplication *self)
+   screenshot_show_interactive_dialog (self);
+ }
+ 
++
++static gboolean
++screenshot_clip_exit_timeout_cb ()
++{
++  static guint bursts = 0;
++  bursts++;
++  return FALSE;
++}
++
++guint clipboard_bursts = 0;
++
++static void
++screenshot_clip_owner_cb (GtkClipboard *clip, GdkEvent *event, gpointer user_data) {
++  static gint64 last;
++  gint64 now = g_get_monotonic_time();
++
++  // debounce, in ms
++  if ((now - last) > 100) {
++    clipboard_bursts++;
++  }
++
++  last = now;
++}
++
+ static void
+ screenshot_save_to_clipboard (ScreenshotApplication *self)
+ {
+@@ -385,6 +409,16 @@ screenshot_save_to_clipboard (ScreenshotApplication *self)
+   clipboard = gtk_clipboard_get_for_display (gdk_display_get_default (),
+                                              GDK_SELECTION_CLIPBOARD);
+   gtk_clipboard_set_image (clipboard, self->screenshot);
++  // HACK: gtk doesn't seem to actually be capable of keeping
++  // the clipboard contents after we exit, so instead we
++  // wait around for the clipboard to change before exiting.
++  g_signal_connect_object (clipboard, "owner-change", G_CALLBACK (screenshot_clip_owner_cb), NULL, 0);
++  // For unknown cursed reasons we can see our own
++  // owner change. It's probably async.
++  // Whatever. Ignore it. And one more to prevent most race conditions.
++  while(clipboard_bursts < 3) {
++    g_main_context_iteration(NULL, TRUE);
++  }
+ }
+ 
+ static void
+-- 
+2.36.1
+

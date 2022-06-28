@@ -15,8 +15,21 @@ in with lib; {
       gnomeExtensions.appindicator
     ];
 
+    # gnome-screenshot is used in multiple modules, across HM-NixOS boundaries, therefore..
+    nixpkgs.overlays = [
+      (self: super: {
+        gnome = super.gnome // {
+          gnome-screenshot = super.gnome.gnome-screenshot.overrideAttrs (o: {
+            patches = o.patches ++ [
+              ./0001-screenshot-application.c-clipboard-cli-block-on-next.patch
+            ];
+          });
+        };
+      })
+    ];
+
     home-manager.users.ckie = { pkgs, ... }: {
-      home.packages = with pkgs.gnome3; [
+      home.packages = with pkgs.gnome; [
         file-roller
         gnome-system-monitor
         gnome-calculator
