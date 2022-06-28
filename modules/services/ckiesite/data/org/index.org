@@ -355,3 +355,19 @@ having too much free time, i sat down and whipped up a little script to occasion
 For things I have said many times and would not like to repeat as much.
 ** Not A Personal Attack :#napa:
 The statement you apologized for was not intended as a personal attack, but a hopefully-constructive critique of your actions, please take it as such.
+
+* JS  langdev notes :jsish:
+- Stochastic languages (duck-typed) are easier to write vs. strict deterministic languages.
+ - Readability should be about the same with a fancy type-inferring LSP
+- JS makes FP-style =map= extremely easy
+ - Strict languages like Rust need type hints and extra annotation for the same effect. APIs are worse.
+ - I think Go combines a strict language with simple interfaces, which results in functions that can have a wider range of invalid state passed to them. Worst of both worlds.
+- Runtime sanity checks at module boundaries /are/ good, even if intra-module types are ducked.
+ - h&Ducked. Bam. Verbed.&h
+- TODO
+
+* list testing :listtest:
+- a
+  - b
+- a
+  + b

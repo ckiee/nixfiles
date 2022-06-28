@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<!--    Hello there.
+
+        https://github.com/ckiee/ckiesite
+-->
 <head>
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/static/normalize.css">
@@ -11,9 +15,17 @@
         font-size: 18px;
         color: #444;
     }
+
+    main.ast {
+        max-width: 90vw;
+        color: white;
+        backgound: #171717;
+    }
+
     html {
         background: #EEEEEE;
     }
+
     body {
         margin: 20px;
     }
@@ -22,15 +34,19 @@
         text-decoration: none;
         outline: none;
     }
+
     h1, h2, h3, h4, h5, h6 {
         line-height: 1.2;
     }
+
     span.underline {
         text-decoration: underline;
     }
+
     span.code {
         font-family: monospace;
     }
+
     div.warning {
         padding: 1em;
         background: #fff5d6;
@@ -60,21 +76,41 @@
   </style>
 </head>
 <body>
-  <header>
-    <a href="/" id="cookie-icon-cont">
-      <img id="cookie-icon" src="/static/cookienomblob.svg" alt="Cookie emoji eating another emoji">
-    </a>
+    <header>
+        <a href="/" id="cookie-icon-cont">
+            <img id="cookie-icon" src="/static/cookienomblob.svg" alt="Cookie emoji eating another emoji">
+        </a>
 
-    <nav id="header-left-links">
-      <b>{{ html_title }}</b>
-      <span class=separator>&#8594;</span>
-      {{nav_htmls | join: "<span class=separator>|</span>"}}
-    </nav>
+        <nav id="header-left-links">
+            <b>{{ html_title }}</b>
+            TODO fix treewalk emitting block block for nav links
+            {% case nav_htmls_len %}
+                {% when 0 %}
+                {% else %}
+                <span class=separator>&#8594;</span>
+                {{nav_htmls | join: "<span class=separator>|</span>"}}
+            {% endcase %}
+        </nav>
 
-  </header>
+    </header>
 
-  <main>
-    {{ html }}
-  </main>
+    {% case format %}
+        {% when "ast" %}
+            <main class="ast">
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        let main = document.querySelector("main");
+                        main.innerHTML = main.innerHTML.replace(/\w+,\s*\[\s*([^\]]+)\s*\]\s*,?/gm, (_, st) =>
+                            `"${[...st.matchAll(/Char\(\s*'(.)',\s*\)\s*,/gm)].map(([_,m])=>m).join("")}"`
+                        );
+                    });
+                </script>
+                {{ html }}
+            </main>
+        {% else %}
+            <main>
+                {{ html }}
+            </main>
+    {% endcase %}
 </body>
 </html>

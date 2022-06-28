@@ -5,7 +5,7 @@ with lib;
 
 let
   cfg = config.cookie.services.ckiesite;
-  util = import ./util.nix { inherit lib config; };
+  util = import ../util.nix { inherit lib config; };
   port = "18592";
 
   inherit (sources) spectrogram-web abandoned-projects;
@@ -42,7 +42,7 @@ in {
       description = "site of cookie";
       script = let bin = pkgs.cookie.ckiesite.defaultPackage.${pkgs.stdenv.hostPlatform.system};
       in ''
-        exec ${bin}/bin/site -p ${port} ${./data}
+        exec ${bin}/bin/site -p ${port} ${./data/org} ${./data/static}
       '';
     })
     {
