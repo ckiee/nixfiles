@@ -92,6 +92,7 @@ in {
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
+            screenie = "exec ${pkgs.gnome3.gnome-screenshot}/bin/gnome-screenshot";
           };
             lib.mkOptionDefault {
               # brightness & audio Fn keys
@@ -110,11 +111,16 @@ in {
               "--release ${modifier}+l" = "exec ${locker}";
               "--release ${modifier}+Shift+s" =
                 ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+
               # screenshot
               "--release ${modifier}+End" =
-                "exec ${mkRequiresScript ./scripts/screenshot}";
+                "${screenie} -ac";
               "--release ${modifier}+Pause" =
-                "exec ${mkRequiresScript ./scripts/screenshot}";
+                "${screenie} -ac";
+              "--release ${modifier}+Shift+End" =
+                "${screenie} -wc";
+              "--release ${modifier}+Shift+Pause" =
+                "${screenie} -wc";
 
               "--release ${modifier}+Shift+t" =
                 "exec ${mkRequiresScript ./scripts/tntwars}";
