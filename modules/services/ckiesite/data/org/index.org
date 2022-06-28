@@ -28,11 +28,6 @@ Orgish actually still sucks at parsing because Org Mode's syntax is pretty weird
 ** =nbsp&=
 You can disable line wrapping for a bit by wrapping your content in ~nbsp&~ nbsp& *hello world this won't be line wrapped! so cool! some more words! blah blah blah blah* &nbsp ~&nbsp~
 
-* n :nav-rendergroup-test:
-h
-** :@nav:
-- b
-
 * render test :render-test:
 toplevel
 # comment
@@ -56,10 +51,17 @@ fn main() {
 }
 #+END_SRC
 ** lists
-What follows is a simple list:
+*** Simple
 - Fooing
 - Baring
 - Bazing
+*** Nested
+- Hello
+  + Words
+- World (not nested)
+  - Hello
+    + More nesting
+      - And some more
 * Moved :tailscale-coredns.html:
 You're looking for [[/tailscale-coredns][this]].
 * An Adventure Through Tailscale and CoreDNS :tailscale-coredns:
@@ -366,8 +368,3 @@ The statement you apologized for was not intended as a personal attack, but a ho
  - h&Ducked. Bam. Verbed.&h
 - TODO
 
-* list testing :listtest:
-- a
-  - b
-- a
-  + b
