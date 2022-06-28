@@ -80,6 +80,8 @@ in {
     enable = true;
     package = pkgs.wireshark-qt;
   };
+  services.usbmuxd.enable = true;
+
   users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "wireshark" ];
 
   virtualisation = {
