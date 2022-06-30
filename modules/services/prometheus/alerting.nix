@@ -10,9 +10,9 @@ in {
       configuration = {
         route = {
           group_by = [ "alertname" "cluster" "service" ];
-          group_wait = "30s";
-          group_interval = "30s";
-          repeat_interval = "1h";
+          group_wait = "30m";
+          group_interval = "30m";
+          repeat_interval = "3h";
           receiver = "neb";
         };
 
@@ -74,24 +74,27 @@ in {
                 html_template = ''
                   {{range .Alerts -}}
                     {{ $$severity := index .Labels "severity" }}
+                    {{ $$value := index .Annotations "value" }}
+                    {{ $$matches := index .Annotations "labels" }}
                     {{ if eq .Status "firing" }}
                       {{ if eq $$severity "critical"}}
-                        <font color='red'><b>[FIRING - CRITICAL]</b></font>
+                        <font color='red'><b>[CRITICAL <a href="https://matrix.to/#/@ckie:ckie.dev"></a>]</b></font>
                       {{ else if eq $$severity "warning"}}
-                        <font color='orange'><b>[FIRING - WARNING]</b></font>
+                        <font color='orange'><b>[WARNING]</b></font>
                       {{ else }}
-                        <b>[FIRING - {{ $$severity }}]</b>
+                        <b>[{{ $$severity }}]</b>
                       {{ end }}
                     {{ else }}
                       <font color='green'><b>[RESOLVED]</b></font>
                     {{ end }}
-                    {{ index .Labels "alertname"}}: {{ index .Annotations "summary"}}
                     (
-                      <a href="{{ index .Annotations "grafana" }}">📈 Grafana</a>,
-                      <a href="{{ .GeneratorURL }}">🔥 Prometheus</a>,
+                      <a href="{{ .GeneratorURL }}">📈 Prom</a>
+                      <b> | </b>
                       <a href="{{ .SilenceURL }}">🔕 Silence</a>
-                    )<br/>
-                  {{end -}}'';
+                    )
+                    {{ index .Labels "alertname"}}: {{ index .Annotations "summary" }} ({{ $$value }}, <code>{{ $$matches }}</code>)
+                  {{end -}}
+                '';
                 msg_type = "m.text"; # Must be either `m.text` or `m.notice`
               };
             };

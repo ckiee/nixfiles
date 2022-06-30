@@ -7,7 +7,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host out of memory (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host out of memory
           description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostMemoryUnderMemoryPressure
@@ -16,7 +18,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host memory under memory pressure (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host memory under memory pressure
           description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualNetworkThroughputIn
@@ -25,7 +29,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual network throughput in (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual network throughput in
           description: "Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualNetworkThroughputOut
@@ -34,7 +40,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual network throughput out (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual network throughput out
           description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualDiskReadRate
@@ -43,7 +51,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual disk read rate (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual disk read rate
           description: "Disk is probably reading too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualDiskWriteRate
@@ -52,7 +62,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual disk write rate (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual disk write rate
           description: "Disk is probably writing too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       # Please add ignored mountpoints in node_exporter parameters like
@@ -64,7 +76,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host out of disk space (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host out of disk space
           description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       # Please add ignored mountpoints in node_exporter parameters like
@@ -76,7 +90,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host disk will fill in 24 hours (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host disk will fill in 24 hours
           description: "Filesystem is predicted to run out of space within the next 24 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostOutOfInodes
@@ -85,7 +101,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host out of inodes (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host out of inodes
           description: "Disk is almost running out of available inodes (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostInodesWillFillIn24Hours
@@ -94,7 +112,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host inodes will fill in 24 hours (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host inodes will fill in 24 hours
           description: "Filesystem is predicted to run out of inodes within the next 24 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualDiskReadLatency
@@ -103,7 +123,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual disk read latency (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual disk read latency
           description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualDiskWriteLatency
@@ -112,7 +134,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host unusual disk write latency (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host unusual disk write latency
           description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostHighCpuLoad
@@ -121,7 +145,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host high CPU load (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host high CPU load
           description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostCpuStealNoisyNeighbor
@@ -130,7 +156,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host CPU steal noisy neighbor (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host CPU steal noisy neighbor
           description: "CPU steal is > 10%. A noisy neighbor is killing VM performances or a spot instance may be out of credit.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       # # 1000 context switches is an arbitrary number.
@@ -142,7 +170,9 @@
       #   labels:
       #     severity: warning
       #   annotations:
-      #     summary: Host context switching (instance {{ $labels.instance }})
+      #   value: "{{ $value }}"
+      #   labels: "{{ $labels }}"
+      #     summary: Host context switching
       #     description: "Context switching is growing on node (> 1000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostSwapIsFillingUp
@@ -151,7 +181,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host swap is filling up (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host swap is filling up
           description: "Swap is filling up (>80%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostSystemdServiceCrashed
@@ -160,7 +192,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host systemd service crashed (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: systemd service crashed
           description: "systemd service crashed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostPhysicalComponentTooHot
@@ -169,7 +203,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host physical component too hot (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host physical component too hot
           description: "Physical hardware component too hot\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostNodeOvertemperatureAlarm
@@ -178,7 +214,9 @@
         labels:
           severity: critical
         annotations:
-          summary: Host node overtemperature alarm (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host node overtemperature alarm
           description: "Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostRaidArrayGotInactive
@@ -187,7 +225,9 @@
         labels:
           severity: critical
         annotations:
-          summary: Host RAID array got inactive (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host RAID array got inactive
           description: "RAID array {{ $labels.device }} is in degraded state due to one or more disks failures. Number of spare drives is insufficient to fix issue automatically.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostRaidDiskFailure
@@ -196,7 +236,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host RAID disk failure (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host RAID disk failure
           description: "At least one device in RAID array on {{ $labels.instance }} failed. Array {{ $labels.md_device }} needs attention and possibly a disk swap\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostOomKillDetected
@@ -205,7 +247,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host OOM kill detected (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host OOM kill detected
           description: "OOM kill detected\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostEdacCorrectableErrorsDetected
@@ -214,7 +258,9 @@
         labels:
           severity: info
         annotations:
-          summary: Host EDAC Correctable Errors detected (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host EDAC Correctable Errors detected
           description: "Host {{ $labels.instance }} has had {{ printf \"%.0f\" $value }} correctable memory errors reported by EDAC in the last 5 minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostEdacUncorrectableErrorsDetected
@@ -223,7 +269,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host EDAC Uncorrectable Errors detected (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host EDAC Uncorrectable Errors detected
           description: "Host {{ $labels.instance }} has had {{ printf \"%.0f\" $value }} uncorrectable memory errors reported by EDAC in the last 5 minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostNetworkReceiveErrors
@@ -232,7 +280,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host Network Receive Errors (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host Network Receive Errors
           description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} receive errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostNetworkTransmitErrors
@@ -241,7 +291,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host Network Transmit Errors (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host Network Transmit Errors
           description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} transmit errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostNetworkInterfaceSaturated
@@ -250,7 +302,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host Network Interface Saturated (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host Network Interface Saturated
           description: "The network interface \"{{ $labels.device }}\" on \"{{ $labels.instance }}\" is getting overloaded.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostNetworkBondDegraded
@@ -259,7 +313,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host Network Bond Degraded (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host Network Bond Degraded
           description: "Bond \"{{ $labels.device }}\" degraded on \"{{ $labels.instance }}\".\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostConntrackLimit
@@ -268,7 +324,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host conntrack limit (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host conntrack limit
           description: "The number of conntrack is approaching limit\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostClockSkew
@@ -277,7 +335,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host clock skew (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host clock skew
           description: "Clock skew detected. Clock is out of sync. Ensure NTP is configured correctly on this host.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostClockNotSynchronising
@@ -286,7 +346,9 @@
         labels:
           severity: warning
         annotations:
-          summary: Host clock not synchronising (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host clock not synchronising
           description: "Clock not synchronising. Ensure NTP is configured on this host.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostRequiresReboot
@@ -295,7 +357,9 @@
         labels:
           severity: info
         annotations:
-          summary: Host requires reboot (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Host requires reboot
           description: "{{ $labels.instance }} requires a reboot.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: NginxHighHttp4xxErrorRate
@@ -304,7 +368,9 @@
         labels:
           severity: critical
         annotations:
-          summary: Nginx high HTTP 4xx error rate (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Nginx high HTTP 4xx error rate
           description: "Too many HTTP requests with status 4xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: NginxHighHttp5xxErrorRate
@@ -313,7 +379,9 @@
         labels:
           severity: critical
         annotations:
-          summary: Nginx high HTTP 5xx error rate (instance {{ $labels.instance }})
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: Nginx high HTTP 5xx error rate
           description: "Too many HTTP requests with status 5xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
   - "name": "node-exporter.rules"
