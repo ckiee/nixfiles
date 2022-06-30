@@ -29,7 +29,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     ##
-    ## REVERSE PROXY
+    ## reverse proxy..
     ##
     services.nginx.virtualHosts = {
       ${cfg.host} = {
