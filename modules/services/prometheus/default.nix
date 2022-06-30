@@ -31,6 +31,8 @@ in {
     };
   };
 
+  imports = [ ./alerting.nix ];
+
   config = mkMerge [
     # {
     #   cookie.services.prometheus.enableClient =
@@ -44,51 +46,19 @@ in {
         runtime = false;
       };
 
-      networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 ];
+      networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 9093 ]; # prom, alert-manager
 
       services.prometheus = {
         enable = true;
         globalConfig.scrape_interval = "5s";
         rules = [ (builtins.readFile ./node_rules.yaml) ];
 
-        alertmanager = {
-          enable = true;
-          configuration = {
-            global.slack_api_url =
-              import ../../../secrets/prom-alert-webhook.nix;
-            route = {
-              group_by = [ "alertname" "cluster" "service" ];
-              group_wait = "30s";
-              group_interval = "30s";
-              repeat_interval = "30s";
-              receiver = "null";
-            };
-
-            inhibit_rules = [{
-              source_matchers = [ ''severity="critical"'' ];
-              target_matchers = [ ''severity="warning"'' ];
-              # Apply inhibition if the alertname is the same.
-              # CAUTION:
-              #   If all label names listed in `equal` are missing
-              #   from both the source and target alerts,
-              #   the inhibition rule will apply!
-              equal = [ "alertname" "cluster" "service" ];
-            }];
-
-            receivers = [{
-              name = "null";
-              webhook_configs = [{
-                url = "http://192.0.2.1:32212"; # nonexistant, ipv4 test-net
-                send_resolved = true;
-              }];
-            }];
-          };
-        };
 
         alertmanagers = [{
           scheme = "http";
           path_prefix = "/";
           static_configs = [{ targets = [ "127.0.0.1:9093" ]; }];
+          # See ./alerting.nix
         }];
 
         scrapeConfigs = map (k:

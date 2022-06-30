@@ -107,8 +107,8 @@
           description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostUnusualDiskWriteLatency
-        expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0
-        for: 2m
+        expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1h]) > 0.5 and rate(node_disk_writes_completed_total[1h]) > 0
+        for: 1h
         labels:
           severity: warning
         annotations:
@@ -198,15 +198,6 @@
         annotations:
           summary: Host RAID disk failure (instance {{ $labels.instance }})
           description: "At least one device in RAID array on {{ $labels.instance }} failed. Array {{ $labels.md_device }} needs attention and possibly a disk swap\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-      - alert: HostKernelVersionDeviations
-        expr: count(sum(label_replace(node_uname_info, "kernel", "$1", "release", "([0-9]+.[0-9]+.[0-9]+).*")) by (kernel)) > 1
-        for: 6h
-        labels:
-          severity: warning
-        annotations:
-          summary: Host kernel version deviations (instance {{ $labels.instance }})
-          description: "Different kernel versions are running\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostOomKillDetected
         expr: increase(node_vmstat_oom_kill[1m]) > 0
@@ -306,6 +297,25 @@
         annotations:
           summary: Host requires reboot (instance {{ $labels.instance }})
           description: "{{ $labels.instance }} requires a reboot.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: NginxHighHttp4xxErrorRate
+        expr: sum(rate(nginx_http_response_count_total{status=~"^4.."}[1m])) / sum(rate(nginx_http_response_count_total[1m])) > 0.05
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Nginx high HTTP 4xx error rate (instance {{ $labels.instance }})
+          description: "Too many HTTP requests with status 4xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: NginxHighHttp5xxErrorRate
+        expr: sum(rate(nginx_http_response_count_total{status=~"^5.."}[1m])) / sum(rate(nginx_http_response_count_total[1m])) > 0.05
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Nginx high HTTP 5xx error rate (instance {{ $labels.instance }})
+          description: "Too many HTTP requests with status 5xx (> 5%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
   - "name": "node-exporter.rules"
     "rules":
       - "expr": |
