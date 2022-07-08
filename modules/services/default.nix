@@ -43,5 +43,6 @@
     ./anonvote-bot.nix
     ./aldhy
     ./net-offload
+    ./jitsi.nix
   ];
 }

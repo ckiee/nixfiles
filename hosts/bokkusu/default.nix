@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
-let rtcme = import ../../secrets/rtcme-host.nix;
-in {
+{
   imports = [ ./hardware.nix ../.. ];
 
   cookie = {
@@ -29,22 +28,14 @@ in {
         enable = true;
         host = "grafana.ckie.dev";
       };
-      rtcme = {
-        enable = true;
-        host = rtcme;
-      };
       rtc-files = {
         enable = true;
-        old-fqdn = rtcme;
+        # old-fqdn = ;
         new-fqdn = "ckie.dev";
       };
       ckiesite = {
         enable = true;
         host = "ckie.dev";
-      };
-      redirect-farm = {
-        enable = true;
-        host = "u.${rtcme}";
       };
       znc = {
         enable = true;
@@ -69,10 +60,6 @@ in {
     acme = {
       enable = true;
       hosts = {
-        ${rtcme} = { };
-        "znc.${rtcme}" = { };
-        "i.${rtcme}" = { };
-        "u.${rtcme}" = { };
         "ckie.dev" = {
           provider = "porkbun";
           extras = [

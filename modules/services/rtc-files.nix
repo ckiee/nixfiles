@@ -5,10 +5,10 @@ let cfg = config.cookie.services.rtc-files;
 in with lib; {
   options.cookie.services.rtc-files = {
     enable = mkEnableOption "Enables rtc-files service";
-    old-fqdn = mkOption {
-      type = types.str;
-      description = "old fqdn";
-    };
+    # old-fqdn = mkOption {
+    #   type = types.str;
+    #   description = "old fqdn";
+    # };
     new-fqdn = mkOption {
       type = types.str;
       description = "new fqdn";
@@ -32,16 +32,16 @@ in with lib; {
 
     services.nginx = {
       virtualHosts = {
-        "i.${cfg.old-fqdn}" = {
-          locations."/" = { root = cfg.folder; };
-          extraConfig = ''
-            rewrite ^/$ $scheme://${cfg.old-fqdn} permanent;
-            # Redirect everything under /ckiedev to the new host
-            rewrite ^/ckiedev/(.*)$ $scheme://i.${cfg.new-fqdn}/$1 permanent;
+        # "i.${cfg.old-fqdn}" = {
+        #   locations."/" = { root = cfg.folder; };
+        #   extraConfig = ''
+        #     rewrite ^/$ $scheme://${cfg.old-fqdn} permanent;
+        #     # Redirect everything under /ckiedev to the new host
+        #     rewrite ^/ckiedev/(.*)$ $scheme://i.${cfg.new-fqdn}/$1 permanent;
 
-            access_log /var/log/nginx/rtc-files.access.log;
-          '';
-        };
+        #     access_log /var/log/nginx/rtc-files.access.log;
+        #   '';
+        # };
         "i.${cfg.new-fqdn}" = {
           locations."/" = { root = cfg.folder + "/ckiedev"; };
           extraConfig = ''
