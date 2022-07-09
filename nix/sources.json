@@ -29,10 +29,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "anonvote-bot",
-        "rev": "10d351e2b03323b0da838c5118c16e17edb5585f",
-        "sha256": "11pqvx96hwfhwdjhak805z0v575d51ryzdsmg4vaf7lqgvpnrsjc",
+        "rev": "bf6114049eb4a368dde014f40cebc94a8783a6c4",
+        "sha256": "10awwvcaz4223mhhn83fslfqlvxrnv2vpngpf44663bl6pfnw3x2",
         "type": "tarball",
-        "url": "https://github.com/ckiee/anonvote-bot/archive/10d351e2b03323b0da838c5118c16e17edb5585f.tar.gz",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/bf6114049eb4a368dde014f40cebc94a8783a6c4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "blob-emoji": {
@@ -95,10 +95,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "64265a8c8452ab7426370cac332d81793b3ba9d0",
-        "sha256": "04xrm8cv9qr8a86mdwfqfp8nycm8p89ivrinpq0bzpsj5z3afi5c",
+        "rev": "f6ea0808082826283775ca329aa63a2315b6e155",
+        "sha256": "11hf20p35cbsrvx80mcsw43qa5y26w60y2bin9z4f1izxpr534y9",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/64265a8c8452ab7426370cac332d81793b3ba9d0.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/f6ea0808082826283775ca329aa63a2315b6e155.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ffg-bot": {
