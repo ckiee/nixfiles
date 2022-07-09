@@ -29,10 +29,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "anonvote-bot",
-        "rev": "bf6114049eb4a368dde014f40cebc94a8783a6c4",
-        "sha256": "10awwvcaz4223mhhn83fslfqlvxrnv2vpngpf44663bl6pfnw3x2",
+        "rev": "6f76dbe4cd9154262728ad67379e7b9aad2202ef",
+        "sha256": "00abrl7zr4bwjv2lzyinnd72jsx6s8dk16hg4kiyc22ph82jg573",
         "type": "tarball",
-        "url": "https://github.com/ckiee/anonvote-bot/archive/bf6114049eb4a368dde014f40cebc94a8783a6c4.tar.gz",
+        "url": "https://github.com/ckiee/anonvote-bot/archive/6f76dbe4cd9154262728ad67379e7b9aad2202ef.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "blob-emoji": {
