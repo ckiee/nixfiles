@@ -23,7 +23,6 @@
 
       prometheus.enableServer = true;
       wikidict.enable = true;
-      jitsi.enable = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
