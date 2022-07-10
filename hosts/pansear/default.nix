@@ -31,7 +31,6 @@ with builtins;
     libvirtd.enable = true;
     restic.enable = true;
     zfs.enable = true;
-    doom-emacs.enable = true;
     wireguard.endpoint = (head config.networking.interfaces.eth0.ipv4.addresses).address;
     services = {
       avahi.enable = true;
