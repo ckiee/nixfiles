@@ -63,7 +63,7 @@ let
   };
   emacsOverlay = (import sources.emacs-overlay) pkgs pkgs;
   doom-emacs = let
-    nativeCompEmacs = emacsOverlay.emacsGitNativeComp.override {
+    nativeCompEmacs = emacsOverlay.emacsUnstableGcc.override {
       withXwidgets = true;
       withGTK3 = true;
     };
