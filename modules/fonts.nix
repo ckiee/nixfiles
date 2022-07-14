@@ -53,7 +53,7 @@ in with lib; {
             </edit>
           </match>
 
-          <!-- I don't think this actually /does/ anything, but oh well, might aswell declare my annoyance with it --!>
+          <!-- I don't think this actually /does/ anything, but oh well, might aswell declare my annoyance with it -->
           <match target="font">
             <test name="family" compare="eq" ignore-blanks="true">
               <string>Inter</string>
