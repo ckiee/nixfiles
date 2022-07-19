@@ -62,7 +62,7 @@ This strikes a nice balance between taking up a nice amount of the screen and st
 ** fix config edit keybind
 Doom Emacs assumes your config will be in =~/.doom=, but mine isn't!
 #+BEGIN_SRC elisp
-(map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/ext/doom-conf/")))
+(map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/modules/doom-emacs/config/")))
 #+END_SRC
 ** count buffers
 I like counting buffers. This is probably from StackOverflow
@@ -211,7 +211,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (add-hook 'c-mode-hook (lambda ()
   (when (and buffer-file-name
-             (or (string-match "chocolate-doom" buffer-file-name) (string-match  "crispy-doom" buffer-file-name)))
+             (or (-any? (lambda (x) (string-match x buffer-file-name)) '("chocolate-doom" "crispy-doom")))
     (c-set-style "bsd")
     (setq indent-tabs-mode nil)
     (setq tab-width 8)
