@@ -367,3 +367,38 @@ The statement you apologized for was not intended as a personal attack, but a ho
  - h&Ducked. Bam. Verbed.&h
 - TODO
 
+
+* tty :tty:
+** the unix tty does not contain distractions
+only one program is running at a time in a vt. there are no notifications. there are no images.
+** the unix tty is ugly.
+the monospace lines allow for easy implementation but look ugly.
+** the unix tty is extensible.
+it is older than me. it will not be going away.
+it has recieved endless extensions.
+** the unix tty loves you.
+it [[/a11y][does not discriminate]]. you just have to [[/limits][love it back]].
+* limitations :limits:
+** creative endeavours require limitations
+there are only so many possibilities one can handle.
+** not all limits are equal
+some limits will be forgotten. others are forever.
+** limits are not in your way.
+they are simply a guide.
+** you may erase limits
+once they are no longer useful.
+* accessibility :a11y:
+** no one will believe you
+until they have experienced what you have
+* navigation in ttys :ttynav:
+** there are two types of navigation in TUIs (and Emacs!)
+- imperative navigation (=hjkl=)
+- declarative navigation (jump to this header)
+** the application currently handles both
+but this is irritating as applications have to implement many control schemes to satisfy all users. NxM.
+see: "vim binds" extensions for many programs
+** we could tell the tty about these "declarative" actions
+then navigation could be .. no
+see: OSC 8 hyperlinks - https://github.com/kovidgoyal/kitty/issues/68
+** maybe the users are the problem
+every application is unique. perhaps its interface cannot be separated from its function.
