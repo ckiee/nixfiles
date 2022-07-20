@@ -63,6 +63,7 @@ in with lib; {
         screen-locker.enable = true;
         toot.enable = true;
         mangohud.enable = true;
+        netintent.enable = true;
       };
       services.rsibreak.enable = true;
     };
