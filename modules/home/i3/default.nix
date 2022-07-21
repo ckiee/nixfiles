@@ -15,7 +15,7 @@ let
     ${pkgs.kdeconnect}/libexec/kdeconnectd &
     ${pkgs.kdeconnect}/bin/kdeconnect-indicator &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/solid} &
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/lain} &
     ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
     ${mkRequiresScript ./scripts/oszwatch} &
     ${mkRequiresScript ./scripts/musicwatch} &
