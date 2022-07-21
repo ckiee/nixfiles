@@ -70,6 +70,7 @@ in {
     lutris
     picocom
     minecraft
+    polymc
     #kicad-with-packages3d
   ];
 
