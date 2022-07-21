@@ -74,6 +74,7 @@ with builtins;
     btop # htop on steroids
     expect # color capture, galore
     caddy # convenient bloated web server
+    parallel # --citation
   ];
 
   cookie = {
