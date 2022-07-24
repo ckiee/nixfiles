@@ -60,6 +60,7 @@ in {
       easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?
       screenkey # show the keyboard keys on the ~~keyboard~~screen
       linthesia # musicy music play piano
+      musescore # humany human make music
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
