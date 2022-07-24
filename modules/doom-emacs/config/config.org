@@ -215,7 +215,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
     (c-set-style "bsd")
     (setq indent-tabs-mode nil)
     (setq tab-width 8)
-    (setq c-basic-offset 4))))
+    (setq c-basic-offset 4)))))
 #+END_SRC
 ** flycheck improvements
 *** add keybind for listing errors (in a minibuf)
