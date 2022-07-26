@@ -267,10 +267,11 @@
 <Multi_key> <p> <i>             : "π"
 <Multi_key> <t> <a> <u>         : "τ"
 <Multi_key> <t> <i> <m> <e>     : "/me is currently looking for [interesting conversations](https://dkb.show/post/life-is-not-short) only and does not think this will be one, though you may proceed if you do believe you have an interesting thought to play with."
-<Multi_key> <l> <n> <a> <p> <a>     : "[Not A Personal Attack](https://ckie.dev/hdiag#napa)"
-<Multi_key> <s> <n> <a> <p> <a>     : "[ᴺᴬᴾᴬ](https://ckie.dev/hdiag#napa)"
+<Multi_key> <l> <n> <a> <p> <a> : "[Not A Personal Attack](https://ckie.dev/hdiag#napa)"
+<Multi_key> <s> <n> <a> <p> <a> : "[ᴺᴬᴾᴬ](https://ckie.dev/hdiag#napa)"
 <Multi_key> <o> <r> <a> <n>     : "🟠" # 🟠!
-
+<Multi_key> <X> <e> <R>         : "∈"
+<Multi_key> <i> <n>             : "∈"
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
