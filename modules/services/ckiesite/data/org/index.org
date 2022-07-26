@@ -399,6 +399,9 @@ but this is irritating as applications have to implement many control schemes to
 see: "vim binds" extensions for many programs
 ** we could tell the tty about these "declarative" actions
 then navigation could be .. no
-see: OSC 8 hyperlinks - https://github.com/kovidgoyal/kitty/issues/68
+see: [[https://github.com/kovidgoyal/kitty/issues/68][OSC 8 hyperlinks]]
 ** maybe the users are the problem
 every application is unique. perhaps its interface cannot be separated from its function.
+
+* taf :taf:
+taf is my langjam 0003 project. page reserved for any future developments.
