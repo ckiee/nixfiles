@@ -16,8 +16,8 @@ in with lib; {
           name = "Wireless Mouse MX Master 3";
           smartshift = {
             on = true;
-            # 0 means always in hyperfast mode, 50 means always in click-to-click mode.
-            threshold = 50;
+            # 0 means always in hyperfast mode, 50 means (almost) always in click-to-click mode.
+            threshold = 37;
           };
           hiresscroll = {
             hires = true;
