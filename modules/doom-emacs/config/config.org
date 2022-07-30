@@ -163,6 +163,12 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
                       (orig-fn &rest r)
                       (setq nix-nixfmt-bin (if (string= (car r) "nixpkgs") "nixpkgs-fmt" "nixfmt"))
                       (apply orig-fn r)))
+
+(after! format-all (define-format-all-formatter nixfmt
+    (:executable "nixfmt")
+    (:install "nix-env -f https://github.com/serokell/nixfmt/archive/master.tar.gz -i")
+    (:modes nix-mode)
+    (:format (format-all--buffer-easy (if (string= (+workspace-current-name) "nixpkgs") "nixpkgs-fmt" "nixfmt")))))
 #+END_SRC
 ** force PageUp/PageDn to scroll in vertico
 #+BEGIN_SRC elisp
