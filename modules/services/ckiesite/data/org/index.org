@@ -1,5 +1,9 @@
 # This file contains the whole blog. Just one file. Easier to serve properly.
-* hi  :index:
+* ckie :index:
+is a
+- healer
+- engineer
+- maker
 this is my /new new new new/ website. it is different from the other ones since it's no longer just some dumb static files.
 ** :@nav:
 # TODO add links to other pages here, no conditional yet
@@ -18,7 +22,6 @@ this site has no index listing. as you explore, +the content will change with yo
 Sometimes I make things. This website is being served to you with a few thousand lines of Rust since I wrote a good-enough-for-me parser for [[https://orgmode.org/][nbsp&Org Mode&nbsp]].
 *** /things???/
 Yes. Things. Mostly Rust, TypeScript and Nix. [[https://github.com/ckiee/ckiesite-rs][Here's this site.]]
-
 * /Orgish/, or How This Site's Language Works :meta:
 This site is using /Orgish/, a custom variant of [[https://orgmode.org/][Org Mode]].
 ** :@nav:
