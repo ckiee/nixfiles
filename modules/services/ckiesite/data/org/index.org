@@ -2,8 +2,8 @@
 * ckie :index:
 is a
 - healer
-- engineer
 - maker
+
 this is my /new new new new/ website. it is different from the other ones since it's no longer just some dumb static files.
 ** :@nav:
 # TODO add links to other pages here, no conditional yet
@@ -450,39 +450,56 @@ I wish you luck.
 Goodbye
 
 * things I've made :jdone:
-warning&Last updated 2022-08-02. These are some highlights of the things I've made the last few years.&warning
-** [[https://github.com/NixOS/nixpkgs/][nixpkgs]] (contributed, =Nix=)
+I'm 16 and I started programming before I was 10 making little scripts because it seemed cool (and fun!) and I've been making things ever since.
+
+I'd like to get some experience in an Actual Job to know what it's like, and if you're reading this you can probably help me with that.
+
+Thanks.
+
+-----
+** okay, that's nice, but what do you know?
+- I'm very comfortable with Rust and TypeScript
+- I'm okay with Lisps.
+- I wrote Java a lot a few years ago.
+- I've played around /a bit/ with many other languages and I start with the requirements, not the tools, so I'm okay learning whatever is needed.
+- I'm comfortable far away from the user and deep in complexity.
+  + I would not like to make yet another UI. Show me a problem and let me go chase it.
+** recent projects
+*** [[https://github.com/ckiee/ckiesite][ckiesite]] (original, =Rust=) ft&2022, 7 months&ft
+- Made the site you're reading this on in =Rust= with a handwritten compiler parsing source into an [[?ast][AST]] and then into HTML.
+- Took about 3 months to get the compiler into a usable state.
+- Optimized compile times for requests to this website to <5ms for fun
+*** [[https://github.com/NixOS/nixpkgs/][nixpkgs]] (contributed, =Nix=) ft&2021-now&ft
 nixpkgs is a collection of over 80,000 software packages.
 - Added about 40 packages to the collection, including a full ecosystem of packages for Speech to Text to try controlling things with my voice.
 - Reviewed 43 pull requests from other people
 - Maintaining an extension [[https://github.com/nix-community/nix-doom-emacs][=nix-doom-emacs=]] to support running [[https://github.com/hlissner/doom-emacs][Doom Emacs]] with nixpkgs.
 - Have commit access requiring responsibility when merging pull requests.
 - Running [[https://github.com/ckiee/nixfiles/tree/master/hosts][all]] of my computers on NixOS, including [[https://github.com/ckiee/nixfiles/blob/7aa51ba36263f447753ed482c898baeac019ccfe/hosts/bokkusu/default.nix#L35-L38][the server]] running [[https://github.com/ckiee/nixfiles/blob/7aa51ba36263f447753ed482c898baeac019ccfe/modules/services/ckiesite/default.nix][this website]].
-** [[https://github.com/alvr-org/ALVR/issues?q=author%3Ackiee][ALVR]] wireless VR streaming (contributed, =C++=, ==Rust==)
+*** [[https://github.com/alvr-org/ALVR/issues?q=author%3Ackiee][ALVR]] (contributed, =C++=, ==Rust==) ft&mostly active 2021&ft
+ALVR is a wireless VR streaming program allowing users to play  virtual reality games without a cable.
 - Helped port to Linux over a few months
   - Wrote IPC layer between the game and streaming processes with realtime sub-10ms timing
 - Set up Github Actions to clean up code formatting
-** [[https://github.com/ckiee/snes-tello][snes-tello]] (original, =C++=, ==Rust==)
-Small =C++= firmware and =Rust= driver to control a toy drone
-with a physical controller instead of a phone. [[https://github.com/ckiee/snes-tello][More here]].
-** [[https://github.com/ckiee/daiko][daiko]] (original, =TypeScript=)
+*** [[https://github.com/cookiecord/cookiecord][cookiecord]] (original, =TypeScript=) ft&2019-now&ft
+- Wrote framework in =TypeScript= to create chatbots quickly
+- Running on services used by friends and used by [[https://github.com/typescript-community][TypeScript community]] everyday by >6k people.
+*** [[https://github.com/ckiee/daiko][daiko]] (original, =TypeScript=) ft&2021-now&ft
 My personal housekeeping program.
 - Calendar
 - Notifications for new comic episodes I want to read
 - Sleep and shower tracking
 - Reminders (e.g. integration with the school schedule to be able to tell mom to make =x= sandwiches)
-** [[https://github.com/ckiee/fmouse][fmouse]] (original, =C=)
-A little toy project to emulate a mouse with a keyboard easily.
-** [[https://github.com/ckiee/ckiesite][ckiesite]] (original, =Rust=)
-- Made the site you're reading this on in =Rust= with a handwritten compiler parsing source into an [[?ast][AST]] and then into HTML.
-- Optimized compile times to <5ms for fun
-** [[https://github.com/cookiecord/cookiecord][cookiecord]] (original, =TypeScript=)
-- Wrote framework in =TypeScript= to create chatbots quickly
-- Running on services used by friends and used by [[https://github.com/typescript-community][TypeScript community]] everyday by >6k people.
-** [[https://github.com/matrix-org/matrix-react-sdk/pull/8897][Element MSC2545]] (contributed, =TypeScript=)
+*** [[https://github.com/matrix-org/matrix-react-sdk/pull/8897][Element MSC2545]] (contributed, =TypeScript=) ft&2022&ft
 Decentralized the sticker picker UI so users can send arbitrary stickers instead of a limited setting. .
-** [[https://github.com/langjam/jam0003/tree/main/taf][tafokr]] (original, =Rust=, custom language)
+*** [[https://github.com/ckiee/fmouse][fmouse]] (original, =C=) ft&2022-done&ft
+A little toy project to emulate a mouse with a keyboard easily.
+*** [[https://github.com/ckiee/snes-tello][snes-tello]] (original, =C++=, ==Rust==) ft&2021-done&ft
+Small =C++= firmware and =Rust= driver to control a toy drone
+with a physical controller instead of a phone.
+*** [[https://github.com/langjam/jam0003/tree/main/taf][tafokr]] (original, =Rust=, custom language) ft&2022&ft
 My project for [[https://github.com/langjam/langjam][langjam =#0003=]].
 - Invented my own Forth-like assembly language
   + … And wrote a VM for it.
 - Did not win the jam, but had fun.
+
