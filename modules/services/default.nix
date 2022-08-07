@@ -30,6 +30,8 @@
     ./hydra
     ./wikidict.nix
     ./pleroma
+    ./lighttpd.nix
+    ./gitd
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

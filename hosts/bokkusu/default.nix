@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+with lib;
+
 {
   imports = [ ./hardware.nix ../.. ];
 
@@ -16,6 +18,7 @@
       endpoint = "bokkusu.ckie.dev";
     };
     services = {
+      gitd.enable = true;
       minecraft.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
@@ -69,6 +72,7 @@
             "znc.ckie.dev"
             "dict.ckie.dev"
             "fedi.ckie.dev"
+            "git.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
