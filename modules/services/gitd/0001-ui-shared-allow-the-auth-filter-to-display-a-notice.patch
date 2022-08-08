@@ -1,0 +1,99 @@
+From 5465ec1c0e43d4c35535a97dd9331a2c699bdba4 Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Mon, 8 Aug 2022 11:44:38 +0300
+Subject: [PATCH] ui-shared: allow the auth filter to display a notice
+
+I'm going to make mine display "logged in as ckie * <a>logout</a>".
+---
+ cgit.c      | 15 ---------------
+ cgit.h      |  1 +
+ filter.c    | 16 ++++++++++++++++
+ ui-shared.c |  7 +++++--
+ 4 files changed, 22 insertions(+), 17 deletions(-)
+
+diff --git a/cgit.c b/cgit.c
+index dd28a79..b8fa912 100644
+--- a/cgit.c
++++ b/cgit.c
+@@ -642,21 +642,6 @@ static int prepare_repo_cmd(int nongit)
+ 	return 0;
+ }
+ 
+-static inline void open_auth_filter(const char *function)
+-{
+-	cgit_open_filter(ctx.cfg.auth_filter, function,
+-		ctx.env.http_cookie ? ctx.env.http_cookie : "",
+-		ctx.env.request_method ? ctx.env.request_method : "",
+-		ctx.env.query_string ? ctx.env.query_string : "",
+-		ctx.env.http_referer ? ctx.env.http_referer : "",
+-		ctx.env.path_info ? ctx.env.path_info : "",
+-		ctx.env.http_host ? ctx.env.http_host : "",
+-		ctx.env.https ? ctx.env.https : "",
+-		ctx.qry.repo ? ctx.qry.repo : "",
+-		ctx.qry.page ? ctx.qry.page : "",
+-		cgit_currentfullurl(),
+-		cgit_loginurl());
+-}
+ 
+ /* We intentionally keep this rather small, instead of looping and
+  * feeding it to the filter a couple bytes at a time. This way, the
+diff --git a/cgit.h b/cgit.h
+index 72fcd84..1f9adcf 100644
+--- a/cgit.h
++++ b/cgit.h
+@@ -380,6 +380,7 @@ extern const struct object_id *cgit_snapshot_get_sig(const char *ref,
+ extern const unsigned cgit_snapshot_format_bit(const struct cgit_snapshot_format *f);
+ 
+ extern int cgit_open_filter(struct cgit_filter *filter, ...);
++extern void open_auth_filter(const char *function);
+ extern int cgit_close_filter(struct cgit_filter *filter);
+ extern void cgit_fprintf_filter(struct cgit_filter *filter, FILE *f, const char *prefix);
+ extern void cgit_exec_filter_init(struct cgit_exec_filter *filter, char *cmd, char **argv);
+diff --git a/filter.c b/filter.c
+index 2b6c838..c623b00 100644
+--- a/filter.c
++++ b/filter.c
+@@ -144,6 +144,22 @@ int cgit_open_filter(struct cgit_filter *filter, ...)
+ 	return result;
+ }
+ 
++inline void open_auth_filter(const char *function)
++{
++	cgit_open_filter(ctx.cfg.auth_filter, function,
++		ctx.env.http_cookie ? ctx.env.http_cookie : "",
++		ctx.env.request_method ? ctx.env.request_method : "",
++		ctx.env.query_string ? ctx.env.query_string : "",
++		ctx.env.http_referer ? ctx.env.http_referer : "",
++		ctx.env.path_info ? ctx.env.path_info : "",
++		ctx.env.http_host ? ctx.env.http_host : "",
++		ctx.env.https ? ctx.env.https : "",
++		ctx.qry.repo ? ctx.qry.repo : "",
++		ctx.qry.page ? ctx.qry.page : "",
++		cgit_currentfullurl(),
++		cgit_loginurl());
++}
++
+ int cgit_close_filter(struct cgit_filter *filter)
+ {
+ 	if (!filter)
+diff --git a/ui-shared.c b/ui-shared.c
+index 72a1505..232d131 100644
+--- a/ui-shared.c
++++ b/ui-shared.c
+@@ -1020,8 +1020,11 @@ static void print_header(void)
+ 			html("<input type='submit' value='switch'/>");
+ 			html("</form>");
+ 		}
+-	} else
+-		html_txt(ctx.cfg.root_title);
++	} else html_txt(ctx.cfg.root_title);
++
++	html("</td><td class='right'>");
++	open_auth_filter("root-header");
++	cgit_close_filter(ctx.cfg.auth_filter);
+ 	html("</td></tr>\n");
+ 
+ 	html("<tr><td class='sub'>");
+-- 
+2.36.1
+
