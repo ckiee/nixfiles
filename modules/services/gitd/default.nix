@@ -6,7 +6,7 @@ let
     patches = # orig.patches ++
       [ ./0001-ui-shared-allow-the-auth-filter-to-display-a-notice.patch ];
   });
-  auth = pkgs.callPackage ./auth {};
+  auth = pkgs.callPackage ./auth { };
   # auth = "/tmp/cgito";
 in with lib; {
   options.cookie.services.gitd = {
@@ -75,6 +75,31 @@ in with lib; {
         readme=:INSTALL
         readme=:install
       '';
+    };
+
+    systemd.services.lighttpd.serviceConfig = {
+      ProtectSystem = "strict";
+      ReadWritePaths = [ "/run/gitolite-rottpd" "/run/cgito" "/var/cache/cgit" ];
+      CapabilityBoundingSet = "cap_setuid cap_setgid";
+      DeviceAllow = [ ];
+      NoNewPrivileges = "true";
+      ProtectControlGroups = "true";
+      ProtectClock = "true";
+      PrivateDevices = "true";
+      PrivateTmp = "true";
+      ProtectHome = "true";
+      ProtectHostname = "true";
+      ProtectKernelLogs = "true";
+      ProtectKernelModules = "true";
+      ProtectKernelTunables = "true";
+      RemoveIPC = "true";
+      ProtectProc = "invisible";
+      RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
+      RestrictSUIDSGID = "true";
+      RestrictRealtime = "true";
+      LockPersonality = "true";
+      SystemCallArchitectures = "native";
+      ProcSubset = "pid";
     };
 
     services.gitolite = {
