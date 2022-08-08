@@ -6,8 +6,8 @@ let
     patches = # orig.patches ++
       [ ./0001-ui-shared-allow-the-auth-filter-to-display-a-notice.patch ];
   });
-  # auth = pkgs.callPackage ./auth {};
-  auth = "/tmp/cgito";
+  auth = pkgs.callPackage ./auth {};
+  # auth = "/tmp/cgito";
 in with lib; {
   options.cookie.services.gitd = {
     enable = mkEnableOption "Enables the gitd service";

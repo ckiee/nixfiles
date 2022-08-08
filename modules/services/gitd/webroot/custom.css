@@ -88,3 +88,5 @@ table.foot { margin-top: 1em; }
 div#cgit a.permalink { color: inherit; }
 /* for the auth filter */
 code { font-family: monospace; background: dimgray; color: white; }
+/* cookie logo has more distinct pixels */
+.logo img { image-rendering: pixelated; }
