@@ -31,6 +31,7 @@ in with lib; {
     home-manager.users.ckie = { ... }: {
       programs.git = {
         enable = true;
+        package = pkgs.gitAndTools.gitFull;
         lfs.enable = true;
         signing = {
           signByDefault = true;
@@ -43,8 +44,9 @@ in with lib; {
             rebase = true;
             # ff = "only";
           };
-          rebase = { autoStash = true; };
-          init = { defaultBranch = "main"; };
+          rebase.autoStash = true;
+          init.defaultBranch = "main";
+          sendemail.confirm = "auto";
           # Rewrite unencrypted git://github.com URLs to the encrypted version which isn't deprecated
           ${''url "git@github.com:"''} = { insteadOf = "git://github.com/"; };
         };
