@@ -1,3 +1,5 @@
+# TODO backups!!
+#
 { lib, config, pkgs, ... }:
 
 let
@@ -32,10 +34,8 @@ in with lib; {
         source-filter = "${cgit}/lib/cgit/filters/syntax-highlighting.py";
         # devel
         auth-filter = "${auth}/libexec/auth-filter";
-        clone-url = (lib.concatStringsSep " " [
-          "https://$HTTP_HOST$SCRIPT_NAME/$CGIT_REPO_URL"
-          "ssh://git@ckie.dev:$CGIT_REPO_URL"
-        ]);
+        clone-url =
+          (lib.concatStringsSep " " [ "git@ckie.dev:$CGIT_REPO_URL" ]);
         enable-log-filecount = 1;
         enable-log-linecount = 1;
         enable-git-config = 1;
@@ -79,7 +79,8 @@ in with lib; {
 
     systemd.services.lighttpd.serviceConfig = {
       ProtectSystem = "strict";
-      ReadWritePaths = [ "/run/gitolite-rottpd" "/run/cgito" "/var/cache/cgit" ];
+      ReadWritePaths =
+        [ "/run/gitolite-rottpd" "/run/cgito" "/var/cache/cgit" ];
       CapabilityBoundingSet = "cap_setuid cap_setgid";
       DeviceAllow = [ ];
       NoNewPrivileges = "true";
@@ -113,6 +114,8 @@ in with lib; {
         push( @{$RC{ENABLE}}, 'ssh-authkeys-split' );
       '';
       package = pkgs.gitolite.overrideAttrs (orig: {
+        patches = (orig.patches or [ ])
+          ++ [ ./0002-PostUpdate-master-main.patch ];
         postPatch = ''
           ${orig.postPatch}
           cat >./src/commands/webauth <<EOF

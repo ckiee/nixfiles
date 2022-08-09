@@ -1,0 +1,44 @@
+From 5a81e71b78f465664579207dcb1580fcc4dce5bd Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Tue, 9 Aug 2022 06:37:24 +0300
+Subject: [PATCH] PostUpdate: master -> main
+
+---
+ src/lib/Gitolite/Hooks/PostUpdate.pm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/lib/Gitolite/Hooks/PostUpdate.pm b/src/lib/Gitolite/Hooks/PostUpdate.pm
+index a76d1d9..862199c 100644
+--- a/src/lib/Gitolite/Hooks/PostUpdate.pm
++++ b/src/lib/Gitolite/Hooks/PostUpdate.pm
+@@ -20,23 +20,23 @@ use warnings;
+ 
+ sub post_update {
+     trace( 3, 'post-up', @ARGV );
+-    exit 0 unless grep( m(^refs/heads/master$), @ARGV );
++    exit 0 unless grep( m(^refs/heads/main$), @ARGV );
+     # this is the *real* post_update hook for gitolite
+ 
+-    tsh_try("git ls-tree --name-only master");
++    tsh_try("git ls-tree --name-only main");
+     _die "no files/dirs called 'hooks' or 'logs' are allowed" if tsh_text() =~ /^(hooks|logs)$/m;
+ 
+     my $hooks_changed = 0;
+     {
+         local $ENV{GIT_WORK_TREE} = $rc{GL_ADMIN_BASE};
+ 
+-        tsh_try("git diff --name-only master");
++        tsh_try("git diff --name-only main");
+         $hooks_changed++ if tsh_text() =~ m(/hooks/common/);
+         # the leading slash ensure that this hooks/common directory is below
+         # some top level directory, not *at* the top.  That's LOCAL_CODE, and
+         # it's actual name could be anything but it doesn't matter to us.
+ 
+-        tsh_try("git checkout -f --quiet master");
++        tsh_try("git checkout -f --quiet main");
+     }
+     _system("gitolite compile");
+     _system("gitolite setup --hooks-only") if $hooks_changed;
+-- 
+2.36.1
+
