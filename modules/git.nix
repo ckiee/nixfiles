@@ -31,7 +31,7 @@ in with lib; {
     home-manager.users.ckie = { ... }: {
       programs.git = {
         enable = true;
-        package = pkgs.gitAndTools.gitFull;
+        package = pkgs.gitFull;
         lfs.enable = true;
         signing = {
           signByDefault = true;
