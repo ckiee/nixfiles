@@ -39,7 +39,7 @@ but if you have [a lot of time](https://github.com/hlissner/dotfiles#frequently-
 and [you're open to trying out new ways of doing things](https://illustris.tech/devops/why-you-should-NOT-never-ever-use-nixos/),
 it becomes extremely enjoyable after a while.
 
-> *But even still..!*
+> *But even so..!*
 >
 > *Me want eat!*
 >
