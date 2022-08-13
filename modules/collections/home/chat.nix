@@ -14,7 +14,7 @@ in with lib; {
           "https://dl-ptb.discordapp.net/apps/linux/0.0.29/discord-ptb-0.0.29.tar.gz";
       }))
       discord
-      fractal
+      # fractal
       (element-desktop.override { element-web = nixosConfig.cookie.services.matrix.elementRoot; })
     ];
     cookie.weechat.enable = true;
