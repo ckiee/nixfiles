@@ -65,7 +65,7 @@ in {
           # Utilities
           mpc_cli
           spotdl
-          puddletag # ...for when the metadata gets messed up
+          # puddletag # ...for when the metadata gets messed up
         ];
 
       };
