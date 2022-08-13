@@ -6,7 +6,7 @@ eval_job() {
     job="$1"
     name="$(echo "$job" | cut -d'-' -f2- | sed -e 's/.drv$//')"
     echo evaluating job "$job"
-    echo '===' evaluating job "$job" on master host "$(hostname)" >> build-logs/"$(basename "$job")"
+    echo '===' evaluating job "$job" on host "$(hostname)" >> build-logs/"$(basename "$job")"
     nix-store --realise "$job" --add-root ./"$name" $NIX_OPTS >> build-logs/"$(basename "$job")" 2>&1
 }
 
