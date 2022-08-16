@@ -72,6 +72,10 @@ in {
             (concatStringsSep "\n" cfg.excludePaths)
           }"
         ];
+        timerConfig = {
+          OnCalendar = "00:30";
+          RandomizedDelaySec = "5h";
+        };
 
         rcloneConfigFile = sec.rclone-config.dest;
         repository = "rclone:gdrive:${host}-fs";
@@ -101,7 +105,7 @@ in {
       ]);
 
     environment.systemPackages = singleton
-      (pkgs.runCommandLocal "restic-wrapped" {} ''
+      (pkgs.runCommandLocal "restic-wrapped" { } ''
         . ${pkgs.makeWrapper}/nix-support/setup-hook
         makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
           --set RCLONE_CONFIG /run/keys/rclone-config \
