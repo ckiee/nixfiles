@@ -21,4 +21,5 @@ in {
   "installer" = import ../hosts/installer;
   "hmporter" = import ../hosts/hmporter;
   "virt" = import ../hosts/virt;
+  "kyurem" = import ../hosts/kyurem;
 }
