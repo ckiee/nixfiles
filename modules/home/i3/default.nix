@@ -53,7 +53,7 @@ in {
       transmission-gtk # capitalism
       blockbench-electron # placing blocks
       krita # drawing
-      prusa-slicer # making things out of harmful plastic
+      # prusa-slicer # making things out of harmful plastic
       ardour # piano
       # subtitleeditor # making text from sine waves, manually # TODO unbreak package
       # freecad # behold our most precious polygons, just one step away from real life!
