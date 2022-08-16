@@ -79,6 +79,14 @@ with builtins; {
         };
       }
       {
+        systemd.services = rec {
+          nginx = rec {
+            wantedBy = [ "coredns.service" ];
+            after = wantedBy;
+          };
+          nginx-config-reload = nginx;
+        };
+
         cookie.services.prometheus.nginx-vhosts = [ "tailnet-certs-proxy" ];
         services.nginx.virtualHosts = mkMerge (map (vhost: ({
           ${vhost} = {
