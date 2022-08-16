@@ -53,5 +53,6 @@
     ./wireguard.nix
     ./mpd.nix
     ./networkmanager.nix
+    ./big.nix
   ];
 }

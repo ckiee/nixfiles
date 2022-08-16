@@ -16,7 +16,6 @@ with builtins;
   time.timeZone = "Israel";
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.supportedFilesystems = [ "ntfs" "btrfs" ];
   boot.cleanTmpDir = true;
   boot.tmpOnTmpfs = true;
 
@@ -43,58 +42,21 @@ with builtins;
     MaxFileSec=40day
   '';
 
-  services.fwupd.enable = true;
-
-  # Some bare basics
-  environment.systemPackages = with pkgs; [
-    wget
-    vim
-    tree
-    neofetch
-    git
-    killall
-    htop
-    file
-    inetutils
-    binutils-unwrapped
-    pciutils
-    usbutils
-    dig
-    asciinema
-    ripgrep # a better grep
-    unzip
-    ncdu
-    fd # a better find
-    hyperfine # a better time
-    mtr # a better traceroute
-    tmux # when you can't afford i3
-    youtube-dl
-    yt-dlp # do some pretendin' and fetch videos
-    jq # like 'node -e' but nicer
-    btop # htop on steroids
-    expect # color capture, galore
-    caddy # convenient bloated web server
-    parallel # --citation
-  ];
+  environment.systemPackages = with pkgs;
+    [ vim ]; # More in modules/big.nix. Don't add a lot!
 
   cookie = {
     # Daemons
     services = {
       ssh.enable = true;
       tailscale.enable = mkDefault true;
-      coredns = {
-        enable = true;
-        useLocally = true;
-      };
     };
     # Etc
-    git.enable = true;
     wireguard.enable = config.cookie.state.bootable;
     binary-caches.enable = true;
     nix.enable = true;
     cookie-overlay.enable = true;
     ipban.enable = true;
-    shell-utils.enable = true;
   };
 
   home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
