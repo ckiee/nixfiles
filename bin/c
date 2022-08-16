@@ -10,9 +10,12 @@ if [ "$1" == "trace" ]; then
     shift
 fi
 
+function gen_secrets {
+    $($0 $c_trace eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
+}
 deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
 function morp {
-    $($0 $c_trace eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
+    gen_secrets
     echo morph $@ $show_trace
     set +e
     morph $@ $show_trace
@@ -112,6 +115,8 @@ elif [ "$1" == "hmport" ]; then
     path="$(nix-instantiate deploy/hm-only.nix)"
     nix copy --to "ssh://$@" --derivation "$path"
     ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
+elif [ "$1" == "secret" ]; then
+    gen_secrets
 else
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
 fi
