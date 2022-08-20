@@ -117,6 +117,6 @@ elif [ "$1" == "hmport" ]; then
     ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 elif [ "$1" == "secret" ]; then
     gen_secrets
-else
+else # TODO: it'd be cool if there was a command to identify how old nixos vers are on each host
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
 fi
