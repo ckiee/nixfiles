@@ -32,6 +32,7 @@ in pkgs.mkShell {
     jq
     nix-eval-jobs
     wireguard-tools
+    nix-output-monitor
   ];
 
   shellHook = ''
