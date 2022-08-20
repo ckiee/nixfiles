@@ -82,6 +82,7 @@ in {
         '';
       };
 
+      # TODO: make sysd only mark it as started once its . Actually listening.
       services.coredns = {
         enable = true;
 
