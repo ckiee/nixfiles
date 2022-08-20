@@ -83,7 +83,7 @@ in {
   };
   services.usbmuxd.enable = true;
 
-  users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "wireshark" ];
+  users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "wireshark" "plugdev" ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
