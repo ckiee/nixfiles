@@ -58,6 +58,12 @@ This strikes a nice balance between taking up a nice amount of the screen and st
 ;; Suppress "Cleaning up the recentf...done (0 removed)"
 (advice-add 'recentf-cleanup :around #'ckie--suppress-messages)
 #+END_SRC
+*** thinner modeline
+The default doom-modeline takes up a few too many vertical pixels. Let's have less padding.
+#+BEGIN_SRC elisp
+(setq doom-modeline-height (+ (doom-modeline--font-height) 2))
+#+END_SRC
+Note =doom-modeline-height= is only used in GUI.
 * Doom/Extras
 ** fix config edit keybind
 Doom Emacs assumes your config will be in =~/.doom=, but mine isn't!
