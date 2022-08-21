@@ -36,6 +36,7 @@ in {
         ./toot
         ./mangohud.nix
         ./netintent
+        ./fmouse
       ];
     };
   };

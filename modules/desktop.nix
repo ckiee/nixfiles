@@ -64,6 +64,7 @@ in with lib; {
         toot.enable = true;
         mangohud.enable = true;
         netintent.enable = true;
+        fmouse.enable = true;
       };
       services.rsibreak.enable = true;
     };

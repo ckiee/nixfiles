@@ -93,79 +93,93 @@ in {
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
-            screenie = "exec ${pkgs.gnome3.gnome-screenshot}/bin/gnome-screenshot";
+            screenie =
+              "exec ${pkgs.gnome3.gnome-screenshot}/bin/gnome-screenshot";
           };
-            lib.mkOptionDefault {
-              # brightness & audio Fn keys
-              "${modifier}+F1" = "${pam} --toggle-mute";
-              "${modifier}+F2" = "${pam} --decrease 5";
-              "${modifier}+F3" = "${pam} --increase 5";
-              "${modifier}+F4" = ''exec "${mpc} next"'';
-              "${modifier}+t" = ''exec "${mpc} toggle"'';
-              "${modifier}+F5" =
-                ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
-              "${modifier}+F6" =
-                ''exec "${pkgs.brightnessctl}/bin/brightnessctl set +5%"'';
-              # old i3 defaults
-              "${modifier}+Shift+f" = "floating toggle";
-              # lock/suspend
-              "--release ${modifier}+l" = "exec ${locker}";
-              "--release ${modifier}+Shift+s" =
-                ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+            mkMerge [
+              (import ./defaults.nix {
+                cfg = config.xsession.windowManager.i3;
+              })
+              {
+                # brightness & audio Fn keys
+                "${modifier}+F1" = "${pam} --toggle-mute";
+                "${modifier}+F2" = "${pam} --decrease 5";
+                "${modifier}+F3" = "${pam} --increase 5";
+                "${modifier}+F4" = ''exec "${mpc} next"'';
+                "${modifier}+t" = ''exec "${mpc} toggle"'';
+                "${modifier}+F5" =
+                  ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
+                "${modifier}+F6" =
+                  ''exec "${pkgs.brightnessctl}/bin/brightnessctl set +5%"'';
+                # old i3 defaults
+                "${modifier}+Shift+f" = "floating toggle";
+                # lock/suspend
+                "--release ${modifier}+l" = "exec ${locker}";
+                "--release ${modifier}+Shift+s" =
+                  ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
 
-              # screenshot
-              "--release ${modifier}+End" =
-                "${screenie} -ac";
-              "--release ${modifier}+Pause" =
-                "${screenie} -ac";
-              "--release ${modifier}+Shift+End" =
-                "${screenie} -wc";
-              "--release ${modifier}+Shift+Pause" =
-                "${screenie} -wc";
+                # screenshot
+                "--release ${modifier}+End" = "${screenie} -ac";
+                "--release ${modifier}+Pause" = "${screenie} -ac";
+                "--release ${modifier}+Shift+End" = "${screenie} -wc";
+                "--release ${modifier}+Shift+Pause" = "${screenie} -wc";
 
-              "--release ${modifier}+Shift+t" =
-                "exec ${mkRequiresScript ./scripts/tntwars}";
-              "${modifier}+Shift+d" =
-                "exec emacsclient -nc ~/Sync/org/scratchpad.org";
-              "--release ${modifier}+Shift+g" =
-                "exec ${mkRequiresScript ./scripts/nixmenu}";
-              "${modifier}+Shift+h" = "exec ${mkRequiresScript ./scripts/sinkswap}";
-              "${modifier}+Shift+b" = "exec ${mkRequiresScript ./scripts/showerset}";
+                "--release ${modifier}+Shift+t" =
+                  "exec ${mkRequiresScript ./scripts/tntwars}";
+                "${modifier}+Shift+d" =
+                  "exec emacsclient -nc ~/Sync/org/scratchpad.org";
+                "--release ${modifier}+Shift+g" =
+                  "exec ${mkRequiresScript ./scripts/nixmenu}";
+                "${modifier}+Shift+h" =
+                  "exec ${mkRequiresScript ./scripts/sinkswap}";
+                "${modifier}+Shift+b" =
+                  "exec ${mkRequiresScript ./scripts/showerset}";
 
-              # fmouse
-              "${modifier}+a" = "exec ${pkgs.fmouse}/bin/fmouse";
-              "${modifier}+Shift+a" = "exec ${pkgs.fmouse}/bin/fmouse --right-click";
+                # fmouse
+                # "${modifier}+a" = "exec ${pkgs.fmouse}/bin/fmouse";
+                # "${modifier}+Shift+a" = "exec ${pkgs.fmouse}/bin/fmouse --right-click";
 
-              # music house
-              "${modifier}+Shift+w" =
-                "move container to workspace ${musicWorkspace}";
-              "${modifier}+w" = "workspace ${musicWorkspace}";
-              # force i3 to make 1 the starting workspace
-              "F13" = "workspace 1";
-              "F14" = "workspace 2";
-              # another 10 workspaces for the 2nd monitor
-              "${modifier}+Control+1" = "workspace °1";
-              "${modifier}+Control+2" = "workspace °2";
-              "${modifier}+Control+3" = "workspace °3";
-              "${modifier}+Control+4" = "workspace °4";
-              "${modifier}+Control+5" = "workspace °5";
-              "${modifier}+Control+6" = "workspace °6";
-              "${modifier}+Control+7" = "workspace °7";
-              "${modifier}+Control+8" = "workspace °8";
-              "${modifier}+Control+9" = "workspace °9";
-              "${modifier}+Control+0" = "workspace °10";
-              ## the move container to $ws
-              "${modifier}+Control+Shift+1" = "move container to workspace °1";
-              "${modifier}+Control+Shift+2" = "move container to workspace °2";
-              "${modifier}+Control+Shift+3" = "move container to workspace °3";
-              "${modifier}+Control+Shift+4" = "move container to workspace °4";
-              "${modifier}+Control+Shift+5" = "move container to workspace °5";
-              "${modifier}+Control+Shift+6" = "move container to workspace °6";
-              "${modifier}+Control+Shift+7" = "move container to workspace °7";
-              "${modifier}+Control+Shift+8" = "move container to workspace °8";
-              "${modifier}+Control+Shift+9" = "move container to workspace °9";
-              "${modifier}+Control+Shift+0" = "move container to workspace °10";
-            };
+                # music house
+                "${modifier}+Shift+w" =
+                  "move container to workspace ${musicWorkspace}";
+                "${modifier}+w" = "workspace ${musicWorkspace}";
+                # force i3 to make 1 the starting workspace
+                "F13" = "workspace 1";
+                "F14" = "workspace 2";
+                # another 10 workspaces for the 2nd monitor
+                "${modifier}+Control+1" = "workspace °1";
+                "${modifier}+Control+2" = "workspace °2";
+                "${modifier}+Control+3" = "workspace °3";
+                "${modifier}+Control+4" = "workspace °4";
+                "${modifier}+Control+5" = "workspace °5";
+                "${modifier}+Control+6" = "workspace °6";
+                "${modifier}+Control+7" = "workspace °7";
+                "${modifier}+Control+8" = "workspace °8";
+                "${modifier}+Control+9" = "workspace °9";
+                "${modifier}+Control+0" = "workspace °10";
+                ## the move container to $ws
+                "${modifier}+Control+Shift+1" =
+                  "move container to workspace °1";
+                "${modifier}+Control+Shift+2" =
+                  "move container to workspace °2";
+                "${modifier}+Control+Shift+3" =
+                  "move container to workspace °3";
+                "${modifier}+Control+Shift+4" =
+                  "move container to workspace °4";
+                "${modifier}+Control+Shift+5" =
+                  "move container to workspace °5";
+                "${modifier}+Control+Shift+6" =
+                  "move container to workspace °6";
+                "${modifier}+Control+Shift+7" =
+                  "move container to workspace °7";
+                "${modifier}+Control+Shift+8" =
+                  "move container to workspace °8";
+                "${modifier}+Control+Shift+9" =
+                  "move container to workspace °9";
+                "${modifier}+Control+Shift+0" =
+                  "move container to workspace °10";
+              }
+            ];
           assigns = {
             "1" = [{ class = "^Firefox$"; }];
             "2" = [
