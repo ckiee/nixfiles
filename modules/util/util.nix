@@ -17,7 +17,7 @@ rec {
     ${(concatMapStringsSep "\n" (line:
       if hasPrefix prefix line then
         "export PATH=$PATH:${
-          makeBinPath (map (pkgAttrId: pkgs.${pkgAttrId})
+          makeBinPath (map (pkgAttrId: getAttrFromPath (splitString "." pkgAttrId) pkgs)
             (splitString " " (removePrefix prefix line)))
         }"
       else
