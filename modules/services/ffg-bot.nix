@@ -1,8 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }@margs:
 
 let
   cfg = config.cookie.services.ffg-bot;
-  util = import ./util.nix { inherit lib config; };
+  util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.ffg-bot = {
     enable = mkEnableOption "Enables the Falling From Grace discord bot";

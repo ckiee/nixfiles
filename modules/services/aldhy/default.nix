@@ -1,8 +1,8 @@
-{ util, lib, config, pkgs, ... }:
+{ util, lib, config, pkgs, ... }@margs:
 
 let
   cfg = config.cookie.services.aldhy;
-  inherit (import ../util.nix { inherit lib config; }) mkService;
+  inherit (import ../util.nix margs) mkService mkCgi;
   inherit (util) mkRequiresScript;
 in with lib; {
   options.cookie.services.aldhy = {

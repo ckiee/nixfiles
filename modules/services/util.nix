@@ -1,6 +1,12 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 with lib; {
+  # Run socat configured as CGI
+  mkCgi = exec: port: ''
+    ${pkgs.socat}/bin/socat TCP4-LISTEN:${
+      toString port
+    },reuseaddr,fork EXEC:${exec}
+  '';
   # Make a service with it's own user account and secure systemd settings
   #
   #  mkService "comicfury" {
@@ -10,8 +16,8 @@ with lib; {
   #      "exec ${pkgs.cookie.comicfury-discord-webhook}/bin/comicfury-discord-webhook";
   #  }
   mkService = name:
-    { home, extraGroups ? [ ], description ? name, script, secrets ? { }
-    , wants ? [ ], noDefaultTarget ? false, ... }: ({
+    { home ? "/var/lib/${name}", extraGroups ? [ ], description ? name, script ? "", secrets ? { }
+    , wants ? [ ], noDefaultTarget ? false, path ? [], ... }: ({
       users = {
         users."${name}" = {
           inherit home extraGroups description;
@@ -32,10 +38,11 @@ with lib; {
 
       systemd.services."${name}" = let serviceWants = wants;
       in rec {
-        inherit script description;
-        wantedBy = if noDefaultTarget then [] else [ "multi-user.target" ];
-        requires = mapAttrsToList (secretName: _: "${name}-${secretName}-key.service") secrets
-          ++ serviceWants;
+        inherit description script path;
+        wantedBy = if noDefaultTarget then [ ] else [ "multi-user.target" ];
+        requires =
+          mapAttrsToList (secretName: _: "${name}-${secretName}-key.service")
+          secrets ++ serviceWants;
         after = requires;
 
         serviceConfig = {

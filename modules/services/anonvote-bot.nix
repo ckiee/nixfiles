@@ -1,8 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }@margs:
 
 let
   cfg = config.cookie.services.anonvote-bot;
-  util = import ./util.nix { inherit lib config; };
+  util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.anonvote-bot = {
     enable = mkEnableOption "Enables the anonvote-bot discord bot";

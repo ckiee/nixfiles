@@ -1,11 +1,11 @@
-{ sources, lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, ... }@margs:
 
 with builtins;
 with lib;
 
 let
   cfg = config.cookie.services.ckiesite;
-  util = import ../util.nix { inherit lib config; };
+  util = import ../util.nix margs;
   port = "18592";
 
   inherit (sources) spectrogram-web abandoned-projects;

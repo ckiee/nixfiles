@@ -1,8 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }@margs:
 
 let
   cfg = config.cookie.services.comicfury;
-  util = import ./util.nix { inherit lib config; };
+  util = import ./util.nix margs;
 in with lib; {
   # XXX This service is no longer operational. XXX
   options.cookie.services.comicfury = {
