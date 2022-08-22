@@ -1,13 +1,5 @@
 #Requires: ripgrep netcat expect
 read -rt 1 request
-headers="$(read -rt 1 && echo "$REPLY")"
-last_header=""
-while :; do
-    read -rt1 last_header
-    [ "${#last_header}" -lt 2 ] && break
-    headers="$headers
-$last_header"
-done
 
 if echo "$request" | rg -q "^GET / HTTP/1.+"; then
     # TODO add: Cache-Control: max-age=2628000
