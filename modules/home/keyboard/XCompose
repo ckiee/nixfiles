@@ -272,6 +272,7 @@
 <Multi_key> <o> <r> <a> <n>     : "🟠" # 🟠!
 <Multi_key> <X> <e> <R>         : "∈"
 <Multi_key> <i> <n>             : "∈"
+<Multi_key> <e> <m>             : "embouchure"
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
