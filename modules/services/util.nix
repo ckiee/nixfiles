@@ -2,11 +2,8 @@
 
 with lib; {
   # Run socat configured as CGI
-  mkCgi = exec: port: ''
-    ${pkgs.socat}/bin/socat TCP4-LISTEN:${
-      toString port
-    },reuseaddr,fork EXEC:${exec}
-  '';
+  mkCgi = exec: port:
+    "${pkgs.socat}/bin/socat TCP4-LISTEN:${toString port},reuseaddr,fork EXEC:${exec}";
   # Make a service with it's own user account and secure systemd settings
   #
   #  mkService "comicfury" {
