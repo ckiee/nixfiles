@@ -1,4 +1,4 @@
-{ sources, lib, config, pkgs, ... }:
+{ sources, lib, config, pkgs, util, ... }@margs:
 
 with lib;
 
@@ -6,7 +6,10 @@ let
   cfg = config.cookie.mpd;
   sound = config.cookie.sound;
   home = config.cookie.user.home;
-  port = "14725";
+  inherit (import ../services/util.nix margs) mkService mkCgi;
+  inherit (util) mkRequiresScript;
+  audioPort = "14725";
+  frontendPort = "14726";
 in {
   options.cookie.mpd = {
     enable = mkEnableOption "Enables the music player daemon";
@@ -44,7 +47,7 @@ in {
                   type "httpd"
                   name "cookie mpd! (:"
                   encoder "opus"
-                  port "${port}"
+                  audioPort "${audioPort}"
                   bitrate "128000"
                   format "48000:16:1"
                   # prevent MPD from disconnecting all listeners when playback is stopped.
@@ -77,12 +80,12 @@ in {
       cookie.services.nginx.enable = true;
       cookie.services.prometheus.nginx-vhosts = [ "mpd" ];
       services.nginx.virtualHosts.${cfg.host} = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${port}";
-          extraConfig = ''
-            access_log /var/log/nginx/mpd.access.log;
-          '';
-        };
+        locations."/audio" = { proxyPass = "http://127.0.0.1:${audioPort}"; };
+        locations."/" = { proxyPass = "http://127.0.0.1:${frontendPort}"; };
+
+        extraConfig = ''
+          access_log /var/log/nginx/mpd.access.log;
+        '';
       };
       ### get tls cert
       cookie.tailnet-certs.client = rec {
@@ -90,7 +93,15 @@ in {
         hosts = singleton cfg.host;
         forward = hosts;
       };
+
     })
+    (mkIf cfg.enableHttp (mkService "mpd-web" {
+      description = "mpd status";
+      script = ''
+        ${mkCgi (mkRequiresScript ./web.sh) frontendPort}
+      '';
+      path = [ pkgs.mpc_cli ];
+    }))
 
   ]);
 }

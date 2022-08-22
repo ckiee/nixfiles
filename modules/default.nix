@@ -51,7 +51,7 @@
     ./hostapd.nix
     ./logiops.nix
     ./wireguard.nix
-    ./mpd.nix
+    ./mpd
     ./networkmanager.nix
     ./big.nix
   ];
