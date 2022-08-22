@@ -94,6 +94,7 @@ in {
         forward = hosts;
       };
 
+      systemd.services.mpd-web.environment.FAVICON = ./favicon.ico;
     })
     (mkIf cfg.enableHttp (mkService "mpd-web" {
       description = "mpd status";

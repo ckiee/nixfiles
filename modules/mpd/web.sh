@@ -61,7 +61,7 @@ HTTP/1.1 200 OK
 Cache-Control: max-age=2628000
 
 EOF
-    # its binary data so no inlining into the rest of the response
+    # binary data gets mangled
     cat "${FAVICON:-favicon.ico}"
 
 # Doesn't work because cantata stores covers separately
