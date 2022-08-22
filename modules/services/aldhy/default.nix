@@ -29,13 +29,10 @@ in with lib; {
       home = cfg.folder;
       description = "aldhy distributed nix evaluator";
       script = ''
-        export PATH=$PATH:${config.nix.package}/bin
-        ${pkgs.socat}/bin/socat TCP4-LISTEN:${toString cfg.port},reuseaddr,fork EXEC:${
-          mkRequiresScript ./web.sh
-        } &
+        ${mkCgi (mkRequiresScript ./web.sh) cfg.port} &
         ${mkRequiresScript ./queuerun.sh} &
-        exit
       '';
+      path = [ config.nix.package ];
       secrets.env = {
         source = "./secrets/aldhy.env";
         dest = "/run/keys/aldhy.env";
