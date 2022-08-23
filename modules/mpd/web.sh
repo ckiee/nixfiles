@@ -1,5 +1,6 @@
 #Requires: ripgrep netcat expect
 read -rt 1 request
+current="$(mpc -f '%album%\n%artist% - %title%')"
 
 if echo "$request" | rg -q "^GET / HTTP/1.+"; then
     # TODO add: Cache-Control: max-age=2628000
@@ -34,8 +35,8 @@ HTTP/1.1 200 OK
 </head>
 <body>
     <main>
-        <video autoplay="1" controls="1" style="height: 40px" src=audio></video>
-        <pre id=mpc>$(mpc)</pre>
+        <video autoplay="1" controls="1" style="height: 40px; width: 100%;" src=audio></video>
+        <pre id=mpc>$current</pre>
         <script>
             setInterval(async () => {
                 const res = await fetch("/mpc");
@@ -80,7 +81,7 @@ elif echo "$request" | rg -q "^GET /mpc HTTP/1.+"; then
 HTTP/1.1 200 OK
 Cache-Control: no-cache, no-store
 
-$(mpc)
+$current
 EOF
 
 else
