@@ -80,12 +80,6 @@ in with lib; {
       comb.synapse = { };
     };
 
-    # A token needed to create new user accounts
-    cookie.secrets.matrix-synapse-registration = {
-      source = "./secrets/matrix-synapse-registration";
-      runtime = false;
-    };
-
     # The homeserver's signing key
     cookie.secrets.matrix-signing-key = {
       source = "./secrets/matrix-signing-key";

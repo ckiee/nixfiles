@@ -41,11 +41,6 @@ in {
     # infinite recursion ^^
 
     (mkIf cfg.enableServer {
-      cookie.secrets.prom-alert-webhook = {
-        source = "./secrets/prom-alert-webhook.nix";
-        runtime = false;
-      };
-
       networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 9093 ]; # prom, alert-manager
 
       services.prometheus = {

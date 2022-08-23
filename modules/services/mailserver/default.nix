@@ -32,11 +32,6 @@ with builtins; {
         permissions = "0400";
       };
 
-      email-salt = {
-        source = "./secrets/email-salt";
-        runtime = false;
-      };
-
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
         dest = "/var/dkim/ckie.dev.mail.key";
