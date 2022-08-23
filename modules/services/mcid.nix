@@ -29,6 +29,13 @@ in with lib; {
   };
 
   config = mkIf cfg.enable (mkMerge [
+    {
+      systemd.services.mcid.environment = {
+        WEB_PORT = toString cfg.webPort;
+        MC_PORT = toString cfg.gamePort;
+        REDIS_URL = "redis://127.0.0.1:18236";
+      };
+    }
     (util.mkService "mcid" {
       home = cfg.folder;
       description = "mcid — daniel's thing";
@@ -42,6 +49,7 @@ in with lib; {
     {
       services.redis.servers.mcid = {
         enable = true;
+        port = 18236;
       };
 
       networking.firewall.allowedTCPPorts = singleton cfg.gamePort;
