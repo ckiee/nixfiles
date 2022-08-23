@@ -224,7 +224,7 @@
     "nixos-mailserver": {
         "branch": "master",
         "repo": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git",
-        "rev": "a9f87ca461a1f0e23e85a1ba8c696672ed9e11e2",
+        "rev": "004c229ca44c069d93c92abf67ff1619fb508c6a",
         "type": "git"
     },
     "nixpkgs": {
