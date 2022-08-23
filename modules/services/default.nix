@@ -46,5 +46,6 @@
     ./aldhy
     ./net-offload
     ./jitsi.nix
+    ./headscale.nix
   ];
 }

@@ -19,6 +19,7 @@ with lib;
     };
     services = {
       gitd.enable = true;
+      headscale.enable = true;
       minecraft.enable = true;
       mailserver.enable = true;
       among-sus.enable = true;
@@ -73,6 +74,7 @@ with lib;
             "dict.ckie.dev"
             "fedi.ckie.dev"
             "git.ckie.dev"
+            "headscale.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {

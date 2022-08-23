@@ -8,21 +8,35 @@ in with lib; {
     host = mkOption {
       type = types.str;
       description = "host for the web interface";
-      default = "tailnet.ckie.dev";
+      default = "headscale.ckie.dev";
     };
     acmeHost = mkOption {
       type = types.str;
       description = "base host for acme";
-      default = cfg.host;
+      default = "ckie.dev";
     };
   };
 
   config = mkIf cfg.enable {
+    cookie.services.postgres = {
+      enable = true;
+      comb.headscale = { };
+    };
+    # TODO: restic? is the state worth backing up?
     services.headscale = {
       enable = true;
-      publicURL = "https://${cfg.host}";
-      listenAddress = "127.0.0.1:4329";
+      serverUrl = "https://${cfg.host}";
+      address = "127.0.0.1";
+      port = 4329;
       logLevel = "debug";
+      settings = {
+        logtail.enabled = false;
+        db_type = "postgres";
+        db_host = "/run/postgresql";
+        db_name = "headscale";
+        db_user = "headscale";
+        db_port = "5432"; # not ignored for some reason
+      };
     };
 
     cookie.bindfs.headscale = {
