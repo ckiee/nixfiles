@@ -503,3 +503,13 @@ My project for [[https://github.com/langjam/langjam][langjam =#0003=]].
   + … And wrote a VM for it.
 - Did not win the jam, but had fun.
 
+* marginalia review :mareview:
+the [[https://news.ycombinator.com/item?id=32586273][internet waves]] brought me to [[https://search.marginalia.nu/][marginalia]] again and this time I decided to take a look around.
+
+fiddled around a bit, found the <span style="background: #000 linear-gradient(45deg, rgba(135,93,93,1) 0%, rgba(106,135,87,1) 50%, rgba(76,83,118,1) 100%);">Random Websites</span> button again and clicked around for a bit..
+I found a person's memorial for their cat, they seemed nice. Also a cool graph view of a blog and more.
+
+Now I kind of want to make a thing that scrapes marginalia and turns the similar websites thing into a graph view. Maybe as a userscript. WebXR? Bonus goal.
+
+* highly indexable :indexabl:
+wouldn't it be cool if everything I do [and maybe even think] could be in a index? so I can just hit SPC / and search for an exact thought I had and see the ones before and after it?
