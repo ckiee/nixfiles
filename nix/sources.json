@@ -71,10 +71,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "daiko",
-        "rev": "b744a2474ff530a426f5668bdd8ccc59174a94f8",
-        "sha256": "0af70k1f45f0yzk6c60sgs4bkji5afii6p1g41i4qcbvkk7zdjbz",
+        "rev": "c8c6dc46e08a8300dc7e00265366746d5ae9012f",
+        "sha256": "1m7c94w6f749f95kh0q75pa6x8a3c61lvn8p0hgzmbk0ik261bq3",
         "type": "tarball",
-        "url": "https://github.com/ckiee/daiko/archive/b744a2474ff530a426f5668bdd8ccc59174a94f8.tar.gz",
+        "url": "https://github.com/ckiee/daiko/archive/c8c6dc46e08a8300dc7e00265366746d5ae9012f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
@@ -107,10 +107,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "ffg-bot",
-        "rev": "63e2161c04375d7eb2bd88b22bd408bb8a42d526",
-        "sha256": "11n7v93b0v9c3xqq6zwxs1123iigv5h3q8jbbj15l2pdz704zvg0",
+        "rev": "1405d3de464f5a6c494fbcf2597129aac4d48f25",
+        "sha256": "1s4r1nscf0bcgnsv29w7qq474fcvf95lnkrvx1a9gbb01xzn4729",
         "type": "tarball",
-        "url": "https://github.com/ckiee/ffg-bot/archive/63e2161c04375d7eb2bd88b22bd408bb8a42d526.tar.gz",
+        "url": "https://github.com/ckiee/ffg-bot/archive/1405d3de464f5a6c494fbcf2597129aac4d48f25.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {

@@ -52,7 +52,7 @@ rec {
 
   render = e: "<!doctype html>${e done}";
   _ = render index;
-  Z = trace _ 0;
+  a = trace _ {};
 }
 
 # <html lang="">
