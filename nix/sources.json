@@ -107,10 +107,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "ffg-bot",
-        "rev": "1405d3de464f5a6c494fbcf2597129aac4d48f25",
-        "sha256": "1s4r1nscf0bcgnsv29w7qq474fcvf95lnkrvx1a9gbb01xzn4729",
+        "rev": "ba26d99c57b0379427dabf29af2346bee5808dfd",
+        "sha256": "1p4klwcq5bc6dqpz1mqrsnl5gkp8y21pasawqm0m3dgl4bkxn51m",
         "type": "tarball",
-        "url": "https://github.com/ckiee/ffg-bot/archive/1405d3de464f5a6c494fbcf2597129aac4d48f25.tar.gz",
+        "url": "https://github.com/ckiee/ffg-bot/archive/ba26d99c57b0379427dabf29af2346bee5808dfd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
