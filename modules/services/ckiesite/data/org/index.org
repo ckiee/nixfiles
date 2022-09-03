@@ -369,6 +369,14 @@ The statement you apologized for was not intended as a personal attack, but a ho
 - Runtime sanity checks at module boundaries /are/ good, even if intra-module types are ducked.
  - h&Ducked. Bam. Verbed.&h
 - TODO
+** Continually harder
+The language should be able to allow for both rapid prototyping at the cost of performance and safety and later on be able to set the codebase in concrete to allow for more optimizations and tooling assistance.
+** The tooling matters more than the language
+Haskell, JS, Rust: they're all the same. Sure they have different names for things and some of them pretend things are less mutable or don't have side effects but it doesn't really matter. You could write a fast JS JIT hybrid thing. Isn't that JavaScriptCore?
+** Great tooling helps you ignore it
+Modern compilers like =rustc= are amazing, no question. But they don't do what I really want.
+# TODO: insert image of long rust type error
+Is this what you want to read? I'd much rather have my program run incorrectly, perhaps with a big warning, and see how it blows up at runtime instead of all of this hookoo wipwap prediction. The type system shouldn't be a prison but a guide.
 
 * tty :tty:
 ** the unix tty does not contain distractions
