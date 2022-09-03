@@ -62,7 +62,7 @@ in with lib; {
       services.printing = {
         browsing = true; # Probably mDNS for printers
         defaultShared = true;
-        logLevel = "debug";
+        # logLevel = "debug";
       };
 
       cookie.services.nginx.enable = true; # firewall & recommended defaults
