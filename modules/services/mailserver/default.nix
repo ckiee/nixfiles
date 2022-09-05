@@ -24,9 +24,17 @@ with builtins; {
 
   config = mkIf cfg.enable {
     cookie.secrets = rec {
+      # TODO: dedup
       mailserver-pw-hash = {
         source = "./secrets/mailserver-pw-hash";
         dest = "/run/keys/mailserver-pw-hash";
+        owner = "root";
+        group = "root";
+        permissions = "0400";
+      };
+      mailserver-pw-hash-282 = {
+        source = "./secrets/mailserver-pw-hash-282";
+        dest = "/run/keys/mailserver-pw-hash-282";
         owner = "root";
         group = "root";
         permissions = "0400";
@@ -54,7 +62,9 @@ with builtins; {
 
     # there's a postfix-setup unit and for annoying reasons it misses it, grep our first
     # tildechat #helpdesk convo for story.
-    systemd.services.postfix.serviceConfig."X-Stupid-Hack-${builtins.hashString "sha256" (concatStringsSep "\n" cfg.aliases)}" = true;
+    systemd.services.postfix.serviceConfig."X-Stupid-Hack-${
+      builtins.hashString "sha256" (concatStringsSep "\n" cfg.aliases)
+    }" = true;
 
     mailserver = {
       enable = true;
@@ -72,6 +82,11 @@ with builtins; {
           aliases = [ "postmaster@ckie.dev" ]
             ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
+        };
+        "282@ckie.dev" = {
+          hashedPasswordFile =
+            config.cookie.secrets.mailserver-pw-hash-282.dest;
+          sendOnly = true;
         };
       };
     };
