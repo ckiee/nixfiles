@@ -72,6 +72,7 @@ in {
     minecraft
     polymc
     #kicad-with-packages3d
+    cookie.ledc
   ];
 
   programs.cnping.enable = true;

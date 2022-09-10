@@ -77,6 +77,18 @@
         "url": "https://github.com/ckiee/daiko/archive/c8c6dc46e08a8300dc7e00265366746d5ae9012f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "desk-fcobs": {
+        "branch": "main",
+        "description": "The lights on my desk",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "desk-fcobs",
+        "rev": "a99b85ce37bfe68810aac294f9c0f7064ab00665",
+        "sha256": "0d6q3fv7k0kbm0sicklrwmyj5zc2fq0y5z41rina5266izsx98gi",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/desk-fcobs/archive/a99b85ce37bfe68810aac294f9c0f7064ab00665.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "dns-hosts": {
         "branch": "master",
         "description": "🔒 Consolidating and extending hosts files from several well-curated sources. Optionally pick extensions for porn, social media, and other categories.",

@@ -12,4 +12,5 @@ in {
   alvr-bot = callPackage sources.alvr-bot { };
   anonvote-bot = callPackage sources.anonvote-bot { };
   ckiesite = import sources.ckiesite;
+  ledc = import sources.desk-fcobs;
 }
