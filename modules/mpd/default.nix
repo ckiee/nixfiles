@@ -47,7 +47,7 @@ in {
                   type "httpd"
                   name "cookie mpd! (:"
                   encoder "opus"
-                  audioPort "${audioPort}"
+                  port "${audioPort}"
                   bitrate "128000"
                   format "48000:16:1"
                   # prevent MPD from disconnecting all listeners when playback is stopped.
