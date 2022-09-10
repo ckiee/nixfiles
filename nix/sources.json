@@ -83,10 +83,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "desk-fcobs",
-        "rev": "a99b85ce37bfe68810aac294f9c0f7064ab00665",
-        "sha256": "0d6q3fv7k0kbm0sicklrwmyj5zc2fq0y5z41rina5266izsx98gi",
+        "rev": "97e9ae515aafc4134c8ba0db6f24cdacb870b77c",
+        "sha256": "0vlyv4ycqb5py5fwb4a6mv32x2dmm9k48cnavbcr560j7b280m1q",
         "type": "tarball",
-        "url": "https://github.com/ckiee/desk-fcobs/archive/a99b85ce37bfe68810aac294f9c0f7064ab00665.tar.gz",
+        "url": "https://github.com/ckiee/desk-fcobs/archive/97e9ae515aafc4134c8ba0db6f24cdacb870b77c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "dns-hosts": {
