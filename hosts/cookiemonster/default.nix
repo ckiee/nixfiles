@@ -73,6 +73,7 @@ in {
     polymc
     #kicad-with-packages3d
     cookie.ledc
+    x2x
   ];
 
   programs.cnping.enable = true;
