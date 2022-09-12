@@ -54,5 +54,6 @@
     ./mpd
     ./networkmanager.nix
     ./big.nix
+    ./devserv
   ];
 }

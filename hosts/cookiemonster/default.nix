@@ -33,6 +33,7 @@ in {
     hostapd.enable = true;
     logiops.enable = true;
     mpd.enableHttp = true;
+    devserv.enable = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     state = {
       sshPubkey =
