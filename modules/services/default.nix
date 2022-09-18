@@ -47,5 +47,6 @@
     ./net-offload
     ./jitsi.nix
     ./headscale.nix
+    ./elastic
   ];
 }
