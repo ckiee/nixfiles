@@ -94,7 +94,6 @@ in {
         in ''
           . {
             ${prom}
-            log
             hosts /run/coredns-hosts {
               reload 1500ms
               fallthrough
