@@ -29,6 +29,8 @@ in {
     services.matrix-synapse.settings.app_service_config_files =
       [ "/var/lib/matrix-synapse/discord/discord-registration.yaml" ];
 
+    cookie.restic.paths = [ "/var/lib/matrix-synapse/discord" ];
+
     cookie.bindfs.matrix-appservice-discord = {
       source = "/var/lib/matrix-appservice-discord";
       dest = "/var/lib/matrix-synapse/discord";
