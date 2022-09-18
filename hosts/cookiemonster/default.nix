@@ -24,6 +24,12 @@ in {
           "MVCZQ2L-XCK3Y2Z-R7Q2UT6-TZK6CVH-WUN6TFH-I3ZOCRS-OLZAN7C-XZ4BHAF";
       };
     };
+    # It doesn't work with my headphones on YT/others anymore, firefox and mpv too ):
+    # update: pipewire may be glitchy, but the JACK support is worth it (:
+    sound = {
+      # pulse.enable = true;
+      # pipewire.enable = false;
+    };
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;
