@@ -20,7 +20,7 @@ in with lib; {
       };
       rate = mkOption rec {
         type = types.int;
-        default = 48000;
+        default = 44100;
         description = "The sample rate";
         example = default;
       };
@@ -69,12 +69,13 @@ in with lib; {
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
+        audio.enable = true;
         pulse.enable = true;
+        jack.enable = true;
         alsa = {
           enable = true;
           support32Bit = true;
         };
-        jack.enable = true;
         config.pipewire = {
           "context.properties" = {
             "link.max-buffers" = 16;
