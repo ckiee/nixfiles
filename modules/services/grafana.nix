@@ -28,6 +28,8 @@ in with lib; {
       };
     };
 
+    cookie.restic.paths = [ config.services.grafana.database.path ];
+
     services.nginx = {
       virtualHosts.${cfg.host} = {
         locations."/" = {
