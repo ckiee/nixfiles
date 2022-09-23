@@ -96,7 +96,7 @@ in with lib; {
       after = requires;
     };
 
-    # Setup backups for the media; the rest is in Postgres which is backed up by it's
+    # Setup backups for the media; the rest is in Postgres which is backed up by its
     # corresponding module.
 
     cookie.restic.paths = [ "${config.services.matrix-synapse.dataDir}/media" ];
