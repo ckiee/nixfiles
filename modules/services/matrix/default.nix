@@ -1,7 +1,6 @@
 { sources, config, lib, pkgs, ... }:
 
-let
-  cfg = config.cookie.services.matrix;
+let cfg = config.cookie.services.matrix;
 in with lib; {
   imports = [ ./discord.nix ];
 
@@ -56,7 +55,10 @@ in with lib; {
       };
       ${cfg.serviceHost} = {
         locations = {
-          "/admin".root = "${pkgs.synapse-admin}";
+          "/admin".root = pkgs.linkFarm "synapse-admin-routing" [{
+            name = "admin";
+            path = "${pkgs.synapse-admin}";
+          }];
           "/".root = "${cfg.elementRoot}";
         };
         # log for prom
