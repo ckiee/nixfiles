@@ -38,24 +38,10 @@ in {
       };
     };
 
-    cookie.secrets.go-neb = {
-      source = "./secrets/go-neb.env";
-      permissions = "0400";
-    };
+    cookie.services.go-neb.enable = true;
 
     services.go-neb = {
-      enable = true;
-      baseUrl = "http://localhost";
-      secretFile = config.cookie.secrets.go-neb.dest;
       config = {
-        clients = [{
-          UserId = "@infra:ckie.dev";
-          AccessToken = "$INFRA_BOT_TOKEN";
-          HomeServerUrl = "https://matrix.ckie.dev";
-          Sync = true;
-          AutoJoinRooms = true;
-          DisplayName = "Bot";
-        }];
         services = [{
           ID = "alertmanager_service";
           Type = "alertmanager";

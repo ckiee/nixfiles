@@ -32,6 +32,10 @@
     ./pleroma
     ./lighttpd.nix
     ./gitd
+    ./jitsi.nix
+    ./headscale.nix
+    ./elastic
+    ./go-neb.nix
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
@@ -45,8 +49,5 @@
     ./anonvote-bot.nix
     ./aldhy
     ./net-offload
-    ./jitsi.nix
-    ./headscale.nix
-    ./elastic
   ];
 }
