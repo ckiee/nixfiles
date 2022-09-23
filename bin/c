@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeo pipefail
+set -eo pipefail
 export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
 
 show_trace=""
