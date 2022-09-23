@@ -1,7 +1,13 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.qsynth;
-
+let
+  cfg = config.cookie.qsynth;
+  soundfonts = [
+    "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
+    "${pkgs.soundfont-ydp-grand}/share/soundfonts/YDP-GrandPiano.sf2"
+    ./00Shackled_Steinway_B-IGVERB_Version.sf2
+    ./CP-80.sf2
+  ];
 in with lib; {
   options.cookie.qsynth = {
     enable = mkEnableOption "Enables the MIDI synthesizer";
@@ -12,10 +18,9 @@ in with lib; {
     xdg.configFile."rncbc.org/Qsynth.conf".text =
       builtins.readFile ./Qsynth.conf + ''
         [SoundFonts]
-        BankOffset1=0
-        SoundFont1=${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2
-        BankOffset2=0
-        SoundFont2=${pkgs.soundfont-ydp-grand}/share/soundfonts/YDP-GrandPiano.sf2
+        ${concatStringsSep "\n" (imap (i: f: ''
+          BankOffset${toString i}
+          SoundFont${toString i}=${toString f}'') soundfonts)}
       '';
   };
 }
