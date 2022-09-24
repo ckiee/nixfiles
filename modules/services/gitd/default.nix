@@ -32,7 +32,8 @@ in with lib; {
         favicon = "/favicon.ico";
         about-filter = "${cgit}/lib/cgit/filters/about-formatting.sh";
         source-filter = "${cgit}/lib/cgit/filters/syntax-highlighting.py";
-        # auth-filter = "${auth}/libexec/auth-filter";
+        # devel
+        auth-filter = "${auth}/libexec/auth-filter";
         clone-url =
           (lib.concatStringsSep " " [ "git@ckie.dev:$CGIT_REPO_URL" ]);
         enable-log-filecount = 1;
