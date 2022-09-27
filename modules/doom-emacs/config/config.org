@@ -105,6 +105,11 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 (setq mu4e-headers-date-format "%d/%m/%y")
 (setq mu4e-headers-time-format "%d/%m/%y %l:%M:%S %p")
 #+END_SRC
+*** Unoverride: Ctrl - is text scale, not mu4e related
+#+BEGIN_SRC elisp
+(after! mu4e
+  (map! :map mu4e-view-mode-map :n "C--" #'text-scale-decrease))
+#+END_SRC
 ** org-mode
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
