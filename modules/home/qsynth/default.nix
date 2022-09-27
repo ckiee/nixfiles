@@ -20,7 +20,7 @@ in with lib; {
         [SoundFonts]
         ${concatStringsSep "\n" (imap (i: f: ''
           BankOffset${toString i}
-          SoundFont${toString i}=${toString f}'') soundfonts)}
+          SoundFont${toString i}=${f}'') soundfonts)}
       '';
   };
 }
