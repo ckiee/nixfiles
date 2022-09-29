@@ -27,7 +27,7 @@ in with lib; {
       asciinema
       ripgrep # a better grep
       unzip
-      ncdu
+      ncdu_1 # _2 only supports modern microarchs
       fd # a better find
       hyperfine # a better time
       mtr # a better traceroute
