@@ -26,7 +26,6 @@ with lib;
       anonvote-bot.enable = true;
 
       prometheus.enableServer = true;
-      wikidict.enable = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
@@ -71,7 +70,6 @@ with lib;
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
-            "dict.ckie.dev"
             "fedi.ckie.dev"
             "git.ckie.dev"
             "headscale.ckie.dev"
