@@ -18,8 +18,8 @@ in with lib; {
   config.gtk = mkIf cfg.enable {
     enable = true;
     iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.breeze-icons;
+      name = "Paper";
+      package = pkgs.paper-gtk-theme;
     };
     gtk3 = gtkConfig;
     gtk4 = gtkConfig;
