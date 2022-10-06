@@ -13,8 +13,8 @@ in {
     desktop = {
       enable = true;
       monitors = {
-        primary = "DP-0";
-        secondary = "HDMI-0";
+        primary = "DisplayPort-2";
+        secondary = "HDMI-A-0";
       };
     };
     services = {
@@ -59,10 +59,10 @@ in {
   services.xserver = {
     xrandrHeads = [
       {
-        output = "DP-3";
+        output = "DisplayPort-2";
         primary = true;
       }
-      "HDMI-A-1"
+      "HDMI-A-0"
     ];
     # videoDrivers = [ "nvidia" ];
   };
