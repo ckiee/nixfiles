@@ -68,6 +68,12 @@ in {
   };
   # hardware.nvidia.package =
   #   config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+  nixpkgs.overlays = [
+    (final: prev: {
+      mesa = final.enableDebugging prev.mesa;
+      mesa_glu = final.enableDebugging prev.mesa_glu;
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     lutris
@@ -88,7 +94,8 @@ in {
   };
   services.usbmuxd.enable = true;
 
-  users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "wireshark" "plugdev" ];
+  users.users.ckie.extraGroups =
+    [ "adbusers" "libvirtd" "wireshark" "plugdev" ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
