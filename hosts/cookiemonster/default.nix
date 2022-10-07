@@ -68,12 +68,12 @@ in {
   };
   # hardware.nvidia.package =
   #   config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-  nixpkgs.overlays = [
-    (final: prev: {
-      mesa = final.enableDebugging prev.mesa;
-      mesa_glu = final.enableDebugging prev.mesa_glu;
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     mesa = final.enableDebugging prev.mesa;
+  #     mesa_glu = final.enableDebugging prev.mesa_glu;
+  #   })
+  # ];
 
   environment.systemPackages = with pkgs; [
     lutris
