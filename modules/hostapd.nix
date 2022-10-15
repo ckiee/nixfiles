@@ -3,7 +3,7 @@
 with lib;
 
 let
-  iface = "wlp43s0f3u4";
+  iface = "wlp45s0f3u4";
   configFile = pkgs.writeText "hostapd.conf" ''
     interface=${iface}
     bridge=br0
@@ -20,13 +20,17 @@ let
     logger_stdout_level=debug
 
     wpa=2
-    auth_algs=1
+    auth_algs=3
     wpa_pairwise=CCMP
     wpa_key_mgmt=WPA-PSK
     wpa_passphrase=REPLACE
     wmm_enabled=1
     ieee80211ac=1
     ieee80211n=1
+    ieee80211d=1
+    eapol_version=1
+    ieee80211w=1
+    okc=0
 
     require_ht=1
     require_vht=1
