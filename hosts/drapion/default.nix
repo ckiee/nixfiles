@@ -16,7 +16,6 @@ with lib;
     };
     services = {
       avahi.enable = true;
-      isp-troll.enable = true;
       net-offload.enable = true;
 
       coredns = {
