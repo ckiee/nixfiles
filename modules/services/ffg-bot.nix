@@ -26,7 +26,7 @@ in with lib; {
       script = let ffg = pkgs.cookie.ffg-bot;
       in ''
         # Does not support UNIX sockets apparently..
-        export DB_URL="postgres://ffgbot@localhost:5432/ffgbot"
+        export DB_URL="postgres://ffgbot@127.0.0.1:5432/ffgbot"
         ln -sf ${ffg}/libexec/ffg-bot/deps/ffg-bot/.env.example .env.example
         exec ${ffg}/bin/ffg-bot
       '';
