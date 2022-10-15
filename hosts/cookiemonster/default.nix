@@ -74,6 +74,8 @@ in {
   #     mesa_glu = final.enableDebugging prev.mesa_glu;
   #   })
   # ];
+  system.replaceRuntimeDependencies = [({original = pkgs.mesa; replacement = pkgs.enableDebugging pkgs.mesa;})];
+
 
   environment.systemPackages = with pkgs; [
     lutris
