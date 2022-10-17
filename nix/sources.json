@@ -189,12 +189,12 @@
         "branch": "master",
         "description": "doom-emacs packaged for Nix [maintainer=@ckiee]",
         "homepage": "",
-        "owner": "nix-community",
+        "owner": "thiagokokada",
         "repo": "nix-doom-emacs",
-        "rev": "20ca56a17dc33d67ed7d61b0e84205c617394b5b",
-        "sha256": "00kmqz3davv6myiamxwcl6bwmrird94s50kxgpk94hql5k21z3dr",
+        "rev": "bumps",
+        "sha256": "1ci4bmrvbm2xmrhpm1bvg44n5zx8mj5iswa900k1x9jmbh3lns2j",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-doom-emacs/archive/20ca56a17dc33d67ed7d61b0e84205c617394b5b.tar.gz",
+        "url": "https://github.com/thiagokokada/nix-doom-emacs/archive/bumps.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval-jobs": {
