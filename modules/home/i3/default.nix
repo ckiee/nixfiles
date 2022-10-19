@@ -54,7 +54,6 @@ in {
       blockbench-electron # placing blocks
       krita # drawing
       # prusa-slicer # making things out of harmful plastic
-      ardour # piano
       # subtitleeditor # making text from sine waves, manually # TODO unbreak package
       # freecad # behold our most precious polygons, just one step away from real life!
       easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?

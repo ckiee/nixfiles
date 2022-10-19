@@ -37,6 +37,7 @@ in {
         ./mangohud.nix
         ./netintent
         ./fmouse
+        ./ardour.nix
       ];
     };
   };
