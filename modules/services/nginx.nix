@@ -18,6 +18,8 @@ in with lib; {
       appendHttpConfig = ''
         add_header Permissions-Policy "interest-cohort=()";
       '';
+      # ossl v3 vuln precaution, TODO remove soon!!
+      package = pkgs.nginxStable.override { openssl = final.openssl_1_1; };
     };
 
     systemd.services.nginx-config-reload.after =
