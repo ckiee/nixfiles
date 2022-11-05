@@ -5,7 +5,7 @@ with lib;
 {
   imports = [
     ../..
-    ./install.nix
+    # ./install.nix TODO fix, it's broken atm because we call eval-config without passing some _module.args through
     "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix"
   ];
 
