@@ -74,7 +74,7 @@ in {
       notification = false;
     }];
 
-    xdg.configFile."polybar/config".onChange =
+    xdg.configFile."polybar/config.ini".onChange =
       "${pkgs.procps}/bin/pkill polybar";
     services.polybar = {
       enable = true;
