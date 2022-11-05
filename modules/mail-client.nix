@@ -43,8 +43,9 @@ in with lib; {
               primary = true;
               smtp = {
                 host = "ckie.dev";
-                port = 587;
-                tls.useStartTls = true;
+                # https://nostarttls.secvuln.info
+                port = 465;
+                tls.enable = true;
               };
               imap = {
                 host = "ckie.dev";
