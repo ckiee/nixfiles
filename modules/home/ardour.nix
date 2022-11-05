@@ -13,7 +13,7 @@ in with lib; {
     in hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ -e ~/.config/ardour6/config ]; then
         $VERBOSE_ECHO "Setting impure ardour config values"
-        $DRY_RUN_CMD mkdir $VERBOSE_ARG ~/Sync/.ardour
+        $DRY_RUN_CMD mkdir $VERBOSE_ARG ~/Sync/.ardour || true
         $DRY_RUN_CMD mv $VERBOSE_ARG ~/.config/ardour6/config{,.work} &&
         $DRY_RUN_CMD ${rg} \
           '(<Option name="default-session-parent-dir" value=")[^"]+("/>)' ~/.config/ardour6/config.work \
