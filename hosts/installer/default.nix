@@ -47,6 +47,7 @@ with lib;
       st.enable = true;
     };
     services.rsibreak.enable = true;
+    home.stateVersion = "22.11";
   };
 
   services.getty.autologinUser = mkForce "ckie";
