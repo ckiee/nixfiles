@@ -10,10 +10,10 @@ in with lib; {
   config = mkIf cfg.enable {
     services.picom = {
       enable = true;
-      blur = true;
-      experimentalBackends = true;
-      refreshRate = 144;
-      vSync = false;
+      # blur = true;
+      # experimentalBackends = true;
+      # refreshRate = 144;
+      # vSync = false;
     };
   };
 }
