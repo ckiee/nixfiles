@@ -9,11 +9,8 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      (discord-ptb.overrideAttrs (_: {
-        src = builtins.fetchTarball
-          "https://dl-ptb.discordapp.net/apps/linux/0.0.29/discord-ptb-0.0.29.tar.gz";
-      }))
       discord
+      discord-ptb
       # fractal
       (element-desktop.override { element-web = nixosConfig.cookie.services.matrix.elementRoot; })
     ];
