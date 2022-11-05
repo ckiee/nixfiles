@@ -44,8 +44,7 @@ in with lib; {
             devices = [ "cookiemonster" "thonkcookie" "pansear" ];
             versioning = { # for the secrets
               type = "simple";
-              params.keep =
-                "10";
+              params.keep = "10";
             };
           };
 
@@ -68,6 +67,15 @@ in with lib; {
             id = "3ffxr-fpjwy"; # to keep compat with existing phone
             path = "${home}/Music";
             devices = [ "cookiemonster" "thonkcookie" "phone" ];
+          };
+
+          "mail" = {
+            path = "${home}/Mail";
+            devices = [ "cookiemonster" "thonkcookie" ];
+            versioning = {
+              type = "trashcan";
+              params.cleanoutDays = "0"; # never. we can clean it up manually if needed, but this should be mostly write-only.
+            };
           };
         };
       in filterAttrs
