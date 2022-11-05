@@ -30,6 +30,14 @@ in {
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/91df680e-8038-435c-bf23-db8e9d0ade85";
     fsType = "btrfs";
+    options = [ "nodatacow" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/91df680e-8038-435c-bf23-db8e9d0ade85";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=/nix" "nodatacow" ];
   };
 
   fileSystems."/boot" = {
