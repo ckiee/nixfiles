@@ -87,6 +87,8 @@ with lib;
     };
   };
 
+  home-manager.users.ckie.home.stateVersion = "22.05";
+
   networking.hostName = "bokkusu";
 
   # This value determines the NixOS release from which the default
