@@ -164,9 +164,10 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
   (setq projectile-known-projects
         (-distinct (append
                     projectile-known-projects
-                    (--filter (f-directory? it) (mapcar (lambda (x) (concat "~/git/" x))
+                    (--filter (f-directory? it) (mapcar (lambda (x) (format "~/git/%s/" x))
                                                         (nthcdr 2 (directory-files "~/git"))))))))
-(advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list)
+(after! projectile
+  (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list))
 #+END_SRC
 ** nixpkgs workspace uses nixpkgs-fmt
 #+BEGIN_SRC elisp
@@ -206,7 +207,7 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
   (advice-remove 'projectile-switch-project #'ckie-refresh-projectile-known-list)
   (setq +workspaces-switch-project-function #'find-file)
   (f-touch (concat doom-cache-dir (f-path-separator) ".projectile"))
-  (dolist (name `("~/Sync" "~/git/nixfiles" "~/git/nixpkgs" ,doom-cache-dir))
+  (dolist (name `("~/Sync/" "~/git/nixfiles/" "~/git/nixpkgs/" ,doom-cache-dir))
     (+workspace/new)
     (projectile-switch-project-by-name name))
   (=mu4e) ; *mu4e* workspace, it eats the current workspace so we opened a dummy one.
