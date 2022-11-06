@@ -21,7 +21,8 @@ in {
       syncthing = {
         enable = true;
         runtimeId =
-          "MVCZQ2L-XCK3Y2Z-R7Q2UT6-TZK6CVH-WUN6TFH-I3ZOCRS-OLZAN7C-XZ4BHAF";
+          "HPLCFJR-KBQWHAK-MWJX5HC-EXPU5LL-FZK5BB6-EO6XGCK-Q6F4TG6-W5JF7QI";
+
       };
     };
     # It doesn't work with my headphones on YT/others anymore, firefox and mpv too ):
@@ -52,6 +53,7 @@ in {
       collections.devel.enable = true;
       qsynth.enable = true;
     };
+    home.stateVersion = "22.11";
   };
 
   networking.hostName = "cookiemonster";
@@ -74,14 +76,14 @@ in {
   #     mesa_glu = final.enableDebugging prev.mesa_glu;
   #   })
   # ];
-  system.replaceRuntimeDependencies = [({original = pkgs.mesa; replacement = pkgs.enableDebugging pkgs.mesa;})];
+  #system.replaceRuntimeDependencies = [({original = pkgs.mesa; replacement = pkgs.enableDebugging pkgs.mesa;})];
 
 
   environment.systemPackages = with pkgs; [
     lutris
     picocom
     minecraft
-    polymc
+    prismlauncher
     #kicad-with-packages3d
     cookie.ledc
     x2x

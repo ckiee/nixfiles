@@ -24,26 +24,37 @@ in {
     options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
   '';
 
-  boot.initrd.luks.devices."btrfs".device =
-    "/dev/disk/by-uuid/4800352d-e038-404e-a122-df7e87419cf1";
+  boot.initrd.luks.devices."nvmecrypt".device =
+    "/dev/disk/by-uuid/491bf5ed-1d5d-48e6-a048-c692ade24d40";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/91df680e-8038-435c-bf23-db8e9d0ade85";
-    fsType = "btrfs";
-    options = [ "nodatacow" ];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/91df680e-8038-435c-bf23-db8e9d0ade85";
-    fsType = "btrfs";
-    neededForBoot = true;
-    options = [ "subvol=/nix" "nodatacow" ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C81C-0938";
-    fsType = "vfat";
-  };
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+    };
+ 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/1CFB-B38F";
+      fsType = "vfat";
+    };
+ 
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
+      fsType = "ext4";
+    };
+ 
+  fileSystems."/var/log" =
+    { device = "/nix/persist/var/log";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+  fileSystems."/home" =
+    { device = "/nix/persist/home";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }
+    ];
 
   fileSystems."/mnt/games" = {
     device = "/dev/md127";
@@ -55,7 +66,6 @@ in {
     fsType = "ext4";
   };
 
-  swapDevices = [{ device = "/nix/swap"; }];
 
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
