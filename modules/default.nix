@@ -55,5 +55,6 @@
     ./networkmanager.nix
     ./big.nix
     ./devserv
+    ./imperm.nix
   ];
 }
