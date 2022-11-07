@@ -42,16 +42,6 @@ in {
       fsType = "ext4";
     };
  
-  fileSystems."/var/log" =
-    { device = "/nix/persist/var/log";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-  fileSystems."/home" =
-    { device = "/nix/persist/home";
-      fsType = "none";
-      options = [ "bind" ];
-    };
   swapDevices =
     [ { device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }
     ];

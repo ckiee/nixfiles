@@ -10,6 +10,7 @@ in {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   cookie = {
+    imperm.enable = true;
     desktop = {
       enable = true;
       monitors = {

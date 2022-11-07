@@ -1,0 +1,32 @@
+#+title: Impermanence/etc/reinstall Todo
+* TODO [#A]  ncdu over the rootfs and setup impermenance
+** machine id, ssh_host
+* persist home
+** ~/.config symlinks to a homely persist? ~/.persist maybe?
+*** TODO cantata
+*** TODO discord
+*** TODO element
+*** TODO calibre
+** misc
+*** TODO firefox (backup? has file locks 'n stuff i suppose. maybe autoprovision from sync)
+*** TODO kdeconnect autoaccept? also backup restore? idk.
+*** TODO lutris (symlink to /mnt/games?)
+*** TODO file assocs (nautilus mp4 -> mpd)
+* reinstall, etc
+** DONE redeploy bokkusu
+** DONE change spotify/discord emails
+** TODO self-host bitwarden
+** TODO port ~i3-startup~ to systemd serv, maybe some nix magic.
+** TODO nix-output-monitor for =bin/c= rebuilds? requires further morph dissection..
+* bokkusu
+** TODO matrix-synapse: auto-prune media repo occasionally. need to write our own thing with new knowledge. maybe ask f0xb
+snuggly fc sent a [[https://codeberg.org/artemislena/nixos-server-configs/src/branch/main/matrix/local.nix#L98][link to their local.nix:L98]] and it has a remote media clear endpoint in there!
+
+it might not be in a release yet.. but:
+#+begin_src yaml
+media_retention:
+  local_media_lifetime: 90d
+  remote_media_lifetime: 2d
+#+end_src
+[[https://matrix.to/#/!ehXvUhWNASUkSLvAGP:matrix.org/$tjy8f8_UyA4UspBJ13iySesZG4Ha8vAnrYIjvwxPDuM?via=matrix.org&via=libera.chat&via=matrix.breakpointingbad.com][via]] ~@kat:gatto.club~
+** TODO protect from kvm recovery reboot, require encryption password
