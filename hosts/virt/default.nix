@@ -10,9 +10,11 @@ with lib;
 
   home-manager.users.ckie = { pkgs, ... }: {
     cookie.collections.devel.enable = true;
+    home.stateVersion = "22.05";
   };
   cookie = {
     desktop.enable = true;
+    imperm.enable = true;
     sound.enable = mkForce false;
     services = {
       tailscale.autoconfig = false;
