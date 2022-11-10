@@ -8,6 +8,7 @@ this is my /new new new new/ website. it is different from the other ones since 
 ** :@nav:
 # TODO add links to other pages here, no conditional yet
 - [[meta][Orgish]]
+- [[starcelestian][star celestian]]
 ** who are you :#this:
 I is cookie. I am in [[https://github.com/ckiee/nixfiles/blob/master/modules/services/mailserver/util.nix][a lot of places]].
 - [[https://github.com/ckiee][=@ckiee= on Github]]
@@ -521,3 +522,30 @@ Now I kind of want to make a thing that scrapes marginalia and turns the similar
 
 * highly indexable :indexabl:
 wouldn't it be cool if everything I do [and maybe even think] could be in a index? so I can just hit SPC / and search for an exact thought I had and see the ones before and after it?
+
+* star celestian :starcelestian:
+you're on a launch pad tower and you're walking up to your spaceship at the tip of the rocket
+
+and you get in and you close the door, the rocket starts shooting up into the sky
+
+and after a bit of noise, all is quiet, you look outside and there's some random stars you could visit
+
+you set on your voyage onto some little, miniscule even, star system. you land and walk around and its this tiny little 1km sphere and it has these cute little ant-looking things
+
+and they have some funny paths and they're bringing in some hot dust from the side facing the light and the other star and quickly handing it off to eachother to keep their colony deep underground warm, where they're safe
+
+you think about peeking into their colony but decide to not. you lean back against one of your spaceship's boosters and watch them do their little thing for a while
+
+-----
+
+you get in your spaceship again and its booting back up for you, some screens are flashing and some text is scrolling by. before long you can see the outside world with the HUD again through the big screen
+
+you take off the little alien ant planet and wave goodbye, even though they can't really see that and wouldn't understand it.
+
+your HUD is showing all these little points with sentient life. a few lightyears have passed and you've seen and talked with so many. you're on this little one right now, it has this green ground that seems like it's a bit alive. every step you take it notices there's suddenly a lot less photons hitting it and folds itself out of the way for a moment
+
+you unstrap, put your backpack down and lie down on it, watching all these little plants try to figure out who this new guest is
+
+you wonder if your engines can handle towing this planet back home with you
+
+-----
