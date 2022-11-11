@@ -124,6 +124,9 @@ in with lib; {
         enable_registration = true;
         registration_requires_token = true;
 
+        # there's also a "local_media_lifetime"; not using, should be inf. (not guaranteed though!)
+        media_retention.remote_media_lifetime = "30d";
+
         listeners = [{
           port = 8008;
           bind_addresses = singleton "::1";

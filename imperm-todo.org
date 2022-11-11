@@ -1,12 +1,14 @@
 #+title: Impermanence/etc/reinstall Todo
-* TODO [#A]  ncdu over the rootfs and setup impermenance
-** machine id, ssh_host
+* DONE [#A]  ncdu over the rootfs and setup impermenance
+** DONE machine id, ssh_host
 * persist home
 ** ~/.config symlinks to a homely persist? ~/.persist maybe?
 *** TODO cantata
 *** TODO discord
 *** TODO element
 *** TODO calibre
+*** TODO steam ~.local/share~ AND ~/.steam~ maybe ~~/.config~ too?
+*** TODO spotify
 ** misc
 *** TODO firefox (backup? has file locks 'n stuff i suppose. maybe autoprovision from sync)
 *** TODO kdeconnect autoaccept? also backup restore? idk.
@@ -15,14 +17,14 @@
 * reinstall, etc
 ** DONE redeploy bokkusu
 ** DONE change spotify/discord emails
-** TODO self-host bitwarden
-** TODO port ~i3-startup~ to systemd serv, maybe some nix magic.
-** TODO nix-output-monitor for =bin/c= rebuilds? requires further morph dissection..
+** DONE self-host bitwarden; ended up just signing up for a new acct
+** DONE port ~i3-startup~ to systemd serv, maybe some nix magic.
+** TODO [#C] nix-output-monitor for =bin/c= rebuilds? requires further morph dissection..
 * bokkusu
-** TODO matrix-synapse: auto-prune media repo occasionally. need to write our own thing with new knowledge. maybe ask f0xb
+** DONE matrix-synapse: auto-prune media repo occasionally. need to write our own thing with new knowledge. maybe ask f0xb
 snuggly fc sent a [[https://codeberg.org/artemislena/nixos-server-configs/src/branch/main/matrix/local.nix#L98][link to their local.nix:L98]] and it has a remote media clear endpoint in there!
 
-it might not be in a release yet.. but:
++it might not be in a release yet+.. it is!
 #+begin_src yaml
 media_retention:
   local_media_lifetime: 90d
