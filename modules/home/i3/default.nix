@@ -10,28 +10,12 @@ let
   desktopCfg = nixosConfig.cookie.desktop;
   musicWorkspace = "mpd";
   mpc = "${pkgs.mpc_cli}/bin/mpc";
-  startup = pkgs.writeScript "i3-startup" ''
-    #!${pkgs.stdenv.shell}
-    ${pkgs.kdeconnect}/libexec/kdeconnectd &
-    ${pkgs.kdeconnect}/bin/kdeconnect-indicator &
-    ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/lain} &
-    ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-    ${mkRequiresScript ./scripts/oszwatch} &
-    ${mkRequiresScript ./scripts/musicwatch} &
-    # fractal &
-    Discord &
-    element-desktop &
-    # DiscordPTB &
-    st -T weechat -e sh -c weechat &
-    firefox &
-    cantata &
-  '';
 in {
   options.cookie.i3 = {
     enable = mkEnableOption "Enables the i3 window manager";
   };
 
+  imports = [ ./auxapps.nix ];
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       rofi
@@ -82,10 +66,6 @@ in {
               criteria = { instance = "origin.exe"; };
             }];
           };
-          startup = [{
-            command = "${startup}";
-            notification = false;
-          }];
           bars = [ ];
           keybindings = with {
             modifier = config.xsession.windowManager.i3.config.modifier;
