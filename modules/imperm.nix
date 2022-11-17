@@ -8,10 +8,10 @@ in with lib; {
       "Enables impermanence, removing the dependency for a persistent rootfs";
   };
 
-  imports = [ "${sources.impermanence}/nixos.nix" ];
+  imports = [ "${toString sources.impermanence}/nixos.nix" ];
   config = mkIf cfg.enable {
     # TODO split out into relevant modules, we probably want to make our own options
-    # and mkIf-passthrough in here instead of mkIf everywhere.. better introspecability
+    # and mkIf-passthrough in here instead of mkIf everywhere.. better introspectability
     environment.persistence."/nix/persist" = {
       directories = [ "/home" "/var/log" "/var/lib/tailscale"];
       files = [
