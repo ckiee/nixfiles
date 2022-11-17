@@ -1,7 +1,8 @@
 { nodes, lib, config, pkgs, ... }:
 
-let cfg = config.cookie.tailnet-certs;
-
+let
+  cfg = config.cookie.tailnet-certs;
+  hostname = config.networking.hostName;
 in with lib;
 with builtins; {
   options.cookie.tailnet-certs = {
@@ -74,6 +75,8 @@ with builtins; {
             extraConfig = ''
               allow 100.64.0.0/10;
               deny all;
+              auth_basic "tailnet-certs";
+              auth_basic_user_file ${../secrets/tailnet-certs-htpasswd};
             '';
           };
         };
@@ -119,14 +122,29 @@ with builtins; {
           "coredns.service"
         ]; # We do kinda need the network..
 
-        script = ''
+        script = let
+          pass = config.cookie.secrets.tailnet-certs-pw.dest;
+          askpass = pkgs.writeShellScript "tailnet-certs-askpass" ''
+            case "$1" in
+              Username*)
+                echo ${hostname}
+              ;;
+              Password*)
+                cat ${pass}
+              ;;
+              *)
+                exit 1
+              ;;
+            esac
+          '';
+        in ''
           mkdir /var/lib/tailnet-certs || true
           chown -R root:root /var/lib/tailnet-certs
           chmod -R 700 /var/lib/tailnet-certs
           for file in cert.pem chain.pem fullchain.pem full.pem key.pem; do
             ${pkgs.wget}/bin/wget \
                 --retry-connrefused --tries 10 --waitretry 10 \
-                -O /var/lib/tailnet-certs/"$file" \
+                -O /var/lib/tailnet-certs/"$file" --use-askpass=${askpass} \
                 'https://${cfg.serveHost}/'"$file"
           done
         '';
@@ -143,6 +161,21 @@ with builtins; {
 
       systemd.services.nginx.serviceConfig.ReadOnlyPaths =
         [ "/var/lib/tailnet-certs" ];
+
+      # Prepare a password for the HTTP basicauth the certs service has.
+      # FIXME: Not too happy with this as old machines don't get automatically GC'd.
+      cookie.secrets.tailnet-certs-pw = rec {
+        source = "./secrets/tailnet-certs-${hostname}-pw";
+        permissions = "0400";
+        generateCommand = ''
+          < /dev/urandom tr -dc '[a-z0-9A-Z@-^]' | head -c 255 > ${source}
+          (
+            htp_creat=""
+            [ ! -e secrets/tailnet-certs-htpasswd ] && htp_creat="-c"
+            cat ${source} | ${pkgs.apacheHttpd}/bin/htpasswd -iB $htp_creat secrets/tailnet-certs-htpasswd ${hostname}
+          )
+        '';
+      };
 
       services.nginx.virtualHosts = mkMerge (map (e: {
         ${e} = {
