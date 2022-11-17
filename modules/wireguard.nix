@@ -40,7 +40,7 @@ in {
     }
 
     (mkIf cfg.enable {
-      cookie.secrets."wg-privkey-${hostname}" = {
+      cookie.secrets.wg-privkey = {
         source = "./secrets/wg-privkey-${hostname}";
         permissions = "0400";
         # wantedBy = "pleroma.service";
@@ -58,7 +58,7 @@ in {
         wireguard.interfaces.cknet = {
           ips = singleton cfg.ip;
           listenPort = 51820;
-          privateKeyFile = config.cookie.secrets."wg-privkey-${hostname}".dest;
+          privateKeyFile = config.cookie.secrets.wg-privkey.dest;
           peersAnnouncing.enable = cfg.endpoint != null;
         };
       };
