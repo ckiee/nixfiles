@@ -22,7 +22,7 @@ in with lib; {
                 NIX_AUTO_RUN=1
                 mkdir -p ~/.cache/nix-index
                 pushd ~/.cache/nix-index >/dev/null
-                if [ ! -e files ] || [[ ! $(find files -mtime +13 -print) ]]; then
+                if [ ! -e files ] || [[ $(find files -mtime +13 -print) ]]; then
                   local filename="index-x86_64-$(uname | tr A-Z a-z)"
                   # -N will only download a new version if there is an update.
                   wget -q -N https://github.com/Mic92/nix-index-database/releases/latest/download/$filename
