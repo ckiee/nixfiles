@@ -38,6 +38,7 @@ in {
         ./netintent
         ./fmouse
         ./ardour.nix
+        ./nix-index.nix
       ];
     };
   };

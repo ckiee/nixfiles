@@ -24,13 +24,8 @@ in with lib; {
           enableBashIntegration = cfg.bash;
           enableFishIntegration = cfg.fish;
         };
-        nix-index =
-          { # provides a command-not-found binary to replace the one we broke
-            enable = true;
-            enableBashIntegration = cfg.bash;
-            enableFishIntegration = cfg.fish;
-          };
       };
+      cookie.nix-index.enable = true;
     }
 
     (mkIf cfg.bash {
