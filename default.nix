@@ -43,7 +43,7 @@ with builtins;
   '';
 
   environment.systemPackages = with pkgs;
-    [ vim ]; # More in modules/big.nix. Don't add a lot!
+    [ vim wget ]; # More in modules/big.nix. Don't add a lot!
 
   cookie = {
     # Daemons

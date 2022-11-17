@@ -11,8 +11,6 @@ in with lib; {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      wget
-      vim
       tree
       neofetch
       git
