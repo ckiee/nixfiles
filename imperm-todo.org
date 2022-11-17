@@ -9,6 +9,9 @@
 *** TODO calibre
 *** TODO steam ~.local/share~ AND ~/.steam~ maybe ~~/.config~ too?
 *** TODO spotify
+*** TODO obs
+*** TODO toot cli ~.config/toot/config.json~
+*** TODO nix-index cache
 ** misc
 *** TODO firefox (backup? has file locks 'n stuff i suppose. maybe autoprovision from sync)
 *** TODO kdeconnect autoaccept? also backup restore? idk.
