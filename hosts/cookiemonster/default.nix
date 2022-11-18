@@ -7,7 +7,8 @@ in {
   imports = [ ./hardware.nix ../.. ];
 
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # armv7l-linux for embedded crap
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
   cookie = {
     imperm.enable = true;
