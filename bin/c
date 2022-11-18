@@ -60,6 +60,9 @@ elif [ "$1" == "virt" ]; then
     QEMU_NET_OPTS='hostfwd=tcp::5555-:22' "$vmpath/bin/"run-*-vm &
     while true; do
         ssh localhost -o ConnectTimeout=1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 5555 && kill %1 && break
+        if ! jobs %% >/dev/null 2>&1; then
+            break
+        fi
         sleep 0.2
     done
 elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
