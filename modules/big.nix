@@ -19,6 +19,7 @@ in with lib; {
       file
       inetutils
       binutils-unwrapped
+      psmisc
       pciutils
       usbutils
       dig
