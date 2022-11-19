@@ -13,7 +13,7 @@ in with lib; {
     # TODO split out into relevant modules, we probably want to make our own options
     # and mkIf-passthrough in here instead of mkIf everywhere.. better introspectability
     environment.persistence."/nix/persist" = {
-      directories = [ "/home" "/var/log" "/var/lib/tailscale"];
+      directories = [ "/home" "/var/log" "/var/lib/tailscale" "/var/lib/libvirt" ];
       files = [
         "/etc/machine-id"
         "/etc/ssh/ssh_host_rsa_key"
