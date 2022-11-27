@@ -115,6 +115,7 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 #+BEGIN_SRC elisp
 (setq org-directory "~/Sync/org/")
 (add-hook 'org-mode-hook #'writeroom-mode)
+(add-hook 'org-mode-hook #'hl-todo-mode)
 ; writeroom hijacks the row length
 (setq writeroom-width 70)
 #+END_SRC
