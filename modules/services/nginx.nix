@@ -23,6 +23,7 @@ in with lib; {
     systemd.services.nginx-config-reload.after =
       [ "coredns.service" "dns-hosts-poller.service" ];
 
+    # TODO: remove soon, probably. there's a rule like this in nixpkgs now.
     services.logrotate = {
       enable = true;
       paths.nginx = {
