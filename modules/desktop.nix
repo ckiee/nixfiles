@@ -81,7 +81,6 @@ in with lib; {
         enable = true;
         pipewire = { enable = mkDefault true; };
       };
-      sleep.enable = true;
       slock.enable = true;
       fonts.enable = true;
       gnome.enable = true;
