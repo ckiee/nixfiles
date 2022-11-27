@@ -106,7 +106,7 @@ in {
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
-    podman = {
+    podman = { # TODO: export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
       enable = true;
       enableNvidia = true;
       dockerCompat = true;
