@@ -89,6 +89,7 @@ in {
     #kicad-with-packages3d
     cookie.ledc
     x2x
+    solvespace
   ];
 
   programs.cnping.enable = true;
