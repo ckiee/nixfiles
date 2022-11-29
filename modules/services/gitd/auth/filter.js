@@ -19,7 +19,6 @@ const fs = require("fs");
 const crypto = require("crypto");
 const path = require("path");
 
-
 try {
     const stateDir = "/run/cgito";
     const cookieName = "cgitoauth";
@@ -28,12 +27,16 @@ try {
     https = https == "on" || https == "yes" || https == "1";
     // reused later on client-side
     const cookiefn = c=> {
-        const cookies = {}; c.split(";").map(x => x.split("=")).forEach(([k, v]) => cookies[k] = v); return cookies;
+        const cookies = {};
+        c.split(";")
+            .map(x => x.split("="))
+            .forEach(([k, v]) => cookies[k] = v);
+        return cookies;
     };
     const cookies = cookiefn(cookie);
 
-    let code = cookies[cookieName]
-    if (code)code=code.replace(/[^0-9a-z]/g,"");
+    let code = cookies[cookieName];
+    if (code) code = code.replace(/[^0-9a-z]/g,"");
 
     let expiryMs = 2.628e+9; // month
     let state = {};
@@ -51,7 +54,7 @@ try {
             if (!code) code = crypto.randomBytes(8).toString("hex");
             let expires = Date.now() + expiryMs;
             console.log(`Cache-Control: no-cache, no-store`);
-            if (query == "check_auth") {
+            if (query == "check_auth") { // Not long polling because we are a whole damn process
                 console.log(`Status: ${state.user ? 201 : 403}`);
             }
             if (state.user) {
@@ -74,24 +77,31 @@ Location: /`);
             // set earlier in the request, this is a new process, and there's no request id)
             const fallbackedCode = code || `<script>
 document.write((${cookiefn.toString()})(document.cookie).cgitoauth);
-</script>`
+</script>`;
+
             console.log(`
     <h2>Authenticate with SSH</h2>
     <p>
     Run <code>ssh git@ckie.dev webauth ${fallbackedCode}</code> to authenticate
     </p>
+    <h2>Authtenticate with Matrix (WIP)</h2>
+    <form>
+    Who are you? <input type=text name=mxid id=mxid placeholder="@goobly:glab.net">
+    </form>
+
     <noscript>
         <meta http-equiv="refresh" content="10">
     </noscript>
     <script>
-    setInterval(${(async () => {
-        // Are we there yet?
-        const res = await fetch("/cgit/?check_auth");
-        if (res.status == 201) location.reload();
-    })}, 500);
+        setInterval(${(async () => {
+            // Are we there yet?
+            const res = await fetch("/cgit/?check_auth");
+            if (res.status == 201) location.reload();
+        })}, 500);
     </script>
-    `);
+`);
         }],
+
         "root-header": [true, () => {
             console.log(state.user ? `logged in as ${state.user} * <a href=/cgit/?logout>logout</a>` : "");
         }],
