@@ -10,6 +10,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+    home.packages = singleton pkg;
     programs.bash.initExtra = ''
       source ${
         pkgs.runCommand "cmd-not-found-ckie.sh" { } ''
