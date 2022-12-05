@@ -10,7 +10,7 @@ with builtins;
   networking = {
     hostName = "pansear";
     defaultGateway = "192.168.0.1";
-    interfaces.eth0.ipv4.addresses = [{
+    interfaces.enp3s0.ipv4.addresses = [{
       address = "192.168.0.8";
       prefixLength = 24;
     }];
@@ -31,7 +31,7 @@ with builtins;
     libvirtd.enable = true;
     restic.enable = true;
     zfs.enable = true;
-    wireguard.endpoint = (head config.networking.interfaces.eth0.ipv4.addresses).address;
+    wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
     services = {
       avahi.enable = true;
       owo-bot.enable = true;

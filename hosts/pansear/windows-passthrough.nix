@@ -23,5 +23,6 @@
         user = "win";
       };
     };
+    videoDrivers = [ "nvidia" ];
   };
 }
