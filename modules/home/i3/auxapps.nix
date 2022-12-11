@@ -14,7 +14,11 @@ in {
           ExecSearchPath = "${config.home.homeDirectory}/.nix-profile/bin";
           ExecStart = exec;
         };
-        Install.WantedBy = [ "default.target" ];
+        Install.WantedBy = [ "graphical-session.target" ];
+        Unit = {
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
       };
     in mkMerge [
       {
