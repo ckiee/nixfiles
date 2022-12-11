@@ -3,7 +3,7 @@
 let
   inherit (lib)
     optionals mkIf mkEnableOption mkOption types concatStrings optional
-    optionalString;
+    optionalString mkMerge;
   inherit (util) mkRequiresScript;
 
   colors = {
@@ -64,15 +64,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xsession.windowManager.i3.config.startup = [{
-      command = "${pkgs.writeShellScript "polybar-starter" ''
-        ${optionalString
-        (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null)
-        "(while true; do ${pkg}/bin/polybar side; sleep 0.1; done) &"}
-        while true; do ${pkg}/bin/polybar main; sleep 0.1; done
-      ''}";
-      notification = false;
-    }];
+    systemd.user.services = mkMerge (map (screen: {
+      "polybar-${screen}" = {
+        Service = {
+          ExecStart = "${pkg}/bin/polybar ${screen}";
+          Restart = "always";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+        Unit = {
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+      };
+    }) ([ "main" ] ++ optional
+      (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null)
+      "side"));
 
     xdg.configFile."polybar/config.ini".onChange =
       "${pkgs.procps}/bin/pkill polybar";
@@ -87,8 +93,8 @@ in {
           ++ [ ./0001-feat-xkeyboard-add-shortname-token.patch ];
       });
 
-      script =
-        ""; # we aren't really using the service as it runs before i3 and we need i3 ipc
+      # we have our own per-bar systemd units
+      script = "";
 
       config = {
         "bar/main" = base // {
