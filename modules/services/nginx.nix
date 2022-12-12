@@ -23,18 +23,6 @@ in with lib; {
     systemd.services.nginx-config-reload.after =
       [ "coredns.service" "dns-hosts-poller.service" ];
 
-    # TODO: remove soon, probably. there's a rule like this in nixpkgs now.
-    services.logrotate = {
-      enable = true;
-      paths.nginx = {
-        path = "/var/log/nginx/*.log";
-        user = config.services.nginx.user;
-        group = config.services.nginx.group;
-        frequency = "monthly";
-        keep = 0;
-      };
-    };
-
     networking.firewall.allowedTCPPorts = [ 443 80 ];
   };
 }
