@@ -67,8 +67,12 @@ in with lib; {
         '';
 
         # forward all Matrix API calls to synapse
-        locations."/_matrix".proxyPass =
-          "http://[::1]:8008"; # without a trailing /
+        locations."/_matrix" = {
+          proxyPass = "http://[::1]:8008"; # without a trailing /
+          extraConfig = ''
+            proxy_send_timeout 100;
+          '';
+        };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
       };
     };
