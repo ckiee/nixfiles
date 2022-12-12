@@ -59,7 +59,7 @@ in {
           ips = singleton cfg.ip;
           listenPort = 51820;
           privateKeyFile = config.cookie.secrets.wg-privkey.dest;
-          peersAnnouncing.enable = cfg.endpoint != null;
+          # peersAnnouncing.enable = cfg.endpoint != null;
         };
       };
 
@@ -72,7 +72,7 @@ in {
           persistentKeepalive = 1;
           endpoint =
             if hcfg.endpoint != null then "${hcfg.endpoint}:51820" else null;
-          endpointsUpdater.enable = hcfg.endpoint != null;
+          # endpointsUpdater.enable = hcfg.endpoint != null;
         });
 
       networking.extraHosts = concatStringsSep "\n" (forWgNode
