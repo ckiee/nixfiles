@@ -14,7 +14,7 @@ while true; do
 	else
 		echo -n '?'
 	fi
-    date -d '+7 hours 30 minutes' +'→%l:%M%p' | tr -d ' '
+    date -d '+7 hours 30 minutes' +'→%l:%M%p' | tr -d ' \n'
 
 	echo
 	# wait for changes to the file, but timeout eventually so the relative clock ticks either way
