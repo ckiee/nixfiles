@@ -40,10 +40,9 @@ in with lib; {
 
         serviceConfig.Type = "oneshot";
 
-        script =
-          "${tailscale}/bin/tailscale up --reset --authkey $(cat ${
+        script = "${tailscale}/bin/tailscale up --reset --authkey file:${
             escapeShellArg config.cookie.secrets.tailscale-authkey.dest
-          })";
+          }";
       };
     })
   ];
