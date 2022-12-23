@@ -66,15 +66,19 @@ in {
   config = mkIf cfg.enable {
     systemd.user.services = mkMerge (map (screen: {
       "polybar-${screen}" = {
+        Unit = {
+          Description = "Polybar status bar ${screen}";
+          PartOf = [ "tray.target" ];
+          X-Restart-Triggers =
+            [ "${config.xdg.configFile."polybar/config.ini".source}" ];
+        };
+
         Service = {
           ExecStart = "${pkg}/bin/polybar ${screen}";
           Restart = "always";
         };
-        Install.WantedBy = [ "graphical-session.target" ];
-        Unit = {
-          After = [ "graphical-session-pre.target" ];
-          PartOf = [ "graphical-session.target" ];
-        };
+
+        Install = { WantedBy = [ "tray.target" ]; };
       };
     }) ([ "main" ] ++ optional
       (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null)
