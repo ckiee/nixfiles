@@ -24,6 +24,7 @@ with lib;
       mailserver.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
+      heisenbridge.enable = true;
 
       prometheus.enableServer = true;
       grafana = {

@@ -36,6 +36,7 @@
     ./headscale.nix
     ./elastic
     ./go-neb.nix
+    ./heisenbridge
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
