@@ -18,13 +18,18 @@ in with lib; {
 
     services.grafana = {
       enable = true;
-      port = 8571;
-      domain = cfg.host;
-      # actual permissions may or may not be denied by grafana's state
-      # (it's per dashboard, and hidden in the settings UI for each one.)
-      auth.anonymous = {
-        enable = true;
-        org_role = "Viewer";
+      settings = {
+        # actual permissions are determined be denied by grafana's state
+        # (it's per dashboard, and hidden in the settings UI for each one.)
+        "auth.anonymous" = {
+          enable = true;
+          org_role = "Viewer";
+        };
+
+        server = {
+          domain = cfg.host;
+          http_port = 8571;
+        };
       };
     };
 
