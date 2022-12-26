@@ -19,6 +19,8 @@ const fs = require("fs");
 const crypto = require("crypto");
 const path = require("path");
 
+const EXIT_AUTHED = 177;
+
 try {
     const stateDir = "/run/cgito";
     const cookieName = "cgitoauth";
@@ -65,7 +67,7 @@ try {
                     console.log(`Status: 302 Redirect
 Location: /`);
                 } else {
-                    process.exit(177);
+                    process.exit(EXIT_AUTHED);
                 }
             } else {
                 console.log(`Status: 200 OK`);
@@ -84,10 +86,11 @@ document.write((${cookiefn.toString()})(document.cookie).cgitoauth);
     <p>
     Run <code>ssh git@ckie.dev webauth ${fallbackedCode}</code> to authenticate
     </p>
+    ${/*
     <h2>Authtenticate with Matrix (WIP)</h2>
     <form>
     Who are you? <input type=text name=mxid id=mxid placeholder="@goobly:glab.net">
-    </form>
+    </form>*/""}
 
     <noscript>
         <meta http-equiv="refresh" content="10">
@@ -114,7 +117,7 @@ document.write((${cookiefn.toString()})(document.cookie).cgitoauth);
     } else {
         // logged in (:
         if (state.user) {
-            process.exit(177);
+            process.exit(EXIT_AUTHED);
         } else {
             action();
         }
