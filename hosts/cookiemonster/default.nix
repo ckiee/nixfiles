@@ -90,6 +90,7 @@ in {
     cookie.ledc
     x2x
     solvespace
+    heroic
   ];
 
   programs.cnping.enable = true;
