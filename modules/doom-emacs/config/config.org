@@ -255,3 +255,9 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (map! :leader "g c v" #'magit-commit-instant-fixup)
 #+END_SRC
+
+
+** emmet keybind DWIM on tab
+#+BEGIN_SRC elisp
+(map! :mode emmet-mode :i "TAB" #'+web/indent-or-yas-or-emmet-expand)
+#+END_SRC
