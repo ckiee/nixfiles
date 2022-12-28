@@ -27,6 +27,7 @@ with lib;
     state.sshPubkey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2azaroNAPS5GtjAqf6PdVAqEW7MgghYxlxKy+VgTH6";
   };
+  home-manager.users.ckie.home.stateVersion = "22.05";
 
   networking.networkmanager.unmanaged = [ "eth0" ];
 
