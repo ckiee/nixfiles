@@ -102,8 +102,8 @@ in {
 
       config = {
         "bar/main" = base // {
-          monitor =
-            mkIf (desktopCfg.monitors != null) desktopCfg.monitors.primary;
+          monitor = # only specify if needed; keep ext displays working on single-display machines
+            mkIf (desktopCfg.monitors.secondary != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
           modules-right =
