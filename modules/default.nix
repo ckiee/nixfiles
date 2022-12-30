@@ -56,5 +56,6 @@
     ./big.nix
     ./devserv
     ./imperm.nix
+    ./firejail
   ];
 }
