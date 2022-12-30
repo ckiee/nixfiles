@@ -49,7 +49,6 @@ in with lib; {
           enable = true;
           inherit (cfg) laptop;
         };
-        collections = { chat.enable = true; };
         gtk.enable = true;
         dunst.enable = true;
         keyboard.enable = true;
@@ -70,7 +69,7 @@ in with lib; {
       services.rsibreak.enable = true;
     };
     cookie = {
-      collections = { media.enable = true; };
+      collections = { media.enable = true; chat.enable = true; };
       services = {
         avahi.enable = true;
         printing.enable = true;

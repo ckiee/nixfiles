@@ -11,7 +11,7 @@ in {
     systemd.user.services = let
       mkSvc = exec: {
         Service = {
-          ExecSearchPath = "${config.home.homeDirectory}/.nix-profile/bin";
+          ExecSearchPath = "/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
           ExecStart = exec;
         };
         Install.WantedBy = [ "graphical-session.target" ];
@@ -37,7 +37,7 @@ in {
         firefox = mkSvc "firefox";
         cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
       }
-      (mkIf config.cookie.collections.chat.enable {
+      (mkIf nixosConfig.cookie.collections.chat.enable {
         discord = mkSvc "Discord";
         element = mkSvc "element-desktop";
       })

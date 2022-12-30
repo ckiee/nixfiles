@@ -15,8 +15,8 @@ in with lib; {
       readOnly = true;
       description = "Utility function to make a wrappedBinaries entry";
       default = name:
-        { pkg, profile ? name }: {
-          ${name} = {
+        { pkg, profile ? name, bin ? name }: {
+          ${bin} = {
             executable = "${getBin pkg}/bin/${bin}";
             profile =
               "${config.cookie.firejail.package}/etc/firejail/${profile}.profile";
