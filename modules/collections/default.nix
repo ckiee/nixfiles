@@ -6,5 +6,6 @@
     ./home
     #
     ./media.nix
+    ./chat.nix
   ];
 }
