@@ -1,9 +1,7 @@
-{ pkgs ? ((import (import ../nix/sources.nix).nixpkgs) { }), ... }:
-
-with pkgs;
-
 let sources = import ../nix/sources.nix;
-in {
+in { pkgs ? (import sources.nixpkgs) { }, ... }:
+
+with pkgs; {
   comicfury-discord-webhook = import sources.comicfury-discord-webhook;
   owo-bot = import sources.owo-bot;
   ffg-bot = import sources.ffg-bot;
@@ -12,5 +10,7 @@ in {
   alvr-bot = callPackage sources.alvr-bot { };
   anonvote-bot = callPackage sources.anonvote-bot { };
   ckiesite = import sources.ckiesite;
-  ledc = (import sources.desk-fcobs).default;
+  ledc = ((import sources.desk-fcobs).overrideInputs {
+    nixpkgs = pkgs.path;
+  }).default;
 }
