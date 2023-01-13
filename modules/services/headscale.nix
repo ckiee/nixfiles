@@ -35,7 +35,7 @@ in with lib; {
         db_host = "/run/postgresql";
         db_name = "headscale";
         db_user = "headscale";
-        db_port = "5432"; # not ignored for some reason
+        db_port = 5432; # not ignored for some reason
       };
     };
 
