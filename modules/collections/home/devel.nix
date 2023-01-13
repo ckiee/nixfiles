@@ -22,7 +22,7 @@ in with lib; {
       gh
       gdb
       man-pages
-      # platformio
+      platformio
       elmPackages.elm
       elmPackages.elm-format
       tokei # LOC stats
