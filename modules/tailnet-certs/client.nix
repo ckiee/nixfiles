@@ -64,7 +64,7 @@ with builtins; {
       source = "./secrets/tailnet-certs-${hostname}-pw";
       permissions = "0400";
       generateCommand = ''
-        < /dev/urandom tr -dc '[a-z0-9A-Z@-^]' | head -c 255 > ${source}
+        mkRng > ${source}
         (
           htp_creat=""
           [ ! -e secrets/tailnet-certs-htpasswd ] && htp_creat="-c"
