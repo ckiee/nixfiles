@@ -107,11 +107,42 @@ in with lib; {
 
     cookie.restic.paths = [ "${config.services.matrix-synapse.dataDir}/media" ];
 
+    ## There's a few secret tokens we want to keep out of the Synapse config in
+    ## the store..
+
+    cookie.secrets.matrix-smtp-password = rec {
+      source = "./secrets/matrix-smtp-password";
+      generateCommand = "mkRng > ${source}";
+      runtime = false; # should never leave the deploying machine..
+    };
+
+    cookie.secrets.matrix-smtp-password-hash = rec {
+      source = "./secrets/matrix-smtp-password-hash";
+      generateCommand = "${pkgs.mkpasswd}/bin/mkpasswd -sm bcrypt < ${config.cookie.secrets.matrix-smtp-password.source} > ${source}";
+      permissions = "0400"; # for the mailserver, not synapse..
+    };
+
+    mailserver.loginAccounts."matrixbot@ckie.dev" = {
+      hashedPasswordFile = config.cookie.secrets.matrix-smtp-password-hash.dest;
+      sendOnly = true;
+    };
+
+    cookie.secrets.matrix-secret-config = rec {
+      source = "./secrets/matrix-secret-config.json";
+      dest = "${config.services.matrix-synapse.dataDir}/secret-config.json";
+      owner = "matrix-synapse";
+      group = "matrix-synapse";
+      permissions = "0440";
+      generateCommand = "nix-instantiate --eval ${./make-secret-config.nix} > ${source}";
+    };
+
     # The *actual* homeserver configuration
 
     services.matrix-synapse = {
       enable = true;
       package = pkgs.matrix-synapse;
+      extraConfigFiles =
+        singleton config.cookie.secrets.matrix-secret-config.dest;
       settings = {
         server_name = cfg.host;
         public_baseurl = "https://${cfg.serviceHost}/";
@@ -122,8 +153,6 @@ in with lib; {
             user = "synapse";
           };
         };
-        registration_shared_secret =
-          fileContents ../../../secrets/matrix-synapse-registration;
 
         enable_registration = true;
         registration_requires_token = true;
@@ -142,6 +171,14 @@ in with lib; {
             compress = false;
           }];
         }];
+
+        email = {
+          smtp_host = assert config.cookie.services.mailserver.enable;
+            "localhost";
+          smtp_port = 587;
+          smtp_user = "matrixbot";
+          # smtp_pass is in secret config
+        };
 
         logConfig = ''
           version: 1
