@@ -110,7 +110,8 @@ in with lib; {
     ## There's a few secret tokens we want to keep out of the Synapse config in
     ## the store..
 
-    cookie.secrets.matrix-smtp-password = rec {
+    # A_: gen has to run before matrix-secret-config, try to help it along..
+    cookie.secrets.A_matrix-smtp-password = rec {
       source = "./secrets/matrix-smtp-password";
       generateCommand = "mkRng > ${source}";
       runtime = false; # should never leave the deploying machine..
@@ -118,7 +119,8 @@ in with lib; {
 
     cookie.secrets.matrix-smtp-password-hash = rec {
       source = "./secrets/matrix-smtp-password-hash";
-      generateCommand = "${pkgs.mkpasswd}/bin/mkpasswd -sm bcrypt < ${config.cookie.secrets.matrix-smtp-password.source} > ${source}";
+      generateCommand =
+        "${pkgs.mkpasswd}/bin/mkpasswd -sm bcrypt < ${config.cookie.secrets.A_matrix-smtp-password.source} > ${source}";
       permissions = "0400"; # for the mailserver, not synapse..
     };
 
@@ -133,7 +135,11 @@ in with lib; {
       owner = "matrix-synapse";
       group = "matrix-synapse";
       permissions = "0440";
-      generateCommand = "nix-instantiate --eval ${./make-secret-config.nix} > ${source}";
+      generateCommand = ''
+        nix-instantiate --eval ${
+          ./make-secret-config.nix
+        } --argstr root "$(pwd)" |& rg '^trace: (.+)' --replace '$1' > ${source}'';
+      wantedBy = "matrix-synapse.service";
     };
 
     # The *actual* homeserver configuration
@@ -172,10 +178,16 @@ in with lib; {
           }];
         }];
 
+        # TODO: this shit took me hours to get right with the secret setup
+        # and it's /still/ not working.. it finally accepts the config, but
+        # for some reason the server responds 500 because of the smtp
+        # submission.
         email = {
+          notif_from = "matrix bot <matrixbot@ckie.dev>";
           smtp_host = assert config.cookie.services.mailserver.enable;
             "localhost";
           smtp_port = 587;
+          force_tls = true;
           smtp_user = "matrixbot";
           # smtp_pass is in secret config
         };
