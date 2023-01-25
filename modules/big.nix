@@ -38,6 +38,7 @@ in with lib; {
       expect # color capture, galore
       caddy # convenient bloated web server
       parallel # --citation
+      nix-tree # nix what-depends why-depends who-am-i
     ];
 
     services.fwupd.enable = true;
