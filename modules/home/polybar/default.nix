@@ -89,7 +89,7 @@ in {
     services.polybar = {
       enable = true;
       package = (pkgs.polybar.override {
-        i3GapsSupport = true;
+        i3Support = true;
         pulseSupport = true;
         mpdSupport = true;
       }).overrideAttrs (old: {
