@@ -9,11 +9,6 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    cookie.secrets.irlgmail-nix = {
-      source = "./secrets/irlgmail.nix";
-      runtime = false;
-    };
-
     home-manager.users.ckie = { pkgs, ... }: {
       accounts.email = {
         maildirBasePath = maildir;
