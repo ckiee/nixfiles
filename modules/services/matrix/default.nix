@@ -32,7 +32,7 @@ in with lib; {
     ##
     services.nginx.virtualHosts = {
       ${cfg.host} = {
-        locations."/.well-known/matrix/server".extraConfig = let
+        locations."= /.well-known/matrix/server".extraConfig = let
           # use 443 instead of the default 8448 port to unite
           # the client-server and server-server port for simplicity
           server = { "m.server" = "${cfg.serviceHost}:443"; };
@@ -40,7 +40,7 @@ in with lib; {
           add_header Content-Type application/json;
           return 200 '${builtins.toJSON server}';
         '';
-        locations."/.well-known/matrix/client".extraConfig = let
+        locations."= /.well-known/matrix/client".extraConfig = let
           client = {
             "m.homeserver" = { "base_url" = "https://${cfg.serviceHost}"; };
             "m.identity_server" = { "base_url" = "https://vector.im"; };
