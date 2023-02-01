@@ -9,12 +9,14 @@ with lib;
   networking.firewall.enable = false;
 
   home-manager.users.ckie = { pkgs, ... }: {
-    cookie.collections.devel.enable = true;
-    cookie.collections.chat.enable = true;
     home.stateVersion = "22.05";
+
   };
   cookie = {
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      monitors.primary = "Virtual-1";
+    };
     sound.enable = mkForce false;
     services = {
       tailscale.autoconfig = false;
