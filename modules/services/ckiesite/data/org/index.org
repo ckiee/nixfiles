@@ -68,7 +68,7 @@ fn main() {
 * Moved :tailscale-coredns.html:
 You're looking for [[/tailscale-coredns][this]].
 * An Adventure Through Tailscale and CoreDNS :tailscale-coredns:
-warning&This post was migrated from the old site and cannot [[/meta#wip][yet]] be parsed properly. [[https://github.com/ckiee/ckiesite-static/blob/main/public/tailscale-coredns.md][Here's the original]].&warning
+warning&This post was migrated from the old site and cannot [[/meta#wip][yet]] be parsed properly. [[https://gist.github.com/ckiee/dfcecbf2116119c0c0f895f195c1aa8b][Here's the original]].&warning
 ** prologue
 recently, i've been using my beefier [[https://github.com/ckiee/nixfiles/blob/ebc09474dd7b005c8e19e9188db2123e4a5d7081/README.md#cookiemonster][desktop machine]] remotely to conserve battery when coding on my laptop while i'm at school.
 
