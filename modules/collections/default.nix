@@ -7,5 +7,6 @@
     #
     ./media.nix
     ./chat.nix
+    ./music.nix
   ];
 }

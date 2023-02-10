@@ -69,7 +69,11 @@ in with lib; {
       services.rsibreak.enable = true;
     };
     cookie = {
-      collections = { media.enable = true; chat.enable = true; };
+      collections = {
+        media.enable = true;
+        chat.enable = true;
+        music.enable = true;
+      };
       services = {
         avahi.enable = true;
         printing.enable = true;
