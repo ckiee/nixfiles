@@ -16,6 +16,7 @@ in with lib; {
         mpv = "mpv.desktop";
         vlc = "vlc.desktop";
         audacity = "audacity.desktop";
+        nautilus = "org.gnome.Nautilus.desktop";
       in {
         "application/pdf" = [ firefox ];
         "text/plain" = [ emacs ];
@@ -42,6 +43,7 @@ in with lib; {
         "audio/x-vorbis+ogg" = [ audacity vlc mpv ];
         "audio/x-wav" = [ mpv ];
         "video/quicktime" = [ mpv ];
+        "inode/directory" = [ nautilus ]; # folders!
       };
     };
 
