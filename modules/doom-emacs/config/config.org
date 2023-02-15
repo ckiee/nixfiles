@@ -110,6 +110,11 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 (after! mu4e
   (map! :map mu4e-view-mode-map :n "C--" #'text-scale-decrease))
 #+END_SRC
+*** disable badly-performing smartparens-mode in compose view
+#+BEGIN_SRC elisp
+(after! mu4e
+    (add-hook 'mu4e-compose-mode-hook (lambda () (smartparens-mode 0))))
+#+END_SRC
 ** org-mode
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
