@@ -1,0 +1,47 @@
+From e3b7773401e57aefa8e514c423ede84420505fbf Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Sun, 12 Feb 2023 15:51:08 +0200
+Subject: [PATCH] =?UTF-8?q?Use=20=F0=9F=8F=B3=EF=B8=8F=E2=80=8D=E2=9A=A7?=
+ =?UTF-8?q?=EF=B8=8F=20color=20scheme?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ cnping.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/cnping.c b/cnping.c
+index d9eb49d..22126f8 100644
+--- a/cnping.c
++++ b/cnping.c
+@@ -456,7 +456,7 @@ void DrawFrame( void )
+ 		}
+ 		else if (st != 0) // ping sent but not received
+ 		{
+-			CNFGColor( 0xff0000ff );
++			CNFGColor( 0xf5abb9ff );
+ 			dt = now - st;
+ 			dt *= 1000;
+ 			if( i > 5 ) totalcountloss++; //Get a freebie on the first 5.
+@@ -663,7 +663,7 @@ int main( int argc, const char ** argv )
+ 		pattern[i] = rand();
+ 	}
+ 	#endif
+-	CNFGBGColor = 0x000080ff;
++	CNFGBGColor = 0x5bcffaff;
+ #ifdef WIN32
+ 	if( argc < 2 )
+ 	{
+@@ -812,7 +812,7 @@ int main( int argc, const char ** argv )
+ 		}
+ 
+ 		CNFGPenX = 100; CNFGPenY = 100;
+-		CNFGColor( 0xff0000ff );
++		CNFGColor( 0xf5abb9ff );
+ 		CNFGDrawText( errbuffer, 3 );
+ 
+ 
+-- 
+2.39.0
+

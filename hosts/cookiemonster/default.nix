@@ -80,7 +80,6 @@ in {
   # ];
   #system.replaceRuntimeDependencies = [({original = pkgs.mesa; replacement = pkgs.enableDebugging pkgs.mesa;})];
 
-
   environment.systemPackages = with pkgs; [
     lutris
     picocom
@@ -93,7 +92,14 @@ in {
     heroic
   ];
 
-  programs.cnping.enable = true;
+  programs.cnping = {
+    enable = true;
+    package = pkgs.cnping.overrideAttrs (prev: {
+      patches = (prev.patches or [ ])
+        ++ [ ./0001-Use-trans-color-scheme.patch ];
+    });
+  };
+
   programs.adb.enable = true;
   programs.firejail.enable = true;
   programs.wireshark = {
@@ -107,11 +113,12 @@ in {
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
-    podman = { # TODO: export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
-      enable = true;
-      enableNvidia = true;
-      dockerCompat = true;
-    };
+    podman =
+      { # TODO: export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+        enable = true;
+        enableNvidia = true;
+        dockerCompat = true;
+      };
   };
 
   networking.firewall.enable = false;
