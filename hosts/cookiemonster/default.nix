@@ -6,10 +6,7 @@ let
 in {
   imports = [ ./hardware.nix ../.. ];
 
-  # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
-  # armv7l-linux for embedded crap
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
-
+  networking.hostName = "cookiemonster";
   cookie = {
     imperm.enable = true;
     desktop = {
@@ -50,6 +47,7 @@ in {
       tailscaleIp = "100.66.218.84";
     };
   };
+
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
       collections.devel.enable = true;
@@ -58,8 +56,12 @@ in {
     home.stateVersion = "22.11";
   };
 
-  networking.hostName = "cookiemonster";
+  # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
+  # armv7l-linux for embedded crap
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
+  # Setup multi-monitors; there's a 144Hz 1080p plugged into the DisplayPort,
+  # and it's primary.
   services.xserver = {
     xrandrHeads = [
       {
@@ -68,48 +70,19 @@ in {
       }
       "HDMI-A-0"
     ];
-    # videoDrivers = [ "nvidia" ];
   };
-  # hardware.nvidia.package =
-  #   config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-  # nixpkgs.overlays = [
-  #   (final: prev: {
-  #     mesa = final.enableDebugging prev.mesa;
-  #     mesa_glu = final.enableDebugging prev.mesa_glu;
-  #   })
-  # ];
-  #system.replaceRuntimeDependencies = [({original = pkgs.mesa; replacement = pkgs.enableDebugging pkgs.mesa;})];
 
   environment.systemPackages = with pkgs; [
     lutris
-    picocom
     minecraft
     prismlauncher
-    #kicad-with-packages3d
+    # kicad-with-packages3d
     cookie.ledc
-    x2x
     solvespace
     heroic
   ];
 
-  programs.cnping = {
-    enable = true;
-    package = pkgs.cnping.overrideAttrs (prev: {
-      patches = (prev.patches or [ ])
-        ++ [ ./0001-Use-trans-color-scheme.patch ];
-    });
-  };
-
-  programs.adb.enable = true;
-  programs.firejail.enable = true;
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark-qt;
-  };
   services.usbmuxd.enable = true;
-
-  users.users.ckie.extraGroups =
-    [ "adbusers" "libvirtd" "wireshark" "plugdev" ];
 
   virtualisation = {
     spiceUSBRedirection.enable = true;

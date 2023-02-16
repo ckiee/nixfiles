@@ -43,6 +43,8 @@ in with lib; {
       "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
     };
 
+    users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "plugdev" ];
+
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
@@ -68,6 +70,9 @@ in with lib; {
       };
       services.rsibreak.enable = true;
     };
+
+    programs = { adb.enable = true; };
+
     cookie = {
       collections = {
         media.enable = true;
@@ -90,6 +95,9 @@ in with lib; {
       qt5.enable = true;
       doom-emacs.enable = true;
       mpd.enable = true;
+      cnping.enable = true;
+      wireshark.enable = true;
     };
+
   };
 }

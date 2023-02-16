@@ -57,5 +57,7 @@
     ./devserv
     ./imperm.nix
     ./firejail
+    ./wireshark.nix
+    ./cnping
   ];
 }

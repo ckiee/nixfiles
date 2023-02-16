@@ -39,6 +39,8 @@ in with lib; {
       caddy # convenient bloated web server
       parallel # --citation
       nix-tree # nix what-depends why-depends who-am-i
+      picocom # bbaauuddrraattee
+      x2x # mouse/keyboard, remotely
     ];
 
     services.fwupd.enable = true;
