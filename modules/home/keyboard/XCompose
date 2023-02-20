@@ -273,6 +273,7 @@
 <Multi_key> <i> <n>             : "∈"
 <Multi_key> <e> <m>             : "embouchure"
 <Multi_key> <P> <E> <N>         : "😔" # PENSIVE (!:
+<Multi_key> <T> <E> <A>         : "🥹" # FACE HOLDING BACK TEARS..
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
