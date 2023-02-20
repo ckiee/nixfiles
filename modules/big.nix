@@ -63,6 +63,7 @@ in with lib; {
       cookie-overlay.enable = true;
       ipban.enable = true;
       shell-utils.enable = true;
+      firejail.enable = true;
     };
     home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
       cookie = { shell.fish = true; };
