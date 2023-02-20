@@ -83,6 +83,7 @@ in {
   ];
 
   services.usbmuxd.enable = true;
+  programs.droidcam.enable = true;
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
