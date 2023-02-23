@@ -87,29 +87,30 @@ in {
         enable = true;
 
         config = let
+          host = "127.0.0.2";
           prom = if cfg.prometheus.enable then
             "prometheus FIXME:${toString cfg.prometheus.port}"
           else
             "";
         in ''
-          . {
+          ${host} {
             ${prom}
             hosts /run/coredns-hosts {
               reload 1500ms
               fallthrough
             }
-            forward . 127.0.0.1:5301 127.0.0.1:5302
+            forward . 127.0.0.2:5301 127.0.0.2:5302
             errors
             cache 120 # two minutes
           }
 
-          .:5301 {
+          ${host}:5301 {
             forward . tls://1.1.1.1 tls://1.0.0.1 {
               tls_servername cloudflare-dns.com
             }
           }
 
-          .:5302 {
+          ${host}:5302 {
             forward . tls://45.90.28.0 {
               tls_servername dns.nextdns.io
             }
@@ -147,7 +148,7 @@ in {
       networking.networkmanager.dns = "none";
       networking.resolvconf = {
         enable = true;
-        useLocalResolver = true;
+        extraConfig = "name_servers='127.0.0.2'";
       };
       networking.search = singleton hostSuffix;
     })
