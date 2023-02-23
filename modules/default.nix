@@ -59,5 +59,6 @@
     ./firejail
     ./wireshark.nix
     ./cnping
+    ./eg.nix
   ];
 }
