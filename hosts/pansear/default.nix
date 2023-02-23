@@ -34,7 +34,6 @@ with builtins;
     wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
     services = {
       avahi.enable = true;
-      owo-bot.enable = true;
       ffg-bot.enable = true;
       alvr-bot.enable = true;
       daiko.enable = true;
