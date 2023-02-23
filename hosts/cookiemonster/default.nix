@@ -21,9 +21,14 @@ in {
         enable = true;
         runtimeId =
           "HPLCFJR-KBQWHAK-MWJX5HC-EXPU5LL-FZK5BB6-EO6XGCK-Q6F4TG6-W5JF7QI";
-
       };
     };
+    restic.enable = true;
+    # FIXME: This is just dirty. Syncthing is replicated yet we
+    # only back up this and only through this machine..
+    restic.paths = [
+      "${config.cookie.user.home}/Sync"
+    ];
     # It doesn't work with my headphones on YT/others anymore, firefox and mpv too ):
     # update: pipewire may be glitchy, but the JACK support is worth it (:
     sound = {

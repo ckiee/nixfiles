@@ -42,7 +42,12 @@ in {
   config = mkIf (cfg.enable && ((length cfg.paths) > 0)) {
     cookie.secrets = {
       gdrive-password = {
-        source = "./secrets/gdrive-password";
+        # FIXME: this is also really ugly. we're just backing up more personal things
+        # on cookiemonster so we don't want to use the same key as the server machines.
+        source = if config.networking.hostName == "cookiemonster" then
+          "./secrets/gdrive-password-cookiemonster"
+        else
+          "./secrets/gdrive-password";
         owner = "root";
         group = "root";
         permissions = "0400";
