@@ -37,6 +37,7 @@ in with lib; {
         totem
         eog
         gnome-screenshot
+        evince
       ];
 
       services.gnome-keyring = {
