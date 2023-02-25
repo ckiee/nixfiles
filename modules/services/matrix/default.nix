@@ -2,7 +2,7 @@
 
 let cfg = config.cookie.services.matrix;
 in with lib; {
-  imports = [ ./discord.nix ];
+  imports = [ ./discord.nix ./janitor.nix ];
 
   options.cookie.services.matrix = {
     enable = mkEnableOption "Enables the Matrix service using Synapse";
@@ -33,7 +33,7 @@ in with lib; {
     services.nginx.virtualHosts = {
       ${cfg.host} = {
         locations."= /.well-known/matrix/server".extraConfig = let
-          # use 443 instead of the default 8448 port to unite
+          # use 443 instead of the default 8008 port to unite
           # the client-server and server-server port for simplicity
           server = { "m.server" = "${cfg.serviceHost}:443"; };
         in ''
@@ -83,7 +83,10 @@ in with lib; {
 
     cookie.services.postgres = {
       enable = true;
-      comb.synapse = { };
+      comb.synapse = {
+        networkTrusted =
+          true; # FIXME: Really really don't like this but the janitor doesn't actually support UNIX sockets unlike what it says..
+      };
     };
 
     # The homeserver's signing key

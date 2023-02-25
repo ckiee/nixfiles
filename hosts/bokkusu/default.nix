@@ -74,6 +74,7 @@ with lib;
             "fedi.ckie.dev"
             "git.ckie.dev"
             "headscale.ckie.dev"
+            "janitor.matrix.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
