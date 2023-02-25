@@ -1,11 +1,9 @@
 { lib, config, pkgs, ... }:
 
-let
-  cfg = config.cookie.gtk;
-  gtkConfig = {
-    extraConfig = { gtk-application-prefer-dark-theme = cfg.darkTheme; };
-  };
-in with lib; {
+with lib;
+
+let cfg = config.cookie.gtk;
+in {
   options.cookie.gtk = {
     enable = mkEnableOption "Enables some sexy GTK theming";
     darkTheme = mkOption {
@@ -15,13 +13,21 @@ in with lib; {
     };
   };
 
-  config.gtk = mkIf cfg.enable {
-    enable = true;
-    iconTheme = {
-      name = "Paper";
-      package = pkgs.paper-gtk-theme;
+  config = mkIf cfg.enable {
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Paper";
+        package = pkgs.paper-gtk-theme;
+      };
+      gtk3 = {
+        extraConfig = { gtk-application-prefer-dark-theme = cfg.darkTheme; };
+      };
     };
-    gtk3 = gtkConfig;
-    gtk4 = gtkConfig;
+
+    dconf.settings."org/gnome/desktop/interface" = {
+      # GTK 4:
+      color-scheme = "prefer-dark";
+    };
   };
 }
