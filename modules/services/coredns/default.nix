@@ -60,6 +60,13 @@ in {
   config = mkIf cfg.enable (mkMerge [
     {
 
+      # *coughs* ahemmm
+      # (won't resolve over TLS)
+      cookie.services.coredns.extraHosts = ''
+        172.104.27.95 emma.coop
+        172.104.27.95 blog.emma.coop
+      '';
+
       systemd.services.dns-hosts-poller = {
         description =
           "Update the /run/coredns-hosts hosts file with new Tailscale hosts";
