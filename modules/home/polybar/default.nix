@@ -278,7 +278,7 @@ in {
         # A progress indicator for the polyprog script
         "module/polyprog" = {
           type = "custom/ipc";
-          hook-0 = "cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
+          hook-0 = "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
         };
 
         "module/shower" = {
