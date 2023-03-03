@@ -118,6 +118,37 @@ elif [ "$1" == "hmport" ]; then
     path="$(nix-instantiate deploy/hm-only.nix)"
     nix copy --to "ssh://$@" --derivation "$path"
     ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
+elif [ "$1" == "gceup" ]; then
+    # majority stolen from //nixpkgs/nixos/maintainers/scripts/gce/create-gce.sh
+    BUCKET_NAME="${BUCKET_NAME:-ckie-nixos}"
+    TIMESTAMP="$(date +%Y%m%d%H%M)"
+    export TIMESTAMP
+
+    if (( $# != 2 )); then
+        echo "usage: c gceup <host>" >&2
+        exit 1
+    fi
+    $0 $c_trace eval build "nodes.$2.config.system.build.googleComputeImage"
+
+    img_path=$(echo result/*.tar.gz)
+    img_name=${IMAGE_NAME:-$(basename "$img_path")}
+    img_id=$(echo "$img_name" | sed 's|.raw.tar.gz$||;s|\.|-|g;s|_|-|g')
+    img_family=$(echo "$img_id" | cut -d - -f1-4)
+
+    if ! gsutil ls "gs://${BUCKET_NAME}/$img_name"; then
+    gsutil cp "$img_path" "gs://${BUCKET_NAME}/$img_name"
+    gsutil acl ch -u AllUsers:R "gs://${BUCKET_NAME}/$img_name"
+
+    gcloud compute images create \
+        "$img_id" \
+        --source-uri "gs://${BUCKET_NAME}/$img_name" \
+        --family="$img_family"
+
+    gcloud compute images add-iam-policy-binding \
+        "$img_id" \
+        --member='allAuthenticatedUsers' \
+        --role='roles/compute.imageUser'
+fi
 elif [ "$1" == "secret" ]; then
     gen_secrets
 else # TODO: it'd be cool if there was a command to identify how old nixos vers are on each host

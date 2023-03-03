@@ -33,6 +33,7 @@ in pkgs.mkShell {
     nix-eval-jobs
     wireguard-tools
     nix-output-monitor
+    google-cloud-sdk
   ];
 
   shellHook = ''
