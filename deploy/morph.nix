@@ -22,4 +22,5 @@ in {
   "hmporter" = import ../hosts/hmporter;
   "virt" = import ../hosts/virt;
   "kyurem" = import ../hosts/kyurem;
+  "eg" = import ../hosts/eg;
 }
