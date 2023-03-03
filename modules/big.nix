@@ -10,6 +10,7 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+    # TODO: some of these clearly don't belong on a server!!! like bokkusu doens't need yt-dlp
     environment.systemPackages = with pkgs; [
       tree
       neofetch
@@ -24,17 +25,16 @@ in with lib; {
       usbutils
       dig
       asciinema
-      ripgrep # a better grep
+      # ripgrep # a better grep -- also in default.nix
       unzip
       ncdu_1 # _2 only supports modern microarchs
       fd # a better find
       hyperfine # a better time
       mtr # a better traceroute
       tmux # when you can't afford i3
-      youtube-dl
       yt-dlp # do some pretendin' and fetch videos
       jq # like 'node -e' but nicer
-      btop # htop on steroids
+      # btop # htop on steroids -- now also in default.nix (it's that good)
       expect # color capture, galore
       caddy # convenient bloated web server
       parallel # --citation
