@@ -26,9 +26,7 @@ in {
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we
     # only back up this and only through this machine..
-    restic.paths = [
-      "${config.cookie.user.home}/Sync"
-    ];
+    restic.paths = [ "${config.cookie.user.home}/Sync" ];
     # It doesn't work with my headphones on YT/others anymore, firefox and mpv too ):
     # update: pipewire may be glitchy, but the JACK support is worth it (:
     sound = {
@@ -85,10 +83,13 @@ in {
     cookie.ledc
     solvespace
     heroic
+    #
+    yabridge yabridgectl
   ];
 
   services.usbmuxd.enable = true;
   programs.droidcam.enable = true;
+  programs.fuse.userAllowOther = true;
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
