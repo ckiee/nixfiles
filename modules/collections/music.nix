@@ -9,7 +9,7 @@ in with lib; {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       helio-workstation
-      bespokesynth
+      (bespokesynth.override { enableVST2 = true; })
       musescore
     ];
 
