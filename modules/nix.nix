@@ -14,6 +14,7 @@ in with lib; {
       settings = {
         trusted-users = [ "root" "@wheel" ];
         auto-optimise-store = true;
+        experimental-features = "nix-command flakes";
       };
       nixPath = [
         "nixpkgs=/run/current-system/sw/nixpkgs"
@@ -26,9 +27,6 @@ in with lib; {
       };
       # Get flakes
       package = pkgs.nixUnstable;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
       registry.nixpkgs = {
         from = {
           type = "indirect";
