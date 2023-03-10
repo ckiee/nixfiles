@@ -167,10 +167,10 @@
         "homepage": "https://mcid.party",
         "owner": "ckiee",
         "repo": "jellz-mcid",
-        "rev": "16185e3c632de05eb9715de5f62eac0040510e97",
-        "sha256": "0w7kbz5n3dl837bg6hgd56amr7vf6nfz46lmc40dzp16mlqc7j95",
+        "rev": "4a5512b79c622efad7878f4d6a1ede7975c771d7",
+        "sha256": "0lffv5jsm9axh6dzlv3hn17sdxzh9l601l002amnn25z7wfgwqbn",
         "type": "tarball",
-        "url": "https://github.com/ckiee/jellz-mcid/archive/16185e3c632de05eb9715de5f62eac0040510e97.tar.gz",
+        "url": "https://github.com/ckiee/jellz-mcid/archive/4a5512b79c622efad7878f4d6a1ede7975c771d7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "morph": {
