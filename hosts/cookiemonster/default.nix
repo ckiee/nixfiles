@@ -85,6 +85,8 @@ in {
     heroic
     #
     yabridge yabridgectl
+    #
+    carla
   ];
 
   services.usbmuxd.enable = true;
