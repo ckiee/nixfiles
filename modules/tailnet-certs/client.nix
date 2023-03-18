@@ -18,7 +18,9 @@ with builtins; {
         "coredns.service"
       ]; # We do kinda need the network..
 
-      script = let
+      # preStart since systemd marks oneshot services as successfully running once
+      # they've started, and we really want to depend on the cert files being /present/.
+      preStart = let
         pass = config.cookie.secrets.tailnet-certs-pw.dest;
         askpass = pkgs.writeShellScript "tailnet-certs-askpass" ''
           case "$1" in
@@ -44,6 +46,7 @@ with builtins; {
               'https://${cfg.serveHost}/'"$file"
         done
       '';
+      script = "exit 0";
     };
 
     # Something somewhere refuses to let the "nginx" user read anything
