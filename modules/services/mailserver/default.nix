@@ -79,7 +79,7 @@ with builtins; {
       loginAccounts = {
         "us@ckie.dev" = {
           hashedPasswordFile = config.cookie.secrets.mailserver-pw-hash.dest;
-          aliases = [ "postmaster@ckie.dev" ]
+          aliases = [ "postmaster@ckie.dev" "work-sbr@ckie.dev" ]
             ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
         };
