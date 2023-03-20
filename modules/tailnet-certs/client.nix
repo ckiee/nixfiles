@@ -18,6 +18,10 @@ with builtins; {
         "coredns.service"
       ]; # We do kinda need the network..
 
+      # Sometimes coredns will start but not actually be listening and we'll still have the race
+      # systemd/coredns should avoid, so..
+      startLimitIntervalSec = 5;
+      startLimitBurst = 5;
       # preStart since systemd marks oneshot services as successfully running once
       # they've started, and we really want to depend on the cert files being /present/.
       preStart = let
