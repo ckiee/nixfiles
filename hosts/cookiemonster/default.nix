@@ -12,8 +12,8 @@ in {
     desktop = {
       enable = true;
       monitors = {
-        primary = "DisplayPort-2";
-        secondary = "HDMI-A-0";
+        primary = "DP-3";
+        secondary = "HDMI-1";
       };
     };
     services = {
@@ -68,7 +68,7 @@ in {
   services.xserver = {
     xrandrHeads = [
       {
-        output = "DisplayPort-2";
+        output = "DP-3";
         primary = true;
       }
       "HDMI-A-0"
