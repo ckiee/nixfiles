@@ -7,7 +7,10 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
-    home.keyboard.layout = "us,il";
+    home.keyboard = {
+      layout = "us,us,il";
+      variant = ",colemak,";
+    };
     # manpage xkeyboard-config(7)
     home.keyboard.options =
       [ "grp:win_space_toggle" "compose:rctrl" "caps:super" ];
