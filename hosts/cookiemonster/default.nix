@@ -6,12 +6,6 @@ let
 in {
   imports = [ ./hardware.nix ../.. ];
 
-  # FIXME FIXME FIXME FIXME Please please pleasee remove these two soon
-  boot.kernelParams = [ "sysrq_always_enabled=1" ];
-  # REISUB + bit extra https://wiki.archlinux.org/title/Keyboard_shortcuts#Rebooting
-  # not sure when this gets applied.
-  boot.kernel.sysctl."kernel.sysrq" = 244;
-
   networking.hostName = "cookiemonster";
   cookie = {
     imperm.enable = true;
