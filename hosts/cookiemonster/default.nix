@@ -96,12 +96,16 @@ in {
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
-    podman =
-      { # TODO: export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
-        enable = true;
-        enableNvidia = true;
-        dockerCompat = true;
-      };
+    # podman =
+    #   { # TODO: export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+    #     enable = true;
+    #     enableNvidia = true;
+    #     dockerCompat = true;
+    #   };
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   networking.firewall.enable = false;
