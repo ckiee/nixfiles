@@ -52,7 +52,6 @@ let
     music = "";
     shower = "";
   };
-
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
   soundCfg = nixosConfig.cookie.sound;
@@ -75,8 +74,6 @@ in {
         };
 
         Service = {
-          # Work around home-manager#3796
-          ExecStartPre = "${pkgs.bash}/bin/bash -c '${pkgs.coreutils}/bin/timeout 0.05s ${pkgs.i3}/bin/i3-msg nop'";
           ExecStart = "${pkg}/bin/polybar ${screen}";
           Restart = "always";
         };
@@ -96,12 +93,8 @@ in {
         pulseSupport = true;
         mpdSupport = true;
       }).overrideAttrs (old: {
-        patches = old.patches ++ [
-          ./0001-feat-xkeyboard-add-shortname-token.patch
-          # seems to mess up timing for other things since it's not async..
-          # (and making it async would be a lot of effort)
-          # ./0002-fix-i3-wait-for-the-i3-socket-to-appear.patch
-        ];
+        patches = old.patches
+          ++ [ ./0001-feat-xkeyboard-add-shortname-token.patch ];
       });
 
       # we have our own per-bar systemd units
@@ -110,8 +103,7 @@ in {
       config = {
         "bar/main" = base // {
           monitor = # only specify if needed; keep ext displays working on single-display machines
-            mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary
-              != null) desktopCfg.monitors.primary;
+            mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
           modules-right =
@@ -286,8 +278,7 @@ in {
         # A progress indicator for the polyprog script
         "module/polyprog" = {
           type = "custom/ipc";
-          hook-0 =
-            "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
+          hook-0 = "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
         };
 
         "module/shower" = {
