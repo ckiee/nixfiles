@@ -1,0 +1,27 @@
+From 9274ca27c30df91aca790667ed93a2f48511cba4 Mon Sep 17 00:00:00 2001
+From: ckie <git-525ff67@ckie.dev>
+Date: Thu, 30 Mar 2023 17:40:50 +0300
+Subject: [PATCH 2/2] fix(i3): wait for the i3 socket to appear..
+
+---
+ src/modules/i3.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/modules/i3.cpp b/src/modules/i3.cpp
+index d2bc0e86..f4861ad2 100644
+--- a/src/modules/i3.cpp
++++ b/src/modules/i3.cpp
+@@ -19,6 +19,10 @@ namespace modules {
+ 
+     auto socket_path = i3ipc::get_socketpath();
+ 
++    int attempts = 5;
++    while (--attempts > 0 && !file_util::exists(socket_path)) {
++      sleep(10ms);
++    }
+     if (!file_util::exists(socket_path)) {
+       throw module_error("Could not find socket: " + (socket_path.empty() ? "<empty>" : socket_path));
+     }
+-- 
+2.39.2
+
