@@ -45,7 +45,7 @@ in {
                 # https://wiki.archlinux.org/title/Music_Player_Daemon/Tips_and_tricks#HTTP_streaming
                 audio_output {
                   type "httpd"
-                  name "cookie mpd! (:"
+                  name "listenwithme"
                   encoder "opus"
                   port "${audioPort}"
                   bitrate "128000"
