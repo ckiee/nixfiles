@@ -10,7 +10,7 @@ in with lib; {
     environment.systemPackages = with pkgs; [
       # helio-workstation # FIXME: is currently borked in nixpkgs
       (bespokesynth.override { enableVST2 = true; })
-      musescore
+      musescore3 # 4 is meh
     ];
 
     home-manager.users.ckie = { config, ... }: {
