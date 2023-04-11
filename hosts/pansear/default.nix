@@ -28,7 +28,7 @@ with builtins;
     };
     systemd-boot.enable = true;
     smartd.enable = true;
-    libvirtd.enable = true;
+    # libvirtd.enable = true; # breaks coredns, TODO fix..
     restic.enable = true;
     zfs.enable = true;
     wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
