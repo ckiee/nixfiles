@@ -24,6 +24,7 @@ in with lib; {
       pciutils
       usbutils
       dig
+      dogdns # like dig but nicer output
       asciinema
       # ripgrep # a better grep -- also in default.nix
       unzip
