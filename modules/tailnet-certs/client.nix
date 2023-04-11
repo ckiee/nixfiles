@@ -8,6 +8,7 @@ with builtins; {
   config = mkIf cfg.client.enable {
     cookie.services.nginx.enable = true;
 
+    # TODO make nginx reload on cert update: https://github.com/ckiee/nixpkgs/blob/27058442a4880fe5398276de476a2e7d1a5de96c/nixos/modules/services/web-servers/nginx/default.nix#L1135-L1162
     systemd.services.get-tailnet-certs = mkIf (!cfg.enableServer) {
       description = "Fetches new certificates for *.${cfg.host}";
       startAt = "*-*-* 04:30:00"; # every day at 4:30am
