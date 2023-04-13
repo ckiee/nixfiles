@@ -61,6 +61,12 @@ in {
   options.cookie.polybar = {
     enable = mkEnableOption "Enables Polybar";
     laptop = mkEnableOption "Enables laptop-specific reporting";
+    backlight = mkOption rec {
+      type = types.nullOr types.str;
+      default = null;
+      description =
+        "Exposes an optional backlight control of card `cfg.backlight` to the user if non-null";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -103,7 +109,8 @@ in {
       config = {
         "bar/main" = base // {
           monitor = # only specify if needed; keep ext displays working on single-display machines
-            mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary != null) desktopCfg.monitors.primary;
+            mkIf (desktopCfg.monitors != null && desktopCfg.monitors.secondary
+              != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
           modules-right =
@@ -118,12 +125,11 @@ in {
               "cpu"
               "separator"
               "keyboard"
-            ] ++ optionals cfg.laptop [
+            ] ++ optionals (cfg.backlight != null) [
               "separator"
-              "backlight"
-              "separator"
-              "battery"
-            ] ++ [ "separator" "date" "small-spacer" "time" "separator" ];
+              "backlight" # currently desktop also has ext. display brightness control (for the primary monitor only!)
+            ] ++ optionals cfg.laptop [ "separator" "battery" ]
+            ++ [ "separator" "date" "small-spacer" "time" "separator" ];
 
           tray-position = "right";
           tray-padding = 0;
@@ -206,7 +212,7 @@ in {
 
         "module/backlight" = {
           type = "internal/backlight";
-          card = "intel_backlight";
+          card = cfg.backlight or "_unreachable_";
           enable-scroll = true;
           format = "${icons.sun} <label>";
         };
@@ -278,7 +284,8 @@ in {
         # A progress indicator for the polyprog script
         "module/polyprog" = {
           type = "custom/ipc";
-          hook-0 = "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
+          hook-0 =
+            "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
         };
 
         "module/shower" = {
