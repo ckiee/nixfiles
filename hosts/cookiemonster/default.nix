@@ -16,6 +16,7 @@ in {
         secondary = "HDMI-1";
       };
     };
+
     services = {
       syncthing = {
         enable = true;
@@ -33,6 +34,7 @@ in {
       # pulse.enable = true;
       # pipewire.enable = false;
     };
+
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;
@@ -55,6 +57,7 @@ in {
     cookie = {
       collections.devel.enable = true;
       qsynth.enable = true;
+      polybar.backlight = "ddcci10";
     };
     home.stateVersion = "22.11";
   };

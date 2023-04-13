@@ -33,6 +33,7 @@
     cookie = {
       collections.devel.enable = true;
       qsynth.enable = true;
+      polybar.backlight = "intel_backlight";
     };
     home.stateVersion = "22.11";
   };

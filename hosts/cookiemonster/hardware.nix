@@ -16,7 +16,7 @@ in {
   boot.initrd.availableKernelModules =
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "ddcci" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8821au ddcci-driver ];
   boot.extraModprobeConfig = ''
     # Enable VHT and USB3 support
