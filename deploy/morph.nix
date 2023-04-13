@@ -1,5 +1,7 @@
 with builtins;
 
+__trace "morph eval" (
+
 let
   sources = import ../nix/sources.nix;
   networkPkgs = import sources.nixpkgs { allowUnfree = true; };
@@ -24,3 +26,5 @@ in {
   "kyurem" = import ../hosts/kyurem;
   "eg" = import ../hosts/eg;
 }
+
+)
