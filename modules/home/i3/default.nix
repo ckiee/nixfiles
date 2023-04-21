@@ -71,8 +71,14 @@ in {
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
-            screenie =
-              "exec ${pkgs.gnome3.gnome-screenshot}/bin/gnome-screenshot";
+            screenie = let
+              s = a:
+                "exec " + (pkgs.writeShellScript "i3-screenshot-maim-wrapper"
+                  "${pkgs.maim}/bin/maim ${a} | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png");
+            in {
+              area = s "-s";
+              window = s "-i $(${pkgs.xdotool}/bin/xdotool getactivewindow)";
+            };
           };
             mkMerge [
               (import ./defaults.nix {
@@ -97,10 +103,10 @@ in {
                   ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
 
                 # screenshot
-                "--release ${modifier}+End" = "${screenie} -ac";
-                "--release ${modifier}+Pause" = "${screenie} -ac";
-                "--release ${modifier}+Shift+End" = "${screenie} -wc";
-                "--release ${modifier}+Shift+Pause" = "${screenie} -wc";
+                "--release ${modifier}+End" = screenie.area;
+                "--release ${modifier}+Pause" = screenie.area;
+                "--release ${modifier}+Shift+End" = screenie.window;
+                "--release ${modifier}+Shift+Pause" = screenie.window;
 
                 "--release ${modifier}+Shift+t" =
                   "exec ${mkRequiresScript ./scripts/tntwars}";

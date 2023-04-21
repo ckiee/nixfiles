@@ -16,6 +16,8 @@ in with lib; {
     ];
 
     # gnome-screenshot is used in multiple modules, across HM-NixOS boundaries, therefore..
+    # update: it's only used in the old upload-to-i.ckie.dev script now, kinda redundant,
+    # and it doesn't work right, but I'm keeping it around for now. TODO: remove it & refs, maim+xclip is better.
     nixpkgs.overlays = [
       (self: super: {
         gnome = super.gnome // {
