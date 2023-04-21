@@ -121,8 +121,18 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 (setq org-directory "~/Sync/org/")
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook #'hl-todo-mode)
-; writeroom hijacks the row length
+#+END_SRC
+writeroom hijacks the row length
+#+BEGIN_SRC elisp
 (setq writeroom-width 70)
+#+END_SRC
+#+BEGIN_QUOTE
+To save the clock history across Emacs sessions, use:
+#+END_QUOTE
+[[https://orgmode.org/manual/Clocking-Work-Time.html][~ src ~]]
+#+BEGIN_SRC elisp
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
 #+END_SRC
 ** adoc-mode
 #+BEGIN_SRC elisp :tangle packages.el
