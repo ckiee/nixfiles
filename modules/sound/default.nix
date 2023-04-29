@@ -1,9 +1,12 @@
 { config, pkgs, lib, ... }:
 
 let cfg = config.cookie.sound;
+  sources = import ../../nix/sources.nix;
 in with lib; {
+  imports = [ "${sources.musnix}" ];
   options.cookie.sound = {
     enable = mkEnableOption "Enable the ALSA sound system";
+    pro = mkEnableOption "Enable additional Pro Audio configuration";
     pulse = {
       enable = mkEnableOption "Enable the PulseAudio sound system";
       lowLatency =
@@ -37,6 +40,11 @@ in with lib; {
     }
     ### ALSA
     (mkIf cfg.enable { sound.enable = true; })
+    ### Musnix
+    (mkIf cfg.pro {
+      musnix.enable = true;
+      cookie.user.extraGroups = [ "audio" ];
+    })
     ### PulseAudio
     (mkIf cfg.pulse.enable {
       security.rtkit.enable = true;
@@ -64,7 +72,7 @@ in with lib; {
     ### PipeWire
     (mkIf cfg.pipewire.enable (let inherit (cfg.pipewire) quantum rate;
     in {
-      environment.systemPackages = with pkgs; [ helvum easyeffects ];
+      environment.systemPackages = with pkgs; [ helvum easyeffects pulseaudio ];
 
       security.rtkit.enable = true;
       services.pipewire = {

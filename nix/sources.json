@@ -185,6 +185,18 @@
         "url": "https://github.com/ckiee/morph/archive/84c787ef25f26a1e44adda17ab2e703b0ce1aed4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "musnix": {
+        "branch": "master",
+        "description": "Real-time audio in NixOS",
+        "homepage": "",
+        "owner": "musnix",
+        "repo": "musnix",
+        "rev": "79a6cf5a711e7d2dbf0a3ba0df9bae016d6247f8",
+        "sha256": "08cm46s6gvkdlxhfh067si6bz4p7irx5ifh73bvdkznm9a3sk7bz",
+        "type": "tarball",
+        "url": "https://github.com/musnix/musnix/archive/79a6cf5a711e7d2dbf0a3ba0df9bae016d6247f8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
