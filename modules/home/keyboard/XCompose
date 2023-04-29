@@ -274,6 +274,7 @@
 <Multi_key> <e> <m>             : "embouchure"
 <Multi_key> <P> <E> <N>         : "😔" # PENSIVE (!:
 <Multi_key> <T> <E> <A>         : "🥹" # FACE HOLDING BACK TEARS..
+<Multi_key> <F> <S> <O> <T>		: "😝" # SQUINTING FACE WITH TONGUE
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
