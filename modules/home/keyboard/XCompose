@@ -264,10 +264,8 @@
 <Multi_key> <S> <K> <L>         : "💀" # is that a scary skeleton i forgor 💀
 <Multi_key> <B> <R> <L>         : "🙄" # ROLLINGE YES BUT KINDA BOTTOM TOO
 <Multi_key> <G> <U> <N>         : "🔫" # GUN GUNG UGN
-<Multi_key> <i> <d> <l> <e>     : "/me is gonna go do things since this conversation is starting to be idle"
 <Multi_key> <p> <i>             : "π"
 <Multi_key> <t> <a> <u>         : "τ"
-<Multi_key> <l> <n> <a> <p> <a> : "[Not A Personal Attack](https://ckie.dev/hdiag#napa)"
 <Multi_key> <o> <r> <a> <n>     : "🟠" # 🟠!
 <Multi_key> <X> <e> <R>         : "∈"
 <Multi_key> <i> <n>             : "∈"
@@ -275,6 +273,7 @@
 <Multi_key> <P> <E> <N>         : "😔" # PENSIVE (!:
 <Multi_key> <T> <E> <A>         : "🥹" # FACE HOLDING BACK TEARS..
 <Multi_key> <F> <S> <O> <T>		: "😝" # SQUINTING FACE WITH TONGUE
+<Multi_key> <W> <O> <F>         : "😤" # why do i keep on doing these desc.r... ok..
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
