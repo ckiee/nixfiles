@@ -69,14 +69,15 @@ in with lib; {
             devices = [ "cookiemonster" "thonkcookie" "phone" ];
           };
 
-          "mail" = {
-            path = "${home}/Mail";
-            devices = [ "cookiemonster" "thonkcookie" ];
-            versioning = {
-              type = "trashcan";
-              params.cleanoutDays = "0"; # never. we can clean it up manually if needed, but this should be mostly write-only.
-            };
-          };
+          # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname
+          # "mail" = {
+          #   path = "${home}/Mail";
+          #   devices = [ "cookiemonster" "thonkcookie" ];
+          #   versioning = {
+          #     type = "trashcan";
+          #     params.cleanoutDays = "0"; # never. we can clean it up manually if needed, but this should be mostly write-only.
+          #   };
+          # };
         };
       in filterAttrs
       (_: folder: any (d: config.networking.hostName == d) folder.devices) def;
