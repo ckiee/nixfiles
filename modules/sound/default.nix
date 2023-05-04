@@ -209,49 +209,6 @@ in with lib; {
             "node.latency" = "${toString quantum}/${toString rate}";
           };
         };
-
-        media-session = {
-          config.alsa-monitor = {
-            "rules" = [{
-              matches = [{ device.name = "~alsa_card.*"; }];
-              actions = {
-                update-props = {
-                  api.alsa.use-acp = true;
-                  api.alsa.soft-mixer = false;
-                  api.acp.auto-profile = false;
-                  api.acp.auto-port = false;
-                  api.alsa.disable-batch = true;
-                };
-              };
-            }];
-          };
-          config.media-session = {
-            "context.modules" = [
-              {
-                name = "libpipewire-module-rtkit";
-                args = {
-                  "nice.level" = -11;
-                  "rt.prio" = 88;
-                  "rt.time.soft" = 200000;
-                  "rt.time.hard" = 200000;
-                };
-                flags = [ "ifexists" "nofail" ];
-              }
-
-              { name = "libpipewire-module-protocol-native"; }
-
-              { name = "libpipewire-module-client-node"; }
-
-              { name = "libpipewire-module-client-device"; }
-
-              { name = "libpipewire-module-adapter"; }
-
-              { name = "libpipewire-module-metadata"; }
-
-              { name = "libpipewire-module-session-manager"; }
-            ];
-          };
-        };
       };
     }))
   ];
