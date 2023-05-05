@@ -30,6 +30,7 @@ in {
     restic.paths = [ "${config.cookie.user.home}/Sync" ];
     sound.pro = true;
 
+    doom-emacs.standalone = true;
     opentabletdriver.enable = true;
     systemd-boot.enable = true;
     wine.enable = true;

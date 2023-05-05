@@ -42,7 +42,16 @@ let
     isync
     mu
   ];
-  extra-desktop = pkgs.writeTextFile {
+  extraBinsElisp = ''
+    (setq exec-path (append exec-path '( ${
+      concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
+    } )))
+    (setenv "PATH" (concat (getenv "PATH") ":${
+      concatMapStringsSep ":" (x: "${x}/bin") extraBins
+    }"))
+  '';
+
+  extraDesktop = pkgs.writeTextFile {
     # theres a special helper for .desktop entries but i'm lazy and this works!
     name = "emacsclientexs.desktop";
     destination = "/share/applications/emacsclientexs.desktop";
@@ -61,13 +70,32 @@ let
       Keywords=Text;Editor;
     '';
   };
-  emacsOverlay = (import sources.emacs-overlay) pkgs pkgs;
-  doom-emacs = let
-    nativeCompEmacs = emacsOverlay.emacsNativeComp.override {
-      withXwidgets = true;
-      withGTK3 = true;
-    };
+  emacsOverlay = (import
+    sources.${if cfg.standalone then "emacs-overlay" else "emacs-overlay-prev"})
+    pkgs pkgs;
 
+  # https://github.com/nix-community/nix-doom-emacs/issues/60#issuecomment-1083630633
+  tangledPrivateDir = pkgs.runCommand "tangled-doom-private" {
+    passAsFile = [ "extraBinsElisp" ];
+    inherit extraBinsElisp;
+  } ''
+    mkdir -p $out
+    cd $out
+    cp -rv ${./config}/. .
+    rm {config,packages}.el
+    ${baseEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle $out
+    mv config.el{,.orig}
+    cat $extraBinsElispPath config.el.orig > config.el
+    rm config.el.orig
+    rm config.org
+  '';
+
+  baseEmacs = if !cfg.standalone then emacsOverlay.emacsNativeComp.override {
+    withXwidgets = true;
+    withGTK3 = true;
+  } else pkgs.emacs-gtk;
+
+  doomEmacs = let
     mkDoom = configPath: emacs:
       pkgs.callPackage sources.nix-doom-emacs {
         doomPrivateDir = configPath;
@@ -93,53 +121,61 @@ let
             };
           });
         };
-        extraConfig = ''
-          (setq exec-path (append exec-path '( ${
-            concatMapStringsSep " " (x: ''"${x}/bin"'') extraBins
-          } )))
-          (setenv "PATH" (concat (getenv "PATH") ":${
-            concatMapStringsSep ":" (x: "${x}/bin") extraBins
-          }"))
-        '';
       };
-    # https://github.com/nix-community/nix-doom-emacs/issues/60#issuecomment-1083630633
-    tangledPrivateDir = pkgs.runCommand "tangled-doom-private" { } ''
-      mkdir -p $out
-      cd $out
-      cp -rv ${./config}/. .
-      rm {config,packages}.el
-      ${nativeCompEmacs}/bin/emacs --batch -Q -l org config.org -f org-babel-tangle $out
-      rm config.org
-    '';
-  in mkDoom tangledPrivateDir nativeCompEmacs;
+  in mkDoom tangledPrivateDir baseEmacs;
 in {
   options.cookie.doom-emacs = {
-    enable = mkEnableOption "Enables the Nixified Doom Emacs";
+    enable = mkEnableOption "Doom Emacs, Nix-managed by default";
+    standalone = mkEnableOption "unmanaged Doom Emacs";
     package = mkOption {
       type = types.package;
-      default = doom-emacs;
+      default = if cfg.standalone then baseEmacs else doomEmacs;
       description = "The emacs package that is being used";
+      readOnly = true;
+    };
+    config = mkOption {
+      type = types.package;
+      default = extraBinsElisp; # HACK, should be abstracted.
+      description = "The active Doom user config";
       readOnly = true;
     };
   };
 
-  config = mkIf cfg.enable {
-    home-manager.users.ckie = { pkgs, ... }: {
-      # Prepare the service.
-      services.emacs = {
-        enable = true;
-        package = doom-emacs;
-        client.enable = true;
-      };
+  config = mkMerge [
+    (mkIf cfg.enable {
+      # Give mu4e what it needs
+      cookie.mail-client.enable = true;
 
-      # Add another .desktop entry
-      home.packages = [
-        doom-emacs
-        extra-desktop
-        pkgs.mu # for CLI usage
-      ];
-    };
-    # Give mu4e what it needs
-    cookie.mail-client.enable = true;
-  };
+      home-manager.users.ckie = { pkgs, ... }: {
+        home.packages = [
+          extraDesktop
+          pkgs.mu # for CLI usage
+        ];
+      };
+    })
+
+    (mkIf (cfg.enable && !cfg.standalone) {
+      home-manager.users.ckie = { pkgs, ... }: {
+        # Prepare the service.
+        services.emacs = {
+          enable = true;
+          package = doomEmacs;
+          client.enable = true;
+        };
+
+        home.packages = [ doomEmacs ];
+      };
+    })
+    (mkIf (cfg.enable && cfg.standalone) {
+      home-manager.users.ckie = { pkgs, ... }: {
+        services.emacs = {
+          enable = true;
+          package = baseEmacs;
+          client.enable = true;
+        };
+        home.packages = [ baseEmacs ];
+        xdg.configFile."doom".source = tangledPrivateDir;
+      };
+    })
+  ];
 }

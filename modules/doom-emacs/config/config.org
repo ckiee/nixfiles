@@ -15,8 +15,8 @@ Sometimes I also use =doom-laserwave=.
 *** font
 The variable pitch font is a nice change from a screen full of monospace text (:
 #+BEGIN_SRC elisp
-(setq doom-font (font-spec :family "JetBrains Mono" :size 13)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 16))
+;; (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
+;;       doom-variable-pitch-font (font-spec :family "Inter" :size 16))
 #+END_SRC
 =SPC t b= makes everything too big:
 #+BEGIN_SRC elisp
@@ -141,7 +141,7 @@ To save the clock history across Emacs sessions, use:
 ** mcf-mode
 minecraft syntax highlighting, defined in =nixfiles/modules/doom-emacs.nix=
 #+BEGIN_SRC elisp :tangle packages.el
-(package! mcf-mode)
+;; (package! mcf-mode)
 #+END_SRC
 ** discord
 discord intergration, manually enabled when I feel like it
