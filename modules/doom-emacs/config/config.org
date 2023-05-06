@@ -90,6 +90,10 @@ mu4e occasionally messes up its database without this, see [[https://github.com/
 #+BEGIN_SRC elisp :tangle packages.el
 (package! mu4e-views)
 #+END_SRC
+***  hide redundant modeline thingy
+#+BEGIN_SRC elisp
+(after! doom-modeline (setq doom-modeline-mu4e nil))
+#+END_SRC
 *** use home-manager email configuration
 see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths properly)
 #+BEGIN_SRC elisp
@@ -261,14 +265,19 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (add-hook 'rust-mode-hook 'flycheck-popup-tip-mode)
 #+END_SRC
-** magit: add some binds
-*** =SPC g o y= for copying the VCS url
+** magit
+*** add some binds
+**** =SPC g o y= for copying the VCS url
 #+BEGIN_SRC elisp
 (map! :leader "g o y" #'bar-to-clipboard)
 #+END_SRC
-*** =SPC g c v= for instant commit fixup
+**** =SPC g c v= for instant commit fixup
 #+BEGIN_SRC elisp
 (map! :leader "g c v" #'magit-commit-instant-fixup)
+#+END_SRC
+*** don't graph in the log by default, it's slow as heck
+#+BEGIN_SRC elisp
+(put 'magit-log-mode 'magit-log-default-arguments '("-n512" "--decorate"))
 #+END_SRC
 
 
