@@ -90,10 +90,22 @@ let
     rm config.org
   '';
 
-  baseEmacs = if !cfg.standalone then emacsOverlay.emacsNativeComp.override {
-    withXwidgets = true;
-    withGTK3 = true;
-  } else pkgs.emacs-gtk;
+  baseEmacs = if !cfg.standalone then
+    emacsOverlay.emacsNativeComp.override {
+      # TODO so jank.. if this works we should copy the whole derivation..
+      harfbuzz = pkgs.harfbuzz.overrideAttrs (prev: rec {
+        version = "7.0.1";
+        src = pkgs.fetchurl {
+          url =
+            "https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz";
+          hash = "sha256-LPTT2PIlAHURmQo2o0GV8NZWLKVt8KiwiFs4KDeUgZk=";
+        };
+      });
+      withXwidgets = true;
+      withGTK3 = true;
+    }
+  else
+    pkgs.emacs-gtk;
 
   doomEmacs = let
     mkDoom = configPath: emacs:

@@ -285,3 +285,10 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (map! :mode emmet-mode :i "TAB" #'+web/indent-or-yas-or-emmet-expand)
 #+END_SRC
+
+** talon integration
+*** display  filename exclusively in window title
+as per [[https://github.com/knausj85/knausj_talon/blob/4243b257fb0294b73d03b4308f6a46f5bbdded2b/apps/emacs/emacs.py#L345-L351][this]]
+#+BEGIN_SRC elisp
+(setq-default frame-title-format '((:eval (buffer-name (window-buffer (minibuffer-selected-window))))))
+#+END_SRC
