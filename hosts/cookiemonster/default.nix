@@ -57,6 +57,8 @@ in {
     home.stateVersion = "22.11";
   };
 
+  services.mongodb.enable = true; # out-of-tree, private project
+
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
   # armv7l-linux for embedded crap
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
