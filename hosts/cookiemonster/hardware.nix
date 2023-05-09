@@ -16,8 +16,15 @@ in {
   boot.initrd.availableKernelModules =
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "ddcci" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8821au ddcci-driver ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "ddcci" # ext. monitor (144hz, LG) brightness control, flimsy..
+    "nct6775" # amd cpu temp monitor on this motherboard (msi B450M gaming plus)
+  ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    rtl8821au
+    ddcci-driver
+  ];
   boot.extraModprobeConfig = ''
     # Enable VHT and USB3 support
     # VHT is a part of 802.11ax
@@ -27,24 +34,23 @@ in {
   boot.initrd.luks.devices."nvmecrypt".device =
     "/dev/disk/by-uuid/491bf5ed-1d5d-48e6-a048-c692ade24d40";
 
-  fileSystems."/" =
-    { device = "none";
-      fsType = "tmpfs";
-    };
- 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1CFB-B38F";
-      fsType = "vfat";
-    };
- 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
-      fsType = "ext4";
-    };
- 
+  fileSystems."/" = {
+    device = "none";
+    fsType = "tmpfs";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1CFB-B38F";
+    fsType = "vfat";
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
+    fsType = "ext4";
+  };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }];
 
   fileSystems."/mnt/games" = {
     device = "/dev/md127";
@@ -55,7 +61,6 @@ in {
     device = "/dev/disk/by-uuid/08f2ac6c-3564-4110-a436-fed882a9f4e8";
     fsType = "ext4";
   };
-
 
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
