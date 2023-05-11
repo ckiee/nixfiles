@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.cookie.imperm;
+let
+  cfg = config.cookie.imperm;
   sources = import ../nix/sources.nix;
 in with lib; {
   options.cookie.imperm = {
@@ -13,7 +14,13 @@ in with lib; {
     # TODO split out into relevant modules, we probably want to make our own options
     # and mkIf-passthrough in here instead of mkIf everywhere.. better introspectability
     environment.persistence."/nix/persist" = {
-      directories = [ "/home" "/var/log" "/var/lib/tailscale" "/var/lib/libvirt" ];
+      directories = [
+        "/home"
+        "/var/log"
+        "/var/lib/tailscale"
+        "/var/lib/libvirt"
+        config.services.mongodb.dbpath
+      ];
       files = [
         "/etc/machine-id"
         "/etc/ssh/ssh_host_rsa_key"
