@@ -46,7 +46,10 @@ in with lib; {
 
     services.fwupd.enable = true;
 
-    boot.initrd.supportedFilesystems = [ "ntfs" "btrfs" ];
+    boot = {
+      initrd.supportedFilesystems = [ "ntfs" "btrfs" ];
+      supportedFilesystems = [ "ntfs" ];
+    };
 
     cookie = {
       # Daemons
