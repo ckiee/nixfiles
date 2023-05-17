@@ -93,6 +93,14 @@ with lib;
 
   networking.hostName = "bokkusu";
 
+  services.postgresql = {
+    # This is usually also managed by stateVersion, but
+    # I'm reimporting all the data so might aswell..
+    package = pkgs.postgresql_14_jit;
+    enableJIT = true;
+    # settings.max_wal_size = "10000"; # should only be enabled for reimporting a LOOOT of data
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
