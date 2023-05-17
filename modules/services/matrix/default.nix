@@ -86,6 +86,14 @@ in with lib; {
       comb.synapse = {
         networkTrusted =
           true; # FIXME: Really really don't like this but the janitor doesn't actually support UNIX sockets unlike what it says..
+        autoCreate = false;
+        initSql = ''
+          CREATE DATABASE "synapse" WITH
+            TEMPLATE template0
+            ENCODING = "UTF8"
+            LC_COLLATE = "C"
+            LC_CTYPE = "C";
+        '';
       };
     };
 

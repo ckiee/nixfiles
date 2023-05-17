@@ -16,8 +16,19 @@ let
       };
       extraSql = mkOption {
         type = types.lines;
-        description = "Extra SQL commands to run every db start";
+        description = "Extra SQL commands to run every DB start";
         default = "";
+      };
+      initSql = mkOption {
+        type = types.lines;
+        description = "Extra SQL commands to run on the first DB start";
+        default = "";
+      };
+      autoCreate = mkOption {
+        type = types.bool;
+        default = true;
+        description =
+          "If enabled, this instructs NixOS to auto-create the database";
       };
     };
   });
@@ -25,6 +36,11 @@ in {
   options.cookie.services.postgres = {
     enable = mkEnableOption "Enables the Postgres database";
 
+    extraSql = mkOption {
+      type = types.lines;
+      description = "Extra SQL commands to run every DB start";
+      default = "";
+    };
     comb = mkOption {
       type = combType;
       description = "postgres user-database combination configuration";
@@ -38,7 +54,8 @@ in {
     services.postgresql = {
       enable = true;
 
-      ensureDatabases = mapAttrsToList (name: value: name) cfg.comb;
+      ensureDatabases = mapAttrsToList (name: value: name)
+        (filterAttrs (name: value: value.autoCreate) cfg.comb);
       ensureUsers = mapAttrsToList (name: value: ({
         inherit name;
         ensurePermissions = { "DATABASE ${name}" = "ALL PRIVILEGES"; };
@@ -51,6 +68,10 @@ in {
           (optionalString value.networkTrusted
             "host ${name} ${name} 127.0.0.1/32 trust")) cfg.comb)}
       '';
+
+      initialScript = pkgs.writeText "ckie-postgres-init.sql"
+        (concatStringsSep "\n"
+          (mapAttrsToList (name: value: value.initSql) cfg.comb));
     };
 
     systemd.services.postgresql.postStart = mkAfter ''
