@@ -13,7 +13,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home-manager.users.ckie = { ... }: {
-      home.packages = [ pkgs.discord element ];
+      home.packages = [ pkgs.discord element pkgs.signal-desktop ];
       cookie.weechat.enable = true; # more or less unused now
     };
 
