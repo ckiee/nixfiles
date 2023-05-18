@@ -11,6 +11,7 @@ in with lib; {
       # helio-workstation # FIXME: is currently borked in nixpkgs
       (bespokesynth.override { enableVST2 = true; })
       musescore3 # 4 is meh
+      MCSoundsExtractorCPP # not upstreaming yet
     ];
 
     home-manager.users.ckie = { config, ... }: {
