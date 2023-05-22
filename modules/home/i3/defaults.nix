@@ -55,8 +55,6 @@
 
   "${cfg.config.modifier}+Shift+c" = "reload";
   "${cfg.config.modifier}+Shift+r" = "restart";
-  "${cfg.config.modifier}+Shift+e" =
-    "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
   "${cfg.config.modifier}+r" = "mode resize";
 }

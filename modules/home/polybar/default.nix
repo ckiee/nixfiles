@@ -75,6 +75,7 @@ in {
         Unit = {
           Description = "Polybar status bar ${screen}";
           PartOf = [ "tray.target" ];
+          After = [ "graphical-session.target" "i3wm.service" ];
           X-Restart-Triggers =
             [ "${config.xdg.configFile."polybar/config.ini".source}" ];
         };
@@ -210,9 +211,11 @@ in {
           label = "%gb_used%/%gb_total%";
         };
 
-        "module/backlight" = {
+        # error: A definition for option `home-manager.users.ckie.services.polybar.config."module/backlight".card' is not of type `string or boolean or signed integer or list of string'. Definition values:
+        #        - In `/home/ckie/git/nixfiles/modules/home/polybar': null
+        "module/backlight" = mkIf (cfg.backlight != null) {
           type = "internal/backlight";
-          card = cfg.backlight or "_unreachable_";
+          card = cfg.backlight;
           enable-scroll = true;
           format = "${icons.sun} <label>";
         };

@@ -15,7 +15,7 @@ in {
     enable = mkEnableOption "Enables the i3 window manager";
   };
 
-  imports = [ ./auxapps.nix ];
+  imports = [ ./auxapps.nix ./as-systemd.nix ];
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       rofi
@@ -47,6 +47,11 @@ in {
     cookie.polyprog.enable = true; # Required for the ytm bind
 
     xsession = {
+      # umm.. nothing here..
+      # (we use PATH to share some things between modules, see
+      # windowManager.i3.config.terminal="st" for example)
+      importedVariables = [ "PATH" "DISPLAY" ];
+
       enable = true;
       windowManager.i3 = {
         enable = true;
@@ -101,6 +106,9 @@ in {
                 "--release ${modifier}+l" = "exec ${locker}";
                 "--release ${modifier}+Shift+s" =
                   ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+                # kill the whole sysd session
+                "${modifier}+Shift+e" =
+                  "exec i3-nagbar -t warning -m 'Do you want to exit the session?' -b 'Yes' 'systemctl --user stop hm-graphical-session.target'";
 
                 # screenshot
                 "--release ${modifier}+End" = screenie.area;
