@@ -56,7 +56,10 @@ in {
       windowManager.i3 = {
         enable = true;
         config = {
-          terminal = "st";
+          # HACK: previously i3 ran in the existing environ of a
+          # login shell, but systemd-ification took that away, so..
+          # uhm.. there :)
+          terminal = "st bash --login";
           gaps = {
             inner = 2;
             outer = 0;

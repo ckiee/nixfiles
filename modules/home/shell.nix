@@ -44,19 +44,19 @@ in with lib; {
             "printf 'xffxfb%c%c%c' $(${pkgs.gnome.zenity}/bin/zenity --color-selection | cut -d'(' -f2 | cut -d')' -f1 | tr ',' ' ') | ${pkgs.picocom}/bin/picocom -qrb 9600 /dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0";
           # there are other helpers in `shell-utils`, elsewhere. TODO consolidate all of them into a busybox-style thing
         };
-        sessionVariables = rec {
-          EDITOR = "vim";
-          VISUAL = EDITOR;
-        };
         # interactive shell only:
         initExtra = ''
           if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-            DISPLAY=:0 which notify-send > /dev/null 2>&1 && notify-send ssh "$SSH_CLIENT connected" &
+            DISPLAY=:0 which notify-send > /dev/null 2>&1 && notify-send ssh "$SSH_CLIENT connected" &> /dev/null &
           fi
 
           PS1="\[\e[36m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\] \w -> "
+
           if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
             PS1="(ssh) $PS1"
+            PS1="$PS1\033]0;(ssh)\w - $0:\u@\h\007" # window title
+          else
+            PS1="$PS1\033]0;\w - $0:\u@\h \007" # window title
           fi
         '';
       };

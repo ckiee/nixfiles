@@ -42,8 +42,12 @@ with builtins;
     MaxFileSec=40day
   '';
 
-  environment.systemPackages = with pkgs;
-    [ vim wget btop ripgrep ]; # More in modules/big.nix. Don't add a lot!
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    btop
+    ripgrep
+  ]; # More in modules/big.nix. Don't add a lot!
 
   cookie = {
     # Daemons
@@ -61,7 +65,11 @@ with builtins;
 
   home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
     # for hmporter support
-    home.sessionVariables.TZ = nixosConfig.time.timeZone;
+    home.sessionVariables = rec {
+      TZ = nixosConfig.time.timeZone;
+      EDITOR = "vim";
+      VISUAL = EDITOR;
+    };
     cookie = {
       shell = {
         enable = true;
