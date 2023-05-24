@@ -52,12 +52,12 @@ in {
     cookie = {
       collections.devel.enable = true;
       qsynth.enable = true;
-      # polybar.backlight = "ddcci10"; unfortunately this is not predictable, sometimes its on 11
+      # polybar.backlight = "ddcci10"; unfortunately this is not predictable,sometimes its on 11
     };
     home.stateVersion = "22.11";
   };
 
-  services.mongodb.enable = true; # out-of-tree, private project
+  # services.mongodb.enable = true; # out-of-tree, private project
 
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
   # armv7l-linux for embedded crap
