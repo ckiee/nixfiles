@@ -54,9 +54,11 @@ in with lib; {
 
           if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
             PS1="(ssh) $PS1"
-            PS1="$PS1\033]0;(ssh)\w - $0:\u@\h\007" # window title
-          else
-            PS1="$PS1\033]0;\w - $0:\u@\h \007" # window title
+            # window title is currently broken with st, maybe switch VTEs..
+            # (it messes up the left key when going back to a change a command)
+            # PS1="$PS1\033]0;(ssh)\w - $0:\u@\h\007" # window title
+          # else
+            # PS1="$PS1\033]0;\w - $0:\u@\h \007" # window title
           fi
         '';
       };
