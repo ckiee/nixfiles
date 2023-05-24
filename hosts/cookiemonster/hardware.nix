@@ -49,8 +49,9 @@ in {
     fsType = "ext4";
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }];
+  # blows things up, I think.
+  # swapDevices =
+  #   [{ device = "/dev/disk/by-uuid/a5b85a35-f98c-4616-bc75-e511001ad05d"; }];
 
   fileSystems."/mnt/games" = {
     device = "/dev/md127";
