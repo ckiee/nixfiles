@@ -15,8 +15,11 @@ in with lib; {
       default-sort-in-reverse-order = true;
       default-sort-order = "mtime";
     };
-    home.packages = with pkgs; [
-      gnome3.nautilus
-    ];
+
+    # ugh.. really need to write that nautilus-with-extensions thing and send it upstream
+    # as per: https://github.com/NixOS/nixpkgs/issues/126074#issuecomment-1025579974
+    home.sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${config.home.homeDirectory}/.nix-profile/lib/nautilus/extensions-4";
+    home.packages = with pkgs; [ gnome3.nautilus nautilus-open-any-terminal ];
+    # ..it still doesn't work. TODO.
   };
 }
