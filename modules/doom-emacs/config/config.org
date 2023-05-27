@@ -170,10 +170,10 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 ** brightscript-mode.el
 its just copy pasted in here. not touching NDE rn.
 #+BEGIN_SRC elisp
-(require 'brightscript-mode)
-(add-to-list 'auto-mode-alist '("\\.brs\\'" . brightscript-mode))
+;(require 'brightscript-mode)
+;(add-to-list 'auto-mode-alist '("\\.brs\\'" . brightscript-mode))
 ; pretend we also know BrighterScript
-(add-to-list 'auto-mode-alist '("\\.bs\\'" . brightscript-mode))
+;(add-to-list 'auto-mode-alist '("\\.bs\\'" . brightscript-mode))
 #+END_SRC
 ** vertico ~ to home keybind
 #+BEGIN_SRC elisp
