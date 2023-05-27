@@ -30,6 +30,9 @@ in with lib; {
       })
     ];
 
+    services.gnome.gnome-keyring.enable =
+      true; # HM also has a module but it cant configure pam, d-bus & co.
+
     home-manager.users.ckie = { pkgs, ... }: {
       home.packages = with pkgs.gnome; [
         file-roller
@@ -41,11 +44,6 @@ in with lib; {
         gnome-screenshot
         evince
       ];
-
-      services.gnome-keyring = {
-        enable = true;
-        components = [ "secrets" ];
-      };
     };
   };
 }
