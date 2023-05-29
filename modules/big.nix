@@ -41,6 +41,7 @@ in with lib; {
       parallel # --citation
       nix-tree # nix what-depends why-depends who-am-i
       picocom # bbaauuddrraattee
+      cp210x-program # program lil usb serial interfaces (: really cool actually..
       x2x # mouse/keyboard, remotely
     ];
 
