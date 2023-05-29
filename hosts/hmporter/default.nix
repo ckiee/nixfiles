@@ -1,7 +1,10 @@
 { config, pkgs, ... }: {
   imports = [ ../.. ];
 
-  home-manager.users.ckie = { ... }: { cookie = { st.enable = true; }; };
+  home-manager.users.ckie = { ... }: {
+    cookie = { st.enable = true; };
+    home.stateVersion = "23.05";
+  };
 
   #### Stub ####
   networking.hostName = "hmporter";

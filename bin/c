@@ -13,7 +13,13 @@ fi
 function gen_secrets {
     $($0 $c_trace eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
 }
-deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
+if [[ -z "${CKIE_DEPLOY_META}" ]]; then
+    deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
+    export CKIE_DEPLOY_META="$deployMeta"
+else
+    deployMeta="$CKIE_DEPLOY_META"
+fi
+
 function morp {
     gen_secrets
     echo morph $@ $show_trace
@@ -65,6 +71,11 @@ elif [ "$1" == "virt" ]; then
         fi
         sleep 0.2
     done
+elif [ "$1" == "hmport" ]; then
+    shift
+    path="$(nix-instantiate deploy/hm-only.nix)"
+    nix copy --to "ssh://$@" --derivation "$path"
+    ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
     morp $action deploy/morph.nix $deployExtra --on "$1"
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
@@ -113,11 +124,6 @@ elif [ "$1" == "farm" ]; then
     echo sending $(wc -l $tmpfile | cut -d' ' -f1) derivations...
     cat "$tmpfile" | xargs nix copy --derivation --substitute-on-destination --to ssh://pansear
     rsync "$tmpfile" pansear:~/aldhy/new-jobs
-elif [ "$1" == "hmport" ]; then
-    shift
-    path="$(nix-instantiate deploy/hm-only.nix)"
-    nix copy --to "ssh://$@" --derivation "$path"
-    ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 elif [ "$1" == "gceup" ]; then
     # majority stolen from //nixpkgs/nixos/maintainers/scripts/gce/create-gce.sh
     BUCKET_NAME="${BUCKET_NAME:-ckie-nixos}"
