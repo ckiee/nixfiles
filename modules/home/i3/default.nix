@@ -28,7 +28,7 @@ in {
       pavucontrol
       audacity
       firefox
-      calibre
+      calibre # ebook reader
       friture # voice shenanigans (:
       # nottetris2
       virt-manager # connect to vms on the net
