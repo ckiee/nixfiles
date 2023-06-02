@@ -38,5 +38,20 @@ in {
       args = "-u matrix-synapse -g matrix-synapse -p 0400,u+D";
       wantedBy = [ "matrix-synapse.service" ];
     };
+
+
+    # this is copied from synapse because this piece of junk[1] also
+    # started taking up too much memory. i hope they fix it.
+    #
+    # [1] a toucher of this codebase says it is awful so i'm taking that as permission
+    #     to call it junk!
+    #
+    systemd.services.matrix-appservice-discord.serviceConfig = {
+      LimitNPROC = 64;
+      LimitNOFILE = 1048576;
+      # It eats a lot of memory.
+      Restart = mkForce "always";
+      RuntimeMaxSec = "1d";
+    };
   };
 }
