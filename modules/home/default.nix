@@ -39,6 +39,7 @@ in {
         ./fmouse
         ./ardour.nix
         ./nix-index.nix
+        ./zathura.nix
       ];
     };
   };

@@ -67,6 +67,7 @@ in with lib; {
         netintent.enable = true;
         fmouse.enable = true;
         ardour.enable = true;
+        zathura.enable = true;
       };
       services.rsibreak.enable = true;
     };
