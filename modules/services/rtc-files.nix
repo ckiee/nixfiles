@@ -47,6 +47,7 @@ in with lib; {
           extraConfig = ''
             # Redirect ckie.dev root url (/) to new FQDN
             rewrite ^/$ $scheme://${cfg.new-fqdn} permanent;
+            charset utf-8;
 
             access_log /var/log/nginx/ckie-files.access.log;
           '';
