@@ -43,6 +43,7 @@ in with lib; {
       picocom # bbaauuddrraattee
       cp210x-program # program lil usb serial interfaces (: really cool actually..
       x2x # mouse/keyboard, remotely
+      cntr # get a shell inside ~any container. great thing but --help is kinda broken.
     ];
 
     services.fwupd.enable = true;
