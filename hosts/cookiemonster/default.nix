@@ -40,6 +40,7 @@ in {
     logiops.enable = true;
     mpd.enableHttp = true;
     devserv.enable = true;
+    lutris.enable = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     state = {
       sshPubkey =
@@ -76,7 +77,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    lutris
     minecraft
     prismlauncher
     # kicad-with-packages3d

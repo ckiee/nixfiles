@@ -38,7 +38,7 @@
     home.stateVersion = "22.11";
   };
 
-  environment.systemPackages = with pkgs; [ zoom-us lutris ];
+  environment.systemPackages = with pkgs; [ zoom-us ];
 
   programs.adb.enable = true;
 

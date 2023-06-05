@@ -60,5 +60,6 @@
     ./wireshark.nix
     ./cnping
     ./eg.nix
+    ./lutris.nix
   ];
 }
