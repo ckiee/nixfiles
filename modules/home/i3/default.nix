@@ -50,7 +50,11 @@ in {
       # umm.. nothing here..
       # (we use PATH to share some things between modules, see
       # windowManager.i3.config.terminal="st" for example)
-      importedVariables = [ "PATH" "DISPLAY" ];
+      importedVariables = [
+        "PATH"
+        "DISPLAY"
+        "NIX_PROFILES" # nixpkgs ardour7 uses this at runtime
+      ];
 
       enable = true;
       windowManager.i3 = {
