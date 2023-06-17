@@ -55,10 +55,10 @@ with lib;
         host = "ckie.dev";
         serviceHost = "matrix.ckie.dev";
       };
-      mcid = {
-        enable = true;
-        host = "mcid.party";
-      };
+      # mcid = {
+      #   enable = true;
+      #   host = "mcid.party";
+      # };
     };
     acme = {
       enable = true;
@@ -81,10 +81,10 @@ with lib;
           wildcard = true;
           provider = "porkbun";
         };
-        "mcid.party" = {
-          provider = "cloudflare";
-          secretId = "acme-dan";
-        };
+        # "mcid.party" = {
+        #   provider = "cloudflare";
+        #   secretId = "acme-dan";
+        # };
       };
     };
   };
