@@ -31,7 +31,10 @@ in {
     };
   };
 
-  imports = [ ./alerting.nix ./blackbox.nix ];
+  imports = [
+    # ./alerting.nix
+    ./blackbox.nix
+  ];
 
   config = mkMerge [
     # {
@@ -41,13 +44,13 @@ in {
     # infinite recursion ^^
 
     (mkIf cfg.enableServer {
-      networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 9090 9093 ]; # prom, alert-manager
+      networking.firewall.interfaces.tailscale0.allowedTCPPorts =
+        [ 9090 9093 ]; # prom, alert-manager
 
       services.prometheus = {
         enable = true;
         globalConfig.scrape_interval = "5s";
         rules = [ (builtins.readFile ./node_rules.yaml) ];
-
 
         alertmanagers = [{
           scheme = "http";
@@ -65,14 +68,14 @@ in {
           in {
             job_name = k;
             static_configs = [{
-              targets = map (host: "${host}:${toString port}")
-                (mapAttrsToList (_: host: "${host.config.networking.hostName}.cknet")
-                  (filterAttrs (_: host:
-                    let
-                      hcfg = host.config.cookie.services.prometheus;
-                      includesThisExporter =
-                        length (intersectLists [ k ] hcfg.exporters) == 1;
-                    in hcfg.enableClient && includesThisExporter) nodes));
+              targets = map (host: "${host}:${toString port}") (mapAttrsToList
+                (_: host: "${host.config.networking.hostName}.cknet")
+                (filterAttrs (_: host:
+                  let
+                    hcfg = host.config.cookie.services.prometheus;
+                    includesThisExporter =
+                      length (intersectLists [ k ] hcfg.exporters) == 1;
+                  in hcfg.enableClient && includesThisExporter) nodes));
             }];
           }) cfg.exporters;
 
