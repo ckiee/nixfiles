@@ -75,6 +75,16 @@ with builtins;
     };
   };
 
+
+  # dont commit this its just for archive team for the reddit fiasco
+  # https://wiki.archiveteam.org/index.php/Running_Archive_Team_Projects_with_Docker
+  virtualisation = {
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
   home-manager.users.ckie.home.stateVersion = "22.05";
 
   # This value determines the NixOS release from which the default
