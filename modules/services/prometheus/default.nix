@@ -31,7 +31,7 @@ in {
     };
   };
 
-  # imports = [ ./alerting.nix ];
+  imports = [ ./alerting.nix ./blackbox.nix ];
 
   config = mkMerge [
     # {
