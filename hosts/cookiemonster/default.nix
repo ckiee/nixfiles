@@ -35,7 +35,7 @@ in {
     wine.enable = true;
     smartd.enable = true;
     steam.enable = true;
-    libvirtd.enable = true;
+    libvirtd.enable = false;
     hostapd.enable = true;
     logiops.enable = true;
     mpd.enableHttp = true;
