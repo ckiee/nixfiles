@@ -10,6 +10,11 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home-manager.users.ckie = { pkgs, ... }: {
+      programs.thunderbird = {
+        enable = true; # experimenting, tho we usually use mu4e.
+        profiles.ckie.isDefault = true;
+      };
+
       accounts.email = {
         maildirBasePath = maildir;
         accounts = let
@@ -34,7 +39,7 @@ in with lib; {
               aliases = [ address ];
               passwordCommand =
                 "${pkgs.coreutils}/bin/cat ~/Sync/.email-pw-ckiedev";
-              realName = "${name}";
+              realName = "ckie";
               primary = true;
               smtp = {
                 host = "ckie.dev";
@@ -47,11 +52,14 @@ in with lib; {
                 port = 993;
                 tls.enable = true;
               };
+              thunderbird = {
+                enable = true;
+                profiles = [ "ckie" ];
+              };
             })
           ];
           # IRL gmail
-          irlgmail =
-            mkMerge [ base ((import ../secrets/irlgmail.nix) pkgs) ];
+          irlgmail = mkMerge [ base ((import ../secrets/irlgmail.nix) pkgs) ];
         };
       };
 
