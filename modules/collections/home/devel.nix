@@ -32,6 +32,7 @@ in with lib; {
       mercurialFull
       # jetbrains.idea-community # way too good to use emacs for java. TODO unbreak
       nixpkgs-review
+      logisim-evolution
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
