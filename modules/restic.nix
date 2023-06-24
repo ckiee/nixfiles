@@ -41,13 +41,17 @@ in {
 
   config = mkIf (cfg.enable && ((length cfg.paths) > 0)) {
     cookie.secrets = {
-      gdrive-password = {
+      restic-password = {
         # FIXME: this is also really ugly. we're just backing up more personal things
-        # on cookiemonster so we don't want to use the same key as the server machines.
-        source = if config.networking.hostName == "cookiemonster" then
-          "./secrets/gdrive-password-cookiemonster"
+        # on these machines so we don't want to use the same key as the other ones.
+        source = if elem config.networking.hostName [
+          "cookiemonster"
+          "thonkcookie"
+          # pansear is implied
+        ] then
+          "./secrets/restic-password-desktop"
         else
-          "./secrets/gdrive-password";
+          "./secrets/restic-password-server";
         owner = "root";
         group = "root";
         permissions = "0400";
@@ -61,9 +65,9 @@ in {
     };
 
     services.restic.backups = rec {
-      gdrive = {
+      main = {
         initialize = true;
-        passwordFile = sec.gdrive-password.dest;
+        passwordFile = sec.restic-password.dest;
         inherit (cfg) paths;
         pruneOpts = [
           "--keep-last 5"
@@ -83,29 +87,29 @@ in {
         };
 
         rcloneConfigFile = sec.rclone-config.dest;
-        repository = "rclone:gdrive:${host}-fs";
+        repository = "rclone:main:${host}-fs";
         # timerConfig defaults to daily
         # user        defaults to root
       };
 
-      gdrivePostgres = mkIf cfg.enablePostgres (gdrive // {
+      mainPostgres = mkIf cfg.enablePostgres (main // {
         # Base this off the main job but provide a dummy path
         paths = [ "/this/should/not/exist" ];
-        repository = "rclone:gdrive:${host}-postgres";
+        repository = "rclone:main:${host}-postgres";
       });
     };
 
-    systemd.services.restic-backups-gdrive = {
+    systemd.services.restic-backups-main = {
       preStart = cfg.preJob;
       postStart = cfg.postJob;
     };
 
     # Override the backup command this service runs to instead dump Postgres
-    systemd.services.restic-backups-gdrivePostgres.serviceConfig.ExecStart =
+    systemd.services.restic-backups-mainPostgres.serviceConfig.ExecStart =
       mkIf cfg.enablePostgres (mkForce [
-        "${(pkgs.writeShellScript "restic-backups-gdrivePostgres-ExecStart" ''
+        "${(pkgs.writeShellScript "restic-backups-mainPostgres-ExecStart" ''
            set -o pipefail
-          ${config.services.postgresql.package}/bin/pg_dumpall -U postgres | ${pkgs.restic}/bin/restic backup --cache-dir=%C/restic-backups-gdrivePostgres --stdin --stdin-filename postgres.sql
+          ${config.services.postgresql.package}/bin/pg_dumpall -U postgres | ${pkgs.restic}/bin/restic backup --cache-dir=%C/restic-backups-mainPostgres --stdin --stdin-filename postgres.sql
         '')}"
       ]);
 
@@ -114,8 +118,8 @@ in {
         . ${pkgs.makeWrapper}/nix-support/setup-hook
         makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
           --set RCLONE_CONFIG /run/keys/rclone-config \
-          --set RESTIC_PASSWORD_FILE /run/keys/gdrive-password \
-          --set RESTIC_REPOSITORY rclone:gdrive:${host}-fs
+          --set RESTIC_PASSWORD_FILE /run/keys/restic-password \
+          --set RESTIC_REPOSITORY rclone:main:${host}-fs
       '');
   };
 }
