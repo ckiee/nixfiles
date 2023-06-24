@@ -71,10 +71,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "daiko",
-        "rev": "c8c6dc46e08a8300dc7e00265366746d5ae9012f",
-        "sha256": "1m7c94w6f749f95kh0q75pa6x8a3c61lvn8p0hgzmbk0ik261bq3",
+        "rev": "97764a0b9d39c8ed02414c0b619467638fbfc51c",
+        "sha256": "0787gpcgaamlqdpbrvj814vjvx5g016saqw08ni3niaxkjpb22cd",
         "type": "tarball",
-        "url": "https://github.com/ckiee/daiko/archive/c8c6dc46e08a8300dc7e00265366746d5ae9012f.tar.gz",
+        "url": "https://github.com/ckiee/daiko/archive/97764a0b9d39c8ed02414c0b619467638fbfc51c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "desk-fcobs": {
