@@ -5,6 +5,7 @@ choice=$(
 shower
 wake
 sleep
+catdemand
 EOF
 )
 dateTime=$(rofi -dmenu -filter "$(date -Iseconds)")
