@@ -112,7 +112,7 @@ elif [ "$1" == "eval" ]; then
     elif [ "$1" == "build" ]; then
         shift
         mkfile $@
-        nix-build $show_trace $file
+        nix-build $show_trace $file --log-format internal-json -v |& nom --json
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
