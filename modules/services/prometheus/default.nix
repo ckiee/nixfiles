@@ -49,6 +49,8 @@ in {
 
       services.prometheus = {
         enable = true;
+        # I want to see longer trends in hardware reliability, since that's a problem now unfortunately..
+        retentionTime = "60d";
         globalConfig.scrape_interval = "5s";
         rules = [ (builtins.readFile ./node_rules.yaml) ];
 
