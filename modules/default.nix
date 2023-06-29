@@ -24,7 +24,7 @@
     ./desktop.nix
     ./systemd-boot.nix
     ./binary-caches.nix
-    ./qt5.nix
+    ./qt.nix
     ./wine.nix
     ./nix.nix
     ./cookie-overlay.nix

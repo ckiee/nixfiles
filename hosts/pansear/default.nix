@@ -18,7 +18,7 @@ with builtins;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   # We don't have that much RAM..
-  boot.tmpOnTmpfs = mkForce false;
+  boot.tmp.useTmpfs = mkForce false;
 
   cookie = {
     state = {

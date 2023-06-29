@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.cookie.qt5;
+let cfg = config.cookie.qt;
 in with lib; {
-  options.cookie.qt5 = { enable = mkEnableOption "Enables Qt5 theming"; };
+  options.cookie.qt = { enable = mkEnableOption "Enables Qt theming"; };
 
   config = mkIf cfg.enable {
-    qt5 = {
+    qt = {
       enable = true;
       style = "adwaita-dark";
       platformTheme = "gnome";

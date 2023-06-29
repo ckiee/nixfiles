@@ -13,10 +13,12 @@ in with lib; {
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
-      forwardX11 = true;
-      permitRootLogin = mkForce
-        "no"; # for the "install" host this is enabled, so we force it away
-      passwordAuthentication = false;
+      settings = {
+        X11Forwarding = true;
+        PermitRootLogin = mkForce
+          "no"; # for the "install" host this is enabled, so we force it away
+        PasswordAuthentication = false;
+      };
       ports = mkIf cfg.useAlternatePort (mkForce [ 2222 ]);
       # Listen on the usual port on tailscale
       listenAddresses = mkIf cfg.useAlternatePort [

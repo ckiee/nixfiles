@@ -16,8 +16,8 @@ with builtins;
   time.timeZone = "Israel";
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.cleanTmpDir = true;
-  boot.tmpOnTmpfs = true;
+  boot.tmp.cleanOnBoot = true;
+  boot.tmp.useTmpfs = true;
 
   networking.networkmanager.enable = true;
 
