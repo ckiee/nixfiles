@@ -4,9 +4,14 @@ export CKIE_CONFIG_REV="$(git rev-parse HEAD)"
 
 show_trace=""
 c_trace=""
+nix_build_huge=""
 if [ "$1" == "trace" ]; then
     show_trace="--show-trace"
     c_trace="trace"
+    shift
+fi
+if [ "$1" == "huge" ]; then
+    nix_build_huge="--option max-jobs 1"
     shift
 fi
 
@@ -112,7 +117,7 @@ elif [ "$1" == "eval" ]; then
     elif [ "$1" == "build" ]; then
         shift
         mkfile $@
-        nix-build $show_trace $file --log-format internal-json -v |& nom --json
+        nix-build $show_trace $nix_build_huge $file --log-format internal-json -v |& nom --json
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
