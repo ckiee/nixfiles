@@ -28,8 +28,19 @@ in with lib; {
     };
 
     systemd.services.heisenbridge.before = singleton "matrix-synapse.service";
+
+    # muhmuhmhum this is duplicated with the discord appservice too. and it
+    # lets synapse access whatever else heisen stores there, but whatev.
+    cookie.bindfs.matrix-appservice--heisenbridge = {
+      source = "/var/lib/heisenbridge";
+      dest = "/var/lib/matrix-synapse/heisen";
+      overlay = false;
+      args = "-u matrix-synapse -g matrix-synapse -p 0400,u+D";
+      wantedBy = [ "matrix-synapse.service" ];
+    };
+
     services.matrix-synapse.settings.app_service_config_files =
-      [ "/var/lib/heisenbridge/registration.yml" ];
+      [ "/var/lib/matrix-synapse/heisen/registration.yml" ];
 
   };
 }
