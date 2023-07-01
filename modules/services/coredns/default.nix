@@ -89,7 +89,12 @@ in {
         '';
       };
 
-      # TODO: make sysd only mark it as started once its . Actually listening.
+      # coredns is stopped early and started late in the script, so for now,
+      # let's try to not restart it *at all*.
+      #
+      # TODO: it may also suffer from maybe-lacking systemd-notify (idk), but that's not as pressing
+      systemd.services.coredns.restartIfChanged = false;
+
       services.coredns = {
         enable = true;
 
