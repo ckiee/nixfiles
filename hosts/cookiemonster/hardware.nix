@@ -31,6 +31,11 @@ in {
     options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
   '';
 
+  # FIXME: These Ryzen 5 3600 cores are just Dead after some years.
+  # Inexplicably, dead. Sometimes cpu0 is also dead, but we can't disable it.
+  system.activationScripts.offlineRyzenCores =
+    "for x in /sys/devices/system/cpu/cpu{3,10,4,9}/online; do echo 0 > $x; done";
+
   boot.initrd.luks.devices."nvmecrypt".device =
     "/dev/disk/by-uuid/491bf5ed-1d5d-48e6-a048-c692ade24d40";
 
