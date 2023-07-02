@@ -3,6 +3,7 @@
 with lib;
 let
   cfg = config.cookie.doom-emacs;
+  mu = pkgs.callPackage ./mu.nix {};
   extraBins = with pkgs; [
     ripgrep # for +default/search-project
     jq # JSON
@@ -111,7 +112,7 @@ let
     mkDoom = configPath: emacs:
       pkgs.callPackage sources.nix-doom-emacs {
         doomPrivateDir = configPath;
-        extraPackages = epkgs: [ pkgs.mu ];
+        extraPackages = epkgs: [ mu ];
         bundledPackages = false;
         emacsPackages = emacsOverlay.emacsPackagesFor emacs;
         emacsPackagesOverlay = prev: final: {
@@ -161,7 +162,7 @@ in {
       home-manager.users.ckie = { pkgs, ... }: {
         home.packages = [
           extraDesktop
-          pkgs.mu # for CLI usage
+          mu # for CLI usage
         ];
       };
     })
