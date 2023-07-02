@@ -44,10 +44,6 @@ with builtins;
         server = true;
         host = "print.atori";
       };
-      aldhy = {
-        enable = true;
-        host = "aldhy.tailnet.ckie.dev";
-      };
       nix-serve = {
         enable = true;
         host = "cache.tailnet.ckie.dev";
@@ -61,12 +57,11 @@ with builtins;
     tailnet-certs.client = {
       enable = true;
       hosts = [
-        "aldhy.tailnet.ckie.dev"
         "cache.tailnet.ckie.dev"
         "daiko.tailnet.ckie.dev"
         config.cookie.services.printing.tlsHost
       ];
-      forward = [ "aldhy.tailnet.ckie.dev" "daiko.tailnet.ckie.dev" ];
+      forward = [ "daiko.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
     sound = {
