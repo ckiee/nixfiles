@@ -86,7 +86,7 @@ in {
             screenie = let
               s = a:
                 "exec " + (pkgs.writeShellScript "i3-screenshot-maim-wrapper"
-                  "${pkgs.maim}/bin/maim ${a} | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png");
+                  "${pkgs.maim}/bin/maim --hidecursor ${a} | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png");
             in {
               area = s "-s";
               window = s "-i $(${pkgs.xdotool}/bin/xdotool getactivewindow)";
