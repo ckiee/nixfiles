@@ -61,5 +61,6 @@
     ./cnping
     ./eg.nix
     ./lutris.nix
+    ./ledc.nix
   ];
 }

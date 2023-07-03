@@ -41,6 +41,7 @@ in {
     mpd.enableHttp = true;
     devserv.enable = true;
     lutris.enable = true;
+    ledc.enable = true;
     wol.macAddress = "50:3e:aa:05:2a:90";
     state = {
       sshPubkey =
@@ -80,7 +81,6 @@ in {
     minecraft
     prismlauncher
     # kicad-with-packages3d
-    cookie.ledc
     solvespace
     heroic
     #

@@ -28,6 +28,7 @@ with lib;
     gnome.enable = true;
     qt.enable = true;
     logiops.enable = true;
+    ledc.enable = true;
     services = {
       avahi.enable = true;
       tailscale.enable = false;
@@ -52,11 +53,6 @@ with lib;
 
   services.getty.autologinUser = mkForce "ckie";
   users.users.ckie.hashedPassword = mkForce "";
-
-  environment.systemPackages = with pkgs;
-    [
-      cookie.ledc # for cookiemonster. should be a module by this point maybe?
-    ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
