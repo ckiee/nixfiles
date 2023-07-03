@@ -187,6 +187,7 @@ in {
               { class = "^Element"; }
             ];
             "4" = [{ class = "^Emacs$"; }];
+            "5" = [{ class = "ledc"; }];
             "${musicWorkspace}" = [{ class = "^cantata"; }];
           };
           fonts = {
