@@ -16,7 +16,7 @@ if [ "$1" == "huge" ]; then
 fi
 
 function gen_secrets {
-    $($0 $c_trace eval build 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
+    $($0 $c_trace eval build direct 'import ./deploy/secrets.nix { inherit uncheckedNodes; }')
 }
 if [[ -z "${CKIE_DEPLOY_META}" ]]; then
     deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
@@ -116,8 +116,14 @@ elif [ "$1" == "eval" ]; then
         nix-eval-jobs $show_trace --workers "$workers" $file
     elif [ "$1" == "build" ]; then
         shift
-        mkfile $@
-        nix-build $show_trace $nix_build_huge $file --log-format internal-json -v |& nom --json
+        if [ "$1" == "direct" ]; then
+            shift
+            mkfile $@
+            nix-build $show_trace $nix_build_huge $file
+        else
+            mkfile $@
+            nix-build $show_trace $nix_build_huge $file --log-format internal-json -v |& nom --json
+        fi
     else
         mkfile $@
         nix-instantiate $show_trace --json --strict --eval $file | jq .
