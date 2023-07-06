@@ -44,6 +44,7 @@ in with lib; {
       cp210x-program # program lil usb serial interfaces (: really cool actually..
       x2x # mouse/keyboard, remotely
       cntr # get a shell inside ~any container. great thing but --help is kinda broken.
+      nix-output-monitor # see what da nix builds r up to
     ];
 
     services.fwupd.enable = true;
