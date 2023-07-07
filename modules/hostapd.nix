@@ -32,13 +32,20 @@ let
     ieee80211w=1
     okc=0
 
-    require_ht=1
-    require_vht=1
-    vht_oper_chwidth=1
-    channel=36
-    vht_oper_centr_freq_seg0_idx=42
+    # announce beacon every .5s, we're in devel, it's convenient
+    beacon_int=500
 
-    vht_capab=[MAX-MPDU-11454][SHORT-GI-80][TX-STBC-12][RX-STBC-1][SU-BEAMFORMEE][HTC-VHT]
+    require_ht=1
+    channel=36
+    ${
+    /* require_vht=0
+       vht_oper_chwidth=1
+       vht_oper_centr_freq_seg0_idx=42
+       vht_capab=[MAX-MPDU-11454][SHORT-GI-80][TX-STBC-12][RX-STBC-1][SU-BEAMFORMEE][HTC-VHT]
+    */
+    # they broke VHT in the kernel driver
+    ""}
+
     ht_capab=[HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40][TX-STBC-12][RX-STBC-12]
   '';
   escapedInterface = utils.escapeSystemdPath iface;
