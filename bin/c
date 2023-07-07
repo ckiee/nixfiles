@@ -168,6 +168,8 @@ elif [ "$1" == "gceup" ]; then
 fi
 elif [ "$1" == "secret" ]; then
     gen_secrets
+elif [ "$1" == "repl" ]; then
+    nix repl --file deploy/repl.nix
 else # TODO: it'd be cool if there was a command to identify how old nixos vers are on each host
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
 fi
