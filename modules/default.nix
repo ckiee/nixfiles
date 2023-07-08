@@ -62,5 +62,6 @@
     ./eg.nix
     ./lutris.nix
     ./ledc.nix
+    ./systemd-initrd.nix
   ];
 }

@@ -34,6 +34,8 @@ in pkgs.mkShell {
     wireguard-tools
     nix-output-monitor
     google-cloud-sdk
+    openssh # first use: sk gen for sd-initrd remote unlock
+    coreutils
   ];
 
   shellHook = ''
