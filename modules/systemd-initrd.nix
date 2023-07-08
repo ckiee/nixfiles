@@ -21,17 +21,23 @@ in with lib; {
     boot.initrd = {
       enable = true;
       systemd.enable = true;
-      network.ssh = {
+      # since size probably isn't a problem, let's pack every
+      # network driver one of our machines could need:
+      availableKernelModules = [ "r8169" ];
+      systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
+      network = {
         enable = true;
-        port = 22;
-        authorizedKeys = [
-          (readFile (../secrets + "/systemd-initrd-ssh-host-${hostname}.pub"))
-        ];
-        # no idea what this means, copied from the nixos test:
-        # > Terrible hack so it works with useBootLoader
-        # > hostKeys =
-        # >   [{ outPath = "${./initrd-network-ssh/ssh_host_ed25519_key}"; }];
-        hostKeys = [ config.cookie.secrets.systemd-initrd-ssh-host-key.dest ];
+
+        ssh = {
+          enable = true;
+          port = 22;
+          authorizedKeys = [ (readFile ../deploy/id_ed25519.pub) ];
+          # no idea what this means, copied from the nixos test:
+          # > Terrible hack so it works with useBootLoader
+          # > hostKeys =
+          # >   [{ outPath = "${./initrd-network-ssh/ssh_host_ed25519_key}"; }];
+          hostKeys = [ config.cookie.secrets.systemd-initrd-ssh-host-key.dest ];
+        };
       };
     };
   };

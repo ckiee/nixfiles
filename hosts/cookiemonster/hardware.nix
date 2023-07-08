@@ -52,6 +52,11 @@ in {
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
     fsType = "ext4";
+    # give an hour to unlock before timing out and
+    # entering emergency mode, due to systemd flaws. (even if we do: systemctl default)
+    #
+    # https://matrix.to/#/!kjdutkOsheZdjqYmqp:nixos.org/$8xMdHFvulZ7LgR2SnOwMlCoqd9BdsZGLD4RdajISVWI?via=nixos.org&via=matrix.org&via=nixos.dev
+    options = [ "x-systemd.device-timeout=3600" ];
   };
 
   # blows things up, I think.
