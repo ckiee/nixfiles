@@ -27,6 +27,7 @@ in with lib; {
       systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
       network = {
         enable = true;
+        flushBeforeStage2 = true; # we get multiple local ipv4's which confuse chromium
 
         ssh = {
           enable = true;
