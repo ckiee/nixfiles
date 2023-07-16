@@ -1,3 +1,9 @@
+# hey! are you here to debug this?
+#     Jul 14 18:53:31 pansear nginx[1338328]: 2023/07/14 18:53:31
+#     [crit] 1338328#1338328: *4166 open() "/tmp/nginx_client_body/0000000014" failed (2: No such file or directory), client: 192.168.0.29, server: print.atori, request: "POST /printers/RawDeskjet HTTP/1.1", host: "print.atori"
+# if so, go here:
+#     https://matrix.to/#/!KqkRjyTEzAGRiZFBYT:nixos.org/$hQsxz760br1mmnf9GlINF0c6OdWTd37y-cgXY4k9bho?via=nixos.org&via=matrix.org&via=tchncs.de
+#
 { config, lib, pkgs, ... }:
 
 let
