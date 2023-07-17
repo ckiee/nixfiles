@@ -72,7 +72,7 @@ with builtins; {
       fqdn = "bokkusu.ckie.dev";
       domains = [ "ckie.dev" ];
 
-      certificateScheme = 1; # Manually specify certificate paths
+      certificateScheme = "manual"; # Manually specify certificate paths
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
       keyFile = "/var/lib/acme/${cfg.certFqdn}/key.pem";
 
