@@ -103,6 +103,14 @@ in {
                 "${modifier}+F3" = "${pam} --increase 5";
                 "${modifier}+F4" = ''exec "${mpc} next"'';
                 "${modifier}+t" = ''exec "${mpc} toggle"'';
+                # These two XF86Audio* ones are used by some bluetooth headphones,
+                # including our WH-1000XM4's which manage to get forwarded by
+                # x2x to cookiemonster, even when they're connected to thonkcookie.
+                #
+                # Scary.
+                "XF86AudioPlay" = ''exec "${mpc} play"'';
+                "XF86AudioPause" = ''exec "${mpc} pause"'';
+                #
                 "${modifier}+F5" =
                   ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
                 "${modifier}+F6" =
