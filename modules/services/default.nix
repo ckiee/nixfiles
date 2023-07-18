@@ -37,6 +37,7 @@
     ./elastic
     ./go-neb.nix
     ./heisenbridge
+    ./akkoma-test.nix
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
