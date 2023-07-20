@@ -66,7 +66,7 @@ with builtins;
   home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
     # for hmporter support
     home.sessionVariables = rec {
-      TZ = nixosConfig.time.timeZone;
+      TZ = let tz = nixosConfig.time.timeZone; in if tz == null then "" else tz;
       EDITOR = "vim";
       VISUAL = EDITOR;
     };

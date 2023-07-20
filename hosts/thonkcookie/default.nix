@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+with lib;
 {
   imports = [ ./hardware.nix ./powersave.nix ../.. ];
 
   networking.hostName = "thonkcookie";
+
+  time.timeZone = mkForce null;
 
   cookie = {
     desktop = {
