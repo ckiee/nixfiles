@@ -117,6 +117,8 @@ in {
                   ''exec "${pkgs.brightnessctl}/bin/brightnessctl set +5%"'';
                 # old i3 defaults
                 "${modifier}+Shift+f" = "floating toggle";
+                # new i3 native func bind. https://i3wm.org/docs/userguide.html#_sticky_floating_windows
+                "${modifier}+Shift+v" = "sticky toggle";
                 # lock/suspend
                 "--release ${modifier}+l" = "exec ${locker}";
                 "--release ${modifier}+Shift+s" =
