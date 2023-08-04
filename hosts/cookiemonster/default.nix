@@ -95,6 +95,8 @@ in {
     yabridgectl
     #
     carla
+    # mx master
+    solaar
   ];
 
   services.usbmuxd.enable = true;
