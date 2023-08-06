@@ -12,9 +12,24 @@ in with lib; {
       (bespokesynth.override { enableVST2 = true; })
       musescore3 # 4 is meh
       MCSoundsExtractorCPP # not upstreaming yet
+
+      # TODO: this should really be merged with home/ardour.nix into
+      # a /modules/music/* megamodule like matrix or prom
+      surge
+      surge-XT
+
+      lsp-plugins.out # very noisy plugin set in the list
+      zita-at1
+      zyn-fusion
+      qsampler
+      linuxsampler
+      guitarix
+      calf
+      cadence
     ];
 
     home-manager.users.ckie = { config, ... }: {
+      # Map workstation settings & project files to Syncthing
       home.file."Documents/BespokeSynth".source =
         (config.lib.file.mkOutOfStoreSymlink
           "${config.home.homeDirectory}/Sync/BespokeSynth");

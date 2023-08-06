@@ -10,10 +10,10 @@ in with lib; {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       ardour
-      # TODO: split out into another module
-      surge
-      surge-XT
     ];
+    # TODO:
+    # <Option name="plugin-path-vst3" value="/home/ckie/.nix-profile/lib/vst3:/run/current-system/sw/lib/vst3:/etc/profiles/per-user/ckie/lib/vst3:/home/ckie/.vst3"/>
+    # where value is set to getenv("VST3_PATH")
     home.activation.ardourConfig = let rg = getBin pkgs.ripgrep;
     in hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ -e ~/.config/ardour7/config ]; then
