@@ -12,6 +12,7 @@ let
       # exemptions from the block lists
       "0.0.0.0 click.redditmail.com"
       "0.0.0.0 s.click.aliexpress.com"
+      "0.0.0.0 shareasale.com"
     ])) (splitString "\n" extHostsRaw)));
   baseHosts = pkgs.writeTextFile {
     name = "coredns-hosts-ckie";
