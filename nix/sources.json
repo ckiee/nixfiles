@@ -83,10 +83,10 @@
         "homepage": "",
         "owner": "stevenblack",
         "repo": "hosts",
-        "rev": "cbbafd2885d91a449c161a042dd708ec87ba5cfd",
-        "sha256": "1p8vq7pc1wpfl29hgjgxzn4q7yw4f473ff31wqb3c764jjl1sh92",
+        "rev": "86956052240f198dad3d3a9b74b9c3a4e0f71340",
+        "sha256": "11qygq2qdyk37rddsq355b072ssj8caq2is1icmsnnsbn99ygnjn",
         "type": "tarball",
-        "url": "https://github.com/stevenblack/hosts/archive/cbbafd2885d91a449c161a042dd708ec87ba5cfd.tar.gz",
+        "url": "https://github.com/stevenblack/hosts/archive/86956052240f198dad3d3a9b74b9c3a4e0f71340.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
