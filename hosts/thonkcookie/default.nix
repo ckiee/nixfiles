@@ -14,10 +14,6 @@ with lib;
       monitors.primary = "eDP-1";
       laptop = true;
     };
-    sound = {
-      pulse.enable = true;
-      pipewire.enable = false;
-    };
     services = {
       syncthing = {
         enable = true;
