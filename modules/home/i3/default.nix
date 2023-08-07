@@ -43,6 +43,9 @@ in {
       easytag # too bad you can't tag easytag with easytag.. ID3 everywhere?
       screenkey # show the keyboard keys on the ~~keyboard~~screen
       linthesia # musicy music play piano
+      chromium # sucks, ik, but need it sometimes..
+      x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
+      tigervnc # using it for the client, vncviewer
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
