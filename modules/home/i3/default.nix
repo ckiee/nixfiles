@@ -27,7 +27,7 @@ in {
       arandr
       pavucontrol
       audacity
-      firefox
+      (firefox.override { cfg.speechSynthesisSupport = true; })
       calibre # ebook reader
       friture # voice shenanigans (:
       # nottetris2
