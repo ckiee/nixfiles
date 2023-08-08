@@ -44,6 +44,9 @@ in with lib; {
         "audio/x-wav" = [ mpv ];
         "video/quicktime" = [ mpv ];
         "inode/directory" = [ nautilus ]; # folders!
+        "application/vnd.mozilla.xul+xml" = [ firefox ];
+        "x-scheme-handler/http" = [ firefox ];
+        "x-scheme-handler/https" = [ firefox ];
       };
     };
 
