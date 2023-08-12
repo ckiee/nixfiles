@@ -103,23 +103,6 @@ in {
   programs.droidcam.enable = true;
   programs.fuse.userAllowOther = true;
 
-  # librespot --backend pipe -P | ffmpeg -debug 0 -re -i pipe:0 -acodec libmp3lame -ab 32k -ac 1 -content_type audio/mpeg -f mp3 icecast://source:hackme@localhost:4142/meow
-  services.icecast = {
-    enable = true;
-    hostname = "cookiemonster-dev.tailnet.ckie.dev";
-    listen.port = 4142;
-    admin = {
-      user = "meow";
-      password = "meower";
-    };
-    extraConf = ''
-      <authentication>
-        <source-password>hackme</source-password>
-      </authentication>
-    '';
-    #nginx         proxyWebsockets = true;
-  };
-
   virtualisation = {
     spiceUSBRedirection.enable = true;
     # podman =
