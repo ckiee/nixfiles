@@ -11,7 +11,18 @@ in with lib; {
   config = mkIf cfg.enable {
     services = {
       timesyncd.enable = false;
-      chrony.enable = true;
+      chrony = {
+        enable = true;
+        extraFlags = [ "-r" "-s" ];
+        extraConfig = ''
+          # https://wiki.archlinux.org/title/Chrony#Example:_intermittently_running_desktops
+          dumponexit
+          dumpdir /var/lib/chrony
+          rtcfile /var/lib/chrony/rtc
+          #
+          makestep 0.1 3
+        '';
+      };
     };
   };
 }
