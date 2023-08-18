@@ -11,7 +11,7 @@ let
     alert = "#ffe261";
     bg-lighter = "#5f5f5f";
     bg-light = "#27212e";
-    bg-dark = "#e61b17";
+    bg-dark = "#171717";
     black = "#000000";
   };
   base = {
