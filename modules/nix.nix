@@ -37,7 +37,10 @@ in with lib; {
           # also done in ~/git/nixpkgs/nixos/modules/installer/cd-dvd/channel.nix
           # for the installer host (which is flashed onto a usb flash drive)
           # ..so we have to lower priority for this:
-          path = mkDefault "${lib.cleanSource sources.nixpkgs}";
+          path = mkDefault (if isStorePath sources.nixpkgs.outPath then
+            "${lib.cleanSource sources.nixpkgs}"
+          else
+            toString sources.nixpkgs.outPath);
         };
       };
     };
