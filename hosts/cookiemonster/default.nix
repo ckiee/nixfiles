@@ -45,6 +45,7 @@ in {
     lutris.enable = true;
     ledc.enable = true;
     systemd-initrd.enable = true;
+    rkvm.role = "rx";
     wol.macAddress = "50:3e:aa:05:2a:90";
     state = {
       sshPubkey =

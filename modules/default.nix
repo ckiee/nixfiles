@@ -63,5 +63,6 @@
     ./lutris.nix
     ./ledc.nix
     ./systemd-initrd.nix
+    ./rkvm.nix
   ];
 }

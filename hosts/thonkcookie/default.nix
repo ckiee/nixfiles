@@ -26,6 +26,7 @@ with lib;
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
     smartd.enable = true;
+    rkvm.role = "tx";
     steam.enable = true;
     state = {
       sshPubkey =
