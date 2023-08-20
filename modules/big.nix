@@ -46,6 +46,7 @@ in with lib; {
       cntr # get a shell inside ~any container. great thing but --help is kinda broken.
       nix-output-monitor # see what da nix builds r up to
       mommy #  mommy's here to support you, in any shell, on any system~ ❤️
+      imagemagick # image swiss army knife, incls $out/bin/convert
     ];
 
     services.fwupd.enable = true;
