@@ -21,7 +21,7 @@ with lib;
           "IE7OX5L-IH67GHS-5DDDGDY-TYHLYED-G44LTPX-YWQEQQK-6AX6OYJ-SRRWMA7";
       };
       printing.enable = true;
-      akkoma-test.enable = true;
+      # akkoma-test.enable = true;
     };
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
