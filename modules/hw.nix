@@ -28,9 +28,9 @@ in with lib; {
         EndSection
       '');
 
-      services.logind.extraConfig = ''
-        HandlePowerKey=ignore
-      '';
+      # services.logind.extraConfig = ''
+      #   HandlePowerKey=ignore
+      # '';
     })
     (mkIf cfg.t480s.undervolt {
       services.throttled = {
