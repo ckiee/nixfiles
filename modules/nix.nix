@@ -38,7 +38,7 @@ in with lib; {
           # for the installer host (which is flashed onto a usb flash drive)
           # ..so we have to lower priority for this:
           path = mkDefault (if isStorePath sources.nixpkgs.outPath then
-            "${lib.cleanSource sources.nixpkgs}"
+            "${builtins.trace "flake registry cleanSource nixpkgs..." (lib.cleanSource (builtins.trace "done!" sources.nixpkgs))}"
           else
             toString sources.nixpkgs.outPath);
         };
