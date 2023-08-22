@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nodes, ... }:
 
 let cfg = config.cookie.rkvm;
 
@@ -48,7 +48,9 @@ in with lib; {
             password = "meownya";
             certificate = ../secrets/rkvm-cert.pem;
             # NOTE: hardcoded
-            server = "thonkcookie:5258";
+            # we don't depend on DNS because rkvm-client starts faster
+            # than coredns and i don't wanna fix that race atm.
+            server = "${nodes.thonkcookie.config.cookie.state.tailscaleIp}:5258";
           };
         };
       })
