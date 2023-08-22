@@ -47,6 +47,7 @@ in with lib; {
       nix-output-monitor # see what da nix builds r up to
       mommy #  mommy's here to support you, in any shell, on any system~ ❤️
       imagemagick # image swiss army knife, incls $out/bin/convert
+      graphviz # draw graphs w a dsl!
     ];
 
     services.fwupd.enable = true;
