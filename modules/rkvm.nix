@@ -1,8 +1,11 @@
 { lib, config, pkgs, nodes, ... }:
 
-let cfg = config.cookie.rkvm;
+with lib;
 
-in with lib; {
+let
+  cfg = config.cookie.rkvm;
+  password = fileContents ../secrets/rkvm-password;
+in {
   options.cookie.rkvm = {
     enable = mkEnableOption "rkvm, a Virtual KVM switch for Linux machines";
     role = mkOption {
@@ -29,10 +32,16 @@ in with lib; {
           '';
         };
 
+        cookie.secrets.rkvm-password = rec {
+          source = "./secrets/rkvm-password";
+          generateCommand = "mkRng > ${source}";
+          runtime = false; # should never leave the deploying machine..
+        };
+
         services.rkvm.server = {
           enable = true;
           settings = {
-            password = "meownya";
+            inherit password;
             key = config.cookie.secrets.rkvm-key.dest;
             certificate = ../secrets/rkvm-cert.pem;
           };
@@ -45,7 +54,7 @@ in with lib; {
         services.rkvm.client = {
           enable = true;
           settings = {
-            password = "meownya";
+            inherit password;
             certificate = ../secrets/rkvm-cert.pem;
             # NOTE: hardcoded
             # we don't depend on DNS because rkvm-client starts faster
