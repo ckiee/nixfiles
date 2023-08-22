@@ -184,6 +184,7 @@ its just copy pasted in here. not touching NDE rn.
   (beginning-of-line)
   (let ((pt (point))) (end-of-line) (delete-region pt (point)))
   (insert "~/"))
+; broken because of https://github.com/minad/vertico/issues/214
 (after! vertico (map! :map vertico-map "~" #'ckie--vertico-go-to-home))
 #+END_SRC
 ** projectile autoknown
