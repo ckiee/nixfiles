@@ -37,7 +37,7 @@ in {
         cookie.secrets.rkvm-password = rec {
           source = "./secrets/rkvm-password";
           generateCommand = "mkRng > ${source}";
-          runtime = false; # should never leave the deploying machine..
+          runtime = false;
         };
 
         services.rkvm.server = {
