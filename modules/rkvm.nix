@@ -27,7 +27,9 @@ in {
             ${config.services.rkvm.package}/bin/rkvm-certificate-gen \
               -D ${ # 10 years
                 "3650"
-              } -d ${config.networking.hostName} \
+              } \
+              -d ${config.networking.hostName} \
+              -i ${config.cookie.state.tailscaleIp} \
               secrets/rkvm-{cert,key}.pem
           '';
         };
@@ -59,7 +61,8 @@ in {
             # NOTE: hardcoded
             # we don't depend on DNS because rkvm-client starts faster
             # than coredns and i don't wanna fix that race atm.
-            server = "${nodes.thonkcookie.config.cookie.state.tailscaleIp}:5258";
+            server =
+              "${nodes.thonkcookie.config.cookie.state.tailscaleIp}:5258";
           };
         };
       })
