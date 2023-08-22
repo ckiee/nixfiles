@@ -65,6 +65,18 @@
         "url": "https://github.com/ckiee/daiko/archive/332b9643bfb8f4937a0f1c7974b2e9ed40899095.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "deploy-rs": {
+        "branch": "master",
+        "description": "A simple multi-profile Nix-flake deploy tool.",
+        "homepage": "",
+        "owner": "serokell",
+        "repo": "deploy-rs",
+        "rev": "724463b5a94daa810abfc64a4f87faef4e00f984",
+        "sha256": "04bivq019a3hyfvymp1m4q5h4crfz2r7f6ksjji3g9879kv0li2x",
+        "type": "tarball",
+        "url": "https://github.com/serokell/deploy-rs/archive/724463b5a94daa810abfc64a4f87faef4e00f984.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "desk-fcobs": {
         "branch": "main",
         "description": "The lights on my desk",
