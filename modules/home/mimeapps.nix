@@ -47,6 +47,7 @@ in with lib; {
         "application/vnd.mozilla.xul+xml" = [ firefox ];
         "x-scheme-handler/http" = [ firefox ];
         "x-scheme-handler/https" = [ firefox ];
+        "text/csv" = [ emacs ];
       };
     };
 
