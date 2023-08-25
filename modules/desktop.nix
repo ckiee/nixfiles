@@ -98,6 +98,7 @@ in with lib; {
       mpd.enable = true;
       cnping.enable = true;
       wireshark.enable = true;
+      logiops.enable = true;
     };
 
   };

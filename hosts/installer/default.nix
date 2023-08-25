@@ -27,7 +27,6 @@ with lib;
     fonts.enable = true;
     gnome.enable = true;
     qt.enable = true;
-    logiops.enable = true;
     ledc.enable = true;
     services = {
       avahi.enable = true;

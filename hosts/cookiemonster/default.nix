@@ -39,7 +39,6 @@ in {
     steam.enable = true;
     libvirtd.enable = false;
     hostapd.enable = true;
-    logiops.enable = true;
     mpd.enableHttp = true;
     devserv.enable = true;
     lutris.enable = true;
