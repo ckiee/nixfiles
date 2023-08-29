@@ -20,13 +20,19 @@ with lib;
     };
     services = {
       avahi.enable = true;
-      octoprint.enable = true;
+      # octoprint.enable = true;
       coredns.enable = mkForce
         false; # this RPi does not have a hardware rtc AND doesn't run 24/7 which makes it a pain in the ass for TLS
     };
-    state.sshPubkey =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBacSyNUF7XfWbo4nUuG0DLha+cHReyCm2zeBZcRaYLy";
+    networkmanager.enable = mkForce false; # TODO
+    state = {
+      sshPubkey =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDdlSkfY/82cXIwTlYCKX94WgdLTOR7NWY9ZEQAYjiyr root@pookieix";
+      tailscaleIp = "100.86.251.41";
+    };
   };
+
+  home-manager.users.ckie = { ... }: { home.stateVersion = "23.05"; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -34,5 +40,5 @@ with lib;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 }
