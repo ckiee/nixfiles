@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 
-with lib;
-{
+with lib; {
   imports = [ ./hardware.nix ./powersave.nix ../.. ];
 
   networking.hostName = "thonkcookie";
@@ -40,6 +39,13 @@ with lib;
       qsynth.enable = true;
       polybar.backlight = "intel_backlight";
     };
+
+    # option doesn't exist, TODO;
+    #   services.rsibreak.package = pkgs.enableDebugging pkgs.rsibreak;
+    # …this is to breakpoint
+    #   bool KWindowBasedIdleTimePoller::eventFilter(QObject *object, QEvent *event)
+    # in gdb.
+
     home.stateVersion = "22.11";
   };
 
