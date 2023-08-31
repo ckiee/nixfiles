@@ -33,8 +33,8 @@ in {
 
   # FIXME: These Ryzen 5 3600 cores are just Dead after some years.
   # Inexplicably, dead. Sometimes cpu0 is also dead, but we can't disable it.
-  system.activationScripts.offlineRyzenCores =
-    "for x in /sys/devices/system/cpu/cpu{3,10,4,9}/online; do echo 0 > $x; done";
+  # system.activationScripts.offlineRyzenCores =
+  #   "for x in /sys/devices/system/cpu/cpu{3,10,4,9}/online; do echo 0 > $x; done";
   # system.activationScripts.offlineGoodRyzenCores =
   #   "for x in /sys/devices/system/cpu/cpu{1,2,5,6,7,8,11}/online; do echo 0 > $x; done";
 
@@ -75,6 +75,6 @@ in {
     fsType = "ext4";
   };
 
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # TODO try this next:
+  # hardware.cpu.amd.updateMicrocode = true;
 }
