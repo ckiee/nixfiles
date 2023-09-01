@@ -120,6 +120,12 @@ see [[=/modules/mail-client.nix]]= (TODO figure out how to link relative paths p
 (after! mu4e
     (add-hook 'mu4e-compose-mode-hook (lambda () (smartparens-mode 0))))
 #+END_SRC
+*** set sent dir to use ckiedev
+this actually makes no sense, FIXME, because gmail/non-ckiedev messages may also be sent from emacs, and then be put into ckiedev's Sent dir but in practice i hope this doesn't happen
+#+BEGIN_SRC elisp
+(after! mu4e
+    (setq mu4e-sent-folder "/ckiedev/Sent"))
+#+END_SRC
 ** org-mode
 =Sync= gets synced between devices, so it is a good place for this.
 #+BEGIN_SRC elisp
