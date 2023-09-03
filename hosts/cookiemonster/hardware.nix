@@ -38,6 +38,8 @@ in {
   # system.activationScripts.offlineGoodRyzenCores =
   #   "for x in /sys/devices/system/cpu/cpu{1,2,5,6,7,8,11}/online; do echo 0 > $x; done";
 
+  # systemd.services.display-manager.serviceConfig.CPUAffinity = "1,2,5,6,7,8,11";
+
   boot.initrd.luks.devices."nvmecrypt".device =
     "/dev/disk/by-uuid/491bf5ed-1d5d-48e6-a048-c692ade24d40";
 
@@ -75,6 +77,5 @@ in {
     fsType = "ext4";
   };
 
-  # TODO try this next:
-  # hardware.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = true;
 }
