@@ -74,6 +74,9 @@ in with lib; {
     in {
       environment.systemPackages = with pkgs; [ helvum easyeffects pulseaudio ];
 
+      # gnome desktop enables pulse with mkDefault, explicitly turn it off:
+      hardware.pulseaudio.enable = false;
+
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
