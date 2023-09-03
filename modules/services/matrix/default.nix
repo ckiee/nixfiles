@@ -5,7 +5,7 @@ in with lib; {
   imports = [ ./discord.nix ./janitor.nix ];
 
   options.cookie.services.matrix = {
-    enable = mkEnableOption "Enables the Matrix service using Synapse";
+    enable = mkEnableOption "Matrix service using Synapse";
     host = mkOption {
       type = types.str;
       default = "localhost";

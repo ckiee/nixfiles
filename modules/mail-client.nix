@@ -5,7 +5,7 @@ let
   maildir = "${config.cookie.user.home}/Mail";
 in with lib; {
   options.cookie.mail-client = {
-    enable = mkEnableOption "Enables the mail client";
+    enable = mkEnableOption "mail client";
   };
 
   config = mkIf cfg.enable {

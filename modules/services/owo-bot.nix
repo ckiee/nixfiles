@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.owo-bot = {
-    enable = mkEnableOption "Enables the OwOifying discord bot";
+    enable = mkEnableOption "OwOifying discord bot";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/owo-bot";

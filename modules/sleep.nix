@@ -3,7 +3,7 @@
 let cfg = config.cookie.sleep;
 in with lib; {
   options.cookie.sleep = {
-    enable = mkEnableOption "Enables the sleep-inducing service";
+    enable = mkEnableOption "sleep-inducing service";
     sleepTime = mkOption rec {
       type = types.str;
       default = "07:00:00";

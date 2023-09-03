@@ -4,7 +4,7 @@ let cfg = config.cookie.ipban;
 
 in with lib; {
   options.cookie.ipban = {
-    enable = mkEnableOption "Enables the firewall IP banning module";
+    enable = mkEnableOption "firewall IP banning module";
     ips = mkOption {
       type = types.listOf types.str;
       description = "a list of ips to ban";

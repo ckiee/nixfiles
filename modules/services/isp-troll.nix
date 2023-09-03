@@ -4,7 +4,7 @@ let cfg = config.cookie.services.isp-troll;
 
 in with lib; {
   options.cookie.services.isp-troll = {
-    enable = mkEnableOption "Enables the ISP trolling service";
+    enable = mkEnableOption "ISP trolling service";
   };
 
   config = mkIf cfg.enable {

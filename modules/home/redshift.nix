@@ -3,7 +3,7 @@
 let cfg = config.cookie.redshift;
 in with lib; {
   options.cookie.redshift = {
-    enable = mkEnableOption "Enables the eye-saving redshift service";
+    enable = mkEnableOption "eye-saving redshift service";
   };
 
   config.services.redshift = mkIf cfg.enable {

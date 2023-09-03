@@ -3,7 +3,7 @@
 let cfg = config.cookie.nixpkgs-config;
 in with lib; {
   options.cookie.nixpkgs-config = {
-    enable = mkEnableOption "Enables the user nixpkgs config";
+    enable = mkEnableOption "user nixpkgs config";
     expr = mkOption {
       type = types.lines;
       default = "thing = true;";

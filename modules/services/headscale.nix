@@ -4,7 +4,7 @@ let cfg = config.cookie.services.headscale;
 
 in with lib; {
   options.cookie.services.headscale = {
-    enable = mkEnableOption "Enables the Headscale daemon";
+    enable = mkEnableOption "Headscale daemon";
     host = mkOption {
       type = types.str;
       description = "host for the web interface";

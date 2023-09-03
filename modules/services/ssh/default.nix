@@ -4,7 +4,7 @@ let cfg = config.cookie.services.ssh;
 
 in with lib; {
   options.cookie.services.ssh = {
-    enable = mkEnableOption "Enables the OpenSSH daemon and Mosh";
+    enable = mkEnableOption "OpenSSH daemon and Mosh";
     # unused, but maybe it should be? idk, this config is public after all.
     useAlternatePort =
       mkEnableOption "Exposes the SSH server on port 2222 instead";

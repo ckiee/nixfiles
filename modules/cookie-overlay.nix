@@ -4,7 +4,7 @@ let cfg = config.cookie.cookie-overlay;
 
 in with lib; {
   options.cookie.cookie-overlay = {
-    enable = mkEnableOption "Enables the Cookie's private package collection";
+    enable = mkEnableOption "Cookie's private package collection";
   };
 
   config = mkIf cfg.enable {

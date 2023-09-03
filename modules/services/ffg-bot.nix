@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.ffg-bot = {
-    enable = mkEnableOption "Enables the Falling From Grace discord bot";
+    enable = mkEnableOption "Falling From Grace discord bot";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/ffg-bot";

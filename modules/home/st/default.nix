@@ -8,7 +8,7 @@ let
   }));
 in with lib; {
   options.cookie.st = {
-    enable = mkEnableOption "Enables the suckless terminal";
+    enable = mkEnableOption "suckless terminal";
   };
 
   config = { home.packages = singleton st; };

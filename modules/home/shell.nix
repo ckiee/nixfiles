@@ -4,9 +4,9 @@ let cfg = config.cookie.shell;
 in with lib; {
 
   options.cookie.shell = {
-    enable = mkEnableOption "Enables the generic shell configuration";
-    bash = mkEnableOption "Enables the Bash shell configuration";
-    fish = mkEnableOption "Enables the Fish shell configuration";
+    enable = mkEnableOption "generic shell configuration";
+    bash = mkEnableOption "Bash shell configuration";
+    fish = mkEnableOption "Fish shell configuration";
   };
 
   config = mkIf cfg.enable (mkMerge [

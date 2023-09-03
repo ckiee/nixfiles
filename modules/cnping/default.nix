@@ -4,7 +4,7 @@ let cfg = config.cookie.cnping;
 
 in with lib; {
   options.cookie.cnping = {
-    enable = mkEnableOption "Enables the cnping program";
+    enable = mkEnableOption "cnping program";
   };
 
   config = mkIf cfg.enable {

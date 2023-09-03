@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.among-sus = {
-    enable = mkEnableOption "Enables the among-sus daemon";
+    enable = mkEnableOption "among-sus daemon";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/among-sus";

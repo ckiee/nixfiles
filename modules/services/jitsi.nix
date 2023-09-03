@@ -4,7 +4,7 @@ let cfg = config.cookie.services.jitsi;
 
 in with lib; {
   options.cookie.services.jitsi = {
-    enable = mkEnableOption "Enables the Jitsi service";
+    enable = mkEnableOption "Jitsi service";
     host = mkOption {
       type = types.nullOr types.str;
       example = "jitsi.ckie.dev";

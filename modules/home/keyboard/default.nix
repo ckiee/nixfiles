@@ -3,7 +3,7 @@
 let cfg = config.cookie.keyboard;
 in with lib; {
   options.cookie.keyboard = {
-    enable = mkEnableOption "Enables the keyboard layouts";
+    enable = mkEnableOption "keyboard layouts";
   };
 
   config = mkIf cfg.enable {

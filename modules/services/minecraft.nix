@@ -18,7 +18,7 @@ let
   '';
 in with lib; {
   options.cookie.services.minecraft = {
-    enable = mkEnableOption "Enables the Minecraft server service";
+    enable = mkEnableOption "Minecraft server service";
     heapAllocation = mkOption {
       type = types.str;
       default = "2G";

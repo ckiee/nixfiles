@@ -3,7 +3,7 @@
 let cfg = config.cookie.slock;
 in with lib; {
   options.cookie.slock = {
-    enable = mkEnableOption "Enables the slock screen locker";
+    enable = mkEnableOption "slock screen locker";
   };
 
   config = mkIf cfg.enable {

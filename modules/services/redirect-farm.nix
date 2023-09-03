@@ -4,7 +4,7 @@ let cfg = config.cookie.services.redirect-farm;
 
 in with lib; {
   options.cookie.services.redirect-farm = {
-    enable = mkEnableOption "Enables the redirect-farm service";
+    enable = mkEnableOption "redirect-farm service";
     host = mkOption {
       type = types.str;
       default = "redirect-farm.localhost";

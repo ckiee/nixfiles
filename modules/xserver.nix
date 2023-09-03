@@ -3,7 +3,7 @@
 let cfg = config.cookie.xserver;
 in with lib; {
   options.cookie.xserver = {
-    enable = mkEnableOption "Enables the X11 server";
+    enable = mkEnableOption "X11 server";
   };
   config = mkIf cfg.enable {
     services.xserver = {

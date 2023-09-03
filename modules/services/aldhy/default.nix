@@ -6,7 +6,7 @@ let
   inherit (util) mkRequiresScript;
 in with lib; {
   options.cookie.services.aldhy = {
-    enable = mkEnableOption "Enables the aldhy distributed nix evaluator";
+    enable = mkEnableOption "aldhy distributed nix evaluator";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/aldhy";

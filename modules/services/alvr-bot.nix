@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.alvr-bot = {
-    enable = mkEnableOption "Enables the ALVR discord bot";
+    enable = mkEnableOption "ALVR discord bot";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/alvr-bot";

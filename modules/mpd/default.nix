@@ -12,7 +12,7 @@ let
   frontendPort = "14726";
 in {
   options.cookie.mpd = {
-    enable = mkEnableOption "Enables the music player daemon";
+    enable = mkEnableOption "music player daemon";
     enableHttp = mkEnableOption
       "Exposes a HTTP server streaming the currently played track";
     host = mkOption {

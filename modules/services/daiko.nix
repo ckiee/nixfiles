@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.daiko = {
-    enable = mkEnableOption "Enables the daiko discord bot";
+    enable = mkEnableOption "daiko discord bot";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/daiko";

@@ -9,8 +9,8 @@ let
   listenAddress = config.cookie.wireguard.ip;
 in {
   options.cookie.services.prometheus = {
-    enableServer = mkEnableOption "Enables the Prometheus monitoring service";
-    enableClient = mkEnableOption "Enables the relevant Prometheus exporters"
+    enableServer = mkEnableOption "Prometheus monitoring service";
+    enableClient = mkEnableOption "relevant Prometheus exporters"
       // {
         default = true;
       };

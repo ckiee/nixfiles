@@ -12,7 +12,7 @@ let
   mpc = "${pkgs.mpc_cli}/bin/mpc";
 in {
   options.cookie.i3 = {
-    enable = mkEnableOption "Enables the i3 window manager";
+    enable = mkEnableOption "i3 window manager";
   };
 
   imports = [ ./auxapps.nix ./as-systemd.nix ];

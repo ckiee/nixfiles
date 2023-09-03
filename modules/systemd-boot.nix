@@ -3,7 +3,7 @@
 let cfg = config.cookie.systemd-boot;
 in with lib; {
   options.cookie.systemd-boot = {
-    enable = mkEnableOption "Enables the systemd-boot bootloader";
+    enable = mkEnableOption "systemd-boot bootloader";
   };
 
   config = mkIf cfg.enable {

@@ -10,7 +10,7 @@ let
 
 in with lib; {
   options.cookie.dunst = {
-    enable = mkEnableOption "Enables the dunst notification daemon";
+    enable = mkEnableOption "dunst notification daemon";
   };
 
   config.services.dunst = mkIf cfg.enable {

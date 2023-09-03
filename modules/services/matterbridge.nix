@@ -3,7 +3,7 @@
 let cfg = config.cookie.services.matterbridge;
 in with lib; {
   options.cookie.services.matterbridge = {
-    enable = mkEnableOption "Enables the Matterbridge service";
+    enable = mkEnableOption "Matterbridge service";
   };
 
   config = mkIf cfg.enable {

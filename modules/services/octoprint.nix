@@ -4,7 +4,7 @@ let cfg = config.cookie.services.octoprint;
 
 in with lib; {
   options.cookie.services.octoprint = {
-    enable = mkEnableOption "Enables the OctoPrint service";
+    enable = mkEnableOption "OctoPrint service";
     host = mkOption {
       description = "host for the web interface";
       type = types.str;

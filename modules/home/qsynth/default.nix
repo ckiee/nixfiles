@@ -10,7 +10,7 @@ let
   ];
 in with lib; {
   options.cookie.qsynth = {
-    enable = mkEnableOption "Enables the MIDI synthesizer";
+    enable = mkEnableOption "MIDI synthesizer";
   };
 
   config = mkIf cfg.enable {

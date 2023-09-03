@@ -4,7 +4,7 @@ let cfg = config.cookie.wireshark;
 
 in with lib; {
   options.cookie.wireshark = {
-    enable = mkEnableOption "Enables the wireshark network-monitoring program";
+    enable = mkEnableOption "wireshark network-monitoring program";
   };
 
   config = mkIf cfg.enable {

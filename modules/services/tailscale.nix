@@ -5,7 +5,7 @@ let
   tailscale = config.services.tailscale.package;
 in with lib; {
   options.cookie.services.tailscale = {
-    enable = mkEnableOption "Enables the Tailscale client daemon";
+    enable = mkEnableOption "Tailscale client daemon";
     autoconfig = mkOption {
       type = types.bool;
       default = true;

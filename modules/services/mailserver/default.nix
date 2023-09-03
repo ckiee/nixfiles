@@ -9,7 +9,7 @@ with builtins; {
   imports = [ (import sources.nixos-mailserver) ];
 
   options.cookie.services.mailserver = {
-    enable = mkEnableOption "Enables the mailserver module";
+    enable = mkEnableOption "mailserver module";
     aliases = mkOption rec {
       type = types.listOf types.str;
       description = "Base e-mail aliases to be processed";

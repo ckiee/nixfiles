@@ -23,7 +23,7 @@ let
   };
 in with lib; {
   options.cookie.remotemacs = {
-    enable = mkEnableOption "Enables the fast Emacs-over-ssh functionality";
+    enable = mkEnableOption "fast Emacs-over-ssh functionality";
   };
 
   config = mkIf cfg.enable {

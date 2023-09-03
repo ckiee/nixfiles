@@ -4,7 +4,7 @@ let cfg = config.cookie.services.heisenbridge;
 
 in with lib; {
   options.cookie.services.heisenbridge = {
-    enable = mkEnableOption "Enables the heisenbridge service";
+    enable = mkEnableOption "heisenbridge service";
   };
 
   config = mkIf cfg.enable {

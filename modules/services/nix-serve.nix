@@ -5,7 +5,7 @@ let cfg = config.cookie.services.nix-serve;
 in with lib; {
   options.cookie.services.nix-serve = {
     enable =
-      mkEnableOption "Enables the nix-serve binary-cache hosting service";
+      mkEnableOption "nix-serve binary-cache hosting service";
     host = mkOption {
       type = types.str;
       description = "Nginx vhost";

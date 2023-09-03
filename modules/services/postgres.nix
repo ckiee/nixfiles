@@ -34,7 +34,7 @@ let
   });
 in {
   options.cookie.services.postgres = {
-    enable = mkEnableOption "Enables the Postgres database";
+    enable = mkEnableOption "Postgres database";
 
     extraSql = mkOption {
       type = types.lines;

@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.anonvote-bot = {
-    enable = mkEnableOption "Enables the anonvote-bot discord bot";
+    enable = mkEnableOption "anonvote-bot discord bot";
     folder = mkOption {
       type = types.str;
       default = "/var/lib/anonvote-bot";

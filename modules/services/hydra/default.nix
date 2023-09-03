@@ -5,7 +5,7 @@ let
   util = import ./util.nix margs;
 in with lib; {
   options.cookie.services.hydra = {
-    enable = mkEnableOption "Enables the hydra daemon";
+    enable = mkEnableOption "hydra daemon";
     host = mkOption {
       type = types.str;
       default = "hydra.ckie.dev";

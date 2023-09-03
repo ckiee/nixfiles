@@ -12,7 +12,7 @@ let
   # auth = "/tmp/cgito";
 in with lib; {
   options.cookie.services.gitd = {
-    enable = mkEnableOption "Enables the gitd service";
+    enable = mkEnableOption "gitd service";
     host = mkOption {
       type = types.str;
       default = "git.ckie.dev";
