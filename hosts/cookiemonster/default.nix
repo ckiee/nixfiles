@@ -12,8 +12,8 @@ in {
     desktop = {
       enable = true;
       monitors = {
-        primary = "DP-0";
-        secondary = "HDMI-0";
+        primary = "DP-3";
+        secondary = "HDMI-1";
       };
     };
 
@@ -75,26 +75,18 @@ in {
   services.xserver = {
     xrandrHeads = [
       {
-        output = "DP-1";
+        output = "DP-3";
         primary = true;
       }
-      "HDMI-1"
+      "HDMI-A-0"
     ];
-    videoDrivers = [ "nvidia" ];
-    screenSection = ''
-      Option         "nvidiaXineramaInfoOrder" "DFP-2" # this is my 144hz primary display
-      Option         "metamodes" "HDMI-0: nvidia-auto-select +1920+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off, AllowGSYNCCompatible=On}"
-    '';
   };
 
-  hardware.nvidia.package =
-    config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-
   # amd gpu opencl
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   rocm-opencl-icd
-  #   rocm-opencl-runtime
-  # ];
+  hardware.opengl.extraPackages = with pkgs; [
+    rocm-opencl-icd
+    rocm-opencl-runtime
+  ];
 
   environment.systemPackages = with pkgs; [
     minecraft
