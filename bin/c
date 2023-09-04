@@ -35,15 +35,18 @@ function morp {
     set -e
 }
 
-action=${2:-deploy}
-if [ "$action" == "deploy" ]; then
-    deployExtra="switch --passwd"
+action=${2:-switch}
+deployExtra="--passwd"
+if [ "$action" == "switch" ]; then
+    deployExtra="switch $deployExtra"
+elif [ "$action" == "boot" ]; then
+    deployExtra="boot $deployExtra"
 fi
 
 if [ "$1" == "" ]; then
-    morp $action deploy/morph.nix $deployExtra --on "$(hostname)"
+    morp deploy deploy/morph.nix $deployExtra --on "$(hostname)"
 elif [ "$1" == "all" ]; then
-    morp $action deploy/morph.nix $deployExtra
+    morp deploy deploy/morph.nix $deployExtra
 elif [ "$1" == "installer" ]; then
     shift
     echo evaluating..
@@ -82,9 +85,9 @@ elif [ "$1" == "hmport" ]; then
     nix copy --to "ssh://$@" --derivation "$path"
     ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
-    morp $action deploy/morph.nix $deployExtra --on "$1"
+    morp deploy deploy/morph.nix $deployExtra --on "$1"
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
-    morp $action deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
+    morp deploy deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
 elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ] || [ "$1" == "cdemp" ]; then
     niv update $2
     if [ "$1" == "demp" ] || [ "$1" == "cdemp" ]; then
