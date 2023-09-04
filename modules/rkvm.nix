@@ -46,6 +46,7 @@ in {
             inherit password;
             key = config.cookie.secrets.rkvm-key.dest;
             certificate = ../secrets/rkvm-cert.pem;
+            switch-keys = [ "left-alt" "right-alt" ];
           };
         };
 
