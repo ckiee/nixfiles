@@ -157,7 +157,6 @@ in with lib; {
 
     services.matrix-synapse = {
       enable = true;
-      package = pkgs.matrix-synapse;
       extraConfigFiles =
         singleton config.cookie.secrets.matrix-secret-config.dest;
       settings = {
