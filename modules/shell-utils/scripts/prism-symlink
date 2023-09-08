@@ -9,8 +9,9 @@ fi
 
 profile="$HOME/.local/share/PrismLauncher/instances/$1/.minecraft"
 
-rmdir "$profile"/{screenshots,resourcepacks} >/dev/null 2>&1 || true
+rm -vrf "$profile"/screenshots
 
 ln -s ~/.minecraft/screenshots "$profile/"
 ln -s ~/.minecraft/resourcepacks "$profile/"
 ln -s ~/.minecraft/logs "$profile/"
+cp ~/.minecraft/option*.txt "$profile/"
