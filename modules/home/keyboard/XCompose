@@ -279,6 +279,8 @@
 <Multi_key> <a> <y>             : "accessibility"
 <Multi_key> <a> <1> <y>         : "accessibility"
 <Multi_key> <m> <i> <s> <c>     : "_misc._"
+<Multi_key> <J> <P> <asterisk>  : "•" # Japanese interpunct (中黒, nakaguro)
+<Multi_key> <asterisk>          : "•" # U+2022 • BULLET (&bull;, &bullet;)
 
 # Part 3
 <Multi_key> <comma> <minus>      	: "¬"   notsign # NOT SIGN
