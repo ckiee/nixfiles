@@ -310,3 +310,11 @@ as per [[https://github.com/knausj85/knausj_talon/blob/4243b257fb0294b73d03b4308
 #+BEGIN_SRC elisp
 (setq-default frame-title-format '((:eval (buffer-name (window-buffer (minibuffer-selected-window))))))
 #+END_SRC
+** org reveal
+#+BEGIN_SRC elisp :tangle packages.el
+(package! ox-reveal)
+#+END_SRC
+get it loaded at startup:
+#+BEGIN_SRC elisp
+(load-library "ox-reveal")
+#+END_SRC
