@@ -21,6 +21,7 @@ in with lib; {
         "/var/lib/libvirt"
         config.services.mongodb.dbpath
         "/var/lib/alsa" # volume sliders, sometimes muted by default, but depends on plugged in hardware
+        "/var/lib/bluetooth"
       ];
       files = [
         "/etc/machine-id"

@@ -107,6 +107,8 @@ in {
   programs.droidcam.enable = true;
   programs.fuse.userAllowOther = true;
 
+  hardware.bluetooth.enable = true;
+
   virtualisation = {
     spiceUSBRedirection.enable = true;
     # podman =
