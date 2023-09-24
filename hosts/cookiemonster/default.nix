@@ -108,6 +108,10 @@ in {
   programs.fuse.userAllowOther = true;
 
   hardware.bluetooth.enable = true;
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
