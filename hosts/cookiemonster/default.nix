@@ -46,6 +46,8 @@ in {
     systemd-initrd.enable = true;
     rkvm.role = "rx";
     wol.macAddress = "50:3e:aa:05:2a:90";
+    hardware.motherboard = "amd";
+    openrgb.enable = true;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzsW7gW6Ml0vCxCRLxULDWM1VMjm5eMB4tdctzQ0NUb";
@@ -108,10 +110,6 @@ in {
   programs.fuse.userAllowOther = true;
 
   hardware.bluetooth.enable = true;
-  services.hardware.openrgb = {
-    enable = true;
-    motherboard = "amd";
-  };
 
   virtualisation = {
     spiceUSBRedirection.enable = true;

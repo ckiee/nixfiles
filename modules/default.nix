@@ -64,5 +64,6 @@
     ./ledc.nix
     ./systemd-initrd.nix
     ./rkvm.nix
+    ./openrgb
   ];
 }
