@@ -1,4 +1,4 @@
-#Requires: ripgrep jq git bash util-linux exa
+#Requires: ripgrep jq git bash util-linux eza
 [ -f pending-jobs ] || touch pending-jobs
 resp_headers="server: aldhy
 date: $(date +"%a, %d %b %Y %H:%M:%S %Z")"
@@ -50,7 +50,7 @@ $(tail -n20 build-logs/$current_job_name)
 - $job"
     done
     past_jobs="<u>completed (last <b>15</b> out of <b>$(ls build-logs/*.drv | wc -l | cut -d' ' -f1)</b>)</u>"
-    for job in $(exa -rs modified build-logs | rg -v '\.exitcode$' | head -n15 | tr '\n' ' '); do
+    for job in $(eza -rs modified build-logs | rg -v '\.exitcode$' | head -n15 | tr '\n' ' '); do
         if ! [ "$job" == "$current_job_name" ]; then
         build_unix="$(stat -c'%Y' build-logs/"$job")"
         job_exitcode_path="build-logs/"$job".exitcode"

@@ -13,7 +13,7 @@ in with lib; {
     {
       services.lorri.enable = true;
       programs = {
-        exa.enable = true;
+        eza.enable = true;
         direnv = {
           enable = true;
           nix-direnv.enable = true;
@@ -32,7 +32,7 @@ in with lib; {
       programs.bash = {
         enable = true;
         shellAliases = {
-          ls = "${pkgs.exa}/bin/exa";
+          ls = "${pkgs.eza}/bin/eza";
           cd = "z";
           rsync = "rsync --progress";
           nsp = "nix-shell -p";
@@ -69,8 +69,8 @@ in with lib; {
         enable = true;
         # Normal aliases like bash
         shellAliases = {
-          ls = "exa";
-          l = "exa -lah";
+          ls = "eza";
+          l = "eza -lah";
           cd = "z";
           ytm = mkIf nixosConfig.cookie.big.enable
             "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
