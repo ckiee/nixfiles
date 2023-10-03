@@ -7,6 +7,13 @@ in with lib; {
       enable = mkEnableOption "Enables Thinkpad T480s specific hardware quirks";
       undervolt = mkEnableOption "Enables Thinkpad T480s CPU undervolting";
     };
+
+    motherboard = mkOption {
+      type = types.nullOr (types.enum [ "amd" "intel" ]);
+      default = null;
+      description =
+        lib.mdDoc "CPU family of motherboard. Used for `cookie.openrgb`";
+    };
   };
 
   # We need to do this after the libinput Xorg config
