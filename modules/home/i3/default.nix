@@ -46,6 +46,7 @@ in {
       chromium # sucks, ik, but need it sometimes..
       x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
       tigervnc # using it for the client, vncviewer
+      onlyoffice-bin # ms office clone! works well for english-only things.
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
