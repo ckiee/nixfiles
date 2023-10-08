@@ -48,6 +48,7 @@ in with lib; {
       mommy # mommy's here to support you, in any shell, on any system~ ❤️
       imagemagick # image swiss army knife, incls $out/bin/convert
       graphviz # draw graphs w a dsl!
+      bat # syntax highlight anything, cat clone. e.g$ strace gource |& bat -pl strace --no-pager
     ];
 
     services.fwupd.enable = true;
