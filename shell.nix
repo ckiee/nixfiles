@@ -30,7 +30,7 @@ in pkgs.mkShell {
     # cBin
     myNix
     jq
-    nix-eval-jobs
+    # nix-eval-jobs
     wireguard-tools
     nix-output-monitor
     google-cloud-sdk
