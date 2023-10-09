@@ -19,7 +19,7 @@ in {
   boot.kernelModules = [
     "kvm-amd"
     "ddcci" # ext. monitor (144hz, LG) brightness control, flimsy..
-    "nct6775" # amd cpu temp monitor on this motherboard (msi B450M gaming plus)
+    "nct6775" # amd cpu temp monitor on this motherboard (prev: msi B450M gaming plus, now: msi b650m-a wifi)
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8821au
@@ -31,17 +31,8 @@ in {
     options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
   '';
 
-  # FIXME: These Ryzen 5 3600 cores are just Dead after some years.
-  # Inexplicably, dead. Sometimes cpu0 is also dead, but we can't disable it.
-  # system.activationScripts.offlineRyzenCores =
-  #   "for x in /sys/devices/system/cpu/cpu{3,10,4,9}/online; do echo 0 > $x; done";
-  # system.activationScripts.offlineGoodRyzenCores =
-  #   "for x in /sys/devices/system/cpu/cpu{1,2,5,6,7,8,11}/online; do echo 0 > $x; done";
-
-  # systemd.services.display-manager.serviceConfig.CPUAffinity = "1,2,5,6,7,8,11";
-
-  boot.initrd.luks.devices."nvmecrypt".device =
-    "/dev/disk/by-uuid/491bf5ed-1d5d-48e6-a048-c692ade24d40";
+  boot.initrd.luks.devices."sncrypt".device =
+    "/dev/disk/by-uuid/8d018c8f-b5ac-4bb2-b736-7365daaf273f";
 
   fileSystems."/" = {
     device = "none";
@@ -49,12 +40,13 @@ in {
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1CFB-B38F";
+    device = "/dev/disk/by-uuid/5910-6977";
     fsType = "vfat";
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
+    device = # "/dev/disk/by-uuid/130c6ff5-fd55-4843-82fc-220729c64842";
+      "/dev/disk/by-uuid/cf7ba0c8-c7da-48af-9354-99be115282b1";
     fsType = "ext4";
     # give an hour to unlock before timing out and
     # entering emergency mode, due to systemd flaws. (even if we do: systemctl default)
