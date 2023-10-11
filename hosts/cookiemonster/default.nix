@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ./hardware.nix ../.. ];
+  imports = [ ../.. ./hardware.nix ./vfio ];
 
   networking.hostName = "cookiemonster";
   cookie = {
@@ -37,7 +37,7 @@ in {
     wine.enable = true;
     smartd.enable = true;
     steam.enable = true;
-    libvirtd.enable = false;
+    libvirtd.enable = true;
     hostapd.enable = true;
     mpd.enableHttp = true;
     devserv.enable = true;
