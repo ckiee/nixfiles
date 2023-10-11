@@ -12,6 +12,10 @@ in with lib; {
   config = mkIf cfg.enable (mkMerge [
     {
       services.lorri.enable = true;
+      # ERRO IO error binding to socket: Read-only file system (os error 30)
+      # idk either dude
+      systemd.user.services.lorri.Service.ProtectHome = mkForce "no";
+
       programs = {
         eza.enable = true;
         direnv = {
