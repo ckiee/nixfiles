@@ -19,6 +19,11 @@ in with lib; {
       "vfio_iommu_type1.allow_unsafe_interrupts=1"
     ];
 
+    # drop em firmware images in they/them
+    systemd.services.libvirtd-config.script = mkAfter ''
+      ln -s ${./fw} /run/libvirt/ckie-firmware
+    '';
+
     # TODO: use HM programs.looking-glass-client.enable:
     environment.systemPackages = with pkgs; [ looking-glass-client ];
 
