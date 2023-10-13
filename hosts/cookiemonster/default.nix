@@ -48,6 +48,7 @@ in {
     wol.macAddress = "50:3e:aa:05:2a:90";
     hardware.motherboard = "amd";
     openrgb.enable = true;
+    wivrn.enable = true; # FIXME: testing only
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzsW7gW6Ml0vCxCRLxULDWM1VMjm5eMB4tdctzQ0NUb";

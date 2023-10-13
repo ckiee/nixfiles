@@ -65,5 +65,6 @@
     ./systemd-initrd.nix
     ./rkvm.nix
     ./openrgb
+    ./wivrn
   ];
 }
