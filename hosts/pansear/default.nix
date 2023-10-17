@@ -31,7 +31,9 @@ with builtins;
     # libvirtd.enable = true; # breaks coredns, TODO fix..
     restic.enable = true;
     zfs.enable = true;
-    wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
+    # TODO: huehueuhe its not rly p2p currently it's just for prometheus
+    # everything else uses tailscale
+    # wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
     services = {
       avahi.enable = true;
       ffg-bot.enable = true;
