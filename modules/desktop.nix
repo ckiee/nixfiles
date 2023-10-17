@@ -78,7 +78,6 @@ in with lib; {
       collections = {
         media.enable = true;
         chat.enable = true;
-        music.enable = true;
       };
       services = {
         avahi.enable = true;

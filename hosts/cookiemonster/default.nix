@@ -49,6 +49,7 @@ in {
     hardware.motherboard = "amd";
     openrgb.enable = true;
     wivrn.enable = true; # FIXME: testing only
+    collections.music.enable = true; # audio/music creation
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzsW7gW6Ml0vCxCRLxULDWM1VMjm5eMB4tdctzQ0NUb";
