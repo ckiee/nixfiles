@@ -6,7 +6,7 @@ let
   sources = import ../../nix/sources.nix;
   inherit (sources) home-manager;
 in {
-  imports = [ (import "${home-manager}/nixos") ];
+  imports = [ (import "${toString home-manager}/nixos") ];
 
   home-manager = {
     # Just incase..
