@@ -69,6 +69,12 @@ in with lib; {
             devices = [ "cookiemonster" "thonkcookie" "phone" ];
           };
 
+          "dcim" = {
+            path = "${home}/DCIM";
+            # FIXME: no thonkcookie because there is no space on it currently.
+            devices = [ "cookiemonster" "phone" ];
+          };
+
           # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname
           # "mail" = {
           #   path = "${home}/Mail";
