@@ -21,7 +21,8 @@ in with lib; {
 
     # drop em firmware images in they/them
     systemd.services.libvirtd-config.script = mkAfter ''
-      ln -s ${./fw} /run/libvirt/ckie-firmware
+      # symbolic, always file (no stupid disambiguation depending on if name exists), force
+      ln -sTf ${./fw} /run/libvirt/ckie-firmware
     '';
 
     # TODO: use HM programs.looking-glass-client.enable:
