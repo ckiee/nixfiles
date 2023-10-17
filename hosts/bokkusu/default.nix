@@ -40,11 +40,11 @@ with lib;
         enable = true;
         host = "ckie.dev";
       };
-      znc = {
-        enable = true;
-        host = "znc.ckie.dev";
-        acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
-      };
+      # znc = {
+      #   enable = true;
+      #   host = "znc.ckie.dev";
+      #   acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
+      # };
       # currently unused
       # soju = {
       #   enable = true;
