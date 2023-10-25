@@ -2,7 +2,7 @@
 
 let cfg = config.cookie.services.matrix;
 in with lib; {
-  imports = [ ./discord.nix ./janitor.nix ];
+  imports = [ ./discord.nix ./janitor.nix ./sliding-sync.nix ];
 
   options.cookie.services.matrix = {
     enable = mkEnableOption "Matrix service using Synapse";
@@ -24,12 +24,22 @@ in with lib; {
       readOnly = true;
       description = "The element-web we're serving";
     };
+    clientWellKnown = mkOption {
+      type = (pkgs.formats.json { }).type;
+      description = "JSON served on /.well-known/matrix/client";
+    };
   };
 
   config = mkIf cfg.enable {
     ##
     ## reverse proxy..
     ##
+
+    cookie.services.matrix.clientWellKnown = {
+      "m.homeserver".base_url = "https://${cfg.serviceHost}";
+      "m.identity_server".base_url = "https://vector.im";
+    };
+
     services.nginx.virtualHosts = {
       ${cfg.host} = {
         locations."= /.well-known/matrix/server".extraConfig = let
@@ -40,18 +50,14 @@ in with lib; {
           add_header Content-Type application/json;
           return 200 '${builtins.toJSON server}';
         '';
-        locations."= /.well-known/matrix/client".extraConfig = let
-          client = {
-            "m.homeserver" = { "base_url" = "https://${cfg.serviceHost}"; };
-            "m.identity_server" = { "base_url" = "https://vector.im"; };
-          };
+        locations."= /.well-known/matrix/client".extraConfig =
           # ACAO required to allow element-web on any URL to request this json file
-        in ''
-          access_log /var/log/nginx/matrix.access.log;
-          add_header Content-Type application/json;
-          add_header Access-Control-Allow-Origin *;
-          return 200 '${builtins.toJSON client}';
-        '';
+          ''
+            access_log /var/log/nginx/matrix.access.log;
+            add_header Content-Type application/json;
+            add_header Access-Control-Allow-Origin *;
+            return 200 '${builtins.toJSON cfg.clientWellKnown}';
+          '';
       };
       ${cfg.serviceHost} = {
         locations = {
@@ -172,6 +178,8 @@ in with lib; {
 
         enable_registration = true;
         registration_requires_token = true;
+
+        redaction_retention_period = "3d";
 
         # there's also a "local_media_lifetime"; not using, should be inf. (not guaranteed though!)
         media_retention.remote_media_lifetime = "30d";
