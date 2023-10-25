@@ -33,6 +33,7 @@ in with lib; {
       # jetbrains.idea-community # way too good to use emacs for java. TODO unbreak
       nixpkgs-review
       logisim-evolution
+      nix-init # Generate Nix packages from URLs with hash prefetching, dependency inference, license detection, and more
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
