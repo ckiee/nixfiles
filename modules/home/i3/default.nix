@@ -11,9 +11,7 @@ let
   musicWorkspace = "mpd";
   mpc = "${pkgs.mpc_cli}/bin/mpc";
 in {
-  options.cookie.i3 = {
-    enable = mkEnableOption "i3 window manager";
-  };
+  options.cookie.i3 = { enable = mkEnableOption "i3 window manager"; };
 
   imports = [ ./auxapps.nix ./as-systemd.nix ];
   config = mkIf cfg.enable {
@@ -47,6 +45,10 @@ in {
       x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
       tigervnc # using it for the client, vncviewer
       onlyoffice-bin # ms office clone! works well for english-only things.
+      (minimeters.overrideAttrs (prev: {
+        src = ../../../secrets/minimeters-0.8.8.zip;
+        preInstall = import ../../../secrets/minimeters-shush-update.nix;
+      }))
     ];
     cookie.polyprog.enable = true; # Required for the ytm bind
 
