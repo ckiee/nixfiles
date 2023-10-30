@@ -23,7 +23,7 @@ in with lib; {
     systemd.services.libvirtd-config.script = mkAfter ''
       # symbolic, always file (no stupid disambiguation depending on if name exists), force
       ln -sTf ${./fw} /run/libvirt/ckie-firmware
-      ln -sf ${pkgs.virtiofsd} /run/libvirt/virtiofsd
+      ln -sTf ${pkgs.virtiofsd} /run/libvirt/virtiofsd
     '';
 
     # TODO: use HM programs.looking-glass-client.enable:
