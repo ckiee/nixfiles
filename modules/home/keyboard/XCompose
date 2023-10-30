@@ -567,7 +567,8 @@
 <Multi_key> <S> <P> <A> <I>		: "🇪🇸"
 <Multi_key> <E> <T> <H> <I>		: "🇪🇹"
 <Multi_key> <E> <U> <R> <O>		: "🇪🇺"
-<Multi_key> <F> <I> <N> <L>		: "🇫🇮"
+# hehehe
+<Multi_key> <f> <I> <N> <L>		: "🇫🇮"
 <Multi_key> <F> <I> <J> <I>		: "🇫🇯"
 <Multi_key> <F> <A> <L> <K>		: "🇫🇰"
 <Multi_key> <M> <I> <C> <R>		: "🇫🇲"
