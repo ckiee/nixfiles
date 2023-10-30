@@ -32,7 +32,6 @@ in with lib; {
       fd # a better find
       hyperfine # a better time
       mtr # a better traceroute
-      tmux # when you can't afford i3
       yt-dlp # do some pretendin' and fetch videos
       jq # like 'node -e' but nicer
       # btop # htop on steroids -- now also in default.nix (it's that good)
@@ -77,7 +76,10 @@ in with lib; {
       firejail.enable = true;
     };
     home-manager.users.ckie = { nixosConfig, pkgs, ... }: {
-      cookie = { shell.fish = true; };
+      cookie = {
+        shell.fish = true;
+        tmux.enable = true; # when you can't afford i3
+      };
     };
   };
 }

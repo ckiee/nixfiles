@@ -40,6 +40,7 @@ in {
         ./ardour.nix
         ./nix-index.nix
         ./zathura.nix
+        ./tmux.nix
       ];
     };
   };
