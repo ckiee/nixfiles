@@ -30,7 +30,7 @@ in {
       friture # voice shenanigans (:
       # nottetris2
       virt-manager # connect to vms on the net
-      obs-studio
+      (wrapOBS { plugins = with obs-studio-plugins; [ obs-vaapi ]; })
       sidequest # mediocre vr
       transmission-gtk # capitalism
       blockbench-electron # placing blocks
