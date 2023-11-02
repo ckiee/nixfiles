@@ -66,6 +66,7 @@ in {
       cookie.services.coredns.extraHosts = ''
         172.104.27.95 emma.coop
         172.104.27.95 blog.emma.coop
+        73.221.24.129 2078.gay
       '';
 
       systemd.services.dns-hosts-poller = {
