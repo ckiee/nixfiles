@@ -68,7 +68,7 @@ in {
 
   services.mongodb.enable = true; # out-of-tree, private project
 
-  services.pipewire.package = with pkgs; enableDebugging pipewire;
+  # services.pipewire.package = with pkgs; enableDebugging pipewire;
 
   # Emulate aarch64-linux so we can build sd card images for drapion & pookieix
   # armv7l-linux for embedded crap
