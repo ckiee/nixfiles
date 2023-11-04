@@ -76,17 +76,21 @@ with builtins; {
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
       keyFile = "/var/lib/acme/${cfg.certFqdn}/key.pem";
 
+      messageSizeLimit = 31457280; # 30 MiB, needs to account for base64'd attachments I think, stackoverflow says base64'd makes contents 4*(old_bytes/3) bytes big
+
       loginAccounts = {
         "us@ckie.dev" = {
           hashedPasswordFile = config.cookie.secrets.mailserver-pw-hash.dest;
           aliases = [ "postmaster@ckie.dev" "work-sbr@ckie.dev" "mei@ckie.dev" ]
             ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
+          quota = "5G";
         };
         "282@ckie.dev" = {
           hashedPasswordFile =
             config.cookie.secrets.mailserver-pw-hash-282.dest;
           sendOnly = true;
+          quota = "100M";
         };
       };
     };
