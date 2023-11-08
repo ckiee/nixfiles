@@ -14,9 +14,7 @@ with lib;
       monitors.primary = "Virtual-1";
     };
     sound.enable = mkForce false;
-    services = {
-      tailscale.autoconfig = false;
-    };
+    services = { tailscale.autoconfig = false; };
   };
 
   home-manager.users.ckie = { pkgs, ... }: {
@@ -30,6 +28,7 @@ with lib;
     home.stateVersion = "22.11";
   };
 
+  environment.systemPackages = with pkgs; [ steam-run wget ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
