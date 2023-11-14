@@ -97,7 +97,6 @@ in {
     prismlauncher
     # kicad-with-packages3d
     solvespace
-    heroic
     #
     yabridge
     yabridgectl

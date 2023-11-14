@@ -25,7 +25,6 @@ in with lib; {
       linuxsampler
       guitarix
       calf
-      cadence
     ];
 
     home-manager.users.ckie = { config, ... }: {

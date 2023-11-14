@@ -5,7 +5,6 @@ with builtins;
 
 {
   imports = [ ./modules ];
-  nixpkgs.config.allowUnfree = true;
   system = {
     configurationRevision = getEnv "CKIE_CONFIG_REV";
     nixos.revision = sources.nixpkgs.rev;
