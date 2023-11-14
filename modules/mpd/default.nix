@@ -67,7 +67,7 @@ in {
           cantata
           # Utilities
           mpc_cli
-          spotdl
+          # spotdl
           mus # :3
           # puddletag # ...for when the metadata gets messed up
         ];
