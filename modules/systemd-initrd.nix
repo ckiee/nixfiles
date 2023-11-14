@@ -18,13 +18,18 @@ in with lib; {
       '';
     };
 
+    # we previously set
+    #   boot.initrd.systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
+    # but it's too much of a pain to rebase
+    networking.useDHCP = mkForce true;
+
     boot.initrd = {
       enable = true;
       systemd.enable = true;
       # since size probably isn't a problem, let's pack every
       # network driver one of our machines could need:
       availableKernelModules = [ "r8169" ];
-      systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
+
       network = {
         enable = true;
         flushBeforeStage2 = true; # we get multiple local ipv4's which confuse chromium
