@@ -115,7 +115,7 @@ in {
 
           modules-left = "ws";
           modules-right =
-            [ "prom" "separator" "polyprog" "mpd" "separator" "shower" ]
+            [ "prom" "separator" "mpd" "separator" "shower" ]
             ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
@@ -285,11 +285,11 @@ in {
         };
 
         # A progress indicator for the polyprog script
-        "module/polyprog" = {
-          type = "custom/ipc";
-          hook-0 =
-            "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
-        };
+        # "module/polyprog" = {
+        #   type = "custom/ipc";
+        #   hook-0 =
+        #     "${pkgs.coreutils}/bin/cat $XDG_RUNTIME_DIR/polybar_polyprog_msg";
+        # };
 
         "module/shower" = {
           type = "custom/script";

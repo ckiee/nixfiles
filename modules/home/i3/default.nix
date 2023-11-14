@@ -50,7 +50,7 @@ in {
         preInstall = import ../../../secrets/minimeters-shush-update.nix;
       }))
     ];
-    cookie.polyprog.enable = true; # Required for the ytm bind
+    cookie.polyprog.enable = true;
 
     xsession = {
       # umm.. nothing here..
