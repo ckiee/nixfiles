@@ -66,7 +66,7 @@ in {
     home.stateVersion = "22.11";
   };
 
-  services.mongodb.enable = true; # out-of-tree, private project
+  # services.mongodb.enable = true; # out-of-tree, private project
 
   # services.pipewire.package = with pkgs; enableDebugging pipewire;
 
