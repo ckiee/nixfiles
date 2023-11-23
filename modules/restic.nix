@@ -109,7 +109,7 @@ in {
       mkIf cfg.enablePostgres (mkForce [
         "${(pkgs.writeShellScript "restic-backups-mainPostgres-ExecStart" ''
            set -o pipefail
-          ${config.services.postgresql.package}/bin/pg_dumpall -U postgres | ${pkgs.restic}/bin/restic backup --cache-dir=%C/restic-backups-mainPostgres --stdin --stdin-filename postgres.sql
+          ${config.services.postgresql.package}/bin/pg_dumpall -U postgres | ${pkgs.restic}/bin/restic backup --stdin --stdin-filename postgres.sql
         '')}"
       ]);
 
