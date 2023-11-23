@@ -23,14 +23,14 @@ with builtins;
   cookie = {
     state = {
       sshPubkey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhHtl6H3cAGg7paAgRoCNdI/gw36j+4zEgqsbW1vbFA root@pansear";
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjp/gsXt35/NlIU3TtPPa4SQP3+2HWw3d5wLybegvwn root@pansear";
       tailscaleIp = "100.120.191.17";
     };
     systemd-boot.enable = true;
     smartd.enable = true;
     # libvirtd.enable = true; # breaks coredns, TODO fix..
     restic.enable = true;
-    zfs.enable = true;
+    systemd-initrd.enable = true;
     # TODO: huehueuhe its not rly p2p currently it's just for prometheus
     # everything else uses tailscale
     # wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
@@ -72,15 +72,6 @@ with builtins;
     };
   };
 
-
-  # dont commit this its just for archive team for the reddit fiasco
-  # https://wiki.archiveteam.org/index.php/Running_Archive_Team_Projects_with_Docker
-  virtualisation = {
-    docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 
