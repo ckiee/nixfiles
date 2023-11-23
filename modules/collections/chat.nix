@@ -18,6 +18,7 @@ in with lib; {
         schildichat-desktop # element-desktop # NOTE: using the unmodified nixpkgs element again!
         signal-desktop
         mumble
+        nheko
       ];
       cookie.weechat.enable = true; # more or less unused now
     };

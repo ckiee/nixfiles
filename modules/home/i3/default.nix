@@ -195,17 +195,21 @@ in {
                   "move container to workspace °10";
               }
             ];
+
           assigns = {
             "1" = [{ class = "^Firefox$"; }];
             "2" = [
               { class = "^discord"; }
               { title = "^weechat$"; }
               { class = "^Element"; }
+              { class = "^SchildiChat"; }
+              { class = "^nheko"; }
             ];
             "4" = [{ class = "^Emacs$"; }];
             "5" = [{ class = "ledc"; }];
             "${musicWorkspace}" = [{ class = "^cantata"; }];
           };
+
           fonts = {
             names = [ "monospace" ];
             size = 9.0;

@@ -40,7 +40,8 @@ in {
       }
       (mkIf nixosConfig.cookie.collections.chat.enable {
         discord = mkSvc "Discord";
-        element = mkSvc "element-desktop";
+        schildichat = mkSvc "schildichat-desktop";
+        nheko = mkSvc "nheko";
       })
     ];
   };
