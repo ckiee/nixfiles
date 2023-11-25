@@ -53,7 +53,7 @@ with builtins;
       syncthing = {
         enable = true;
         runtimeId =
-          "DFTG4YU-IGSQEVL-DZAHODV-QRXCOFP-M7OEMRP-66KHW5B-DUVNMH5-JINSLAS";
+          "KGOEF25-WTH7LGU-R4AZKAP-XLS5NFP-JB6RTZY-64RC7JQ-VYQUYHP-S5G3LQ5";
       };
     };
     tailnet-certs.client = {
@@ -71,7 +71,6 @@ with builtins;
       pipewire.enable = false;
     };
   };
-
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 
