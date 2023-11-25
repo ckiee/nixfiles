@@ -28,11 +28,12 @@ in with lib; {
       systemd.enable = true;
       # since size probably isn't a problem, let's pack every
       # network driver one of our machines could need:
-      availableKernelModules = [ "r8169" ];
+      availableKernelModules = [ "r8169" "e1000e" ];
 
       network = {
         enable = true;
-        flushBeforeStage2 = true; # we get multiple local ipv4's which confuse chromium
+        flushBeforeStage2 =
+          true; # we get multiple local ipv4's which confuse chromium
 
         ssh = {
           enable = true;

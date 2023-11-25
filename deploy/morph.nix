@@ -25,6 +25,7 @@ in {
   "virt" = import ../hosts/virt;
   "kyurem" = import ../hosts/kyurem;
   "eg" = import ../hosts/eg;
+  "kibako" = import ../hosts/kibako;
 }
 
 )
