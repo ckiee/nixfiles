@@ -32,7 +32,7 @@ in {
       virt-manager # connect to vms on the net
       (wrapOBS { plugins = with obs-studio-plugins; [ obs-vaapi ]; })
       sidequest # mediocre vr
-      transmission-gtk # capitalism
+      transmission_4-gtk # capitalism
       blockbench-electron # placing blocks
       krita # drawing
       # prusa-slicer # making things out of harmful plastic
