@@ -25,6 +25,7 @@
     device =
       "/dev/disk/by-uuid/8c7494d9-a0b0-43e8-8bf0-b37c19592ac2"; # /dev/mapper/root (LUKS)
     fsType = "ext4";
+    options = [ "x-systemd.device-timeout=3600" ];
   };
 
   boot.initrd.services.lvm.enable = true;

@@ -15,6 +15,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2182ff14-faa1-4ec7-b9a7-03ae63690baa";
     fsType = "ext4";
+    options = [ "x-systemd.device-timeout=3600" ];
   };
 
   boot.initrd.luks.devices."root".device =
