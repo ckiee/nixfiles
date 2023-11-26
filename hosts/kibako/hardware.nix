@@ -49,9 +49,6 @@
     mirroredBoots = [{
       path = "/boot";
       devices = [
-        # "/dev/disk/by-id/wwn-0x55cd2e404c748ded-part1"
-        # "/dev/disk/by-id/wwn-0x55cd2e414fc48872-part1"
-        # "/dev/disk/by-id/wwn-0x55cd2e414d40757a-part1"
         "/dev/disk/by-id/wwn-0x55cd2e404c748ded"
         "/dev/disk/by-id/wwn-0x55cd2e414fc48872"
         "/dev/disk/by-id/wwn-0x55cd2e414d40757a"
