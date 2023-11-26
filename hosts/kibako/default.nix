@@ -34,25 +34,43 @@ with lib;
   };
 
   networking.networkmanager.enable = mkForce false;
+  networking.useDHCP = mkForce false;
   networking.dhcpcd.enable = false;
+
   services.resolved.enable = false; # systemd does not get to manage our DNS.
+
+  networking.useNetworkd = true;
   systemd.network = {
     enable = true;
-    networks.eth0 = {
+    networks."40-eth0" = {
       matchConfig.Name = "e*"; # eth0, eno0, or sometimes 1?
       addresses = map (addr: { addressConfig.Address = addr; }) [
         "37.187.95.216/24"
-        "2001:41d0:a:37d8::1/128"
+        "2001:41d0:a:37d8::/64"
+        "2001:41d0:a:37d8::c00c:eeee"
       ];
-      gateway = [ "37.187.95.254" "2001:41d0:a:37ff:ff:ff:ff:ff" ];
+      gateway = [ "37.187.95.254" ];
       networkConfig = {
         DHCP = "no"; # is default
+        IPv6AcceptRA = "no";
       };
+      routes = [
+        # Must also declare route to gateway host explicitly, because it is not
+        # in the fucking subnet we're given. Probably that's why. OVH is weird.
+        { routeConfig.Destination = "2001:41d0:000a:37ff:00ff:00ff:00ff:00ff"; }
+        # End weirdness. Gateway.
+        { routeConfig.Gateway = "2001:41d0:000a:37ff:00ff:00ff:00ff:00ff"; }
+      ];
     };
   };
 
-  boot.initrd.systemd.network.networks.eth0 =
-    config.systemd.network.networks.eth0;
+  boot.initrd.systemd.network.networks."40-eth0" =
+    config.systemd.network.networks."40-eth0";
+
+  # TODO: per-server password, root too
+  # users.users.ckie.hashedPassword = mkForce
+  #   "$y$j9T$1kqwIyYgO/PZOuTPYhW4Q/$R7oTyggU8et7h5FA1WHjliKUBAKkofqNQEQY91N5cG1";
+  security.sudo.wheelNeedsPassword = false;
 
   home-manager.users.ckie.home.stateVersion = "23.05";
 

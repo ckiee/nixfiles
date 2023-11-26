@@ -21,7 +21,7 @@ in with lib; {
     # we previously set
     #   boot.initrd.systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
     # but it's too much of a pain to rebase
-    networking.useDHCP = mkForce true;
+    networking.useDHCP = true;
 
     boot.initrd = {
       enable = true;
