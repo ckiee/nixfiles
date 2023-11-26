@@ -39,6 +39,7 @@
     ./go-neb.nix
     ./heisenbridge
     ./akkoma-test.nix
+    ./transmission
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

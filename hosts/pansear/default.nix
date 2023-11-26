@@ -40,6 +40,7 @@ with builtins;
       alvr-bot.enable = true;
       daiko.enable = true;
       scanner.enableServer = true;
+      transmission.enable = true;
 
       printing = {
         enable = true;

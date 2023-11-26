@@ -85,15 +85,6 @@ with lib; {
             "~@debug"
             "~@privileged"
           ];
-          RestrictNamespaces = [
-            "~CLONE_NEWCGROUP"
-            "~CLONE_NEWIPC"
-            "~CLONE_NEWNET"
-            "~CLONE_NEWNS"
-            "~CLONE_NEWPID"
-            "~CLONE_NEWUTS"
-            "~CLONE_NEWUSER"
-          ];
           UMask = "077";
         };
       };
