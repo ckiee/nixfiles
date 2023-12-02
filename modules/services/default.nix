@@ -53,5 +53,6 @@
     ./anonvote-bot.nix
     ./aldhy
     ./net-offload
+    ./tonsi-li
   ];
 }

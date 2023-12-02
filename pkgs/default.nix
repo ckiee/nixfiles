@@ -13,4 +13,5 @@ with pkgs; {
   ledc = ((import sources.desk-fcobs).overrideInputs {
     nixpkgs = pkgs.path;
   }).default;
+  tonsi-li = sources."tonsi.li";
 }

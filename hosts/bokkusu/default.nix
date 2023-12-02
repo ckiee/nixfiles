@@ -25,6 +25,7 @@ with lib;
       among-sus.enable = true;
       anonvote-bot.enable = true;
       heisenbridge.enable = true;
+      tonsi-li.enable = true;
 
       prometheus.enableServer = true;
       grafana = {

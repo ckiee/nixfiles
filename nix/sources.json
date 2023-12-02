@@ -334,5 +334,17 @@
         "type": "tarball",
         "url": "https://github.com/ckiee/st/archive/bdc8de9ece1045f13e6f54621e8870f60d4a742b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tonsi.li": {
+        "branch": "main",
+        "description": "[under construction] dynamic DNS service for tokiponists",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "tonsi.li",
+        "rev": "5ab5adefd245054a42bc89168b586fb14d767d51",
+        "sha256": "0iz84kq3kaskki49l0qxc977b2lvcpq20l4apaqird8ksacjizdc",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/tonsi.li/archive/5ab5adefd245054a42bc89168b586fb14d767d51.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
