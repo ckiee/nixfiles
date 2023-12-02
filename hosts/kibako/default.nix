@@ -8,6 +8,7 @@ with lib;
   cookie = {
     restic.enable = true; # Backups
     systemd-initrd.enable = true;
+    smartd.enable = true;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAV1Zlysa7J4BRpYtZLHStkGIOnGpS0KQWNFf9Tlds4 root@rescue-customer-eu";
