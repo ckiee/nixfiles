@@ -34,6 +34,7 @@ in {
   imports = [
     # ./alerting.nix
     ./blackbox.nix
+    ./smart
   ];
 
   config = mkMerge [
