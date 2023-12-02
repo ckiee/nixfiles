@@ -21,7 +21,11 @@ in with lib; {
     # we previously set
     #   boot.initrd.systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
     # but it's too much of a pain to rebase
-    networking.useDHCP = true;
+
+    networking.useDHCP =
+      # messy HACK to sandwich two overrides, we don't want to mkForce over hosts (kibako)
+      # that manually disable this, e.g. in favour of networkd
+      (if config.networking.networkmanager.enable then mkForce else id) true;
 
     boot.initrd = {
       enable = true;
