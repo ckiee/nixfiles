@@ -74,7 +74,7 @@ in {
       defaults.email = email;
       acceptTerms = true;
       certs = (mapAttrs (i: v: ({
-        group = "nginx";
+        group = "nginx"; # should be other way; nginx in acme group. probably? idk this is better security-wise i feel.
         dnsProvider = v.provider;
         extraDomainNames = v.extras;
         credentialsFile = config.cookie.secrets.${v.secretId}.dest;
