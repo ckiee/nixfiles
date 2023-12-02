@@ -46,6 +46,7 @@ with builtins;
     wget
     btop
     ripgrep
+    smartmontools
   ]; # More in modules/big.nix. Don't add a lot!
 
   cookie = {
