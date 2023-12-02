@@ -32,7 +32,7 @@ in {
   };
 
   imports = [
-    # ./alerting.nix
+    ./alerting.nix
     ./blackbox.nix
     ./smart
   ];
@@ -118,6 +118,7 @@ in {
           enabledCollectors = [ "systemd" "textfile" ];
           extraFlags = [
             "--collector.textfile.directory=/var/lib/prometheus-node-exporter-text-files"
+            "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)"
           ];
           inherit listenAddress;
         };
