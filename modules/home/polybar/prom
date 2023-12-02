@@ -1,4 +1,4 @@
 #Requires: curl jq
 
 set -e
-curl -sS 'http://bokkusu.cknet:9090/api/v1/query?query=ALERTS' | jq -r '[.data.result[] | .metric.alertname + "@" + .metric.job] as $yeh | length | if . > 2 then "" + $yeh | join(", ") else "" end'
+curl -sS 'http://bokkusu:9090/api/v1/query?query=ALERTS' | jq -r '[.data.result[] | .metric.alertname + "@" + .metric.job] as $yeh | length | if . > 2 then "" + $yeh | join(", ") else "" end'
