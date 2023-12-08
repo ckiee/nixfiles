@@ -32,13 +32,6 @@ with builtins; {
         group = "root";
         permissions = "0400";
       };
-      mailserver-pw-hash-282 = {
-        source = "./secrets/mailserver-pw-hash-282";
-        dest = "/run/keys/mailserver-pw-hash-282";
-        owner = "root";
-        group = "root";
-        permissions = "0400";
-      };
 
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
@@ -85,12 +78,6 @@ with builtins; {
             ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
           quota = "5G";
-        };
-        "282@ckie.dev" = {
-          hashedPasswordFile =
-            config.cookie.secrets.mailserver-pw-hash-282.dest;
-          sendOnly = true;
-          quota = "100M";
         };
       };
     };
