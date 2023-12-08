@@ -68,7 +68,6 @@ with lib;
           provider = "porkbun";
           extras = [
             "matrix.ckie.dev"
-            "i.ckie.dev"
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"

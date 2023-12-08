@@ -17,21 +17,25 @@ with lib;
     # wireguard = {
     #   endpoint = "kibako.ckie.dev";
     # };
-    # services = {
-    #   ckiesite = {
-    #     enable = true;
-    #     host = "ckie.dev";
-    #   };
-    # };
-    # acme = {
-    #   enable = true;
-    #   hosts = {
-    #     "ckie.dev" = {
-    #       provider = "porkbun";
-    #       extras = [];
-    #     };
-    #   };
-    # };
+    services = {
+      ckiesite = {
+        enable = true;
+        host = "ckie.dev";
+      };
+      rtc-files = {
+        enable = true;
+        new-fqdn = "ckie.dev";
+      };
+    };
+    acme = {
+      enable = true;
+      hosts = {
+        "ckie.dev" = {
+          provider = "porkbun";
+          extras = [ "i.ckie.dev" ];
+        };
+      };
+    };
   };
 
   networking.networkmanager.enable = mkForce false;
@@ -58,7 +62,9 @@ with lib;
       routes = [
         # Must also declare route to gateway host explicitly, because it is not
         # in the fucking subnet we're given. Probably that's why. OVH is weird.
-        { routeConfig.Destination = "2001:41d0:000a:37ff:00ff:00ff:00ff:00ff"; }
+        {
+          routeConfig.Destination = "2001:41d0:000a:37ff:00ff:00ff:00ff:00ff";
+        }
         # End weirdness. Gateway.
         { routeConfig.Gateway = "2001:41d0:000a:37ff:00ff:00ff:00ff:00ff"; }
       ];
