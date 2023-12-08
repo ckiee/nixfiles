@@ -107,6 +107,7 @@ in {
             "";
         in ''
           . {
+            bind lo
             ${prom}
             hosts /run/coredns-hosts {
               reload 1500ms
@@ -118,24 +119,28 @@ in {
           }
 
           .:5301 {
+            bind lo
             forward . tls://1.1.1.1 tls://1.0.0.1 {
               tls_servername cloudflare-dns.com
             }
           }
 
           .:5302 {
+            bind lo
             forward . tls://45.90.28.0 {
               tls_servername dns.nextdns.io
             }
           }
 
           atori {
+             bind lo
              ${prom}
              file ${./atori.zone}
           }
 
           # Resolve everything under the root localhost TLD to 127.0.0.1
           localhost {
+             bind lo
             ${prom}
             template IN A  {
                 answer "{{ .Name }} 0 IN A 127.0.0.1"
