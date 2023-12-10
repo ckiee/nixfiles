@@ -4,6 +4,9 @@ let cfg = config.cookie.systemd-boot;
 in with lib; {
   options.cookie.systemd-boot = {
     enable = mkEnableOption "systemd-boot bootloader";
+    memtest = mkEnableOption "memtest86" // {
+      default = lib.meta.availableOn pkgs.stdenv.hostPlatform pkgs.memtest86plus;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -15,8 +18,8 @@ in with lib; {
       # There's a dedicated NixOS option but it uses the propietary memtest86, not memtest86+
       # TODO: Fix?
       extraFiles."efi/memtest86plus/memtest.efi" =
-        "${pkgs.memtest86plus}/memtest.efi";
-      extraEntries."memtest86plus.conf" = ''
+        mkIf cfg.memtest "${pkgs.memtest86plus}/memtest.efi";
+      extraEntries."memtest86plus.conf" = mkIf cfg.memtest ''
         title MemTest86+
         efi   /efi/memtest86plus/memtest.efi
       '';
