@@ -3,10 +3,6 @@
 let
   cfg = config.cookie.raspberry;
   system = "aarch64-linux";
-  pkgs = import sources.nixpkgs {
-    config = { allowUnfree = true; };
-    inherit system;
-  };
   inherit (sources) nixos-hardware;
 in with lib; {
   options.cookie.raspberry = {
@@ -23,10 +19,7 @@ in with lib; {
   config = mkMerge [
     (mkIf cfg.enable {
       # Set target arch
-      nixpkgs = {
-        inherit pkgs;
-        localSystem.system = system;
-      };
+      cookie.nixpkgs.arch = system;
 
       # unbork USB
       boot.initrd.availableKernelModules = [ "reset_raspberrypi" ];

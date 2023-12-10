@@ -66,5 +66,6 @@
     ./rkvm.nix
     ./openrgb
     ./wivrn
+    ./nixpkgs.nix
   ];
 }
