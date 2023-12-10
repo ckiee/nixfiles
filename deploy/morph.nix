@@ -26,6 +26,7 @@ in {
   "kyurem" = import ../hosts/kyurem;
   "eg" = import ../hosts/eg;
   "kibako" = import ../hosts/kibako;
+  "flowe" = import ../hosts/flowe;
 }
 
 )
