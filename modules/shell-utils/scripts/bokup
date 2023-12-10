@@ -1,8 +1,8 @@
 #!@bash@/bin/sh
 export PATH="$PATH:@ckiePath@" # need system ssh
 
-# Upload a file to i.ckie.dev (bokkusu)
+# Upload a file to i.ckie.dev (kibako)
 tfn="$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 7).${1##*.}"
-rsync --progress "$1" bokkusu:/var/lib/rtc-files/ckiedev/"$tfn"
+rsync --progress "$1" kibako:/var/lib/rtc-files/ckiedev/"$tfn"
 echo https://i.ckie.dev/"$tfn"
 echo https://i.ckie.dev/"$tfn" | xclip -selection c

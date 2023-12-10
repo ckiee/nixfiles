@@ -32,11 +32,6 @@ with lib;
         enable = true;
         host = "grafana.ckie.dev";
       };
-      rtc-files = {
-        enable = true;
-        # old-fqdn = ;
-        new-fqdn = "ckie.dev";
-      };
       ckiesite = {
         enable = true;
         host = "ckie.dev";
