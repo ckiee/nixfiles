@@ -48,6 +48,7 @@ in with lib; {
       imagemagick # image swiss army knife, incls $out/bin/convert
       graphviz # draw graphs w a dsl!
       bat # syntax highlight anything, cat clone. e.g$ strace gource |& bat -pl strace --no-pager
+      libqalculate # qalc, https://fedi.cassilda.house/objects/6db95278-26bb-4818-b89f-feb2d7b77963
     ];
 
     services.fwupd.enable = true;
