@@ -17,26 +17,12 @@ with lib;
     # wireguard = {
     #   endpoint = "kibako.ckie.dev";
     # };
-    services = {
-      ckiesite = {
-        enable = true;
-        host = "ckie.dev";
-      };
-      rtc-files = {
-        enable = true;
-        new-fqdn = "ckie.dev";
-      };
-    };
-    acme = {
-      enable = true;
-      hosts = {
-        "ckie.dev" = {
-          provider = "porkbun";
-          extras = [ "i.ckie.dev" ];
-        };
-      };
-    };
   };
+
+  # FIXME FIXME FIXME FIXME
+  cookie.user.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRLmco+3zcyoTHMd94aghV6PyRvISXE+vphVsZUQZ6N ersei@possibly-evil"
+  ];
 
   networking.networkmanager.enable = mkForce false;
   networking.useDHCP = mkForce false;
