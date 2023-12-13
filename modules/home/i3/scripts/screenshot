@@ -4,7 +4,7 @@ gnome-screenshot -apf /tmp/lscr.png $@
 test -e /tmp/lscr.png || exit 1 # exit if they escaped instead of capturing scrot
 
 fn=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 7).png
-rsync /tmp/lscr.png "kibako:/var/lib/rtc-files/ckiedev/$fn"
+rsync /tmp/lscr.png "flowe:/var/lib/rtc-files/ckiedev/$fn"
 echo "https://i.ckie.dev/$fn" | xclip -selection c
 
 notify-send "screenshot taken" ""
