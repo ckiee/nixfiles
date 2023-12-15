@@ -14,4 +14,5 @@ with pkgs; {
     nixpkgs = pkgs.path;
   }).default;
   tonsi-li = sources."tonsi.li";
+  bandcamp-dl = callPackage ./bandcamp-dl { };
 }
