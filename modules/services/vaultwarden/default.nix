@@ -35,11 +35,27 @@ in with lib; {
         signupsAllowed = false;
         pushEnabled = true;
 
-        # FIXME: smtp. flowe doesnt have the mailserver migrated 2 it yet. needs creds.
+        smtpHost = "mx.ckie.dev";
+        smtpFrom = "vaultwarden@ckie.dev";
+        useSendmail = true;
       };
     };
 
-    #FIXME:restic https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault
+    users.users.vaultwarden.extraGroups = [ "postdrop" ];
+    systemd.services.vaultwarden = {
+      path = [ "/run/wrappers" ]; # for sendmail. definitely needed.
+      # XXX: unsure if these two are needed:
+      serviceConfig = {
+        ReadWriteDirectories = [ "/var/lib/postfix/queue/maildrop" ];
+        RestrictAddressFamilies =
+          [ "AF_UNIX" "AF_INET" "AF_INET6" "AF_LOCAL" "AF_NETLINK" ];
+      };
+    };
+
+    cookie.restic.paths =
+      assert config.systemd.services.vaultwarden.serviceConfig.StateDirectory
+        == "bitwarden_rs";
+      [ "/var/lib/bitwarden_rs" ];
 
     cookie.services.postgres = {
       enable = true;

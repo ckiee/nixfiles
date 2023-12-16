@@ -5,7 +5,7 @@ with lib;
 let cfg = config.cookie.services.matrix;
 in {
   config = mkIf cfg.enable {
-    # cookie.restic.paths = [ "/var/lib/matrix-synapse/discord" ];
+    # cookie.restic.paths = [ "/var/lib/matrix-synapse/discord" ];TODO
 
     # https://github.com/Mic92/dotfiles/blob/15aa29291b9a4d490e623d57a1605bb74c3210fc/nixos/eve/modules/dendrite.nix#L150
     services.matrix-synapse.sliding-sync = {
