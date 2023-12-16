@@ -15,6 +15,9 @@ in with lib; {
         trusted-users = [ "root" "@wheel" ];
         auto-optimise-store = true;
         experimental-features = "nix-command flakes";
+        # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
+        http-connections = 128;
+        max-substitution-jobs = 128;
       };
       nixPath = [
         "nixpkgs=/run/current-system/sw/nixpkgs"
@@ -38,7 +41,8 @@ in with lib; {
           # for the installer host (which is flashed onto a usb flash drive)
           # ..so we have to lower priority for this:
           path = mkDefault (if isStorePath sources.nixpkgs.outPath then
-            "${builtins.trace "flake registry cleanSource nixpkgs..." (lib.cleanSource (builtins.trace "done!" sources.nixpkgs))}"
+            "${builtins.trace "flake registry cleanSource nixpkgs..."
+            (lib.cleanSource (builtins.trace "done!" sources.nixpkgs))}"
           else
             toString sources.nixpkgs.outPath);
         };
