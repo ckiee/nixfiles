@@ -156,9 +156,6 @@ in {
         allowedTCPPorts = [ 53 ];
         allowedUDPPorts = [ 53 ];
       };
-
-      # Annoying devices spam us on :853, shut that up
-      networking.firewall.logRefusedConnections = false;
     })
 
     (mkIf (cfg.useLocally) {

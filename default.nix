@@ -20,6 +20,9 @@ with builtins;
 
   networking.networkmanager.enable = true;
 
+  networking.firewall.logRefusedConnections =
+    false; # The joys of being on the public IPv4(?) internet
+
   users.mutableUsers = false;
   users.users.root = {
     hashedPassword = (import ./secrets/unix-password.nix).root;
