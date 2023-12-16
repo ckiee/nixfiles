@@ -6,7 +6,7 @@ let
   sources = import ../../../nix/sources.nix;
 in with lib;
 with builtins; {
-  imports = [ (import sources.nixos-mailserver) ];
+  imports = [ (import sources.nixos-mailserver) ./roundcube.nix ];
 
   options.cookie.services.mailserver = {
     enable = mkEnableOption "mailserver module";
@@ -53,7 +53,7 @@ with builtins; {
     # actually expired and broke stuff because dovecot had been running for so long.
     security.acme.certs.${cfg.certFqdn}.postRun = "systemctl restart dovecot2";
 
-    cookie.restic.paths = [ config.mailserver.mailDirectory ];
+    cookie.restic.paths = [ config.mailserver.mailDirectory "/var/lib/rspamd" ];
 
     # there's a postfix-setup unit and for annoying reasons it misses it, grep our first
     # tildechat #helpdesk convo for story.
@@ -84,7 +84,8 @@ with builtins; {
         };
 
         "vaultwarden@ckie.dev" = {
-          hashedPasswordFile = config.cookie.secrets.mailserver-pw-vaultwarden-hash.dest;
+          hashedPasswordFile =
+            config.cookie.secrets.mailserver-pw-vaultwarden-hash.dest;
           quota = "100M";
           sendOnly = true;
         };
