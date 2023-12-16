@@ -23,15 +23,17 @@ with builtins; {
   };
 
   config = mkIf cfg.enable {
-    cookie.secrets = rec {
-      # TODO: dedup
-      mailserver-pw-hash = {
-        source = "./secrets/mailserver-pw-hash";
-        dest = "/run/keys/mailserver-pw-hash";
+    cookie.secrets = let
+      mkpw = acct: {
+        source = "./secrets/mailserver-pw-${acct}-hash";
+        dest = "/run/keys/mailserver-pw-${acct}-hash";
         owner = "root";
         group = "root";
         permissions = "0400";
       };
+    in rec {
+      mailserver-pw-us-hash = mkpw "us";
+      mailserver-pw-vaultwarden-hash = mkpw "vaultwarden";
 
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
@@ -69,15 +71,22 @@ with builtins; {
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
       keyFile = "/var/lib/acme/${cfg.certFqdn}/key.pem";
 
-      messageSizeLimit = 31457280; # 30 MiB, needs to account for base64'd attachments I think, stackoverflow says base64'd makes contents 4*(old_bytes/3) bytes big
+      messageSizeLimit =
+        31457280; # 30 MiB, needs to account for base64'd attachments I think, stackoverflow says base64'd makes contents 4*(old_bytes/3) bytes big
 
       loginAccounts = {
         "us@ckie.dev" = {
-          hashedPasswordFile = config.cookie.secrets.mailserver-pw-hash.dest;
+          hashedPasswordFile = config.cookie.secrets.mailserver-pw-us-hash.dest;
           aliases = [ "postmaster@ckie.dev" "work-sbr@ckie.dev" "mei@ckie.dev" ]
             ++ (util.process (fileContents ../../../secrets/email-salt)
               cfg.aliases);
           quota = "5G";
+        };
+
+        "vaultwarden@ckie.dev" = {
+          hashedPasswordFile = config.cookie.secrets.mailserver-pw-vaultwarden-hash.dest;
+          quota = "100M";
+          sendOnly = true;
         };
       };
     };

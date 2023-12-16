@@ -54,5 +54,6 @@
     ./aldhy
     ./net-offload
     ./tonsi-li
+    ./vaultwarden
   ];
 }

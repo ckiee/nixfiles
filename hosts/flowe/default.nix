@@ -15,6 +15,7 @@ with lib;
     };
 
     services = {
+      vaultwarden.enable = true;
       ckiesite = {
         enable = true;
         host = "ckie.dev";
@@ -29,7 +30,7 @@ with lib;
       hosts = {
         "ckie.dev" = {
           provider = "porkbun";
-          extras = [ "i.ckie.dev" ];
+          extras = [ "i.ckie.dev" "vw.ckie.dev" ];
         };
       };
     };
