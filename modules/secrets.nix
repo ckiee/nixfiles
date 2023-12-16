@@ -54,7 +54,8 @@ let
 
       generateCommand = mkOption {
         type = types.nullOr types.str;
-        description = "a shell command to generate the secret if it does not already exist";
+        description =
+          "a shell command to generate the secret if it does not already exist";
         default = null;
       };
     };
@@ -79,7 +80,13 @@ let
         chown '${owner}':'${group}' '${dest}'
         chmod '${permissions}' '${dest}'
       '';
-      script = "sleep infinity";
+      script = ''
+        ${optionalString (wantedBy != null) ''
+        # TODO: inspect the start reason for *this* -key unit to see whether this is appropiate
+        systemctl try-reload-or-restart ${escapeShellArg wantedBy}
+        ''}
+        sleep infinity
+      '';
     };
 in {
   options.cookie.secrets = mkOption {
