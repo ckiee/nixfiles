@@ -21,7 +21,6 @@ with lib;
       gitd.enable = true;
       headscale.enable = true;
       minecraft.enable = true;
-      mailserver.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
       heisenbridge.enable = true;
@@ -70,7 +69,6 @@ with lib;
             "git.ckie.dev"
             "headscale.ckie.dev"
             "janitor.matrix.ckie.dev"
-            "mx.ckie.dev" # important!
           ];
         };
         "tailnet.ckie.dev" = {

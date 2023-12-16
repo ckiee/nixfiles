@@ -64,7 +64,7 @@ with builtins; {
     mailserver = {
       enable = true;
       localDnsResolver = false; # :53 needs to be open for services/coredns
-      fqdn = "bokkusu.ckie.dev";
+      fqdn = "flowe.ckie.dev";
       domains = [ "ckie.dev" ];
 
       certificateScheme = "manual"; # Manually specify certificate paths
