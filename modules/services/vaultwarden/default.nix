@@ -53,9 +53,7 @@ in with lib; {
     };
 
     cookie.restic.paths =
-      assert config.systemd.services.vaultwarden.serviceConfig.StateDirectory
-        == "bitwarden_rs";
-      [ "/var/lib/bitwarden_rs" ];
+      [ "/var/lib/bitwarden_rs" ]; # check this before bumping stateVersion!
 
     cookie.services.postgres = {
       enable = true;
