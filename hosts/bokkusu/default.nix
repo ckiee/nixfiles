@@ -70,6 +70,7 @@ with lib;
             "git.ckie.dev"
             "headscale.ckie.dev"
             "janitor.matrix.ckie.dev"
+            "mx.ckie.dev" # important!
           ];
         };
         "tailnet.ckie.dev" = {

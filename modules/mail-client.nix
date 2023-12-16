@@ -42,13 +42,13 @@ in with lib; {
               realName = "ckie";
               primary = true;
               smtp = {
-                host = "ckie.dev";
+                host = "mx.ckie.dev";
                 # https://nostarttls.secvuln.info
                 port = 465;
                 tls.enable = true;
               };
               imap = {
-                host = "ckie.dev";
+                host = "mx.ckie.dev";
                 port = 993;
                 tls.enable = true;
               };
