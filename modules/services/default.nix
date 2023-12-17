@@ -40,6 +40,8 @@
     ./heisenbridge
     ./akkoma-test.nix
     ./transmission
+    ./vaultwarden
+    ./ergo
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
@@ -54,6 +56,5 @@
     ./aldhy
     ./net-offload
     ./tonsi-li
-    ./vaultwarden
   ];
 }
