@@ -104,6 +104,7 @@ in {
     carla
     # mx master
     solaar
+    basiliskii # old 68k mac emu
   ];
 
   services.usbmuxd.enable = true;
