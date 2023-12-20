@@ -17,7 +17,7 @@ with lib;
     services = {
       vaultwarden.enable = true;
       mailserver.enable = true;
-      # ergo.enable = true; # TODO debug with aoife
+      ergo.enable = true;
       ckiesite = {
         enable = true;
         host = "ckie.dev";

@@ -51,7 +51,7 @@ with builtins; {
 
     # Restart dovecot2 when we get new certificates: before doing this my cert
     # actually expired and broke stuff because dovecot had been running for so long.
-    security.acme.certs.${cfg.certFqdn}.postRun = "systemctl restart dovecot2";
+    security.acme.certs.${cfg.certFqdn}.postRun = "systemctl try-restart dovecot2";
 
     cookie.restic.paths = [ config.mailserver.mailDirectory "/var/lib/rspamd" ];
 
