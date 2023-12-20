@@ -51,6 +51,7 @@ in {
         };
       }) ((v.extras or [ ]) ++ (singleton i)))) cfg.hosts));
 
+    # TODO: only meow the cert to the right servers when they usin it
     cookie.secrets = let
       mkAcme = file: {
         source = "./secrets/${file}";
@@ -62,6 +63,7 @@ in {
     in {
       acme = mkAcme "acme.env";
       acme-dan = mkAcme "acme-dan.env";
+      acme-heoife = mkAcme "acme-heoife.env";
     };
 
     systemd.services = mapAttrs' (i: v:

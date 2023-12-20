@@ -39,6 +39,11 @@ with lib;
             "mx.ckie.dev" # important!
           ];
         };
+
+        "puppycat.house" = {
+          provider = "hurricane";
+          secretId = "acme-heoife";
+        };
       };
     };
   };
