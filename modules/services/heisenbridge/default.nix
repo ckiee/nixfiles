@@ -10,7 +10,7 @@ in with lib; {
   config = mkIf cfg.enable {
     services.heisenbridge = {
       enable = true;
-      address = config.cookie.state.tailscaleIp; # :9898
+      # address = ; # :9898
       debug = true; # FIXME
       homeserver = if config.cookie.services.matrix.enable then
         "http://[::1]:8008"

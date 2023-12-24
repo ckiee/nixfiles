@@ -11,13 +11,17 @@ with lib;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKS46DUbCbtBGhB+dx1/B/tegqI7i6ir1ofbTmTI+yYm root@flowe";
-      # tailscaleIp = "";
+      tailscaleIp = "100.115.167.26";
     };
 
     services = {
       vaultwarden.enable = true;
       mailserver.enable = true;
       ergo.enable = true;
+      among-sus.enable = true;
+      anonvote-bot.enable = true;
+      heisenbridge.enable = true;
+
       ckiesite = {
         enable = true;
         host = "ckie.dev";
@@ -25,6 +29,11 @@ with lib;
       rtc-files = {
         enable = true;
         new-fqdn = "ckie.dev";
+      };
+      matrix = {
+        enable = true;
+        host = "ckie.dev";
+        serviceHost = "matrix.ckie.dev";
       };
     };
     acme = {
@@ -37,6 +46,8 @@ with lib;
             "vw.ckie.dev"
             "flowe.ckie.dev"
             "mx.ckie.dev" # important!
+            "matrix.ckie.dev"
+            "janitor.matrix.ckie.dev"
           ];
         };
 

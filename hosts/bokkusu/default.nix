@@ -21,19 +21,12 @@ with lib;
       gitd.enable = true;
       headscale.enable = true;
       minecraft.enable = true;
-      among-sus.enable = true;
-      anonvote-bot.enable = true;
-      heisenbridge.enable = true;
       tonsi-li.enable = true;
 
       prometheus.enableServer = true;
       grafana = {
         enable = true;
         host = "grafana.ckie.dev";
-      };
-      ckiesite = {
-        enable = true;
-        host = "ckie.dev";
       };
       # znc = {
       #   enable = true;
@@ -45,11 +38,6 @@ with lib;
       #   enable = true;
       #   acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
       # };
-      matrix = {
-        enable = true;
-        host = "ckie.dev";
-        serviceHost = "matrix.ckie.dev";
-      };
       # mcid = {
       #   enable = true;
       #   host = "mcid.party";
@@ -61,14 +49,12 @@ with lib;
         "ckie.dev" = {
           provider = "porkbun";
           extras = [
-            "matrix.ckie.dev"
             "bokkusu.ckie.dev"
             "grafana.ckie.dev"
             "znc.ckie.dev"
             "fedi.ckie.dev"
             "git.ckie.dev"
             "headscale.ckie.dev"
-            "janitor.matrix.ckie.dev"
           ];
         };
         "tailnet.ckie.dev" = {
@@ -82,6 +68,12 @@ with lib;
       };
     };
   };
+
+
+  # TODO: per-server password, root too
+  # users.users.ckie.hashedPassword = mkForce
+  #   "changeme";
+  security.sudo.wheelNeedsPassword = false;
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 

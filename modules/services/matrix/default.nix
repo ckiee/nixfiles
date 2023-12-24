@@ -200,15 +200,15 @@ in with lib; {
         # and it's /still/ not working.. it finally accepts the config, but
         # for some reason the server responds 500 because of the smtp
         # submission.
-        email = {
-          notif_from = "matrix bot <matrixbot@ckie.dev>";
-          smtp_host = assert config.cookie.services.mailserver.enable;
-            "localhost";
-          smtp_port = 587;
-          force_tls = true;
-          smtp_user = "matrixbot";
-          # smtp_pass is in secret config
-        };
+        # email = {
+        #   notif_from = "matrix bot <matrixbot@ckie.dev>";
+        #   smtp_host = assert config.cookie.services.mailserver.enable;
+        #     "localhost";
+        #   smtp_port = 587;
+        #   force_tls = true;
+        #   smtp_user = "matrixbot";
+        #   # smtp_pass is in secret config
+        # };
 
         logConfig = ''
           version: 1
