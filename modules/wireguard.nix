@@ -48,19 +48,17 @@ in {
           wg genkey | tee secrets/'wg-privkey-${hostname}' | wg pubkey > secrets/'wg-pubkey-${hostname}'
         '';
       };
-
+      
       networking = {
         firewall = {
           allowedUDPPorts = singleton 51820;
           allowedTCPPorts = singleton
-            51820; # really this is only needed for the cknet interface but /shrug systemd should filter it out anyway
+            51820; 
         };
         wireguard.interfaces.cknet = {
           ips = singleton cfg.ip;
-          # TODO only listen if we're an endpoint too!
-          listenPort = 51820;
+          listenPort = mkIf (cfg.endpoint != null) 51820;
           privateKeyFile = config.cookie.secrets.wg-privkey.dest;
-          # peersAnnouncing.enable = cfg.endpoint != null;
         };
       };
 
