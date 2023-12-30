@@ -34,6 +34,7 @@ with builtins; {
     in rec {
       mailserver-pw-us-hash = mkpw "us";
       mailserver-pw-vaultwarden-hash = mkpw "vaultwarden";
+      mailserver-pw-aoife-hash = mkpw "aoife";
 
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
@@ -65,7 +66,7 @@ with builtins; {
       enable = true;
       localDnsResolver = false; # :53 needs to be open for services/coredns
       fqdn = "flowe.ckie.dev";
-      domains = [ "ckie.dev" ];
+      domains = [ "ckie.dev" "enby.space" "cassidy.sh" ];
 
       certificateScheme = "manual"; # Manually specify certificate paths
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
@@ -86,7 +87,19 @@ with builtins; {
         "vaultwarden@ckie.dev" = {
           hashedPasswordFile =
             config.cookie.secrets.mailserver-pw-vaultwarden-hash.dest;
-          quota = "100M";
+          quota = "1M";
+          sendOnly = true;
+        };
+
+        "aoife@enby.space" = {
+          hashedPasswordFile =
+            config.cookie.secrets.mailserver-pw-aoife-hash.dest;
+          aliases = [
+            "sydney@enby.space"
+            "nbsp@enby.space"
+            "aoife@cassidy.sh"
+          ];
+          quota = "1M";
           sendOnly = true;
         };
       };
