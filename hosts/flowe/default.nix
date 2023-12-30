@@ -13,7 +13,7 @@ with lib;
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKS46DUbCbtBGhB+dx1/B/tegqI7i6ir1ofbTmTI+yYm root@flowe";
       tailscaleIp = "100.115.167.26";
     };
-
+    wireguard = { endpoint = "flowe.ckie.dev"; };
     services = {
       vaultwarden.enable = true;
       mailserver.enable = true;
