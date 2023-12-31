@@ -33,7 +33,7 @@ in {
       (wrapOBS { plugins = with obs-studio-plugins; [ obs-vaapi ]; })
       sidequest # mediocre vr
       transmission_4-gtk # capitalism
-      blockbench-electron # placing blocks
+      # blockbench-electron # placing blocks
       krita # drawing
       # prusa-slicer # making things out of harmful plastic
       # subtitleeditor # making text from sine waves, manually # TODO unbreak package
