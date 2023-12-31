@@ -15,7 +15,8 @@ in with lib; {
     home-manager.users.ckie = { ... }: {
       home.packages = with pkgs; [
         discord
-        schildichat-desktop # element-desktop # NOTE: using the unmodified nixpkgs element again!
+        #schildichat-desktop # broken, removed
+        element-desktop # NOTE: using the unmodified nixpkgs element again!
         signal-desktop
         mumble
         nheko
