@@ -49,11 +49,8 @@ elif [ "$1" == "all" ]; then
     morp deploy deploy/morph.nix $deployExtra
 elif [ "$1" == "installer" ]; then
     shift
-    echo evaluating..
-    drv="$($0 $c_trace eval fast nodes.installer.config.system.build.isoImage | jq -r .drvPath)"
-    echo realising "$drv"..
-    store_path="$(nix-store --realise "$drv")"
-    echo built "$store_path"
+    echo evaluating + building..
+    store_path="$($0 $c_trace eval build nodes.installer.config.system.build.isoImage)"
     if [ "$1" == "flash" ]; then
         shift
         target="$1"
