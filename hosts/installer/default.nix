@@ -45,6 +45,7 @@ with lib;
       i3.enable = true;
       xcursor.enable = true;
       st.enable = true;
+      remotemacs.enable = true;
     };
     services.rsibreak.enable = true;
     home.stateVersion = "22.11";
