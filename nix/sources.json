@@ -239,10 +239,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-eval-jobs",
-        "rev": "f03f63514f100bc3415ac0825d24e436dcf166e5",
-        "sha256": "19ag8vah2m6af0wvb77n7vrhjska7jbq2mm3pkz61795qzlwvq0n",
+        "rev": "64104a3c55593c903af78af86a4c9d2e5487a2d7",
+        "sha256": "0m5xjgvnyg7862r20awx6b7j6r86acmqad8q9zmjqadrrcbj4bsv",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-eval-jobs/archive/f03f63514f100bc3415ac0825d24e436dcf166e5.tar.gz",
+        "url": "https://github.com/nix-community/nix-eval-jobs/archive/64104a3c55593c903af78af86a4c9d2e5487a2d7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-channel-scripts": {
