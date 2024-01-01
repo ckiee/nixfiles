@@ -9,26 +9,31 @@ in { config, lib, pkgs, modulesPath, ... }:
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/mapper/crypted";
-    fsType = "ext4";
-  };
+  boot.initrd.luks.devices."sncrypt".device =
+    "/dev/disk/by-uuid/1b405708-1efc-4844-bd75-ae0e5a40d34e";
 
-  boot.initrd.luks.devices."crypted".device =
-    "/dev/disk/by-uuid/f6c95e22-ac8b-40f0-8ce7-536d78dcc51b";
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/EF7A-172E";
-    fsType = "vfat";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/182F-0E22";
+      fsType = "vfat";
+    };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/5fb66e38-bc85-4170-a7f2-8e7ffefc6aae"; }];
+  fileSystems."/nix" =
+    { device = "/dev/mapper/sng-nix";
+      fsType = "ext4";
+    };
 
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = true;
 }

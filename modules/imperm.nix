@@ -22,6 +22,7 @@ in with lib; {
         config.services.mongodb.dbpath
         "/var/lib/alsa" # volume sliders, sometimes muted by default, but depends on plugged in hardware
         "/var/lib/bluetooth"
+        "/etc/NetworkManager/system-connections"
       ];
       files = [
         "/etc/machine-id"

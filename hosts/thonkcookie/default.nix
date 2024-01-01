@@ -8,6 +8,7 @@ with lib; {
   time.timeZone = mkForce null;
 
   cookie = {
+    imperm.enable = true;
     desktop = {
       enable = true;
       monitors.primary = "eDP-1";
@@ -20,7 +21,6 @@ with lib; {
           "IE7OX5L-IH67GHS-5DDDGDY-TYHLYED-G44LTPX-YWQEQQK-6AX6OYJ-SRRWMA7";
       };
       printing.enable = true;
-      # akkoma-test.enable = true;
     };
     systemd-boot.enable = true;
     hardware.t480s.enable = true;
@@ -33,6 +33,7 @@ with lib; {
       tailscaleIp = "100.89.163.81";
     };
   };
+
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
       collections.devel.enable = true;
@@ -46,7 +47,7 @@ with lib; {
     #   bool KWindowBasedIdleTimePoller::eventFilter(QObject *object, QEvent *event)
     # in gdb.
 
-    home.stateVersion = "22.11";
+    home.stateVersion = "23.05";
   };
 
   programs.adb.enable = true;
@@ -69,6 +70,6 @@ with lib; {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
