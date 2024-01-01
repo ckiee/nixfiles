@@ -29,7 +29,7 @@ in with lib; {
         dates = "weekly";
       };
       # Get flakes
-      package = pkgs.nixUnstable;
+      package = pkgs.nix; # sometimes nixUnstable
       registry.nixpkgs = {
         from = {
           type = "indirect";

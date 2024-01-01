@@ -10,7 +10,7 @@ let
 
   morph = import sources.morph { inherit pkgs; };
   nix-eval-jobs = pkgs.callPackage sources.nix-eval-jobs { };
-  myNix = pkgs.nixUnstable;
+  myNix = pkgs.nix; # sometimes nixUnstable
   #   .overrideAttrs (orig: {
   #   patches = orig.patches ++ [
   #     ./0001-libexpr-improve-invalid-value-error.patch
