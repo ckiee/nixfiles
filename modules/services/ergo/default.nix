@@ -80,8 +80,7 @@ in {
               # password is required to oper up (e.g., /OPER ckie mypassword). to generate
               # the hash, use `ergo genpasswd`.
               password =
-                "$2a$04$ltQIKNwu8aR1jImueQTkUuEA4RBRD.zSP3xh5e6gbvvggV7piDHii";
-              # FIXME PqoDieUAZ%Q$^atqraKgUg6y
+                "$2a$04$Pop3fQQs.ETdNzUloRGw7ead6Toud0fSxPctZi7Ma/lPsXYThM87O";
             };
           };
         };
