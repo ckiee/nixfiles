@@ -5,7 +5,7 @@ with lib; {
 
   networking.hostName = "thonkcookie";
 
-  time.timeZone = mkForce null;
+  # time.timeZone = mkForce null;
 
   cookie = {
     imperm.enable = true;
