@@ -96,10 +96,6 @@ in {
   };
 
   config = {
-    warnings = mapAttrsToList
-      (name: sec: "cookie.secrets.${name}: runtime is deprecated")
-      (filterAttrs (_: secret: !secret.runtime) cfg);
-
     systemd.services = let
       units = mapAttrs' (name: info: {
         name = "${name}-key";
