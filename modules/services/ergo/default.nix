@@ -30,10 +30,19 @@ in {
 
     services.ergochat = {
       enable = true;
+      # https://raw.githubusercontent.com/ergochat/ergo/0f059ea2cc98fb0a846d7701cf5dc21f060d931c/default.yaml
       settings = {
-        accounts.multiclient = {
-          enable = true;
-          allowed-by-default = true;
+        accounts = {
+          multiclient = {
+            enable = true;
+            allowed-by-default = true;
+          };
+          nick-reservation.force-nick-equals-account = false;
+          vhosts = {
+            enabled = true;
+            max-length = 64;
+            valid-regexp = "^[0-9A-Za-z.\-_/]+$";
+          };
         };
 
         logging = [{
@@ -42,11 +51,11 @@ in {
           method = "stderr";
         }];
 
+        network.name = "puppycat.house";
+
         server = {
           listeners = {
-            ":6667" = {
-              sts-only = true;
-            };
+            ":6667" = { sts-only = true; };
 
             ":6697" = {
               tls = {
@@ -69,22 +78,68 @@ in {
           name = cfg.fqdn;
           motd = pkgs.writeText "ergo.motd" "TODO: Welcome back!";
 
-          opers = {
-            # default operator named 'admin'; log in with /OPER admin <password>
-            admin = {
-              # which capabilities this oper has access to
-              class = "server-admin";
-
-              # operators can be authenticated either by password (with the /OPER command),
-              # or by certificate fingerprint, or both. if a password hash is set, then a
-              # password is required to oper up (e.g., /OPER ckie mypassword). to generate
-              # the hash, use `ergo genpasswd`.
-              password =
-                "$2a$04$Pop3fQQs.ETdNzUloRGw7ead6Toud0fSxPctZi7Ma/lPsXYThM87O";
-            };
+          ip-cloaking = {
+            enabled = true;
+            netname = "house";
+            num-bits = 0;
           };
         };
 
+        opers = {
+          ckie = {
+            class = "server-admin";
+            certfp =
+              "7555d626abdc49b19d7d8629c4921dd85564cfaa2fbe3d139c59bd3b87546750";
+            auto = true;
+          };
+          admin = {
+            class = "server-admin";
+            password =
+              "$2a$04$0x.qR7guLXkoxPpsCDVNfuyaWEXizU435upNmzYq1BOIwOjZm8k5i";
+          };
+        };
+
+
+        oper-classes = {
+          # chat moderator: can ban/unban users from the server, join channels,
+          # fix mode issues and sort out vhosts.
+          "chat-moderator" = {
+            # title shown in WHOIS
+            title = "Chat Moderator";
+
+            # capability names
+            capabilities = [
+              "kill" # disconnect user sessions
+              "ban" # ban IPs, CIDRs, NUH masks, and suspend accounts (UBAN / DLINE / KLINE)
+              "nofakelag" # exempted from "fakelag" restrictions on rate of message sending
+              "relaymsg" # use RELAYMSG in any channel (see the `relaymsg` config block)
+              "vhosts" # add and remove vhosts from users
+              "sajoin" # join arbitrary channels, including private channels
+              "samode" # modify arbitrary channel and user modes
+              "snomasks" # subscribe to arbitrary server notice masks
+              "roleplay" # use the (deprecated) roleplay commands in any channel
+            ];
+          };
+          # server admin: has full control of the ircd, including nickname and
+          # channel registrations
+          "server-admin" = {
+            # title shown in WHOIS
+            title = "Server Admin";
+
+            # oper class this extends from
+            extends = "chat-moderator";
+
+            # capability names
+            capabilities = [
+              "rehash" # rehash the server, i.e. reload the config at runtime
+              "accreg" # modify arbitrary account registrations
+              "chanreg" # modify arbitrary channel registrations
+              "history" # modify or delete history messages
+              "defcon" # use the DEFCON command (restrict server capabilities)
+              "massmessage" # message all users on the server
+            ];
+          };
+        };
       };
     };
   };
