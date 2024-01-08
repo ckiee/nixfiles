@@ -52,7 +52,8 @@ with builtins; {
 
     # Restart dovecot2 when we get new certificates: before doing this my cert
     # actually expired and broke stuff because dovecot had been running for so long.
-    security.acme.certs.${cfg.certFqdn}.postRun = "systemctl try-restart dovecot2";
+    security.acme.certs.${cfg.certFqdn}.postRun =
+      "systemctl try-restart dovecot2";
 
     cookie.restic.paths = [ config.mailserver.mailDirectory "/var/lib/rspamd" ];
 
@@ -61,6 +62,15 @@ with builtins; {
     systemd.services.postfix.serviceConfig."X-Stupid-Hack-${
       builtins.hashString "sha256" (concatStringsSep "\n" cfg.aliases)
     }" = true;
+
+    services.postfix = {
+      # Deliver cassidy.sh & enby.space emails via SMTP, not locally using LMTP.
+      mapFiles."transport_maps" = pkgs.writeText "postfix-transport-maps" ''
+        cassidy.sh  smtp:[cassidy.sh]:25
+        enby.space  smtp:[enby.space]:25
+      '';
+      config.transport_maps = "hash:/var/lib/postfix/conf/transport_maps";
+    };
 
     mailserver = {
       enable = true;
@@ -94,11 +104,8 @@ with builtins; {
         "aoife@enby.space" = {
           hashedPasswordFile =
             config.cookie.secrets.mailserver-pw-aoife-hash.dest;
-          aliases = [
-            "sydney@enby.space"
-            "nbsp@enby.space"
-            "aoife@cassidy.sh"
-          ];
+          aliases =
+            [ "sydney@enby.space" "nbsp@enby.space" "aoife@cassidy.sh" ];
           quota = "1M";
           sendOnly = true;
         };
