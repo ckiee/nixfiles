@@ -8,8 +8,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.keyboard = {
-      layout = "us,us,il";
-      variant = ",colemak,";
+      layout = "us,il";
     };
     # manpage xkeyboard-config(7)
     home.keyboard.options =
