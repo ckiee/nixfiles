@@ -77,6 +77,7 @@ in with lib; {
           proxyPass = "http://[::1]:8008"; # without a trailing /
           extraConfig = ''
             proxy_send_timeout 100;
+            client_max_body_size 50M;
           '';
         };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
