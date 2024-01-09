@@ -29,7 +29,12 @@ in {
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we
     # only back up this and only through this machine..
-    restic.paths = map (x: "${config.cookie.user.home}/${x}") [ "Sync" ".ssh" "DCIM" "Music" ];
+    restic.paths = map (x: "${config.cookie.user.home}/${x}") [
+      "Sync"
+      ".ssh"
+      "DCIM"
+      "Music"
+    ];
     sound.pro = true;
 
     opentabletdriver.enable = true;
@@ -126,6 +131,15 @@ in {
       setSocketVariable = true;
     };
   };
+
+  # users.users.nbsp = {
+  #   isNormalUser = true;
+  #   shell = pkgs.zsh;
+  #   openssh.authorizedKeys.keys = [
+  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIeF9csiVJbQqKe2FIpYC4K/FlHATA2V+UKz+lFH+nL nbsp@voyager"
+  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICeMPWXEczJHhA9eG8WjTNHTGPTeSL79a+7pvlno/JAW nbsp@herschel"
+  #   ];
+  # };
 
   networking.firewall.enable = false;
 
