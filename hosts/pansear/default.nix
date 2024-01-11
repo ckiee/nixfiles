@@ -47,10 +47,10 @@ with builtins;
         server = true;
         host = "print.atori";
       };
-      nix-serve = {
-        enable = true;
-        host = "cache.tailnet.ckie.dev";
-      };
+      # nix-serve = {
+      #   enable = true;
+      #   host = "cache.tailnet.ckie.dev";
+      # };
       syncthing = {
         enable = true;
         runtimeId =

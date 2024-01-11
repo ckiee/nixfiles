@@ -50,13 +50,14 @@ in with lib; {
       cookie.services.prometheus.nginx-vhosts = [ "nix-serve" ];
     })
 
-    (mkIf (!cfg.enable) {
-      nix.settings = {
-        substituters = [ "https://cache.tailnet.ckie.dev" ];
-        trusted-public-keys = [
-          "cache.tailnet.ckie.dev:Ng8W2u5lGtakekcMxEy7vaw99IwgDaK8ensVZQfZgUQ="
-        ];
-      };
-    })
+    # TODO: fix this guy
+    # (mkIf (!cfg.enable) {
+    #   nix.settings = {
+    #     substituters = [ "https://cache.tailnet.ckie.dev" ];
+    #     trusted-public-keys = [
+    #       "cache.tailnet.ckie.dev:Ng8W2u5lGtakekcMxEy7vaw99IwgDaK8ensVZQfZgUQ="
+    #     ];
+    #   };
+    # })
   ];
 }
