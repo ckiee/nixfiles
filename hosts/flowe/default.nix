@@ -21,6 +21,9 @@ with lib;
       among-sus.enable = true;
       anonvote-bot.enable = true;
       heisenbridge.enable = true;
+      tonsi-li.enable = true;
+      minecraft.enable = true;
+
 
       ckiesite = {
         enable = true;
@@ -35,6 +38,11 @@ with lib;
         host = "ckie.dev";
         serviceHost = "matrix.ckie.dev";
       };
+      prometheus.enableServer = true;
+      grafana = {
+        enable = true;
+        host = "grafana.ckie.dev";
+      };
     };
     acme = {
       enable = true;
@@ -48,6 +56,7 @@ with lib;
             "mx.ckie.dev" # important!
             "matrix.ckie.dev"
             "janitor.matrix.ckie.dev"
+            "grafana.ckie.dev"
           ];
         };
 

@@ -12,22 +12,11 @@ with lib;
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
       tailscaleIp = "100.124.234.25";
     };
-    remote-builder.role = "user";
     wireguard = {
       ip = "10.67.75.1";
       endpoint = "bokkusu.ckie.dev";
     };
     services = {
-      gitd.enable = true;
-      headscale.enable = true;
-      minecraft.enable = true;
-      tonsi-li.enable = true;
-
-      prometheus.enableServer = true;
-      grafana = {
-        enable = true;
-        host = "grafana.ckie.dev";
-      };
       # znc = {
       #   enable = true;
       #   host = "znc.ckie.dev";
@@ -46,17 +35,6 @@ with lib;
     acme = {
       enable = true;
       hosts = {
-        "ckie.dev" = {
-          provider = "porkbun";
-          extras = [
-            "bokkusu.ckie.dev"
-            "grafana.ckie.dev"
-            "znc.ckie.dev"
-            "fedi.ckie.dev"
-            "git.ckie.dev"
-            "headscale.ckie.dev"
-          ];
-        };
         "tailnet.ckie.dev" = {
           wildcard = true;
           provider = "porkbun";
