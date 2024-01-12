@@ -115,7 +115,7 @@ in {
 
           modules-left = "ws";
           modules-right =
-            [ "prom" "separator" "mpd" "separator" "shower" ]
+            [ "mpd" "separator" "shower" ]
             ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
