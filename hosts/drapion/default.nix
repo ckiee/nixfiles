@@ -31,6 +31,11 @@ with lib;
 
   networking.networkmanager.unmanaged = [ "eth0" ];
 
+  # TODO: per-server password, root too
+  # users.users.ckie.hashedPassword = mkForce
+  #   "$y$j9T$1kqwIyYgO/PZOuTPYhW4Q/$R7oTyggU8et7h5FA1WHjliKUBAKkofqNQEQY91N5cG1";
+  security.sudo.wheelNeedsPassword = false;
+
   networking = {
     hostName = "drapion";
     defaultGateway = "192.168.0.1";
