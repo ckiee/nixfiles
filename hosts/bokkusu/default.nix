@@ -6,45 +6,12 @@ with lib;
 
   cookie = {
     restic.enable = true; # Backups
-    tailnet-certs.enableServer = true;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjcN4YgKxeaeQEERpYIwwZJXV3Hre4FfrD+cNi69Z6A";
       tailscaleIp = "100.124.234.25";
     };
-    wireguard = {
-      ip = "10.67.75.1";
-      endpoint = "bokkusu.ckie.dev";
-    };
-    services = {
-      # znc = {
-      #   enable = true;
-      #   host = "znc.ckie.dev";
-      #   acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
-      # };
-      # currently unused
-      # soju = {
-      #   enable = true;
-      #   acmeHost = "ckie.dev"; # We use cookie.acme."ckie.dev".extras for this
-      # };
-      # mcid = {
-      #   enable = true;
-      #   host = "mcid.party";
-      # };
-    };
-    acme = {
-      enable = true;
-      hosts = {
-        "tailnet.ckie.dev" = {
-          wildcard = true;
-          provider = "porkbun";
-        };
-        # "mcid.party" = {
-        #   provider = "cloudflare";
-        #   secretId = "acme-dan";
-        # };
-      };
-    };
+    wireguard.ip = "10.67.75.1";
   };
 
 

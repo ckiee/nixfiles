@@ -8,6 +8,7 @@ with lib;
   cookie = {
     restic.enable = true; # Backups
     systemd-initrd.enable = true;
+    tailnet-certs.enableServer = true;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKS46DUbCbtBGhB+dx1/B/tegqI7i6ir1ofbTmTI+yYm root@flowe";
@@ -63,6 +64,11 @@ with lib;
         "puppycat.house" = {
           provider = "hurricane";
           secretId = "acme-heoife";
+        };
+
+        "tailnet.ckie.dev" = {
+          wildcard = true;
+          provider = "porkbun";
         };
       };
     };
