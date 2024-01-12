@@ -73,6 +73,12 @@ in with lib; {
     };
 
     programs = { adb.enable = true; };
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      xdgOpenUsePortal = true;
+      config.common.default = "gtk";
+    };
 
     cookie = {
       collections = {
