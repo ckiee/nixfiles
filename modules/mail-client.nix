@@ -4,9 +4,7 @@ let
   cfg = config.cookie.mail-client;
   maildir = "${config.cookie.user.home}/Mail";
 in with lib; {
-  options.cookie.mail-client = {
-    enable = mkEnableOption "mail client";
-  };
+  options.cookie.mail-client = { enable = mkEnableOption "mail client"; };
 
   config = mkIf cfg.enable {
     home-manager.users.ckie = { pkgs, ... }: {
@@ -26,6 +24,10 @@ in with lib; {
               patterns = [ "*" ];
             };
             msmtp.enable = true;
+            thunderbird = {
+              enable = true;
+              profiles = [ "ckie" ];
+            };
           };
         in {
           # Self hosted, online
@@ -51,10 +53,6 @@ in with lib; {
                 host = "mx.ckie.dev";
                 port = 993;
                 tls.enable = true;
-              };
-              thunderbird = {
-                enable = true;
-                profiles = [ "ckie" ];
               };
             })
           ];
