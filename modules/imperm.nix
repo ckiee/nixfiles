@@ -23,6 +23,7 @@ in with lib; {
         "/var/lib/alsa" # volume sliders, sometimes muted by default, but depends on plugged in hardware
         "/var/lib/bluetooth"
         "/etc/NetworkManager/system-connections"
+        "/var/cache/powertop"
       ];
       files = [
         "/etc/machine-id"
