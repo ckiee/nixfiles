@@ -51,6 +51,7 @@ in with lib; {
       libqalculate # qalc, https://fedi.cassilda.house/objects/6db95278-26bb-4818-b89f-feb2d7b77963
       cookie.bandcamp-dl # ili's bandcamp downloaber ( requires account. watch out for https://github.com/borisbabic/browser_cookie3/pull/126 )
       wemux # tmux multiplayer pubnix-style
+      powertop # power efficency! batteries! laptop!
     ];
 
     services.fwupd.enable = true;

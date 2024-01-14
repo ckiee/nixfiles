@@ -23,7 +23,10 @@ with lib; {
       printing.enable = true;
     };
     systemd-boot.enable = true;
-    hardware.t480s.enable = true;
+    hardware.t480s = {
+      enable = true;
+      undervolt = true;
+    };
     smartd.enable = true;
     rkvm.role = "tx";
     steam.enable = true;
