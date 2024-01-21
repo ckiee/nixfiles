@@ -113,7 +113,6 @@ in {
   ];
 
   services.usbmuxd.enable = true;
-  programs.droidcam.enable = true;
   programs.fuse.userAllowOther = true;
 
   hardware.bluetooth.enable = true;
@@ -131,6 +130,13 @@ in {
       setSocketVariable = true;
     };
   };
+
+  programs.droidcam.enable = true; # alternative:
+
+  # ffmpeg -i http://localhost:8080/video -flags low_delay -strict experimental -vf setpts=0 -tcp_nodelay 1 -vf format=yuv420p -f v4l2 -framerate 30 -video_size 1280x720 /dev/video0
+  boot.extraModprobeConfig = "options v4l2loopback exclusive_caps=1";
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+  boot.kernelModules = [ "v4l2loopback" "snd-aloop" ];
 
   # users.users.nbsp = {
   #   isNormalUser = true;
