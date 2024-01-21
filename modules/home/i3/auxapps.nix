@@ -42,6 +42,7 @@ in {
         discord = mkSvc "Discord";
         schildichat = mkSvc "schildichat-desktop";
         nheko = mkSvc "nheko";
+        slack = mkSvc "slack";
       })
     ];
   };

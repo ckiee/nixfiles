@@ -204,6 +204,7 @@ in {
               { class = "^Element"; }
               { class = "^SchildiChat"; }
               { class = "^nheko"; }
+              { class = "^slack"; }
             ];
             "4" = [{ class = "^Emacs$"; }];
             "5" = [{ class = "ledc"; }];

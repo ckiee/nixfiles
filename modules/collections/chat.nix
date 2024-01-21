@@ -20,6 +20,7 @@ in with lib; {
         signal-desktop
         mumble
         nheko
+        slack
       ];
       cookie.weechat.enable = true; # more or less unused now
     };
