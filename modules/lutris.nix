@@ -7,7 +7,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home-manager.users.ckie = { pkgs, ... }: {
-      home.packages = with pkgs; [ lutris ];
+      home.packages = with pkgs; [ lutris wineWowPackages.stable ];
     };
     # esync
     security.pam.loginLimits = # for musnix conflict
