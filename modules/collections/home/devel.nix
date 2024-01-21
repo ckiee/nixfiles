@@ -34,6 +34,8 @@ in with lib; {
       nixpkgs-review
       logisim-evolution
       nix-init # Generate Nix packages from URLs with hash prefetching, dependency inference, license detection, and more
+      mongodb-compass
+      insomnia # http playground
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
