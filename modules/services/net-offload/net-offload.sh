@@ -1,7 +1,6 @@
 #Requires: coreutils android-tools ripgrep usbutils iproute2 iptables openssh
 set -e
 defroute=""
-upstream_defroute=""
 phone_iface=""
 adb wait-for-device
 if ! adb get-serialno | rg "$PHONE_SERIAL">/dev/null; then
