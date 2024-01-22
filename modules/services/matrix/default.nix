@@ -2,7 +2,10 @@
 
 let cfg = config.cookie.services.matrix;
 in with lib; {
-  imports = [ ./discord.nix ./janitor.nix ];
+  imports = [
+    ./discord.nix
+    # ./janitor.nix
+  ];
 
   options.cookie.services.matrix = {
     enable = mkEnableOption "Matrix service using Synapse";
