@@ -1,4 +1,4 @@
-{ nodes, lib, config, pkgs, ... }:
+{ nodes, lib, config, pkgs, options, ... }:
 
 let cfg = config.cookie.services.syncthing;
 
@@ -9,6 +9,13 @@ in with lib; {
       type = types.nullOr types.str;
       description = "the ID given to this machine at runtime";
       default = null;
+    };
+    folders = mkOption {
+      # fuck. kdsfjdsfkjdf this is so complicated but hey it works i think
+      type = (options.services.syncthing.settings.type.getSubOptions
+        [ ]).folders.type;
+      description =
+        ".folders but they only turn on when it's relevant for the host";
     };
   };
 
@@ -38,59 +45,58 @@ in with lib; {
           };
         in untrackedHosts // trackedHosts;
 
-        folders = let
-          home = config.cookie.user.home;
-          def = {
-            "nixfiles" = {
-              path = "${home}/git/nixfiles";
-              devices = [ "cookiemonster" "thonkcookie" "pansear" ];
-              versioning = { # for the secrets
-                type = "simple";
-                params.keep = "10";
-              };
-            };
-
-            "sync" = {
-              path = "${home}/Sync";
-              devices = [ "cookiemonster" "thonkcookie" ];
-            };
-
-            "ssh" = {
-              path = "${home}/.ssh";
-              devices = [ "cookiemonster" "thonkcookie" ];
-              versioning = {
-                type = "simple";
-                params.keep =
-                  "50"; # keep 50 old versions of files around. should be fine considering keys are quite small.
-              };
-            };
-
-            "music" = {
-              id = "3ffxr-fpjwy"; # to keep compat with existing phone
-              path = "${home}/Music";
-              devices = [ "cookiemonster" "thonkcookie" "phone" ];
-            };
-
-            "dcim" = {
-              path = "${home}/DCIM";
-              # FIXME: no thonkcookie because there is no space on it currently.
-              devices = [ "cookiemonster" "phone" ];
-            };
-
-            # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname
-            # "mail" = {
-            #   path = "${home}/Mail";
-            #   devices = [ "cookiemonster" "thonkcookie" ];
-            #   versioning = {
-            #     type = "trashcan";
-            #     params.cleanoutDays = "0"; # never. we can clean it up manually if needed, but this should be mostly write-only.
-            #   };
-            # };
-          };
-        in filterAttrs
-        (_: folder: any (d: config.networking.hostName == d) folder.devices)
-        def;
+        folders = filterAttrs
+          (_: folder: any (d: config.networking.hostName == d) folder.devices)
+          config.cookie.services.syncthing.folders;
       };
+    };
+
+    cookie.services.syncthing.folders = let home = config.cookie.user.home;
+    in {
+      "nixfiles" = {
+        path = "${home}/git/nixfiles";
+        devices = [ "cookiemonster" "thonkcookie" "pansear" ];
+        versioning = { # for the secrets
+          type = "simple";
+          params.keep = "10";
+        };
+      };
+
+      "sync" = {
+        path = "${home}/Sync";
+        devices = [ "cookiemonster" "thonkcookie" ];
+      };
+
+      "ssh" = {
+        path = "${home}/.ssh";
+        devices = [ "cookiemonster" "thonkcookie" ];
+        versioning = {
+          type = "simple";
+          params.keep =
+            "50"; # keep 50 old versions of files around. should be fine considering keys are quite small.
+        };
+      };
+
+      "music" = {
+        id = "3ffxr-fpjwy"; # to keep compat with existing phone
+        path = "${home}/Music";
+        devices = [ "cookiemonster" "thonkcookie" "phone" ];
+      };
+
+      "dcim" = {
+        path = "${home}/DCIM";
+        devices = [ "cookiemonster" "thonkcookie" "phone" ];
+      };
+
+      # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname
+      # "mail" = {
+      #   path = "${home}/Mail";
+      #   devices = [ "cookiemonster" "thonkcookie" ];
+      #   versioning = {
+      #     type = "trashcan";
+      #     params.cleanoutDays = "0"; # never. we can clean it up manually if needed, but this should be mostly write-only.
+      #   };
+      # };
     };
   };
 }

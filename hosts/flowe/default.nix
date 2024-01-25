@@ -24,8 +24,13 @@ with lib;
       heisenbridge.enable = true;
       tonsi-li.enable = true;
       minecraft.enable = true;
+      websync.enable = true;
 
-
+      syncthing = {
+        enable = true;
+        runtimeId =
+          "BZQLFJM-AWGA5AG-AVNAJKH-J7P77SF-F5RXILA-QO6EFTV-G6V2NBH-6527KQL";
+      };
       ckiesite = {
         enable = true;
         host = "ckie.dev";
@@ -64,6 +69,8 @@ with lib;
         "puppycat.house" = {
           provider = "hurricane";
           secretId = "acme-heoife";
+          # FIXME: disabled until aoife can give me another acme challenge HE update token for the secret .env
+          # extras = [ "mei.puppycat.house" ];
         };
 
         "tailnet.ckie.dev" = {

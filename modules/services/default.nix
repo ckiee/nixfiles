@@ -56,5 +56,6 @@
     ./aldhy
     ./net-offload
     ./tonsi-li
+    ./websync.nix
   ];
 }

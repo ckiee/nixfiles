@@ -24,6 +24,7 @@ in with lib; {
         "/var/lib/bluetooth"
         "/etc/NetworkManager/system-connections"
         "/var/cache/powertop"
+        "/var/www/websync" # TODO: move back out into modules/services/websync.nix once this module can passthru dirs/files
       ];
       files = [
         "/etc/machine-id"
