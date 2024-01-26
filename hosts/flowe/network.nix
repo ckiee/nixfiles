@@ -29,6 +29,15 @@ with lib;
         { routeConfig.Gateway = "172.31.1.1"; } # use as gateway
       ];
     };
+    # TODO: genericify out of host
+    networks."30-unmanaged-ts" = {
+      matchConfig.Name = "tailscale*";
+      linkConfig.Unmanaged = true;
+    };
+    networks."30-unmanaged-cknet" = {
+      matchConfig.Name = "cknet";
+      linkConfig.Unmanaged = true;
+    };
   };
 
   boot.initrd.systemd.network.networks."40-eth0" =
