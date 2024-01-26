@@ -70,7 +70,7 @@ with lib;
           provider = "hurricane";
           secretId = "acme-heoife";
           # FIXME: disabled until aoife can give me another acme challenge HE update token for the secret .env
-          # extras = [ "mei.puppycat.house" ];
+          extras = [ "mei.puppycat.house" ];
         };
 
         "tailnet.ckie.dev" = {
