@@ -35,6 +35,7 @@ in {
       transmission_4-gtk # capitalism
       # blockbench-electron # placing blocks
       krita # drawing
+      inkscape # svg vectory drawing
       # prusa-slicer # making things out of harmful plastic
       # subtitleeditor # making text from sine waves, manually # TODO unbreak package
       # freecad # behold our most precious polygons, just one step away from real life!
