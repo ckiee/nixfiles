@@ -322,3 +322,8 @@ get it loaded at startup:
 #+BEGIN_SRC elisp :tangle packages.el
 (package! graphql-mode)
 #+END_SRC
+** matlab
+):
+#+BEGIN_SRC elisp :tangle packages.el
+(package! matlab-mode)
+#+END_SRC
