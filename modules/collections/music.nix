@@ -8,7 +8,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      # helio-workstation # FIXME: is currently borked in nixpkgs
+      helio-workstation
       (bespokesynth.override { enableVST2 = true; })
       musescore3 # 4 is meh
       MCSoundsExtractorCPP # not upstreaming yet
