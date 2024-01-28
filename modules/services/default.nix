@@ -42,6 +42,7 @@
     ./transmission
     ./vaultwarden
     ./ergo
+    ./actual
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

@@ -46,6 +46,7 @@ buildNpmPackage rec {
     chmod +x $out/bin/actual-server
   '';
 
+  passthru.nixosModule = import ./module.nix; # oopsie(ckie)
   meta = with lib; {
     homepage = "https://github.com/actualbudget/actual-server";
     description = "Actual's server";
@@ -53,6 +54,5 @@ buildNpmPackage rec {
     mainProgram = pname;
     license = licenses.mit;
     maintainers = with maintainers; [aldoborrero];
-    passthru.nixos = import ./module.nix; # oopsie(ckie)
   };
 }

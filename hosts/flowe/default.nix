@@ -25,6 +25,7 @@ with lib;
       tonsi-li.enable = true;
       minecraft.enable = true;
       websync.enable = true;
+      actual.enable = true;
 
       syncthing = {
         enable = true;
@@ -63,6 +64,7 @@ with lib;
             "matrix.ckie.dev"
             "janitor.matrix.ckie.dev"
             "grafana.ckie.dev"
+            "actual.ckie.dev"
           ];
         };
 
