@@ -327,3 +327,7 @@ get it loaded at startup:
 #+BEGIN_SRC elisp :tangle packages.el
 (package! matlab-mode)
 #+END_SRC
+** mixed pitch globalized
+#+BEGIN_SRC elisp
+(define-globalized-minor-mode global-mixed-pitch-mode mixed-pitch-mode mixed-pitch-mode)
+#+END_SRC
