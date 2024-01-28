@@ -14,6 +14,7 @@ in with lib; {
     home.packages = with pkgs; [
       nodejs_latest
       (yarn.override { nodejs = nodejs_latest; })
+      bun # also js
       rustup
       cargo-edit
       cargo-watch
