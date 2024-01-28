@@ -1,7 +1,9 @@
 { lib, config, pkgs, ... }:
 
+with lib;
+
 let cfg = config.cookie.fonts;
-in with lib; {
+in {
   options.cookie.fonts = {
     enable = mkEnableOption "Enables a collection of fonts";
   };
@@ -27,6 +29,7 @@ in with lib; {
       source-sans-pro
       jetbrains-mono
       inter
+      (linkFarm "shit-shit-fuck" { "share/fonts/truetype" = ../secrets/fonts; })
     ];
 
     fontconfig = {
