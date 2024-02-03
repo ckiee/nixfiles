@@ -46,10 +46,12 @@ in {
       x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
       tigervnc # using it for the client, vncviewer
       onlyoffice-bin # ms office clone! works well for english-only things.
+      libreoffice
       (minimeters.overrideAttrs (prev: {
         src = ../../../secrets/minimeters-0.8.8.zip;
         preInstall = import ../../../secrets/minimeters-shush-update.nix;
       }))
+      anki
     ];
     cookie.polyprog.enable = true;
 
