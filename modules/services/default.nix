@@ -43,6 +43,7 @@
     ./vaultwarden
     ./ergo
     ./actual
+    ./radicale
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

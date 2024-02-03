@@ -26,6 +26,7 @@ with lib;
       minecraft.enable = true;
       websync.enable = true;
       actual.enable = true;
+      radicale.enable = true; # DAV
 
       syncthing = {
         enable = true;
@@ -65,6 +66,7 @@ with lib;
             "janitor.matrix.ckie.dev"
             "grafana.ckie.dev"
             "actual.ckie.dev"
+            "dav.ckie.dev"
           ];
         };
 
