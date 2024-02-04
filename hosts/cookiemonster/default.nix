@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ];
+  imports = [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ];
 
   networking.hostName = "cookiemonster";
   cookie = {
@@ -125,10 +125,7 @@ in {
     #     enableNvidia = true;
     #     dockerCompat = true;
     #   };
-    docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    docker.enable = true;
   };
 
   programs.droidcam.enable = true; # alternative:
