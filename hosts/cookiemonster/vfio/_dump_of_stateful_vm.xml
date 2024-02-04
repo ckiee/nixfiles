@@ -158,7 +158,7 @@
     </controller>
     <filesystem type="mount" accessmode="passthrough">
       <driver type="virtiofs"/>
-      <binary path="/nix/store/y032kx3ijhnvyaby89r436mbrbgg9abc-virtiofsd-1.8.0/bin/virtiofsd" xattr="on"/>
+      <binary path="/run/libvirt/virtiofsd/bin/virtiofsd" xattr="on"/>
       <source dir="/home/ckie/winshare"/>
       <target dir="winshare"/>
       <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
@@ -181,8 +181,11 @@
       <target type="virtio" name="com.redhat.spice.0"/>
       <address type="virtio-serial" controller="0" bus="0" port="1"/>
     </channel>
-    <input type="tablet" bus="usb">
-      <address type="usb" bus="0" port="1"/>
+    <input type="mouse" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+    </input>
+    <input type="keyboard" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x08" slot="0x00" function="0x0"/>
     </input>
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
@@ -190,12 +193,7 @@
       <listen type="address"/>
       <image compression="off"/>
     </graphics>
-    <sound model="ich9">
-      <codec type="micro"/>
-      <audio id="1"/>
-      <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0"/>
-    </sound>
-    <audio id="1" type="pulseaudio" serverName="/run/user/1000/pulse/native"/>
+    <audio id="1" type="spice"/>
     <video>
       <model type="none"/>
     </video>
@@ -219,7 +217,7 @@
         <vendor id="0x0499"/>
         <product id="0x160f"/>
       </source>
-      <address type="usb" bus="0" port="4"/>
+      <address type="usb" bus="0" port="5"/>
     </hostdev>
     <redirdev bus="usb" type="spicevmc">
       <address type="usb" bus="0" port="2"/>
@@ -240,7 +238,11 @@
     <qemu:arg value="host,hv_time,kvm=off,hv_vendor_id=null,-hypervisor"/>
     <qemu:arg value="-fw_cfg"/>
     <qemu:arg value="opt/ovmf/X-PciMmio64Mb,string=65536"/>
-    <qemu:env name="PIPEWIRE_RUNTIME_DIR" value="/run/user/1000"/>
-    <qemu:env name="PULSE_LATENCY_MSEC" value="40"/>
+    <qemu:arg value="-device"/>
+    <qemu:arg value="ich9-intel-hda,bus=pcie.0,addr=0x1b"/>
+    <qemu:arg value="-device"/>
+    <qemu:arg value="hda-micro,audiodev=pa1"/>
+    <qemu:arg value="-audiodev"/>
+    <qemu:arg value="driver=pa,id=pa1,server=127.0.0.1,in.buffer-length=2000,in.channels=1,timer-period=1000"/>
   </qemu:commandline>
 </domain>

@@ -32,5 +32,36 @@ in with lib; {
     cookie.user.extraGroups = [ "qemu-libvirtd" ];
     systemd.tmpfiles.rules =
       [ "f /dev/shm/looking-glass 0660 root qemu-libvirtd -" ];
+
+    # expose pipewire-pulse
+    services.pipewire.extraConfig =
+      assert config.cookie.sound.pipewire.enable; {
+        pipewire-pulse."30-localhost-net-publish"."pulse.cmd" = [{
+          cmd = "load-module";
+          args =
+            "module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1";
+        }];
+      };
+
+    home-manager.users.ckie = { ... }: {
+      systemd.user.services.scream = {
+        Unit = {
+          Description = "Scream VFIO/Pulse/TCP4 lo";
+          After = [ "pipewire-pulse.service" "pipewire.service" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Install = { WantedBy = [ "graphical-session.target" ]; };
+
+        Service = {
+          Type = "simple";
+          Restart = "on-failure";
+          ExecStart = "${pkgs.scream}/bin/scream";
+        };
+      };
+
+      programs.looking-glass-client.enable = true;
+    };
+
   };
 }
