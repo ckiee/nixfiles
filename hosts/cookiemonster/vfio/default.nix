@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, sources, ... }:
 
 let cfg = config.cookie.libvirtd;
 
@@ -9,7 +9,15 @@ in with lib; {
 
     boot.kernelParams = [
       # VFIO: AMD Raphael iGPU + HDMI audio (probably redundant)
-      "vfio-pci.ids=1002:164e,1002:1640"
+      # 1022:15b6 is the top USB controller for the USB2 port sandwiched between
+      #           the builtin HDMI and another USB2 port. Maybe it also controls that one. Probably. Haven't checked.
+      "vfio-pci.ids=1002:164e,1002:1640,1022:15b6"
+
+      # Adding the USB controller (#3) started spamming the kernel logs:
+      # > [442702.246274] vfio-pci 0000:13:00.3: Refused to change power state from D0 to D3hot
+      # Trying https://www.reddit.com/r/VFIO/comments/ykyyk0/deleted_by_user/iuxfho1/
+      # Untested.
+      "vfio-pci.disable_idle_d3=1"
 
       # VFIO: 6700XT, for dumping the Raphael firmware:
       # "vfio-pci.ids=1002:73df"
@@ -23,6 +31,7 @@ in with lib; {
     systemd.services.libvirtd-config.script = mkAfter ''
       # symbolic, always file (no stupid disambiguation depending on if name exists), force
       ln -sTf ${./fw} /run/libvirt/ckie-firmware
+      ln -sTf ${sources.osx-kvm} /run/libvirt/osx-kvm
       ln -sTf ${pkgs.virtiofsd} /run/libvirt/virtiofsd
     '';
 

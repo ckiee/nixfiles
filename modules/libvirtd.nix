@@ -10,6 +10,9 @@ in with lib; {
   config = mkIf cfg.enable {
     users.users.ckie.extraGroups = [ "libvirtd" ];
 
+    # Minimal: Just back up the VM xmls and a few misc small things.
+    cookie.restic.paths = [ "/var/lib/libvirt/qemu" ];
+
     virtualisation = {
       libvirtd = {
         enable = true;

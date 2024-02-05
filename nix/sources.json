@@ -1,4 +1,16 @@
 {
+    "osx-kvm": {
+        "branch": "master",
+        "description": "Run macOS on QEMU/KVM. With OpenCore + Monterey + Ventura + Sonoma support now! Only commercial (paid) support is available now to avoid spammy issues. No Mac system is required.",
+        "homepage": "",
+        "owner": "kholia",
+        "repo": "OSX-KVM",
+        "rev": "a9b20147deef2ca9ffe43567aba51853a18150f2",
+        "sha256": "1rq7chvp2icc8qjnji9yh57i6jqcbgy2x1p8jjybvhm0h8cqfcpq",
+        "type": "tarball",
+        "url": "https://github.com/kholia/OSX-KVM/archive/a9b20147deef2ca9ffe43567aba51853a18150f2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "abandoned-projects": {
         "branch": "master",
         "description": "Find your old GitHub repos that you haven't touched in a while.",
