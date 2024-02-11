@@ -1,0 +1,13 @@
+#Requires: inotify-tools grep
+
+set -e
+cd ~
+
+while true; do
+	echo awaasdsad
+	if FN=$(inotifywait -qe create --format %f .); then
+		if echo "$FN" | grep -Eq '^mpv-shot....\.jpg$'; then
+			mv "$FN" ~/Sync/mpv-shot/"mpv-shot$(printf "%04d" $(("$(ls ~/Sync/mpv-shot | sort | tail -n1 | sed -e 's/^mpv-shot0*//' | sed -e 's/\.jpg$//')" +1))).jpg"
+		fi
+	fi
+done

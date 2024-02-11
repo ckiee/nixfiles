@@ -33,6 +33,7 @@ in {
         oszwatch = # depends on impure fs contents @ /mnt/games
           mkIf (nixosConfig.networking.hostName == "cookiemonster")
           (mkSvc "${mkRequiresScript ./scripts/oszwatch}");
+        mpvshotwatch = (mkSvc "${mkRequiresScript ./scripts/mpvshotwatch}");
         musicwatch = mkSvc "${mkRequiresScript ./scripts/musicwatch}";
         firefox = mkSvc "firefox";
         cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
