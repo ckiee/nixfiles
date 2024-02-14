@@ -1,4 +1,4 @@
-#Requires: inotify-tools grep
+#Requires: inotify-tools gnugrep
 
 set -e
 cd ~
