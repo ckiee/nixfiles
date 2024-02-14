@@ -37,6 +37,10 @@ with lib; {
     };
   };
 
+  specialisation.no-undervolt.configuration = { config, ... }: {
+    cookie.hardware.t480s.undervolt = mkForce false;
+  };
+
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
       collections.devel.enable = true;
