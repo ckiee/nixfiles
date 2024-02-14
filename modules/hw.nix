@@ -100,8 +100,8 @@ in with lib; {
           # CPU core/cache voltage offset (mV)
           # On Skylake and newer CPUs CORE and CACHE values should match!
           # XXX: crashes between 160-170
-          CORE: -150
-          CACHE: -150
+          CORE: -125
+          CACHE: -125
           # Integrated GPU voltage offset (mV)
           GPU: -80
           # System Agent voltage offset (mV)
