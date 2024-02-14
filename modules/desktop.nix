@@ -72,7 +72,10 @@ in with lib; {
       services.rsibreak.enable = true;
     };
 
-    programs = { adb.enable = true; };
+    programs = {
+      adb.enable = true;
+      gphoto2.enable = true;
+    };
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
