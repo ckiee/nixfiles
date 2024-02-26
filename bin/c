@@ -82,9 +82,9 @@ elif [ "$1" == "hmport" ]; then
     nix copy --to "ssh://$@" --derivation "$path"
     ssh "$@" '$(nix-store -r '$path')/bin/ckie-hm-port'
 elif echo "$deployMeta" | jq -r .hosts | grep -E "$1" >/dev/null; then
-    morp deploy deploy/morph.nix $deployExtra --on "$1"
+    morp deploy deploy/morph.nix $deployExtra --on "$1" --keep-result
 elif svchost=$(echo "$deployMeta" | jq ".serviceHosts["'"'$1'"'"]"); echo "$svchost" | grep -v null >/dev/null; then
-    morp deploy deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"
+    morp deploy deploy/morph.nix $deployExtra --on "{$(echo "$svchost" | jq -r 'join(",")')}"  --keep-result
 elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ] || [ "$1" == "cdemp" ]; then
     niv update $2
     if [ "$1" == "demp" ] || [ "$1" == "cdemp" ]; then
