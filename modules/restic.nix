@@ -45,6 +45,7 @@ in {
         # FIXME: this is also really ugly. we're just backing up more personal things
         # on these machines so we don't want to use the same key as the other ones.
         source = if elem config.networking.hostName [
+          # It's important to keep all the old keys, as they're used for various one-shot backups.
           "cookiemonster"
           "thonkcookie"
           # pansear is implied

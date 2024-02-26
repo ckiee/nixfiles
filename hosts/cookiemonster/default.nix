@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ];
+  imports = [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ./iphone.nix ];
 
   networking.hostName = "cookiemonster";
   cookie = {
@@ -34,6 +34,7 @@ in {
       ".ssh"
       "DCIM"
       "Music"
+      "git/mei.puppycat.house"
     ];
     sound.pro = true;
 
