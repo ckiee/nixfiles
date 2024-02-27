@@ -9,9 +9,9 @@ in with lib; {
 
     boot.kernelParams = [
       # VFIO: AMD Raphael iGPU + HDMI audio (probably redundant)
-      # 1022:15b6 is the top USB controller for the USB2 port sandwiched between
+      # 1022:15b6 (not present) is the top USB controller for the USB2 port sandwiched between
       #           the builtin HDMI and another USB2 port. Maybe it also controls that one. Probably. Haven't checked.
-      "vfio-pci.ids=1002:164e,1002:1640,1022:15b6"
+      "vfio-pci.ids=1002:164e,1002:1640"
 
       # Adding the USB controller (#3) started spamming the kernel logs:
       # > [442702.246274] vfio-pci 0000:13:00.3: Refused to change power state from D0 to D3hot
