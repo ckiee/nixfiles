@@ -3,7 +3,7 @@
 let cfg = config.cookie.services.matrix;
 in with lib; {
   imports = [
-    ./discord.nix
+    ./discord
     # ./janitor.nix
   ];
 

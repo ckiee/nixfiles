@@ -15,6 +15,11 @@ in {
 
     services.matrix-appservice-discord = {
       enable = true;
+      package = pkgs.matrix-appservice-discord.overrideAttrs (prev: {
+        patches = (prev.patches or []) ++ [
+          ./pr_878.patch # Request from @lea:m.lea.moe: https://github.com/matrix-org/matrix-appservice-discord/pull/878
+        ];
+      });
       serviceDependencies = [ "matrix-synapse.service" ];
       environmentFile = /.
         + config.cookie.secrets.matrix-appservice-discord.dest;
