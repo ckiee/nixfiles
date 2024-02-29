@@ -112,7 +112,9 @@ in {
               reload 1500ms
               fallthrough
             }
-            forward . 127.0.0.1:5301 127.0.0.1:5302
+            # 5302 is first because 5301 is 1.1.1.1 and some nasty
+            # routers don't support that.
+            forward . 127.0.0.1:5302 127.0.0.1:5301
             errors
             cache 120 # two minutes
           }
@@ -132,14 +134,14 @@ in {
           }
 
           atori {
-             bind lo
-             ${prom}
-             file ${./atori.zone}
+            bind lo
+            ${prom}
+            file ${./atori.zone}
           }
 
           # Resolve everything under the root localhost TLD to 127.0.0.1
           localhost {
-             bind lo
+            bind lo
             ${prom}
             template IN A  {
                 answer "{{ .Name }} 0 IN A 127.0.0.1"
