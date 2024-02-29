@@ -80,6 +80,9 @@ in {
   # armv7l-linux for embedded crap
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
+  # Don't OOM on big /build-space builds.
+  systemd.services.nix-daemon.environment.TMPDIR = "/nix/persist/bigtmp";
+
   # Setup multi-monitors; there's a 144Hz 1080p plugged into the DisplayPort,
   # and it's primary.
   services.xserver = {
