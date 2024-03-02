@@ -36,6 +36,7 @@ in pkgs.mkShell {
     google-cloud-sdk
     openssh # first use: sk gen for sd-initrd remote unlock
     coreutils
+    flamegraph
   ];
 
   shellHook = ''
