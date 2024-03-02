@@ -1,16 +1,4 @@
 {
-    "osx-kvm": {
-        "branch": "master",
-        "description": "Run macOS on QEMU/KVM. With OpenCore + Monterey + Ventura + Sonoma support now! Only commercial (paid) support is available now to avoid spammy issues. No Mac system is required.",
-        "homepage": "",
-        "owner": "kholia",
-        "repo": "OSX-KVM",
-        "rev": "a9b20147deef2ca9ffe43567aba51853a18150f2",
-        "sha256": "1rq7chvp2icc8qjnji9yh57i6jqcbgy2x1p8jjybvhm0h8cqfcpq",
-        "type": "tarball",
-        "url": "https://github.com/kholia/OSX-KVM/archive/a9b20147deef2ca9ffe43567aba51853a18150f2.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "abandoned-projects": {
         "branch": "master",
         "description": "Find your old GitHub repos that you haven't touched in a while.",
@@ -107,10 +95,10 @@
         "homepage": "",
         "owner": "stevenblack",
         "repo": "hosts",
-        "rev": "86956052240f198dad3d3a9b74b9c3a4e0f71340",
-        "sha256": "11qygq2qdyk37rddsq355b072ssj8caq2is1icmsnnsbn99ygnjn",
+        "rev": "b77a285f5f11ee53023d53cf2bf10cd58fe62567",
+        "sha256": "1v2zplriwk2swkv6znn9h34lj3rqhwjy2yfz1ls18gyzx5ldyj38",
         "type": "tarball",
-        "url": "https://github.com/stevenblack/hosts/archive/86956052240f198dad3d3a9b74b9c3a4e0f71340.tar.gz",
+        "url": "https://github.com/stevenblack/hosts/archive/b77a285f5f11ee53023d53cf2bf10cd58fe62567.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-overlay": {
@@ -309,6 +297,18 @@
         "sha256": "1i65q4rxrr63sy5mnkbyq3li185j3fl456lwxv3c9cw1c61b8g82",
         "type": "tarball",
         "url": "https://github.com/nixos/nixpkgs/archive/3788c68def67ca7949e0864c27638d484389363d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "osx-kvm": {
+        "branch": "master",
+        "description": "Run macOS on QEMU/KVM. With OpenCore + Monterey + Ventura + Sonoma support now! Only commercial (paid) support is available now to avoid spammy issues. No Mac system is required.",
+        "homepage": "",
+        "owner": "kholia",
+        "repo": "OSX-KVM",
+        "rev": "a9b20147deef2ca9ffe43567aba51853a18150f2",
+        "sha256": "1rq7chvp2icc8qjnji9yh57i6jqcbgy2x1p8jjybvhm0h8cqfcpq",
+        "type": "tarball",
+        "url": "https://github.com/kholia/OSX-KVM/archive/a9b20147deef2ca9ffe43567aba51853a18150f2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "owo-bot": {
