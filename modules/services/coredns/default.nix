@@ -6,24 +6,17 @@ with builtins;
 let
   cfg = config.cookie.services.coredns;
   sources = import ../../../nix/sources.nix;
-  extHostsRaw = builtins.readFile "${sources.dns-hosts}/hosts";
-  extHosts = (concatStringsSep "\n" (filter (x:
-    !(elem x [
-      # exemptions from the block lists
-      "0.0.0.0 click.redditmail.com"
-      "0.0.0.0 s.click.aliexpress.com"
-      "0.0.0.0 shareasale.com"
-    ])) (splitString "\n" extHostsRaw)));
-  baseHosts = pkgs.writeTextFile {
-    name = "coredns-hosts-ckie";
-    text = ''
-      # StevenBlack ad-blocking hosts
-      ${extHosts}
-      # Extra hosts
-      ${cfg.extraHosts}
-      # Runtime hosts
-    '';
-  };
+  baseHosts = pkgs.runCommandLocal "coredns-hosts-ckie" {
+    passAsFile = [ "extraHosts" ];
+    extraHosts = cfg.extraHosts;
+  } ''
+    echo "# StevenBlack ad-blocking hosts" >> $out
+    ${pkgs.ripgrep}/bin/rg -v " (click\.redditmail\.com|s\.click\.aliexpress\.com|shareasale\.com)$" ${sources.dns-hosts}/hosts \
+        >> $out
+    echo "# Extra hosts" >> $out
+    cat $extraHostsPath >> $out
+    echo "# Runtime hosts" >> $out
+  '';
   hostSuffix = ".tailnet.ckie.dev";
 in {
   options.cookie.services.coredns = {
