@@ -22,7 +22,7 @@ in with lib; {
 
     (mkIf cfg.enable {
       services.nginx.virtualHosts = {
-        "mei.puppycat.house".root = "/var/www/websync/mei.puppycat.house/www";
+        # "mei.puppycat.house".root = "/var/www/websync/mei.puppycat.house/www";
       };
 
       cookie.services.syncthing.folders."mei.puppycat.house".path =
