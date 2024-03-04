@@ -44,7 +44,6 @@ in {
     smartd.enable = true;
     steam.enable = true;
     libvirtd.enable = true;
-    hostapd.enable = true;
     mpd.enableHttp = true;
     devserv.enable = true;
     lutris.enable = true;
