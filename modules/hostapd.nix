@@ -61,7 +61,8 @@ in {
       wantedBy = "hostapd.service";
     };
 
-    services.udev.packages = singleton pkgs.crda;
+    # error: 'crda' has been removed from nixpkgs, as it is needed only for kernels before 4.16
+    # services.udev.packages = singleton pkgs.crda;
 
     networking.networkmanager.unmanaged = singleton iface;
 
