@@ -10,6 +10,7 @@ in with lib; {
   config = mkIf cfg.enable {
     services.logiops = {
       enable = true;
+      package = pkgs.logiops_0_2_3;
 
       settings = {
         devices = [{
