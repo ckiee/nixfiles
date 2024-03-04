@@ -3,7 +3,6 @@
 with lib;
 let
   cfg = config.cookie.doom-emacs;
-  mu = pkgs.callPackage ./mu.nix {};
   extraBins = with pkgs; [
     ripgrep # for +default/search-project
     jq # JSON
@@ -39,9 +38,9 @@ let
     ispell
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     #
-    # e-mail
-    isync
-    mu
+    # e-mail (broken)
+    # isync
+    # mu
   ];
   extraBinsElisp = ''
     (setq exec-path (append exec-path '( ${
@@ -95,14 +94,14 @@ let
   baseEmacs = if !cfg.standalone then
     emacsOverlay.emacsNativeComp.override {
       # TODO so jank.. if this works we should copy the whole derivation..
-      harfbuzz = pkgs.harfbuzz.overrideAttrs (prev: rec {
-        version = "7.0.1";
-        src = pkgs.fetchurl {
-          url =
-            "https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz";
-          hash = "sha256-LPTT2PIlAHURmQo2o0GV8NZWLKVt8KiwiFs4KDeUgZk=";
-        };
-      });
+      # harfbuzz = pkgs.harfbuzz.overrideAttrs (prev: rec {
+      #   version = "7.0.1";
+      #   src = pkgs.fetchurl {
+      #     url =
+      #       "https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz";
+      #     hash = "sha256-LPTT2PIlAHURmQo2o0GV8NZWLKVt8KiwiFs4KDeUgZk=";
+      #   };
+      # });
       withXwidgets = true;
       withGTK3 = true;
     }
@@ -113,7 +112,6 @@ let
     mkDoom = configPath: emacs:
       pkgs.callPackage sources.nix-doom-emacs {
         doomPrivateDir = configPath;
-        extraPackages = epkgs: [ mu ];
         bundledPackages = false;
         emacsPackages = emacsOverlay.emacsPackagesFor emacs;
         emacsPackagesOverlay = prev: final: {
@@ -163,7 +161,6 @@ in {
       home-manager.users.ckie = { pkgs, ... }: {
         home.packages = [
           extraDesktop
-          mu # for CLI usage
         ];
       };
     })
