@@ -1,4 +1,4 @@
-{ sources, lib, config, ... }:
+{ sources, pkgs, lib, config, ... }:
 
 let
   cfg = config.cookie.raspberry;
