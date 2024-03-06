@@ -8,8 +8,6 @@ with lib;
 
   networking = {
     hostName = "pookieix";
-    wireless.enable = false;
-    networkmanager.enable = true;
     firewall.enable = false;
   };
 
