@@ -105,13 +105,14 @@ in {
               reload 1500ms
               fallthrough
             }
-            # 5302 is first because 5301 is 1.1.1.1 and some nasty
-            # routers don't support that.
-            forward . 127.0.0.1:5302 127.0.0.1:5301
+            forward . 127.0.0.1:5302
             errors
             cache 120 # two minutes
           }
 
+          # Janky. Fucked up.
+          # 1.1.1.1 Was unused for a while
+          # Also https://gist.github.com/ardislu/b2f2b4b439c5da2f7ccb6bb42e7a8882
           .:5301 {
             bind lo
             forward . tls://1.1.1.1 tls://1.0.0.1 {
