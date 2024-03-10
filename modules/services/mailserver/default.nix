@@ -63,6 +63,8 @@ with builtins; {
       builtins.hashString "sha256" (concatStringsSep "\n" cfg.aliases)
     }" = true;
 
+    services.dovecot2.sieve.extensions = [ "fileinto" ]; # HACK FIXME TEMPORARY https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/issues/275#note_1746383655
+
     services.postfix = {
       # Deliver cassidy.sh & enby.space emails via SMTP, not locally using LMTP.
       mapFiles."transport_maps" = pkgs.writeText "postfix-transport-maps" ''
