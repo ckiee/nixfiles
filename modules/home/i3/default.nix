@@ -52,6 +52,8 @@ in {
         preInstall = import ../../../secrets/minimeters-shush-update.nix;
       }))
       anki
+      scrcpy # Android screen cast
+      uxplay # iOS screen mirroring (drag right down for control panel icon)
     ];
     cookie.polyprog.enable = true;
 
