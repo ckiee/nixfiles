@@ -130,6 +130,18 @@
     <controller type="usb" index="0" model="ich9-ehci1">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x7"/>
     </controller>
+    <controller type="usb" index="0" model="ich9-uhci1">
+      <master startport="0"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="usb" index="0" model="ich9-uhci2">
+      <master startport="2"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x1"/>
+    </controller>
+    <controller type="usb" index="0" model="ich9-uhci3">
+      <master startport="4"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1d" function="0x2"/>
+    </controller>
     <interface type="network">
       <mac address="52:54:00:c9:18:27"/>
       <source network="default"/>
@@ -160,6 +172,9 @@
     </input>
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
+    <input type="tablet" bus="usb">
+      <address type="usb" bus="0" port="3"/>
+    </input>
     <graphics type="spice" autoport="yes">
       <listen type="address"/>
       <image compression="off"/>
@@ -194,7 +209,5 @@
     <qemu:arg value="type=2"/>
     <qemu:arg value="-cpu"/>
     <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"/>
-    <qemu:arg value="-device"/>
-    <qemu:arg value="usb-host,vendorid=0x05ac,productid=0x12a8,guest-reset=false"/>
   </qemu:commandline>
 </domain>
