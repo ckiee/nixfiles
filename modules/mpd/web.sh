@@ -80,6 +80,8 @@ elif echo "$request" | rg -q "^GET /mpc HTTP/1.+"; then
     cat <<EOF
 HTTP/1.1 200 OK
 Cache-Control: no-cache, no-store
+Access-Control-Allow-Origin: https://genius.com
+Vary: Origin
 
 $current
 EOF
