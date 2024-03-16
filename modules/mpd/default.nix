@@ -100,7 +100,7 @@ in {
     (mkIf cfg.enableHttp (mkService "mpd-web" {
       description = "mpd status";
       script = ''
-        ${mkCgi (mkRequiresScript ./web.sh) frontendPort}
+        ${mkCgi (mkRequiresScript ./web.sh) frontendPort} |& ${pkgs.ripgrep}/bin/rg -v 'Connection reset by peer'
       '';
       path = [ pkgs.mpc_cli ];
     }))
