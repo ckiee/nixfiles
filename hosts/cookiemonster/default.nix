@@ -131,6 +131,7 @@ in {
     docker.enable = true;
   };
 
+  programs.alvr.enable = true; # also needs unpackaged ADBForwarder or similar
   programs.droidcam.enable = true; # alternative:
 
   # ffmpeg -i http://localhost:8080/video -flags low_delay -strict experimental -vf setpts=0 -tcp_nodelay 1 -vf format=yuv420p -f v4l2 -framerate 30 -video_size 1280x720 /dev/video0
