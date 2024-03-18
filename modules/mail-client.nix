@@ -8,10 +8,15 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home-manager.users.ckie = { pkgs, ... }: {
-      programs.thunderbird = {
-        enable = true; # experimenting, tho we usually use mu4e.
-        profiles.ckie.isDefault = true;
-      };
+      # programs.thunderbird = {
+      #   enable = true; # experimenting, tho we usually use mu4e.
+      #   profiles.ckie.isDefault = true;
+      # };
+      # NOTE: home-manager's thunderbird user.js management is broken
+      # for new non-HM account creation as it forcibly overrides
+      # "mail.accountmanager.accounts" in user.js, where nothing can
+      # touch it.
+      environment.systemPackages = with pkgs; [ thunderbird ];
 
       accounts.email = {
         maildirBasePath = maildir;
