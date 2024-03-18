@@ -92,7 +92,8 @@ with builtins; {
           hashedPasswordFile = config.cookie.secrets.mailserver-pw-us-hash.dest;
           aliases = [ "postmaster@ckie.dev" "work-sbr@ckie.dev" "mei@ckie.dev" ]
             ++ (util.process (fileContents ../../../secrets/email-salt)
-              cfg.aliases);
+              cfg.aliases)
+            ++ import ../../../secrets/more-mailserver-aliases.nix;
           quota = "5G";
         };
 
