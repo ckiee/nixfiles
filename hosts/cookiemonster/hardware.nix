@@ -71,5 +71,26 @@ in {
     fsType = "ext4";
   };
 
+  # TODO: urfff this is a mess for system install
+  # because the secret is required to be there
+  # to build the initrd image and the sammy.mount unit
+  # will fail after some timeout in a running system, too.
+  #
+  # cookie.secrets.*. should gain an option to run decrypt
+  # as an activationScript, early prio.
+  cookie.secrets.sammy-keyfile = {
+    source = "./secrets/cookiemonster-sammy-keyfile";
+    permissions = "0400";
+  };
+  boot.initrd.secrets."/etc/sammy.key" = config.cookie.secrets.sammy-keyfile.dest;
+  boot.initrd.luks.devices.sammy = {
+    device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S64DNG0R234141H_1-part1";
+    keyFile = "/etc/sammy.key";
+  };
+  fileSystems."/mnt/sammy" = {
+    device = "/dev/mapper/sammy";
+    fsType = "ext4";
+  };
+
   hardware.cpu.amd.updateMicrocode = true;
 }
