@@ -37,11 +37,12 @@ in {
         musicwatch = mkSvc "${mkRequiresScript ./scripts/musicwatch}";
         firefox = mkSvc "firefox";
         cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
-        ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
+        # ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
+        thunderbird = mkSvc "thunderbird";
       }
       (mkIf nixosConfig.cookie.collections.chat.enable {
         discord = mkSvc "Discord";
-        schildichat = mkSvc "schildichat-desktop";
+        element = mkSvc "element-desktop";
         nheko = mkSvc "nheko";
         slack = mkSvc "slack";
       })
