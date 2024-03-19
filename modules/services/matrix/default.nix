@@ -5,6 +5,7 @@ in with lib; {
   imports = [
     ./discord
     # ./janitor.nix
+    ./hookshot
   ];
 
   options.cookie.services.matrix = {
