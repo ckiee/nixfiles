@@ -27,7 +27,7 @@ in {
           mkSvc "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
         nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
         fehbg = mkSvc
-          "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/lain}";
+          "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/stacked.png}";
         polkit-gnome-auth-agent = mkSvc
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         oszwatch = # depends on impure fs contents @ /mnt/games
