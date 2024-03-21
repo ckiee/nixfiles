@@ -14,7 +14,6 @@ in with lib; {
         emacs = "emacsclientexs.desktop";
         firefox = "firefox.desktop";
         mpv = "mpv.desktop";
-        vlc = "vlc.desktop";
         audacity = "audacity.desktop";
         nautilus = "org.gnome.Nautilus.desktop";
       in {
@@ -39,8 +38,8 @@ in with lib; {
         "binary/octet-stream" = [ emacs ];
         "audio/flac" = [ mpv ];
         "video/x-msvideo" = [ mpv ];
-        "audio/mpeg" = [ mpv vlc audacity ];
-        "audio/x-vorbis+ogg" = [ audacity vlc mpv ];
+        "audio/mpeg" = [ mpv audacity ];
+        "audio/x-vorbis+ogg" = [ audacity mpv ];
         "audio/x-wav" = [ mpv ];
         "video/quicktime" = [ mpv ];
         "inode/directory" = [ nautilus ]; # folders!
