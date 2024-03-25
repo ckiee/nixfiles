@@ -208,16 +208,16 @@
           summary: Host swap is filling up
           description: "Swap is filling up (>80%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-      # - alert: HostSystemdServiceCrashed
-      #   expr: node_systemd_unit_state{state="failed"} == 1
-      #   for: 0m
-      #   labels:
-      #     severity: warning
-      #   annotations:
-      #     value: "{{ $value }}"
-      #     labels: "{{ $labels }}"
-      #     summary: systemd service crashed
-      #     description: "systemd service crashed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+      - alert: HostSystemdServiceCrashed
+        expr: node_systemd_unit_state{state="failed",name!~"systemd-networkd-wait-online.service|NetworkManager-wait-online.service"} == 1
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          value: "{{ $value }}"
+          labels: "{{ $labels }}"
+          summary: systemd service crashed
+          description: "systemd service crashed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       # - alert: HostPhysicalComponentTooHot
       #   expr: node_hwmon_temp_celsius > 75
