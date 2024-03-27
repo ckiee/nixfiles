@@ -16,7 +16,7 @@ in with lib; {
       # for new non-HM account creation as it forcibly overrides
       # "mail.accountmanager.accounts" in user.js, where nothing can
       # touch it.
-      environment.systemPackages = with pkgs; [ thunderbird ];
+      home.packages = with pkgs; [ thunderbird ];
 
       accounts.email = {
         maildirBasePath = maildir;
