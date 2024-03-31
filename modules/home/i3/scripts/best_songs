@@ -4,5 +4,6 @@ cd ~/Music/flat
 for f in *; do
 	if mpc sticker "$f" get "rating" 2>/dev/null | grep -E "=10$" >/dev/null; then
 		echo "${f%.*}"
+		#echo "${f}"
 	fi
 done
