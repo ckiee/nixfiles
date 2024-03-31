@@ -4,7 +4,8 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports = [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ];
+  imports =
+    [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ];
 
   networking.hostName = "cookiemonster";
   cookie = {
@@ -133,6 +134,29 @@ in {
 
   programs.alvr.enable = true; # also needs unpackaged ADBForwarder or similar
   programs.droidcam.enable = true; # alternative:
+
+  # quest link
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2833", MODE="0666"
+    SUBSYSTEMS=="usb_device", ATTRS{idVendor}=="2833", MODE="0666"
+
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2d40", MODE="0666"
+    SUBSYSTEMS=="usb_device", ATTRS{idVendor}=="2d40", MODE="0666"
+  '';
+
+  # more quest link debug
+  # hardware.opengl = let
+  #   f = prev: {
+  #     patches = prev.patches ++ [
+  #       /home/ckie/git/mesa/0001-gallium-vl-Add-SRGB-rgb-pixel-formats.patch
+  #     ];
+  #   };
+  # in {
+  #   package = pkgs.mesa.drivers.overrideAttrs f;
+  #   package32 = pkgs.pkgsi686Linux.mesa.drivers.overrideAttrs f;
+  #   # unrelated:
+  #   extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ];
+  # };
 
   # ffmpeg -i http://localhost:8080/video -flags low_delay -strict experimental -vf setpts=0 -tcp_nodelay 1 -vf format=yuv420p -f v4l2 -framerate 30 -video_size 1280x720 /dev/video0
   boot.extraModprobeConfig = "options v4l2loopback exclusive_caps=1";
