@@ -209,7 +209,7 @@
           description: "Swap is filling up (>80%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
       - alert: HostSystemdServiceCrashed
-        expr: node_systemd_unit_state{state="failed",name!~"systemd-networkd-wait-online.service|NetworkManager-wait-online.service"} == 1
+        expr: node_systemd_unit_state{state="failed",name!~"systemd-networkd-wait-online.service|NetworkManager-wait-online.service|fwupd-refresh.service"} == 1
         for: 0m
         labels:
           severity: warning
