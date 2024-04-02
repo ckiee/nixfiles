@@ -72,15 +72,20 @@ with lib;
           ];
         };
 
-        "puppycat.house" = {
-          provider = "hurricane";
-          secretId = "acme-heoife";
-          # FIXME: disabled until aoife can give me another acme challenge HE update token for the secret .env
-          extras = [ "mei.puppycat.house" ];
-        };
+        # TODO.,,,
+        # "puppycat.house" = {
+        #   provider = "hurricane";
+        #   secretId = "acme-heoife";
+        #   # FIXME: disabled until aoife can give me another acme challenge HE update token for the secret .env
+        #   extras = [ "mei.puppycat.house" ];
+        # };
 
         "tailnet.ckie.dev" = {
           wildcard = true;
+          provider = "porkbun";
+        };
+
+        "bwah.ing" = {
           provider = "porkbun";
         };
       };

@@ -1,33 +1,45 @@
 { lib, config, pkgs, ... }:
 
+with lib;
+
 let
   cfg = config.cookie.services.websync;
   home = config.cookie.user.home;
-in with lib; {
+  enabledSites = filterAttrs (_: { enable, ... }: enable) cfg.sites;
+in {
   options.cookie.services.websync = {
     enable = mkEnableOption "websync /var/www + syncthing and nginx serves it";
+    sites = mkOption {
+      description = "Sites for websync to configure";
+      type = types.attrsOf (types.submodule ({ name, ... }: {
+        options = {
+          enable = mkEnableOption "this websync setup";
+          fsName = mkOption {
+            description = "filesystem-safe name";
+            type = types.str;
+            default = replaceStrings [ "/" ] [ "_" ] name;
+          };
+        };
+      }));
+      default = {
+        "mei.puppycat.house".enable = false;
+        "bwah.ing".enable = true;
+      };
+    };
   };
 
   config = mkMerge [
     {
       # there is an unfortunate indirection here: ~ckie/www/* -> /var/www
       # because our syncthing is first meant for home usage, not serving.
-      cookie.services.syncthing.folders = {
-        "mei.puppycat.house" = {
-          path = "${home}/git/mei.puppycat.house";
+      cookie.services.syncthing.folders = mapAttrs (name:
+        { fsName, ... }: {
+          path = "${home}/git/${fsName}";
           devices = [ "cookiemonster" "thonkcookie" "flowe" ];
-        };
-      };
+        }) enabledSites;
     }
 
     (mkIf cfg.enable {
-      services.nginx.virtualHosts = {
-        # "mei.puppycat.house".root = "/var/www/websync/mei.puppycat.house/www";
-      };
-
-      cookie.services.syncthing.folders."mei.puppycat.house".path =
-        mkForce "${home}/www/mei.puppycat.house";
-
       systemd.services.websync-bindfs.preStart = mkBefore ''
         mkdir -p /var/www
       '';
@@ -39,6 +51,17 @@ in with lib; {
           "--create-for-user=ckie --create-with-perms=0600 -u nginx -g nginx -p 0600,u+X";
         wantedBy = [ "nginx.service" ];
       };
+
+      # per-site..
+      #
+      services.nginx.virtualHosts = mapAttrs
+        (name: { fsName, ... }: { root = "/var/www/websync/${fsName}/www"; })
+        enabledSites;
+
+      cookie.services.syncthing.folders = mapAttrs
+        (name: { fsName, ... }: { path = mkForce "${home}/www/${fsName}"; })
+        enabledSites;
     })
+
   ];
 }
