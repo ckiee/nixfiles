@@ -87,6 +87,8 @@ with lib;
 
         "bwah.ing" = {
           provider = "porkbun";
+          extras = [ "*.bwah.ing" ];
+          nginx = false;
         };
       };
     };

@@ -30,6 +30,11 @@ let
         description = "whether this should be a wildcard certficate";
         default = false;
       };
+      nginx = mkOption {
+        type = types.bool;
+        description = "whether we should setup nginx";
+        default = true;
+      };
     };
   };
 in {
@@ -37,19 +42,21 @@ in {
     enable = mkEnableOption "Enables NGINX+ACME configuration";
     hosts = mkOption {
       type = types.attrsOf hosts;
-      default = {};
+      default = { };
       description = "hosts to provide certificates for";
     };
   };
 
   config = mkIf cfg.enable {
+    # HACK: what a mess.. (old code)
     services.nginx.virtualHosts = (mkMerge (mapAttrsToList (i: v:
       mkMerge (map (e: {
         ${e} = {
           forceSSL = true;
           useACMEHost = i;
         };
-      }) ((v.extras or [ ]) ++ (singleton i)))) cfg.hosts));
+      }) ((v.extras or [ ]) ++ (singleton i))))
+      (filterAttrs (n: { nginx, ... }: nginx) cfg.hosts)));
 
     # TODO: only meow the cert to the right servers when they usin it
     cookie.secrets = let
@@ -76,7 +83,8 @@ in {
       defaults.email = email;
       acceptTerms = true;
       certs = (mapAttrs (i: v: ({
-        group = "nginx"; # should be other way; nginx in acme group. probably? idk this is better security-wise i feel.
+        group =
+          "nginx"; # should be other way; nginx in acme group. probably? idk this is better security-wise i feel.
         dnsProvider = v.provider;
         extraDomainNames = v.extras;
         credentialsFile = config.cookie.secrets.${v.secretId}.dest;

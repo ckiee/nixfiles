@@ -63,5 +63,14 @@ in {
         enabledSites;
     })
 
+    # one-offs...
+    (mkIf cfg.enable {
+      services.nginx.virtualHosts."bwah.ing" = {
+        serverName = "bwah.ing *.bwah.ing";
+        # forceSSL disabled on non-critical website using HSTS preloaded TLD.
+        useACMEHost = "bwah.ing";
+      };
+    })
+
   ];
 }
