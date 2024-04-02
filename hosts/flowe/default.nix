@@ -27,6 +27,7 @@ with lib;
       websync.enable = true;
       actual.enable = true;
       radicale.enable = true; # DAV
+      paperless.enable = true;
 
       syncthing = {
         enable = true;
@@ -67,6 +68,7 @@ with lib;
             "grafana.ckie.dev"
             "actual.ckie.dev"
             "dav.ckie.dev"
+            "paperless.ckie.dev"
           ];
         };
 

@@ -44,6 +44,7 @@
     ./ergo
     ./actual
     ./radicale
+    ./paperless
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

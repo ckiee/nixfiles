@@ -30,6 +30,14 @@ let
         description =
           "If enabled, this instructs NixOS to auto-create the database";
       };
+
+      ensureDBOwnership = mkOption {
+        type = types.bool;
+        default = false;
+        description = mdDoc ''
+          Grants the user ownership to a database with the same name.
+        '';
+      };
     };
   });
 in {
@@ -59,6 +67,7 @@ in {
       ensureUsers = mapAttrsToList (name: value: ({
         inherit name;
         ensurePermissions = { "DATABASE ${name}" = "ALL PRIVILEGES"; };
+        inherit (value) ensureDBOwnership;
       })) cfg.comb;
 
       # https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
