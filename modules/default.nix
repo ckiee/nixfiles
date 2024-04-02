@@ -67,5 +67,6 @@
     ./openrgb
     ./wivrn
     ./nixpkgs.nix
+    ./networkd.nix
   ];
 }
