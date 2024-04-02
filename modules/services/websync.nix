@@ -68,6 +68,7 @@ in {
       services.nginx.virtualHosts."bwah.ing" = {
         serverName = "bwah.ing *.bwah.ing";
         # forceSSL disabled on non-critical website using HSTS preloaded TLD.
+        addSSL = true;
         useACMEHost = "bwah.ing";
       };
     })
