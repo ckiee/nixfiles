@@ -52,6 +52,7 @@ in with lib; {
       cookie.bandcamp-dl # ili's bandcamp downloaber ( requires account. watch out for https://github.com/borisbabic/browser_cookie3/pull/126 )
       wemux # tmux multiplayer pubnix-style
       powertop # power efficency! batteries! laptop!
+      fatrace # fs-wide access trace
     ];
 
     services.fwupd.enable = true;
