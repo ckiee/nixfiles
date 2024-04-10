@@ -36,6 +36,7 @@ in {
       "DCIM"
       "Music"
       "git/mei.puppycat.house"
+      "oldgit"
     ];
     sound.pro = true;
 
