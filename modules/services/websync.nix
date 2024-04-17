@@ -22,7 +22,8 @@ in {
         };
       }));
       default = {
-        "mei.puppycat.house".enable = false;
+        # don't forget to also add to cookiemonster's restic.paths
+        "mei.puppycat.house".enable = true;
         "bwah.ing".enable = true;
       };
     };

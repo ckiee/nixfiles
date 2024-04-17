@@ -70,7 +70,7 @@ in {
     in {
       acme = mkAcme "acme.env";
       acme-dan = mkAcme "acme-dan.env";
-      acme-heoife = mkAcme "acme-heoife.env";
+      acme-he = mkAcme "acme-he.env";
     };
 
     systemd.services = mapAttrs' (i: v:
