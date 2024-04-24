@@ -281,10 +281,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "fdfe15532ef9d44442087ff3b4742e828fede226",
-        "sha256": "1r5hvf7vcj9x0j37bi5p4iqbcq8p4z15c8aq41yyn8cf4yvbs8xr",
+        "rev": "4d3104016ead49e36c4091e394c301928ba1122a",
+        "sha256": "0r5prammhyxdbsy7awksgfzlcs436m82q1qi3150g5aw0a520yc1",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/fdfe15532ef9d44442087ff3b4742e828fede226.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/4d3104016ead49e36c4091e394c301928ba1122a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {
