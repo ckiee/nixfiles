@@ -49,7 +49,9 @@ let
     (setenv "PATH" (concat (getenv "PATH") ":${
       concatMapStringsSep ":" (x: "${x}/bin") extraBins
     }"))
-    (setq org-reveal-root "${pkgs.nodePackages."reveal.js"}/lib/node_modules/reveal.js/js/reveal.js")
+    (setq org-reveal-root "${
+      pkgs.nodePackages."reveal.js"
+    }/lib/node_modules/reveal.js/js/reveal.js")
   '';
 
   extraDesktop = pkgs.writeTextFile {
@@ -71,15 +73,18 @@ let
       Keywords=Text;Editor;
     '';
   };
-  emacsOverlay = (import
-    sources.${if cfg.standalone then "emacs-overlay" else "emacs-overlay-prev"})
-    pkgs pkgs;
+  emacsOverlay =
+    (import
+      sources.${if cfg.standalone then "emacs-overlay" else "emacs-overlay-prev"})
+      pkgs
+      pkgs;
 
   # https://github.com/nix-community/nix-doom-emacs/issues/60#issuecomment-1083630633
-  tangledPrivateDir = pkgs.runCommand "tangled-doom-private" {
-    passAsFile = [ "extraBinsElisp" ];
-    inherit extraBinsElisp;
-  } ''
+  tangledPrivateDir = pkgs.runCommand "tangled-doom-private"
+    {
+      passAsFile = [ "extraBinsElisp" ];
+      inherit extraBinsElisp;
+    } ''
     mkdir -p $out
     cd $out
     cp -rv ${./config}/. .
@@ -91,51 +96,65 @@ let
     rm config.org
   '';
 
-  baseEmacs = if !cfg.standalone then
-    emacsOverlay.emacsNativeComp.override {
-      # TODO so jank.. if this works we should copy the whole derivation..
-      # harfbuzz = pkgs.harfbuzz.overrideAttrs (prev: rec {
-      #   version = "7.0.1";
-      #   src = pkgs.fetchurl {
-      #     url =
-      #       "https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz";
-      #     hash = "sha256-LPTT2PIlAHURmQo2o0GV8NZWLKVt8KiwiFs4KDeUgZk=";
-      #   };
-      # });
-      withXwidgets = true;
-      withGTK3 = true;
-    }
-  else
-    pkgs.emacs-gtk;
+  baseEmacs =
+    if !cfg.standalone then
+      emacsOverlay.emacsNativeComp.override
+        {
+          # TODO so jank.. if this works we should copy the whole derivation..
+          # harfbuzz = pkgs.harfbuzz.overrideAttrs (prev: rec {
+          #   version = "7.0.1";
+          #   src = pkgs.fetchurl {
+          #     url =
+          #       "https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz";
+          #     hash = "sha256-LPTT2PIlAHURmQo2o0GV8NZWLKVt8KiwiFs4KDeUgZk=";
+          #   };
+          # });
+          withXwidgets = true;
+          withGTK3 = true;
+        }
+    else
+      pkgs.emacs-gtk;
 
-  doomEmacs = let
-    mkDoom = configPath: emacs:
-      pkgs.callPackage sources.nix-doom-emacs {
-        doomPrivateDir = configPath;
-        bundledPackages = false;
-        emacsPackages = emacsOverlay.emacsPackagesFor emacs;
-        emacsPackagesOverlay = prev: final: {
-          mcf-mode = (prev.trivialBuild {
-            pname = "mcf-mode";
-            version = "git";
+  doomEmacs =
+    let
+      fetchurl' = pkgs.buildPackages.callPackage (pkgs.path + /pkgs/applications/editors/emacs/elisp-packages/fetchelpa.nix) { };
+      mkDoom = configPath: emacs:
+        pkgs.callPackage sources.nix-doom-emacs {
+          doomPrivateDir = configPath;
+          bundledPackages = false;
+          emacsPackages = emacsOverlay.emacsPackagesFor emacs;
+          emacsPackagesOverlay = final: prev: {
+            mcf-mode = (final.trivialBuild {
+              pname = "mcf-mode";
+              version = "git";
 
-            src = pkgs.fetchFromGitHub {
-              owner = "rasensuihei";
-              repo = "mcf";
-              rev = "4e44b6e24d9fe7a4ce7249df79f4473c0b473232";
-              sha256 = "sha256-2pwP3/rnADDfkJYOal2bp9vVYoXdvC5V0ZCeHYDsExk=";
-            };
+              src = pkgs.fetchFromGitHub {
+                owner = "rasensuihei";
+                repo = "mcf";
+                rev = "4e44b6e24d9fe7a4ce7249df79f4473c0b473232";
+                sha256 = "sha256-2pwP3/rnADDfkJYOal2bp9vVYoXdvC5V0ZCeHYDsExk=";
+              };
 
-            meta = {
-              description = "Emacs major mode for editing Minecraft mcfunction";
-              license = licenses.gpl3Plus;
-              homepage = "https://github.com/rasensuihei/mcf";
-            };
-          });
+              meta = {
+                description = "Emacs major mode for editing Minecraft mcfunction";
+                license = licenses.gpl3Plus;
+                homepage = "https://github.com/rasensuihei/mcf";
+              };
+            });
+
+            project = prev.project.overrideAttrs (prev': {
+              src = fetchurl' {
+                url = "https://elpa.gnu.org/packages/project-${prev'.version}.tar";
+                sha256 = "sha256-yDgyXpEHWHDnrqne2meSmSm2y1kZdz+8LZuAqOWaf/Q=";
+              };
+            });
+
+          };
         };
-      };
-  in mkDoom tangledPrivateDir baseEmacs;
-in {
+    in
+    mkDoom tangledPrivateDir baseEmacs;
+in
+{
   options.cookie.doom-emacs = {
     enable = mkEnableOption "Doom Emacs, Nix-managed by default";
     standalone = mkEnableOption "unmanaged Doom Emacs";
@@ -159,9 +178,7 @@ in {
       cookie.mail-client.enable = true;
 
       home-manager.users.ckie = { pkgs, ... }: {
-        home.packages = [
-          extraDesktop
-        ];
+        home.packages = [ extraDesktop ];
       };
     })
 
