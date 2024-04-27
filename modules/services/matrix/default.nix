@@ -98,12 +98,14 @@ in with lib; {
         networkTrusted =
           true; # FIXME: Really really don't like this but the janitor doesn't actually support UNIX sockets unlike what it says..
         autoCreate = false;
+        ensureDBOwnership = false; # checked at eval-time, but we create the db manually so we can't use it.
         initSql = ''
           CREATE DATABASE "synapse" WITH
             TEMPLATE template0
             ENCODING = "UTF8"
             LC_COLLATE = "C"
             LC_CTYPE = "C";
+          GRANT ALL PRIVILEGES ON DATABASE synapse TO synapse;
         '';
       };
     };
