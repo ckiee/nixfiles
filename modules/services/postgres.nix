@@ -33,7 +33,7 @@ let
 
       ensureDBOwnership = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
         description = mdDoc ''
           Grants the user ownership to a database with the same name.
         '';
@@ -66,7 +66,6 @@ in {
         (filterAttrs (name: value: value.autoCreate) cfg.comb);
       ensureUsers = mapAttrsToList (name: value: ({
         inherit name;
-        ensurePermissions = { "DATABASE ${name}" = "ALL PRIVILEGES"; };
         inherit (value) ensureDBOwnership;
       })) cfg.comb;
 
