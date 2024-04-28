@@ -24,7 +24,7 @@ in with lib; {
         owner = "root";
         group = "root";
         permissions = "0400";
-        wantedBy = "paperless-copy-password.service";
+        wantedBy = "paperless-scheduler.service";
       };
     };
 
