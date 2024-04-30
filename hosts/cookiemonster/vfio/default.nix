@@ -35,6 +35,16 @@ in with lib; {
       ln -sTf ${pkgs.virtiofsd} /run/libvirt/virtiofsd
     '';
 
+    virtualisation.libvirtd.hooks.qemu."10-vfio-manager" = pkgs.writeShellScript "vfio-qemu-hook" ''
+      set -euo pipefail
+      # Dynamically VFIO bind/unbind the USB with the VM starting up/stopping
+      if [[ "$1" =~ "win10|ventura" ]]; then
+        [ "$2" = "prepare" ] && virsh nodedev-reattach pci_0000_13_00_3
+        [ "$2" = "release" ] && virsh nodedev-detach pci_0000_13_00_3
+      fi
+    '';
+
+
     # TODO: use HM programs.looking-glass-client.enable:
     environment.systemPackages = with pkgs; [ looking-glass-client ];
 
