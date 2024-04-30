@@ -38,6 +38,7 @@ in {
       "git/mei.puppycat.house"
       "git/bwah.ing"
       "oldgit"
+      "dna"
     ]) ++ [ "/var/lib/libvirt/images/win10.qcow2" ];
     sound.pro = true;
 
