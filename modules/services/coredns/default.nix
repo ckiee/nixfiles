@@ -105,7 +105,7 @@ in {
               reload 1500ms
               fallthrough
             }
-            forward . 127.0.0.1:5302
+            forward . 127.0.0.1:5301
             errors
             cache 120 # two minutes
           }
