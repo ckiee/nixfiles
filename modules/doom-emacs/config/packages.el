@@ -1,1 +1,11 @@
-;;; $DOOMDIR/packages.el
+(package! visual-fill-column)
+(package! mu4e-views)
+(package! adoc-mode)
+;; (package! mcf-mode)
+(package! elcord)
+(package! svelte-mode)
+(package! platformio-mode)
+(package! verb)
+(package! ox-reveal)
+(package! graphql-mode)
+(package! matlab-mode)

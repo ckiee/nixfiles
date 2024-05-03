@@ -42,8 +42,9 @@ This strikes a nice balance between taking up a nice amount of the screen and st
 *** client window transparency
 ~alpha-background~ requires emacs 28, ~alpha~ does not
 #+BEGIN_SRC elisp
-(add-to-list 'default-frame-alist '(alpha-background . 0))
+;; (add-to-list 'default-frame-alist '(alpha-background . 0))
 #+END_SRC
+currently broken if compositor is off on X, works *too well*. (no bg at al)
 *** suppress messages
 #+BEGIN_SRC elisp
 (defun ckie--suppress-messages (func &rest args)
