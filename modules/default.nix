@@ -1,11 +1,21 @@
 { ... }:
 
-{
+let sources = import ../nix/sources.nix;
+in {
   # Add the options defined below to configuration.nix
   # documentation.nixos.includeAllModules = true;
   # TODO fix nixos-mailserver so that option can work
 
   imports = [
+    # FIXME: move
+    (import "${sources.lix-nixos-module}/module.nix"
+      (let lix = sources.lix-lix.outPath;
+      in {
+        inherit lix;
+        versionSuffix =
+          "pre${builtins.substring 0 8 lix.lastModifiedDate}-${lix.shortRev}";
+      }))
+
     # Subfolders (but like, not for single modules)
     ./home
     ./services

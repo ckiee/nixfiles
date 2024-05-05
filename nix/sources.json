@@ -161,6 +161,18 @@
         "url": "https://github.com/ckiee/impermanence/archive/32a579313971f24f4ebea8baa7df25bb145c11a4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "lix-lix": {
+        "branch": "main",
+        "repo": "ssh://git@git.lix.systems/lix-project/lix",
+        "rev": "8dfb30a2355be667fcb947ea995669c801534fbf",
+        "type": "git"
+    },
+    "lix-nixos-module": {
+        "branch": "main",
+        "repo": "ssh://git@git.lix.systems/lix-project/nixos-module",
+        "rev": "ccf7d23df95afe0a1619a6859ae406ac422f83df",
+        "type": "git"
+    },
     "matterbridge": {
         "branch": "groupchat",
         "description": "bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram, rocketchat, twitch, ssh-chat, zulip, whatsapp, keybase, matrix, microsoft teams, nextcloud, mumble, vk and more with REST API (mattermost not required!)",
