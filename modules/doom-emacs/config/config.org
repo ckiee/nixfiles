@@ -6,6 +6,10 @@
 (setq user-full-name "ckie"
       user-mail-address "us@ckie.dev")
 #+END_SRC
+** load nix into path
+#+BEGIN_SRC elisp
+(load "~/.config/emacs/doom-nix-bins.el")
+#+END_SRC
 ** display
 *** theme
 Sometimes I also use =doom-laserwave=.

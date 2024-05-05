@@ -202,7 +202,7 @@ in
           client.enable = true;
         };
         home.packages = [ baseEmacs ];
-        xdg.configFile."emacs/doom-nix-bins.el".source = tangledPrivateDir;
+        xdg.configFile."emacs/doom-nix-bins.el".text = extraBinsElisp;
         home.sessionPath = [ "$HOME/.config/emacs/bin" ];
       };
     })

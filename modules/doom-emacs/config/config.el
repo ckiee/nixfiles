@@ -1,5 +1,6 @@
 (setq user-full-name "ckie"
       user-mail-address "us@ckie.dev")
+(load "~/.config/emacs/doom-nix-bins.el")
 (setq doom-theme 'doom-sourcerer-cookie)
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Inter" :size 16))
@@ -20,8 +21,6 @@
 
 ;; Suppress "Cleaning up the recentf...done (0 removed)"
 (advice-add 'recentf-cleanup :around #'ckie--suppress-messages)
-(after! doom-modeline
-  (setq doom-modeline-height (+ (doom-modeline--font-height) 2)))
 (map! :leader "f P" (cmd! (doom-project-browse "~/git/nixfiles/modules/doom-emacs/config/")))
 (defun ckie-count-buffers (&optional display-anyway)
   "Display or return the number of buffers."
