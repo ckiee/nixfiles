@@ -17,16 +17,16 @@ in {
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   # lowers cpu temps near-idle, idk why, but it's Good..
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   boot.kernelModules = [
     "kvm-amd"
-    "ddcci" # ext. monitor (144hz, LG) brightness control, flimsy..
+    # "ddcci" # ext. monitor (144hz, LG) brightness control, flimsy..
     "nct6775" # amd cpu temp monitor on this motherboard (prev: msi B450M gaming plus, now: msi b650m-a wifi)
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8821au
-    ddcci-driver
+    # ddcci-driver
   ];
   boot.extraModprobeConfig = ''
     # Enable VHT and USB3 support
