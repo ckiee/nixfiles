@@ -203,10 +203,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "morph",
-        "rev": "84c787ef25f26a1e44adda17ab2e703b0ce1aed4",
-        "sha256": "0iz5xm81vqkh0w604rkizivfgzbx6613s9kkwwq2zbfrhf4cmi97",
+        "rev": "d4b9074de9c1035be342e093150dacba05dcc1b4",
+        "sha256": "1iv04fchd53fcl3g9by5r28zqsbdyay7jxc5c6lch70xsfaav83i",
         "type": "tarball",
-        "url": "https://github.com/ckiee/morph/archive/84c787ef25f26a1e44adda17ab2e703b0ce1aed4.tar.gz",
+        "url": "https://github.com/ckiee/morph/archive/d4b9074de9c1035be342e093150dacba05dcc1b4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "musnix": {
