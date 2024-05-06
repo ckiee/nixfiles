@@ -19,7 +19,7 @@ function gen_secrets {
     $($0 $c_trace eval build direct 'import ../deploy/secrets.nix { inherit uncheckedNodes; }')
 }
 if [[ -z "${CKIE_DEPLOY_META}" ]]; then
-    deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix)"
+    deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix --read-write-mode)"
     export CKIE_DEPLOY_META="$deployMeta"
 else
     deployMeta="$CKIE_DEPLOY_META"
