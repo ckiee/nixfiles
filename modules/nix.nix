@@ -1,8 +1,21 @@
 { lib, config, pkgs, sources, ... }:
 
-let cfg = config.cookie.nix;
-in with lib; {
+with lib;
+let
+  cfg = config.cookie.nix;
+  sources = import ../nix/sources.nix;
+in {
   options.cookie.nix = { enable = mkEnableOption "Configures Nix"; };
+
+  imports = [
+    (import "${sources.lix-nixos-module}/module.nix"
+      (let lix = sources.lix-lix.outPath;
+      in {
+        inherit lix;
+        versionSuffix =
+          "pre${builtins.substring 0 8 lix.lastModifiedDate}-${lix.shortRev}";
+      }))
+  ];
 
   config = mkIf cfg.enable {
     # Setup the symlink for our global nixpkgs
