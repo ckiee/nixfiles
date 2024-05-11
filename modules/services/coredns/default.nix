@@ -105,6 +105,8 @@ in {
               reload 1500ms
               fallthrough
             }
+            # We usually don't have IPv6 ):
+            rewrite stop type AAAA A
             forward . 127.0.0.1:5301
             errors
             cache 120 # two minutes
