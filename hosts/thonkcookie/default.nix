@@ -25,7 +25,6 @@ with lib; {
     systemd-boot.enable = true;
     hardware.t480s = {
       enable = true;
-      undervolt = true;
     };
     smartd.enable = true;
     rkvm.role = "tx";
@@ -37,9 +36,6 @@ with lib; {
     };
   };
 
-  specialisation.no-undervolt.configuration = { config, ... }: {
-    cookie.hardware.t480s.undervolt = mkForce false;
-  };
 
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
