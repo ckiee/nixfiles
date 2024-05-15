@@ -121,6 +121,9 @@ in {
                 # Scary.
                 "XF86AudioPlay" = ''exec "${mpc} play"'';
                 "XF86AudioPause" = ''exec "${mpc} pause"'';
+                "XF86AudioNext" = ''exec "${mpc} next"'';
+                "XF86AudioPrev" = ''exec "${mpc} prev"'';
+
                 #
                 "${modifier}+F5" =
                   ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
