@@ -52,6 +52,7 @@
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
+(setq! lsp-disabled-clients '(vue-semantic-server))
 (add-load-path! "vendor")
 (require 'brightscript-mode)
 (add-to-list 'auto-mode-alist '("\\.brs\\'" . brightscript-mode))

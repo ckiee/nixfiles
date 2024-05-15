@@ -171,6 +171,10 @@ the lua LSP mode is annoying and searches for some specific path =~/.config= we 
 #+BEGIN_SRC elisp
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
 #+END_SRC
+** vue lsp broken
+#+BEGIN_SRC elisp
+(setq! lsp-disabled-clients '(vue-semantic-server))
+#+END_SRC
 ** brightscript-mode.el
 its just copy pasted in here. not touching NDE rn.
 #+BEGIN_SRC elisp
