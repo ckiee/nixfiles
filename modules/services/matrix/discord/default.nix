@@ -19,6 +19,8 @@ in {
         patches = (prev.patches or []) ++ [
           ./pr_878.patch # Request from @lea:m.lea.moe: https://github.com/matrix-org/matrix-appservice-discord/pull/878
         ];
+
+        doCheck = false; # tests are flaky on slow aarch64-linux, since they're time-dependent..
       });
       serviceDependencies = [ "matrix-synapse.service" ];
       environmentFile = /.
