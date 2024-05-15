@@ -164,13 +164,13 @@
     "lix-lix": {
         "branch": "main",
         "repo": "ssh://git@git.lix.systems/lix-project/lix",
-        "rev": "8dfb30a2355be667fcb947ea995669c801534fbf",
+        "rev": "e9ca5c92d2b3fdda27ff194869268562c237b043",
         "type": "git"
     },
     "lix-nixos-module": {
         "branch": "main",
         "repo": "ssh://git@git.lix.systems/lix-project/nixos-module",
-        "rev": "ccf7d23df95afe0a1619a6859ae406ac422f83df",
+        "rev": "87b7b7e4bd936301b139e472589d1966b136f45f",
         "type": "git"
     },
     "matterbridge": {
