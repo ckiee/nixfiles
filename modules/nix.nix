@@ -5,7 +5,7 @@ let
   cfg = config.cookie.nix;
   sources = import ../nix/sources.nix;
 in {
-  options.cookie.nix = { enable = mkEnableOption "Configures Nix"; };
+  options.cookie.nix = { enable = mkEnableOption "Nix.. I mean, lix!"; };
 
   imports = [
     (import "${sources.lix-nixos-module}/module.nix"
@@ -18,6 +18,16 @@ in {
   ];
 
   config = mkIf cfg.enable {
+    # patch lix.. they will make it less scuffed eventually..
+    nixpkgs.overlays = singleton (final: prev: {
+      nixVersions = prev.nixVersions // rec {
+        nix_2_18 = prev.nixVersions.nix_2_18.overrideAttrs (prev': {
+          doInstallCheck = false;
+        });
+        stable = nix_2_18;
+      };
+    });
+
     # Setup the symlink for our global nixpkgs
     environment.extraSetup = ''
       ln -s ${sources.nixpkgs} $out/nixpkgs
