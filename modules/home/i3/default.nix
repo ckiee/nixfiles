@@ -27,7 +27,7 @@ in {
       audacity
       (firefox.override { cfg.speechSynthesisSupport = true; })
       calibre # ebook reader
-      friture # voice shenanigans (:
+      friture # voice shenanigans (: -- yet another spectrogram/metering program
       # nottetris2
       virt-manager # connect to vms on the net
       (wrapOBS { plugins = with obs-studio-plugins; [ obs-vaapi ]; })
