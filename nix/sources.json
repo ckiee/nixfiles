@@ -353,10 +353,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "st",
-        "rev": "bdc8de9ece1045f13e6f54621e8870f60d4a742b",
-        "sha256": "0v70yr7mbvk6jvhgm4pggqsf6zvazx5c60wxdrbawr1kgvc6hfdf",
+        "rev": "c851d1b57108f2a8de00d336441fae142ae65974",
+        "sha256": "1rk86rpkwmg6kwfpcki3ynj1s6knyq3v5rlf4bnvg3kwi3r7d4m3",
         "type": "tarball",
-        "url": "https://github.com/ckiee/st/archive/bdc8de9ece1045f13e6f54621e8870f60d4a742b.tar.gz",
+        "url": "https://github.com/ckiee/st/archive/c851d1b57108f2a8de00d336441fae142ae65974.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tonsi.li": {
