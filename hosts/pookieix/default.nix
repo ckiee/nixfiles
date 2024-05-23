@@ -21,16 +21,34 @@ with lib;
       # octoprint.enable = true;
       coredns.enable = mkForce
         false; # this RPi does not have a hardware rtc AND doesn't run 24/7 which makes it a pain in the ass for TLS
+      scanner.enableClient = mkForce false;
     };
     networkmanager.enable = mkForce false; # TODO
     state = {
       sshPubkey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDdlSkfY/82cXIwTlYCKX94WgdLTOR7NWY9ZEQAYjiyr root@pookieix";
-      tailscaleIp = "100.86.251.41";
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOH2IOYTUc8hAiuvGs2quG4dRZq2ubskdqN0t80zl+OA root@pookieix";
+      tailscaleIp = "100.64.158.85";
     };
   };
 
   home-manager.users.ckie = { ... }: { home.stateVersion = "23.05"; };
+
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+
+  nixpkgs.overlays = singleton (final: prev: {
+    inherit (import prev.path { allowUnfree = true; system = "x86_64-linux"; }) brscan5 sane-backends;
+  });
+
+  hardware.sane = {
+    enable = true;
+    brscan5 = {
+      enable = true;
+      netDevices.drora = {
+        ip = "10.100.102.10";
+        model = "MFC-J470DW";
+      };
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
