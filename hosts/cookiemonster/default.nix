@@ -106,7 +106,6 @@ in {
   ];
 
   environment.systemPackages = with pkgs; [
-    minecraft
     prismlauncher
     # kicad-with-packages3d
     solvespace
