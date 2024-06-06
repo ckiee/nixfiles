@@ -10,8 +10,8 @@ in {
 
   config.fonts = mkIf cfg.enable {
 
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-color-emoji

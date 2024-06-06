@@ -33,7 +33,7 @@ in with lib; {
       };
     };
 
-    cookie.restic.paths = [ config.services.grafana.database.path ];
+    cookie.restic.paths = [ config.services.grafana.settings.database.path ];
 
     services.nginx = {
       virtualHosts.${cfg.host} = {

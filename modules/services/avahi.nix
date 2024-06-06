@@ -9,7 +9,7 @@ in with lib; {
 
   config.services.avahi = mkIf cfg.enable {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true; # Since most mDNS responders only register IPv4 addresses, most users want to keep the IPv6 support disabled to avoid long timeouts.
     ipv6 = false; # Things break.
     publish = {
       enable = true;

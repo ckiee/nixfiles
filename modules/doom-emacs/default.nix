@@ -9,8 +9,8 @@ let
     fd # ...like find!
     jdk11 # Java
     rust-analyzer-unwrapped # Rust
-    nixfmt # Nix
-    nixpkgs-fmt # Nixpkgs
+    nixfmt-classic # Nix
+    nixpkgs-fmt # Nixpkgs (TODO: nixfmt-rfc-style)
     editorconfig-core-c # editorconfig
     omnisharp-roslyn # C#
     # (texlive.combine {
