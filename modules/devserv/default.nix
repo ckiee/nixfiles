@@ -2,8 +2,7 @@
 
 with lib;
 
-let
-  cfg = config.cookie.devserv;
+let cfg = config.cookie.devserv;
 in {
   options.cookie.devserv = {
     enable = mkEnableOption "Exposes port 4142 (ck00) to clearnet";
@@ -20,7 +19,10 @@ in {
       cookie.services.nginx.enable = true;
       cookie.services.prometheus.nginx-vhosts = [ "devserv" ];
       services.nginx.virtualHosts.${cfg.host} = {
-        locations."/" = { proxyPass = "http://127.0.0.1:4142"; };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:4142";
+          proxyWebsockets = true;
+        };
 
         extraConfig = ''
           access_log /var/log/nginx/devserv.access.log;

@@ -40,7 +40,10 @@ with builtins; {
         ${vhost} = {
           forceSSL = true;
           useACMEHost = cfg.host;
-          locations."/".proxyPass = "https://${vhost}";
+          locations."/" = {
+            proxyPass = "https://${vhost}";
+            proxyWebsockets = true;
+          };
           extraConfig = ''
             access_log /var/log/nginx/tailnet-certs-proxy.access.log;
           '';
