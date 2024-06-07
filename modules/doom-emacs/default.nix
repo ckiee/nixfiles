@@ -29,6 +29,7 @@ let
     pyright # Python LSP
     sumneko-lua-language-server # Lua (see config.org)
     racket-minimal # Racket LSP
+    nil # nix nil
     #
     # shell scripts
     shfmt
