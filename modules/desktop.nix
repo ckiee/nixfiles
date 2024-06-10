@@ -43,6 +43,8 @@ in with lib; {
       "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
     };
 
+    zramSwap.enable = true; # TODO: Move to tl /default.nix once verified good
+
     users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "plugdev" ];
 
     home-manager.users.ckie = { pkgs, ... }: {
