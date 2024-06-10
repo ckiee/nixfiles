@@ -26,7 +26,7 @@ in {
         kdeconnect-indicator =
           mkSvc "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
         nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
-        emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Shift+E to activate
+        emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Alt+E to activate
         fehbg = mkSvc
           "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/stacked.png}";
         polkit-gnome-auth-agent = mkSvc
