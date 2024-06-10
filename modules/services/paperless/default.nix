@@ -43,6 +43,8 @@ in with lib; {
         PAPERLESS_URL = "https://${cfg.host}";
         PAPERLESS_TASK_WORKERS = 4;
       };
+      package =
+        pkgs.paperless-ngx.overrideAttrs (prev: { doInstallCheck = false; });
     };
 
     # allow upload over nautilus sftp..
