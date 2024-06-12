@@ -16,6 +16,8 @@ in with lib; {
   config = mkMerge [
     (mkIf cfg.enable {
       services.tailscale.enable = true;
+      # Disable spooky auto `lsof` publishing toggled remotely by controlplane:
+      systemd.services.tailscaled.environment.TS_DEBUG_DISABLE_PORTLIST = "1";
       # https://tailscale.com/kb/1082/firewall-ports/#my-devices-are-using-a-relay-what-can-i-do-to-help-them-connect-peer-to-peer
       networking.firewall = {
         allowedTCPPorts = [ 41641 ];
