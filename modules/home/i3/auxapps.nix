@@ -28,7 +28,7 @@ in {
         nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
         emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Alt+E to activate
         fehbg = mkSvc
-          "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/stacked.png}";
+          "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${./backgrounds/1080pified_impression_soleil_levant.png}";
         polkit-gnome-auth-agent = mkSvc
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         oszwatch = # depends on impure fs contents @ /mnt/games
