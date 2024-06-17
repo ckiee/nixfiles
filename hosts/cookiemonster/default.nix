@@ -107,7 +107,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     prismlauncher
-    # kicad-with-packages3d
+    kicad
     solvespace
     #
     yabridge
