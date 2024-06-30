@@ -34,6 +34,7 @@ with lib; {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAC83UXW5rtEPlEqDT5c/W0DTFFwsVah6ZlCg1FO9kr";
       tailscaleIp = "100.89.163.81";
     };
+    doom-emacs.standalone = true; # Imperative doom ):
   };
 
 
