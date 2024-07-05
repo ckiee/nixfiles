@@ -30,11 +30,12 @@ in {
       jetbrains-mono
       inter
       (linkFarm "shit-shit-fuck" { "share/fonts/truetype" = ../secrets/fonts; })
+      ttf-bitstream-vera
     ];
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "JetBrains Mono" ];
+        monospace = [ "Bitstream Vera Sans Mono" ];
         sansSerif = [ "Inter" ];
         # serif is ew
       };
