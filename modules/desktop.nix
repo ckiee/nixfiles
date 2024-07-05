@@ -47,6 +47,8 @@ in with lib; {
 
     users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "plugdev" ];
 
+    programs.nix-ld.enable = true;
+
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
