@@ -28,6 +28,7 @@ with lib;
       actual.enable = true;
       radicale.enable = true; # DAV
       paperless.enable = true;
+      pupcat.enable = true;
 
       syncthing = {
         enable = true;

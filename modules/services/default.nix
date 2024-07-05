@@ -60,5 +60,6 @@
     ./net-offload
     ./tonsi-li
     ./websync.nix
+    ./pupcat.nix
   ];
 }

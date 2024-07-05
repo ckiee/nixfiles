@@ -14,16 +14,23 @@ in {
       type = types.attrsOf (types.submodule ({ name, ... }: {
         options = {
           enable = mkEnableOption "this websync setup";
+
           fsName = mkOption {
             description = "filesystem-safe name";
             type = types.str;
             default = replaceStrings [ "/" ] [ "_" ] name;
           };
+
+          nginxOut = mkOption {
+            description = "nginx outtta here.. something instead of the root=";
+            type = types.nullOr types.attrs;
+            default = null;
+          };
         };
       }));
       default = {
         # don't forget to also add to cookiemonster's restic.paths
-        "mei.puppycat.house".enable = true;
+        # "mei.puppycat.house".enable = true; cookie.services.pupcat now
         "bwah.ing".enable = true;
       };
     };
@@ -44,19 +51,26 @@ in {
       systemd.services.websync-bindfs.preStart = mkBefore ''
         mkdir -p /var/www
       '';
+
+      users.groups.websync = { };
+
       cookie.bindfs.websync = {
         source = "${home}/www";
         dest = "/var/www/websync";
         overlay = false;
         args =
-          "--create-for-user=ckie --create-with-perms=0600 -u nginx -g nginx -p 0600,u+X";
+          "--create-for-user=ckie --create-with-perms=0600 -u nginx -g websync -p 0440,ug+X -r";
         wantedBy = [ "nginx.service" ];
       };
 
       # per-site..
       #
       services.nginx.virtualHosts = mapAttrs
-        (name: { fsName, ... }: { root = "/var/www/websync/${fsName}/www"; })
+        (name: { fsName, nginxOut, ... }:
+          if nginxOut == null then
+          { root = "/var/www/websync/${fsName}/www"; }
+          else nginxOut
+        )
         enabledSites;
 
       cookie.services.syncthing.folders = mapAttrs
@@ -73,6 +87,7 @@ in {
         useACMEHost = "bwah.ing";
       };
     })
+
 
   ];
 }
