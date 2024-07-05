@@ -30,7 +30,7 @@ in {
       jetbrains-mono
       inter
       (linkFarm "shit-shit-fuck" { "share/fonts/truetype" = ../secrets/fonts; })
-      ttf-bitstream-vera
+      ttf_bitstream_vera
     ];
 
     fontconfig = {
