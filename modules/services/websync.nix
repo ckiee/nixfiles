@@ -28,15 +28,21 @@ in {
           };
         };
       }));
-      default = {
-        # don't forget to also add to cookiemonster's restic.paths
-        # "mei.puppycat.house".enable = true; cookie.services.pupcat now
-        "bwah.ing".enable = true;
-      };
+      default = { };
     };
   };
 
   config = mkMerge [
+    {
+      cookie.services.websync = {
+        sites = {
+          # don't forget to also add to cookiemonster's restic.paths
+          # "mei.puppycat.house".enable = true; cookie.services.pupcat now
+          "bwah.ing".enable = true;
+        };
+      };
+    }
+
     {
       # there is an unfortunate indirection here: ~ckie/www/* -> /var/www
       # because our syncthing is first meant for home usage, not serving.
@@ -87,7 +93,6 @@ in {
         useACMEHost = "bwah.ing";
       };
     })
-
 
   ];
 }

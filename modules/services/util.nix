@@ -4,7 +4,7 @@ with lib; {
   # Run socat configured as CGI
   mkCgi = exec: port:
     "${pkgs.socat}/bin/socat TCP4-LISTEN:${toString port},reuseaddr,fork EXEC:${exec}";
-  # Make a service with it's own user account and secure systemd settings
+  # Make a service with its own user account and secure systemd settings
   #
   #  mkService "comicfury" {
   #    home = "/var/lib/comicfury";

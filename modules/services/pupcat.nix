@@ -20,8 +20,6 @@ in with lib; {
         SystemCallFilter = mkForce [ ];
       };
 
-      users.users.pupcat.extraGroups = [ "websync" ];
-
       cookie.services.stfed = {
         enable = true;
         hooks = [{
@@ -44,6 +42,7 @@ in with lib; {
 
     (util.mkService "pupcat" {
       description = "mei.puppycat.house";
+      extraGroups = [ "websync" ];
       # secrets.config = {
       #   source = "./secrets/daiko.json";
       #   dest = "${cfg.folder}/config.json";
