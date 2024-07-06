@@ -16,4 +16,7 @@ with pkgs; {
   tonsi-li = sources."tonsi.li";
   bandcamp-dl = callPackage ./bandcamp-dl { };
   actual-server = callPackage ./actual-server { };
+  listenwithmed = ((import sources.listenwithmed).overrideInputs {
+    nixpkgs = pkgs.path;
+  }).default;
 }

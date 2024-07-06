@@ -161,6 +161,18 @@
         "url": "https://github.com/ckiee/impermanence/archive/32a579313971f24f4ebea8baa7df25bb145c11a4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "listenwithmed": {
+        "branch": "main",
+        "description": "a http server that replies w mpd status",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "listenwithmed",
+        "rev": "5a2ce5823162f6bbd5997b34b5d93d870da3b3e5",
+        "sha256": "1l1av22hkb96pwiv5k8k78fz5sq1kzdz9k94c9qpyfql1a65x3nd",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/listenwithmed/archive/5a2ce5823162f6bbd5997b34b5d93d870da3b3e5.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "lix-lix": {
         "branch": "main",
         "repo": "ssh://git@git.lix.systems/lix-project/lix",
@@ -293,10 +305,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "bbb39c05ad9a0a1078afb1ee2b475e07ae6f2376",
-        "sha256": "05pyi0gkx3h993563p6dbafma64fgii8l1jimz98v2qlch7xr3qj",
+        "rev": "ea85328102de75cf86e721b72a6e1fc64c587222",
+        "sha256": "1v1jxqszig5z87f07cq557iqjxnrxcw5cy6sz8h47amc8jz4mbgj",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/bbb39c05ad9a0a1078afb1ee2b475e07ae6f2376.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/ea85328102de75cf86e721b72a6e1fc64c587222.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

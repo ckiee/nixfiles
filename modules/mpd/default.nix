@@ -10,6 +10,7 @@ let
   inherit (util) mkRequiresScript;
   audioPort = "14725";
   frontendPort = "14726";
+  lwmdPort = "14727";
 in {
   options.cookie.mpd = {
     enable = mkEnableOption "music player daemon";
@@ -83,8 +84,13 @@ in {
       services.nginx.virtualHosts.${cfg.host} = {
         locations."/audio" = { proxyPass = "http://127.0.0.1:${audioPort}"; };
         locations."/" = { proxyPass = "http://127.0.0.1:${frontendPort}"; };
+        locations."/d" = {
+          proxyPass = "http://[::1]:${lwmdPort}/"; # trailing / means proxy to / instead of /d
+        };
 
         extraConfig = ''
+          add_header Access-Control-Allow-Origin *;
+          add_header Access-Control-Allow-Methods 'GET';
           access_log /var/log/nginx/mpd.access.log;
         '';
       };
@@ -103,6 +109,12 @@ in {
         ${mkCgi (mkRequiresScript ./web.sh) frontendPort} |& ${pkgs.ripgrep}/bin/rg -v 'Connection reset by peer'
       '';
       path = [ pkgs.mpc_cli ];
+    }))
+
+    (mkIf cfg.enableHttp (mkService "listenwithmed" {
+      script = ''
+        ${pkgs.cookie.listenwithmed}/bin/listenwithmed [::1]:${lwmdPort}
+      '';
     }))
 
   ]);
