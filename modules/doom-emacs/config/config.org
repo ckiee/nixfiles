@@ -333,3 +333,9 @@ get it loaded at startup:
 #+BEGIN_SRC elisp
 (define-globalized-minor-mode global-mixed-pitch-mode mixed-pitch-mode mixed-pitch-mode)
 #+END_SRC
+** rust lsp louder inlay hints pls
+#+BEGIN_SRC elisp
+(setq lsp-rust-analyzer-display-chaining-hints t
+      lsp-rust-analyzer-display-parameter-hints t
+      lsp-rust-analyzer-closing-brace-hints t)
+#+END_SRC

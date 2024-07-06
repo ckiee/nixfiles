@@ -130,3 +130,6 @@
 (setq-default frame-title-format '((:eval (buffer-name (window-buffer (minibuffer-selected-window))))))
 (load-library "ox-reveal")
 (define-globalized-minor-mode global-mixed-pitch-mode mixed-pitch-mode mixed-pitch-mode)
+(setq lsp-rust-analyzer-display-chaining-hints t
+      lsp-rust-analyzer-display-parameter-hints t
+      lsp-rust-analyzer-closing-brace-hints t)
