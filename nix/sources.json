@@ -174,16 +174,18 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lix-lix": {
-        "branch": "main",
-        "repo": "ssh://git@git.lix.systems/lix-project/lix",
-        "rev": "a986a8dfa1c5896de8acfc603ff71a51f629bdc8",
-        "type": "git"
+        "sha256": "1bw8ncjs8a8l7b0g68xhvx9nc19847m7cjvs41k185ih5svayd8a",
+        "type": "tarball",
+        "url": "https://git.lix.systems/lix-project/lix/archive/014410cbf.tar.gz",
+        "url_template": "https://git.lix.systems/lix-project/lix/archive/<version>.tar.gz",
+        "version": "014410cbf"
     },
     "lix-nixos-module": {
-        "branch": "main",
-        "repo": "ssh://git@git.lix.systems/lix-project/nixos-module",
-        "rev": "4e25f1ab68f2270f9cff59216056c21073db0164",
-        "type": "git"
+        "sha256": "02dg1icyxamxblrvgxshadp2s8mx2ryjja7m9w26sgs07jl438zk",
+        "type": "tarball",
+        "url": "https://git.lix.systems/lix-project/nixos-module/archive/5d9d940.tar.gz",
+        "url_template": "https://git.lix.systems/lix-project/nixos-module/archive/<version>.tar.gz",
+        "version": "5d9d940"
     },
     "matterbridge": {
         "branch": "groupchat",

@@ -9,11 +9,11 @@ in {
 
   imports = [
     (import "${sources.lix-nixos-module}/module.nix"
-      (let lix = sources.lix-lix.outPath;
+      (let lix = sources.lix-lix;
       in {
-        inherit lix;
+        lix = lix.outPath;
         versionSuffix =
-          "pre${builtins.substring 0 8 lix.lastModifiedDate}-${lix.shortRev}";
+          "pre-${lix.version}";
       }))
   ];
 
