@@ -81,6 +81,13 @@ in {
       ### nginx reverse proxy
       cookie.services.nginx.enable = true;
       cookie.services.prometheus.nginx-vhosts = [ "mpd" ];
+
+      services.nginx.appendHttpConfig = ''
+          map $upstream_http_access_control_allow_origin $mpd_hdr_acao_all_by_default {
+              "" "*";
+          }
+      '';
+
       services.nginx.virtualHosts.${cfg.host} = {
         locations."/audio" = { proxyPass = "http://127.0.0.1:${audioPort}"; };
         locations."/" = { proxyPass = "http://127.0.0.1:${frontendPort}"; };
@@ -89,7 +96,9 @@ in {
         };
 
         extraConfig = ''
-          add_header Access-Control-Allow-Origin *;
+          # ah yes, i love nginx 😛😭
+          # (dont add a dupe ACAO header, browser gets angry sometimes.)
+          add_header Access-Control-Allow-Origin $mpd_hdr_acao_all_by_default;
           add_header Access-Control-Allow-Methods 'GET';
           access_log /var/log/nginx/mpd.access.log;
         '';
