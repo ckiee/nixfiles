@@ -39,6 +39,8 @@ in {
           # don't forget to also add to cookiemonster's restic.paths
           # "mei.puppycat.house".enable = true; cookie.services.pupcat now
           "bwah.ing".enable = true;
+          # see: cookie.services.pupcat
+          "mei.puppycat.house".enable = true;
         };
       };
     }
