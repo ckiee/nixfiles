@@ -54,6 +54,7 @@ in {
       anki
       scrcpy # Android screen cast
       uxplay # iOS screen mirroring (drag right down for control panel icon)
+      bitwarden-desktop
     ];
     cookie.polyprog.enable = true;
 
