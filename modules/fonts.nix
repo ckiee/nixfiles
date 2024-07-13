@@ -35,7 +35,7 @@ in {
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Bitstream Vera Sans Mono" ];
+        monospace = [ "JetBrains Mono" ];
         sansSerif = [ "Inter" ];
         # serif is ew
       };
