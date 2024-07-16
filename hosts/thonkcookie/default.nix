@@ -7,6 +7,8 @@ with lib; {
 
   # time.timeZone = mkForce null;
 
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
   cookie = {
     imperm.enable = true;
     desktop = {
