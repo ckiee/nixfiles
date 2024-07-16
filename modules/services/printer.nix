@@ -70,8 +70,13 @@ in with lib; {
       services.printing = {
         browsing = true; # Probably mDNS for printers
         defaultShared = true;
+        listenAddresses = [ "*:631" ];
+        allowFrom = [ "all" ]; # EHHHH?
         # logLevel = "debug";
       };
+
+      # the NetPrint android app resolves dns and passes in Host: <ip> instead of the original host..
+      networking.firewall.allowedTCPPorts = [ 631 ];
 
       cookie.services.nginx.enable = true; # firewall & recommended defaults
       services.nginx.virtualHosts = let
