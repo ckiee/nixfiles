@@ -163,6 +163,11 @@ in {
         useLocalResolver = true;
       };
       networking.search = singleton hostSuffix;
+      # without networkmanager using sysd-resolved internally, networking.search doesnt work
+      # TODO put in nixpkgs
+      networking.resolvconf.extraConfig = ''
+        search_domains=${hostSuffix}
+      '';
     })
   ]);
 }
