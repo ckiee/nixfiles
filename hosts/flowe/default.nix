@@ -6,7 +6,6 @@ with lib;
   networking.hostName = "flowe";
 
   cookie = {
-    wireguard.ip = "10.67.75.6";
     restic.enable = true; # Backups
     systemd-initrd.enable = true;
     tailnet-certs.enableServer = true;
