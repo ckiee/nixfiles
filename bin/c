@@ -197,13 +197,11 @@ elif [ "$1" == "mailshit" ]; then
     host=$(echo "$deployMeta" | jq -r ".serviceHosts["'"'mailserver'"'"] | first")
 
     set -x
-    ssh "$host" "rm /var/lib/postfix/conf/{vaccounts,valias,virtual}"
-    for file in vaccounts valias virtual; do
-        path=$(c eval build direct "nodes.${host}.config.services.postfix.mapFiles.virtual")
-        rsync "$path" --rsync-path="sudo rsync" "$host:/var/lib/postfix/conf/$file" --force
-    done
+    ssh "$host" "sudo rm /var/lib/postfix/conf/{vaccounts,valias,virtual}" || true
+    bin=$(c eval build direct "(pkgs.runCommand ''postfix-setup-script'' {} ''cp -s $""{nodes.${host}.config.systemd.services.postfix-setup.serviceConfig.ExecStart} $""out'')")
+    nix copy --to "ssh://${host}" "$bin"
 
-    ssh "$host" "sudo systemctl restart postfix-setup postfix"
+    ssh "$host" "sudo '""${bin}""' && sudo systemctl restart postfix"
 
 else # TODO: it'd be cool if there was a command to identify how old nixos vers are on each host
     echo "usage: c [trace] <all|eval [fast]|bump <source>|installer [flash <device path>]|hmport <target>>"
