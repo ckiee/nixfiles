@@ -21,6 +21,7 @@ in {
   "hmporter" = import ../hosts/hmporter;
   "virt" = import ../hosts/virt;
   "flowe" = import ../hosts/flowe;
+  "crobat" = import ../hosts/crobat;
 }
 
 )
