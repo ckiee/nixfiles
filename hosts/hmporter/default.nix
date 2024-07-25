@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports = [ ../.. ];
 
+  cookie.wireguard.enable = false;
   home-manager.users.ckie = { ... }: {
     cookie = { st.enable = true; };
     home.stateVersion = "23.05";

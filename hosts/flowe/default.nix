@@ -6,6 +6,7 @@ with lib;
   networking.hostName = "flowe";
 
   cookie = {
+    wireguard.ip = "10.67.75.6";
     restic.enable = true; # Backups
     systemd-initrd.enable = true;
     tailnet-certs.enableServer = true;
@@ -14,7 +15,10 @@ with lib;
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKS46DUbCbtBGhB+dx1/B/tegqI7i6ir1ofbTmTI+yYm root@flowe";
       tailscaleIp = "100.115.167.26";
     };
-    wireguard = { endpoint = "flowe.ckie.dev"; };
+    wireguard = {
+      endpoint = "flowe.ckie.dev";
+      ip = "10.67.75.6";
+    };
     services = {
       vaultwarden.enable = true;
       mailserver.enable = true;

@@ -21,6 +21,7 @@ with builtins;
   boot.tmp.useTmpfs = mkForce false;
 
   cookie = {
+    wireguard.ip = "10.67.75.11";
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjp/gsXt35/NlIU3TtPPa4SQP3+2HWw3d5wLybegvwn root@pansear";

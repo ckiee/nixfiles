@@ -12,6 +12,7 @@ with lib;
   };
 
   cookie = {
+    wireguard.ip = "10.6.75.12";
     raspberry = {
       enable = true;
       version = 4;

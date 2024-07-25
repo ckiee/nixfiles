@@ -16,7 +16,6 @@ in {
       type = types.str;
       description = "the ip assigned to this peer";
       example = "10.67.75.13";
-      default = "haah";
     };
     endpoint = mkOption {
       type = types.nullOr types.str;
@@ -27,17 +26,6 @@ in {
   };
 
   config = mkMerge [
-    {
-      cookie.wireguard.ip = let
-        withIndices = imap1 (i: x: {
-          i = i;
-          x = nodes.${x};
-        }) (attrNames nodes);
-        thisNode = findFirst
-          (cmp: cmp.x.config.networking.hostName == config.networking.hostName)
-          null withIndices;
-      in (mkDefault "10.67.75.${toString (1 + thisNode.i)}");
-    }
 
     (mkIf cfg.enable {
       cookie.secrets.wg-privkey = {
