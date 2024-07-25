@@ -9,7 +9,7 @@ in {
 
   networking.hostName = "cookiemonster";
   cookie = {
-    wireguard.ip = "10.67.75.3";
+    wireguard.num = 3;
     imperm.enable = true;
     desktop = {
       enable = true;

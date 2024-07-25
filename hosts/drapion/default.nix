@@ -8,7 +8,7 @@ with lib;
   imports = [ ../.. ];
 
   cookie = {
-    wireguard.ip = "10.67.75.4";
+    wireguard.num = 4;
     wol.enable = true;
     restic.enable = true;
     raspberry = {

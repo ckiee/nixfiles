@@ -17,7 +17,7 @@ with lib;
   };
 
   cookie = {
-    wireguard.ip = "10.67.75.8";
+    wireguard.num = 8;
     collections.media.enable = true;
     xserver.enable = true;
     sound = {

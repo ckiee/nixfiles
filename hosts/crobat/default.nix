@@ -7,8 +7,9 @@ with lib;
 
   cookie = {
     wireguard = {
-      ip = "10.67.75.15";
+      num = 15;
       endpoint = "crobat.ckie.dev";
+      v6TunnelEndpoint = true;
     };
     state = {
       sshPubkey =
@@ -17,6 +18,8 @@ with lib;
     };
   };
   security.sudo.wheelNeedsPassword = false;
+
+  networking.firewall.logRefusedConnections = mkForce true;
 
   # used as v6 tunnel
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;

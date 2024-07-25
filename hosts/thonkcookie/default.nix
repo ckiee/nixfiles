@@ -10,7 +10,7 @@ with lib; {
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   cookie = {
-    wireguard.ip = "10.67.75.13";
+    wireguard.num = 13;
     imperm.enable = true;
     desktop = {
       enable = true;

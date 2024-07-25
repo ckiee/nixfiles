@@ -16,7 +16,7 @@ with lib;
     };
     wireguard = {
       endpoint = "flowe.ckie.dev";
-      ip = "10.67.75.6";
+      num = 6;
     };
     services = {
       vaultwarden.enable = true;

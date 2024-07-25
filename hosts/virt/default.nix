@@ -9,7 +9,7 @@ with lib;
   networking.firewall.enable = false;
 
   cookie = {
-    wireguard.ip = "10.67.75.14";
+    wireguard.num = 14;
     desktop = {
       enable = true;
       monitors.primary = "Virtual-1";

@@ -6,7 +6,7 @@ let
   cfg = config.cookie.services.prometheus;
   # this little boilerplate is here because I used to rewrite bokkusu's address
   # in order to keep the old prom data, which didn't work
-  listenAddress = config.cookie.wireguard.ip;
+  listenAddress = config.cookie.wireguard.ipv4;
 in {
   options.cookie.services.prometheus = {
     enableServer = mkEnableOption "Prometheus monitoring service";
