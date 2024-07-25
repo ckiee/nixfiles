@@ -12,9 +12,6 @@ in {
     ordering = { tags = [ "desktops" "servers" ]; };
   };
 
-  # Do not change the order of these entries! Always append at the
-  # bottom as the wireguard module depends on this order in order to choose IPs.
-  "bokkusu" = import ../hosts/bokkusu;
   "cookiemonster" = import ../hosts/cookiemonster;
   "drapion" = import ../hosts/drapion;
   "pookieix" = import ../hosts/pookieix;
@@ -23,9 +20,6 @@ in {
   "installer" = import ../hosts/installer;
   "hmporter" = import ../hosts/hmporter;
   "virt" = import ../hosts/virt;
-  "kyurem" = import ../hosts/kyurem;
-  "eg" = import ../hosts/eg;
-  "kibako" = import ../hosts/kibako;
   "flowe" = import ../hosts/flowe;
 }
 
