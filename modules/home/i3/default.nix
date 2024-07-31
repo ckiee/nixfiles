@@ -225,7 +225,7 @@ in {
             size = 9.0;
           };
           modifier = "Mod4"; # super key
-          menu = "${pkgs.rofi}/bin/rofi -show drun";
+          menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons";
         };
         extraConfig = mkIf (desktopCfg.monitors != null
           && desktopCfg.monitors.secondary != null) ''
