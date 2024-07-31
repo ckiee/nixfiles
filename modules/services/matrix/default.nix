@@ -85,6 +85,14 @@ in with lib; {
           '';
         };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
+        locations."~ ^/_matrix/federation/v2/invite/".extraConfig = mkIf false
+          "return 403 '${
+            builtins.toJSON {
+              errcode = "M_UNKNOWN";
+              error =
+                "invites disabled because of abuse. contact me on another platform.";
+            }
+          }';";
       };
     };
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
@@ -98,7 +106,8 @@ in with lib; {
         networkTrusted =
           true; # FIXME: Really really don't like this but the janitor doesn't actually support UNIX sockets unlike what it says..
         autoCreate = false;
-        ensureDBOwnership = false; # checked at eval-time, but we create the db manually so we can't use it.
+        ensureDBOwnership =
+          false; # checked at eval-time, but we create the db manually so we can't use it.
         initSql = ''
           CREATE DATABASE "synapse" WITH
             TEMPLATE template0
