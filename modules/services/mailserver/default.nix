@@ -108,7 +108,7 @@ with builtins; {
           hashedPasswordFile =
             config.cookie.secrets.mailserver-pw-aoife-hash.dest;
           aliases =
-            [ "sydney@enby.space" "nbsp@enby.space" "aoife@cassidy.sh" ];
+            [ "sydney@enby.space" "nbsp@enby.space" "aoife@cassidy.sh" "callisto@enby.space" ];
           quota = "1M";
           sendOnly = true;
         };
