@@ -27,6 +27,11 @@ in {
       };
       chronyc.enable =
         true; # sd-timesyncd hasn't worked correctly on this machine since ~Jul 7th
+      postgres = {
+        enable = true;
+        # local dev
+        comb.pupcat = { ensureDBOwnership = true; };
+      };
     };
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we
@@ -118,6 +123,7 @@ in {
     # mx master
     solaar
     basiliskii # old 68k mac emu
+    darktable
   ];
 
   services.usbmuxd.enable = true;
@@ -177,6 +183,12 @@ in {
   # };
 
   networking.firewall.enable = false;
+
+  services.postgresql = {
+    # TODO: This is usually also managed by stateVersion, but
+    package = pkgs.postgresql_16_jit;
+    enableJIT = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
