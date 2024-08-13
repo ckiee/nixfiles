@@ -68,23 +68,25 @@ with lib; {
           ProtectKernelTunables = "true";
           RemoveIPC = "true";
           ProtectProc = "invisible";
-          RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
+          # this one causes sm pain its not worth it
+          # RestrictAddressFamilies = [ "~AF_UNIX" "~AF_NETLINK" ];
           RestrictSUIDSGID = "true";
           RestrictRealtime = "true";
           LockPersonality = "true";
           SystemCallArchitectures = "native";
           ProcSubset = "pid";
-          SystemCallFilter = [
-            "~@reboot"
-            "~@module"
-            "~@mount"
-            "~@swap"
-            "~@resources"
-            "~@cpu-emulation"
-            "~@obsolete"
-            "~@debug"
-            "~@privileged"
-          ];
+          # systemd doesnt like this at all
+          # SystemCallFilter = [
+          #   "~@reboot"
+          #   "~@module"
+          #   "~@mount"
+          #   "~@swap"
+          #   "~@resources"
+          #   "~@cpu-emulation"
+          #   "~@obsolete"
+          #   "~@debug"
+          #   "~@privileged"
+          # ];
           UMask = "077";
         };
       };

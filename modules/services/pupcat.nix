@@ -10,6 +10,11 @@ in with lib; {
 
   config = mkIf cfg.enable (mkMerge [
     {
+      services.nginx.virtualHosts."puppycat.house" = {
+        redirectCode = 302;
+        globalRedirect = "mei.puppycat.house";
+      };
+
       cookie.services.websync.sites."mei.puppycat.house" = {
         enable = true;
         nginxOut.locations."/".proxyPass = "http://127.0.0.1:32582";
@@ -40,6 +45,18 @@ in with lib; {
       };
     }
 
+    {
+      cookie.services.postgres = {
+        enable = true;
+        comb.pupcat = { ensureDBOwnership = true; };
+      };
+      systemd.services.pupcat.serviceConfig = {
+        RemoveIPC = mkForce "false";
+        ReadWritePaths = [ "/run/postgresql" ];
+        RestrictAddressFamilies = mkForce [ ];
+      };
+    }
+
     (util.mkService "pupcat" {
       description = "mei.puppycat.house";
       extraGroups = [ "websync" ];
@@ -49,8 +66,12 @@ in with lib; {
       #   permissions = "0400";
       # };
       script = ''
+        cd /var/www/websync/mei.puppycat.house
+        [ -e .env.prod ] &&
+          set -a && source .env.prod && set +a
+
         HOST=127.0.0.1 PORT=32582 ORIGIN=https://mei.puppycat.house exec \
-            ${pkgs.bun}/bin/bun /var/www/websync/mei.puppycat.house/www/index.js
+            ${pkgs.bun}/bin/bun ./www/index.js
       '';
     })
   ]);
