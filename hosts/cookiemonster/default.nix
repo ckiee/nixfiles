@@ -45,6 +45,8 @@ in {
       "git/bwah.ing"
       "oldgit"
       "dna"
+      ".bash_eternal_history"
+      "winshare" # well we should just make it structured fr
     ]) ++ [ "/var/lib/libvirt/images/win10.qcow2" ];
     sound.pro = true;
 
