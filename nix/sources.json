@@ -167,10 +167,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "listenwithmed",
-        "rev": "3baa3a7181ddd560c3db08355259dfe28902d6dc",
-        "sha256": "1cviap6mhc8y7sp3yv8yccdyh4qraxhyslkw1q4xad84ja03k1bf",
+        "rev": "ab3e43513c48d7d71dae9a41d8bf31ef45275784",
+        "sha256": "13a7mr018fj4al1gy4p8p2nn4wma6xwfjghfpvq0xl7mzp9xsl82",
         "type": "tarball",
-        "url": "https://github.com/ckiee/listenwithmed/archive/3baa3a7181ddd560c3db08355259dfe28902d6dc.tar.gz",
+        "url": "https://github.com/ckiee/listenwithmed/archive/ab3e43513c48d7d71dae9a41d8bf31ef45275784.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lix-lix": {
