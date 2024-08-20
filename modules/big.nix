@@ -53,6 +53,7 @@ in with lib; {
       wemux # tmux multiplayer pubnix-style
       powertop # power efficency! batteries! laptop!
       fatrace # fs-wide access trace
+      dua # like du but faster
     ];
 
     services.fwupd.enable = true;
