@@ -17,7 +17,11 @@ in with lib; {
 
       cookie.services.websync.sites."mei.puppycat.house" = {
         enable = true;
-        nginxOut.locations."/".proxyPass = "http://127.0.0.1:32582";
+        nginxOut.locations."/" = {
+          proxyPass = "http://127.0.0.1:32582";
+          # https://github.com/sveltejs/kit/issues/8026
+          extraConfig = "proxy_set_header Origin http://$host;";
+        };
       };
 
       systemd.services.pupcat.serviceConfig = {
