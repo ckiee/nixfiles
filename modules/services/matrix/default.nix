@@ -85,14 +85,15 @@ in with lib; {
           '';
         };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
-        locations."~ ^/_matrix/federation/v2/invite/".extraConfig = mkIf false
-          "return 403 '${
-            builtins.toJSON {
-              errcode = "M_UNKNOWN";
-              error =
-                "invites disabled because of abuse. contact me on another platform.";
-            }
-          }';";
+        locations."~ ^/_matrix/federation/v2/invite/" = mkIf false {
+          extraConfig = "return 403 '${
+              builtins.toJSON {
+                errcode = "M_UNKNOWN";
+                error =
+                  "invites disabled because of abuse. contact me on another platform.";
+              }
+            }';";
+        };
       };
     };
     cookie.services.prometheus.nginx-vhosts = [ "matrix" ];
