@@ -20,13 +20,12 @@ in with lib; {
         "/var/lib/tailscale"
         "/var/lib/libvirt"
         config.services.mongodb.dbpath
-        "/var/lib/alsa" # volume sliders, sometimes muted by default, but depends on plugged in hardware
+        "/var/lib/alsa" # volume sliders, sometimes muted by default, but depends on plugged in hardware, also scarlett 4i4 state
         "/var/lib/bluetooth"
         "/etc/NetworkManager/system-connections"
         "/var/cache/powertop"
         "/var/www/websync" # TODO: move back out into modules/services/websync.nix once this module can passthru dirs/files
         "/var/lib/docker" #,,,, lost a lot of data to this being missing
-        "/var/lib/alsa"
       ];
       files = [
         "/etc/machine-id"

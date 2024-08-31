@@ -55,6 +55,7 @@ in {
       scrcpy # Android screen cast
       uxplay # iOS screen mirroring (drag right down for control panel icon)
       bitwarden-desktop
+      alsa-scarlett-gui
     ];
     cookie.polyprog.enable = true;
 

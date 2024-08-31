@@ -42,6 +42,8 @@ in with lib; {
               id =
                 "5UBCVLJ-TV7IVNG-CFTXONW-Z7YUSPJ-QCQSJC4-6T2BTAB-5BNNCD4-HETZSA7";
             };
+            iphone.id =
+              "CMBSN7P-6N4B6ZL-YTNSLNE-C2O4UM3-32AV7G4-TL2KYUI-55WWSRL-HVRGHQ3";
           };
         in untrackedHosts // trackedHosts;
 
@@ -80,7 +82,7 @@ in with lib; {
       "music" = {
         id = "3ffxr-fpjwy"; # to keep compat with existing phone
         path = "${home}/Music";
-        devices = [ "cookiemonster" "thonkcookie" "phone" ];
+        devices = [ "cookiemonster" "thonkcookie" "phone" "iphone" ];
       };
 
       "dcim" = {
