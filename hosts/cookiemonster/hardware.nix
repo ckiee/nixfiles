@@ -25,13 +25,13 @@ in {
     "nct6775" # amd cpu temp monitor on this motherboard (prev: msi B450M gaming plus, now: msi b650m-a wifi)
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    rtl8821au
+    # rtl8821au
     # ddcci-driver
   ];
   boot.extraModprobeConfig = ''
     # Enable VHT and USB3 support
     # VHT is a part of 802.11ax
-    options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
+    # options 8821au rtw_vht_enable=2 rtw_switch_usb_mode=1
   '';
 
   boot.initrd.luks.devices."sncrypt".device =

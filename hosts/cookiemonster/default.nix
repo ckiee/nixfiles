@@ -65,7 +65,7 @@ in {
     wol.macAddress = "50:3e:aa:05:2a:90";
     hardware.motherboard = "amd";
     openrgb.enable = true;
-    wivrn.enable = true; # FIXME: testing only
+    # wivrn.enable = true; # FIXME: testing only
     collections.music.enable = true; # audio/music creation
     doom-emacs.standalone = true; # Imperative doom ):
     state = {

@@ -38,7 +38,7 @@ in {
       };
     };
 
-    cookie.services.go-neb.enable = true;
+    # cookie.services.go-neb.enable = true; olm deprecated so it bork
 
     services.go-neb = {
       config = {

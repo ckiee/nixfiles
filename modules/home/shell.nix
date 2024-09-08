@@ -89,7 +89,7 @@ in with lib; {
           l = "eza -lah";
           cd = "z";
           ytm = mkIf nixosConfig.cookie.big.enable
-            "${pkgs.youtube-dl}/bin/youtube-dl -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
+            "${pkgs.yt-dlp}/bin/yt-dlp -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
         };
         # Aliases that expand when you type them
         shellAbbrs = {

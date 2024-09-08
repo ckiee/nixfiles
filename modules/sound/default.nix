@@ -39,7 +39,9 @@ in with lib; {
       }];
     }
     ### ALSA
-    (mkIf cfg.enable { sound.enable = true; })
+    # - The option definition `sound' in `/home/ckie/git/nixfiles/modules/sound' no longer has any effect; please remove it.
+    #  The option was heavily overloaded and can be removed from most configurations.
+    # (mkIf cfg.enable { sound.enable = true; })
     ### Musnix
     (mkIf cfg.pro {
       musnix.enable = true;

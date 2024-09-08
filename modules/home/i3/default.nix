@@ -27,7 +27,7 @@ in {
       audacity
       (firefox.override { cfg.speechSynthesisSupport = true; })
       calibre # ebook reader
-      friture # voice shenanigans (: -- yet another spectrogram/metering program
+      # friture # voice shenanigans (: -- yet another spectrogram/metering program
       # nottetris2
       virt-manager # connect to vms on the net
       (wrapOBS { plugins = with obs-studio-plugins; [ obs-vaapi ]; })
@@ -226,7 +226,7 @@ in {
             size = 9.0;
           };
           modifier = "Mod4"; # super key
-          menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons";
+          menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons -font 'sans-serif 14'";
         };
         extraConfig = mkIf (desktopCfg.monitors != null
           && desktopCfg.monitors.secondary != null) ''
