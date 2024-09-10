@@ -82,8 +82,9 @@ in {
         enabledSites;
 
       cookie.services.syncthing.folders = mapAttrs
-        (name: { fsName, ... }: { path = mkForce "${home}/www/${fsName}"; })
+        (name: { fsName, ... }: { path = mkForce "${home}/www/${fsName}"; type = "receiveonly"; })
         enabledSites;
+
     })
 
     # one-offs...
