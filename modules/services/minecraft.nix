@@ -40,7 +40,7 @@ in with lib; {
     # actually serves players.
     systemd.services.minecraft-server.wantedBy = mkForce [];
 
-    cookie.restic = let mcExec = c: "${console}/bin/mc ${escapeShellArg c}";
+    cookie.restic = let mcExec = c: "${pkgs.systemd}/bin/systemctl is-active minecraft-server && ${console}/bin/mc ${escapeShellArg c}";
     in {
       paths = [ "/var/lib/minecraft" ];
       preJob = ''
