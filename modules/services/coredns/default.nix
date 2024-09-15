@@ -97,16 +97,16 @@ in {
             "prometheus FIXME:${toString cfg.prometheus.port}"
           else
             "";
+          # we used to have "bind lo" in every block to work well w libvirtd but then it doesnt listen on the net iface
         in ''
           . {
-            bind lo
             ${prom}
             hosts /run/coredns-hosts {
               reload 1500ms
               fallthrough
             }
             # We usually don't have IPv6 ):
-            rewrite stop type AAAA A
+            #rewrite stop type AAAA A
             forward . 127.0.0.1:5301
             errors
             cache 120 # two minutes
@@ -116,28 +116,24 @@ in {
           # 1.1.1.1 Was unused for a while
           # Also https://gist.github.com/ardislu/b2f2b4b439c5da2f7ccb6bb42e7a8882
           .:5301 {
-            bind lo
-            forward . tls://1.1.1.1 tls://1.0.0.1 {
+            forward . tls://1.1.1.1 tls://1.0.0.1 tls://2606:4700:4700::1111 tls://2606:4700:4700::1001 {
               tls_servername cloudflare-dns.com
             }
           }
 
           .:5302 {
-            bind lo
             forward . tls://45.90.28.0 {
               tls_servername dns.nextdns.io
             }
           }
 
           atori {
-            bind lo
             ${prom}
             file ${./atori.zone}
           }
 
           # Resolve everything under the root localhost TLD to 127.0.0.1
           localhost {
-            bind lo
             ${prom}
             template IN A  {
                 answer "{{ .Name }} 0 IN A 127.0.0.1"
