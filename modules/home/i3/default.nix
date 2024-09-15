@@ -25,6 +25,7 @@ in {
       arandr
       pavucontrol
       audacity
+      (hiPrio tenacity) # audacity fork!
       (firefox.override { cfg.speechSynthesisSupport = true; })
       calibre # ebook reader
       # friture # voice shenanigans (: -- yet another spectrogram/metering program
