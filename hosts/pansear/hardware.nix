@@ -28,4 +28,5 @@
 
   swapDevices = [ ];
 
+  hardware.nvidia.open = false; # old gpu
 }
