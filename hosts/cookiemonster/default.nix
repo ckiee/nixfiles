@@ -126,6 +126,7 @@ in {
     solaar
     basiliskii # old 68k mac emu
     darktable
+    heroku
   ];
 
   services.usbmuxd.enable = true;

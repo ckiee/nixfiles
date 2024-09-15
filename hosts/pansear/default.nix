@@ -57,6 +57,7 @@ with builtins;
         runtimeId =
           "KGOEF25-WTH7LGU-R4AZKAP-XLS5NFP-JB6RTZY-64RC7JQ-VYQUYHP-S5G3LQ5";
       };
+      coredns.openFirewall = true;
     };
     tailnet-certs.client = {
       enable = true;
