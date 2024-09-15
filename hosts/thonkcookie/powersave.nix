@@ -38,4 +38,8 @@
       echo 2-3 >> /sys/bus/usb/drivers/usb/unbind
     '';
   };
+
+  specialisation.with-sdcard.configuration = { config, ... }: {
+    systemd.services.t480s-sdcard.enable = false;
+  };
 }
