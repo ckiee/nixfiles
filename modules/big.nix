@@ -54,6 +54,7 @@ in with lib; {
       powertop # power efficency! batteries! laptop!
       fatrace # fs-wide access trace
       dua # like du but faster
+      cyme # better 'lsusb'
     ];
 
     services.fwupd.enable = true;

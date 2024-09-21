@@ -69,13 +69,14 @@ in with lib; {
       #   dest = "${cfg.folder}/config.json";
       #   permissions = "0400";
       # };
+      path = with pkgs; [ bun nodejs ];
       script = ''
         cd /var/www/websync/mei.puppycat.house
         [ -e .env.prod ] &&
           set -a && source .env.prod && set +a
 
         HOST=127.0.0.1 PORT=32582 ORIGIN=https://mei.puppycat.house exec \
-            ${pkgs.bun}/bin/bun ./www/index.js
+            bun ./www/index.js
       '';
     })
   ]);
