@@ -133,3 +133,5 @@
 (setq lsp-rust-analyzer-display-chaining-hints t
       lsp-rust-analyzer-display-parameter-hints t
       lsp-rust-analyzer-closing-brace-hints t)
+(after! spell-fu (remove-hook 'text-mode-hook #'spell-fu-mode))
+(use-package! gptel)

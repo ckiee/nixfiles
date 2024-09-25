@@ -9,3 +9,4 @@
 (package! ox-reveal)
 (package! graphql-mode)
 (package! matlab-mode)
+(package! gptel)

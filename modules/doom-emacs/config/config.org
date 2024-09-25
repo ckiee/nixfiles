@@ -339,3 +339,19 @@ get it loaded at startup:
       lsp-rust-analyzer-display-parameter-hints t
       lsp-rust-analyzer-closing-brace-hints t)
 #+END_SRC
+** spell-fu disable by default
+#+BEGIN_SRC elisp
+(after! spell-fu (remove-hook 'text-mode-hook #'spell-fu-mode))
+#+END_SRC
+** gptel!
+#+BEGIN_SRC elisp :tangle packages.el
+(package! gptel)
+#+END_SRC
+#+BEGIN_SRC elisp
+(use-package! gptel
+ :config
+ (setq! gptel-model "gpt-4o"))
+
+(map! :leader "l l" #'gptel-menu)
+(map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion)
+#+END_SRC
