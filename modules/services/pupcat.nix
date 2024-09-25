@@ -58,6 +58,7 @@ in with lib; {
         RemoveIPC = mkForce "false";
         ReadWritePaths = [ "/run/postgresql" ];
         RestrictAddressFamilies = mkForce [ ];
+        ProtectHome = mkForce "false"; # needs to read ~pupcat/.config/git/config
       };
     }
 
@@ -69,8 +70,9 @@ in with lib; {
       #   dest = "${cfg.folder}/config.json";
       #   permissions = "0400";
       # };
-      path = with pkgs; [ bun nodejs ];
+      path = with pkgs; [ bun nodejs git ];
       script = ''
+        git config --global --replace-all safe.directory /var/www/websync/mei.puppycat.house
         cd /var/www/websync/mei.puppycat.house
         [ -e .env.prod ] &&
           set -a && source .env.prod && set +a
