@@ -55,6 +55,8 @@ in with lib; {
       fatrace # fs-wide access trace
       dua # like du but faster
       cyme # better 'lsusb'
+      wormhole-rs
+      xdotool
     ];
 
     services.fwupd.enable = true;
