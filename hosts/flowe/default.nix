@@ -32,6 +32,7 @@ with lib;
       radicale.enable = true; # DAV
       paperless.enable = true;
       pupcat.enable = true;
+      gotosocial.enable = true;
 
       syncthing = {
         enable = true;
@@ -79,7 +80,10 @@ with lib;
         "puppycat.house" = {
           provider = "hurricane";
           secretId = "acme-he";
-          extras = [ "mei.puppycat.house" ];
+          extras = [
+            "mei.puppycat.house"
+            "league.puppycat.house"
+          ];
         };
 
         "tailnet.ckie.dev" = {
