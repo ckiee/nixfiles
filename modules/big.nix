@@ -57,6 +57,7 @@ in with lib; {
       cyme # better 'lsusb'
       wormhole-rs
       xdotool
+      rclone # better rsync ± storage providers
     ];
 
     services.fwupd.enable = true;

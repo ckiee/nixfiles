@@ -48,6 +48,7 @@ in with lib; {
         enable = true;
         drivers = [ cfg.hplipPackage ];
       };
+      systemd.services.cups-browsed.enable = false; # removeme after 2024-11-01
     })
     # Server-only
     (mkIf (cfg.enable && cfg.server) {

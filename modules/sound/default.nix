@@ -74,7 +74,7 @@ in with lib; {
     ### PipeWire
     (mkIf cfg.pipewire.enable (let inherit (cfg.pipewire) quantum rate;
     in {
-      environment.systemPackages = with pkgs; [ helvum easyeffects pulseaudio ];
+      environment.systemPackages = with pkgs; [ helvum easyeffects pulseaudio alsa-utils ];
 
       # gnome desktop enables pulse with mkDefault, explicitly turn it off:
       hardware.pulseaudio.enable = false;
