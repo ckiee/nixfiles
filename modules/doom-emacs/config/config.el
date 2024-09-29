@@ -74,6 +74,7 @@
                     projectile-known-projects
                     (--filter (f-directory? it) (mapcar (lambda (x) (format "~/git/%s/" x))
                                                         (nthcdr 2 (directory-files "~/git"))))))))
+
 (after! projectile
   (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list))
 (advice-add '+workspace-switch
@@ -134,4 +135,34 @@
       lsp-rust-analyzer-display-parameter-hints t
       lsp-rust-analyzer-closing-brace-hints t)
 (after! spell-fu (remove-hook 'text-mode-hook #'spell-fu-mode))
-(use-package! gptel)
+(after! gptel
+        (setq! gptel-model "gpt-4o")
+        (map! :leader "l l" #'gptel-menu)
+        (map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion))
+(after! super-save
+        (setq super-save-idle-duration 0)
+        (setq super-save-auto-save-when-idle t)
+        (setq super-save-silent 't)
+        (setq super-save-delete-trailing-whitespace 'except-current-line))
+(defvar-local ckie-super-save-requested nil
+  "Boolean. Whether to ensure super-save enabled/disabled on project switch.")
+
+(defun ckie-super-save-apply ()
+  (if ckie-super-save-requested
+      (super-save-mode +1)
+      (super-save-mode -1))
+  nil)
+
+
+(after! projectile
+  (add-hook! 'projectile-after-switch-project-hook #'ckie-super-save-apply))
+
+(add-hook! 'doom-switch-buffer-hook #'ckie-super-save-apply)
+
+(after! super-save
+  (advice-add 'super-save-command :before
+              (lambda (&rest r)
+                (doom-enable-delete-trailing-whitespace-h)))
+  (advice-add 'super-save-command :after
+              (lambda (&rest r)
+                (doom-disable-delete-trailing-whitespace-h))))

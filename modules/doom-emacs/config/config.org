@@ -205,6 +205,7 @@ its just copy pasted in here. not touching NDE rn.
                     projectile-known-projects
                     (--filter (f-directory? it) (mapcar (lambda (x) (format "~/git/%s/" x))
                                                         (nthcdr 2 (directory-files "~/git"))))))))
+
 (after! projectile
   (advice-add 'projectile-switch-project :before #'ckie-refresh-projectile-known-list))
 #+END_SRC
@@ -348,10 +349,50 @@ get it loaded at startup:
 (package! gptel)
 #+END_SRC
 #+BEGIN_SRC elisp
-(use-package! gptel
- :config
- (setq! gptel-model "gpt-4o"))
+(after! gptel
+        (setq! gptel-model "gpt-4o")
+        (map! :leader "l l" #'gptel-menu)
+        (map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion))
+#+END_SRC
+** super-save
+#+BEGIN_SRC elisp :tangle packages.el
+(package! super-save)
+#+END_SRC
+#+BEGIN_SRC elisp
+(after! super-save
+        (setq super-save-idle-duration 0)
+        (setq super-save-auto-save-when-idle t)
+        (setq super-save-silent 't)
+        (setq super-save-delete-trailing-whitespace 'except-current-line))
+#+END_SRC
 
-(map! :leader "l l" #'gptel-menu)
-(map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion)
+*** support a =.dir-locals.el= expression of this sort:
+#+BEGIN_SRC lisp :tangle no
+((nil . ((ckie-super-save-requested . t)
+         )))
+#+END_SRC
+to toggle super-save-mode per-project:
+#+BEGIN_SRC elisp
+(defvar-local ckie-super-save-requested nil
+  "Boolean. Whether to ensure super-save enabled/disabled on project switch.")
+
+(defun ckie-super-save-apply ()
+  (if ckie-super-save-requested
+      (super-save-mode +1)
+      (super-save-mode -1))
+  nil)
+
+
+(after! projectile
+  (add-hook! 'projectile-after-switch-project-hook #'ckie-super-save-apply))
+
+(add-hook! 'doom-switch-buffer-hook #'ckie-super-save-apply)
+
+(after! super-save
+  (advice-add 'super-save-command :before
+              (lambda (&rest r)
+                (doom-enable-delete-trailing-whitespace-h)))
+  (advice-add 'super-save-command :after
+              (lambda (&rest r)
+                (doom-disable-delete-trailing-whitespace-h))))
 #+END_SRC
