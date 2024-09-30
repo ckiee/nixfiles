@@ -355,6 +355,9 @@ get it loaded at startup:
         (map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion))
 #+END_SRC
 ** super-save
+:PROPERTIES:
+:header-args:    :tangle no
+:END:
 #+BEGIN_SRC elisp :tangle packages.el
 (package! super-save)
 #+END_SRC
@@ -367,6 +370,9 @@ get it loaded at startup:
 #+END_SRC
 
 *** support a =.dir-locals.el= expression of this sort:
+:PROPERTIES:
+:header-args:    :tangle no
+:END:
 #+BEGIN_SRC lisp :tangle no
 ((nil . ((ckie-super-save-requested . t)
          )))
@@ -382,12 +388,18 @@ to toggle super-save-mode per-project:
       (super-save-mode -1))
   nil)
 
+;; it borken (leaks timers)
+;; (after! projectile
+;;   (add-hook! 'projectile-after-switch-project-hook #'ckie-super-save-apply))
 
-(after! projectile
-  (add-hook! 'projectile-after-switch-project-hook #'ckie-super-save-apply))
+;; (add-hook! 'doom-switch-buffer-hook #'ckie-super-save-apply)
+#+END_SRC
 
-(add-hook! 'doom-switch-buffer-hook #'ckie-super-save-apply)
-
+*** back off from the whitespace, doom
+:PROPERTIES:
+:header-args:    :tangle no
+:END:
+#+BEGIN_SRC elisp
 (after! super-save
   (advice-add 'super-save-command :before
               (lambda (&rest r)
