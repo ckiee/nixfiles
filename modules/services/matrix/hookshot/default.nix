@@ -27,7 +27,7 @@ in {
       wantedBy = [ "matrix-synapse.service" ];
     };
 
-    services.matrix-hookshot = {
+    services.etu--matrix-hookshot = {
       enable = true;
       registration = {
         sender_localpart = "_hookshot_";
