@@ -18,6 +18,11 @@ in with lib; {
       appendHttpConfig = ''
         add_header Permissions-Policy "interest-cohort=()";
       '';
+      virtualHosts._ = {
+        locations."~ .*".return = "404";
+        default = true;
+        rejectSSL = true;
+      };
     };
 
     systemd.services.nginx-config-reload.after =

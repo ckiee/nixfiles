@@ -73,6 +73,7 @@ in with lib; {
         # nheko # Package ‘olm-3.2.16’ in /home/ckie/git/nixpkgs/pkgs/development/libraries/olm/default.nix:26 is marked as insecure, refusing to evaluate.
         slack
         tuba
+        zulip # hate it . very overwhelming.
       ];
       # cookie.weechat.enable = true; # more or less unused now
     };

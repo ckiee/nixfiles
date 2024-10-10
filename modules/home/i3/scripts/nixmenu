@@ -12,7 +12,7 @@ else
 		touch $CACHE
 		chmod 644 $CACHE
 		# 																   XXX: i told you ~aoife
-		nix search nixpkgs --json | jq 'keys | join("\n")' -r | sed -e "s/legacyPackages\.$(uname -m)-linux\.//" >"$CACHE"
+		nix search --json nixpkgs ^ | jq 'keys | join("\n")' -r | sed -e "s/legacyPackages\.$(uname -m)-linux\.//" >"$CACHE"
 	fi
 	pkg=$(rofi -dmenu <$CACHE)
 	rofi -e "downloading $pkg..." &

@@ -31,6 +31,7 @@ in {
       inter
       (linkFarm "shit-shit-fuck" { "share/fonts/truetype" = ../secrets/fonts; })
       ttf_bitstream_vera
+      atkinson-hyperlegible
     ];
 
     fontconfig = {
