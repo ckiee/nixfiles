@@ -59,6 +59,7 @@ in with lib; {
       xdotool
       rclone # better rsync ± storage providers
       jwhois
+      p7zip
     ];
 
     services.fwupd.enable = true;
