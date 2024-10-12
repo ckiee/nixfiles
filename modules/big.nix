@@ -58,6 +58,7 @@ in with lib; {
       wormhole-rs
       xdotool
       rclone # better rsync ± storage providers
+      jwhois
     ];
 
     services.fwupd.enable = true;

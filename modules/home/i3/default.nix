@@ -57,6 +57,7 @@ in {
       uxplay # iOS screen mirroring (drag right down for control panel icon)
       bitwarden-desktop
       alsa-scarlett-gui
+      anytype # looks really sweet, object-based note taking thingy (NOT object-oriented)
     ];
     cookie.polyprog.enable = true;
 
