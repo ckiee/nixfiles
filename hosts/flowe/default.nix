@@ -86,6 +86,11 @@ with lib;
           ];
         };
 
+        "pupc.at" = {
+          provider = "hurricane";
+          secretId = "acme-he";
+        };
+
         "tailnet.ckie.dev" = {
           wildcard = true;
           provider = "porkbun";

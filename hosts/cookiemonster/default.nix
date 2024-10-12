@@ -25,6 +25,7 @@ in {
         runtimeId =
           "HPLCFJR-KBQWHAK-MWJX5HC-EXPU5LL-FZK5BB6-EO6XGCK-Q6F4TG6-W5JF7QI";
       };
+      transqsh.enable = true;
       chronyc.enable =
         true; # sd-timesyncd hasn't worked correctly on this machine since ~Jul 7th
       postgres = {

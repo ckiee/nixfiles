@@ -19,4 +19,7 @@ with pkgs; {
   listenwithmed = ((import sources.listenwithmed).overrideInputs {
     nixpkgs = pkgs.path;
   }).default;
+  transqsh = ((import sources.transqsh).overrideInputs {
+    nixpkgs = pkgs.path;
+  }).default;
 }

@@ -47,6 +47,7 @@
     ./paperless
     ./stfed.nix
     ./gotosocial
+    ./transqsh.nix
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

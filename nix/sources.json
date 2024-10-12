@@ -384,5 +384,17 @@
         "type": "tarball",
         "url": "https://github.com/ckiee/tonsi.li/archive/5ab5adefd245054a42bc89168b586fb14d767d51.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "transqsh": {
+        "branch": "main",
+        "description": "a music transcoder to 96k opus. it just does the thing.",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "transqsh",
+        "rev": "0d2405dad97f2c7ffb0db89606ac11b63d4697c1",
+        "sha256": "0fm62342zxkcjpql1fs6xdqk572fq3048x71rykhwwid58bknla8",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/transqsh/archive/0d2405dad97f2c7ffb0db89606ac11b63d4697c1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -38,10 +38,8 @@ in with lib; {
             hostConfig.config.cookie.services.syncthing.runtimeId != null)
             nodes);
           untrackedHosts = {
-            phone = {
-              id =
+            samsung.id =
                 "5UBCVLJ-TV7IVNG-CFTXONW-Z7YUSPJ-QCQSJC4-6T2BTAB-5BNNCD4-HETZSA7";
-            };
             iphone.id =
               "CMBSN7P-6N4B6ZL-YTNSLNE-C2O4UM3-32AV7G4-TL2KYUI-55WWSRL-HVRGHQ3";
           };
@@ -82,13 +80,15 @@ in with lib; {
       "music" = {
         id = "3ffxr-fpjwy"; # to keep compat with existing phone
         path = "${home}/Music";
-        devices = [ "cookiemonster" "thonkcookie" "phone" "iphone" ];
+        devices = [ "cookiemonster" "thonkcookie" "samsung" ];
       };
 
       "dcim" = {
         path = "${home}/DCIM";
-        devices = [ "cookiemonster" "thonkcookie" "phone" ];
+        devices = [ "cookiemonster" "thonkcookie" "samsung" ];
       };
+
+      # transqsh in ./transqsh.nix
 
       # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname
       # "mail" = {
