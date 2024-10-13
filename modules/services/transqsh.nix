@@ -22,7 +22,7 @@ in with lib; {
 
       unitConfig.ConditionUser = "ckie"; # cookie.user
       script = ''
-        transqsh ~/Music/flat ~/.transqsh
+        transqsh --codec aac ~/Music/flat ~/.transqsh
       '';
     };
 

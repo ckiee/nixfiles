@@ -391,10 +391,10 @@
         "homepage": null,
         "owner": "ckiee",
         "repo": "transqsh",
-        "rev": "0d2405dad97f2c7ffb0db89606ac11b63d4697c1",
-        "sha256": "0fm62342zxkcjpql1fs6xdqk572fq3048x71rykhwwid58bknla8",
+        "rev": "3a316e4f047c6d9eff31ba7c462eaa075ef64a40",
+        "sha256": "0n2zqyz053g7rj81kmp84vwy3gwcwz1fngnh3gg87adkd3awqgm7",
         "type": "tarball",
-        "url": "https://github.com/ckiee/transqsh/archive/0d2405dad97f2c7ffb0db89606ac11b63d4697c1.tar.gz",
+        "url": "https://github.com/ckiee/transqsh/archive/3a316e4f047c6d9eff31ba7c462eaa075ef64a40.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
