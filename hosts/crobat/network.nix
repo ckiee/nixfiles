@@ -11,7 +11,7 @@ with lib;
     enable = true;
     networks."40-eth0" = {
       matchConfig.Name = "e*"; # eth0, eno0, or sometimes 1?
-      addresses = map (addr: { addressConfig.Address = addr; }) [
+      addresses = map (addr: { Address = addr; }) [
         "64.176.168.188/23"
         "2a05:f480:2c00:19ee::1/64"
       ];
@@ -21,8 +21,8 @@ with lib;
       };
       routes = [
         # v4
-        { routeConfig.Destination = "64.176.168.1"; } # route is on interface
-        { routeConfig.Gateway = "64.176.168.1"; } # use as gateway
+        { Destination = "64.176.168.1"; } # route is on interface
+        { Gateway = "64.176.168.1"; } # use as gateway
       ];
     };
     # TODO: genericify out of host, originally in flowe

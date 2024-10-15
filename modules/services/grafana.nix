@@ -39,7 +39,7 @@ in with lib; {
       virtualHosts.${cfg.host} = {
         locations."/" = {
           proxyPass =
-            "http://127.0.0.1:${toString config.services.grafana.port}";
+            "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
         };
         extraConfig = ''
           access_log /var/log/nginx/grafana.access.log;
