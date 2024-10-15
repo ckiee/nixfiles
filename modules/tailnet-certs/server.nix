@@ -43,6 +43,12 @@ with builtins; {
           locations."/" = {
             proxyPass = "https://${vhost}";
             proxyWebsockets = true;
+            # This previously was not necessary, pre e46edb56eee9e1c55071b4b63f276f1d460b6082:
+            extraConfig = ''
+              proxy_ssl_name ${vhost};
+              proxy_ssl_server_name on;
+              proxy_ssl_session_reuse off;
+            '';
           };
           extraConfig = ''
             access_log /var/log/nginx/tailnet-certs-proxy.access.log;

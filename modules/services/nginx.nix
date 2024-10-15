@@ -13,7 +13,7 @@ in with lib; {
       enableReload = true;
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
-      recommendedGzipSettings = true;
+      recommendedGzipSettings = false; # for a few weeks now (i think), 2024-10-15: *26 gzip filter failed to use preallocated memory: 350272 of 336176 while sending to client, client:
       recommendedProxySettings = true;
       appendHttpConfig = ''
         add_header Permissions-Policy "interest-cohort=()";
@@ -23,6 +23,7 @@ in with lib; {
         default = true;
         rejectSSL = true;
       };
+      package = pkgs.nginxMainline;
     };
 
     systemd.services.nginx-config-reload.after =
