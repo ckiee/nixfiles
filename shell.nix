@@ -35,6 +35,8 @@ in pkgs.mkShell {
     openssh # first use: sk gen for sd-initrd remote unlock
     coreutils
     flamegraph
+    step-ca
+    openssl
   ];
 
   shellHook = ''

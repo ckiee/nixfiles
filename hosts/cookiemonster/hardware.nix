@@ -17,7 +17,10 @@ in {
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   # lowers cpu temps near-idle, idk why, but it's Good..
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+  # 2024-10-18: xanmod_latest broke suspend at or after https://github.com/nixos/nixpkgs/commit/7f5b5f2eba77
+  #   switched to xanmod lts
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   boot.kernelModules = [
     "kvm-amd"

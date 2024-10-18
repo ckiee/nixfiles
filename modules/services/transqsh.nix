@@ -9,6 +9,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     cookie.services.syncthing.folders."transqsh" = {
+      id = "transqoosh"; # mobius sync state cursed on iphone
       path = "${config.cookie.user.home}/.transqsh";
       devices = [ "cookiemonster" "iphone" ];
     };

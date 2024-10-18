@@ -41,6 +41,7 @@ in {
           "bwah.ing".enable = true;
           # see: cookie.services.pupcat
           "mei.puppycat.house".enable = true;
+          "pupc.at".enable = true;
         };
       };
     }
