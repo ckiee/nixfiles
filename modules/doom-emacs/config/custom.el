@@ -5,7 +5,13 @@
  ;; If there is more than one, they won't work right.
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(safe-local-variable-values
-   '((ckie-super-save-requested . t)
+   '((eval c-set-offset 'arglist-cont-nonempty
+      '(c-lineup-gcc-asm-reg c-lineup-arglist))
+     (eval c-set-offset 'arglist-close 0)
+     (eval c-set-offset 'arglist-intro '++)
+     (eval c-set-offset 'case-label 0)
+     (eval c-set-offset 'statement-case-open 0)
+     (ckie-super-save-requested . t)
      (nil)
      (eval c-set-offset 'inlambda 0)
      (eval c-set-offset 'access-label '-)
