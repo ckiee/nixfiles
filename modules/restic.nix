@@ -76,6 +76,7 @@ in {
           "--keep-monthly 12"
           "--keep-yearly 75"
         ];
+        # TODO: remove me and make sure backups still work
         extraBackupArgs = [
           "--exclude-file ${
             pkgs.writeText "restic-exclude-file"
