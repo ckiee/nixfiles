@@ -301,6 +301,18 @@
         "rev": "9e36323ae3dde787f761420465c3ae560f3dbf29",
         "type": "git"
     },
+    "nixos-raspberrypi": {
+        "branch": "main",
+        "description": "Nix flake for a fully declarative NixOS on Raspberry Pi",
+        "homepage": "",
+        "owner": "nvmd",
+        "repo": "nixos-raspberrypi",
+        "rev": "0b19e11b724645406ad5dd61cca803d49a934c7b",
+        "sha256": "10w51x8ylpb3lrjcg5x1s66vmkg3jx8y5rnmb07kcvgnrwb8aswm",
+        "type": "tarball",
+        "url": "https://github.com/nvmd/nixos-raspberrypi/archive/0b19e11b724645406ad5dd61cca803d49a934c7b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs": {
         "branch": "private",
         "description": "Nix Packages collection",

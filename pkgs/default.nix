@@ -22,4 +22,5 @@ with pkgs; {
   transqsh = ((import sources.transqsh).overrideInputs {
     nixpkgs = pkgs.path;
   }).default;
+  raspberrypi-utils = callPackage "${sources.nixos-raspberrypi}/pkgs/raspberrypi/raspberrypi-utils.nix" {};
 }

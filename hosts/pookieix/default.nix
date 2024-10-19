@@ -34,10 +34,16 @@ with lib;
 
   home-manager.users.ckie = { ... }: { home.stateVersion = "23.05"; };
 
+  security.sudo.wheelNeedsPassword = false;
+
   boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
 
   nixpkgs.overlays = singleton (final: prev: {
-    inherit (import prev.path { allowUnfree = true; system = "x86_64-linux"; }) brscan5 sane-backends;
+    inherit (import prev.path {
+      allowUnfree = true;
+      system = "x86_64-linux";
+    })
+      brscan5 sane-backends;
   });
 
   hardware.sane = {
@@ -49,6 +55,17 @@ with lib;
         model = "MFC-J470DW";
       };
     };
+    netConf = "10.100.102.10";
+  };
+
+  systemd.services."rfkill-it" = {
+    wantedBy = [ "multi-user.target" ];
+    description = "dont need the modem";
+    path = [ pkgs.rfkill ];
+    script = ''
+      rfkill block bluetooth
+      rfkill block wlan
+    '';
   };
 
   # This value determines the NixOS release from which the default

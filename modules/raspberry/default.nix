@@ -24,6 +24,10 @@ in with lib; {
       # unbork USB
       boot.initrd.availableKernelModules = [ "reset_raspberrypi" ];
 
+      environment.systemPackages = [
+        pkgs.cookie.raspberrypi-utils # pinctrl, vcgencmd, etc
+      ];
+
       ##
       ## Pasted from /nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix
       ##
