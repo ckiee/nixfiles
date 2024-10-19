@@ -39,10 +39,6 @@ with lib;
         runtimeId =
           "BZQLFJM-AWGA5AG-AVNAJKH-J7P77SF-F5RXILA-QO6EFTV-G6V2NBH-6527KQL";
       };
-      ckiesite = {
-        enable = true;
-        host = "ckie.dev";
-      };
       rtc-files = {
         enable = true;
         new-fqdn = "ckie.dev";

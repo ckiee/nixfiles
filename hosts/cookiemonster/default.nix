@@ -37,6 +37,8 @@ in {
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we
     # only back up this and only through this machine..
+
+    # NOTE: only works for /directories/!
     restic.paths = (map (x: "${config.cookie.user.home}/${x}") [
       "Sync"
       ".ssh"
@@ -44,6 +46,7 @@ in {
       "Music"
       "git/mei.puppycat.house"
       "git/bwah.ing"
+      "git/ckie.dev"
       "oldgit"
       "dna"
       ".bash_eternal_history"

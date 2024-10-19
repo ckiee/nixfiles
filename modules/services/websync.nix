@@ -42,6 +42,7 @@ in {
           # see: cookie.services.pupcat
           "mei.puppycat.house".enable = true;
           "pupc.at".enable = true;
+          "ckie.dev".enable = true;
         };
       };
     }
