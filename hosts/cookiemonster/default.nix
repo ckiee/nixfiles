@@ -33,6 +33,7 @@ in {
         # local dev
         comb.pupcat = { ensureDBOwnership = true; };
       };
+      coqui.enable = true;
     };
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we

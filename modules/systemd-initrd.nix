@@ -22,6 +22,7 @@ in with lib; {
     #   boot.initrd.systemd.network.useDHCP = true; # TODO: depends on https://github.com/NixOS/nixpkgs/pull/242158
     # but it's too much of a pain to rebase
 
+    networking.dhcpcd.enable = false;
     networking.useDHCP =
       # messy HACK to sandwich two overrides, we don't want to mkForce over hosts (kibako)
       # that manually disable this, e.g. in favour of networkd
@@ -33,6 +34,10 @@ in with lib; {
       # since size probably isn't a problem, let's pack every
       # network driver one of our machines could need:
       availableKernelModules = [ "r8169" "e1000e" ];
+
+      systemd.services.systemd-networkd.postStop = ''
+        basename -az $(echo /sys/class/net/en*) | xargs -0 -I {} ip l set {} down
+      '';
 
       network = {
         enable = true;

@@ -48,6 +48,7 @@
     ./stfed.nix
     ./gotosocial
     ./transqsh.nix
+    ./coqui
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
