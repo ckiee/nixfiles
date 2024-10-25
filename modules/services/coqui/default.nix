@@ -6,7 +6,12 @@ in with lib; {
   options.cookie.services.coqui = { enable = mkEnableOption "Coqui TTS"; };
 
   config = mkIf cfg.enable {
-    # socket
+    # front it
+    cookie.services.nginx.enable = true;
+    services.nginx.virtualHosts."coqui.localhost" = {
+      locations."/" = { proxyPass = "http://localhost:5001"; };
+    };
+    # -> socket
     systemd.sockets.coqui-proxy = {
       wantedBy = [ "sockets.target" ];
       listenStreams = [ "5001" ]; # TODO:localhost
