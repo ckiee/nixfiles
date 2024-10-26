@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# ⚠ (partial) LLM output!
+set -eu
+
+usage() {
+    echo "Usage: move-old-files -s SOURCE_DIR -d DEST_DIR"
+    echo ""
+    echo "Options:"
+    echo "  -s              The source directory to search for files older than a year"
+    echo "  -d              The destination directory where files will be moved, preserving the path structure"
+    echo "  -m              The minimum modification time required to move the file. Default is '+180' days"
+    echo "  -h              Display this help message"
+    exit 1
+}
+
+MOD_TIME="+180"
+
+while getopts "s:d:m:h" opt; do
+    case $opt in
+        s) SRC_DIR="$OPTARG" ;;
+        d) DEST_DIR="$OPTARG" ;;
+        m) MOD_TIME="$OPTARG" ;;
+        h) usage ;;
+        *) usage ;;
+    esac
+done
+
+if [[ -z "$SRC_DIR" || -z "$DEST_DIR" ]]; then
+    echo "Error: Source and destination directories are required."
+    usage
+fi
+
+if [[ ! -d "$SRC_DIR" ]]; then
+    echo "Error: Source directory '$SRC_DIR' does not exist."
+    exit 1
+fi
+
+mkdir -p "$DEST_DIR"
+
+find "$SRC_DIR" -maxdepth 1 -type f -mtime "${MOD_TIME}" | while read -r file; do
+    rel_path="${file#"$SRC_DIR/"}"
+
+    mv "$file" "$DEST_DIR/$rel_path"
+done
