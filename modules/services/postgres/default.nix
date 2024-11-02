@@ -41,6 +41,8 @@ let
     };
   });
 in {
+  imports = [ ./exporter.nix ];
+
   options.cookie.services.postgres = {
     enable = mkEnableOption "Postgres database";
 

@@ -3,7 +3,7 @@
 {
   imports = [
     # Supporting
-    ./postgres.nix
+    ./postgres
     ./nginx.nix
     # System
     ./avahi.nix
