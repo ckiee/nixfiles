@@ -236,6 +236,7 @@
 # 'Mojis, custom additions.
 <Multi_key> <less> <3>                  : "❤️"   # <3
 <Multi_key> <P> <3>                     : "💜" # purple <3 (~aoif)
+<Multi_key> <W> <3>                     : "🤍"
 <Multi_key> <Y> <A> <Y>			: "🙌"	# PERSON RAISING BOTH HANDS IN CELEBRATION
 <Multi_key> <P> <O> <O>                 : "💩"  # PILE OF POO
 <Multi_key> <F> <U>                     : "🖕"  # REVERSED HAND WITH MIDDLE FINGER EXTENDED
@@ -283,6 +284,7 @@
 <Multi_key> <J> <P> <asterisk>  : "•" # Japanese interpunct (中黒, nakaguro)
 <Multi_key> <asterisk>          : "•" # U+2022 • BULLET (&bull;, &bullet;)
 <Multi_key> <equal> <asciitilde> : "≈" # APPROX EQUAL
+<Multi_key> <Tab>               : "⭾" # Horizontal Tab Key
 
 # Greek letters in .XCompose https://gist.github.com/carlobaldassi/8951743
 <Multi_key> <space> <a>                : "α"        U03B1                # GREEK SMALL LETTER ALPHA
