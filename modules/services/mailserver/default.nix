@@ -89,11 +89,12 @@ with builtins; {
       messageSizeLimit =
         31457280; # 30 MiB, needs to account for base64'd attachments I think, stackoverflow says base64'd makes contents 4*(old_bytes/3) bytes big
 
-      dmarcReporting = {
-        enable = true;
-        organizationName = "ckie.dev services";
-        domain = "ckie.dev";
-      };
+      # amazonses.com sends too many "Dmarc Aggregate Report Domain"'s, it seems to be in a loop. i don't care enough.
+      # dmarcReporting = {
+      #   enable = true;
+      #   organizationName = "ckie.dev services";
+      #   domain = "ckie.dev";
+      # };
 
       loginAccounts = {
         "us@ckie.dev" = {
