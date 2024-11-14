@@ -34,7 +34,6 @@ with builtins; {
     in rec {
       mailserver-pw-us-hash = mkpw "us";
       mailserver-pw-vaultwarden-hash = mkpw "vaultwarden";
-      mailserver-pw-aoife-hash = mkpw "aoife";
 
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
@@ -66,15 +65,6 @@ with builtins; {
     services.dovecot2.sieve.extensions = [
       "fileinto"
     ]; # HACK FIXME TEMPORARY https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/issues/275#note_1746383655
-
-    services.postfix = {
-      # Deliver cassidy.sh & enby.space emails via SMTP, not locally using LMTP.
-      mapFiles."transport_maps" = pkgs.writeText "postfix-transport-maps" ''
-        cassidy.sh  smtp:[cassidy.sh]:25
-        enby.space  smtp:[enby.space]:25
-      '';
-      config.transport_maps = "hash:/var/lib/postfix/conf/transport_maps";
-    };
 
     mailserver = {
       enable = true;
@@ -109,19 +99,6 @@ with builtins; {
         "vaultwarden@ckie.dev" = {
           hashedPasswordFile =
             config.cookie.secrets.mailserver-pw-vaultwarden-hash.dest;
-          quota = "1M";
-          sendOnly = true;
-        };
-
-        "aoife@enby.space" = {
-          hashedPasswordFile =
-            config.cookie.secrets.mailserver-pw-aoife-hash.dest;
-          aliases = [
-            "sydney@enby.space"
-            "nbsp@enby.space"
-            "aoife@cassidy.sh"
-            "callisto@enby.space"
-          ];
           quota = "1M";
           sendOnly = true;
         };
