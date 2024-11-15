@@ -44,7 +44,7 @@
     <vmport state="off"/>
   </features>
   <cpu mode="host-passthrough" check="none" migratable="on">
-    <topology sockets="1" dies="1" cores="2" threads="4"/>
+    <topology sockets="1" dies="1" clusters="1" cores="2" threads="4"/>
     <feature policy="require" name="topoext"/>
   </cpu>
   <clock offset="localtime">
@@ -204,7 +204,7 @@
       <source>
         <address domain="0x0000" bus="0x13" slot="0x00" function="0x0"/>
       </source>
-      <rom file="/run/libvirt/ckie-firmware/raphael_vbios.rom"/>
+      <rom file="/run/libvirt/ckie-firmware/raphael_vbios_7600x_mine.rom"/>
       <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x0" multifunction="on"/>
     </hostdev>
     <hostdev mode="subsystem" type="pci" managed="yes">
@@ -213,14 +213,6 @@
       </source>
       <rom file="/run/libvirt/ckie-firmware/AMDGopDriver.rom"/>
       <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x1"/>
-    </hostdev>
-    <hostdev mode="subsystem" type="usb" managed="yes">
-      <source startupPolicy="optional">
-        <vendor id="0x0499"/>
-        <product id="0x160f"/>
-        <address bus="1" device="68"/>
-      </source>
-      <address type="usb" bus="0" port="1"/>
     </hostdev>
     <hostdev mode="subsystem" type="pci" managed="yes">
       <source>
