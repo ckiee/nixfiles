@@ -32,6 +32,7 @@ in {
         enable = true;
         # local dev
         comb.pupcat = { ensureDBOwnership = true; };
+        comb.shortcat = { ensureDBOwnership = true; };
       };
       coqui.enable = true;
     };
@@ -48,12 +49,14 @@ in {
       "git/mei.puppycat.house"
       "git/bwah.ing"
       "git/ckie.dev"
-      "oldgit"
-      "dna"
       ".bash_eternal_history"
       "winshare" # well we should just make it structured fr
       "mikmot-dextop"
-    ]) ++ [ "/var/lib/libvirt/images/win10.qcow2" ];
+    ]) ++ [
+      "/var/lib/libvirt/images/win10.qcow2"
+      "/mnt/chonk/dna"
+      "/mnt/chonk/oldgit"
+    ];
     sound.pro = true;
 
     opentabletdriver.enable = true;
@@ -109,7 +112,7 @@ in {
         output = "DP-3";
         primary = true;
       }
-      "HDMI-A-0"
+      "HDMI-1"
     ];
   };
 
@@ -181,15 +184,6 @@ in {
   boot.extraModprobeConfig = "options v4l2loopback exclusive_caps=1";
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
   boot.kernelModules = [ "v4l2loopback" "snd-aloop" ];
-
-  # users.users.nbsp = {
-  #   isNormalUser = true;
-  #   shell = pkgs.zsh;
-  #   openssh.authorizedKeys.keys = [
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIeF9csiVJbQqKe2FIpYC4K/FlHATA2V+UKz+lFH+nL nbsp@voyager"
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICeMPWXEczJHhA9eG8WjTNHTGPTeSL79a+7pvlno/JAW nbsp@herschel"
-  #   ];
-  # };
 
   networking.firewall.enable = false;
 
