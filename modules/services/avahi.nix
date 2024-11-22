@@ -15,6 +15,7 @@ in with lib; {
       enable = true;
       addresses = true;
       workstation = true;
+      userServices = true;
     };
   };
 }
