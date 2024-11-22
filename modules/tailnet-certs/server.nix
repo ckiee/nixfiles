@@ -48,6 +48,7 @@ with builtins; {
               proxy_ssl_name ${vhost};
               proxy_ssl_server_name on;
               proxy_ssl_session_reuse off;
+              proxy_read_timeout 18000s; # websocket jankk (with watch-party)
             '';
           };
           extraConfig = ''

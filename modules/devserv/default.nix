@@ -22,6 +22,7 @@ in {
         locations."/" = {
           proxyPass = "http://127.0.0.1:4142";
           proxyWebsockets = true;
+          extraConfig = "proxy_read_timeout 18000s;";
         };
 
         extraConfig = ''
