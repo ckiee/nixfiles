@@ -3,7 +3,7 @@
     {
       "Tablet": "VEIKK S640",
       "OutputMode": {
-        "Path": "OpenTabletDriver.Desktop.Output.AbsoluteMode",
+        "Path": "OpenTabletDriver.Desktop.Output.LinuxArtistMode",
         "Settings": [],
         "Enable": true
       },
@@ -17,10 +17,10 @@
           "Rotation": 0.0
         },
         "Tablet": {
-          "Width": 60.0,
-          "Height": 33.75,
-          "X": 54.0,
-          "Y": 38.785,
+          "Width": 152.4,
+          "Height": 101.6,
+          "X": 76.2,
+          "Y": 50.8,
           "Rotation": 0.0
         },
         "EnableClipping": true,
