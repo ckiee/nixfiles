@@ -8,7 +8,7 @@
 #+END_SRC
 ** load nix into path
 #+BEGIN_SRC elisp
-(load "~/.config/emacs/doom-nix-bins.el")
+(load "~/.config/doom-nix-bins.el")
 #+END_SRC
 ** display
 *** theme

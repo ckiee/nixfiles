@@ -1,6 +1,6 @@
 (setq user-full-name "ckie"
       user-mail-address "us@ckie.dev")
-(load "~/.config/emacs/doom-nix-bins.el")
+(load "~/.config/doom-nix-bins.el")
 (setq doom-theme 'doom-sourcerer-cookie)
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
       doom-variable-pitch-font (font-spec :family "Inter" :size 16))
