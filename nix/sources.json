@@ -143,10 +143,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0eb314b4f0ba337e88123e0b1e57ef58346aafd9",
-        "sha256": "1fwcxx8ilkih855g2dk9n9wvhizkxy1r16x414n3rchqg8knybhw",
+        "rev": "83ecd50915a09dca928971139d3a102377a8d242",
+        "sha256": "1q1sqnd8gjrglihgb56hmznj4had0jyg73k355m3ga4wqj3ggmf0",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/0eb314b4f0ba337e88123e0b1e57ef58346aafd9.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/83ecd50915a09dca928971139d3a102377a8d242.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "impermanence": {
@@ -174,16 +174,16 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lix-lix": {
-        "sha256": "1bw8ncjs8a8l7b0g68xhvx9nc19847m7cjvs41k185ih5svayd8a",
+        "sha256": "1x814y7xpwcfslxsq43wc02mb08jhkx5n1h2f9szkhcx5wfqbqim",
         "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/lix/archive/014410cbf.tar.gz",
+        "url": "https://git.lix.systems/lix-project/lix/archive/0d5520594e4a39c14571af3089e0bf30129d6e37.tar.gz",
         "url_template": "https://git.lix.systems/lix-project/lix/archive/<version>.tar.gz",
         "version": "014410cbf"
     },
     "lix-nixos-module": {
-        "sha256": "02dg1icyxamxblrvgxshadp2s8mx2ryjja7m9w26sgs07jl438zk",
+        "sha256": "1y6g4smwaa09914gd1biwnwr78axkrxylc25bf02i1m3mvbpzphc",
         "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/nixos-module/archive/5d9d940.tar.gz",
+        "url": "https://git.lix.systems/lix-project/nixos-module/archive/96824d606a6656650bbe436366bc89d5ee3a6573.tar.gz",
         "url_template": "https://git.lix.systems/lix-project/nixos-module/archive/<version>.tar.gz",
         "version": "5d9d940"
     },
@@ -319,10 +319,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "f05d7284e561d3c35faf75e0b3a62665f6465c0e",
-        "sha256": "1rxy306m6xgdb67yahgxlpw1msbspj43fs6nj5rqzaaym1z8ilzz",
+        "rev": "277bbfb1454da4342105eaca4a82fa8ede08617d",
+        "sha256": "0f0gnwmvc8xlzdkk6fbidvdik9vqnaj445f63gr9kprzsgf0rypc",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/f05d7284e561d3c35faf75e0b3a62665f6465c0e.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/277bbfb1454da4342105eaca4a82fa8ede08617d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

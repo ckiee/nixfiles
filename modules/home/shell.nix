@@ -45,7 +45,7 @@ in with lib; {
           ytm = mkIf nixosConfig.cookie.big.enable
             "${pkgs.yt-dlp}/bin/yt-dlp -f 140 --add-metadata -o '~/Music/flat/%(playlist_index)s %(title)s.%(ext)s'";
           rgbc = mkIf nixosConfig.cookie.desktop.enable
-            "printf 'xffxfb%c%c%c' $(${pkgs.gnome.zenity}/bin/zenity --color-selection | cut -d'(' -f2 | cut -d')' -f1 | tr ',' ' ') | ${pkgs.picocom}/bin/picocom -qrb 9600 /dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0";
+            "printf 'xffxfb%c%c%c' $(${pkgs.zenity}/bin/zenity --color-selection | cut -d'(' -f2 | cut -d')' -f1 | tr ',' ' ') | ${pkgs.picocom}/bin/picocom -qrb 9600 /dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0";
           whois = "${pkgs.jwhois}/bin/jwhois";
           # there are other helpers in `shell-utils`, elsewhere. TODO consolidate all of them into a busybox-style thing
         };

@@ -8,10 +8,10 @@ in with lib; {
   config = mkIf cfg.enable {
     programs.dconf.enable = true;
     services.gvfs.enable = true;
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
     environment.systemPackages = with pkgs; [
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
       gnomeExtensions.appindicator
     ];
 
@@ -34,7 +34,7 @@ in with lib; {
       true; # HM also has a module but it cant configure pam, d-bus & co.
 
     home-manager.users.ckie = { pkgs, ... }: {
-      home.packages = with pkgs.gnome; [
+      home.packages = with pkgs; [
         file-roller
         gnome-system-monitor
         gnome-calculator

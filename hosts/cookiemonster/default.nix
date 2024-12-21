@@ -118,8 +118,7 @@ in {
 
   # amd gpu opencl
   hardware.opengl.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
+    rocmPackages.clr
   ];
 
   environment.systemPackages = with pkgs; [

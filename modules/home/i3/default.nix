@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       rofi
-      kdeconnect
+      plasma5Packages.kdeconnect-kde
       libnotify # notify-send
       xclip
       feh

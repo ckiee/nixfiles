@@ -32,7 +32,7 @@
     ./wikidict.nix
     ./pleroma
     ./lighttpd.nix
-    ./gitd
+    # ./gitd
     ./jitsi.nix
     ./headscale.nix
     ./elastic

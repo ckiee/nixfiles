@@ -22,9 +22,9 @@ in {
       };
     in mkMerge [
       {
-        kdeconnectd = mkSvc "${pkgs.kdeconnect}/libexec/kdeconnectd";
+        kdeconnectd = mkSvc "${pkgs.plasma5Packages.kdeconnect-kde}/libexec/kdeconnectd";
         kdeconnect-indicator =
-          mkSvc "${pkgs.kdeconnect}/bin/kdeconnect-indicator";
+          mkSvc "${pkgs.plasma5Packages.kdeconnect-kde}}/bin/kdeconnect-indicator";
         nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
         emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Alt+E to activate
         fehbg = mkSvc

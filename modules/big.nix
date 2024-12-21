@@ -60,6 +60,7 @@ in with lib; {
       rclone # better rsync ± storage providers
       jwhois
       p7zip
+      poppler_utils # pdfunite for concating pdfs
     ];
 
     services.fwupd.enable = true;

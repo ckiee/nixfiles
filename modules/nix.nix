@@ -19,14 +19,14 @@ in {
 
   config = mkIf cfg.enable {
     # patch lix.. they will make it less scuffed eventually..
-    nixpkgs.overlays = singleton (final: prev: {
-      nixVersions = prev.nixVersions // rec {
-        nix_2_18 = prev.nixVersions.nix_2_18.overrideAttrs (prev': {
-          doInstallCheck = false;
-        });
-        stable = nix_2_18;
-      };
-    });
+    # nixpkgs.overlays = singleton (final: prev: {
+    #   nixVersions = prev.nixVersions // rec {
+    #     nix_2_18 = prev.nixVersions.nix_2_18.overrideAttrs (prev': {
+    #       doInstallCheck = false;
+    #     });
+    #     stable = nix_2_18;
+    #   };
+    # });
 
     # Setup the symlink for our global nixpkgs
     environment.extraSetup = ''

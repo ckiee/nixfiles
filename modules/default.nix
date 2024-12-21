@@ -66,7 +66,7 @@ in {
     ./systemd-initrd.nix
     ./rkvm.nix
     ./openrgb
-    ./wivrn
+    # ./wivrn
     ./nixpkgs.nix
     ./networkd.nix
   ];

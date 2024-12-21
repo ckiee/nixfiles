@@ -8,7 +8,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     home.pointerCursor = {
-      package = pkgs.gnome3.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
       size = 16;
       x11.enable = true;
