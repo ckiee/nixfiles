@@ -150,15 +150,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "impermanence": {
-        "branch": "private",
-        "description": "[fork] Modules to help you handle persistent state on systems with ephemeral root storage [maintainer=@talyz]",
+        "branch": "master",
+        "description": "Modules to help you handle persistent state on systems with ephemeral root storage [maintainer=@talyz]",
         "homepage": "",
-        "owner": "ckiee",
+        "owner": "nix-community",
         "repo": "impermanence",
-        "rev": "32a579313971f24f4ebea8baa7df25bb145c11a4",
-        "sha256": "1l53231y347m11da9ir2qqg0hib88236m4ddp06b3hc8sjas4hl9",
+        "rev": "d000479f4f41390ff7cf9204979660ad5dd16176",
+        "sha256": "1xj0kw8w1xv4g1k64k9mak6j8c044rrrkz7ik22z3qsayaqiylm2",
         "type": "tarball",
-        "url": "https://github.com/ckiee/impermanence/archive/32a579313971f24f4ebea8baa7df25bb145c11a4.tar.gz",
+        "url": "https://github.com/nix-community/impermanence/archive/d000479f4f41390ff7cf9204979660ad5dd16176.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "listenwithmed": {
