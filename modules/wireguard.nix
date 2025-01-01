@@ -55,7 +55,7 @@ in {
           allowedTCPPorts = singleton 51820;
         };
         wireguard.interfaces.cknet = {
-          ips = [ cfg.ipv4 "${cfg.ipv6}::1/64" ];
+          ips = [ "${cfg.ipv4}/32" "${cfg.ipv6}::1/64" ];
           listenPort = mkIf (cfg.endpoint != null) 51820;
           privateKeyFile = config.cookie.secrets.wg-privkey.dest;
         };
