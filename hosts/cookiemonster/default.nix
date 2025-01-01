@@ -52,6 +52,7 @@ in {
       ".bash_eternal_history"
       "winshare" # well we should just make it structured fr
       "mikmot-dextop"
+      ".config/darktable"
     ]) ++ [
       "/var/lib/libvirt/images/win10.qcow2"
       "/mnt/chonk/dna"
@@ -133,7 +134,6 @@ in {
     # mx master
     solaar
     basiliskii # old 68k mac emu
-    darktable
     heroku
   ];
 

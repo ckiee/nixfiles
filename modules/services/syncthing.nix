@@ -88,6 +88,12 @@ in with lib; {
         devices = [ "cookiemonster" "thonkcookie" "samsung" ];
       };
 
+      "darktable" = {
+        path = "${home}/.config/darktable";
+        devices = [ "cookiemonster" "thonkcookie" ];
+      };
+
+
       # transqsh in ./transqsh.nix
 
       # it TURNS out it really doesn't like it when you do this.. for some reason the filenames incl the machine hostname

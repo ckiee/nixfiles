@@ -59,6 +59,7 @@ in {
       alsa-scarlett-gui
       anytype # looks really sweet, object-based note taking thingy (NOT object-oriented)
       appimage-run
+      darktable
     ];
     cookie.polyprog.enable = true;
 
