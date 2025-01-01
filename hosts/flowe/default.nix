@@ -33,6 +33,7 @@ with lib;
       paperless.enable = true;
       pupcat.enable = true;
       gotosocial.enable = true;
+      shortcat.enable = true;
 
       syncthing = {
         enable = true;

@@ -65,5 +65,6 @@
     ./tonsi-li
     ./websync.nix
     ./pupcat.nix
+    ./shortcat
   ];
 }
