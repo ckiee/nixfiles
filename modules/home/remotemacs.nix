@@ -14,7 +14,7 @@ let
   };
   wrapper = pkgs.writeShellScriptBin "remotemacs" ''
     # the unset works around https://github.com/mobile-shell/mosh/issues/1134
-    ${pkgs.alacritty}/bin/alacritty --config-file ${termConfig} -t 'Emacs-over-ssh' -e ssh ${targetHost} -t "unset SSH_TTY && emacsclient -nw"
+    ${pkgs.alacritty}/bin/alacritty --config-file ${termConfig} -t 'Emacs-over-ssh' -e ssh ${targetHost} -t "unset SSH_TTY && TERM=xterm-direct emacsclient -nw"
   '';
   desktopItem = pkgs.makeDesktopItem {
     name = "remotemacs";
