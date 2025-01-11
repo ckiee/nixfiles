@@ -69,5 +69,6 @@ in {
     # ./wivrn
     ./nixpkgs.nix
     ./networkd.nix
+    ./apple-fastcharge.nix
   ];
 }

@@ -111,6 +111,7 @@ in with lib; {
       cnping.enable = true;
       wireshark.enable = true;
       logiops.enable = true;
+      apple-fastcharge.enable = true;
     };
 
   };
