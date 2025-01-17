@@ -34,6 +34,7 @@ with lib;
       pupcat.enable = true;
       gotosocial.enable = true;
       shortcat.enable = true;
+      miniflux.enable = true;
 
       syncthing = {
         enable = true;
@@ -77,15 +78,13 @@ with lib;
         "puppycat.house" = {
           provider = "hurricane";
           secretId = "acme-he";
-          extras = [
-            "mei.puppycat.house"
-            "league.puppycat.house"
-          ];
+          extras = [ "mei.puppycat.house" "league.puppycat.house" ];
         };
 
         "pupc.at" = {
           provider = "hurricane";
           secretId = "acme-he";
+          extras = [ "flux.pupc.at" ];
         };
 
         "tailnet.ckie.dev" = {

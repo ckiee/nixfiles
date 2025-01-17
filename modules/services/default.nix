@@ -49,6 +49,7 @@
     ./gotosocial
     ./transqsh.nix
     ./coqui
+    ./miniflux
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
