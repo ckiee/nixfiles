@@ -54,10 +54,13 @@ in {
           allowedUDPPorts = singleton 51820;
           allowedTCPPorts = singleton 51820;
         };
-        wireguard.interfaces.cknet = {
-          ips = [ "${cfg.ipv4}/32" "${cfg.ipv6}::1/64" ];
-          listenPort = mkIf (cfg.endpoint != null) 51820;
-          privateKeyFile = config.cookie.secrets.wg-privkey.dest;
+        wireguard = {
+          useNetworkd = false;
+          interfaces.cknet = {
+            ips = [ "${cfg.ipv4}/32" "${cfg.ipv6}::1/64" ];
+            listenPort = mkIf (cfg.endpoint != null) 51820;
+            privateKeyFile = config.cookie.secrets.wg-privkey.dest;
+          };
         };
       };
 
@@ -67,10 +70,10 @@ in {
           publicKey =
             fileContents (../secrets + "/wg-pubkey-${hc.networking.hostName}");
           allowedIPs = [ "${hcfg.ipv4}/32" "${hcfg.ipv6}::1/64" ];
-            # TODO make it work
-            # ++ optional (hcfg.v6TunnelEndpoint && !cfg.v6TunnelEndpoint) "::/0"
-            # ++ optional (hc.networking.hostName == "cookiemonster")
-            # "2a05:f480:2c00:19ee:8003::/80";
+          # TODO make it work
+          # ++ optional (hcfg.v6TunnelEndpoint && !cfg.v6TunnelEndpoint) "::/0"
+          # ++ optional (hc.networking.hostName == "cookiemonster")
+          # "2a05:f480:2c00:19ee:8003::/80";
           persistentKeepalive = 1;
           endpoint =
             if hcfg.endpoint != null then "${hcfg.endpoint}:51820" else null;
