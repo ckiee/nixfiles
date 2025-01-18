@@ -20,6 +20,8 @@ with builtins;
   # We don't have that much RAM..
   boot.tmp.useTmpfs = mkForce false;
 
+  security.sudo.wheelNeedsPassword = false;
+
   cookie = {
     wireguard.num = 11;
     state = {
@@ -69,10 +71,6 @@ with builtins;
       forward = [ "daiko.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
-    sound = {
-      pulse.enable = true;
-      pipewire.enable = false;
-    };
   };
 
   home-manager.users.ckie.home.stateVersion = "22.05";
