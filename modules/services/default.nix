@@ -50,6 +50,7 @@
     ./transqsh.nix
     ./coqui
     ./miniflux
+    ./archivebox
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

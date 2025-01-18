@@ -44,6 +44,7 @@ with builtins;
       daiko.enable = true;
       scanner.enableServer = true;
       transmission.enable = true;
+      archivebox.enable = true;
 
       printing = {
         enable = true;
@@ -66,6 +67,7 @@ with builtins;
       hosts = [
         "cache.tailnet.ckie.dev"
         "daiko.tailnet.ckie.dev"
+        "arc.tailnet.ckie.dev"
         config.cookie.services.printing.tlsHost
       ];
       forward = [ "daiko.tailnet.ckie.dev" ];
