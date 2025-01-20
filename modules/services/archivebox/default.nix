@@ -22,15 +22,15 @@ in with lib; {
     virtualisation.oci-containers.containers."archivebox-archivebox" = {
       image = "archivebox/archivebox:latest";
       environment = {
-        "ALLOWED_HOSTS" = "*";
-        "CSRF_TRUSTED_ORIGINS" = "http://localhost:8000";
-        "PUBLIC_ADD_VIEW" = "False";
-        "PUBLIC_INDEX" = "True";
-        "PUBLIC_SNAPSHOTS" = "True";
-        "SEARCH_BACKEND_ENGINE" = "sonic";
-        "SEARCH_BACKEND_HOST_NAME" = "sonic";
-        "SEARCH_BACKEND_PASSWORD" =
-          fileContents ../../../secrets/archivebox-sonic-pw;
+        ALLOWED_HOSTS = "127.0.0.1,${cfg.host}";
+        CSRF_TRUSTED_ORIGINS = "http://localhost";
+        PUBLIC_ADD_VIEW = "False";
+        PUBLIC_INDEX = "True";
+        PUBLIC_SNAPSHOTS = "True";
+
+        SAVE_PDF = "False";
+        SAVE_ARCHIVE_DOT_ORG = "False";
+        FOOTER_INFO = "🐈🏳️‍⚧️";
       };
       volumes = [ "/var/lib/archivebox:/data:rw" ];
       ports = [ "12382:8000/tcp" ];
@@ -48,6 +48,8 @@ in with lib; {
         locations."/" = { proxyPass = "http://127.0.0.1:12382"; };
         extraConfig = ''
           access_log /var/log/nginx/archivebox.access.log;
+          proxy_send_timeout 86400;
+          proxy_read_timeout 86400;
         '';
       };
     };
