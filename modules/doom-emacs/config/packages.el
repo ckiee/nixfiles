@@ -6,6 +6,8 @@
 (package! svelte-mode)
 (package! platformio-mode)
 (package! verb)
+(package! git-commit
+  :recipe (:host github :repo "magit/magit" :files ("lisp/git-commit.el")))
 (package! ox-reveal)
 (package! graphql-mode)
 (package! matlab-mode)

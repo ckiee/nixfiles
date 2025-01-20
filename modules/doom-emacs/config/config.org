@@ -135,6 +135,10 @@ writeroom hijacks the row length
 #+BEGIN_SRC elisp
 (setq writeroom-width 70)
 #+END_SRC
+and hides the modeline.. (unhide it:)
+#+BEGIN_SRC elisp
+(setq writeroom-mode-line t)
+#+END_SRC
 #+BEGIN_QUOTE
 To save the clock history across Emacs sessions, use:
 #+END_QUOTE
@@ -300,7 +304,15 @@ its just copy pasted in here. not touching NDE rn.
 #+BEGIN_SRC elisp
 (put 'magit-log-mode 'magit-log-default-arguments '("-n512" "--decorate"))
 #+END_SRC
+*** some whatever workaround
+doom sync says:
+    x There was an unexpected runtime error
+      Message: Could not find package git-commit. Updating recipe repositories: (org-elpa melpa nongnu-elpa gnu-elpa-mirror el-get emacsmirror-mirror) with ‘straight-pull-recipe-repositories’ may fix this
 
+#+BEGIN_SRC elisp :tangle packages.el
+(package! git-commit
+  :recipe (:host github :repo "magit/magit" :files ("lisp/git-commit.el")))
+#+END_SRC
 
 ** emmet keybind DWIM on tab
 #+BEGIN_SRC elisp

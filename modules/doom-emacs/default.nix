@@ -30,6 +30,7 @@ let
     sumneko-lua-language-server # Lua (see config.org)
     racket-minimal # Racket LSP
     nil # nix nil
+    zls # zig lsp
     #
     # shell scripts
     shfmt

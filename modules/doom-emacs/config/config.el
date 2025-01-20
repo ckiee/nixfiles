@@ -49,6 +49,7 @@
 (add-hook 'org-mode-hook #'writeroom-mode)
 (add-hook 'org-mode-hook #'hl-todo-mode)
 (setq writeroom-width 70)
+(setq writeroom-mode-line t)
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
