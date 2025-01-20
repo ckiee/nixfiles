@@ -17,11 +17,18 @@ in with lib; {
 
       cookie.services.websync.sites."mei.puppycat.house" = {
         enable = true;
-        nginxOut.locations."/" = {
-          proxyPass = "http://127.0.0.1:32582";
-          # https://github.com/sveltejs/kit/issues/8026
-          extraConfig = "proxy_set_header Origin http://$host;";
+        nginxOut = {
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:32582";
+            # https://github.com/sveltejs/kit/issues/8026
+            extraConfig = "proxy_set_header Origin http://$host;";
+          };
+
+          extraConfig = ''
+            access_log /var/log/nginx/pupcat.access.log;
+          '';
         };
+
       };
 
       systemd.services.pupcat.serviceConfig = {
@@ -58,7 +65,8 @@ in with lib; {
         RemoveIPC = mkForce "false";
         ReadWritePaths = [ "/run/postgresql" ];
         RestrictAddressFamilies = mkForce [ ];
-        ProtectHome = mkForce "false"; # needs to read ~pupcat/.config/git/config
+        ProtectHome =
+          mkForce "false"; # needs to read ~pupcat/.config/git/config
       };
     }
 
