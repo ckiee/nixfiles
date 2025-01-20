@@ -62,6 +62,7 @@ in with lib; {
       p7zip
       poppler_utils # pdfunite for concating pdfs
       phoon # phase of the moon (:
+      pandoc # convert.. CONVERt.. CONVERTTT!
     ];
 
     services.fwupd.enable = true;
