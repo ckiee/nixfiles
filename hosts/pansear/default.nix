@@ -46,11 +46,12 @@ with builtins;
       transmission.enable = true;
       archivebox.enable = true;
 
-      printing = {
-        enable = true;
-        server = true;
-        host = "print.atori";
-      };
+      # TODO parents
+      # printing = {
+      #   enable = true;
+      #   server = true;
+      #   host = "print.atori";
+      # };
       # nix-serve = {
       #   enable = true;
       #   host = "cache.tailnet.ckie.dev";
