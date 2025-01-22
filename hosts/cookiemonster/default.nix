@@ -58,6 +58,10 @@ in {
       "/mnt/chonk/dna"
       "/mnt/chonk/oldgit"
     ];
+    devserv = {
+      enable = true;
+      hosts = [ "pupcat-dev.tailnet.ckie.dev" ];
+    };
     sound.pro = true;
 
     opentabletdriver.enable = true;
@@ -67,7 +71,6 @@ in {
     steam.enable = true;
     libvirtd.enable = true;
     mpd.enableHttp = true;
-    devserv.enable = true;
     lutris.enable = true;
     ledc.enable = true;
     systemd-initrd.enable = true;
@@ -118,9 +121,7 @@ in {
   };
 
   # amd gpu opencl
-  hardware.opengl.extraPackages = with pkgs; [
-    rocmPackages.clr
-  ];
+  hardware.opengl.extraPackages = with pkgs; [ rocmPackages.clr ];
 
   environment.systemPackages = with pkgs; [
     prismlauncher
