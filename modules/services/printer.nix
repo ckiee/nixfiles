@@ -45,7 +45,7 @@ in with lib; {
           name = "laserjet";
           description = "big box printy print";
           deviceUri = "dnssd://HP%20LaserJet%20M1536dnf%20MFP%20(3F3DF3)._ipp._tcp.local/?uuid=434e4339-4333-4a42-3550-984be13f3df3";
-          model = "drv:///hp/hpcups.drv/hp-laserjet_m1530_mfp_series-ps.ppd";
+          model = "HP/hp-laserjet_m1530_mfp_series-ps.ppd.gz";
           ppdOptions = {
             PageSize = "A4";
             InputSlot = "Auto";
