@@ -2,17 +2,17 @@
 
 let
   cfg = config.cookie.services.minecraft;
-  paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
-    src = pkgs.fetchurl {
-      url = let
-        build = 401;
-        mc = "1.17.1";
-      in "https://papermc.io/api/v2/projects/paper/versions/${mc}/builds/${
-        toString build
-      }/downloads/paper-${mc}-${toString build}.jar";
-      sha256 = "sha256-Qpk/IAg5ExNJ5JbnTZRIZ3+7lRfG/oyafKz755ilf9o=";
-    };
-  });
+  # paper = pkgs.minecraft-server.overrideAttrs (oldAttrs: {
+  #   src = pkgs.fetchurl {
+  #     url = let
+  #       build = 401;
+  #       mc = "1.17.1";
+  #     in "https://papermc.io/api/v2/projects/paper/versions/${mc}/builds/${
+  #       toString build
+  #     }/downloads/paper-${mc}-${toString build}.jar";
+  #     sha256 = "sha256-Qpk/IAg5ExNJ5JbnTZRIZ3+7lRfG/oyafKz755ilf9o=";
+  #   };
+  # });
   console = pkgs.writeShellScriptBin "mc" ''
     ${pkgs.mcrcon}/bin/mcrcon -p minecraft "$@" || true
   '';
@@ -31,7 +31,7 @@ in with lib; {
       enable = true;
       eula = true;
       openFirewall = true;
-      package = paper;
+      # package = paper;
       jvmOpts =
         "-Xms${cfg.heapAllocation} -Xmx${cfg.heapAllocation} -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
     };
