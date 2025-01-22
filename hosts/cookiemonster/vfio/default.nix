@@ -19,12 +19,14 @@ in with lib; {
       # Untested.
       "vfio-pci.disable_idle_d3=1"
 
-      # VFIO: 6700XT, for dumping the Raphael firmware:
-      # "vfio-pci.ids=1002:73df"
+      # VFIO: 6700XT + usb
+      # "vfio-pci.ids=1002:73df,1022:15b6"
 
       # something something igpu specific hacky hack
       # from https://www.reddit.com/r/VFIO/comments/16mrk6j/amd_7000_seriesraphaelrdna2_igpu_passthrough/
       "vfio_iommu_type1.allow_unsafe_interrupts=1"
+
+      # "video=efifb:off"
     ];
 
     # drop em firmware images in they/them
