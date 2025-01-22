@@ -52,6 +52,7 @@
 (setq writeroom-mode-line t)
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+(add-to-list 'auto-mode-alist '("\\.svx\\'" . markdown-mode))
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
 (setq! lsp-disabled-clients '(vue-semantic-server))
 (add-load-path! "vendor")

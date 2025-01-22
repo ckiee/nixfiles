@@ -166,6 +166,9 @@ For =.svelte= files
 #+BEGIN_SRC elisp :tangle packages.el
 (package! svelte-mode)
 #+END_SRC
+#+BEGIN_SRC elisp
+(add-to-list 'auto-mode-alist '("\\.svx\\'" . markdown-mode))
+#+END_SRC
 ** platformio
 #+BEGIN_SRC elisp :tangle packages.el
 (package! platformio-mode)
