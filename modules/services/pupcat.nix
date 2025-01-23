@@ -20,8 +20,6 @@ in with lib; {
         nginxOut = {
           locations."/" = {
             proxyPass = "http://127.0.0.1:32582";
-            # https://github.com/sveltejs/kit/issues/8026
-            extraConfig = "proxy_set_header Origin http://$host;";
           };
 
           extraConfig = ''
@@ -48,7 +46,7 @@ in with lib; {
           # filter = "shopping-list.txt"
           command = pkgs.writeShellScript "ppcat-restart-cmd" ''
             set -euxo pipefail
-            sleep 5
+            sleep 20
             /run/wrappers/bin/sudo systemctl restart pupcat
           '';
           allow_concurrent = false;
@@ -85,7 +83,7 @@ in with lib; {
         [ -e .env.prod ] &&
           set -a && source .env.prod && set +a
 
-        HOST=127.0.0.1 PORT=32582 ORIGIN=https://mei.puppycat.house exec \
+        HOST=127.0.0.1 PORT=32582 exec \
             bun ./www/index.js
       '';
     })
