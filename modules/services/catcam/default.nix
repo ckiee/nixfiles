@@ -12,6 +12,8 @@ in with lib; {
     };
   };
 
+  imports = [ ./catd.nix ];
+
   config = mkIf cfg.enable {
     systemd.services.catcam = rec {
       wantedBy = [ "multi-user.target" ];

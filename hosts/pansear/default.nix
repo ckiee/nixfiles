@@ -22,6 +22,9 @@ with builtins;
 
   security.sudo.wheelNeedsPassword = false;
 
+  nixpkgs.overlays =
+    [ (final: prev: { bun = prev.bun.override { baseline = true; }; }) ];
+
   cookie = {
     wireguard.num = 11;
     state = {
