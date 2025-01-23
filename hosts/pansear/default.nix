@@ -45,6 +45,7 @@ with builtins;
       scanner.enableServer = true;
       transmission.enable = true;
       archivebox.enable = true;
+      catcam.enable = true;
 
       # TODO parents
       # printing = {
@@ -69,12 +70,14 @@ with builtins;
         "cache.tailnet.ckie.dev"
         "daiko.tailnet.ckie.dev"
         "arc.tailnet.ckie.dev"
+        "catcam.tailnet.ckie.dev"
         config.cookie.services.printing.tlsHost
       ];
       forward = [ "daiko.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
   };
+  hardware.nvidia-container-toolkit.enable = true;
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 

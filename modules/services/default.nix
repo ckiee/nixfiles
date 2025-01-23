@@ -51,6 +51,7 @@
     ./coqui
     ./miniflux
     ./archivebox
+    ./catcam
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
