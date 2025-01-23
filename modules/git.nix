@@ -40,6 +40,12 @@ in with lib; {
         userEmail = cfg.email;
         userName = cfg.name;
         extraConfig = {
+          core.pager = "${pkgs.delta}/bin/delta";
+          interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";
+          delta = {
+            navigate = true;
+            dark = true;
+          };
           pull = {
             rebase = true;
             # ff = "only";

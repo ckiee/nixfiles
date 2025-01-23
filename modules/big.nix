@@ -63,6 +63,7 @@ in with lib; {
       poppler_utils # pdfunite for concating pdfs
       phoon # phase of the moon (:
       pandoc # convert.. CONVERt.. CONVERTTT!
+      delta # prettydiff
     ];
 
     services.fwupd.enable = true;
