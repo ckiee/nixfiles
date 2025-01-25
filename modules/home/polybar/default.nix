@@ -51,6 +51,7 @@ let
     globe = "";
     music = "";
     shower = "";
+    bluetooth = "";
   };
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -302,6 +303,13 @@ in {
           type = "custom/script";
           exec = "${mkRequiresScript ./prom}";
         };
+
+        # FIXME: this guy spins a whole cpu core fully
+        # "module/bluetooth" = {
+        #   type = "custom/script";
+        #   exec = "${./bluetooth}";
+        #   tail = true;
+        # };
       };
     };
   };

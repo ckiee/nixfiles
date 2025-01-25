@@ -64,6 +64,7 @@ in with lib; {
       phoon # phase of the moon (:
       pandoc # convert.. CONVERt.. CONVERTTT!
       delta # prettydiff
+      bluetui
     ];
 
     services.fwupd.enable = true;
