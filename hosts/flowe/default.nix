@@ -35,6 +35,7 @@ with lib;
       gotosocial.enable = true;
       shortcat.enable = true;
       miniflux.enable = true;
+      hedgedoc.enable = true;
 
       syncthing = {
         enable = true;
@@ -84,7 +85,7 @@ with lib;
         "pupc.at" = {
           provider = "hurricane";
           secretId = "acme-he";
-          extras = [ "flux.pupc.at" ];
+          extras = [ "flux.pupc.at" "pad.pupc.at" ];
         };
 
         "tailnet.ckie.dev" = {

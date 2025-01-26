@@ -52,6 +52,7 @@
     ./miniflux
     ./archivebox
     ./catcam
+    ./hedgedoc
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
