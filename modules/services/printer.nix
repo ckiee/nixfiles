@@ -26,11 +26,6 @@ in with lib; {
   };
 
   config = mkMerge [
-    # Global (we're assuming this is enabled on atleast one host)
-    {
-      # HACK-ity hack, pansear is .8 on LAN, this whole tlsHost junk is just for android compat
-      cookie.services.coredns.extraHosts = "192.168.0.8 ${cfg.tlsHost}";
-    }
     # Common
     (mkIf cfg.enable {
       services.printing = {
@@ -60,6 +55,10 @@ in with lib; {
         assertion = cfg.host != null;
         message = "cookie.services.printing.host must be non-nil";
       }];
+
+      # HACK-ity hack, pansear is .8 on LAN, this whole tlsHost junk is just for android compat
+      # TODO: ensure this is deployed on dns host for parentsnet
+      cookie.services.coredns.extraHosts = "192.168.0.8 ${cfg.tlsHost}";
 
       hardware.printers = {
         ensureDefaultPrinter = "RawDeskjet";

@@ -22,7 +22,7 @@ with lib;
       # octoprint.enable = true;
       coredns.enable = mkForce
         false; # this RPi does not have a hardware rtc AND doesn't run 24/7 which makes it a pain in the ass for TLS
-      scanner.enableClient = mkForce false;
+      scanner.enable = mkForce false;
     };
     networkmanager.enable = mkForce false; # TODO
     state = {

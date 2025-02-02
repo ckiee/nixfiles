@@ -95,7 +95,7 @@ in with lib; {
       services = {
         avahi.enable = true;
         printing.enable = true;
-        scanner.enableClient = true;
+        scanner.enable = true;
       };
       xserver.enable = true;
       sound = {

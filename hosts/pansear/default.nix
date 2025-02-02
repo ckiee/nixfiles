@@ -45,7 +45,7 @@ with builtins;
       ffg-bot.enable = true;
       alvr-bot.enable = true;
       daiko.enable = true;
-      scanner.enableServer = true;
+      scanner.enable = true;
       transmission.enable = true;
       archivebox.enable = true;
       catcam.enable = true;
