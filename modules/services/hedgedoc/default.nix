@@ -27,6 +27,7 @@ in with lib; {
         allowOrigin = [ cfg.host ];
         protocolUseSSL = true;
         port = 29581;
+        allowAnonymous = false;
       };
     };
 
