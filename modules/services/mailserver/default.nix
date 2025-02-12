@@ -70,7 +70,7 @@ with builtins; {
       enable = true;
       localDnsResolver = false; # :53 needs to be open for services/coredns
       fqdn = "flowe.ckie.dev";
-      domains = [ "ckie.dev" "puppycat.house" "enby.space" "cassidy.sh" ];
+      domains = [ "ckie.dev" "puppycat.house" "pupc.at" ];
 
       certificateScheme = "manual"; # Manually specify certificate paths
       certificateFile = "/var/lib/acme/${cfg.certFqdn}/cert.pem";
