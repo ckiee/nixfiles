@@ -28,6 +28,7 @@ in with lib; {
         "/var/lib/docker" #,,,, lost a lot of data to this being missing
         "/var/lib/daiko"
         "/var/lib/nixos"
+        "/var/lib/postgresql"
       ];
       files = [
         "/etc/machine-id"
