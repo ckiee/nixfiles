@@ -32,6 +32,7 @@ in {
         enable = true;
         # local dev
         comb.pupcat = { ensureDBOwnership = true; };
+        comb.whirlpool = { ensureDBOwnership = true; };
         comb.shortcat = { ensureDBOwnership = true; };
       };
       coqui.enable = true;
