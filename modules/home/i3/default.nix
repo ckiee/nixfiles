@@ -146,6 +146,9 @@ in {
                 # kill the whole sysd session
                 "${modifier}+Shift+e" =
                   "exec i3-nagbar -t warning -m 'Do you want to exit the session?' -b 'Yes' 'systemctl --user stop hm-graphical-session.target'";
+                # ssh into tmux-taboo
+                "${modifier}+Shift+Return" =
+                  "exec st ssh cookiemonster";
 
                 # screenshot
                 "--release ${modifier}+End" = screenie.area;
