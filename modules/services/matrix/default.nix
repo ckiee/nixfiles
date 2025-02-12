@@ -139,7 +139,7 @@ in with lib; {
     # Setup backups for the media; the rest is in Postgres which is backed up by its
     # corresponding module.
 
-    cookie.restic.paths = [ "${config.services.matrix-synapse.dataDir}/media" ];
+    cookie.restic.paths = [ "${config.services.matrix-synapse.dataDir}/media_store" ];
 
     ## There's a few secret tokens we want to keep out of the Synapse config in
     ## the store..

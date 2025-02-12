@@ -26,7 +26,7 @@ with lib;
       anonvote-bot.enable = true;
       heisenbridge.enable = true;
       tonsi-li.enable = true;
-      minecraft.enable = true;
+      # minecraft.enable = true;
       websync.enable = true;
       actual.enable = true;
       radicale.enable = true; # DAV

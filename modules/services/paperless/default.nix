@@ -28,6 +28,8 @@ in with lib; {
       };
     };
 
+    cookie.restic.paths = [ "/var/lib/paperless" ];
+
     services.paperless = {
       enable = true;
       passwordFile = config.cookie.secrets.paperless-admin-password.dest;
