@@ -99,27 +99,6 @@ in {
     fsType = "ext4";
   };
 
-  # chonk is a 12tb external WD hdd
-  cookie.secrets.chonk-keyfile = {
-    source = "./secrets/cookiemonster-chonk-keyfile";
-    permissions = "0400";
-  };
-  environment.etc."crypttab".text = ''
-    chonkcrypt  UUID=87205375-ddb2-4d4d-b428-4641c722beca ${config.cookie.secrets.chonk-keyfile.dest} noauto,nofail,x-systemd.mount-timeout=10,x-systemd.automount,x-systemd.device-timeout=5
-  '';
-  systemd.tmpfiles.rules = [ "f+  /mnt/chonk 0640 ckie users -" ];
-  fileSystems."/mnt/chonk" = {
-    device = "/dev/disk/by-uuid/83d694c1-9cf0-4404-9e7f-f462a4c924d2";
-    fsType = "ext4";
-    options = [
-      "noauto"
-      "x-systemd.automount"
-      "x-systemd.mount-timeout=10"
-      "x-systemd.idle-timeout=10min"
-      "nofail"
-      "x-systemd.device-timeout=5"
-    ];
-  };
 
   hardware.cpu.amd.updateMicrocode = true;
 }

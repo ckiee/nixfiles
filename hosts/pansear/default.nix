@@ -35,7 +35,14 @@ with builtins;
     systemd-boot.enable = true;
     smartd.enable = true;
     # libvirtd.enable = true; # breaks coredns, TODO fix..
-    restic.enable = true;
+    restic = {
+      enable = true;
+      paths = (map (x: "${config.cookie.user.home}/${x}") [ ]) ++ [
+        "/mnt/chonk/dna"
+        "/mnt/chonk/DCIM"
+        "/mnt/chonk/oldgit"
+      ];
+    };
     systemd-initrd.enable = true;
     # TODO: huehueuhe its not rly p2p currently it's just for prometheus
     # everything else uses tailscale

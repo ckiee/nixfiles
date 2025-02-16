@@ -28,5 +28,42 @@
 
   swapDevices = [ ];
 
+  # chonk is a 12tb external WD hdd that gets automounted after boot
+  # this took a while but it finally works.. pls copy
+  cookie.secrets.chonk-keyfile = {
+    source = "./secrets/wd-chonk-keyfile";
+    permissions = "0400";
+    wantedBy = "systemd-cryptsetup@chonkcrypt.service";
+  };
+  environment.etc."crypttab".text = ''
+    chonkcrypt  UUID=87205375-ddb2-4d4d-b428-4641c722beca ${config.cookie.secrets.chonk-keyfile.dest} noauto,nofail,x-systemd.device-timeout=10
+  '';
+  systemd.tmpfiles.rules = [ "d  /mnt/chonk 0640 ckie users -" ];
+  fileSystems."/mnt/chonk" = {
+    device = "/dev/disk/by-uuid/83d694c1-9cf0-4404-9e7f-f462a4c924d2";
+    fsType = "ext4";
+  };
+  # https://github.com/leana8959/.files/blob/3c34320911b1778da885b9e91be5011d699476a0/nix/nixosModules/named/vanadium/fs.nix#L51
+  systemd.mounts = [{
+    what = "/dev/disk/by-uuid/83d694c1-9cf0-4404-9e7f-f462a4c924d2";
+    where = "/mnt/chonk";
+    options = lib.concatStringsSep "," [
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.mount-timeout=10"
+      "x-systemd.idle-timeout=10min"
+      "nofail"
+    ];
+    mountConfig = {
+      Type = "ext4";
+      TimeoutSec = "10s";
+    };
+    unitConfig = {
+      Requires = [ "systemd-cryptsetup@chonkcrypt.service" ];
+      After = [ "systemd-cryptsetup@chonkcrypt.service" ];
+      PropagatesStopTo = [ "systemd-cryptsetup@chonkcrypt.service" ];
+    };
+  }];
+
   hardware.nvidia.open = false; # old gpu
 }

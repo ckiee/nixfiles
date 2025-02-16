@@ -57,8 +57,6 @@ in {
       ".config/darktable"
     ]) ++ [
       "/var/lib/libvirt/images/win10.qcow2"
-      "/mnt/chonk/dna"
-      "/mnt/chonk/oldgit"
     ];
     devserv = {
       enable = true;
