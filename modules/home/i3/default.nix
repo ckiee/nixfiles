@@ -60,6 +60,9 @@ in {
       anytype # looks really sweet, object-based note taking thingy (NOT object-oriented)
       appimage-run
       darktable
+      taskwarrior3
+      tasksh
+      vit
     ];
     cookie.polyprog.enable = true;
 
