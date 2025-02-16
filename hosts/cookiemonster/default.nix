@@ -36,6 +36,7 @@ in {
         comb.shortcat = { ensureDBOwnership = true; };
       };
       coqui.enable = true;
+      vmware-host.enable = true;
     };
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we

@@ -53,6 +53,7 @@
     ./archivebox
     ./catcam
     ./hedgedoc
+    ./vmware-host
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
