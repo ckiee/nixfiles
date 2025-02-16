@@ -52,6 +52,7 @@ let
     music = "";
     shower = "";
     bluetooth = "";
+    moon = "";
   };
   cfg = config.cookie.polybar;
   desktopCfg = nixosConfig.cookie.desktop;
@@ -115,8 +116,7 @@ in {
               != null) desktopCfg.monitors.primary;
 
           modules-left = "ws";
-          modules-right =
-            [ "mpd" "separator" "shower" ]
+          modules-right = [ "mpd" "separator" "shower" ]
             ++ optionals (soundCfg.pipewire.enable || soundCfg.pulse.enable) [
               "separator"
               "volume"
@@ -130,8 +130,15 @@ in {
             ] ++ optionals (cfg.backlight != null) [
               "separator"
               "backlight" # currently desktop also has ext. display brightness control (for the primary monitor only!)
-            ] ++ optionals cfg.laptop [ "separator" "battery" ]
-            ++ [ "separator" "date" "small-spacer" "time" "separator" ];
+            ] ++ optionals cfg.laptop [ "separator" "battery" ] ++ [
+              "separator"
+              "sunset"
+              "separator"
+              "date"
+              "small-spacer"
+              "time"
+              "separator"
+            ];
 
           tray-position = "right";
           tray-padding = 0;
@@ -302,6 +309,13 @@ in {
         "module/prom" = {
           type = "custom/script";
           exec = "${mkRequiresScript ./prom}";
+        };
+
+        "module/sunset" = {
+          type = "custom/script";
+          format-prefix = "${icons.moon} ";
+          format-suffix = " h";
+          exec = "${mkRequiresScript ./sunset}";
         };
 
         # FIXME: this guy spins a whole cpu core fully

@@ -1,0 +1,4 @@
+#Requires: libqalculate sunwait ripgrep
+
+set -e
+qalc -t $((for x in rise set; do sunwait list $x 32.2N 34.8E; done) | xargs -I {} echo $(date --iso)T{} | rg -U '(.+)\n(.+)' --replace '(("$2" - now) / (1 hour to s)s)') | head -c4
