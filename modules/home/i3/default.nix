@@ -63,6 +63,7 @@ in {
       taskwarrior3
       tasksh
       vit
+      sony-headphones-client
     ];
     cookie.polyprog.enable = true;
 
