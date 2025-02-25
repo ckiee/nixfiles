@@ -42,6 +42,7 @@ in {
         ./zathura.nix
         ./tmux.nix
         ./zellij.nix
+        ./taskwarrior.nix
       ];
     };
   };

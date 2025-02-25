@@ -72,6 +72,7 @@ in with lib; {
         fmouse.enable = true;
         ardour.enable = true;
         zathura.enable = true;
+        taskwarrior.enable = true;
       };
       services.rsibreak.enable = true;
     };
