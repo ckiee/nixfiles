@@ -54,6 +54,7 @@
     ./catcam
     ./hedgedoc
     ./vmware-host
+    ./changedetection
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

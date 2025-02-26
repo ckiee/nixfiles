@@ -36,6 +36,7 @@ with lib;
       shortcat.enable = true;
       miniflux.enable = true;
       hedgedoc.enable = true;
+      changedetection.enable = true;
 
       syncthing = {
         enable = true;
@@ -73,6 +74,7 @@ with lib;
             "actual.ckie.dev"
             "dav.ckie.dev"
             "paperless.ckie.dev"
+            "chg.ckie.dev"
           ];
         };
 
