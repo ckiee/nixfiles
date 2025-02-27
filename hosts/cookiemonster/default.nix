@@ -55,6 +55,7 @@ in {
       "winshare" # well we should just make it structured fr
       "mikmot-dextop"
       ".config/darktable"
+      ".minecraft"
     ]) ++ [
       "/var/lib/libvirt/images/win10.qcow2"
     ];
