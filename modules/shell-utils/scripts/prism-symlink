@@ -13,5 +13,6 @@ rm -vrf "$profile"/screenshots
 
 ln -s ~/.minecraft/screenshots "$profile/"
 ln -s ~/.minecraft/resourcepacks "$profile/"
+ln -s ~/.minecraft/shaderpacks "$profile/"
 ln -s ~/.minecraft/logs "$profile/"
 cp ~/.minecraft/option*.txt "$profile/"
