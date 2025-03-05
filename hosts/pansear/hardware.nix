@@ -38,7 +38,10 @@
   environment.etc."crypttab".text = ''
     chonkcrypt  UUID=87205375-ddb2-4d4d-b428-4641c722beca ${config.cookie.secrets.chonk-keyfile.dest} noauto,nofail,x-systemd.device-timeout=10
   '';
-  systemd.tmpfiles.rules = [ "d  /mnt/chonk 0640 ckie users -" ];
+  systemd.tmpfiles.rules = [
+    "d  /mnt/chonk 0755 ckie users -"
+    "d  /mnt/chonk/ckie 0700 ckie users -"
+  ];
   fileSystems."/mnt/chonk" = {
     device = "/dev/disk/by-uuid/83d694c1-9cf0-4404-9e7f-f462a4c924d2";
     fsType = "ext4";

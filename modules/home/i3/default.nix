@@ -61,6 +61,7 @@ in {
       appimage-run
       darktable
       sony-headphones-client
+      immich-cli
     ];
     cookie.polyprog.enable = true;
 

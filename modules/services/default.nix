@@ -55,6 +55,7 @@
     ./hedgedoc
     ./vmware-host
     ./changedetection
+    ./immich
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

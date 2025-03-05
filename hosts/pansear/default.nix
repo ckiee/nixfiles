@@ -37,11 +37,8 @@ with builtins;
     # libvirtd.enable = true; # breaks coredns, TODO fix..
     restic = {
       enable = true;
-      paths = (map (x: "${config.cookie.user.home}/${x}") [ ]) ++ [
-        "/mnt/chonk/dna"
-        "/mnt/chonk/DCIM"
-        "/mnt/chonk/oldgit"
-      ];
+      paths = (map (x: "${config.cookie.user.home}/${x}") [ ])
+        ++ [ "/mnt/chonk/ckie/dna" "/mnt/chonk/ckie/DCIM" "/mnt/chonk/ckie/oldgit" ];
     };
     systemd-initrd.enable = true;
     # TODO: huehueuhe its not rly p2p currently it's just for prometheus
@@ -56,6 +53,10 @@ with builtins;
       transmission.enable = true;
       archivebox.enable = true;
       catcam.enable = true;
+      immich = {
+        enable = true;
+        host = "immich.tailnet.ckie.dev";
+      };
 
       # TODO parents
       # printing = {
@@ -82,12 +83,20 @@ with builtins;
         "arc.tailnet.ckie.dev"
         "catcam.tailnet.ckie.dev"
         config.cookie.services.printing.tlsHost
+        "immich.tailnet.ckie.dev"
       ];
-      forward = [ "daiko.tailnet.ckie.dev" ];
+      forward = [ "daiko.tailnet.ckie.dev"
+
+                  "immich.tailnet.ckie.dev"
+                ];
     };
     remote-builder.role = "builder";
   };
   hardware.nvidia-container-toolkit.enable = true;
+
+  services.postgresql = {
+    package = pkgs.postgresql_16;
+  };
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 
