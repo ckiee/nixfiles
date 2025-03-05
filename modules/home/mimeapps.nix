@@ -15,7 +15,7 @@ in with lib; {
         firefox = "firefox.desktop";
         mpv = "mpv.desktop";
         audacity = "audacity.desktop";
-        nautilus = "org.gnome.Nautilus.desktop";
+        nemo = "nemo.desktop";
         eog = "org.gnome.eog.desktop";
       in {
         "application/pdf" = [ firefox ];
@@ -66,7 +66,7 @@ in with lib; {
         "audio/x-vorbis+ogg" = [ audacity mpv ];
         "audio/x-wav" = [ mpv ];
         "video/quicktime" = [ mpv ];
-        "inode/directory" = [ nautilus ]; # folders!
+        "inode/directory" = [ nemo ]; # folders!
         "application/vnd.mozilla.xul+xml" = [ firefox ];
         "x-scheme-handler/http" = [ firefox ];
         "x-scheme-handler/https" = [ firefox ];
