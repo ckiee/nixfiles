@@ -37,6 +37,12 @@ in with lib; {
 
     cookie.services.nginx.enable = true;
     cookie.services.prometheus.nginx-vhosts = [ "immich" ];
+    # for LAN immich sync, we rely on the fact that it happens to serve this record first:
+    # (ssh) ckie@pansear ~ -> dog immich.tailnet.ckie.dev
+    # A immich.tailnet.ckie.dev. 2m00s   192.168.0.8
+    # A immich.tailnet.ckie.dev. 2m00s   100.120.191.17
+    # ...and use pansear as the dns server for the iphone
+    cookie.services.coredns.extraHosts = "192.168.0.8 ${cfg.host}";
     services.nginx.virtualHosts.${cfg.host} = {
       locations."/" = {
         proxyPass = "http://localhost:2283";
