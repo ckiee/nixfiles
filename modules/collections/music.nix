@@ -10,7 +10,7 @@ in with lib; {
     environment.systemPackages = with pkgs; [
       helio-workstation
       (bespokesynth.override { enableVST2 = true; })
-      musescore3 # 4 is meh
+      musescore # 4 is meh (used to have "musescore3 pkg but it bork")
       MCSoundsExtractorCPP # not upstreaming yet
 
       # TODO: this should really be merged with home/ardour.nix into
@@ -22,7 +22,7 @@ in with lib; {
       zita-at1
       zyn-fusion
       qsampler
-      linuxsampler
+      # linuxsampler
       guitarix
       calf
     ];
