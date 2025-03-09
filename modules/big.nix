@@ -65,6 +65,7 @@ in with lib; {
       pandoc # convert.. CONVERt.. CONVERTTT!
       delta # prettydiff
       bluetui
+      pigz # haven't tried: tar -c --use-compress-program=pigz -f tar.file dir_to_zip
     ];
 
     services.fwupd.enable = true;
