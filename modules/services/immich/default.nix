@@ -49,8 +49,8 @@ in with lib; {
         proxyWebsockets = true;
         extraConfig = ''
           access_log /var/log/nginx/immich.access.log;
-          proxy_send_timeout 100;
-          client_max_body_size 1G;
+          proxy_send_timeout 3600;
+          client_max_body_size 10G;
         '';
       };
     };
