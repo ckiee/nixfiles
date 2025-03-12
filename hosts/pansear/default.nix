@@ -37,13 +37,17 @@ with builtins;
     # libvirtd.enable = true; # breaks coredns, TODO fix..
     restic = {
       enable = true;
-      paths = (map (x: "${config.cookie.user.home}/${x}") [ ])
-        ++ [ "/mnt/chonk/ckie/dna" "/mnt/chonk/ckie/DCIM" "/mnt/chonk/ckie/oldgit" ];
+      paths = (map (x: "${config.cookie.user.home}/${x}") [ ]) ++ [
+        "/mnt/chonk/ckie/dna"
+        "/mnt/chonk/ckie/DCIM"
+        "/mnt/chonk/ckie/oldgit"
+      ];
     };
     systemd-initrd.enable = true;
     # TODO: huehueuhe its not rly p2p currently it's just for prometheus
     # everything else uses tailscale
     # wireguard.endpoint = (head config.networking.interfaces.enp3s0.ipv4.addresses).address;
+    devserv.enable = true;
     services = {
       avahi.enable = true;
       ffg-bot.enable = true;
@@ -85,18 +89,16 @@ with builtins;
         config.cookie.services.printing.tlsHost
         "immich.tailnet.ckie.dev"
       ];
-      forward = [ "daiko.tailnet.ckie.dev"
-
-                  "immich.tailnet.ckie.dev"
-                ];
+      forward = [
+        "daiko.tailnet.ckie.dev"
+        "immich.tailnet.ckie.dev"
+      ];
     };
     remote-builder.role = "builder";
   };
   hardware.nvidia-container-toolkit.enable = true;
 
-  services.postgresql = {
-    package = pkgs.postgresql_16;
-  };
+  services.postgresql = { package = pkgs.postgresql_16; };
 
   home-manager.users.ckie.home.stateVersion = "22.05";
 
