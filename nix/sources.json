@@ -296,10 +296,11 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-mailserver": {
-        "branch": "master",
-        "repo": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git",
-        "rev": "9e36323ae3dde787f761420465c3ae560f3dbf29",
-        "type": "git"
+        "sha256": "0zwpqrd5znba7av2xsk9c8qyhxnad69abbsqg7m4l3yy4hhwrzxj",
+        "type": "tarball",
+        "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/9e36323ae3dde787f761420465c3ae560f3dbf29/nixos-mailserver-master.tar.gz",
+        "url_template": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/<version>/nixos-mailserver-master.tar.gz",
+        "version": "9e36323ae3dde787f761420465c3ae560f3dbf29"
     },
     "nixos-raspberrypi": {
         "branch": "main",
