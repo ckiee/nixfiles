@@ -36,6 +36,7 @@ in with lib; {
 
     (mkIf cfg.enable {
       hardware.printers = {
+        ensureDefaultPrinter = "laserjet";
         ensurePrinters = [{
           name = "laserjet";
           description = "big box printy print";
