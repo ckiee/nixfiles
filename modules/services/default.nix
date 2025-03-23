@@ -42,7 +42,6 @@
     ./transmission
     ./vaultwarden
     ./ergo
-    ./actual
     ./radicale
     ./paperless
     ./stfed.nix

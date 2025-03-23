@@ -28,7 +28,6 @@ with lib;
       tonsi-li.enable = true;
       minecraft.enable = true;
       websync.enable = true;
-      actual.enable = true;
       radicale.enable = true; # DAV
       paperless.enable = true;
       pupcat.enable = true;

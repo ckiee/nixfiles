@@ -15,12 +15,17 @@ in {
 
     services.matrix-appservice-discord = {
       enable = true;
-      package = pkgs.matrix-appservice-discord.overrideAttrs (prev: {
-        patches = (prev.patches or []) ++ [
+      package = (pkgs.matrix-appservice-discord.override {
+        nodejs = pkgs.nodejs_20;
+        inherit (pkgs.yarn2nix-moretea.override { nodejs = pkgs.nodejs_20; })
+          mkYarnPackage;
+      }).overrideAttrs (prev: {
+        patches = (prev.patches or [ ]) ++ [
           ./pr_878.patch # Request from @lea:m.lea.moe: https://github.com/matrix-org/matrix-appservice-discord/pull/878
         ];
 
-        doCheck = false; # tests are flaky on slow aarch64-linux, since they're time-dependent..
+        doCheck =
+          false; # tests are flaky on slow aarch64-linux, since they're time-dependent..
       });
       serviceDependencies = [ "matrix-synapse.service" ];
       environmentFile = /.
@@ -45,7 +50,6 @@ in {
       args = "-u matrix-synapse -g matrix-synapse -p 0400,u+D";
       wantedBy = [ "matrix-synapse.service" ];
     };
-
 
     # this is copied from synapse because this piece of junk[1] also
     # started taking up too much memory. i hope they fix it.
