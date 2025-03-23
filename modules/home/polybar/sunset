@@ -1,4 +1,10 @@
-#Requires: libqalculate sunwait ripgrep
+#Requires: sunwait pdd
+coordinates="32.2N 34.8E"
 
-set -e
-qalc -t $((for x in rise set; do sunwait list $x 32.2N 34.8E; done) | xargs -I {} echo $(date --iso)T{} | rg -U '(.+)\n(.+)' --replace '(("$2" - now) / (1 hour to s)s)') | head -c4
+if [ "$(sunwait poll $coordinates)" == DAY ]; then
+    output=$(pdd $(sunwait list set $coordinates civil)":00" | head -c5)
+    echo "+"$output
+else
+    echo "-"
+    exit 1
+fi
