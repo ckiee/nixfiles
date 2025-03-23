@@ -85,7 +85,7 @@ in with lib; {
           '';
         };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
-        locations."~ ^/_matrix/federation/v2/invite/" = mkIf false {
+        locations."~ ^/_matrix/federation/v2/invite/" = mkIf true {
           extraConfig = "return 403 '${
               builtins.toJSON {
                 errcode = "M_UNKNOWN";
