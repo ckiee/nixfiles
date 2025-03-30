@@ -11,7 +11,7 @@ in with lib; {
       assertion = nixosConfig.programs.dconf.enable;
       message = "dconf must be enabled in the system configuration";
     }];
-    home.packages = with pkgs; [ nemo ];
+    home.packages = with pkgs; [ nemo nemo-fileroller ];
     dconf.settings."org/gnome/nautilus/preferences" = {
       default-sort-in-reverse-order = true;
       default-sort-order = "mtime";
