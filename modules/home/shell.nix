@@ -28,6 +28,10 @@ in with lib; {
           enableBashIntegration = cfg.bash;
           enableFishIntegration = cfg.fish;
         };
+        fzf = {
+          enable = true;
+          enableBashIntegration = cfg.bash;
+        };
       };
       cookie.nix-index.enable = true;
     }
