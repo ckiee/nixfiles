@@ -36,6 +36,7 @@ in with lib; {
 
       cookie.services.stfed = {
         enable = true;
+        # .stignore might nede to be placed manually on flowe, unsure..
         hooks = [{
           folder = "${config.cookie.user.home}/www/mei.puppycat.house";
           # file_down_sync_done: triggers when a file has been fully synchronized locally (see filter to match for a specific file)
