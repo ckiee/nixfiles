@@ -11,7 +11,7 @@ pkgs.writeScript "cookie-rager-encrypt" ''
   set -e
   cd $(${pkgs.git}/bin/git rev-parse --show-toplevel)
   function mkRng {
-    < /dev/urandom tr -dc '[a-z0-9A-Z@-^]' | head -c ${"$"}{1:-255}
+    < /dev/urandom tr -dc '[a-z0-9A-Z@-Z(-.]' | head -c ${"$"}{1:-255}
   }
   ${concatStringsSep "\n" (mapAttrsToList (host: hostConfig:
     let

@@ -55,6 +55,7 @@
     ./vmware-host
     ./changedetection
     ./immich
+    ./garage
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

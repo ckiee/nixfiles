@@ -57,6 +57,7 @@ with builtins;
       transmission.enable = true;
       archivebox.enable = true;
       catcam.enable = true;
+      garage.enable = true;
       immich = {
         enable = true;
         host = "immich.tailnet.ckie.dev";

@@ -7,6 +7,8 @@ let
   cfg = config.cookie.restic;
   sec = config.cookie.secrets;
   host = config.networking.hostName;
+  rcloneEntrypoint =
+    if config.networking.hostName == "pansear" then "main-norecurs" else "main";
 in {
   options.cookie.restic = {
     enable = mkEnableOption "Enables Restic backup management";
@@ -48,7 +50,7 @@ in {
           # It's important to keep all the old keys, as they're used for various one-shot backups.
           "cookiemonster"
           "thonkcookie"
-          # pansear is implied
+          # pansear is implied (TODO: what does this mean??)
         ] then
           "./secrets/restic-password-desktop"
         else
@@ -58,7 +60,7 @@ in {
         permissions = "0400";
       };
       rclone-config = {
-        source = "./secrets/rclone-config";
+        source = "./secrets/rclone.cfg";
         owner = "root";
         group = "root";
         permissions = "0400";
@@ -72,6 +74,7 @@ in {
         inherit (cfg) paths;
         pruneOpts = [
           "--keep-last 5"
+          "--keep-daily 7"
           "--keep-weekly 5"
           "--keep-monthly 12"
           "--keep-yearly 75"
@@ -89,7 +92,7 @@ in {
         };
 
         rcloneConfigFile = sec.rclone-config.dest;
-        repository = "rclone:main:${host}-fs";
+        repository = "rclone:${rcloneEntrypoint}:${host}-fs";
         # timerConfig defaults to daily
         # user        defaults to root
       };
@@ -97,7 +100,7 @@ in {
       mainPostgres = mkIf cfg.enablePostgres (main // {
         # Base this off the main job but provide a dummy path
         paths = [ "/this/should/not/exist" ];
-        repository = "rclone:main:${host}-postgres";
+        repository = "rclone:${rcloneEntrypoint}:${host}-postgres";
       });
     };
 
@@ -121,7 +124,7 @@ in {
         makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
           --set RCLONE_CONFIG /run/keys/rclone-config \
           --set RESTIC_PASSWORD_FILE /run/keys/restic-password \
-          --set RESTIC_REPOSITORY rclone:main:${host}-fs
+          --set RESTIC_REPOSITORY rclone:${rcloneEntrypoint}:${host}-fs
       '');
   };
 }
