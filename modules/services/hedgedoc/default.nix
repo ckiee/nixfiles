@@ -32,6 +32,7 @@ in with lib; {
         protocolUseSSL = true;
         port = 29581;
         allowAnonymous = false;
+        allowAnonymousEdits = true;
       };
     };
 
