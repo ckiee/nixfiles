@@ -11,6 +11,7 @@ in with lib; {
     networking.firewall.allowedTCPPorts = [ 3900 ];
     systemd.tmpfiles.rules = [ "d  /mnt/chonk/garage 0700 garage root -" ];
     systemd.services.garage.serviceConfig.DynamicUser = false;
+    systemd.services.garage.bindsTo = [ "mnt-chonk.mount" ];
     users.users.garage = {
       isSystemUser = true;
       group = "garage";

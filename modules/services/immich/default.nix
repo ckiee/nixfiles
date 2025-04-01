@@ -27,6 +27,7 @@ in with lib; {
     };
     cookie.restic.paths = [ config.services.immich.mediaLocation ];
 
+    systemd.services.immich-server.bindsTo = [ "mnt-chonk.mount" ];
     services.immich = {
       enable = true;
       mediaLocation = "/mnt/chonk/immich";
