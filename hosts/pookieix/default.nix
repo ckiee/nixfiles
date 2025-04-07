@@ -32,6 +32,8 @@ with lib;
     };
   };
 
+  networking.wireguard.interfaces.cknet.dynamicEndpointRefreshSeconds = 5;
+
   home-manager.users.ckie = { ... }: { home.stateVersion = "23.05"; };
 
   security.sudo.wheelNeedsPassword = false;
