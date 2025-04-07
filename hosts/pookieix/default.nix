@@ -63,7 +63,7 @@ with lib;
   systemd.services."rfkill-it" = {
     wantedBy = [ "multi-user.target" ];
     description = "dont need the modem";
-    path = [ pkgs.rfkill_udev ];
+    path = [ pkgs.util-linux ];
     script = ''
       rfkill block bluetooth
       rfkill block wlan
