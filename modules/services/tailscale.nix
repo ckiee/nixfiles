@@ -39,6 +39,7 @@ in with lib; {
         wantedBy = [ "multi-user.target" ];
         requires = [ "tailscaled.service" "tailscale-authkey-key.service" ];
         after = requires;
+        path = [ config.services.tailscale.package pkgs.jq ];
 
         serviceConfig = {
           Type = "oneshot";
