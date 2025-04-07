@@ -138,6 +138,7 @@
       lsp-rust-analyzer-closing-brace-hints t)
 (after! spell-fu (remove-hook 'text-mode-hook #'spell-fu-mode))
 (after! gptel
-        (setq! gptel-model "gpt-4o")
+        (setq! gptel-model 'gpt-4o)
         (map! :leader "l l" #'gptel-menu)
+        (map! :leader "l r" #'gptel-rewrite)
         (map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion))

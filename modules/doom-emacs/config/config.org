@@ -365,8 +365,9 @@ get it loaded at startup:
 #+END_SRC
 #+BEGIN_SRC elisp
 (after! gptel
-        (setq! gptel-model "gpt-4o")
+        (setq! gptel-model 'gpt-4o)
         (map! :leader "l l" #'gptel-menu)
+        (map! :leader "l r" #'gptel-rewrite)
         (map! :mode gptel-context-buffer-mode :n "d" #'gptel-context-flag-deletion))
 #+END_SRC
 ** super-save
