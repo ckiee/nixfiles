@@ -43,6 +43,7 @@ in {
           "mei.puppycat.house".enable = true;
           "pupc.at".enable = true;
           "ckie.dev".enable = true;
+          "meischoenberg.dev".enable = true;
         };
       };
     }

@@ -89,6 +89,11 @@ with lib;
           extras = [ "flux.pupc.at" "pad.pupc.at" ];
         };
 
+        "meischoenberg.dev" = {
+          provider = "hurricane";
+          secretId = "acme-he";
+        };
+
         "tailnet.ckie.dev" = {
           wildcard = true;
           provider = "porkbun";
