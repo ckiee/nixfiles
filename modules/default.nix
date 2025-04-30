@@ -70,5 +70,6 @@ in {
     ./nixpkgs.nix
     ./networkd.nix
     ./apple-fastcharge.nix
+    ./fprintd.nix
   ];
 }

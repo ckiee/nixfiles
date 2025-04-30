@@ -271,6 +271,18 @@
         "url": "https://github.com/nix-community/nix-eval-jobs/archive/64104a3c55593c903af78af86a4c9d2e5487a2d7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nixos-06cb-009a-fingerprint-sensor": {
+        "branch": "private",
+        "description": "Nix flake for driving the 06cb:009a fingerprint sensor on NixOS",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "nixos-06cb-009a-fingerprint-sensor",
+        "rev": "3b11cb4dac757bed0469a40d7747debc7bee0179",
+        "sha256": "1xp0k6lallv4v01b3f6vk1l0x6ri4fxj5asrib0laaynnrc0ildv",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/nixos-06cb-009a-fingerprint-sensor/archive/3b11cb4dac757bed0469a40d7747debc7bee0179.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixos-channel-scripts": {
         "branch": "master",
         "description": null,

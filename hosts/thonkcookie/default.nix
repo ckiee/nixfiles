@@ -25,6 +25,7 @@ with lib; {
       };
       printing.enable = true;
     };
+    fprintd.enable = true;
     systemd-boot.enable = true;
     hardware.t480s = {
       enable = true;
