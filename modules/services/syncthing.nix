@@ -67,6 +67,11 @@ in with lib; {
         devices = [ "cookiemonster" "thonkcookie" ];
       };
 
+      # "sync-org" = {
+      #   path = "${home}/Sync/org";
+      #   devices = [ "cookiemonster" /*"thonkcookie"*/ "iphone" ];
+      # };
+
       "ssh" = {
         path = "${home}/.ssh";
         devices = [ "cookiemonster" "thonkcookie" ];
