@@ -47,6 +47,22 @@ in with lib; {
 
     users.users.ckie.extraGroups = [ "adbusers" "libvirtd" "plugdev" ];
 
+    environment.systemPackages = with pkgs;
+      [
+        #
+        immich-cli
+        tigervnc # using it for the client, vncviewer
+        x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
+        appimage-run
+      ] ++ (if cfg.laptop then
+        (with pkgs;
+          [
+            #
+            acpi
+          ])
+      else
+        [ ]);
+
     programs.nix-ld.enable = true;
 
     home-manager.users.ckie = { pkgs, ... }: {

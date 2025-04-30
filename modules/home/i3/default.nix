@@ -44,9 +44,6 @@ in {
       screenkey # show the keyboard keys on the ~~keyboard~~screen
       linthesia # musicy music play piano
       chromium # sucks, ik, but need it sometimes..
-      x11vnc # vnc server to unlock lightdm remotely, and maybe use the session too
-      tigervnc # using it for the client, vncviewer
-      onlyoffice-bin # ms office clone! works well for english-only things.
       libreoffice
       (minimeters.overrideAttrs (prev: {
         src = ../../../secrets/minimeters-0.8.8.zip;
@@ -57,11 +54,9 @@ in {
       uxplay # iOS screen mirroring (drag right down for control panel icon)
       bitwarden-desktop
       alsa-scarlett-gui
-      anytype # looks really sweet, object-based note taking thingy (NOT object-oriented)
-      appimage-run
       darktable
       sony-headphones-client
-      immich-cli
+      peek # mini screenrecorder
     ];
     cookie.polyprog.enable = true;
 
