@@ -122,9 +122,9 @@ in {
       (pkgs.runCommandLocal "restic-wrapped" { } ''
         . ${pkgs.makeWrapper}/nix-support/setup-hook
         makeWrapper ${pkgs.restic}/bin/restic $out/bin/restic \
-          --set RCLONE_CONFIG /run/keys/rclone-config \
-          --set RESTIC_PASSWORD_FILE /run/keys/restic-password \
-          --set RESTIC_REPOSITORY rclone:${rcloneEntrypoint}:${host}-fs
+          --set-default RCLONE_CONFIG /run/keys/rclone-config \
+          --set-default RESTIC_PASSWORD_FILE /run/keys/restic-password \
+          --set-default RESTIC_REPOSITORY rclone:${rcloneEntrypoint}:${host}-fs
       '');
   };
 }
