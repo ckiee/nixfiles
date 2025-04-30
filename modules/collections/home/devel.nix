@@ -37,6 +37,8 @@ in with lib; {
       nix-init # Generate Nix packages from URLs with hash prefetching, dependency inference, license detection, and more
       mongodb-compass
       insomnia # http playground
+      flyctl # fly.io cli
+      heroku
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
     home.sessionPath = [ "~/.yarn/bin" ];
