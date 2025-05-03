@@ -57,6 +57,7 @@ in {
       darktable
       sony-headphones-client
       peek # mini screenrecorder
+      xorg.xmodmap
     ];
     cookie.polyprog.enable = true;
 
