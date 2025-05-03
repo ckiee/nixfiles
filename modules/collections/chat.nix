@@ -25,6 +25,7 @@ in with lib; {
         slack
         tuba
         zulip # hate it . very overwhelming.
+        mattermost-desktop
       ];
       # cookie.weechat.enable = true; # more or less unused now
     };

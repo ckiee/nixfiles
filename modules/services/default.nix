@@ -56,6 +56,7 @@
     ./changedetection
     ./immich
     ./garage
+    ./mattermost
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix

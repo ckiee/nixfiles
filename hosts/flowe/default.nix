@@ -36,6 +36,7 @@ with lib;
       miniflux.enable = true;
       hedgedoc.enable = true;
       changedetection.enable = true;
+      mattermost.enable = true;
 
       syncthing = {
         enable = true;
@@ -62,9 +63,11 @@ with lib;
       hosts = {
         "ckie.dev" = {
           provider = "porkbun";
+          # admin panels, technical backends, indirect
+          # (just putting a url in an app like matrix still counts as this)
           extras = [
             "i.ckie.dev"
-            "vw.ckie.dev"
+            "vw.ckie.dev" # CAN-MOVE
             "flowe.ckie.dev"
             "mx.ckie.dev" # important!
             "matrix.ckie.dev"
@@ -72,8 +75,8 @@ with lib;
             "grafana.ckie.dev"
             "actual.ckie.dev"
             "dav.ckie.dev"
-            "paperless.ckie.dev"
-            "chg.ckie.dev"
+            "paperless.ckie.dev" # CAN-MOVE
+            "chg.ckie.dev" # CAN-MOVE
           ];
         };
 
@@ -86,7 +89,8 @@ with lib;
         "pupc.at" = {
           provider = "hurricane";
           secretId = "acme-he";
-          extras = [ "flux.pupc.at" "pad.pupc.at" ];
+          # user-facing services, non-admin, directly used.
+          extras = [ "flux.pupc.at" "pad.pupc.at" "mt.pupc.at" ];
         };
 
         "meischoenberg.dev" = {
