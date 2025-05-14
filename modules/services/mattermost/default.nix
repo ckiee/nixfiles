@@ -17,9 +17,7 @@ in with lib; {
       postgres.enable = true;
     };
 
-    environment.systemPackages = [
-      config.services.mattermost.package
-    ];
+    environment.systemPackages = [ config.services.mattermost.package ];
 
     services.mattermost = {
       enable = true;
@@ -38,6 +36,7 @@ in with lib; {
         # path out of `config.mattermost.socket.path` and set it manually.
         export = true;
       };
+      settings = { LogSettings.ConsoleLevel = "ERROR"; };
     };
 
     cookie.restic.paths = [ config.services.mattermost.dataDir ];
