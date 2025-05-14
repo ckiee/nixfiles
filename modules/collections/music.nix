@@ -11,7 +11,6 @@ in with lib; {
       helio-workstation
       (bespokesynth.override { enableVST2 = true; })
       musescore # 4 is meh (used to have "musescore3 pkg but it bork")
-      MCSoundsExtractorCPP # not upstreaming yet
 
       # TODO: this should really be merged with home/ardour.nix into
       # a /modules/music/* megamodule like matrix or prom
