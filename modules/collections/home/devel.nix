@@ -41,6 +41,7 @@ in with lib; {
       heroku
     ];
     # TODO Make a programs.yarn in nixpkgs/home-manager to replace this:
-    home.sessionPath = [ "~/.yarn/bin" ];
+    home.sessionPath = [ "~/.yarn/bin" "~/.pnpm/bin" ];
+    programs.bash.initExtra = "export PNPM_HOME=~/.pnpm/bin";
   };
 }
