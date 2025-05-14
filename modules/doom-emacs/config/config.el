@@ -100,7 +100,7 @@
   (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
 (map! :leader :n "h d k" #'ckie-advice-unadvice)
 (defun ckie-startup-init-state ()
-  "Initalize Emacs state to satisfy the Cookie"
+  "Initalize Emacs state to satisfy mei"
   (interactive)
   (advice-remove 'projectile-switch-project #'ckie-refresh-projectile-known-list)
   (setq +workspaces-switch-project-function #'find-file)

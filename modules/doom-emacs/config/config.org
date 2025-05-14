@@ -249,7 +249,7 @@ its just copy pasted in here. not touching NDE rn.
 ** projectile init state
 #+BEGIN_SRC elisp
 (defun ckie-startup-init-state ()
-  "Initalize Emacs state to satisfy the Cookie"
+  "Initalize Emacs state to satisfy mei"
   (interactive)
   (advice-remove 'projectile-switch-project #'ckie-refresh-projectile-known-list)
   (setq +workspaces-switch-project-function #'find-file)

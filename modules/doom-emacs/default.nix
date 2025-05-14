@@ -51,9 +51,6 @@ let
     (setenv "PATH" (concat (getenv "PATH") ":${
       concatMapStringsSep ":" (x: "${x}/bin") extraBins
     }"))
-    (setq org-reveal-root "${
-      pkgs.nodePackages."reveal.js"
-    }/lib/node_modules/reveal.js/js/reveal.js")
   '';
 
   extraDesktop = pkgs.writeTextFile {
