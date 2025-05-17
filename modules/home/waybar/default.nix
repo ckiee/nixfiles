@@ -31,6 +31,7 @@ let
     bluetooth = "";
     moon = "";
     broom = "";
+    plug = "";
   };
 in with lib; {
   options.cookie.waybar = {
@@ -75,15 +76,15 @@ in with lib; {
         "sway/window" = { max-length = 120; };
 
         "idle_inhibitor" = {
-          format = "{icon}";
+          format = "${icons.broom}";
           timeout = 120; # minutes
-          format-icons.activated = icons.broom;
         };
 
         "mpd" = {
           format =
             "${icons.music} {artist} - {titleOrFilename} [{elapsedTime:%M:%S}/{totalTime:%M:%S}]";
-          format-disconnected = "${icons.music} mpd is offline";
+          format-disconnected = "";
+          format-stopped = "";
         };
 
         "wireplumber" = {
@@ -114,9 +115,29 @@ in with lib; {
           return-type = "json";
         };
 
-        clock = {
+        "clock" = {
           interval = 1;
           format = "{:%d/%m/%y %r}";
+        };
+
+        "backlight" = { format = "${icons.sun} {percent}%"; };
+
+        "battery" = {
+          format = "{icon} {capacity}% ({time})";
+          format-full = "{icon} {capacity}%";
+          format-charging = "${icons.plug} {capacity}% ({time})";
+
+          format-time = "{H}:{m}";
+          states = { critical = 15; };
+          full-at = 95;
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+
+          ];
         };
       }
       # {

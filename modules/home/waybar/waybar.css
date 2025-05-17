@@ -58,6 +58,14 @@ widget #workspaces, widget #mode, .modules-right widget * {
     padding: 0 8px;
 }
 
+.modules-left > widget:first-child > #workspaces {
+    padding-left: 0;
+}
+
+.modules-right > widget:last-child * {
+    padding-right: 0;
+}
+
 #mode {
     background-color: @alert;
     color: black;
@@ -70,27 +78,9 @@ widget #workspaces, widget #mode, .modules-right widget * {
 #battery {
 }
 
-#battery.charging, #battery.plugged {
-    color: @primary;
-    font-weight: bold;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
     background-color: @alert;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    color: black;
 }
 
 label:focus {
