@@ -43,6 +43,7 @@ in {
         ./tmux.nix
         ./zellij.nix
         ./taskwarrior.nix
+        ./waybar
       ];
     };
   };

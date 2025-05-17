@@ -25,6 +25,12 @@ in with lib; {
       default = null;
     };
     laptop = mkEnableOption "Enables laptop-specific customizations";
+
+    wm = mkOption {
+      type = types.nullOr (types.enum [ "i3" "sway" ]);
+      default = "i3";
+      description = "WM";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -68,15 +74,15 @@ in with lib; {
     home-manager.users.ckie = { pkgs, ... }: {
       cookie = {
         polybar = {
-          enable = true;
+          enable = cfg.wm == "i3";
           inherit (cfg) laptop;
         };
         gtk.enable = true;
-        dunst.enable = true;
+        dunst.enable = true; # TODO replace..
         keyboard.enable = true;
-        redshift.enable = true;
+        redshift.enable = cfg.wm == "i3";
         nautilus.enable = true;
-        i3.enable = true;
+        i3.enable = cfg.wm == "i3";
         xcursor.enable = true;
         remotemacs.enable = true;
         mimeapps.enable = true;
@@ -85,10 +91,13 @@ in with lib; {
         toot.enable = true;
         mangohud.enable = true;
         netintent.enable = true;
-        fmouse.enable = true;
         ardour.enable = true;
         zathura.enable = true;
         taskwarrior.enable = true;
+        waybar = {
+          enable = cfg.wm == "sway";
+          inherit (cfg) laptop;
+        };
       };
       services.rsibreak.enable = true;
     };
@@ -119,6 +128,7 @@ in with lib; {
         enable = true;
         pipewire = { enable = mkDefault true; };
       };
+      sway.enable = cfg.wm == "sway";
       slock.enable = true;
       fonts.enable = true;
       gnome.enable = true;
@@ -129,6 +139,7 @@ in with lib; {
       wireshark.enable = true;
       logiops.enable = true;
       apple-fastcharge.enable = true;
+      keyd.enable = true;
     };
 
   };

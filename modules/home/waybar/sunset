@@ -1,0 +1,12 @@
+#Requires: sunwait pdd
+coordinates="32.2N 34.8E"
+
+while true; do
+    if [ "$(sunwait poll $coordinates)" == DAY ]; then
+        output=$(pdd $(sunwait list set $coordinates civil)":00" | head -c5)
+        echo '{"text":"+'"${output}"'"}'
+    else
+        echo '{"text":"-"}'
+    fi
+    sleep 30
+done

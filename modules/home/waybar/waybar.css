@@ -1,0 +1,207 @@
+@define-color primary #ed60ba;
+@define-color alert #ffe261;
+@define-color gray-100 #5f5f5f;
+@define-color gray-500 #27212e;
+@define-color gray-900 #171717;
+
+* {
+    font-family: "JetBrains Mono", "Font Awesome 5 Free";
+                 /* "Noto Sans Mono CJK HK", */
+                 /* "Noto Sans Mono CJK JP", */
+                 /* "Noto Sans Mono CJK KR", */
+                 /* "Noto Color Emoji"; */
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: @gray-900;
+    color: #ffffff;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+.modules-right > widget + widget {
+    margin-left: 1px;
+    box-shadow: inset 4px 0px 0px 0px @gray-500;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* box-shadow: inset 0 -3px transparent; */
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button {
+    padding: 0 4px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: @primary;
+}
+
+#workspaces button.urgent {
+    background-color: @alert;
+}
+
+widget #workspaces, widget #mode, .modules-right widget * {
+    padding: 0 8px;
+}
+
+#mode {
+    background-color: @alert;
+    color: black;
+}
+
+
+#clock {
+}
+
+#battery {
+}
+
+#battery.charging, #battery.plugged {
+    color: @primary;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @alert;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#disk {
+}
+
+#backlight {
+}
+
+#network {
+}
+
+#network.disconnected {
+    background-color: @alert;
+}
+
+#pulseaudio {
+}
+#pulseaudio.muted {
+}
+
+#wireplumber {
+}
+#wireplumber.muted {
+}
+
+#tray {
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    min-width: 24px;
+}
+
+#idle_inhibitor.activated {
+    background-color: @alert;
+    color: black;
+}
+
+#mpd {
+}
+#mpd.disconnected {
+}
+#mpd.stopped {
+}
+#mpd.paused {
+}
+
+#language {
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 3em;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
