@@ -71,6 +71,7 @@ in {
     ./networkd.nix
     ./apple-fastcharge.nix
     ./fprintd.nix
+    ./keyd
     ./sway
   ];
 }
