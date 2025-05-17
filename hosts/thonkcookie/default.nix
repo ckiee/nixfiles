@@ -9,13 +9,16 @@ with lib; {
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+  security.sudo.wheelNeedsPassword = false; #TEMPTEMTPEMTEPMTEPTMEPTMEPTMEPm
   cookie = {
     wireguard.num = 13;
     imperm.enable = true;
+    sway.enable = true;
     desktop = {
       enable = true;
       monitors.primary = "eDP-1";
       laptop = true;
+      wm = "sway";
     };
     services = {
       syncthing = {
@@ -25,11 +28,9 @@ with lib; {
       };
       printing.enable = true;
     };
-    fprintd.enable = true;
+    # fprintd.enable = true; ## broken rn
     systemd-boot.enable = true;
-    hardware.t480s = {
-      enable = true;
-    };
+    hardware.t480s = { enable = true; };
     smartd.enable = true;
     rkvm.role = "tx";
     steam.enable = true;
@@ -40,7 +41,6 @@ with lib; {
     };
     doom-emacs.standalone = true; # Imperative doom ):
   };
-
 
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {

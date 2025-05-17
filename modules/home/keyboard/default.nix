@@ -7,13 +7,13 @@ in with lib; {
   };
 
   config = mkIf cfg.enable {
+    home.file.".XCompose".source = ./XCompose;
+    # === X11-only ===
     home.keyboard = {
       layout = "us,il";
     };
     # manpage xkeyboard-config(7)
     home.keyboard.options =
       [ "grp:win_space_toggle" "compose:rctrl" "caps:super" ];
-
-    home.file.".XCompose".source = ./XCompose;
   };
 }

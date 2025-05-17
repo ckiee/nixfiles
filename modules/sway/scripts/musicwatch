@@ -1,0 +1,13 @@
+#Requires: inotify-tools mpc_cli
+
+set -e
+cd ~/Music/flat
+
+while true; do
+	if FN=$(inotifywait -qe CREATE -e MOVED_TO .); then
+		if echo "$FN" | grep -v ".temp"; then # youtube-dl has a habit of creating temporary files. we don't want that.
+			echo $FN
+			mpc update
+		fi
+	fi
+done

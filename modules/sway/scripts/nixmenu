@@ -1,0 +1,19 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p jq rofi
+
+set -e
+CACHE=/tmp/nixmenu.$USER.cache
+if [ "$1" == "nsp" ]; then
+	# try the package name as the binary to run and if that doesnt work, ask the user
+	kill "$3" || true # user might've closed rofi so we need to be ok with that too
+	$2 || rofi -show run -mesg "i don't know what the binary is called"
+else
+	if [ ! -f $CACHE ]; then
+		touch $CACHE
+		chmod 644 $CACHE
+		nix search --json nixpkgs ^ | jq 'keys | join("\n")' -r | sed -e "s/legacyPackages\.$(uname -m)-linux\.//" >"$CACHE"
+	fi
+	pkg=$(rofi -dmenu <$CACHE)
+	rofi -e "downloading $pkg..." &
+	nix-shell -p "$pkg" --run "$0 nsp $pkg $!"
+fi

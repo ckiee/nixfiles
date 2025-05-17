@@ -1,0 +1,60 @@
+{ util, config, lib, pkgs, ... }:
+
+with lib;
+with builtins;
+
+let
+  cfg = config.cookie.sway;
+  nixosConfig = config;
+  inherit (util) mkRequiresScript;
+in {
+  config = mkIf cfg.enable {
+    home-manager.users.ckie = { config, ... }: {
+      systemd.user.services = let
+        mkSvc = exec: {
+          Service = {
+            ExecSearchPath =
+              "/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
+            ExecStart = exec;
+          };
+          Install.WantedBy = [ "graphical-session.target" ];
+          Unit = {
+            After = [ "graphical-session-pre.target" ];
+            PartOf = [ "graphical-session.target" ];
+          };
+        };
+      in mkMerge [
+        {
+          kdeconnectd =
+            mkSvc "${pkgs.plasma5Packages.kdeconnect-kde}/libexec/kdeconnectd";
+          kdeconnect-indicator = mkSvc
+            "${pkgs.plasma5Packages.kdeconnect-kde}}/bin/kdeconnect-indicator";
+          nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
+          emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Alt+E to activate
+          fehbg = mkSvc "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${
+              ./backgrounds/farlands.jpg
+            }";
+          polkit-gnome-auth-agent = mkSvc
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          oszwatch = # depends on impure fs contents @ /mnt/games
+            mkIf (nixosConfig.networking.hostName == "cookiemonster")
+            (mkSvc "${mkRequiresScript ./scripts/oszwatch}");
+          mpvshotwatch = (mkSvc "${mkRequiresScript ./scripts/mpvshotwatch}");
+          musicwatch = mkSvc "${mkRequiresScript ./scripts/musicwatch}";
+          firefox = mkSvc "firefox";
+          cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
+          # ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
+          thunderbird = mkSvc "thunderbird";
+        }
+        (mkIf nixosConfig.cookie.collections.chat.enable {
+          discord = mkSvc "Discord";
+          element = mkSvc "element-desktop";
+          signal = mkSvc "signal-desktop";
+          # nheko = mkSvc "nheko";
+          # slack = mkSvc "slack";
+        })
+      ];
+    };
+  };
+}
+
