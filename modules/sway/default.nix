@@ -27,8 +27,6 @@ in {
         # Fix for some Java AWT applications (e.g. Android Studio),
         # use this if they aren't displayed properly:
         export _JAVA_AWT_WM_NONREPARENTING=1
-
-        systemctl --user import-environment PATH
       '';
     };
 
@@ -95,9 +93,7 @@ in {
             smartGaps = true;
           };
 
-          focus = {
-            wrapping = "yes";
-          };
+          focus = { wrapping = "yes"; };
 
           window = {
             border = 0;
@@ -125,11 +121,7 @@ in {
             };
           };
 
-          output = {
-            "*" = {
-              bg = "${./backgrounds/lain} fit";
-            };
-          };
+          output = { "*" = { bg = "${./backgrounds/lain} fit"; }; };
 
           keybindings = with {
             modifier = config.wayland.windowManager.sway.config.modifier;
@@ -266,31 +258,34 @@ in {
           menu =
             "${pkgs.rofi}/bin/rofi -show drun -show-icons -font 'sans-serif 14'";
         };
-        extraConfig = mkIf (desktopCfg.monitors != null
-          && desktopCfg.monitors.secondary != null) ''
-            workspace 1 output ${desktopCfg.monitors.primary}
-            workspace 2 output ${desktopCfg.monitors.secondary}
-            workspace 3 output ${desktopCfg.monitors.primary}
-            workspace 4 output ${desktopCfg.monitors.primary}
-            workspace 5 output ${desktopCfg.monitors.primary}
-            workspace 6 output ${desktopCfg.monitors.primary}
-            workspace 7 output ${desktopCfg.monitors.primary}
-            workspace 8 output ${desktopCfg.monitors.primary}
-            workspace 9 output ${desktopCfg.monitors.primary}
-            workspace 10 output ${desktopCfg.monitors.primary}
-            workspace ${musicWorkspace} output ${desktopCfg.monitors.secondary}
-            workspace °1 output ${desktopCfg.monitors.secondary}
-            workspace °2 output ${desktopCfg.monitors.secondary}
-            workspace °3 output ${desktopCfg.monitors.secondary}
-            workspace °4 output ${desktopCfg.monitors.secondary}
-            workspace °5 output ${desktopCfg.monitors.secondary}
-            workspace °6 output ${desktopCfg.monitors.secondary}
-            workspace °7 output ${desktopCfg.monitors.secondary}
-            workspace °8 output ${desktopCfg.monitors.secondary}
-            workspace °9 output ${desktopCfg.monitors.secondary}
-            workspace °10 output ${desktopCfg.monitors.secondary}
-          '';
+        extraConfig = ''
+          exec "systemctl --user import-environment PATH"
 
+          ${optionalString (desktopCfg.monitors != null
+            && desktopCfg.monitors.secondary != null) ''
+              workspace 1 output ${desktopCfg.monitors.primary}
+              workspace 2 output ${desktopCfg.monitors.secondary}
+              workspace 3 output ${desktopCfg.monitors.primary}
+              workspace 4 output ${desktopCfg.monitors.primary}
+              workspace 5 output ${desktopCfg.monitors.primary}
+              workspace 6 output ${desktopCfg.monitors.primary}
+              workspace 7 output ${desktopCfg.monitors.primary}
+              workspace 8 output ${desktopCfg.monitors.primary}
+              workspace 9 output ${desktopCfg.monitors.primary}
+              workspace 10 output ${desktopCfg.monitors.primary}
+              workspace ${musicWorkspace} output ${desktopCfg.monitors.secondary}
+              workspace °1 output ${desktopCfg.monitors.secondary}
+              workspace °2 output ${desktopCfg.monitors.secondary}
+              workspace °3 output ${desktopCfg.monitors.secondary}
+              workspace °4 output ${desktopCfg.monitors.secondary}
+              workspace °5 output ${desktopCfg.monitors.secondary}
+              workspace °6 output ${desktopCfg.monitors.secondary}
+              workspace °7 output ${desktopCfg.monitors.secondary}
+              workspace °8 output ${desktopCfg.monitors.secondary}
+              workspace °9 output ${desktopCfg.monitors.secondary}
+              workspace °10 output ${desktopCfg.monitors.secondary}
+            ''}
+        '';
       };
     };
   };
