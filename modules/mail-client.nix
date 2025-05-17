@@ -71,26 +71,23 @@ in with lib; {
         mbsync.enable = true;
       };
 
-      systemd.user.services.mu4e-sync = {
-        Unit = { Description = "mu4e-sync mailbox synchronization"; };
+      # systemd.user.services.mu4e-sync = {
+      #   Unit = { Description = "mu4e-sync mailbox synchronization"; };
+      #   Service = {
+      #     Type = "oneshot";
+      #     ExecStart = ''
+      #       ${config.cookie.doom-emacs.package}/bin/emacsclient --eval "(mu4e-update-mail-and-index 'true)"'';
+      #   };
+      # };
 
-        Service = {
-          Type = "oneshot";
-          ExecStart = ''
-            ${config.cookie.doom-emacs.package}/bin/emacsclient --eval "(mu4e-update-mail-and-index 'true)"'';
-        };
-      };
-
-      systemd.user.timers.mu4e-sync = {
-        Unit = { Description = "mu4e-sync mailbox synchronization"; };
-
-        Timer = {
-          OnCalendar = "*:0/15";
-          Unit = "mu4e-sync.service";
-        };
-
-        Install = { WantedBy = [ "timers.target" ]; };
-      };
+      # systemd.user.timers.mu4e-sync = {
+      #   Unit = { Description = "mu4e-sync mailbox synchronization"; };
+      #   Timer = {
+      #     OnCalendar = "*:0/15";
+      #     Unit = "mu4e-sync.service";
+      #   };
+      #   Install = { WantedBy = [ "timers.target" ]; };
+      # };
     };
   };
 }
