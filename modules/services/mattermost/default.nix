@@ -36,7 +36,11 @@ in with lib; {
         # path out of `config.mattermost.socket.path` and set it manually.
         export = true;
       };
-      settings = { LogSettings.ConsoleLevel = "ERROR"; };
+      settings = {
+        LogSettings.ConsoleLevel = "INFO";
+        ServiceSettings.AllowedUntrustedInternalConnections = # {daiko,cookiemonster-dev}.tailnet
+          "${nodes.cookiemonster.config.cookie.state.tailscaleIp},${config.cookie.state.tailscaleIp},cookiemonster-dev.tailnet.ckie.dev,daiko.tailnet.ckie.dev";
+      };
     };
 
     cookie.restic.paths = [ config.services.mattermost.dataDir ];
