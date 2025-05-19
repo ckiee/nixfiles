@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "alvr-org",
         "repo": "alvr-bot",
-        "rev": "7f1cf01a53e479907d1d1feeffee1bf3c64c04bc",
-        "sha256": "1faa0r3xk4xbxkpjwg4h5lvff3r1pshq9pln2i1jb9a12xl5flvr",
+        "rev": "680b38df2abc12a8dcce02911c1aa3ee3ecf5118",
+        "sha256": "1vf0xbac27kqgqd4jbl4ply3fq59p6dx1jk8vbanvqlf2g3clcrv",
         "type": "tarball",
-        "url": "https://github.com/alvr-org/alvr-bot/archive/7f1cf01a53e479907d1d1feeffee1bf3c64c04bc.tar.gz",
+        "url": "https://github.com/alvr-org/alvr-bot/archive/680b38df2abc12a8dcce02911c1aa3ee3ecf5118.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "anonvote-bot": {
@@ -332,10 +332,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "3c15156b15fda60356105f30448a60035137eac2",
-        "sha256": "0m48zs1ads38ahmkhrrkbca11napvhbc9kjhs7yy7k4hnc8s138g",
+        "rev": "61fd991d6287bcca82d5444996f5a9772d0f977d",
+        "sha256": "01920xisi5svfh6ilp68avakqpbz3312b4nnxl3pqmad71ysgm05",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/3c15156b15fda60356105f30448a60035137eac2.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/61fd991d6287bcca82d5444996f5a9772d0f977d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

@@ -9,7 +9,7 @@ let
   combType = types.attrsOf (types.submodule {
     options = {
       networkTrusted = mkOption {
-        type = types.bool;
+        type = types.either types.bool types.str;
         description =
           "Whether this combination needs to be able to connect over the network";
         default = false;
@@ -75,8 +75,14 @@ in {
       authentication = mkForce ''
         local all all trust
         ${concatStringsSep "\n" (mapAttrsToList (name: value:
-          (optionalString value.networkTrusted
-            "host ${name} ${name} 127.0.0.1/32 trust")) cfg.comb)}
+          (optionalString
+            (value.networkTrusted != null && value.networkTrusted != false)
+            "host ${name} ${name} ${
+              if value.networkTrusted == true then
+                "127.0.0.1/32"
+              else
+                value.networkTrusted
+            } trust")) cfg.comb)}
       '';
 
       initialScript = pkgs.writeText "ckie-postgres-init.sql"

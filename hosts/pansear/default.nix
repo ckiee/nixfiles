@@ -52,12 +52,13 @@ with builtins;
       avahi.enable = true;
       ffg-bot.enable = true;
       alvr-bot.enable = true;
-      daiko.enable = true;
+      # daiko.enable = true;
       scanner.enable = true;
       transmission.enable = true;
       archivebox.enable = true;
       catcam.enable = true;
       garage.enable = true;
+      sosse.enable = true;
       immich = {
         enable = true;
         host = "immich.tailnet.ckie.dev";
@@ -89,6 +90,7 @@ with builtins;
         "catcam.tailnet.ckie.dev"
         config.cookie.services.printing.tlsHost
         "immich.tailnet.ckie.dev"
+        "sosse.tailnet.ckie.dev"
       ];
       forward = [
         "daiko.tailnet.ckie.dev"

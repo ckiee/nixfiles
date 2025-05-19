@@ -57,6 +57,7 @@
     ./immich
     ./garage
     ./mattermost
+    ./sosse
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
