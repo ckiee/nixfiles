@@ -28,7 +28,7 @@ in with lib; {
 
     wm = mkOption {
       type = types.nullOr (types.enum [ "i3" "sway" ]);
-      default = "i3";
+      default = "sway";
       description = "WM";
     };
   };
@@ -81,6 +81,7 @@ in with lib; {
         dunst.enable = true; # TODO replace..
         keyboard.enable = true;
         redshift.enable = cfg.wm == "i3";
+        gammastep.enable = cfg.wm == "sway";
         nautilus.enable = true;
         i3.enable = cfg.wm == "i3";
         xcursor.enable = true;

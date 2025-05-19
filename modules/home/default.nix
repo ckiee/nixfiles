@@ -44,6 +44,7 @@ in {
         ./zellij.nix
         ./taskwarrior.nix
         ./waybar
+        ./gammastep.nix
       ];
     };
   };
