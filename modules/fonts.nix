@@ -38,7 +38,7 @@ in {
       defaultFonts = {
         monospace = [ "JetBrains Mono" ];
         sansSerif = [ "Inter" ];
-        # serif is ew
+        # we love serif but i dont know a good one yet
       };
       localConf = ''
         <?xml version="1.0" encoding="UTF-8"?>
