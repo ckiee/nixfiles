@@ -25,7 +25,7 @@ in with lib; {
             invert = false;
             target = false;
           };
-          dpi = 700;
+          dpi = 980;
 
           buttons = [
             {
@@ -54,7 +54,7 @@ in with lib; {
                     mode = "OnRelease";
                     action = {
                       type = "CycleDPI";
-                      dpis = [ 700 ];
+                      dpis = [ 980 ];
                     };
                   })
                   ({

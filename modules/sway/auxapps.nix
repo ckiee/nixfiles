@@ -5,11 +5,10 @@ with builtins;
 
 let
   cfg = config.cookie.sway;
-  nixosConfig = config;
   inherit (util) mkRequiresScript;
 in {
   config = mkIf cfg.enable {
-    home-manager.users.ckie = { config, ... }: {
+    home-manager.users.ckie = { config, nixosConfig, ... }: {
       systemd.user.services = let
         mkSvc = exec: {
           Service = {
@@ -17,7 +16,7 @@ in {
               "/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin";
             ExecStart = exec;
           };
-          Install.WantedBy = [ "graphical-session.target" ];
+          Install.WantedBy = [ "sway-session.target" ];
           Unit = {
             After = [ "graphical-session-pre.target" ];
             PartOf = [ "graphical-session.target" ];
@@ -30,10 +29,12 @@ in {
           kdeconnect-indicator = mkSvc
             "${pkgs.plasma5Packages.kdeconnect-kde}}/bin/kdeconnect-indicator";
           nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
-          emote = mkSvc "${pkgs.emote}/bin/emote"; # Ctrl+Alt+E to activate
-          fehbg = mkSvc "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${
+          # x11: Ctrl+Alt+E to activate, wayland: 2nd instance opens gui, first is daemon
+          emote = mkSvc "${pkgs.emote}/bin/emote";
+          fehbg = mkIf (nixosConfig.cookie.desktop.wm == "i3") (mkSvc
+            "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${
               ./backgrounds/farlands.jpg
-            }";
+            }");
           polkit-gnome-auth-agent = mkSvc
             "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           oszwatch = # depends on impure fs contents @ /mnt/games
@@ -45,11 +46,13 @@ in {
           cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
           # ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
           thunderbird = mkSvc "thunderbird";
+          cliphistd = mkSvc "wl-paste --watch cliphist store -max-items 100";
         }
         (mkIf nixosConfig.cookie.collections.chat.enable {
           discord = mkSvc "Discord";
           element = mkSvc "element-desktop";
           signal = mkSvc "signal-desktop";
+          mattermost = mkSvc "mattermost-desktop";
           # nheko = mkSvc "nheko";
           # slack = mkSvc "slack";
         })

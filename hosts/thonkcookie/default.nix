@@ -9,15 +9,14 @@ with lib; {
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+  security.sudo.wheelNeedsPassword = false; #TEMPTEMTPEMTEPMTEPTMEPTMEPTMEPm
   cookie = {
     wireguard.num = 13;
     imperm.enable = true;
-    sway.enable = true;
     desktop = {
       enable = true;
       monitors.primary = "eDP-1";
       laptop = true;
-      wm = "sway";
     };
     services = {
       syncthing = {

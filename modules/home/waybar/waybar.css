@@ -52,6 +52,7 @@ button {
 
 #workspaces button.urgent {
     background-color: @alert;
+    color: black;
 }
 
 widget #workspaces, widget #mode, .modules-right widget * {

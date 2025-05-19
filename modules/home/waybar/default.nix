@@ -71,7 +71,10 @@ in with lib; {
           ++ optionals cfg.laptop [ "backlight" "battery" ]
           ++ [ "custom/sunset" "clock" "tray" ];
 
-        "sway/workspaces" = { all-outputs = true; };
+        "sway/workspaces" = {
+          enable-bar-scroll = true;
+          disable-scroll-wraparound = true;
+        };
         "sway/mode" = { tooltip = false; };
         "sway/window" = { max-length = 120; };
 
@@ -82,7 +85,7 @@ in with lib; {
 
         "mpd" = {
           format =
-            "${icons.music} {artist} - {titleOrFilename} [{elapsedTime:%M:%S}/{totalTime:%M:%S}]";
+            "${icons.music} {artist:.16} - {titleOrFilename:.16} [{elapsedTime:%M:%S}/{totalTime:%M:%S}]";
           format-disconnected = "";
           format-stopped = "";
         };

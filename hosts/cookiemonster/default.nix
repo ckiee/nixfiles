@@ -15,7 +15,7 @@ in {
       enable = true;
       monitors = {
         primary = "DP-3";
-        secondary = "HDMI-1";
+        secondary = "HDMI-A-1";
       };
     };
 

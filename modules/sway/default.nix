@@ -18,6 +18,8 @@ in {
     programs.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      package = with pkgs;
+        sway.override { sway-unwrapped = enableDebugging sway-unwrapped; };
       extraSessionCommands = ''
         # SDL:
         export SDL_VIDEODRIVER=wayland
@@ -27,12 +29,14 @@ in {
         # Fix for some Java AWT applications (e.g. Android Studio),
         # use this if they aren't displayed properly:
         export _JAVA_AWT_WM_NONREPARENTING=1
+        # some electrons via nixpkgs
+        export NIXOS_OZONE_WL=1
       '';
     };
 
     home-manager.users.ckie = { config, ... }: {
       home.packages = with pkgs; [
-        rofi
+        rofi-wayland
         plasma5Packages.kdeconnect-kde
         libnotify # notify-send
         xclip
@@ -74,6 +78,11 @@ in {
         sony-headphones-client
         peek # mini screenrecorder
         xorg.xmodmap
+        emote
+        wl-clipboard
+        cliphist
+        grim
+        slurp
       ];
 
       cookie.polyprog.enable = true;
@@ -114,27 +123,36 @@ in {
             "*" = { # pointer, touchpad
               accel_profile = "flat";
               natural_scroll = "disabled";
+              middle_emulation = "enabled";
             };
             "type:touchpad" = {
               drag = "enabled";
               tap = "enabled";
             };
+            # "1133:16514:Logitech_MX_Master_3" = {
+            #   pointer_accel = "0.4";
+            # };
           };
 
-          output = { "*" = { bg = "${./backgrounds/lain} fit"; }; };
+          output = {
+            "*" = { bg = "${./backgrounds/lain} fit"; };
+            ${desktopCfg.monitors.primary} = { pos = "0 0"; };
+
+            ${desktopCfg.monitors.secondary or "unreachable"} =
+              mkIf (desktopCfg.monitors.secondary != null) { pos = "1920 0"; };
+          };
 
           keybindings = with {
             modifier = config.wayland.windowManager.sway.config.modifier;
             locker =
               "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
-            screenie = let
-              s = a:
-                "exec " + (pkgs.writeShellScript "sway-screenshot-maim-wrapper"
-                  "${pkgs.maim}/bin/maim --hidecursor ${a} | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png");
-            in {
-              area = s "-s";
-              window = s "-i $(${pkgs.xdotool}/bin/xdotool getactivewindow)";
+            screenie = {
+              area = "exec slurp | grim -g - - | wl-copy";
+              window = "exec ${
+                  pkgs.writeShellScript "sway-scrot-window" ''
+                    swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - - | wl-copy''
+                }";
             };
           };
             mkMerge [
@@ -175,6 +193,11 @@ in {
                   "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
                 # ssh into tmux-taboo
                 "${modifier}+Shift+Return" = "exec st ssh cookiemonster";
+                # clipboard history
+                "${modifier}+c" = "exec ${
+                    pkgs.writeShellScript "cliphist-for-sway"
+                    "cliphist list | rofi -dmenu | cliphist decode | wl-copy "
+                  }";
 
                 # screenshot
                 "--release ${modifier}+End" = screenie.area;
@@ -256,9 +279,11 @@ in {
           };
           modifier = "Mod4"; # super key
           menu =
-            "${pkgs.rofi}/bin/rofi -show drun -show-icons -font 'sans-serif 14'";
+            "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons -font 'sans-serif 14'";
         };
+
         extraConfig = ''
+          include /etc/sway/config.d/*
           exec "systemctl --user import-environment PATH"
 
           ${optionalString (desktopCfg.monitors != null

@@ -11,6 +11,7 @@ let
       columns = 174;
       lines = 46;
     };
+    terminal.osc52 = "CopyPaste";
   };
   wrapper = pkgs.writeShellScriptBin "remotemacs" ''
     # the unset works around https://github.com/mobile-shell/mosh/issues/1134

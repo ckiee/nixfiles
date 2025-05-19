@@ -26,7 +26,7 @@
   "${cfg.config.modifier}+Shift+space" = "floating toggle";
   "${cfg.config.modifier}+space" = "focus mode_toggle";
 
-  # "${cfg.config.modifier}+a" = "focus parent";
+  "${cfg.config.modifier}+a" = "focus parent";
 
   "${cfg.config.modifier}+Shift+minus" = "move scratchpad";
   "${cfg.config.modifier}+minus" = "scratchpad show";
