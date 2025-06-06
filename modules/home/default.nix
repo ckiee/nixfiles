@@ -45,6 +45,7 @@ in {
         ./taskwarrior.nix
         ./waybar
         ./gammastep.nix
+        ./fnott.nix
       ];
     };
   };

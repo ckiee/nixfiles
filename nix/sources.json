@@ -308,11 +308,11 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-mailserver": {
-        "sha256": "0zwpqrd5znba7av2xsk9c8qyhxnad69abbsqg7m4l3yy4hhwrzxj",
+        "sha256": "1sfwhz8g81mfia91pqjxayk8jg8wjyh1byk4b423v043l92nkqy2",
         "type": "tarball",
-        "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/9e36323ae3dde787f761420465c3ae560f3dbf29/nixos-mailserver-master.tar.gz",
+        "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/f7a221bc69ef6e67a56e370cbaf031ca2b3c7aa7/nixos-mailserver-master.tar.gz",
         "url_template": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/<version>/nixos-mailserver-master.tar.gz",
-        "version": "9e36323ae3dde787f761420465c3ae560f3dbf29"
+        "version": "f7a221bc69ef6e67a56e370cbaf031ca2b3c7aa7"
     },
     "nixos-raspberrypi": {
         "branch": "main",
@@ -332,10 +332,10 @@
         "homepage": "",
         "owner": "ckiee",
         "repo": "nixpkgs",
-        "rev": "61fd991d6287bcca82d5444996f5a9772d0f977d",
-        "sha256": "01920xisi5svfh6ilp68avakqpbz3312b4nnxl3pqmad71ysgm05",
+        "rev": "71fff37a11091a10d89ef7f69c64acb2237288d5",
+        "sha256": "01wk3d3qgs0pxi5spq6jimrjpcyj9w6x6dnlflkx9bh0vjlrp2b8",
         "type": "tarball",
-        "url": "https://github.com/ckiee/nixpkgs/archive/61fd991d6287bcca82d5444996f5a9772d0f977d.tar.gz",
+        "url": "https://github.com/ckiee/nixpkgs/archive/71fff37a11091a10d89ef7f69c64acb2237288d5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-master": {

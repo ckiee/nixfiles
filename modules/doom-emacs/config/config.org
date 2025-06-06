@@ -424,3 +424,9 @@ to toggle super-save-mode per-project:
               (lambda (&rest r)
                 (doom-disable-delete-trailing-whitespace-h))))
 #+END_SRC
+** consult-gh
+doesnt work yet
+#+BEGIN_SRC elisp :tangle packages.el
+(package! ox-gfm)
+(package! consult-gh)
+#+END_SRC

@@ -38,8 +38,8 @@ with builtins; {
       mailserver-dkim-priv = {
         source = "./secrets/dkim.mail.key";
         dest = "/var/dkim/ckie.dev.mail.key";
-        owner = "opendkim";
-        group = "opendkim";
+        owner = "rspamd"; # rspamd now handles dkim
+        group = "rspamd";
         permissions = "0400";
       };
       mailserver-dkim-pub = {

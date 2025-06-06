@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nodes, ... }:
 
 let cfg = config.cookie.services.mattermost;
 

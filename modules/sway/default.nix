@@ -31,6 +31,8 @@ in {
         export _JAVA_AWT_WM_NONREPARENTING=1
         # some electrons via nixpkgs
         export NIXOS_OZONE_WL=1
+        # darktable, but generally gtk..
+        export GDK_BACKEND=wayland
       '';
     };
 
@@ -122,12 +124,12 @@ in {
             };
             "*" = { # pointer, touchpad
               accel_profile = "flat";
-              natural_scroll = "disabled";
               middle_emulation = "enabled";
             };
             "type:touchpad" = {
               drag = "enabled";
               tap = "enabled";
+              natural_scroll = "enabled";
             };
             # "1133:16514:Logitech_MX_Master_3" = {
             #   pointer_accel = "0.4";
@@ -216,6 +218,12 @@ in {
                 "${modifier}+Shift+b" =
                   "exec ${mkRequiresScript ./scripts/showerset}";
 
+                # notifications
+                "control+space" = "exec dunstctl close";
+                "control+shift+space" = "exec dunstctl close-all";
+                "control+grave" = "exec dunstctl history-pop";
+                "control+shift+period" = "exec dunstctl history-pop";
+
                 # music house
                 "${modifier}+Shift+w" =
                   "move container to workspace ${musicWorkspace}";
@@ -285,6 +293,17 @@ in {
         extraConfig = ''
           include /etc/sway/config.d/*
           exec "systemctl --user import-environment PATH"
+
+          for_window [window_role = "pop-up"] floating enable
+          for_window [window_role = "bubble"] floating enable
+          for_window [window_role = "dialog"] floating enable
+          for_window [window_type = "dialog"] floating enable
+          for_window [window_role = "task_dialog"] floating enable
+          for_window [window_type = "menu"] floating enable
+          for_window [app_id = "floating"] floating enable
+          for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+          for_window [class = "(?i)pinentry"] floating enable
+          for_window [title = "Administrator privileges required"] floating enable
 
           ${optionalString (desktopCfg.monitors != null
             && desktopCfg.monitors.secondary != null) ''

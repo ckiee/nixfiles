@@ -6,6 +6,7 @@ with builtins;
 let
   cfg = config.cookie.sway;
   inherit (util) mkRequiresScript;
+  desktopOnly = mkIf (!config.cookie.desktop.laptop);
 in {
   config = mkIf cfg.enable {
     home-manager.users.ckie = { config, nixosConfig, ... }: {
@@ -31,10 +32,6 @@ in {
           nm-applet = mkSvc "${pkgs.networkmanagerapplet}/bin/nm-applet";
           # x11: Ctrl+Alt+E to activate, wayland: 2nd instance opens gui, first is daemon
           emote = mkSvc "${pkgs.emote}/bin/emote";
-          fehbg = mkIf (nixosConfig.cookie.desktop.wm == "i3") (mkSvc
-            "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${
-              ./backgrounds/farlands.jpg
-            }");
           polkit-gnome-auth-agent = mkSvc
             "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           oszwatch = # depends on impure fs contents @ /mnt/games
@@ -45,14 +42,14 @@ in {
           firefox = mkSvc "firefox";
           cantata = mkIf nixosConfig.cookie.mpd.enable (mkSvc "cantata");
           # ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
-          thunderbird = mkSvc "thunderbird";
+          thunderbird = desktopOnly (mkSvc "thunderbird");
           cliphistd = mkSvc "wl-paste --watch cliphist store -max-items 100";
         }
         (mkIf nixosConfig.cookie.collections.chat.enable {
-          discord = mkSvc "Discord";
-          element = mkSvc "element-desktop";
+          discord = desktopOnly (mkSvc "Discord");
+          element = desktopOnly (mkSvc "element-desktop");
           signal = mkSvc "signal-desktop";
-          mattermost = mkSvc "mattermost-desktop";
+          mattermost = desktopOnly (mkSvc "mattermost-desktop");
           # nheko = mkSvc "nheko";
           # slack = mkSvc "slack";
         })

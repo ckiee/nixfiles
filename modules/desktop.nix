@@ -79,6 +79,7 @@ in with lib; {
         };
         gtk.enable = true;
         dunst.enable = true; # TODO replace..
+        # fnott.enable = true;
         keyboard.enable = true;
         redshift.enable = cfg.wm == "i3";
         gammastep.enable = cfg.wm == "sway";

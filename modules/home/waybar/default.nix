@@ -95,6 +95,7 @@ in with lib; {
           format-muted = "${icons.volume-mute} Muted";
 
           format-icons = [ icons.volume-down icons.volume-up ];
+          scroll-step = 5;
         };
 
         "memory" = {

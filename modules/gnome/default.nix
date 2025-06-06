@@ -44,6 +44,11 @@ in with lib; {
         gnome-screenshot
         evince
       ];
+
+      services.gnome-keyring = {
+        enable = true;
+        components = [ "secrets" ];
+      };
     };
   };
 }

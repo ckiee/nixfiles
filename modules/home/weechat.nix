@@ -6,9 +6,8 @@ let
   weechat = with pkgs.weechatScripts;
     pkgs.weechat.override {
       configure = { availablePlugins, ... }: {
-        scripts = [ weechat-autosort weechat-matrix ];
-        extraBuildInputs =
-          [ availablePlugins.python.withPackages (_: [ weechat-matrix ]) ];
+        scripts = [ weechat-autosort ];
+        extraBuildInputs = [ availablePlugins.python.withPackages (_: [ ]) ];
       };
     };
 in with lib; {

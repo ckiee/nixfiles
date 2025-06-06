@@ -14,3 +14,5 @@
 (package! gptel)
 
 (package! super-save)
+(package! ox-gfm)
+(package! consult-gh)

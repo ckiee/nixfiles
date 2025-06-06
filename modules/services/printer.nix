@@ -40,7 +40,7 @@ in with lib; {
         ensurePrinters = [{
           name = "laserjet";
           description = "big box printy print";
-          deviceUri = "dnssd://HP%20LaserJet%20M1536dnf%20MFP%20(3F3DF3)._ipp._tcp.local/?uuid=434e4339-4333-4a42-3550-984be13f3df3";
+          deviceUri = "socket://192.168.0.9";
           model = "HP/hp-laserjet_m1530_mfp_series-ps.ppd.gz";
           ppdOptions = {
             PageSize = "A4";

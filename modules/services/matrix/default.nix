@@ -81,7 +81,7 @@ in with lib; {
           proxyPass = "http://[::1]:8008"; # without a trailing /
           extraConfig = ''
             proxy_send_timeout 100;
-            client_max_body_size 50M;
+            client_max_body_size 512M;
           '';
         };
         locations."/_synapse".proxyPass = "http://[::1]:8008";
@@ -198,6 +198,7 @@ in with lib; {
 
         redaction_retention_period = "3d";
 
+        max_upload_size = "512M";
         # there's also a "local_media_lifetime"; not using, should be inf. (not guaranteed though!)
         media_retention.remote_media_lifetime = "30d";
 

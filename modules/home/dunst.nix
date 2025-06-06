@@ -17,7 +17,7 @@ in with lib; {
     systemd.user.services.dunst.Service.Restart = "always";
     services.dunst = {
       enable = true;
-      package = pkgs.dunst_ckie;
+      # package = pkgs.dunst_ckie;
       settings = {
         global = {
           monitor = 0;
@@ -47,17 +47,17 @@ in with lib; {
           show_indicators = false;
           icon_position = "off";
         };
-        shortcuts = {
-          close = "ctrl+space";
-          close_all = "ctrl+shift+space";
-          history = "ctrl+grave";
-          context = "ctrl+shift+period";
-        };
+        # shortcuts = {
+        #   close = "ctrl+space";
+        #   close_all = "ctrl+shift+space";
+        #   history = "ctrl+grave";
+        #   context = "ctrl+shift+period";
+        # };
         urgency_low = normal_urgencies;
         urgency_normal = normal_urgencies;
         urgency_critical = {
           background = "#ff1744";
-          foregrund = "#fffff";
+          foreground = "#ffffff";
           timeout = 60;
         };
       };
