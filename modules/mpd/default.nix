@@ -26,6 +26,12 @@ in {
   config = mkIf cfg.enable (mkMerge [
     {
       home-manager.users.ckie = { config, ... }: {
+
+      assertions = [{
+        assertion = sound.pulse.enable || sound.pipewire.enable;
+        message = "pulse or pipewire required for mpd";
+      }];
+
         services.mpd = {
           enable = true;
           dataDir = "${home}/Sync/mpd";
@@ -34,12 +40,11 @@ in {
           extraConfig =
             # PipeWire can emulate PulseAudio and it might work better sometimes
             ''
-              ${optionalString (sound.pulse.enable || sound.pipewire.enable) ''
-                audio_output {
-                  type "pulse"
-                  name "pulseaudio"
-                }
-              ''}
+              audio_output {
+                type "pulse"
+                name "pulseaudio"
+              }
+
               # zeroconf is broken
               zeroconf_enabled "no"
               ${optionalString cfg.enableHttp ''
@@ -56,6 +61,8 @@ in {
                   tags "yes"
                 }
               ''}
+
+              ${/*fileContents ./filters.conf*/"# filters: kinda broken"}
             '';
         };
 
