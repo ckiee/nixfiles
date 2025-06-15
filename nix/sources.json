@@ -41,6 +41,18 @@
         "url": "https://files.lostluma.dev/blobs.zip",
         "url_template": "https://files.lostluma.dev/blobs.zip"
     },
+    "catweighxi": {
+        "branch": "main",
+        "description": "pumps Xiaomi Mi Smart Scale 2 to Prometheus",
+        "homepage": null,
+        "owner": "ckiee",
+        "repo": "catweighxi",
+        "rev": "3144bdf6496ab67cf0b28e88c211ec17de6c1c63",
+        "sha256": "11r4lz40acw4lgwn9ig5r20ps5y1b2mx6cg53gq8w3i6hlzy3xxj",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/catweighxi/archive/3144bdf6496ab67cf0b28e88c211ec17de6c1c63.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "ckiesite": {
         "branch": "main",
         "description": null,

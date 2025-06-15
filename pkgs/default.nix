@@ -22,4 +22,7 @@ with pkgs; {
     nixpkgs = pkgs.path;
   }).default;
   raspberrypi-utils = callPackage "${sources.nixos-raspberrypi}/pkgs/raspberrypi/raspberrypi-utils.nix" {};
+  catweighxi = ((import sources.catweighxi).overrideInputs {
+    nixpkgs = pkgs.path;
+  }).default;
 }
