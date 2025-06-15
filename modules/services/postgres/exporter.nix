@@ -7,7 +7,7 @@ let cfg = config.cookie.services.postgres;
 
 in {
   config = mkIf (cfg.enable && config.cookie.services.prometheus.enableClient) {
-    cookie.services.prometheus.exporters = [ "postgres" ];
+    cookie.services.prometheus.exporters = [{ name = "postgres"; }];
     services.prometheus.exporters.postgres = {
       enable = true;
       runAsLocalSuperUser = true;

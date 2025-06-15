@@ -37,6 +37,7 @@ in {
       };
       coqui.enable = true;
       vmware-host.enable = true;
+      prometheus.exporters = [{ name = "catweighxi"; port = 9984; }];
     };
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we

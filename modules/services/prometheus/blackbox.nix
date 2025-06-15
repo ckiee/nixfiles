@@ -66,9 +66,9 @@ in {
         (mkBlackboxProbe {
           module = "https_success";
           targets = [
-            "https://nikki.sh"
-            "https://nikki.sh/notes"
-            "https://nikki.sh/friends"
+            # "https://nikki.sh"
+            # "https://nikki.sh/notes"
+            # "https://nikki.sh/friends"
           ];
         })
       ];

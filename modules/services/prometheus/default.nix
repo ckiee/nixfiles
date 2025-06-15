@@ -10,14 +10,23 @@ let
 in {
   options.cookie.services.prometheus = {
     enableServer = mkEnableOption "Prometheus monitoring service";
-    enableClient = mkEnableOption "relevant Prometheus exporters"
-      // {
-        default = true;
-      };
+    enableClient = mkEnableOption "relevant Prometheus exporters" // {
+      default = true;
+    };
 
-    # TODO: make this be able to work with non-native-to-NixOS exporters
     exporters = mkOption {
-      type = types.listOf types.str;
+      type = with types;
+        let hcfg = config; in
+        listOf (submodule ({ config, ... }: {
+          options = {
+            name = mkOption { type = str; };
+            port = mkOption {
+              type = port;
+              default =
+                hcfg.services.prometheus.exporters.${config.name}.port;
+            };
+          };
+        }));
       default = [ ];
       internal = true;
       description = "Enabled exporters for this machine";
@@ -31,11 +40,7 @@ in {
     };
   };
 
-  imports = [
-    ./alerting.nix
-    ./blackbox.nix
-    ./smart
-  ];
+  imports = [ ./alerting.nix ./blackbox.nix ./smart ];
 
   config = mkMerge [
     # {
@@ -62,25 +67,24 @@ in {
           # See ./alerting.nix
         }];
 
-        scrapeConfigs = map (k:
+        scrapeConfigs = map (exporter:
           # this assumes we're using the defaults, so it's the same across all hosts,
           # which is probably wrong, but okay for now.
           #
           # see comment on cfg.exporters mkOpt def too
-          let port = config.services.prometheus.exporters.${k}.port;
-          in {
-            job_name = k;
+          {
+            job_name = exporter.name;
             static_configs = [{
-              targets = map (host: "${host}:${toString port}") (mapAttrsToList
-                (_: host: "${host.config.networking.hostName}.cknet")
-                (filterAttrs (_: host:
-                  let
-                    hcfg = host.config.cookie.services.prometheus;
-                    includesThisExporter =
-                      length (intersectLists [ k ] hcfg.exporters) == 1;
-                  in hcfg.enableClient && includesThisExporter) nodes));
+              targets = mapAttrsToList (_: host:
+                "${host.config.networking.hostName}.cknet:${
+                  toString exporter.port
+                }") (filterAttrs (_: host:
+                  let hcfg = host.config.cookie.services.prometheus;
+                  in hcfg.enableClient && any (x: x.name == exporter.name) hcfg.exporters) nodes);
             }];
-          }) cfg.exporters;
+          }) (cfg.exporters ++ [ # HACK: any exporters not on flowe
+           { name = "catweighxi"; port = 9984; }
+          ]);
 
       };
     })
@@ -89,8 +93,7 @@ in {
       # expose the exporters' ports to cknet (internal wireguard)
       {
         networking.firewall.interfaces.cknet.allowedTCPPorts =
-          map (exp: config.services.prometheus.exporters.${exp}.port)
-          cfg.exporters;
+          map (exp: exp.port) cfg.exporters;
       }
 
       # TODO: matrix-appservice-discord, matrix-synapse, prom itself, probably bazillion other things.
@@ -100,7 +103,7 @@ in {
       # check TODO in grafana module too
 
       {
-        cookie.services.prometheus.exporters = [ "node" ];
+        cookie.services.prometheus.exporters = [{ name = "node"; }];
         # https://grahamc.com/blog/nixos-system-version-prometheus
         system.activationScripts.node-exporter-system-version = ''
           mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
@@ -125,7 +128,7 @@ in {
       }
 
       (mkIf config.services.nginx.enable {
-        cookie.services.prometheus.exporters = [ "nginxlog" ];
+        cookie.services.prometheus.exporters = [{ name = "nginxlog"; }];
         services.prometheus.exporters.nginxlog = {
           enable = true;
           inherit listenAddress;
