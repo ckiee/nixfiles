@@ -32,6 +32,7 @@ with lib; {
     smartd.enable = true;
     rkvm.role = "tx";
     steam.enable = true;
+    lutris.enable = true;
     state = {
       sshPubkey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAC83UXW5rtEPlEqDT5c/W0DTFFwsVah6ZlCg1FO9kr";
