@@ -219,10 +219,9 @@ in {
                   "exec ${mkRequiresScript ./scripts/showerset}";
 
                 # notifications
-                "control+space" = "exec dunstctl close";
-                "control+shift+space" = "exec dunstctl close-all";
-                "control+grave" = "exec dunstctl history-pop";
-                "control+shift+period" = "exec dunstctl history-pop";
+                "${modifier}+Shift+space" = mkForce "exec dunstctl close";
+                # "control+shift+space" = "exec dunstctl close-all";
+                "${modifier}+grave" = "exec dunstctl history-pop";
 
                 # music house
                 "${modifier}+Shift+w" =
