@@ -59,6 +59,13 @@ in {
       cookie.services.coredns.extraHosts = ''
         172.104.27.95 emma.coop
         172.104.27.95 blog.emma.coop
+        ${concatMapStringsSep "\n" (s: "0.0.0.0 ${s}") [
+          "x.com"
+          "twitter.com"
+          "bsky.app"
+          "cnn.com"
+          "tiktok.com"
+        ]}
       '';
 
       systemd.services.dns-hosts-poller = {
