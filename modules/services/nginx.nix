@@ -13,10 +13,12 @@ in with lib; {
       enableReload = true;
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
-      recommendedGzipSettings = false; # for a few weeks now (i think), 2024-10-15: *26 gzip filter failed to use preallocated memory: 350272 of 336176 while sending to client, client:
       recommendedProxySettings = true;
+      recommendedGzipSettings = true;
+      recommendedBrotliSettings = true; # this one is the most impressive for pupcat
       appendHttpConfig = ''
         add_header Permissions-Policy "interest-cohort=()";
+        add_header X-Clacks-Overhead "polygon";
       '';
       virtualHosts._ = {
         locations."~ .*".return = "404";
