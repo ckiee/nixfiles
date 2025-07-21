@@ -44,6 +44,13 @@ in {
           # ledc = mkIf nixosConfig.cookie.ledc.enable (mkSvc "ledc");
           thunderbird = desktopOnly (mkSvc "thunderbird");
           cliphistd = mkSvc "wl-paste --watch cliphist store -max-items 100";
+          swayidle = mkSvc (pkgs.writeShellScript "ckie-swaylock" ''
+            ${pkgs.swayidle}/bin/swayidle -w \
+              timeout 400 'swaylock -f -c 000000' \
+              timeout 600 'swaymsg "output * dpms off"' \
+                    resume 'swaymsg "output * dpms on"' \
+              before-sleep 'swaylock -f -c eeeeee'
+          '');
         }
         (mkIf nixosConfig.cookie.collections.chat.enable {
           discord = desktopOnly (mkSvc "Discord");

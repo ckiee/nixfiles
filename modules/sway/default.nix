@@ -44,7 +44,6 @@ in {
         xclip
         feh
         xorg.xkill # if shit gets stuck
-        arandr
         pavucontrol
         audacity
         (hiPrio tenacity) # audacity fork!
@@ -85,6 +84,9 @@ in {
         cliphist
         grim
         slurp
+        nwg-displays # the sway arandr
+        wayvnc
+        comical # cbz comic reader
       ];
 
       cookie.polyprog.enable = true;
@@ -146,8 +148,6 @@ in {
 
           keybindings = with {
             modifier = config.wayland.windowManager.sway.config.modifier;
-            locker =
-              "/run/wrappers/bin/slock"; # slock uses security.wrappers for setuid
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
             screenie = {
               area = "exec slurp | grim -g - - | wl-copy";
@@ -187,9 +187,9 @@ in {
                 "${modifier}+Shift+f" = "floating toggle";
                 "${modifier}+Shift+v" = "sticky toggle";
                 # lock/suspend
-                "--release ${modifier}+l" = "exec ${locker}";
+                "--release ${modifier}+l" = "exec swaylock";
                 "--release ${modifier}+Shift+s" =
-                  ''exec "${locker} ${pkgs.systemd}/bin/systemctl suspend -i"'';
+                  ''exec "${pkgs.systemd}/bin/systemctl suspend -i"'';
                 # kill the whole sysd session
                 "${modifier}+Shift+e" =
                   "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
