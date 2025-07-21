@@ -41,6 +41,7 @@ with builtins;
         "/mnt/chonk/ckie/dna"
         "/mnt/chonk/ckie/DCIM"
         "/mnt/chonk/ckie/oldgit"
+        "/mnt/chonk/ckie/mikmot-dextop"
       ];
     };
     systemd-initrd.enable = true;
