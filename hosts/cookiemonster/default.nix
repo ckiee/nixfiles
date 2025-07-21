@@ -5,7 +5,7 @@ let
   pkgs-master = import sources.nixpkgs-master { };
 in {
   imports =
-    [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ];
+    [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ./smartcard.nix ];
 
   networking.hostName = "cookiemonster";
   cookie = {
