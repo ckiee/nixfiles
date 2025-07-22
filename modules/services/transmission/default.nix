@@ -33,6 +33,12 @@ in with lib; {
     };
     cookie.user.extraGroups = [ "transmission" ];
 
+    # dont wanna bother updating all the paths so lets just..
+    fileSystems."/var/lib/transmission" = {
+      device = "/mnt/chonk/transmission";
+      options = [ "bind" ];
+    };
+
     # proxy
     cookie.services.nginx.enable = true;
     cookie.services.prometheus.nginx-vhosts = [ "transmission" ];
