@@ -1,0 +1,31 @@
+#Requires: coreutils findutils rsync openssh net-tools inotify-tools nmap
+
+[ "$1" == "-v" ] && set -x
+
+set -o pipefail
+
+cd ~/Sync/Calibre
+
+while :; do
+
+	sync_time=$(stat -c %Y ../.kobo-sync-timestamp || echo 0)
+	library_latest_mtime=$(find . -type f -printf '%T@\n' | sort -nr | head -n1 | cut -d. -f1)
+
+	if (( sync_time > library_latest_mtime )); then
+		inotifywait -qrt 30 .
+		continue
+	fi
+
+	ping -c1 192.168.0.80 # its usual ip; pop arp table cheaply
+	if kobo_ip=$(arp -n | grep 70:25:59:30:a1:4b | cut -d' ' -f1); then
+		echo syncing to "$kobo_ip"
+		rsync -vzHPc \
+			-e 'ssh -p 2222' --rsync-path '/mnt/onboard/.adds/rsync' \
+			-r . \
+			--exclude '*.m4b' --exclude '*.mp3' --max-size 512mb --delete-excluded --delete \
+			"root@${kobo_ip}:/mnt/onboard/sync" && touch ../.kobo-sync-timestamp || true
+	else
+		# nmap -sn -n 192.168.0.0/24 &>/dev/null # populate arp table (sorry battery life of all wife devices)
+		sleep 30
+	fi
+done

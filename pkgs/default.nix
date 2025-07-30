@@ -25,4 +25,5 @@ with pkgs; {
   catweighxi = ((import sources.catweighxi).overrideInputs {
     nixpkgs = pkgs.path;
   }).default;
+  feed2epub = callPackage "${sources.hacks}/feed2epub" { };
 }

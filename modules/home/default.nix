@@ -46,6 +46,7 @@ in {
         ./waybar
         ./gammastep.nix
         ./fnott.nix
+        ./feed2epub.nix
       ];
     };
   };

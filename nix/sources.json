@@ -149,6 +149,18 @@
         "url": "https://github.com/ckiee/ffg-bot/archive/ba26d99c57b0379427dabf29af2346bee5808dfd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "hacks": {
+        "branch": "master",
+        "description": "Anything that isn't worth its own repo",
+        "homepage": "",
+        "owner": "ckiee",
+        "repo": "hacks",
+        "rev": "6394ee7999620c13c2d0ff3c208ae4d14b8e4096",
+        "sha256": "1w57944r1b9gxmz9c6kw8h2bjkrdjmwfy5ipxs7sx005jpiqni39",
+        "type": "tarball",
+        "url": "https://github.com/ckiee/hacks/archive/6394ee7999620c13c2d0ff3c208ae4d14b8e4096.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "master",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",

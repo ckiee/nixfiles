@@ -95,6 +95,7 @@ in {
       collections.devel.enable = true;
       qsynth.enable = true;
       tmux.taboo.enable = true;
+      feed2epub.enable = true;
       # polybar.backlight = "ddcci10"; unfortunately this is not predictable, sometimes its on 11
     };
     home.stateVersion = "22.11";
