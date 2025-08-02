@@ -146,6 +146,29 @@ in {
               mkIf (desktopCfg.monitors.secondary != null) { pos = "1920 0"; };
           };
 
+          modes =
+            let scfg = config.wayland.windowManager.sway.config;
+              modifier = scfg.modifier;
+            in {
+              passthrough = {
+                "${modifier}+Shift+Escape" =
+                  "mode default; floating_modifier ${modifier} normal";
+              };
+
+              resize = {
+                "${scfg.left}" = "resize shrink width 10 px";
+                "${scfg.down}" = "resize grow height 10 px";
+                "${scfg.up}" = "resize shrink height 10 px";
+                "${scfg.right}" = "resize grow width 10 px";
+                "Left" = "resize shrink width 10 px";
+                "Down" = "resize grow height 10 px";
+                "Up" = "resize shrink height 10 px";
+                "Right" = "resize grow width 10 px";
+                "Escape" = "mode default";
+                "Return" = "mode default";
+              };
+            };
+
           keybindings = with {
             modifier = config.wayland.windowManager.sway.config.modifier;
             pam = "exec ${pkgs.pamixer}/bin/pamixer";
@@ -200,6 +223,9 @@ in {
                     pkgs.writeShellScript "cliphist-for-sway"
                     "cliphist list | rofi -dmenu | cliphist decode | wl-copy "
                   }";
+                # passthrough mode
+                "${modifier}+Shift+F1" =
+                  "mode passthrough; floating_modifier none";
 
                 # screenshot
                 "--release ${modifier}+End" = screenie.area;
