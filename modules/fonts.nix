@@ -44,7 +44,14 @@ in {
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
         <fontconfig>
-          <description>Disable ligatures for all the damn fonts</description>
+          <description>User opts</description>
+
+          <!-- nixpkgs added more woff2 fonts incl my primary monospace which doesn't work with the cups CUPSTextToPdfFilter -->
+          <selectfont>
+            <rejectfont>
+              <glob>*.woff2</glob>
+            </rejectfont>
+          </selectfont>
 
           <match target="font">
             <test name="family" compare="eq" ignore-blanks="true">
