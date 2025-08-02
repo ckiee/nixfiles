@@ -101,7 +101,7 @@ in with lib; {
           inherit (cfg) laptop;
         };
       };
-      services.rsibreak.enable = true;
+      services.rsibreak.enable = cfg.wm == "i3";
     };
 
     programs = {
