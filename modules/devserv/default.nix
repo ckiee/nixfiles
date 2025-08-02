@@ -26,8 +26,16 @@ in {
             proxyWebsockets = true;
             extraConfig = ''
               proxy_read_timeout 18000s;
-              ${optionalString (host == "pupcat-dev.tailnet.ckie.dev")
-              "proxy_set_header Origin http://$host;"}
+              ${optionalString (host == "pupcat-dev.tailnet.ckie.dev") ''
+                proxy_set_header Origin http://$host;
+
+                error_page 502 /pupcat-502.html;
+                location = /pupcat-502.html {
+                    ssi on; # templating
+                    internal;
+                    root ${./errors};
+                }
+              ''}
             '';
           };
 

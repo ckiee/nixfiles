@@ -2,7 +2,7 @@
 
 let
   cfg = config.cookie.services.pupcat;
-  util = import ./util.nix margs;
+  util = import ../util.nix margs;
 in with lib; {
   options.cookie.services.pupcat = {
     enable = mkEnableOption "the mei.puppycat.house service";
