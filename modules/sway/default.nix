@@ -318,6 +318,7 @@ in {
         extraConfig = ''
           include /etc/sway/config.d/*
           exec "systemctl --user import-environment PATH"
+          hide_edge_borders --i3 smart_no_gaps
 
           for_window [window_role = "pop-up"] floating enable
           for_window [window_role = "bubble"] floating enable
