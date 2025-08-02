@@ -92,7 +92,7 @@ in {
 
     systemd.services.postgresql.postStart = mkAfter ''
       ${concatStringsSep "\n" (mapAttrsToList (name: value:
-        "$PSQL -tAf ${
+        "psql -tAf ${
           pkgs.writeText "${name}-ckpg-init.sql" (''
             \c ${name};
             ${value.extraSql}
