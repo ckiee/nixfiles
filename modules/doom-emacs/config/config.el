@@ -52,6 +52,7 @@
 (setq writeroom-mode-line t)
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+(setq doom-modeline-enable-word-count 't)
 (add-to-list 'auto-mode-alist '("\\.svx\\'" . markdown-mode))
 (setq lsp-clients-lua-language-server-bin "lua-language-server")
 (setq! lsp-disabled-clients '(vue-semantic-server))

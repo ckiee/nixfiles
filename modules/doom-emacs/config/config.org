@@ -147,6 +147,9 @@ To save the clock history across Emacs sessions, use:
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 #+END_SRC
+#+BEGIN_SRC elisp
+(setq doom-modeline-enable-word-count 't)
+#+END_SRC
 ** adoc-mode
 #+BEGIN_SRC elisp :tangle packages.el
 (package! adoc-mode)
