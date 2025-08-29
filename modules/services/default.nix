@@ -58,6 +58,7 @@
     ./garage
     ./mattermost
     ./sosse
+    ./navidrome
     # Home baked
     ./rtcme.nix
     ./rtc-files.nix
