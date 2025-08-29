@@ -19,6 +19,7 @@ function gen_secrets {
     $($0 $c_trace eval build direct 'import ../deploy/secrets.nix { inherit uncheckedNodes; }')
 }
 if [[ -z "${CKIE_DEPLOY_META}" ]]; then
+    echo "-=-=-=-=- binc-info"
     deployMeta="$(nix-instantiate $show_trace --json --strict --eval deploy/binc-info.nix --read-write-mode)"
     export CKIE_DEPLOY_META="$deployMeta"
 else
@@ -97,6 +98,7 @@ elif [ "$1" == "bump" ] || [ "$1" == "demp" ] || [ "$1" == "cemp" ] || [ "$1" ==
         git commit -m "niv: bump $2"
     fi
 elif [ "$1" == "eval" ]; then
+    echo '-=-=-=-' $@ >&2
     shift
     mkdir .evals &>/dev/null || true
     file=".evals/eval-$RANDOM.nix"

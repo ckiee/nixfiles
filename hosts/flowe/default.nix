@@ -5,6 +5,8 @@ with lib;
   imports = [ ./hardware.nix ./network.nix ../.. ];
   networking.hostName = "flowe";
 
+  deployment.targetHost = "flowe.ckie.dev";
+
   cookie = {
     restic.enable = true; # Backups
     systemd-initrd.enable = true;
@@ -21,7 +23,6 @@ with lib;
     services = {
       vaultwarden.enable = true;
       mailserver.enable = true;
-      ergo.enable = true;
       among-sus.enable = true;
       anonvote-bot.enable = true;
       heisenbridge.enable = true;

@@ -4,8 +4,14 @@ let
   sources = import ../../nix/sources.nix;
   pkgs-master = import sources.nixpkgs-master { };
 in {
-  imports =
-    [ ../.. ./hardware.nix ./vfio ../../secrets/private-1.nix ./resolve.nix ./smartcard.nix ];
+  imports = [
+    ../..
+    ./hardware.nix
+    ./vfio
+    ../../secrets/private-1.nix
+    ./resolve.nix
+    ./smartcard.nix
+  ];
 
   networking.hostName = "cookiemonster";
   cookie = {
@@ -37,7 +43,11 @@ in {
       };
       coqui.enable = true;
       vmware-host.enable = true;
-      prometheus.exporters = [{ name = "catweighxi"; port = 9984; }];
+      prometheus.exporters = [{
+        name = "catweighxi";
+        port = 9984;
+      }];
+      navidrome.enable = true;
     };
     restic.enable = true;
     # FIXME: This is just dirty. Syncthing is replicated yet we
@@ -52,14 +62,13 @@ in {
       "git/mei.puppycat.house"
       "git/bwah.ing"
       "git/ckie.dev"
+      "git/nixfiles"
       ".bash_eternal_history"
       "winshare" # well we should just make it structured fr
       "mikmot-dextop"
       ".config/darktable"
       ".minecraft"
-    ]) ++ [
-      "/var/lib/libvirt/images/win10.qcow2"
-    ];
+    ]);
     devserv = {
       enable = true;
       hosts = [ "pupcat-dev.tailnet.ckie.dev" ];
@@ -74,7 +83,6 @@ in {
     libvirtd.enable = true;
     mpd.enableHttp = true;
     lutris.enable = true;
-    ledc.enable = true;
     systemd-initrd.enable = true;
     rkvm.role = "rx";
     wol.macAddress = "50:3e:aa:05:2a:90";

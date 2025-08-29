@@ -62,7 +62,7 @@ in {
         ${concatMapStringsSep "\n" (s: "0.0.0.0 ${s}") [
           "x.com"
           "twitter.com"
-          "bsky.app"
+          # "bsky.app"
           "cnn.com"
           "tiktok.com"
         ]}

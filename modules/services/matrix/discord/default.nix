@@ -16,7 +16,6 @@ in {
     services.matrix-appservice-discord = {
       enable = true;
       package = (pkgs.matrix-appservice-discord.override {
-        nodejs = pkgs.nodejs_20;
         inherit (pkgs.yarn2nix-moretea.override { nodejs = pkgs.nodejs_20; })
           mkYarnPackage;
       }).overrideAttrs (prev: {

@@ -285,6 +285,7 @@
 <Multi_key> <asterisk>          : "•" # U+2022 • BULLET (&bull;, &bullet;)
 <Multi_key> <equal> <asciitilde> : "≈" # APPROX EQUAL
 <Multi_key> <Tab>               : "⭾" # Horizontal Tab Key
+<Multi_key> <t> <r> <a>         : "🚆" # train
 
 # Greek letters in .XCompose https://gist.github.com/carlobaldassi/8951743
 <Multi_key> <space> <a>                : "α"        U03B1                # GREEK SMALL LETTER ALPHA

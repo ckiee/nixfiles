@@ -28,7 +28,6 @@ with lib;
     fonts.enable = true;
     gnome.enable = true;
     qt.enable = true;
-    ledc.enable = true;
     services = {
       avahi.enable = true;
       tailscale.enable = false;
