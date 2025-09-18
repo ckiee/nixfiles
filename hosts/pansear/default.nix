@@ -6,6 +6,10 @@ with builtins;
 {
   imports = [ ../.. ./hardware.nix ./windows-passthrough.nix ];
 
+  # https://github.com/NixOS/nixpkgs/issues/428775
+  boot.initrd.systemd.services."systemd-udevd".after =
+    [ "systemd-modules-load.service" ];
+
   networking.networkmanager.unmanaged = [ "enp2s0" ];
   networking = {
     hostName = "pansear";
@@ -93,14 +97,14 @@ with builtins;
         "immich.tailnet.ckie.dev"
         "sosse.tailnet.ckie.dev"
       ];
-      forward = [
-        "daiko.tailnet.ckie.dev"
-        "immich.tailnet.ckie.dev"
-      ];
+      forward = [ "daiko.tailnet.ckie.dev" "immich.tailnet.ckie.dev" ];
     };
     remote-builder.role = "builder";
   };
   hardware.nvidia-container-toolkit.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia-container-toolkit.suppressNvidiaDriverAssertion =
+    true; # i bet its just broken cuz the above line changes nothing even tho thats what it recommends.
 
   services.postgresql = { package = pkgs.postgresql_16; };
 
