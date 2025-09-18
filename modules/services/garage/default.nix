@@ -20,7 +20,7 @@ in with lib; {
 
     services.garage = {
       enable = true;
-      package = pkgs.garage_1_x;
+      package = pkgs.garage_1;
       environmentFile = config.cookie.secrets.garage-env.dest;
       settings = {
         replication_factor = 1;

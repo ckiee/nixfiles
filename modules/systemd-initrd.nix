@@ -52,7 +52,14 @@ in with lib; {
           # > Terrible hack so it works with useBootLoader
           # > hostKeys =
           # >   [{ outPath = "${./initrd-network-ssh/ssh_host_ed25519_key}"; }];
-          hostKeys = [ config.cookie.secrets.systemd-initrd-ssh-host-key.dest ];
+          hostKeys = [
+            # in system.build.vm we dont get this initrd secret support
+            # so it has to be a stupid plain store path
+            (if config.boot.loader.supportsInitrdSecrets && hostname == "pansear" then
+              config.cookie.secrets.systemd-initrd-ssh-host-key.dest
+            else
+              ../secrets + "/systemd-initrd-ssh-host-${hostname}")
+          ];
         };
       };
     };

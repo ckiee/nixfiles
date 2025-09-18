@@ -131,7 +131,7 @@ in with lib; {
         pipewire = { enable = mkDefault true; };
       };
       sway.enable = cfg.wm == "sway";
-      slock.enable = true;
+      slock.enable = cfg.wm == "sway";
       fonts.enable = true;
       gnome.enable = true;
       qt.enable = true;

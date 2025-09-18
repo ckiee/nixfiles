@@ -18,13 +18,7 @@ with lib;
 
   cookie = {
     wireguard.num = 8;
-    collections.media.enable = true;
-    xserver.enable = true;
-    sound = {
-      enable = true;
-      pulse.enable = true;
-    };
-    slock.enable = true;
+    sway.enable = true;
     fonts.enable = true;
     gnome.enable = true;
     qt.enable = true;
@@ -36,15 +30,12 @@ with lib;
 
   home-manager.users.ckie = { pkgs, ... }: {
     cookie = {
-      polybar.enable = true;
       gtk.enable = true;
       dunst.enable = true;
       keyboard.enable = true;
-      redshift.enable = true;
       nautilus.enable = true;
-      i3.enable = true;
+      waybar.enable = true;
       xcursor.enable = true;
-      st.enable = true;
       remotemacs.enable = true;
     };
     services.rsibreak.enable = true;
@@ -60,5 +51,5 @@ with lib;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 }
